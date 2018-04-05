@@ -1,0 +1,25 @@
+cpf:
+  organisme:
+    source: routine.organisme_financeur
+  taux_de_prise_en_charge:
+    calcul: voir notes
+  temps_de_travail:
+    nom: Financement CPF sur le temps de travail
+    description: le compte personnel de formation (CPF) permet au salarié d'acquérir des droits et de les mobiliser pour financer des actions de formation tout au long de sa vie professionnelle.
+    demarches: Pour une formation se déroulant sur le temps de travail, il est nécessaire de demander l'accord de l'employeur Assurez vous que votre compte personnel de formation est activé sur http://www.moncompteformation.gouv.fr/ . Contacter votre employeur pour bénéficier gratuitement d’un conseil en évolution professionnelle et valider votre projet de formation et son financement CPF.
+  hors_temps_de_travail:
+    nom: Financement CPF hors temps de travail
+    demarches: Pour une formation se déroulant en dehors du temps de travail, il n'est pas nécessaire de demander l'accord de l'employeur. Assurez-vous que votre compte personnel de formation est activé sur http://www.moncompteformation.gouv.fr/ Contacter directement votre Opca {organisme.nom} pour bénéficier gratuitement d’un conseil en évolution professionnelle et valider votre projet de formation et son financement CPF.
+
+
+
+
+
+  financement:
+    description: prise en charge jusqu'à xxx
+    calcul: demandeur.salaire * demandeur.compte_cpf * 30
+  rémunération:
+    description: pas de rémunération spécifique
+    calcul: demandeur.salaire * demandeur.compte_cpf * 30
+
+Christophe : 06 79 80 28 35

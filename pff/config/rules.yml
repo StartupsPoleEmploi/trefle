@@ -1,0 +1,5 @@
+SI beneficiaire.droit_prive = OUI:
+    ET formation.regions CONTIENT beneficiaire.entreprise.commune.region OU formation.eligible_cpf CONTIENT «COPANEF» OU formation.eligible_cpf CONTIENT beneficiaire.entreprise.cpne:
+        ET beneficiaire.cpf > 0:
+            - scenario.cpf.temps_de_travail
+            - scenario.cpf.hors_temps_de_travail

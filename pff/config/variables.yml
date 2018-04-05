@@ -1,0 +1,61 @@
+beneficiaire:
+  droit_prive:
+    description: être salarié d'une entreprise de droit privé
+    type: bool
+    source: beneficiaire
+  cpf:
+    description: solde du compte CPF
+    type: int
+    source: beneficiaire
+  age:
+    description: âge du beneficiaire
+    type: int
+    source: beneficiaire
+  entreprise:
+    ape:
+      description: l'identifiant NAF/APE de l'entreprise
+      type: str
+      source: beneficiaire
+    cpne:
+      description: liste CPNE du secteur d'activité de l'entreprise
+      type: liste de code CPF (trois ou quatre chiffre)
+      source: routine.cpne
+    commune:
+      cp:
+        description: code postale de la commune
+        type: str
+        source: beneficiaire
+      insee:
+        description: code INSEE de la commune de l'entreprise
+        type: int
+        source: routine.code_insee
+      code_region:
+        description: région de l'entreprise
+        type: int
+        source: routine.code_region
+formation:
+  code_financeur:
+    description: code financeur
+    type: List[int]
+  tag_cpf:
+    description: un ou plusieurs codes CPF
+    type: List[int]
+    source: données Intercarif
+  eligible_cpf:
+    description: liste des éditeurs d'éligibilité CPF (COPANEF, COPAREF, CPNE)
+    type: List[str]
+    source: données Intercarif
+  regions:
+    description: régions d'éligibilité si COPAREF dans les listes_eligibilite_cpf
+    type: List[int]
+    source: routine.formation_region
+organisme:
+  cpne:
+    type: str
+    source: routine
+  copanef:
+    type: bool
+    source: routine
+  coparef:
+    type: str
+    source: routine

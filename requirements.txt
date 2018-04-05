@@ -1,0 +1,4 @@
+minicli==0.3.0
+PyYAML==3.12
+roll==0.8.0
+ujson==1.35
