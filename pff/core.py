@@ -73,6 +73,7 @@ class Condition:
             raw = raw[3:]
         self.raw = raw
         self.conditions = []
+        self.negative = False
         # TODO: Deal with ()
         if ' OU ' in self.raw:
             self.conditions = [Condition(s) for s in self.raw.split(' OU ')]
@@ -84,6 +85,9 @@ class Condition:
             left, self.operator, right = self.raw.split()
             self.left = Variable(left)
             self.right = Variable(right)
+            if self.operator.startswith('!'):
+                self.operator = self.operator[1:]
+                self.negative = True
 
     def assess(self, **data):
         if self.conditions:
@@ -96,10 +100,13 @@ class Condition:
             right = self.right.get(data)
         except (ValueError, TypeError):
             return False
-        operator = OPERATORS.get(self.operator)
         if left is None or right is None:
             return False
-        return getattr(left, operator)(right)
+        operator = OPERATORS.get(self.operator)
+        result = getattr(left, operator)(right)
+        if self.negative:
+            return not result
+        return result
 
     def extract(self, data):
         return data.get(self.key)
