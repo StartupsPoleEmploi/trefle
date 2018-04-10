@@ -93,8 +93,7 @@ class Condition:
         if self.conditions:
             if self.connective == 'OU':
                 return any(c.assess(**data) for c in self.conditions)
-            else:
-                return all(c.assess(**data) for c in self.conditions)
+            return all(c.assess(**data) for c in self.conditions)
         try:
             left = self.left.get(data)
             right = self.right.get(data)
@@ -119,13 +118,13 @@ class Rule:
 
     def __init__(self, conditions, scenarios):
         self.conditions = conditions
-        self.scenarios = scenarios
+        self.scenarios = [Scenario(name) for name in scenarios]
 
     def assess(self, **data):
         return all(c.assess(**data) for c in self.conditions)
 
     @classmethod
-    def load(self, data, conditions=None, rules=None):
+    def load(cls, data, conditions=None, rules=None):
         if rules is None:
             rules = []
         if conditions is None:
@@ -142,10 +141,15 @@ class Rule:
         return f'<Rule: {self.conditions} => {self.scenarios}>'
 
 
+class Scenario:
+
+    def __init__(self, name):
+        self.name = name
+
+
 def simulate(**data):
-    rules = tree()
     passed, failed = [], []
-    for rule in rules:
+    for rule in load_rules():
         if rule.assess(**data):
             for scenario in rule.scenarios:
                 passed.append(scenario)
@@ -155,7 +159,7 @@ def simulate(**data):
     return passed, failed
 
 
-def tree():
-    with (Path(__file__).parent / 'config/rules.yml').open() as f:
-        data = yaml.safe_load(f.read())
+def load_rules():
+    with (Path(__file__).parent / 'config/rules.yml').open() as rules_file:
+        data = yaml.safe_load(rules_file.read())
     return Rule.load(data)
