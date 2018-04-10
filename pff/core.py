@@ -6,7 +6,9 @@ import yaml
 OPERATORS = {
     '=': '__eq__',
     '>': '__gt__',
+    '>=': '__ge__',
     '<': '__lt__',
+    '<=': '__le__',
     'CONTIENT': '__contains__',
 }
 VARIABLES = {}
