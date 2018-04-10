@@ -146,10 +146,11 @@ def simulate(**data):
     rules = tree()
     passed, failed = [], []
     for rule in rules:
-        for scenario in rule.scenarios:
-            if rule.assess(**data):
+        if rule.assess(**data):
+            for scenario in rule.scenarios:
                 passed.append(scenario)
-            else:
+        else:
+            for scenario in rule.scenarios:
                 failed.append(scenario)
     return passed, failed
 
