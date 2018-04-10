@@ -2,9 +2,13 @@ from pathlib import Path
 
 import yaml
 
+from . import routine
+from .exceptions import NoDataError
+
 
 OPERATORS = {
     '=': '__eq__',
+    'VAUT': '__eq__',
     '>': '__gt__',
     '>=': '__ge__',
     '<': '__lt__',
@@ -39,10 +43,6 @@ def isfloat(v):
     except ValueError:
         return False
     return True
-
-
-class NoDataError(Exception):
-    ...
 
 
 class LazyValue:
@@ -88,7 +88,7 @@ class LazyValue:
             return True
         if value in self.FALSE_VALUES:
             return False
-        raise ValueError(f'"{value}" is not a valid boolean value')
+        raise ValueError(f'Invalid boolean value for "{self.raw}": "{value}"')
 
     def int(self, value):
         return int(value)
@@ -157,10 +157,10 @@ class Rule:
             conditions = []
         for key, inner in data.items():
             local = conditions[:]
-            local.append(Condition(key))
-            if not isinstance(inner, dict):  # We have a leaf.
+            if key == 'ALORS':  # We have a leaf.
                 rules.append(Rule(local, inner))
             else:
+                local.append(Condition(key))
                 Rule.load(inner, local, rules)
         return rules
 
@@ -177,23 +177,31 @@ class Scenario:
         return f'<Scenario: {self.name}'
 
     def __call__(self, **data):
-        rules = load_rules(Path(__file__).parent / 'config/computation.yml')
         variables = []
         data = data.copy()
         data.update({'scenario.nom': self.name})
-        for rule in rules:
+        # TODO: use a routine and make it dynamic with scenario type
+        data.update({'organisme.nom': data['beneficiaire.entreprise.opca']})
+        for rule in ORGANISMES:
+            if rule.assess(**data):
+                for output in rule.output:
+                    dest, value = output.split(' VAUT ')
+                    data[dest] = value
+        for rule in COMPUTATION:
             if rule.assess(**data):
                 variables.append(rule)
         for rule in variables:
             for variable in rule.output:
-                dest, src = variable.split(' = ')
+                dest, src = variable.split(' VAUT ')
                 data[dest] = data.get(src, src)
-        self.prise_en_charge = (data['organisme.taux_horaire']
+        # TODO: type should come from the variables.yml entry type
+        self.prise_en_charge = (int(data['organisme.taux_horaire'])
                                 * data['beneficiaire.cpf'])
 
 
 def simulate(**data):
     passed, failed = [], []
+    routine.idcc_to_opca(data)
     for rule in load_rules(Path(__file__).parent / 'config/rules.yml'):
         if rule.assess(**data):
             for name in rule.output:
@@ -210,3 +218,7 @@ def load_rules(path):
     with (path).open() as rules_file:
         data = yaml.safe_load(rules_file.read())
     return Rule.load(data)
+
+
+ORGANISMES = load_rules(Path(__file__).parent / 'config/organismes.yml')
+COMPUTATION = load_rules(Path(__file__).parent / 'config/computation.yml')

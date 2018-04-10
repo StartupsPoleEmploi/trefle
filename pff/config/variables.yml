@@ -80,6 +80,8 @@ formation:
     type: List[int]
     source: routine.formation_region
 organisme:
+  nom:
+    type: str
   cpne:
     type: str
     source: routine

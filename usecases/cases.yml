@@ -2,6 +2,7 @@
     formation.eligible_cpf: COPANEF
     beneficiaire.droit_prive: OUI
     beneficiaire.cpf: 50
+    beneficiaire.entreprise.idcc: 2706
   sortie:
     - scenarios.cpf.temps_de_travail
     - scenarios.cpf.hors_temps_de_travail
@@ -10,14 +11,17 @@
     formation.eligible_cpf: COPANEF
     beneficiaire.droit_prive: OUI
     beneficiaire.cpf: 0
+    beneficiaire.entreprise.idcc: 2706
   sortie: null
 - entrée:
     formation.eligible_cpf: COPANEF
     beneficiaire.droit_prive: NON
     beneficiaire.cpf: 50
+    beneficiaire.entreprise.idcc: 2706
   sortie: null
 - entrée:
     formation.eligible_cpf: COPAREF Grand Est
     beneficiaire.droit_prive: OUI
     beneficiaire.cpf: 50
+    beneficiaire.entreprise.idcc: 2706
   sortie: null
