@@ -1,3 +1,23 @@
+constante:
+  codes_financeur_pôle_emploi:
+    description: ensemble des codes financeurs collectifs
+    type: List[int]
+    value:
+      - 2
+      - 4
+      - 6
+      - 8
+      - 9
+      - 11
+      - 12
+      - 13
+      - 15
+      - 16
+  idcc_artisanat:
+    description: ensemble des codes IDCC de l'artisanat
+    type: List[int]
+    value:
+      - 12345
 beneficiaire:
   droit_prive:
     description: être salarié d'une entreprise de droit privé
@@ -11,9 +31,21 @@ beneficiaire:
     description: âge du beneficiaire
     type: int
     source: beneficiaire
+  experience_professionelle:
+    description: nombre de mois travaillés sur les 5 dernières années
+    type: int
+    source: beneficiaire
+  mois_travailles_en_cdd:
+    description: nombre de mois travaillés sur un contrat CDD sur les 12 derniers mois
+    type: int
+    source: beneficiaire
   entreprise:
     ape:
       description: l'identifiant NAF/APE de l'entreprise
+      type: str
+      source: routine.idcc2ape
+    idcc:
+      description: l'identifiant de convention collective de l'établissement
       type: str
       source: beneficiaire
     cpne:
@@ -37,14 +69,15 @@ formation:
   code_financeur:
     description: code financeur
     type: List[int]
+    source: catalogue
   tag_cpf:
     description: un ou plusieurs codes CPF
     type: List[int]
-    source: données Intercarif
+    source: catalogue
   eligible_cpf:
     description: liste des éditeurs d'éligibilité CPF (COPANEF, COPAREF, CPNE)
     type: List[str]
-    source: données Intercarif
+    source: catalogue
   regions:
     description: régions d'éligibilité si COPAREF dans les listes_eligibilite_cpf
     type: List[int]

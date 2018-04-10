@@ -1,7 +1,7 @@
-cpne:
-  entree: beneficiaire.entreprise.ape
-  sortie: beneficiaire.entreprise.cpne
-  description: table de correspondance (voir avec JY)
+idcc2ape:
+  entree: beneficiaire.entreprise.idcc
+  sortie: beneficiaire.entreprise.ape
+  description: table de correspondance
 code_insee:
   entree: beneficiaire.entreprise.commune.cp
   sortie: beneficiaire.entreprise.commune.insee

@@ -3,3 +3,26 @@ SI beneficiaire.droit_prive = OUI:
         ET beneficiaire.cpf > 0:
             - scenario.cpf.temps_de_travail
             - scenario.cpf.hors_temps_de_travail
+    ET constante.codes_financeur_collectif !CONTIENT formation.code_financeur:
+        ET formation.heures <= 1200 ET formation.mois <= 12:
+            ET beneficiaire.contrat = «CDI»:
+                ET constante.idcc_artisanat !CONTIENT beneficiaire.entreprise.idcc:
+                    ET beneficiaire.anciennete_entreprise_actuelle > 12:
+                        ET beneficiaire.experience_professionnelle > 24:
+                            - scenario.cif.cdi.temps_de_travail
+                            - scenario.cif.cdi.hors_temps_de_travail
+                ET constante.idcc_artisanat CONTIENT beneficiaire.entreprise.idcc:
+                    ET beneficiaire.anciennete_entreprise_actuelle > 12:
+                        ET beneficiaire.experience_professionnelle > 36:
+                            - scenario.cif.cdi.temps_de_travail
+                            - scenario.cif.cdi.hors_temps_de_travail
+            ET beneficiaire.contrat = «CDD»:
+                ET beneficiaire.age < 26:
+                    ET beneficiaire.experience_professionnelle > 12:
+                        ET beneficiaire.mois_travailles_en_cdd > 4:
+                            - scenario.cif.cdd.temps_de_travail
+                            - scenario.cif.cdd.hors_temps_de_travail
+                ET beneficiaire.age >= 26:
+                    ET beneficiaire.experience_professionnelle > 24:
+                        - scenario.cif.cdd.temps_de_travail
+                        - scenario.cif.cdd.hors_temps_de_travail
