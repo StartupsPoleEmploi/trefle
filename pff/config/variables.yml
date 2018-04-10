@@ -2,22 +2,19 @@ constante:
   codes_financeur_pôle_emploi:
     description: ensemble des codes financeurs collectifs
     type: List[int]
-    value:
-      - 2
-      - 4
-      - 6
-      - 8
-      - 9
-      - 11
-      - 12
-      - 13
-      - 15
-      - 16
+    value: [2, 4, 6, 8, 9, 11, 12, 13, 15, 16]
   idcc_artisanat:
     description: ensemble des codes IDCC de l'artisanat
     type: List[int]
-    value:
-      - 12345
+    value: [12345]
+  codes_cpf_vae:
+    description: liste des codes CPF identifiant une formation VAE
+    type: List[int]
+    value: [200]
+  codes_cpf_clea:
+    description: liste des codes CPF identifiant une formation CleA
+    type: List[int]
+    value: [201, 207, 208]
 beneficiaire:
   droit_prive:
     description: être salarié d'une entreprise de droit privé
@@ -92,3 +89,16 @@ organisme:
   coparef:
     type: str
     source: routine
+  plafond_financier_vae:
+    type: int
+    source: routine.idcc2organisme
+  plafond_financier_copanef:
+    type: int
+    source: routine.idcc2organisme
+  taux_horaire_copanef:
+    type: int
+    source: routine.idcc2organisme
+scenario:
+  nom:
+    type: str
+    source: private

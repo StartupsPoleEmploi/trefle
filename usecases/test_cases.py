@@ -21,7 +21,7 @@ def test_usecases(input, expected):
     scenarios, _ = list(simulate(**input))
     expected = expected or []
 
-    assert len(scenarios) == len(expected)
+    assert len(scenarios) == len(expected), (scenarios, expected)
 
     for scenario, expected_name in zip(scenarios, expected):
         assert scenario.name == expected_name

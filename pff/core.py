@@ -33,34 +33,62 @@ with (Path(__file__).parent / 'config/variables.yml').open() as f:
     VARIABLES.update(load_variables(yaml.safe_load(f.read())))
 
 
-class Variable:
+def isfloat(v):
+    try:
+        float(v)
+    except ValueError:
+        return False
+    return True
 
-    def __init__(self, raw):
+
+class NoDataError(Exception):
+    ...
+
+
+class LazyValue:
+
+    TRUE_VALUES = ('oui', 'yes', 'true')
+    FALSE_VALUES = ('non', 'no', 'false')
+
+    def __init__(self, raw, variables=VARIABLES):
         self.raw = raw
-        if raw in VARIABLES:
-            self.set_type()
-            self.constant = False
+        self.get = None
+        self.compile(variables)
+
+    def compile(self, variables):
+        if self.raw in variables:
+            try:
+                type_ = getattr(self, variables[self.raw]['type'])
+            except AttributeError:
+                self.get = lambda **d: self._get(**d)
+            else:
+                self.get = lambda **d: type_(self._get(**d))
         else:
-            self.constant = True
             if self.raw[0] == '«' and self.raw[-1] == '»':
-                self.raw = self.raw[1:-1]
+                value = self.raw[1:-1]
             elif self.raw.isdigit():
-                self.raw = int(self.raw)
+                value = int(self.raw)
+            elif isfloat(self.raw):
+                value = float(self.raw)
+            elif self.raw.lower() in self.TRUE_VALUES + self.FALSE_VALUES:
+                value = self.bool(self.raw)
+            else:
+                value = self.raw
+            self.get = lambda **d: value
 
-    def set_type(self):
+    def _get(self, **data):
         try:
-            self.type = getattr(self, VARIABLES[self.raw]['type'])
-        except AttributeError:
-            self.type = lambda x: x
-
-    def get(self, data):
-        if self.constant:
-            return self.raw
-        return self.type(data.get(self.raw))
+            return data[self.raw]
+        except KeyError:
+            raise NoDataError
 
     def bool(self, value):
-        return ('OUI' if str(value).lower() in ('oui', 'yes', '1', 'true')
-                else 'NON')
+        value = str(value).lower()
+        if value in self.TRUE_VALUES:
+            return True
+        if value in self.FALSE_VALUES:
+            return False
+        raise ValueError(f'"{value}" is not a valid boolean value')
 
     def int(self, value):
         return int(value)
@@ -83,8 +111,8 @@ class Condition:
             self.connective = 'ET'
         else:
             left, self.operator, right = self.raw.split()
-            self.left = Variable(left)
-            self.right = Variable(right)
+            self.left = LazyValue(left)
+            self.right = LazyValue(right)
             if self.operator.startswith('!'):
                 self.operator = self.operator[1:]
                 self.negative = True
@@ -92,14 +120,12 @@ class Condition:
     def assess(self, **data):
         if self.conditions:
             if self.connective == 'OU':
-                return any(c.assess(**data) for c in self.conditions)
-            return all(c.assess(**data) for c in self.conditions)
+                return any([c.assess(**data) for c in self.conditions])
+            return all([c.assess(**data) for c in self.conditions])
         try:
-            left = self.left.get(data)
-            right = self.right.get(data)
-        except (ValueError, TypeError):
-            return False
-        if left is None or right is None:
+            left = self.left.get(**data)
+            right = self.right.get(**data)
+        except NoDataError:
             return False
         operator = OPERATORS.get(self.operator)
         result = getattr(left, operator)(right)
@@ -116,9 +142,9 @@ class Condition:
 
 class Rule:
 
-    def __init__(self, conditions, scenarios):
+    def __init__(self, conditions, output):
         self.conditions = conditions
-        self.scenarios = [Scenario(name) for name in scenarios]
+        self.output = output
 
     def assess(self, **data):
         return all(c.assess(**data) for c in self.conditions)
@@ -129,16 +155,17 @@ class Rule:
             rules = []
         if conditions is None:
             conditions = []
-        for key, sub in data.items():
-            conditions.append(Condition(key))
-            if not isinstance(sub, dict):  # We have a leaf.
-                rules.append(Rule(conditions, sub))
+        for key, inner in data.items():
+            local = conditions[:]
+            local.append(Condition(key))
+            if not isinstance(inner, dict):  # We have a leaf.
+                rules.append(Rule(local, inner))
             else:
-                Rule.load(sub, conditions.copy(), rules)
+                Rule.load(inner, local, rules)
         return rules
 
     def __repr__(self):
-        return f'<Rule: {self.conditions} => {self.scenarios}>'
+        return f'<Rule: {self.conditions} => {self.output}>'
 
 
 class Scenario:
@@ -146,20 +173,40 @@ class Scenario:
     def __init__(self, name):
         self.name = name
 
+    def __repr__(self):
+        return f'<Scenario: {self.name}'
+
+    def __call__(self, **data):
+        rules = load_rules(Path(__file__).parent / 'config/computation.yml')
+        variables = []
+        data = data.copy()
+        data.update({'scenario.nom': self.name})
+        for rule in rules:
+            if rule.assess(**data):
+                variables.append(rule)
+        for rule in variables:
+            for variable in rule.output:
+                dest, src = variable.split(' = ')
+                data[dest] = data.get(src, src)
+        self.prise_en_charge = (data['organisme.taux_horaire']
+                                * data['beneficiaire.cpf'])
+
 
 def simulate(**data):
     passed, failed = [], []
-    for rule in load_rules():
+    for rule in load_rules(Path(__file__).parent / 'config/rules.yml'):
         if rule.assess(**data):
-            for scenario in rule.scenarios:
+            for name in rule.output:
+                scenario = Scenario(name)
+                scenario(**data)
                 passed.append(scenario)
         else:
-            for scenario in rule.scenarios:
-                failed.append(scenario)
+            for scenario in rule.output:
+                failed.append(Scenario(scenario))
     return passed, failed
 
 
-def load_rules():
-    with (Path(__file__).parent / 'config/rules.yml').open() as rules_file:
+def load_rules(path):
+    with (path).open() as rules_file:
         data = yaml.safe_load(rules_file.read())
     return Rule.load(data)
