@@ -5,11 +5,14 @@
     beneficiaire.entreprise.idcc: 2706
     beneficiaire.remuneration: 1400
   sortie:
-    - scenarios.cpf.pendant_temps_de_travail
-      # remuneration: 1400
-      # prise_en_charge: 9600
-      # organisme.nom: FAFIEC
-    - scenarios.cpf.hors_temps_de_travail
+    scenarios.cpf.pendant_temps_de_travail:
+      remuneration: 1400
+      prise_en_charge: 3000
+      organisme: ACTALIANS
+    scenarios.cpf.hors_temps_de_travail:
+      remuneration: 0
+      prise_en_charge: 3000
+      organisme: ACTALIANS
   description: bénéficiaire éligible au CPF
 - entrée:
     formation.eligible_cpf: COPANEF

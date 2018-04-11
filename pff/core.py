@@ -198,7 +198,7 @@ class Scenario:
         # TODO: type should come from the variables.yml entry type
         self.prise_en_charge = (int(data['organisme.taux_horaire'])
                                 * data['beneficiaire.cpf'])
-        self.remuneration = data.get('scenario.remuneration', None)
+        self.remuneration = int(data.get('scenario.remuneration', 0))
 
 
 def simulate(**data):

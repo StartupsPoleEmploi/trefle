@@ -19,9 +19,12 @@ def pytest_generate_tests(metafunc):
 
 def test_usecases(input, expected):
     scenarios, _ = list(simulate(**input))
-    expected = expected or []
+    expected = expected or {}
 
     assert len(scenarios) == len(expected), (scenarios, expected)
 
-    for scenario, expected_name in zip(scenarios, expected):
-        assert scenario.name == expected_name
+    for scenario in scenarios:
+        data = expected[scenario.name]
+        assert scenario.organisme == data['organisme']
+        assert scenario.prise_en_charge == data['prise_en_charge']
+        assert scenario.remuneration == data['remuneration']
