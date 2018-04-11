@@ -1,0 +1,11 @@
+SI organisme.nom = «OPCALIM»:
+  ALORS:
+    - organisme.taux_horaire VAUT 50
+    - organisme.plafond_horaire VAUT beneficiaire.cpf
+    - organisme.plafond_financier VAUT 8000
+  SI constante.codes_cpf_vae CONTIENT formation.cpf:
+    ALORS:
+      - organisme.plafond_horaire VAUT formation.heures
+    SI formations.naf CONTIENT beneficiaire.entreprise.naf:
+      ALORS:
+        - organisme.plafond_financier VAUT 0

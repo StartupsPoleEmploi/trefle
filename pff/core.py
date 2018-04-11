@@ -157,6 +157,7 @@ class Rule:
             if key == 'ALORS':  # We have a leaf.
                 rules.append(Rule(local, inner))
             else:
+                # TODO: warn/raise if condition already exist in local
                 local.append(Condition(key))
                 Rule.load(inner, local, rules)
         return rules
@@ -180,11 +181,6 @@ class Scenario:
         # TODO: use a routine and make it dynamic with scenario type
         self.organisme = data['beneficiaire.entreprise.opca']
         data.update({'organisme.nom': self.organisme})
-        for rule in ORGANISMES:
-            if rule.assess(**data):
-                for output in rule.output:
-                    dest, value = output.split(' VAUT ')
-                    data[dest] = value
         for rule in PRISE_EN_CHARGE:
             if rule.assess(**data):
                 variables.append(rule)
@@ -228,6 +224,7 @@ def load_rules(path):
 
 with (ROOT / 'config/variables.yml').open() as f:
     VARIABLES.update(load_variables(yaml.safe_load(f.read())))
-ORGANISMES = load_rules(ROOT / 'config/organismes.yml')
-PRISE_EN_CHARGE = load_rules(ROOT / 'config/prise_en_charge.yml')
+PRISE_EN_CHARGE = []
+for path in (ROOT / 'config/prise_en_charge').glob('*.yml'):
+    PRISE_EN_CHARGE.extend(load_rules(path))
 REMUNERATION = load_rules(ROOT / 'config/remuneration.yml')

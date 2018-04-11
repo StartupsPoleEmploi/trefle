@@ -1,0 +1,8 @@
+SI organisme.nom = «OPCA_3_PLUS»:
+  ALORS:
+    - organisme.taux_horaire_clea VAUT formation.taux_horaire
+    - organisme.plafond_horaire_clea VAUT beneficiaire.cpf
+  SI constante.codes_cpf_vae CONTIENT formation.cpf:
+    ALORS:
+      - organisme.taux_horaire VAUT formation.taux_horaire
+      - organisme.plafond_horaire VAUT formation.heures

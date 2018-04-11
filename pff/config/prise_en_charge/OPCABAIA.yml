@@ -1,0 +1,27 @@
+SI organisme.nom = «OPCABAIA»:
+  ALORS:
+      - organisme.plafond_horaire VAUT beneficiaire.cpf
+      - organisme.taux_horaire VAUT formation.taux_horaire
+  SI idcc = 2335,1672,1801:
+# - organisme.plafond_financier_copanef VAUT "10 000 pour niv f°< ou = niveau 2\n16 000 pour niveau f°= niveau 1\n2100 pour bilan de compétences\n1500 pour permis B"
+# - organisme.plafond_financier_coparef VAUT "10 000 pour niv f°< ou = niveau 2\n16 000 pour niveau f°= niveau 1\n2100 pour bilan de compétences\n1500 pour permis B"
+# - organisme.plafond_financier_cpne VAUT "10 000 pour niv f°< ou = niveau 2\n16 000 pour niveau f°= niveau 1\n2100 pour bilan de compétences\n1500 pour permis B"
+    SI constante.codes_cpf_vae CONTIENT formation.cpf:
+      ALORS:
+        - organisme.plafond_horaire VAUT formation.heures
+        - organisme.plafond_financier VAUT 2500
+    SI constante.codes_cpf_clea CONTIENT formation.cpf:
+      ALORS:
+        - organisme.plafond_financier VAUT 10000
+  SI idcc VAUT 2120:
+  # - organisme.taux_horaire_copanef VAUT "formation.taux_horaire\n37€ pour langues"
+  # - organisme.plafond_financier_copanef VAUT "8 500/an\n2100 pour bilan de compétences\n1500 pour permis B\\"\n"
+  # - organisme.plafond_financier_coparef VAUT "8500/an\n2100 pour bilan de compétences\n1500 pour permis B\\""
+  # - organisme.plafond_financier_cpne VAUT "12 000/an\n2100 pour bilan de compétences\n1500 pour permis B"
+    SI constante.codes_cpf_vae CONTIENT formation.cpf:
+      ALORS:
+        - organisme.plafond_horaire VAUT formation.heures
+        - organisme.plafond_financier VAUT 2500
+    SI constante.codes_cpf_vae CONTIENT formation.cpf:
+      ALORS:
+          - organisme.plafond_financier VAUT 2500

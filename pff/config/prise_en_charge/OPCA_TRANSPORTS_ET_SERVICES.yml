@@ -1,0 +1,12 @@
+SI organisme.nom = «OPCA_TRANSPORTS_ET_SERVICES»:
+  ALORS:
+    - organisme.taux_horaire_clea VAUT 15
+    - organisme.plafond_horaire_clea VAUT beneficiaire.cpf
+  SI constante.codes_cpf_vae CONTIENT formation.cpf:
+    ALORS:
+      - organisme.taux_horaire VAUT 57
+      - organisme.plafond_horaire_vae VAUT 21
+      - organisme.plafond_financier_journalier VAUT 400
+  SI formations.naf CONTIENT beneficiaire.entreprise.naf:
+    ALORS:
+      - organisme.taux_horaire_cpne VAUT 30

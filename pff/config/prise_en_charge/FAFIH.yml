@@ -1,0 +1,10 @@
+SI organisme.nom = «FAFIH»:
+  ALORS:
+    - organisme.taux_horaire VAUT 40
+    - organisme.plafond_horaire VAUT beneficiaire.cpf
+  # - organisme.plafond_financier_vae VAUT "1 500 € maxi si la certification validée est un CQP\n2 500 € maxi si la certification validée est jusqu'à un niveau bac +2 \n3 500 € maxi si la certification validée est de nivea bac + 3 et plusI"
+  # - organisme.plafond_financier_copanef VAUT "2000 pour les bilans de compétences (Certif Info n°93559)\n750 pour les permis de conduire B (Code Certif Info n°54664)"
+  SI constante.codes_cpf_vae CONTIENT formation.cpf:
+    ALORS:
+      - organisme.taux_horaire VAUT 0
+      - organisme.plafond_horaire VAUT 0

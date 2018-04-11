@@ -3,8 +3,12 @@
     beneficiaire.droit_prive: OUI
     beneficiaire.cpf: 50
     beneficiaire.entreprise.idcc: 2706
+    beneficiaire.remuneration: 1400
   sortie:
     - scenarios.cpf.pendant_temps_de_travail
+      # remuneration: 1400
+      # prise_en_charge: 9600
+      # organisme.nom: FAFIEC
     - scenarios.cpf.hors_temps_de_travail
   description: bénéficiaire éligible au CPF
 - entrée:

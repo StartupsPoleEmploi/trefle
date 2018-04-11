@@ -1,0 +1,11 @@
+SI organisme.nom = «FAFSEA»:
+  ALORS:
+    - organisme.taux_horaire VAUT formation.taux_horaire
+    - organisme.plafond_horaire VAUT beneficiaire.cpf
+  SI constante.codes_cpf_vae CONTIENT formation.cpf:
+    ALORS:
+      - organisme.plafond_horaire VAUT formation.heures
+  SI scenario.nom CONTIENT «cif»:
+      ALORS:
+          - organisme.plafond_financier VAUT 18000
+          - organisme.taux_horaire VAUT 27.45

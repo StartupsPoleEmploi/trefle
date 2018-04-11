@@ -1,0 +1,8 @@
+SI organisme.nom = «AFDAS»:
+  ALORS:
+    - organisme.taux_horaire VAUT 35
+    - organisme.plafond_horaire VAUT beneficiaire.cpf
+  SI constante.codes_cpf_vae CONTIENT formation.cpf:
+    ALORS:
+      - organisme.taux_horaire VAUT 100
+      - organisme.plafond_horaire VAUT formation.heures
