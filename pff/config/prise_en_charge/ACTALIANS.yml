@@ -15,6 +15,6 @@ SI organisme.nom = «ACTALIANS»:
     ALORS:
       - organisme.taux_horaire VAUT 0
       - organisme.plafond_horaire VAUT 0
-  SI formations.naf CONTIENT beneficiaire.entreprise.naf:
+  SI formation.codes_naf CONTIENT beneficiaire.entreprise.naf:
     ALORS:
       - organisme.taux_horaire VAUT 60

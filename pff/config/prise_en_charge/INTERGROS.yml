@@ -9,6 +9,6 @@ SI organisme.nom = «INTERGROS»:
       - organisme.taux_horaire VAUT formation.taux_horaire
       - organisme.plafond_horaire VAUT formation.heures
       - organisme.plafond_financier VAUT 2000
-  SI constante.codes_cpf_vae CONTIENT formation.cpf:
+  SI constante.codes_cpf_clea CONTIENT formation.cpf:
     ALORS:
-      - organisme.taux_horaire_clea VAUT 18
+      - organisme.taux_horaire VAUT 18

@@ -3,7 +3,7 @@ from pathlib import Path
 import yaml
 
 from . import routine
-from .exceptions import NoDataError
+from .exceptions import NoDataError, WrongPointerError
 
 
 OPERATORS = {
@@ -16,6 +16,7 @@ OPERATORS = {
     'CONTIENT': '__contains__',
 }
 VARIABLES = {}
+CONSTANTS = {}
 ROOT = Path(__file__).parent
 
 
@@ -28,7 +29,10 @@ def load_variables(data, output=None, namespace=None):
         ns = namespace.copy()
         ns.append(key)
         if 'type' in more:  # We have a variable.
-            output['.'.join(ns)] = more
+            name = '.'.join(ns)
+            output[name] = more
+            if ns[0] == 'constante':
+                CONSTANTS[name] = more['value']
         else:
             load_variables(more, output, ns)
     return output
@@ -53,24 +57,27 @@ class LazyValue:
         self.compile(variables)
 
     def compile(self, variables):
-        if self.raw in variables:
+        value = ...
+        if self.raw[0] == '«' and self.raw[-1] == '»':
+            value = self.raw[1:-1]
+        elif self.raw[0] == '[' and self.raw[-1] == ']':
+            value = self.raw.split(',')  # TODO: type of members/constante?
+        elif self.raw.isdigit():
+            value = int(self.raw)
+        elif isfloat(self.raw):
+            value = float(self.raw)
+        elif self.raw.lower() in self.TRUE_VALUES + self.FALSE_VALUES:
+            value = self.bool(self.raw)
+        else:
             try:
                 type_ = getattr(self, variables[self.raw]['type'])
             except AttributeError:
                 self.get = lambda **d: self._get(**d)
+            except KeyError:
+                raise WrongPointerError(self.raw)
             else:
                 self.get = lambda **d: type_(self._get(**d))
-        else:
-            if self.raw[0] == '«' and self.raw[-1] == '»':
-                value = self.raw[1:-1]
-            elif self.raw.isdigit():
-                value = int(self.raw)
-            elif isfloat(self.raw):
-                value = float(self.raw)
-            elif self.raw.lower() in self.TRUE_VALUES + self.FALSE_VALUES:
-                value = self.bool(self.raw)
-            else:
-                value = self.raw
+        if value is not ...:
             self.get = lambda **d: value
 
     def _get(self, **data):
@@ -108,8 +115,12 @@ class Condition:
             self.connective = 'ET'
         else:
             left, self.operator, right = self.raw.split()
-            self.left = LazyValue(left)
-            self.right = LazyValue(right)
+            try:
+                self.left = LazyValue(left)
+                self.right = LazyValue(right)
+            except WrongPointerError as err:
+                # Give more context.
+                raise WrongPointerError(f'{err} does not exist in {self.raw}')
             if self.operator.startswith('!'):
                 self.operator = self.operator[1:]
                 self.negative = True
@@ -175,7 +186,6 @@ class Scenario:
         return f'<Scenario: {self.name}'
 
     def __call__(self, **data):
-        variables = []
         data = data.copy()
         data.update({'scenario.nom': self.name})
         # TODO: use a routine and make it dynamic with scenario type
@@ -183,28 +193,32 @@ class Scenario:
         data.update({'organisme.nom': self.organisme})
         for rule in PRISE_EN_CHARGE:
             if rule.assess(**data):
-                variables.append(rule)
-        for rule in variables:
-            for variable in rule.output:
-                dest, src = variable.split(' VAUT ')
-                data[dest] = data.get(src, src)
+                for variable in rule.output:
+                    dest, src = variable.split(' VAUT ')
+                    data[dest] = data.get(src, src)
         for rule in REMUNERATION:
             if rule.assess(**data):
-                variables.append(rule)
-        for rule in variables:
-            for variable in rule.output:
-                dest, src = variable.split(' VAUT ')
-                data[dest] = data.get(src, src)
+                for variable in rule.output:
+                    dest, src = variable.split(' VAUT ')
+                    data[dest] = data.get(src, src)
         # TODO: type should come from the variables.yml entry type
-        self.prise_en_charge = (int(data['organisme.taux_horaire'])
-                                * data['beneficiaire.cpf'])
+        heures = data['beneficiaire.cpf']
+        if ('organisme.plafond_horaire' in data
+           and int(data['organisme.plafond_horaire']) < heures):
+            heures = int(data['organisme.plafond_horaire'])
+        prise_en_charge = int(data['organisme.taux_horaire']) * heures
+        if ('organisme.plafond_financier' in data
+           and int(data['organisme.plafond_financier']) < prise_en_charge):
+            prise_en_charge = int(data['organisme.plafond_financier'])
+        self.prise_en_charge = prise_en_charge
         self.remuneration = int(data.get('scenario.remuneration', 0))
 
 
 def simulate(**data):
     passed, failed = [], []
+    data.update(CONSTANTS)
     routine.idcc_to_opca(data)
-    for rule in load_rules(Path(__file__).parent / 'config/rules.yml'):
+    for rule in RULES:
         if rule.assess(**data):
             for name in rule.output:
                 scenario = Scenario(name)
@@ -228,3 +242,4 @@ PRISE_EN_CHARGE = []
 for path in (ROOT / 'config/prise_en_charge').glob('*.yml'):
     PRISE_EN_CHARGE.extend(load_rules(path))
 REMUNERATION = load_rules(ROOT / 'config/remuneration.yml')
+RULES = load_rules(Path(__file__).parent / 'config/rules.yml')

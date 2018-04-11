@@ -1,2 +1,6 @@
 class NoDataError(Exception):
     ...
+
+
+class WrongPointerError(Exception):
+    ...

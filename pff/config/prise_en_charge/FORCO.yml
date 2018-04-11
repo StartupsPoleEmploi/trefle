@@ -7,12 +7,12 @@ SI organisme.nom = «FORCO»:
       # idcc = commerce de détail non alimentaire
       - organisme.plafond_horaire VAUT formation.heures
   # (Code Certif Info n°54664)
-  SI kkchose = «PermisB»:
-    ALORS:
-      - organisme.taux_horaire VAUT 40
-      - organisme.plafond_financier VAUT 750
+  # SI kkchose = «PermisB»:
+  #   ALORS:
+  #     - organisme.taux_horaire VAUT 40
+  #     - organisme.plafond_financier VAUT 750
   # TODO VAUT add PARMI/EN/DANS operator with list
-  SI beneficiaire.entreprise.idcc = 0675,0468,1431,1487,2198,0043,1557,2162:
+  SI beneficiaire.entreprise.idcc = [0675,0468,1431,1487,2198,0043,1557,2162]:
     ALORS:
       - organisme.taux_horaire VAUT 40
   SI beneficiaire.entreprise.idcc = 1517:

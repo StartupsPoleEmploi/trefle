@@ -32,3 +32,41 @@
     beneficiaire.cpf: 50
     beneficiaire.entreprise.idcc: 2706
   sortie: null
+- entrée:
+    formation.eligible_cpf: COPANEF
+    formation.taux_horaire: 25
+    formation.heures: 200
+    formation.cpf: 200
+    beneficiaire.droit_prive: OUI
+    beneficiaire.cpf: 100
+    beneficiaire.entreprise.idcc: 2075
+    beneficiaire.remuneration: 1400
+  sortie:
+    scenarios.cpf.pendant_temps_de_travail:
+      remuneration: 1400
+      prise_en_charge: 2000
+      organisme: INTERGROS
+    scenarios.cpf.hors_temps_de_travail:
+      remuneration: 0
+      prise_en_charge: 2000
+      organisme: INTERGROS
+  description: plafond financier INTERGROS sur formation VAE
+- entrée:
+    formation.eligible_cpf: COPANEF
+    formation.taux_horaire: 25
+    formation.heures: 50
+    formation.cpf: 200
+    beneficiaire.droit_prive: OUI
+    beneficiaire.cpf: 100
+    beneficiaire.entreprise.idcc: 2075
+    beneficiaire.remuneration: 1400
+  sortie:
+    scenarios.cpf.pendant_temps_de_travail:
+      remuneration: 1400
+      prise_en_charge: 1250
+      organisme: INTERGROS
+    scenarios.cpf.hors_temps_de_travail:
+      remuneration: 0
+      prise_en_charge: 1250
+      organisme: INTERGROS
+  description: plafond horaire INTERGROS sur formation VAE

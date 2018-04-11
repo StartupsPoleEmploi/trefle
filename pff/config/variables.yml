@@ -1,5 +1,5 @@
 constante:
-  codes_financeur_pôle_emploi:
+  codes_financeur_collectif:
     description: ensemble des codes financeurs collectifs
     type: List[int]
     value: [2, 4, 6, 8, 9, 11, 12, 13, 15, 16]
@@ -15,6 +15,12 @@ constante:
     description: liste des codes CPF identifiant une formation CleA
     type: List[int]
     value: [201, 207, 208]
+  deux_smic:
+    type: int
+    value: 2997
+  trois_smic:
+    type: int
+    value: 2997
 beneficiaire:
   droit_prive:
     description: être salarié d'une entreprise de droit privé
@@ -40,8 +46,20 @@ beneficiaire:
     description: nombre de mois travaillés sur un contrat CDD sur les 12 derniers mois
     type: int
     source: beneficiaire
+  contrat:
+    description: type de contrat du bénéficiaire
+    type: str
+    source: beneficiaire
+  anciennete_entreprise_actuelle:
+    description: ancienneté en mois dans l'entreprise actuelle
+    type: int
+    source: beneficiaire
+  experience_professionnelle:
+    description: nombre de mois travaillés dans les X dernières années
+    type: int
+    source: beneficiaire
   entreprise:
-    ape:
+    naf:
       description: l'identifiant NAF/APE de l'entreprise
       type: str
       source: routine.idcc2ape
@@ -62,7 +80,7 @@ beneficiaire:
         description: code INSEE de la commune de l'entreprise
         type: int
         source: routine.code_insee
-      code_region:
+      region:
         description: région de l'entreprise
         type: int
         source: routine.code_region
@@ -83,6 +101,29 @@ formation:
     description: régions d'éligibilité si COPAREF dans les listes_eligibilite_cpf
     type: List[int]
     source: routine.formation_region
+  heures:
+    type: int
+    source: private
+  mois:
+    type: int
+    source: private
+  taux_horaire:
+    type: int
+    source: private
+  taux_horaire_ttc:
+    type: int
+    source: private
+  taux_horaire_ht:
+    type: int
+    source: private
+  cpf:
+    description: code CPF de la formation (plusieurs? cf tag_cpf)
+    type: int
+    source: catalogue
+  codes_naf:
+    description: codes NAF des différents CPNE
+    type: List[int]
+    source: routine.naf_from_formation
 organisme:
   nom:
     type: str
@@ -95,15 +136,15 @@ organisme:
   coparef:
     type: str
     source: routine
-  plafond_financier_vae:
+  plafond_financier:
     type: int
-    source: routine.idcc2organisme
-  plafond_financier_copanef:
+    source: private
+  plafond_horaire:
     type: int
-    source: routine.idcc2organisme
-  taux_horaire_copanef:
+    source: private
+  taux_horaire:
     type: int
-    source: routine.idcc2organisme
+    source: private
 scenario:
   nom:
     type: str

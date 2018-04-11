@@ -6,10 +6,10 @@ SI organisme.nom = «ANFA»:
     ALORS:
       - organisme.taux_horaire VAUT 40
       - organisme.plafond_horaire VAUT formation.heures
-  SI formations.naf CONTIENT beneficiaire.entreprise.naf:
+  SI formation.codes_naf CONTIENT beneficiaire.entreprise.naf:
     ALORS:
       - organisme.taux_horaire = 50
     # 60 si intitulé comprend \\"CQP\\"\n50 pour toute autre certification
-    SI kkchose CONTIENT «CPQ»:
-      ALORS:
-        - organisme.taux_horaire = 60
+    # SI kkchose CONTIENT «CPQ»:
+    #   ALORS:
+    #     - organisme.taux_horaire = 60
