@@ -4,7 +4,7 @@
     beneficiaire.cpf: 50
     beneficiaire.entreprise.idcc: 2706
   sortie:
-    - scenarios.cpf.temps_de_travail
+    - scenarios.cpf.pendant_temps_de_travail
     - scenarios.cpf.hors_temps_de_travail
   description: bénéficiaire éligible au CPF
 - entrée:

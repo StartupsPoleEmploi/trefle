@@ -24,6 +24,10 @@ beneficiaire:
     description: solde du compte CPF
     type: int
     source: beneficiaire
+  remuneration:
+    description: Rémunération actuelle en euros
+    type: int
+    source: beneficiaire
   age:
     description: âge du beneficiaire
     type: int

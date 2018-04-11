@@ -16,7 +16,9 @@ def cli_simulate(*args):
     if passed:
         for scenario in passed:
             print('- Nom:', scenario.name)
-            print('  Financement:', scenario.prise_en_charge, 'euros')
+            print('  Organisme:', scenario.organisme)
+            print('  Financement:', scenario.prise_en_charge, '€')
+            print('  Rémunération:', scenario.remuneration, '€')
             print('')
     else:
         print('_')

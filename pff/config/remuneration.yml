@@ -1,0 +1,7 @@
+SI scenario.nom CONTIENT «cpf»:
+    SI scenario.nom CONTIENT «hors_temps_de_travail»:
+      ALORS:
+        - scenario.remuneration VAUT 0
+    SI scenario.nom CONTIENT «pendant_temps_de_travail»:
+      ALORS:
+        - scenario.remuneration VAUT beneficiaire.remuneration

@@ -16,6 +16,7 @@ OPERATORS = {
     'CONTIENT': '__contains__',
 }
 VARIABLES = {}
+ROOT = Path(__file__).parent
 
 
 def load_variables(data, output=None, namespace=None):
@@ -31,10 +32,6 @@ def load_variables(data, output=None, namespace=None):
         else:
             load_variables(more, output, ns)
     return output
-
-
-with (Path(__file__).parent / 'config/variables.yml').open() as f:
-    VARIABLES.update(load_variables(yaml.safe_load(f.read())))
 
 
 def isfloat(v):
@@ -181,13 +178,21 @@ class Scenario:
         data = data.copy()
         data.update({'scenario.nom': self.name})
         # TODO: use a routine and make it dynamic with scenario type
-        data.update({'organisme.nom': data['beneficiaire.entreprise.opca']})
+        self.organisme = data['beneficiaire.entreprise.opca']
+        data.update({'organisme.nom': self.organisme})
         for rule in ORGANISMES:
             if rule.assess(**data):
                 for output in rule.output:
                     dest, value = output.split(' VAUT ')
                     data[dest] = value
-        for rule in COMPUTATION:
+        for rule in PRISE_EN_CHARGE:
+            if rule.assess(**data):
+                variables.append(rule)
+        for rule in variables:
+            for variable in rule.output:
+                dest, src = variable.split(' VAUT ')
+                data[dest] = data.get(src, src)
+        for rule in REMUNERATION:
             if rule.assess(**data):
                 variables.append(rule)
         for rule in variables:
@@ -197,6 +202,7 @@ class Scenario:
         # TODO: type should come from the variables.yml entry type
         self.prise_en_charge = (int(data['organisme.taux_horaire'])
                                 * data['beneficiaire.cpf'])
+        self.remuneration = data.get('scenario.remuneration', None)
 
 
 def simulate(**data):
@@ -220,5 +226,8 @@ def load_rules(path):
     return Rule.load(data)
 
 
-ORGANISMES = load_rules(Path(__file__).parent / 'config/organismes.yml')
-COMPUTATION = load_rules(Path(__file__).parent / 'config/computation.yml')
+with (ROOT / 'config/variables.yml').open() as f:
+    VARIABLES.update(load_variables(yaml.safe_load(f.read())))
+ORGANISMES = load_rules(ROOT / 'config/organismes.yml')
+PRISE_EN_CHARGE = load_rules(ROOT / 'config/prise_en_charge.yml')
+REMUNERATION = load_rules(ROOT / 'config/remuneration.yml')
