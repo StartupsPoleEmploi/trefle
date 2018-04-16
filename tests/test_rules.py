@@ -1,4 +1,4 @@
-from pff.core import Rule
+from pff.rules import Rule
 
 
 def test_rule_load():

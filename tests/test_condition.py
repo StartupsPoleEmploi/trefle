@@ -1,6 +1,6 @@
 import pytest
 
-from pff.core import Condition, VARIABLES
+from pff.rules import Condition, VARIABLES
 
 
 @pytest.fixture

@@ -1,4 +1,4 @@
-from pff.core import LazyValue
+from pff.rules import LazyValue
 
 
 VARIABLES = {

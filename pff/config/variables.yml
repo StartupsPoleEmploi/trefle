@@ -62,7 +62,7 @@ beneficiaire:
     naf:
       description: l'identifiant NAF/APE de l'entreprise
       type: str
-      source: routine.idcc2ape
+      source: routine.idcc2naf
     idcc:
       description: l'identifiant de convention collective de l'établissement
       type: str
@@ -71,19 +71,18 @@ beneficiaire:
       description: liste CPNE du secteur d'activité de l'entreprise
       type: liste de code CPF (trois ou quatre chiffre)
       source: routine.cpne
-    commune:
-      cp:
-        description: code postale de la commune
-        type: str
-        source: beneficiaire
-      insee:
-        description: code INSEE de la commune de l'entreprise
-        type: int
-        source: routine.code_insee
-      region:
-        description: région de l'entreprise
-        type: int
-        source: routine.code_region
+    cp:
+      description: code postale de la commune
+      type: str
+      source: beneficiaire
+    insee:
+      description: code INSEE de la commune de l'entreprise
+      type: int
+      source: routine.code_insee
+    region:
+      description: région de l'entreprise
+      type: int
+      source: routine.code_region
 formation:
   code_financeur:
     description: code financeur
@@ -148,4 +147,13 @@ organisme:
 scenario:
   nom:
     type: str
+    source: private
+scenarios:
+  eligibles:
+    description: liste des identifiants de scénarios éligibles
+    type: List[str]
+    source: private
+  non_eligibles:
+    description: liste des identifiants de scénarios non éligibles
+    type: List[str]
     source: private

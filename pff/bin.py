@@ -1,7 +1,8 @@
 from minicli import cli, run
 from roll.extensions import simple_server
 
-from .core import simulate, LazyValue
+from .core import simulate
+from .rules import LazyValue
 from .api import app
 
 

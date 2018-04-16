@@ -11,7 +11,7 @@ SI organisme.nom = «ACTALIANS»:
   SI formation.eligible_cpf CONTIENT «COPANEF»:
     ALORS:
     - organisme.taux_horaire VAUT 60
-  SI formation.regions CONTIENT beneficiaire.entreprise.commune.region:
+  SI formation.regions CONTIENT beneficiaire.entreprise.region:
     ALORS:
       - organisme.taux_horaire VAUT 0
       - organisme.plafond_horaire VAUT 0

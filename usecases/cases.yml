@@ -19,18 +19,21 @@
     beneficiaire.droit_prive: OUI
     beneficiaire.cpf: 0
     beneficiaire.entreprise.idcc: 2706
+    beneficiaire.remuneration: 1400
   sortie: null
 - entrée:
     formation.eligible_cpf: COPANEF
     beneficiaire.droit_prive: NON
     beneficiaire.cpf: 50
     beneficiaire.entreprise.idcc: 2706
+    beneficiaire.remuneration: 1400
   sortie: null
 - entrée:
     formation.eligible_cpf: COPAREF Grand Est
     beneficiaire.droit_prive: OUI
     beneficiaire.cpf: 50
     beneficiaire.entreprise.idcc: 2706
+    beneficiaire.remuneration: 1400
   sortie: null
 - entrée:
     formation.eligible_cpf: COPANEF
