@@ -1,33 +1,33 @@
 SI beneficiaire.droit_prive = OUI:
-    ET formation.regions CONTIENT beneficiaire.entreprise.region OU formation.eligible_cpf CONTIENT «COPANEF» OU formation.eligible_cpf CONTIENT beneficiaire.entreprise.cpne:
-        ET beneficiaire.cpf > 0:
+    SI formation.regions CONTIENT beneficiaire.entreprise.region OU formation.eligible_cpf CONTIENT «COPANEF» OU formation.eligible_cpf CONTIENT beneficiaire.entreprise.cpne:
+        SI beneficiaire.cpf > 0:
             ALORS:
                 - scenarios.eligibles CONTIENT «scenarios.cpf.pendant_temps_de_travail»
                 - scenarios.eligibles CONTIENT «scenarios.cpf.hors_temps_de_travail»
-    ET constante.codes_financeur_collectif !CONTIENT formation.code_financeur:
-        ET formation.heures <= 1200 ET formation.mois <= 12:
-            ET beneficiaire.contrat = «CDI»:
-                ET constante.idcc_artisanat !CONTIENT beneficiaire.entreprise.idcc:
-                    ET beneficiaire.anciennete_entreprise_actuelle > 12:
-                        ET beneficiaire.experience_professionnelle > 24:
+    SI constante.codes_financeur_collectif !CONTIENT formation.code_financeur:
+        SI formation.heures <= 1200 ET formation.mois <= 12:
+            SI beneficiaire.contrat = «CDI»:
+                SI constante.idcc_artisanat !CONTIENT beneficiaire.entreprise.idcc:
+                    SI beneficiaire.anciennete_entreprise_actuelle > 12:
+                        SI beneficiaire.experience_professionnelle > 24:
                             ALORS:
                                 - scenarios.eligibles CONTIENT «scenarios.cif.cdi.pendant_temps_de_travail»
                                 - scenarios.eligibles CONTIENT «scenarios.cif.cdi.hors_temps_de_travail»
-                ET constante.idcc_artisanat CONTIENT beneficiaire.entreprise.idcc:
-                    ET beneficiaire.anciennete_entreprise_actuelle > 12:
-                        ET beneficiaire.experience_professionnelle > 36:
+                SI constante.idcc_artisanat CONTIENT beneficiaire.entreprise.idcc:
+                    SI beneficiaire.anciennete_entreprise_actuelle > 12:
+                        SI beneficiaire.experience_professionnelle > 36:
                             ALORS:
                                 - scenarios.eligibles CONTIENT «scenarios.cif.cdi.pendant_temps_de_travail»
                                 - scenarios.eligibles CONTIENT «scenarios.cif.cdi.hors_temps_de_travail»
-            ET beneficiaire.contrat = «CDD»:
-                ET beneficiaire.age < 26:
-                    ET beneficiaire.experience_professionnelle > 12:
-                        ET beneficiaire.mois_travailles_en_cdd > 4:
+            SI beneficiaire.contrat = «CDD»:
+                SI beneficiaire.age < 26:
+                    SI beneficiaire.experience_professionnelle > 12:
+                        SI beneficiaire.mois_travailles_en_cdd > 4:
                             ALORS:
                                 - scenarios.eligibles CONTIENT «scenarios.cif.cdd.pendant_temps_de_travail»
                                 - scenarios.eligibles CONTIENT «scenarios.cif.cdd.hors_temps_de_travail»
-                ET beneficiaire.age >= 26:
-                    ET beneficiaire.experience_professionnelle > 24:
+                SI beneficiaire.age >= 26:
+                    SI beneficiaire.experience_professionnelle > 24:
                         ALORS:
                             - scenarios.eligibles CONTIENT «scenarios.cif.cdd.pendant_temps_de_travail»
                             - scenarios.eligibles CONTIENT «scenarios.cif.cdd.hors_temps_de_travail»
