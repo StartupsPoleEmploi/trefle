@@ -1,0 +1,14 @@
+SI organisme.nom = «INTERGROS»:
+  ALORS:
+    - organisme.plafond_horaire VAUT beneficiaire.cpf
+    # - organisme.taux_horaire_copanef VAUT "30\nsi formation en liangue en FOAD 10"
+    # - organisme.taux_horaire_coparef VAUT "30\nsi formation en liangue en FOAD 10"
+    # - organisme.taux_horaire_cpne VAUT "30\nsi formation en liangue en FOAD 10"
+  SI constante.codes_cpf_vae CONTIENT formation.cpf:
+    ALORS:
+      - organisme.taux_horaire VAUT formation.taux_horaire
+      - organisme.plafond_horaire VAUT formation.heures
+      - organisme.plafond_financier VAUT 2000
+  SI constante.codes_cpf_clea CONTIENT formation.cpf:
+    ALORS:
+      - organisme.taux_horaire VAUT 18

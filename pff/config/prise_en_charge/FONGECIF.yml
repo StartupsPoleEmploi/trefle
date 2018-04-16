@@ -1,0 +1,12 @@
+SI organisme.nom = «FONGECIF»:
+    SI scenario.nom CONTIENT «cif»:
+        SI beneficiaire.remuneration > constante.deux_smic ET beneficiaire.remuneration <= constante.trois_smic:
+            ALORS:
+                - organisme.plafond_financier VAUT 18000
+                - organisme.taux_horaire VAUT 27.45
+                - organisme.reste_à_charge VAUT 0.05
+        SI beneficiaire.remuneration > constante.trois_smic:
+            ALORS:
+                - organisme.plafond_financier VAUT 18000
+                - organisme.taux_horaire VAUT 27.45
+                - organisme.reste_à_charge VAUT 0.10

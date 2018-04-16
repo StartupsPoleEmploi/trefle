@@ -1,0 +1,7 @@
+SI organisme.nom = «AGEFOS_PME»:
+  ALORS:
+    - organisme.taux_horaire VAUT 50
+    - organisme.plafond_horaire VAUT beneficiaire.cpf
+  SI constante.codes_cpf_vae CONTIENT formation.cpf:
+    ALORS:
+      - organisme.plafond_horaire VAUT formation.heures

@@ -15,7 +15,8 @@ def app():
 
 async def test_simulate_endpoint(client, app):
 
-    resp = await client.post('/', body={'beneficiaire.cpf': '10'})
+    resp = await client.post('/', body={
+        'beneficiaire.cpf': '10', 'beneficiaire.entreprise.idcc': '2706'})
     assert resp.status == HTTPStatus.OK
     assert 'passed' in json.loads(resp.body)
     assert 'failed' in json.loads(resp.body)

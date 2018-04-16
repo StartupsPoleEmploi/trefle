@@ -1,0 +1,20 @@
+SI organisme.nom = «ACTALIANS»:
+  ALORS:
+    - organisme.plafond_horaire VAUT 150
+  SI constante.codes_cpf_vae CONTIENT formation.cpf:
+    ALORS:
+      - organisme.taux_horaire VAUT 75
+      - organisme.plafond_horaire VAUT 24
+  SI constante.codes_cpf_clea CONTIENT formation.cpf:
+    ALORS:
+      - organisme.taux_horaire VAUT 27
+  SI formation.eligible_cpf CONTIENT «COPANEF»:
+    ALORS:
+    - organisme.taux_horaire VAUT 60
+  SI formation.regions CONTIENT beneficiaire.entreprise.region:
+    ALORS:
+      - organisme.taux_horaire VAUT 0
+      - organisme.plafond_horaire VAUT 0
+  SI formation.codes_naf CONTIENT beneficiaire.entreprise.naf:
+    ALORS:
+      - organisme.taux_horaire VAUT 60

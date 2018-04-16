@@ -1,0 +1,10 @@
+SI organisme.nom = «FAFIEC»:
+  ALORS:
+    - organisme.taux_horaire VAUT 40
+    - organisme.plafond_horaire VAUT beneficiaire.cpf
+    # - organisme.taux_horaire_copanef VAUT "40\n25 pour les formations de langue (formacode domaine 152)"
+    # - organisme.plafond_financier_copanef VAUT 1750 pour les bilans de compétences (Certif Info n°93559)
+  SI constante.codes_cpf_vae CONTIENT formation.cpf:
+    ALORS:
+      - organisme.taux_horaire VAUT 100
+      - organisme.plafond_horaire VAUT formation.heures

@@ -17,5 +17,14 @@ def pytest_generate_tests(metafunc):
             metafunc.parametrize('input,expected', args, ids=ids)
 
 
-def test_abrev(input, expected):
-    assert list(simulate(**input))[0] == (expected or [])
+def test_usecases(input, expected):
+    scenarios, _ = list(simulate(**input))
+    expected = expected or {}
+
+    assert len(scenarios) == len(expected), (scenarios, expected)
+
+    for scenario in scenarios:
+        data = expected[scenario.name]
+        assert scenario.organisme == data['organisme']
+        assert scenario.prise_en_charge == data['prise_en_charge']
+        assert scenario.remuneration == data['remuneration']

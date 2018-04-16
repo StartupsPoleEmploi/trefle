@@ -1,0 +1,12 @@
+SI organisme.nom = «UNIFAF»:
+  SI scenario.nom CONTIENT «cif»:
+    ALORS:
+      - organisme.taux_horaire VAUT 50
+      - organisme.plafond_horaire VAUT beneficiaire.cpf
+    SI constante.codes_cpf_vae CONTIENT formation.cpf:
+      ALORS:
+        - organisme.taux_horaire VAUT 66.66
+        - organisme.plafond_horaire_vae VAUT formation.heures
+  SI scenario.nom CONTIENT «cif»:
+      ALORS:
+          - organisme.plafond_financier VAUT 0

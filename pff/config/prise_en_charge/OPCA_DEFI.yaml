@@ -1,0 +1,47 @@
+SI organisme.nom = «OPCA_DEFI»:
+  ALORS:
+    - organisme.plafond_horaire VAUT beneficiaire.cpf
+  SI idcc VAUT 292:
+    ALORS:
+      - organisme.taux_horaire VAUT 25
+    SI constante.codes_cpf_vae CONTIENT formation.cpf:
+      ALORS:
+        - organisme.plafond_horaire VAUT formation.heures
+    SI formation.codes_naf CONTIENT beneficiaire.entreprise.naf:
+      ALORS:
+        - organisme.taux_horaire VAUT formation.taux_horaire
+  SI idcc VAUT 0044:
+    ALORS:
+      - organisme.taux_horaire VAUT 35
+    SI constante.codes_cpf_vae CONTIENT formation.cpf:
+      ALORS:
+        - organisme.taux_horaire VAUT formation.taux_horaire
+        - organisme.plafond_financier VAUT 5000
+    SI formation.eligible_cpf CONTIENT «COPANEF»:
+      ALORS:
+      # - organisme.taux_horaire_copanef VAUT "35\nformation.taux_horaire pour Cambridge English Business Certificates"
+        - organisme.taux_horaire VAUT 35
+      # - organisme.plafond_financier_copanef VAUT "1000 pour permis B\n3000 pour bilan de compétence"
+    SI formation.codes_naf CONTIENT beneficiaire.entreprise.naf:
+      ALORS:
+        - organisme.taux_horaire VAUT formation.taux_horaire
+  SI idcc VAUT 0076,1388:
+    ALORS:
+      - organisme.taux_horaire VAUT formation.taux_horaire
+      - organisme.plafond_horaire VAUT beneficiaire.cpf
+    SI constante.codes_cpf_vae CONTIENT formation.cpf:
+      ALORS:
+        - organisme.plafond_horaire VAUT formation.heures
+  SI idcc VAUT 1555:
+    ALORS:
+      - organisme.plafond_horaire VAUT beneficiaire.cpf
+    SI constante.codes_cpf_vae CONTIENT formation.cpf:
+      ALORS:
+        - organisme.taux_horaire VAUT formation.taux_horaire
+        - organisme.plafond_horaire VAUT formation.heures
+    SI constante.codes_cpf_vae CONTIENT formation.cpf:
+      ALORS:
+          - organisme.taux_horaire VAUT formation.taux_horaire
+      # - organisme.taux_horaire_copanef VAUT "\nformation.taux_horaire \n12€ pour langues"
+      # - organisme.taux_horaire_coparef VAUT "\nformation.taux_horaire \n12€ pour langues"
+      # - organisme.taux_horaire_cpne VAUT "\nformation.taux_horaire \n12€ pour langues"
