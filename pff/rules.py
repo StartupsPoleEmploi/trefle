@@ -175,10 +175,9 @@ class Condition:
 
 class Rule:
 
-    def __init__(self, conditions, output):
+    def __init__(self, conditions, actions):
         self.conditions = conditions
-        #TODO rename output to something more clear like "actions"
-        self.output = output
+        self.actions = actions
 
     def assess(self, **data):
         return all(c.assess(**data) for c in self.conditions)
@@ -203,16 +202,16 @@ class Rule:
     def process(cls, rules, data, failed=None):
         for rule in rules:
             if rule.assess(**data):
-                for raw in rule.output:
+                for raw in rule.actions:
                     action = Action(raw)
                     action.do(data)
             elif failed is not None:
-                for raw in rule.output:
+                for raw in rule.actions:
                     action = Action(raw)
-                    failed.append(Scenario(action.right.get()))
+                    failed.append(Scenario(action.value.get()))
 
     def __repr__(self):
-        return f'<Rule: {self.conditions} => {self.output}>'
+        return f'<Rule: {self.conditions} => {self.actions}>'
 
 
 class Scenario:
