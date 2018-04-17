@@ -101,14 +101,14 @@ class Action:
 
     def __init__(self, raw):
         self.raw = raw
-        left, operator, right = raw.split()
-        self.left = left
-        self.right = LazyValue(right)
+        key, operator, value = raw.split()
+        self.key = key
+        self.value = LazyValue(value)
         self.func = getattr(self, operator)
 
     def do(self, data):
         try:
-            self.func(data, self.left, self.right.get(**data))
+            self.func(data, self.key, self.value.get(**data))
         except NoDataError as err:
             raise NoDataError(f'Invalid key "{err}" for {self.raw}')
 
