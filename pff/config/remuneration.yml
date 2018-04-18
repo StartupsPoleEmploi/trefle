@@ -1,7 +1,5 @@
-SI scenario.nom CONTIENT «cpf»:
-    SI scenario.nom CONTIENT «hors_temps_de_travail»:
-      ALORS:
-        - scenario.remuneration VAUT 0
-    SI scenario.nom CONTIENT «pendant_temps_de_travail»:
-      ALORS:
-        - scenario.remuneration VAUT beneficiaire.remuneration
+SI le nom du financement contient «CPF»
+    SI le nom du financement contient «en dehors du temps de travail»
+        ALORS la rémunération possible est égale à 0
+    SI le nom du financement contient «sur son temps de travail»
+        ALORS la rémunération possible est égale à la rémunération du bénéficiaire

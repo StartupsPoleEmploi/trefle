@@ -3,24 +3,30 @@ constante:
     description: ensemble des codes financeurs collectifs
     type: List[int]
     value: [2, 4, 6, 8, 9, 11, 12, 13, 15, 16]
+    label: codes financeurs collectifs
   idcc_artisanat:
     description: ensemble des codes IDCC de l'artisanat
     type: List[int]
     value: [12345]
+    label: codes IDCC de l'artisanat
   codes_cpf_vae:
     description: liste des codes CPF identifiant une formation VAE
     type: List[int]
     value: [200]
+    label: codes CPF VAE
   codes_cpf_clea:
     description: liste des codes CPF identifiant une formation CleA
     type: List[int]
     value: [201, 207, 208]
+    label: codes CPF CleA
   deux_smic:
     type: int
     value: 2997
+    label: deux fois le SMIC
   trois_smic:
     type: int
     value: 2997
+    label: trois fois le SMIC
 beneficiaire:
   droit_prive:
     description: être salarié d'une entreprise de droit privé
@@ -41,31 +47,33 @@ beneficiaire:
     description: âge du beneficiaire
     type: int
     source: beneficiaire
+    label: âge du bénéficiaire
   experience_professionelle:
     description: nombre de mois travaillés sur les 5 dernières années
     type: int
     source: beneficiaire
+    label: expérience professionnelle du bénéficiaire dans les cinq dernières années
   mois_travailles_en_cdd:
     description: nombre de mois travaillés sur un contrat CDD sur les 12 derniers mois
     type: int
     source: beneficiaire
+    label: nombre de mois travaillés par le bénéficiaire dans la dernière année
   contrat:
     description: type de contrat du bénéficiaire
     type: str
     source: beneficiaire
+    label: type de contrat du bénéficiaire
   anciennete_entreprise_actuelle:
     description: ancienneté en mois dans l'entreprise actuelle
     type: int
     source: beneficiaire
-  experience_professionnelle:
-    description: nombre de mois travaillés dans les X dernières années
-    type: int
-    source: beneficiaire
+    label: ancienneté du bénéficiaire dans son entreprise
   entreprise:
     naf:
       description: l'identifiant NAF/APE de l'entreprise
       type: str
       source: routine.idcc2naf
+      label: code NAF de l'établissement du bénéficiaire
     idcc:
       description: l'identifiant de convention collective de l'établissement
       # TODO: uniformize the type (int but 0234 so str?)
@@ -88,16 +96,18 @@ beneficiaire:
       description: région de l'entreprise
       type: int
       source: routine.code_region
+      label: région de l'établissement du bénéficiaire
 formation:
   code_financeur:
     description: code financeur
     type: List[int]
     source: catalogue
+    label: code financeur de la formation
   tag_cpf:
     description: un ou plusieurs codes CPF
     type: List[int]
     source: catalogue
-  copanef:
+  eligible_copanef:
     description: cette formation est au catalogue COPANEF
     type: bool
     source: routine.extraire_copanef
@@ -106,10 +116,11 @@ formation:
     description: liste des éditeurs d'éligibilité CPF (COPANEF, COPAREF, CPNE)
     type: List[str]
     source: catalogue
-  regions:
+  regions_coparef:
     description: régions d'éligibilité si COPAREF dans les listes_eligibilite_cpf
     type: List[int]
     source: routine.formation_region
+    label: régions éligibles COPAREF
   heures:
     type: int
     source: private
@@ -125,9 +136,11 @@ formation:
   taux_horaire_ttc:
     type: int
     source: private
+    label: taux horaire TTC de la formation
   taux_horaire_ht:
     type: int
     source: private
+    label: taux horaire HT de la formation
   cpf:
     description: code CPF de la formation (plusieurs? cf tag_cpf)
     type: int
@@ -137,9 +150,11 @@ formation:
     description: codes NAF des différents CPNE
     type: List[int]
     source: routine.naf_from_formation
+    label: codes NAF CPNE éligibles
 organisme:
   nom:
     type: str
+    label: nom de l'organisme
   cpne:
     type: str
     source: routine
@@ -152,21 +167,39 @@ organisme:
   plafond_financier:
     type: int
     source: private
+    label: plafond financier applicable
   plafond_horaire:
     type: int
     source: private
+    label: plafond horaire applicable
   taux_horaire:
     type: int
     source: private
+    label: taux horaire applicable
+  reste_a_charge:
+    type: float
+    source: private
+    label: reste à charge applicable
 scenario:
   nom:
     type: str
     source: private
+    label: nom du financement
+  # Do not use "type" for now, it's used as duck typing.
+  genre:
+    type: str
+    source: private
+    label: type de financement
+  remuneration:
+    type: int
+    source: private
+    label: rémunération possible
 scenarios:
   eligibles:
     description: liste des identifiants de scénarios éligibles
     type: List[str]
     source: private
+    label: financements possibles
   non_eligibles:
     description: liste des identifiants de scénarios non éligibles
     type: List[str]

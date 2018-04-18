@@ -1,8 +1,8 @@
+import re
 from pathlib import Path
 
 import yaml
 
-from . import routine
 from .exceptions import NoDataError, WrongPointerError
 
 
@@ -102,12 +102,40 @@ class LazyValue:
 
 class Action:
 
+    OPERATORS = {
+        'vaut': 'set',
+        'est égal': 'set',
+        'ajouter': 'add',
+    }
+
+    PATTERNS = (
+        r"(l'|les? |la )(?P<key>.+) (?P<operator>est égal)e? (à la|à|aux?)? (?P<value>[\w«» +-]+)",
+        r"(l'|les? |la )(?P<key>.+) (?P<operator>vaut) (?P<value>[\w«» +-]+)",
+        r"(?P<operator>ajouter) (?P<value>[\w«» +-]+) aux? (?P<key>.+)",
+    )
+
     def __init__(self, raw):
         self.raw = raw
-        key, operator, value = raw.split()
-        self.key = key
-        self.value = LazyValue(value)
+        self.parse()
+
+    def parse(self):
+        for pattern in self.PATTERNS:
+            match = re.match(pattern, self.raw)
+            if match:
+                break
+        else:
+            raise ValueError(f'No pattern match action: {self.raw}')
+        data = match.groupdict()
+        self.key = LABELS[data['key']]
+        operator = self.OPERATORS[data['operator']]
         self.func = getattr(self, operator)
+        value = data['value']
+        value = LABELS.get(value, value)
+        try:
+            self.value = LazyValue(value)
+        except WrongPointerError as err:
+            # Give more context.
+            raise WrongPointerError(f'{err} does not exist in {self.raw}')
 
     def do(self, data):
         try:
@@ -116,17 +144,45 @@ class Action:
             raise NoDataError(f'Invalid key "{err}" for {self.raw}')
 
     @staticmethod
-    def VAUT(data, key, value):
+    def set(data, key, value):
         data[key] = value
 
     @staticmethod
-    def CONTIENT(data, key, value):
+    def add(data, key, value):
         if key not in data:
             data[key] = []
         data[key].append(value)
 
 
 class Condition:
+
+    PATTERNS = (
+        r"(?P<operator>c(e n)?'est( pas)?) une? (?P<left>.+)",
+        r"(l'|les? |la )(?P<left>.+) (?P<operator>est (supérieure?|inférieure?)( ou égale?)? à) (?P<right>[\w ]+)",
+        r"(l'|les? |la )(?P<left>.+) (?P<operator>(est|vaut)) (?P<right>[\w«» +-]+)",
+        r"(l'|les? |la )(?P<right>.+) (?P<operator>(fait|ne fait pas) partie) (de l'|des? |de la |du )(?P<left>.+)",
+        r"(l'|les? |la )(?P<left>.+) (?P<operator>contient|ne contient pas) (l'|les? |la )?(?P<right>[ \w«»]+)",
+    )
+    OPERATORS = {
+        "c'est": '__eq__',
+        "est supérieur à": '__gt__',
+        "est supérieur ou égal à": '__ge__',
+        "est supérieure à": '__gt__',
+        "est supérieure ou égal à": '__ge__',
+        "est inférieur à": '__lt__',
+        "est inférieur ou égal à": '__le__',
+        "est inférieure à": '__lt__',
+        "est inférieure ou égal à": '__le__',
+        "est": '__eq__',
+        "vaut": '__eq__',
+        'fait partie': '__contains__',
+        'contient': '__contains__',
+    }
+    NEGATIVES = {
+        "ce n'est pas": "c'est",
+        "ne fait pas partie": "fait partie",
+        "ne contient pas": "contient",
+    }
 
     def __init__(self, raw):
         if raw.startswith(('SI ', 'ET ')):
@@ -142,16 +198,34 @@ class Condition:
             self.conditions = [Condition(s) for s in self.raw.split(' ET ')]
             self.connective = 'ET'
         else:
-            left, self.operator, right = self.raw.split()
-            try:
-                self.left = LazyValue(left)
-                self.right = LazyValue(right)
-            except WrongPointerError as err:
-                # Give more context.
-                raise WrongPointerError(f'{err} does not exist in {self.raw}')
-            if self.operator.startswith('!'):
-                self.operator = self.operator[1:]
-                self.negative = True
+            self.parse()
+
+    def parse(self):
+        for pattern in self.PATTERNS:
+            match = re.match(pattern, self.raw)
+            if match:
+                break
+        else:
+            raise ValueError(f'No pattern match condition: {self.raw}')
+        data = match.groupdict()
+        left = data['left']
+        left = LABELS.get(left, left)
+        operator = data['operator']
+        if 'right' in data:
+            right = data['right']
+            right = LABELS.get(right, right)
+        else:
+            right = 'OUI'  # No right means boolean check.
+        if operator in self.NEGATIVES:
+            operator = self.NEGATIVES[operator]
+            self.negative = True
+        self.operator = self.OPERATORS[operator]
+        try:
+            self.left = LazyValue(left)
+            self.right = LazyValue(right)
+        except WrongPointerError as err:
+            # Give more context.
+            raise WrongPointerError(f'{err} does not exist in {self.raw}')
 
     def assess(self, **data):
         if self.conditions:
@@ -163,8 +237,8 @@ class Condition:
             right = self.right.get(**data)
         except NoDataError:
             return False
-        operator = OPERATORS.get(self.operator)
-        result = getattr(left, operator)(right)
+        # operator = OPERATORS.get(self.operator)
+        result = getattr(left, self.operator)(right)
         if self.negative:
             return not result
         return result
@@ -186,31 +260,53 @@ class Rule:
         return all(c.assess(**data) for c in self.conditions)
 
     @classmethod
-    def load(cls, data, conditions=None, rules=None):
+    def load(cls, data, prev_ident=0, tree=None, rules=None, actions=None, outer=None):
         if rules is None:
             rules = []
-        if conditions is None:
-            conditions = []
-        for key, inner in data.items():
-            local = conditions[:]
-            if key == 'ALORS':  # We have a leaf.
-                rules.append(Rule(local, inner))
-            else:
-                # TODO: warn/raise if condition already exist in local
-                local.append(Condition(key))
-                Rule.load(inner, local, rules)
+            data = iter(data)
+        if tree is None:
+            tree = []
+        if actions is None:
+            actions = []
+        if outer is None:
+            outer = []
+        while True:
+            try:
+                line = next(data)
+            except StopIteration:
+                break
+            if not line:
+                continue
+            curr_ident = count_ident(line)
+            line = line.strip()
+            if line.startswith('#'):
+                continue
+            if line.startswith('ALORS '):
+                actions.append(Action(line[6:]))
+                prev_ident = curr_ident
+            elif curr_ident >= prev_ident:
+                inner = tree[:] + outer
+                outer = []
+                inner.append(Condition(line))
+                Rule.load(data, curr_ident, inner, rules, actions[:], outer)
+            elif curr_ident < prev_ident:
+                rules.append(Rule(tree[:] + outer, actions))
+                actions = []
+                outer.clear()
+                outer.append(Condition(line))
+                break
+        if actions:
+            rules.append(Rule(tree + outer, actions))
         return rules
 
     @classmethod
     def process(cls, rules, data, failed=None):
         for rule in rules:
             if rule.assess(**data):
-                for raw in rule.actions:
-                    action = Action(raw)
+                for action in rule.actions:
                     action.do(data)
             elif failed is not None:
-                for raw in rule.actions:
-                    action = Action(raw)
+                for action in rule.actions:
                     failed.append(Scenario(action.value.get()))
 
     def __repr__(self):
@@ -227,7 +323,8 @@ class Scenario:
 
     def __call__(self, **data):
         data = data.copy()
-        data.update({'scenario.nom': self.name})
+        data.update({'scenario.nom': self.name,
+                     'scenario.genre': self.name.split('.')[0].upper()})
         # TODO: use a routine and make it dynamic with scenario type
         self.organisme = data['beneficiaire.entreprise.opca']
         data.update({'organisme.nom': self.organisme})
@@ -248,8 +345,15 @@ class Scenario:
 
 def load_rules(path):
     with (path).open() as rules_file:
-        data = yaml.safe_load(rules_file.read())
-    return Rule.load(data)
+        return Rule.load(rules_file.readlines())
+
+
+def count_ident(s):
+    for i, c in enumerate(s):
+        if c != ' ':
+            return i
+    else:
+        return len(s)
 
 
 with (ROOT / 'config/variables.yml').open() as f:

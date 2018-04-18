@@ -1,17 +1,14 @@
-SI organisme.nom = «UNIFORMATION»:
-  SI scenario.nom CONTIENT «cpf»:
-    ALORS:
-      - organisme.taux_horaire VAUT 40
-    SI constante.codes_cpf_vae CONTIENT formation.cpf:
-      ALORS:
-        - organisme.taux_horaire VAUT 56
-        # - organisme.plafond_horaire_vae VAUT "72h si VAE visée est de niveau V\n24 h pour les autres niveaux visés"
-      # - organisme.plafond_financier_vae VAUT "2500 si la VAE visée est de niveau V\n1750 pour les autres niveaux"
-      # - organisme.taux_horaire_clea VAUT "40 si durée de formation <  70h\n25 si durée de formation > ou = 70h\n"
-      # - organisme.plafond_financier_clea VAUT "600 € pour les évaluations préalables\n300€ pour les évaluations finales"
-      # - organisme.taux_horaire_coparef VAUT "40 si durée de formation <  70h\n25 si durée de formation > ou = 70h\n"
-  SI scenario.nom CONTIENT «cpf»:
-      SI formation.taux_horaire_ttc < 18 OU formation.taux_horaire_ht < 15:
-          ALORS:
-              - organisme.plafond_financier VAUT 0
-              - organisme.taux_horaire VAUT organisme.taux_horaire
+SI le nom de l'organisme est «UNIFORMATION»
+    SI le nom du financement contient «CPF»
+        ALORS le taux horaire applicable vaut 40
+        SI le code CPF de la formation fait partie des codes CPF VAE
+            ALORS le taux horaire applicable vaut 56
+          # ALORS le plafond horaire applicable vaut "72h si VAE visée est de niveau V\n24 h pour les autres niveaux visés"
+        # ALORS organisme.plafond_financier_vae VAUT "2500 si la VAE visée est de niveau V\n1750 pour les autres niveaux"
+        # ALORS organisme.taux_horaire_clea VAUT "40 si durée de formation <  70h\n25 si durée de formation > ou = 70h\n"
+        # ALORS organisme.plafond_financier_clea VAUT "600 € pour les évaluations préalables\n300€ pour les évaluations finales"
+        # ALORS organisme.taux_horaire_coparef VAUT "40 si durée de formation <  70h\n25 si durée de formation > ou = 70h\n"
+    SI le nom du financement contient «CIF»
+        SI le taux horaire TTC de la formation est inférieur à 18 OU le taux horaire HT de la formation est inférieur à 15
+            ALORS le plafond financier applicable vaut 0
+            # ALORS le taux horaire applicable est égal au taux horaire de la formation?

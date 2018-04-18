@@ -1,8 +1,6 @@
-SI organisme.nom = «OPCA_3_PLUS»:
-  ALORS:
-    - organisme.taux_horaire_clea VAUT formation.taux_horaire
-    - organisme.plafond_horaire_clea VAUT beneficiaire.cpf
-  SI constante.codes_cpf_vae CONTIENT formation.cpf:
-    ALORS:
-      - organisme.taux_horaire VAUT formation.taux_horaire
-      - organisme.plafond_horaire VAUT formation.heures
+SI le nom de l'organisme est «OPCA 3+»
+    ALORS le taux horaire applicable est égal au taux horaire de la formation
+    ALORS le plafond horaire applicable est égal au compte CPF du bénéficiaire
+  SI le code CPF de la formation fait partie des codes CPF VAE
+      ALORS le taux horaire applicable est égal au taux horaire de la formation
+      ALORS le plafond horaire applicable est égal à la durée en heures de la formation

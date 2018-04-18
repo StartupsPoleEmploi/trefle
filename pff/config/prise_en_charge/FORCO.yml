@@ -1,23 +1,17 @@
-SI organisme.nom = «FORCO»:
-  ALORS:
-    - organisme.taux_horaire VAUT 45
-    - organisme.plafond_horaire VAUT beneficiaire.cpf
-  SI constante.codes_cpf_vae CONTIENT formation.cpf:
-    ALORS:
+SI le nom de l'organisme est «FORCO»
+    ALORS le taux horaire applicable vaut 45
+    ALORS le plafond horaire applicable est égal au compte CPF du bénéficiaire
+  SI le code CPF de la formation fait partie des codes CPF VAE
       # idcc = commerce de détail non alimentaire
-      - organisme.plafond_horaire VAUT formation.heures
+      ALORS le plafond horaire applicable est égal à la durée en heures de la formation
   # (Code Certif Info n°54664)
-  # SI kkchose = «PermisB»:
-  #   ALORS:
-  #     - organisme.taux_horaire VAUT 40
-  #     - organisme.plafond_financier VAUT 750
+  # SI kkchose = «PermisB»
+  #     ALORS le taux horaire applicable vaut 40
+  #     ALORS le plafond financier applicable vaut 750
   # TODO VAUT add PARMI/EN/DANS operator with list
-  SI beneficiaire.entreprise.idcc = [0675,0468,1431,1487,2198,0043,1557,2162]:
-    ALORS:
-      - organisme.taux_horaire VAUT 40
-  SI beneficiaire.entreprise.idcc = 1517:
-    ALORS:
-      - organisme.taux_horaire_clea VAUT 50
-    SI constante.codes_cpf_vae CONTIENT formation.cpf:
-      ALORS:
-        - organisme.plafond_horaire VAUT formation.heures
+  SI l'IDCC de l'établissement du bénéficiaire fait partie de [0675,0468,1431,1487,2198,0043,1557,2162]
+      ALORS le taux horaire applicable vaut 40
+  SI l'IDCC de l'établissement du bénéficiaire fait partie de 1517
+      ALORS le taux horaire applicable vaut 50
+    SI le code CPF de la formation fait partie des codes CPF VAE
+        ALORS le plafond horaire applicable est égal à la durée en heures de la formation

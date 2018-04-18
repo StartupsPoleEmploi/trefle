@@ -1,36 +1,40 @@
-from pff.rules import Rule
+import pytest
+
+from pff.rules import Rule, count_ident
 
 
-def test_rule_load():
-    data = {
-        'SI «foo» = «bar»': {
-            'ET «bar» = «foo»': {'ALORS': ['item 1', 'item 2']},
-            'ET «baz» = «foo»': {'ALORS': ['item 3', 'item 4']},
-        },
-        'SI «foo» = «baz»': {
-            'ET «foobar» = «baz»': {
-                'ET «bar» = «foo»': {'ALORS': ['item 5', 'item 6']},
-                'ET «baz» = «foo»': {'ALORS': ['item 7', 'item 8']},
-            }
-        }
-    }
-    rules = Rule.load(data)
-    assert len(rules) == 4
-    assert rules[0].actions == ['item 1', 'item 2']
-    assert len(rules[0].conditions) == 2
-    assert rules[0].conditions[0].raw == '«foo» = «bar»'
-    assert rules[0].conditions[1].raw == '«bar» = «foo»'
-    assert rules[1].actions == ['item 3', 'item 4']
-    assert len(rules[1].conditions) == 2
-    assert rules[1].conditions[0].raw == '«foo» = «bar»'
-    assert rules[1].conditions[1].raw == '«baz» = «foo»'
-    assert rules[2].actions == ['item 5', 'item 6']
-    assert len(rules[2].conditions) == 3
-    assert rules[2].conditions[0].raw == '«foo» = «baz»'
-    assert rules[2].conditions[1].raw == '«foobar» = «baz»'
-    assert rules[2].conditions[2].raw == '«bar» = «foo»'
-    assert rules[3].actions == ['item 7', 'item 8']
-    assert len(rules[3].conditions) == 3
-    assert rules[3].conditions[0].raw == '«foo» = «baz»'
-    assert rules[3].conditions[1].raw == '«foobar» = «baz»'
-    assert rules[3].conditions[2].raw == '«baz» = «foo»'
+@pytest.mark.parametrize('input,expected', [
+    ('', 0),
+    ('    ', 4),
+    ('    x', 4),
+])
+def test_count_ident(input, expected):
+    assert count_ident(input) == expected
+
+
+def test_rules_load():
+    data = """
+SI c'est un bénéficiaire de droit privé
+    SI la région de l'établissement du bénéficiaire fait partie des régions éligibles COPAREF
+        ALORS la rémunération possible vaut 2000
+        ALORS le taux horaire applicable vaut 8000
+    SI c'est une formation éligible COPANEF
+        SI le compte CPF du bénéficiaire est supérieur à 0
+            ALORS la rémunération possible vaut 1000
+            ALORS le taux horaire applicable vaut 6000
+"""
+    rules = Rule.load(data.split('\n'))
+    print(rules)
+    assert len(rules) == 2
+    assert rules[0].conditions[0].raw == "c'est un bénéficiaire de droit privé"
+    assert rules[0].conditions[1].raw == ("la région de l'établissement du "
+                                          "bénéficiaire fait partie des "
+                                          "régions éligibles COPAREF")
+    assert rules[0].actions[0].raw == 'la rémunération possible vaut 2000'
+    assert rules[0].actions[1].raw == 'le taux horaire applicable vaut 8000'
+    assert rules[1].conditions[0].raw == "c'est un bénéficiaire de droit privé"
+    assert rules[1].conditions[1].raw == "c'est une formation éligible COPANEF"
+    assert rules[1].conditions[2].raw == ("le compte CPF du bénéficiaire est "
+                                          "supérieur à 0")
+    assert rules[1].actions[0].raw == 'la rémunération possible vaut 1000'
+    assert rules[1].actions[1].raw == 'le taux horaire applicable vaut 6000'

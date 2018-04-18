@@ -1,20 +1,14 @@
-SI organisme.nom = «ACTALIANS»:
-  ALORS:
-    - organisme.plafond_horaire VAUT 150
-  SI constante.codes_cpf_vae CONTIENT formation.cpf:
-    ALORS:
-      - organisme.taux_horaire VAUT 75
-      - organisme.plafond_horaire VAUT 24
-  SI constante.codes_cpf_clea CONTIENT formation.cpf:
-    ALORS:
-      - organisme.taux_horaire VAUT 27
-  SI formation.copanef = OUI:
-    ALORS:
-    - organisme.taux_horaire VAUT 60
-  SI formation.regions CONTIENT beneficiaire.entreprise.region:
-    ALORS:
-      - organisme.taux_horaire VAUT 0
-      - organisme.plafond_horaire VAUT 0
-  SI formation.codes_naf CONTIENT beneficiaire.entreprise.naf:
-    ALORS:
-      - organisme.taux_horaire VAUT 60
+SI le nom de l'organisme est «ACTALIANS»
+    ALORS le plafond horaire applicable vaut 150
+    SI le code CPF de la formation fait partie des codes CPF VAE
+        ALORS le taux horaire applicable vaut 75
+        ALORS le plafond horaire applicable vaut 24
+    SI le code CPF de la formation fait partie des codes CPF CleA
+        ALORS le taux horaire applicable vaut 27
+    SI c'est une formation éligible COPANEF
+        ALORS le taux horaire applicable vaut 60
+    SI la région de l'établissement du bénéficiaire fait partie des régions éligibles COPAREF
+        ALORS le taux horaire applicable vaut 0
+        ALORS le plafond horaire applicable vaut 0
+    SI le code NAF de l'établissement du bénéficiaire fait partie des codes NAF CPNE éligibles
+        ALORS le taux horaire applicable vaut 60

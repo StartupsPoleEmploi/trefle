@@ -1,11 +1,9 @@
-SI organisme.nom = «CONSTRUCTYS»:
-  ALORS:
-    - organisme.plafond_horaire VAUT beneficiaire.cpf
-  # - organisme.taux_horaire_clea VAUT "30\névaluation CLEA 60"
-  # - organisme.taux_horaire_copanef VAUT "30\nsauf \n45 pour F°maintenance et conduite engin (formacode 31717) \n80 pourbilan de compétence (Certif Info n°93559) \n"
-  # - organisme.taux_horaire_coparef VAUT "30\nsauf \n45 pour F°maintenance et conduite engin (formacode 31717) \n80 pour bilan de compétence (Certif Info n°93559) \n"
-  # - organisme.taux_horaire_cpne VAUT "30\nsauf \n45 pour F°maintenance et conduite engin (formacode 31717) \n80 pour bilan de compétence (Certif Info n°93559) \n"
-  SI constante.codes_cpf_vae CONTIENT formation.cpf:
-    ALORS:
-      - organisme.taux_horaire VAUT 80
-      - organisme.plafond_horaire VAUT formation.heures
+SI le nom de l'organisme est «CONSTRUCTYS»
+    ALORS le plafond horaire applicable est égal au compte CPF du bénéficiaire
+    # ALORS organisme.taux_horaire_clea VAUT "30\névaluation CLEA 60"
+    # ALORS organisme.taux_horaire_copanef VAUT "30\nsauf \n45 pour F°maintenance et conduite engin (formacode 31717) \n80 pourbilan de compétence (Certif Info n°93559) \n"
+    # ALORS organisme.taux_horaire_coparef VAUT "30\nsauf \n45 pour F°maintenance et conduite engin (formacode 31717) \n80 pour bilan de compétence (Certif Info n°93559) \n"
+    # ALORS organisme.taux_horaire_cpne VAUT "30\nsauf \n45 pour F°maintenance et conduite engin (formacode 31717) \n80 pour bilan de compétence (Certif Info n°93559) \n"
+    SI le code CPF de la formation fait partie des codes CPF VAE
+        ALORS le taux horaire applicable vaut 80
+        ALORS le plafond horaire applicable est égal à la durée en heures de la formation

@@ -1,12 +1,9 @@
-SI organisme.nom = «OPCA_TRANSPORTS_ET_SERVICES»:
-  ALORS:
-    - organisme.taux_horaire_clea VAUT 15
-    - organisme.plafond_horaire_clea VAUT beneficiaire.cpf
-  SI constante.codes_cpf_vae CONTIENT formation.cpf:
-    ALORS:
-      - organisme.taux_horaire VAUT 57
-      - organisme.plafond_horaire_vae VAUT 21
-      - organisme.plafond_financier_journalier VAUT 400
-  SI formation.codes_naf CONTIENT beneficiaire.entreprise.naf:
-    ALORS:
-      - organisme.taux_horaire_cpne VAUT 30
+SI le nom de l'organisme est «OPCA_TRANSPORTS_ET_SERVICES»
+    ALORS le taux horaire applicable est égal à 15
+    ALORS le plafond horaire applicable est égal au compte CPF du bénéficiaire
+  SI le code CPF de la formation fait partie des codes CPF VAE
+      ALORS le taux horaire applicable vaut 57
+      ALORS le plafond horaire applicable vaut 21
+      # ALORS organisme.plafond_financier_journalier VAUT 400
+  SI le code NAF de l'établissement du bénéficiaire fait partie des codes NAF CPNE éligibles
+      ALORS le taux horaire applicable vaut 30

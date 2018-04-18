@@ -1,7 +1,5 @@
-SI organisme.nom = «AGEFOS_PME»:
-  ALORS:
-    - organisme.taux_horaire VAUT 50
-    - organisme.plafond_horaire VAUT beneficiaire.cpf
-  SI constante.codes_cpf_vae CONTIENT formation.cpf:
-    ALORS:
-      - organisme.plafond_horaire VAUT formation.heures
+SI le nom de l'organisme est «AGEFOS_PME»
+    ALORS le taux horaire applicable vaut 50
+    ALORS le plafond horaire applicable est égal au compte CPF du bénéficiaire
+    SI le code CPF de la formation fait partie des codes CPF VAE
+        ALORS le plafond horaire applicable est égal à la durée en heures de la formation

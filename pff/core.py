@@ -1,13 +1,8 @@
-from pathlib import Path
-
-import yaml
-
 from . import routine
 from .rules import CONSTANTS, RULES
 
 
 def simulate(**data):
-    passed, failed = [], []
     data.update(CONSTANTS)
     routine.validate_data(data)
     routine.idcc_to_organismes(data)
