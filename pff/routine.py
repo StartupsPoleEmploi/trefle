@@ -3,10 +3,21 @@ from pathlib import Path
 import yaml
 
 from .exceptions import NoDataError
-from .rules import Rule, Scenario
+from .rules import Rule, Scenario, VARIABLES
 
 with (Path(__file__).parent / 'config/idcc.yml').open() as f:
     IDCC = yaml.safe_load(f.read())
+
+
+def validate_data(data):
+    for key, value in data.items():
+        if key not in VARIABLES:
+            raise ValueError(f'Unknown key {key}')
+        type_ = VARIABLES[key]['type']
+        if type_ == 'bool':
+            data[key] = bool(value)
+        elif type_ == 'int':
+            data[key] = int(value)
 
 
 def idcc_to_organismes(data):

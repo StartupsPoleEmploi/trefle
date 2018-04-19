@@ -17,7 +17,7 @@ SI organisme.nom = «OPCA_DEFI»:
       ALORS:
         - organisme.taux_horaire VAUT formation.taux_horaire
         - organisme.plafond_financier VAUT 5000
-    SI formation.eligible_cpf CONTIENT «COPANEF»:
+    SI formation.copanef = OUI:
       ALORS:
       # - organisme.taux_horaire_copanef VAUT "35\nformation.taux_horaire pour Cambridge English Business Certificates"
         - organisme.taux_horaire VAUT 35

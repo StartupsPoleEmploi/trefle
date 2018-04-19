@@ -1,3 +1,4 @@
+behave==1.2.6
 minicli==0.3.0
 PyYAML==3.12
 roll==0.8.0

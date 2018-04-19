@@ -26,14 +26,17 @@ beneficiaire:
     description: être salarié d'une entreprise de droit privé
     type: bool
     source: beneficiaire
+    label: bénéficiaire de droit privé
   cpf:
     description: solde du compte CPF
     type: int
     source: beneficiaire
+    label: compte CPF du bénéficiaire
   remuneration:
     description: Rémunération actuelle en euros
     type: int
     source: beneficiaire
+    label: rémunération du bénéficiaire
   age:
     description: âge du beneficiaire
     type: int
@@ -65,8 +68,10 @@ beneficiaire:
       source: routine.idcc2naf
     idcc:
       description: l'identifiant de convention collective de l'établissement
-      type: str
+      # TODO: uniformize the type (int but 0234 so str?)
+      type: int
       source: beneficiaire
+      label: IDCC de l'établissement du bénéficiaire
     cpne:
       description: liste CPNE du secteur d'activité de l'entreprise
       type: liste de code CPF (trois ou quatre chiffre)
@@ -92,6 +97,11 @@ formation:
     description: un ou plusieurs codes CPF
     type: List[int]
     source: catalogue
+  copanef:
+    description: cette formation est au catalogue COPANEF
+    type: bool
+    source: routine.extraire_copanef
+    label: formation éligible COPANEF
   eligible_cpf:
     description: liste des éditeurs d'éligibilité CPF (COPANEF, COPAREF, CPNE)
     type: List[str]
@@ -103,12 +113,15 @@ formation:
   heures:
     type: int
     source: private
+    label: durée en heures de la formation
   mois:
     type: int
     source: private
+    label: durée en mois de la formation
   taux_horaire:
     type: int
     source: private
+    label: taux horaire de la formation
   taux_horaire_ttc:
     type: int
     source: private
@@ -119,6 +132,7 @@ formation:
     description: code CPF de la formation (plusieurs? cf tag_cpf)
     type: int
     source: catalogue
+    label: code CPF de la formation
   codes_naf:
     description: codes NAF des différents CPNE
     type: List[int]

@@ -19,4 +19,4 @@
 
 ## Run integration tests
 
-    py.test usecases/
+    behave --lang fr

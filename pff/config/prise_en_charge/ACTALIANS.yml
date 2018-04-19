@@ -8,7 +8,7 @@ SI organisme.nom = «ACTALIANS»:
   SI constante.codes_cpf_clea CONTIENT formation.cpf:
     ALORS:
       - organisme.taux_horaire VAUT 27
-  SI formation.eligible_cpf CONTIENT «COPANEF»:
+  SI formation.copanef = OUI:
     ALORS:
     - organisme.taux_horaire VAUT 60
   SI formation.regions CONTIENT beneficiaire.entreprise.region:

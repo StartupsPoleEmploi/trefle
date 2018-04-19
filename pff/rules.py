@@ -15,6 +15,7 @@ OPERATORS = {
     'CONTIENT': '__contains__',
 }
 VARIABLES = {}
+LABELS = {}
 CONSTANTS = {}
 ROOT = Path(__file__).parent
 
@@ -32,6 +33,8 @@ def load_variables(data, output=None, namespace=None):
             output[name] = more
             if ns[0] == 'constante':
                 CONSTANTS[name] = more['value']
+            if 'label' in more:
+                LABELS[more['label']] = name
         else:
             load_variables(more, output, ns)
     return output
