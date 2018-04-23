@@ -12,12 +12,12 @@ Scénario: plafond financier INTERGROS sur formation VAE
     Et la durée en heures de la formation vaut 200
     Et le code CPF de la formation vaut 200
     Quand je demande un calcul de financement
-    Et je sélectionne le financement "CPF sur son temps de travail"
-    Alors l'organisme tutelle est INTERGROS
+    Et je sélectionne le financement «CPF sur son temps de travail»
+    Alors l'organisme tutelle est «INTERGROS»
     Et le montant de prise en charge vaut 2000
     Et la rémunération vaut 1400
-    Quand je sélectionne le financement "CPF hors temps de travail"
-    Alors l'organisme tutelle est INTERGROS
+    Quand je sélectionne le financement «CPF hors temps de travail»
+    Alors l'organisme tutelle est «INTERGROS»
     Et le montant de prise en charge vaut 2000
     Et la rémunération vaut 0
 
@@ -32,11 +32,11 @@ Scénario: plafond horaire INTERGROS sur formation VAE
     Et la durée en heures de la formation vaut 50
     Et le code CPF de la formation vaut 200
     Quand je demande un calcul de financement
-    Et je sélectionne le financement "CPF sur son temps de travail"
-    Alors l'organisme tutelle est INTERGROS
+    Et je sélectionne le financement «CPF sur son temps de travail»
+    Alors l'organisme tutelle est «INTERGROS»
     Et le montant de prise en charge vaut 1250
     Et la rémunération vaut 1400
-    Quand je sélectionne le financement "CPF hors temps de travail"
-    Alors l'organisme tutelle est INTERGROS
+    Quand je sélectionne le financement «CPF hors temps de travail»
+    Alors l'organisme tutelle est «INTERGROS»
     Et le montant de prise en charge vaut 1250
     Et la rémunération vaut 0

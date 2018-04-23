@@ -10,11 +10,11 @@ Scénario: cas nominal d'une formation COPANEF
     Et l'IDCC de l'établissement du bénéficiaire vaut 2706
     Et la rémunération du bénéficiaire vaut 1400
     Quand je demande un calcul de financement
-    Et je sélectionne le financement "CPF sur son temps de travail"
-    Alors l'organisme tutelle est ACTALIANS
+    Et je sélectionne le financement «CPF sur son temps de travail»
+    Alors l'organisme tutelle est «ACTALIANS»
     Et le montant de prise en charge vaut 3000
     Et la rémunération vaut 1400
-    Quand je sélectionne le financement "CPF hors temps de travail"
-    Alors l'organisme tutelle est ACTALIANS
+    Quand je sélectionne le financement «CPF hors temps de travail»
+    Alors l'organisme tutelle est «ACTALIANS»
     Et le montant de prise en charge vaut 3000
     Et la rémunération vaut 0

@@ -260,7 +260,7 @@ class Condition:
 class Rule:
 
     def __init__(self, conditions, actions):
-        # assert conditions, 'Cannot create a rule without conditions'
+        assert conditions, 'Cannot create a rule without conditions'
         self.conditions = conditions
         self.actions = actions
 
@@ -272,7 +272,6 @@ class Rule:
         if rules is None:
             rules = []
             data = iter(data)
-            # import ipdb; ipdb.set_trace()
         if tree is None:
             tree = []
         if outer is None:

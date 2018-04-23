@@ -31,7 +31,7 @@ def when_simulate(context):
     context.passed, _ = list(simulate(**context.data))
 
 
-@when('je sélectionne le financement "(?P<name>.+)"')
+@when('je sélectionne le financement «(?P<name>.+)»')
 def when_select_one(context, name):
     assert context.passed, "No result found"
     for result in context.passed:
@@ -42,9 +42,10 @@ def when_select_one(context, name):
         raise AssertionError(f'No result found with name {name}')
 
 
-@then("l'organisme tutelle est (?P<name>.+)")
+@then("l'organisme tutelle est «(?P<name>.+)»")
 def then_check_organisme(context, name):
-    assert context.result.organisme == name
+    assert context.result.organisme == name,\
+        f'{context.result.organisme} != {name}'
 
 
 @then(r'le montant de prise en charge vaut (?P<value>\d+)')
