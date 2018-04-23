@@ -27,10 +27,10 @@ def test_lazyvalue_with_float_constant():
 
 
 def test_lazyvalue_with_int_variable():
-    lv = LazyValue('age', variables={'age': {'type': 'int'}})
+    lv = LazyValue('âge du bénéficiaire', variables={'age': {'type': 'int'}})
     assert lv.get(age='27') == 27
 
 
 def test_lazyvalue_with_bool_variable():
-    lv = LazyValue('inscrit', variables={'inscrit': {'type': 'bool'}})
-    assert lv.get(inscrit='OUI') is True
+    lv = LazyValue('âge du bénéficiaire', variables={'age': {'type': 'bool'}})
+    assert lv.get(age='OUI') is True

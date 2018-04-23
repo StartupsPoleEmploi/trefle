@@ -75,7 +75,8 @@ class LazyValue:
             value = self.bool(self.raw)
         else:
             try:
-                type_ = getattr(self, variables[self.raw]['type'])
+                self.key = LABELS[self.raw]
+                type_ = getattr(self, variables[self.key]['type'])
             except AttributeError:
                 self.get = lambda **d: self._get(**d)
             except KeyError:
@@ -87,7 +88,7 @@ class LazyValue:
 
     def _get(self, **data):
         try:
-            return data[self.raw]
+            return data[self.key]
         except KeyError:
             raise NoDataError(self.raw)
 
@@ -136,7 +137,6 @@ class Action:
         operator = self.OPERATORS[data['operator']]
         self.func = getattr(self, operator)
         value = data['value']
-        value = LABELS.get(value, value)
         try:
             self.value = LazyValue(value)
         except WrongPointerError as err:
@@ -216,13 +216,9 @@ class Condition:
             raise ValueError(f'No pattern match condition: {self.raw}')
         data = match.groupdict()
         left = data['left']
-        left = LABELS.get(left, left)
         operator = data['operator']
-        if 'right' in data:
-            right = data['right']
-            right = LABELS.get(right, right)
-        else:
-            right = 'OUI'  # No right means boolean check.
+        # No right means boolean check.
+        right = data.get('right', 'OUI')
         if operator in self.NEGATIVES:
             operator = self.NEGATIVES[operator]
             self.negative = True
