@@ -58,6 +58,9 @@ class LazyValue:
         self.get = None
         self.compile(variables)
 
+    def __repr__(self):
+        return f'<LazyValue: {self.raw}>'
+
     def compile(self, variables):
         value = ...
         if self.raw[0] == '«' and self.raw[-1] == '»':
@@ -118,6 +121,9 @@ class Action:
         self.raw = raw
         self.parse()
 
+    def __repr__(self):
+        return f'<Action: {self.raw}>'
+
     def parse(self):
         for pattern in self.PATTERNS:
             match = re.match(pattern, self.raw)
@@ -139,7 +145,8 @@ class Action:
 
     def do(self, data):
         try:
-            self.func(data, self.key, self.value.get(**data))
+            value = self.value.get(**data)
+            self.func(data, self.key, value)
         except NoDataError as err:
             raise NoDataError(f'Invalid key "{err}" for {self.raw}')
 
@@ -159,7 +166,7 @@ class Condition:
     PATTERNS = (
         r"(?P<operator>c(e n)?'est( pas)?) une? (?P<left>.+)",
         r"(l'|les? |la )(?P<left>.+) (?P<operator>est (supérieure?|inférieure?)( ou égale?)? à) (?P<right>[\w ]+)",
-        r"(l'|les? |la )(?P<left>.+) (?P<operator>(est|vaut)) (?P<right>[\w«» +-]+)",
+        r"(l'|les? |la )(?P<left>.+) (?P<operator>est|vaut) (?P<right>[\w«» +-]+)",
         r"(l'|les? |la )(?P<right>.+) (?P<operator>(fait|ne fait pas) partie) (de l'|des? |de la |du )(?P<left>.+)",
         r"(l'|les? |la )(?P<left>.+) (?P<operator>contient|ne contient pas) (l'|les? |la )?(?P<right>[ \w«»]+)",
     )
@@ -253,6 +260,7 @@ class Condition:
 class Rule:
 
     def __init__(self, conditions, actions):
+        # assert conditions, 'Cannot create a rule without conditions'
         self.conditions = conditions
         self.actions = actions
 
@@ -260,43 +268,48 @@ class Rule:
         return all(c.assess(**data) for c in self.conditions)
 
     @classmethod
-    def load(cls, data, prev_ident=0, tree=None, rules=None, actions=None, outer=None):
+    def load(cls, data, prev_indent=0, tree=None, rules=None, outer=None):
         if rules is None:
             rules = []
             data = iter(data)
+            # import ipdb; ipdb.set_trace()
         if tree is None:
             tree = []
-        if actions is None:
-            actions = []
         if outer is None:
             outer = []
+        actions = []
         while True:
-            try:
-                line = next(data)
-            except StopIteration:
-                break
-            if not line:
+            if outer:
+                raw = outer[0]
+                outer.clear()
+            else:
+                try:
+                    raw = next(data)
+                except StopIteration:
+                    break
+            if not raw:
                 continue
-            curr_ident = count_ident(line)
-            line = line.strip()
+            curr_indent = count_indent(raw)
+            line = raw.strip()
             if line.startswith('#'):
                 continue
             if line.startswith('ALORS '):
                 actions.append(Action(line[6:]))
-                prev_ident = curr_ident
-            elif curr_ident >= prev_ident:
-                inner = tree[:] + outer
-                outer = []
-                inner.append(Condition(line))
-                Rule.load(data, curr_ident, inner, rules, actions[:], outer)
-            elif curr_ident < prev_ident:
-                rules.append(Rule(tree[:] + outer, actions))
-                actions = []
+                prev_indent = curr_indent
+            else:
+                if actions:
+                    rules.append(Rule(tree[:], actions))
+                    outer.clear()
+                    actions = []
+                if curr_indent < prev_indent:
+                    outer.append(raw)
+                    break
+                inner = tree[:]
                 outer.clear()
-                outer.append(Condition(line))
-                break
+                inner.append(Condition(line))
+                Rule.load(data, curr_indent, inner[:], rules, outer)
         if actions:
-            rules.append(Rule(tree + outer, actions))
+            rules.append(Rule(tree, actions))
         return rules
 
     @classmethod
@@ -348,7 +361,7 @@ def load_rules(path):
         return Rule.load(rules_file.readlines())
 
 
-def count_ident(s):
+def count_indent(s):
     for i, c in enumerate(s):
         if c != ' ':
             return i

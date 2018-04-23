@@ -1,34 +1,34 @@
 SI le nom de l'organisme est «OPCA_DEFI»
-    ALORS le plafond horaire applicable est égal au compte CPF du bénéficiaire
-  SI l'IDCC de l'établissement du bénéficiaire vaut 292
-      ALORS le taux horaire applicable vaut 25
-    SI le code CPF de la formation fait partie des codes CPF VAE
-        ALORS le plafond horaire applicable est égal à la durée en heures de la formation
-    SI le code NAF de l'établissement du bénéficiaire fait partie des codes NAF CPNE éligibles
-        ALORS le taux horaire applicable est égal au taux horaire de la formation
-  SI l'IDCC de l'établissement du bénéficiaire vaut 0044
-      ALORS le taux horaire applicable vaut 35
-    SI le code CPF de la formation fait partie des codes CPF VAE
-        ALORS le taux horaire applicable est égal au taux horaire de la formation
-        ALORS le plafond financier applicable vaut 5000
-    SI c'est une formation éligible COPANEF
-      # ALORS organisme.taux_horaire_copanef VAUT "35\nformation.taux_horaire pour Cambridge English Business Certificates"
+    ALORS le plafond horaire applicable est égal au solde CPF du bénéficiaire
+    SI l'IDCC de l'établissement du bénéficiaire vaut 292
+        ALORS le taux horaire applicable vaut 25
+        SI le code CPF de la formation fait partie des codes CPF VAE
+            ALORS le plafond horaire applicable est égal à la durée en heures de la formation
+        SI le code NAF de l'établissement du bénéficiaire fait partie des codes NAF CPNE éligibles
+            ALORS le taux horaire applicable est égal au taux horaire de la formation
+    SI l'IDCC de l'établissement du bénéficiaire vaut 0044
         ALORS le taux horaire applicable vaut 35
-      # ALORS organisme.plafond_financier_copanef VAUT "1000 pour permis B\n3000 pour bilan de compétence"
-    SI le code NAF de l'établissement du bénéficiaire fait partie des codes NAF CPNE éligibles
+        SI le code CPF de la formation fait partie des codes CPF VAE
+            ALORS le taux horaire applicable est égal au taux horaire de la formation
+            ALORS le plafond financier applicable vaut 5000
+        SI c'est une formation éligible COPANEF
+            # ALORS organisme.taux_horaire_copanef VAUT "35\nformation.taux_horaire pour Cambridge English Business Certificates"
+            ALORS le taux horaire applicable vaut 35
+            # ALORS organisme.plafond_financier_copanef VAUT "1000 pour permis B\n3000 pour bilan de compétence"
+        SI le code NAF de l'établissement du bénéficiaire fait partie des codes NAF CPNE éligibles
+            ALORS le taux horaire applicable est égal au taux horaire de la formation
+    SI l'IDCC de l'établissement du bénéficiaire fait partie de [76,1388]
         ALORS le taux horaire applicable est égal au taux horaire de la formation
-  SI l'IDCC de l'établissement du bénéficiaire vaut 0076,1388
-      ALORS le taux horaire applicable est égal au taux horaire de la formation
-      ALORS le plafond horaire applicable est égal au compte CPF du bénéficiaire
-    SI le code CPF de la formation fait partie des codes CPF VAE
-        ALORS le plafond horaire applicable est égal à la durée en heures de la formation
-  SI l'IDCC de l'établissement du bénéficiaire vaut 1555
-      ALORS le plafond horaire applicable est égal au compte CPF du bénéficiaire
-    SI le code CPF de la formation fait partie des codes CPF VAE
-        ALORS le taux horaire applicable est égal au taux horaire de la formation
-        ALORS le plafond horaire applicable est égal à la durée en heures de la formation
-    SI le code CPF de la formation fait partie des codes CPF VAE
-          ALORS le taux horaire applicable est égal au taux horaire de la formation
-      # ALORS organisme.taux_horaire_copanef VAUT "\nformation.taux_horaire \n12€ pour langues"
-      # ALORS organisme.taux_horaire_coparef VAUT "\nformation.taux_horaire \n12€ pour langues"
-      # ALORS organisme.taux_horaire_cpne VAUT "\nformation.taux_horaire \n12€ pour langues"
+        ALORS le plafond horaire applicable est égal au solde CPF du bénéficiaire
+        SI le code CPF de la formation fait partie des codes CPF VAE
+            ALORS le plafond horaire applicable est égal à la durée en heures de la formation
+    SI l'IDCC de l'établissement du bénéficiaire vaut 1555
+        ALORS le plafond horaire applicable est égal au solde CPF du bénéficiaire
+        SI le code CPF de la formation fait partie des codes CPF VAE
+            ALORS le taux horaire applicable est égal au taux horaire de la formation
+            ALORS le plafond horaire applicable est égal à la durée en heures de la formation
+        SI le code CPF de la formation fait partie des codes CPF VAE
+            ALORS le taux horaire applicable est égal au taux horaire de la formation
+            # ALORS organisme.taux_horaire_copanef VAUT "\nformation.taux_horaire \n12€ pour langues"
+            # ALORS organisme.taux_horaire_coparef VAUT "\nformation.taux_horaire \n12€ pour langues"
+            # ALORS organisme.taux_horaire_cpne VAUT "\nformation.taux_horaire \n12€ pour langues"

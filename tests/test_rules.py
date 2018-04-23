@@ -1,6 +1,6 @@
 import pytest
 
-from pff.rules import Rule, count_ident
+from pff.rules import Rule, count_indent
 
 
 @pytest.mark.parametrize('input,expected', [
@@ -8,8 +8,8 @@ from pff.rules import Rule, count_ident
     ('    ', 4),
     ('    x', 4),
 ])
-def test_count_ident(input, expected):
-    assert count_ident(input) == expected
+def test_count_indent(input, expected):
+    assert count_indent(input) == expected
 
 
 def test_rules_load():
@@ -17,11 +17,11 @@ def test_rules_load():
 SI c'est un bénéficiaire de droit privé
     SI la région de l'établissement du bénéficiaire fait partie des régions éligibles COPAREF
         ALORS la rémunération possible vaut 2000
-        ALORS le taux horaire applicable vaut 8000
+        ALORS le taux horaire applicable vaut 80
     SI c'est une formation éligible COPANEF
-        SI le compte CPF du bénéficiaire est supérieur à 0
+        SI le solde CPF du bénéficiaire est supérieur à 0
             ALORS la rémunération possible vaut 1000
-            ALORS le taux horaire applicable vaut 6000
+            ALORS le taux horaire applicable vaut 60
 """
     rules = Rule.load(data.split('\n'))
     print(rules)
@@ -31,10 +31,42 @@ SI c'est un bénéficiaire de droit privé
                                           "bénéficiaire fait partie des "
                                           "régions éligibles COPAREF")
     assert rules[0].actions[0].raw == 'la rémunération possible vaut 2000'
-    assert rules[0].actions[1].raw == 'le taux horaire applicable vaut 8000'
+    assert rules[0].actions[1].raw == 'le taux horaire applicable vaut 80'
     assert rules[1].conditions[0].raw == "c'est un bénéficiaire de droit privé"
     assert rules[1].conditions[1].raw == "c'est une formation éligible COPANEF"
-    assert rules[1].conditions[2].raw == ("le compte CPF du bénéficiaire est "
+    assert rules[1].conditions[2].raw == ("le solde CPF du bénéficiaire est "
                                           "supérieur à 0")
     assert rules[1].actions[0].raw == 'la rémunération possible vaut 1000'
-    assert rules[1].actions[1].raw == 'le taux horaire applicable vaut 6000'
+    assert rules[1].actions[1].raw == 'le taux horaire applicable vaut 60'
+
+
+def test_mixing_SI_and_ALORS_with_same_indent():
+    data = """
+SI le nom de l'organisme est «BLAH»
+    ALORS le plafond horaire applicable vaut 150
+    SI c'est une formation éligible COPANEF
+        ALORS le taux horaire applicable vaut 60
+    SI le solde CPF du bénéficiaire est supérieur à 0
+        ALORS le taux horaire applicable vaut 50
+    SI c'est un bénéficiaire de droit privé
+        ALORS le taux horaire applicable vaut 40
+"""
+    rules = Rule.load(data.split('\n'))
+    print(rules)
+    assert len(rules) == 4
+    assert len(rules[0].conditions) == 1
+    assert rules[0].conditions[0].raw == "le nom de l'organisme est «BLAH»"
+    assert rules[0].actions[0].raw == 'le plafond horaire applicable vaut 150'
+    assert len(rules[1].conditions) == 2
+    assert rules[1].conditions[0].raw == "le nom de l'organisme est «BLAH»"
+    assert rules[1].conditions[1].raw == "c'est une formation éligible COPANEF"
+    assert rules[1].actions[0].raw == 'le taux horaire applicable vaut 60'
+    assert len(rules[2].conditions) == 2
+    assert rules[2].conditions[0].raw == "le nom de l'organisme est «BLAH»"
+    assert rules[2].conditions[1].raw == ("le solde CPF du bénéficiaire est "
+                                          "supérieur à 0")
+    assert rules[2].actions[0].raw == 'le taux horaire applicable vaut 50'
+    assert len(rules[3].conditions) == 2
+    assert rules[3].conditions[0].raw == "le nom de l'organisme est «BLAH»"
+    assert rules[3].conditions[1].raw == "c'est un bénéficiaire de droit privé"
+    assert rules[3].actions[0].raw == 'le taux horaire applicable vaut 40'

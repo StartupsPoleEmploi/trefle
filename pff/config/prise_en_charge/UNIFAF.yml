@@ -1,7 +1,7 @@
 SI le nom de l'organisme est «UNIFAF»
     SI le nom du financement contient «CPF»
         ALORS le taux horaire applicable vaut 50
-        ALORS le plafond horaire applicable est égal au compte CPF du bénéficiaire
+        ALORS le plafond horaire applicable est égal au solde CPF du bénéficiaire
         SI le code CPF de la formation fait partie des codes CPF VAE
             ALORS le taux horaire applicable vaut 66.66
             ALORS le plafond horaire applicable est égal à la durée en heures de la formation

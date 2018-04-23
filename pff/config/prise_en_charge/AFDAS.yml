@@ -1,6 +1,6 @@
 SI le nom de l'organisme est «AFDAS»
     ALORS le taux horaire applicable vaut 35
-    ALORS le plafond horaire applicable est égal au compte CPF du bénéficiaire
-  SI le code CPF de la formation fait partie des codes CPF VAE
-      ALORS le taux horaire applicable vaut 100
-      ALORS le plafond horaire applicable est égal à la durée en heures de la formation
+    ALORS le plafond horaire applicable est égal au solde CPF du bénéficiaire
+    SI le code CPF de la formation fait partie des codes CPF VAE
+        ALORS le taux horaire applicable vaut 100
+        ALORS le plafond horaire applicable est égal à la durée en heures de la formation

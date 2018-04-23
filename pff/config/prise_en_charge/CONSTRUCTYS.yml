@@ -1,5 +1,5 @@
 SI le nom de l'organisme est «CONSTRUCTYS»
-    ALORS le plafond horaire applicable est égal au compte CPF du bénéficiaire
+    ALORS le plafond horaire applicable est égal au solde CPF du bénéficiaire
     # ALORS organisme.taux_horaire_clea VAUT "30\névaluation CLEA 60"
     # ALORS organisme.taux_horaire_copanef VAUT "30\nsauf \n45 pour F°maintenance et conduite engin (formacode 31717) \n80 pourbilan de compétence (Certif Info n°93559) \n"
     # ALORS organisme.taux_horaire_coparef VAUT "30\nsauf \n45 pour F°maintenance et conduite engin (formacode 31717) \n80 pour bilan de compétence (Certif Info n°93559) \n"

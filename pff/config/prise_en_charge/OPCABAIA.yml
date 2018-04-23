@@ -1,22 +1,22 @@
 SI le nom de l'organisme est «OPCABAIA»
-      ALORS le plafond horaire applicable est égal au compte CPF du bénéficiaire
-      ALORS le taux horaire applicable est égal au taux horaire de la formation
-  SI l'IDCC de l'établissement du bénéficiaire fait partie de [2335,1672,1801]
-# ALORS organisme.plafond_financier_copanef VAUT "10 000 pour niv f°< ou = niveau 2\n16 000 pour niveau f°= niveau 1\n2100 pour bilan de compétences\n1500 pour permis B"
-# ALORS organisme.plafond_financier_coparef VAUT "10 000 pour niv f°< ou = niveau 2\n16 000 pour niveau f°= niveau 1\n2100 pour bilan de compétences\n1500 pour permis B"
-# ALORS organisme.plafond_financier_cpne VAUT "10 000 pour niv f°< ou = niveau 2\n16 000 pour niveau f°= niveau 1\n2100 pour bilan de compétences\n1500 pour permis B"
-    SI le code CPF de la formation fait partie des codes CPF VAE
-        ALORS le plafond horaire applicable est égal à la durée en heures de la formation
-        ALORS le plafond financier applicable vaut 2500
-    SI le code CPF de la formation fait partie des codes CPF CleA
-        ALORS le plafond financier applicable vaut 10000
-  SI l'IDCC de l'établissement du bénéficiaire vaut 2120
-  # ALORS organisme.taux_horaire_copanef VAUT "formation.taux_horaire\n37€ pour langues"
-  # ALORS organisme.plafond_financier_copanef VAUT "8 500/an\n2100 pour bilan de compétences\n1500 pour permis B\\"\n"
-  # ALORS organisme.plafond_financier_coparef VAUT "8500/an\n2100 pour bilan de compétences\n1500 pour permis B\\""
-  # ALORS organisme.plafond_financier_cpne VAUT "12 000/an\n2100 pour bilan de compétences\n1500 pour permis B"
-    SI le code CPF de la formation fait partie des codes CPF VAE
-        ALORS le plafond horaire applicable est égal à la durée en heures de la formation
-        ALORS le plafond financier applicable vaut 2500
-    SI le code CPF de la formation fait partie des codes CPF VAE
-          ALORS le plafond financier applicable vaut 2500
+    ALORS le plafond horaire applicable est égal au solde CPF du bénéficiaire
+    ALORS le taux horaire applicable est égal au taux horaire de la formation
+    SI l'IDCC de l'établissement du bénéficiaire fait partie de [2335,1672,1801]
+      # ALORS organisme.plafond_financier_copanef VAUT "10 000 pour niv f°< ou = niveau 2\n16 000 pour niveau f°= niveau 1\n2100 pour bilan de compétences\n1500 pour permis B"
+      # ALORS organisme.plafond_financier_coparef VAUT "10 000 pour niv f°< ou = niveau 2\n16 000 pour niveau f°= niveau 1\n2100 pour bilan de compétences\n1500 pour permis B"
+      # ALORS organisme.plafond_financier_cpne VAUT "10 000 pour niv f°< ou = niveau 2\n16 000 pour niveau f°= niveau 1\n2100 pour bilan de compétences\n1500 pour permis B"
+        SI le code CPF de la formation fait partie des codes CPF VAE
+            ALORS le plafond horaire applicable est égal à la durée en heures de la formation
+            ALORS le plafond financier applicable vaut 2500
+        SI le code CPF de la formation fait partie des codes CPF CleA
+            ALORS le plafond financier applicable vaut 10000
+    SI l'IDCC de l'établissement du bénéficiaire vaut 2120
+    # ALORS organisme.taux_horaire_copanef VAUT "formation.taux_horaire\n37€ pour langues"
+    # ALORS organisme.plafond_financier_copanef VAUT "8 500/an\n2100 pour bilan de compétences\n1500 pour permis B\\"\n"
+    # ALORS organisme.plafond_financier_coparef VAUT "8500/an\n2100 pour bilan de compétences\n1500 pour permis B\\""
+    # ALORS organisme.plafond_financier_cpne VAUT "12 000/an\n2100 pour bilan de compétences\n1500 pour permis B"
+        SI le code CPF de la formation fait partie des codes CPF VAE
+            ALORS le plafond horaire applicable est égal à la durée en heures de la formation
+            ALORS le plafond financier applicable vaut 2500
+        SI le code CPF de la formation fait partie des codes CPF VAE
+            ALORS le plafond financier applicable vaut 2500
