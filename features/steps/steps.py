@@ -1,4 +1,4 @@
-from behave import *
+from behave import given, when, then, use_step_matcher
 
 from pff.core import simulate
 from pff.rules import LABELS
@@ -12,27 +12,27 @@ def setup(context):
 
 
 @given("(?:le |la |l')(?P<key>.+) vaut (?P<value>.+)")
-def step_impl(context, key, value):
+def given_set_value(context, key, value):
     context.data[LABELS[key]] = value
 
 
 @given("c'est une? (?P<key>.+)")
-def step_impl(context, key):
+def given_set_true(context, key):
     context.data[LABELS[key]] = True
 
 
 @given("ce n'est pas une? (?P<key>.+)")
-def step_impl(context, key):
+def given_set_false(context, key):
     context.data[LABELS[key]] = False
 
 
 @when('je demande un calcul de financement')
-def step_impl(context):
+def when_simulate(context):
     context.passed, _ = list(simulate(**context.data))
 
 
 @when('je sélectionne le financement "(?P<name>.+)"')
-def step_impl(context, name):
+def when_select_one(context, name):
     assert context.passed, "No result found"
     for result in context.passed:
         if result.name == name:
@@ -43,21 +43,21 @@ def step_impl(context, name):
 
 
 @then("l'organisme tutelle est (?P<name>.+)")
-def step_impl(context, name):
+def then_check_organisme(context, name):
     assert context.result.organisme == name
 
 
-@then('le montant de prise en charge vaut (?P<value>\d+)')
-def step_impl(context, value):
+@then(r'le montant de prise en charge vaut (?P<value>\d+)')
+def then_check_prise_en_charge(context, value):
     assert context.result.prise_en_charge == int(value),\
         f'{context.result.prise_en_charge} != {value}'
 
 
-@then('la rémunération vaut (?P<value>\d+)')
-def step_impl(context, value):
+@then(r'la rémunération vaut (?P<value>\d+)')
+def then_check_remuneration(context, value):
     assert context.result.remuneration == int(value)
 
 
 @then("aucun financement n'est proposé")
-def step_impl(context):
+def then_no_results(context):
     assert not context.passed, f"Results found: {context.passed}"
