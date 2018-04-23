@@ -6,14 +6,6 @@ import yaml
 from .exceptions import NoDataError, WrongPointerError
 
 
-OPERATORS = {
-    '=': '__eq__',
-    '>': '__gt__',
-    '>=': '__ge__',
-    '<': '__lt__',
-    '<=': '__le__',
-    'CONTIENT': '__contains__',
-}
 VARIABLES = {}
 LABELS = {}
 CONSTANTS = {}
@@ -120,12 +112,12 @@ class Action:
 
     def __init__(self, raw):
         self.raw = raw
-        self.parse()
+        self.compile()
 
     def __repr__(self):
         return f'<Action: {self.raw}>'
 
-    def parse(self):
+    def compile(self):
         for pattern in self.PATTERNS:
             match = re.match(pattern, self.raw)
             if match:
@@ -175,11 +167,11 @@ class Condition:
         "est supérieur à": '__gt__',
         "est supérieur ou égal à": '__ge__',
         "est supérieure à": '__gt__',
-        "est supérieure ou égal à": '__ge__',
+        "est supérieure ou égale à": '__ge__',
         "est inférieur à": '__lt__',
         "est inférieur ou égal à": '__le__',
         "est inférieure à": '__lt__',
-        "est inférieure ou égal à": '__le__',
+        "est inférieure ou égale à": '__le__',
         "est": '__eq__',
         "vaut": '__eq__',
         'fait partie': '__contains__',
@@ -197,7 +189,6 @@ class Condition:
         self.raw = raw
         self.conditions = []
         self.negative = False
-        # TODO: Deal with ()
         if ' OU ' in self.raw:
             self.conditions = [Condition(s) for s in self.raw.split(' OU ')]
             self.connective = 'OU'
@@ -205,9 +196,9 @@ class Condition:
             self.conditions = [Condition(s) for s in self.raw.split(' ET ')]
             self.connective = 'ET'
         else:
-            self.parse()
+            self.compile()
 
-    def parse(self):
+    def compile(self):
         for pattern in self.PATTERNS:
             match = re.match(pattern, self.raw)
             if match:
@@ -240,7 +231,6 @@ class Condition:
             right = self.right.get(**data)
         except NoDataError:
             return False
-        # operator = OPERATORS.get(self.operator)
         result = getattr(left, self.operator)(right)
         if self.negative:
             return not result
@@ -307,8 +297,8 @@ class Rule:
             rules.append(Rule(tree, actions))
         return rules
 
-    @classmethod
-    def process(cls, rules, data, failed=None):
+    @staticmethod
+    def process(rules, data, failed=None):
         for rule in rules:
             if rule.assess(**data):
                 for action in rule.actions:
@@ -325,12 +315,14 @@ class Scenario:
 
     def __init__(self, name):
         self.name = name
+        self.organisme = None
+        self.prise_en_charge = None
+        self.remuneration = None
 
     def __repr__(self):
         return f'<Scenario: {self.name}'
 
     def __call__(self, **data):
-        data = data.copy()
         data.update({'scenario.nom': self.name,
                      'scenario.genre': self.name.split('.')[0].upper()})
         # TODO: use a routine and make it dynamic with scenario type
@@ -352,7 +344,7 @@ class Scenario:
 
 
 def load_rules(path):
-    with (path).open() as rules_file:
+    with path.open() as rules_file:
         return Rule.load(rules_file.readlines())
 
 
@@ -360,8 +352,7 @@ def count_indent(s):
     for i, c in enumerate(s):
         if c != ' ':
             return i
-    else:
-        return len(s)
+    return len(s)
 
 
 with (ROOT / 'config/variables.yml').open() as f:
