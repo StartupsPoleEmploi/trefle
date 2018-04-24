@@ -98,6 +98,11 @@ beneficiaire:
       source: routine.code_region
       label: région de l'établissement du bénéficiaire
 formation:
+  numero:
+    description: identifiant INTERCARIF de la formation
+    type: str
+    source: beneficiaire
+    label: identifiant de la formation
   code_financeur:
     description: code financeur
     type: List[int]

@@ -1,5 +1,7 @@
 from pathlib import Path
 
+from lxml import etree
+import requests
 import yaml
 
 from .exceptions import NoDataError
@@ -45,3 +47,25 @@ def check_scenarios(data):
         scenario = Scenario(name)
         scenario(**data)
         data['scenarios.eligibles'][idx] = scenario
+
+
+def populate_formation(data):
+    if 'formation.numero' not in data:
+        return
+
+    formation_id = data['formation.numero']
+    response = requests.get(f'https://labonneformation.pole-emploi.fr/ws_intercarif?num={formation_id}')
+    # TODO handle 400/500 responses
+    populate_formation_from_bytes(data, response.content)
+
+
+def populate_formation_from_bytes(data, content):
+    content = content.replace(b' xmlns="http://www.lheo.org/2.2"', b'')
+    tree = etree.fromstring(content)
+    root = tree.find('offres/formation')
+
+    data['formation.eligible_copanef'] = bool(root.xpath(
+        '//extras[@info="eligibilite-cpf"]/extra[@info="france-entiere"][text()="1"]/../extra[@info="inter-branche"][text()="1"]'
+    ))
+    data['formation.codes_naf'] = set(root.xpath('//extras[@info="eligibilite-cpf"]/extra[@info="branche"]/child::text()'))
+    data['formation.regions'] = set(root.xpath('//extras[@info="eligibilite-cpf"]/extra[@info="region"]/child::text()'))
