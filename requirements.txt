@@ -1,5 +1,7 @@
 behave==1.2.6
+lxml==4.2.1
 minicli==0.3.0
 PyYAML==3.12
+requests==2.18.4
 roll==0.8.0
 ujson==1.35
