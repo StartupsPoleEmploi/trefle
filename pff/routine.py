@@ -16,10 +16,12 @@ def validate_data(data):
         if key not in VARIABLES:
             raise ValueError(f'Unknown key {key}')
         type_ = VARIABLES[key]['type']
-        if type_ == 'bool':
+        if type_ == 'boolean':
             data[key] = bool(value)
-        elif type_ == 'int':
+        elif type_ == 'integer':
             data[key] = int(value)
+        elif type_ == 'number':
+            data[key] = float(value)
 
 
 def idcc_to_organismes(data):

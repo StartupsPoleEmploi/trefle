@@ -331,7 +331,7 @@ class Scenario:
         Rule.process(PRISE_EN_CHARGE, data)
         Rule.process(REMUNERATION, data)
         # TODO: type should come from the variables.yml entry type
-        heures = data['beneficiaire.cpf']
+        heures = data['beneficiaire.solde_cpf']
         if ('organisme.plafond_horaire' in data
            and int(data['organisme.plafond_horaire']) < heures):
             heures = int(data['organisme.plafond_horaire'])
