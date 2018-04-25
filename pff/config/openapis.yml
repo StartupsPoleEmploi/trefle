@@ -11,6 +11,19 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/scenario'
+                $ref: '#/components/schemas/Resultat'
 components:
-  schemas: {}
+  schemas:
+    Resultat:
+      required:
+        - passed
+        - failed
+      properties:
+        passed:
+          $ref: '#/components/schemas/Financements'
+        failed:
+          $ref: '#/components/schemas/Financements'
+    Financements:
+      type: array
+      items:
+        $ref: "#/components/schemas/Financement"

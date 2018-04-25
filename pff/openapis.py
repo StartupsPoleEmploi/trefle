@@ -12,16 +12,20 @@ with (Path(__file__).parent / 'config/variables.yml').open() as f:
 def add_schema(name, data=None):
     if data is None:
         data = VARIABLES[name]
-    keys = ['type', 'format', 'description']
+    keys = ['type', 'format', 'description', 'nullable']
     properties = {}
     required = []
     for key, props in data.items():
         if props.get('required'):
             required.append(key)
         if 'type' not in props:
-            # A subcomponent.
+            # A foreign key.
             add_schema(key, props)
-            properties[key] = {'$ref': f'#/components/schemas/{key}'}
+            # Allow the foreign key to be null (eg. financement.organisme).
+            properties[key] = {
+                'allOf': [{'$ref': f'#/components/schemas/{key.title()}'}],
+                'nullable': True
+            }
             continue
         if not props.get('public'):
             continue
@@ -32,9 +36,9 @@ def add_schema(name, data=None):
     schema = {'properties': properties}
     if required:
         schema['required'] = required
-    SCHEMA['components']['schemas'][name] = schema
+    SCHEMA['components']['schemas'][name.title()] = schema
 
 
 add_schema('beneficiaire')
 add_schema('formation')
-add_schema('scenario')
+add_schema('financement')
