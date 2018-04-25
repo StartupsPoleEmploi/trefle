@@ -5,10 +5,12 @@ import requests
 import yaml
 
 from .exceptions import NoDataError
-from .rules import Rule, Scenario, VARIABLES
+from .rules import Rule, Financement, VARIABLES
 
 with (Path(__file__).parent / 'config/idcc.yml').open() as f:
     IDCC = yaml.safe_load(f.read())
+
+INTERCARIF_URL = 'https://labonneformation.pole-emploi.fr/ws_intercarif'
 
 
 def validate_data(data):
@@ -56,7 +58,7 @@ def populate_formation(data):
         return
 
     formation_id = data['formation.numero']
-    response = requests.get(f'https://labonneformation.pole-emploi.fr/ws_intercarif?num={formation_id}')
+    response = requests.get(f'{INTERCARIF_URL}?num={formation_id}')
     # TODO handle 400/500 responses
     populate_formation_from_bytes(data, response.content)
 
