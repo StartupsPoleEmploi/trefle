@@ -41,16 +41,16 @@ def idcc_to_organismes(data):
 
 
 def check_eligibilite(data, rules):
-    data['scenarios.non_eligibles'] = []
-    data['scenarios.eligibles'] = []
-    Rule.process(rules, data, data['scenarios.non_eligibles'])
+    data['financements.non_eligibles'] = []
+    data['financements.eligibles'] = []
+    Rule.process(rules, data, data['financements.non_eligibles'])
 
 
-def check_scenarios(data):
-    for idx, name in enumerate(data['scenarios.eligibles']):
-        scenario = Scenario(name)
-        scenario(**data)
-        data['scenarios.eligibles'][idx] = scenario
+def check_financements(data):
+    for idx, name in enumerate(data['financements.eligibles']):
+        financement = Financement(name)
+        financement(**data)
+        data['financements.eligibles'][idx] = financement
 
 
 def populate_formation(data):

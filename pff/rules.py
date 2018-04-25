@@ -305,42 +305,42 @@ class Rule:
                     action.do(data)
             elif failed is not None:
                 for action in rule.actions:
-                    failed.append(Scenario(action.value.get()))
+                    failed.append(Financement(action.value.get()))
 
     def __repr__(self):
         return f'<Rule: {self.conditions} => {self.actions}>'
 
 
-class Scenario:
+class Financement:
 
     def __init__(self, name):
-        self.name = name
+        self.nom = name
         self.organisme = None
         self.prise_en_charge = None
         self.remuneration = None
 
     def __repr__(self):
-        return f'<Scenario: {self.name}'
+        return f'<Financement: {self.nom}'
 
     def __call__(self, **data):
-        data.update({'scenario.nom': self.name,
-                     'scenario.genre': self.name.split('.')[0].upper()})
-        # TODO: use a routine and make it dynamic with scenario type
+        data.update({'financement.nom': self.nom,
+                     'financement.genre': self.nom.split('.')[0].upper()})
+        # TODO: use a routine and make it dynamic with financement type
         self.organisme = data['beneficiaire.entreprise.opca']
-        data.update({'organisme.nom': self.organisme})
+        data.update({'financement.organisme.nom': self.organisme})
         Rule.process(PRISE_EN_CHARGE, data)
         Rule.process(REMUNERATION, data)
         # TODO: type should come from the variables.yml entry type
         heures = data['beneficiaire.solde_cpf']
-        if ('organisme.plafond_horaire' in data
-           and int(data['organisme.plafond_horaire']) < heures):
-            heures = int(data['organisme.plafond_horaire'])
-        prise_en_charge = int(data['organisme.taux_horaire']) * heures
-        if ('organisme.plafond_financier' in data
-           and int(data['organisme.plafond_financier']) < prise_en_charge):
-            prise_en_charge = int(data['organisme.plafond_financier'])
+        if ('financement.plafond_horaire' in data
+           and int(data['financement.plafond_horaire']) < heures):
+            heures = int(data['financement.plafond_horaire'])
+        prise_en_charge = int(data['financement.taux_horaire']) * heures
+        if ('financement.plafond_financier' in data
+           and int(data['financement.plafond_financier']) < prise_en_charge):
+            prise_en_charge = int(data['financement.plafond_financier'])
         self.prise_en_charge = prise_en_charge
-        self.remuneration = int(data.get('scenario.remuneration', 0))
+        self.remuneration = int(data.get('financement.remuneration', 0))
 
 
 def load_rules(path):

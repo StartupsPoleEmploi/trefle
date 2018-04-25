@@ -155,10 +155,33 @@ formation:
     type: List[int]
     source: routine.naf_from_formation
     label: codes NAF CPNE éligibles
-organisme:
+financement:
   nom:
     type: string
-    label: nom de l'organisme
+    public: true
+    required: true
+    label: nom du financement
+  # Do not use "type" for now, it's used as duck typing.
+  genre:
+    type: string
+    label: type de financement
+  organisme:
+    nom:
+      public: true
+      type: string
+      label: nom de l'organisme
+  remuneration:
+    type: integer
+    format: int32
+    public: true
+    nullable: true
+    label: rémunération possible
+  prise_en_charge:
+    type: integer
+    format: int32
+    public: true
+    nullable: true
+    label: montant de prise en charge possible
   plafond_financier:
     type: integer
     format: int32
@@ -175,21 +198,7 @@ organisme:
     type: number
     format: float
     label: reste à charge applicable
-scenario:
-  nom:
-    type: string
-    public: true
-    label: nom du financement
-  # Do not use "type" for now, it's used as duck typing.
-  genre:
-    type: string
-    label: type de financement
-  remuneration:
-    type: integer
-    format: int32
-    public: true
-    label: rémunération possible
-scenarios:
+financements:
   eligibles:
     description: liste des identifiants de scénarios éligibles
     type: List[str]

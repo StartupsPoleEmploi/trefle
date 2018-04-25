@@ -17,19 +17,19 @@ def cli_simulate(*args):
     print('*' * 80)
     print('Éligible')
     if passed:
-        for scenario in passed:
-            print('- Nom:', scenario.name)
-            print('  Organisme:', scenario.organisme)
-            print('  Financement:', scenario.prise_en_charge, '€')
-            print('  Rémunération:', scenario.remuneration, '€')
+        for financement in passed:
+            print('- Nom:', financement.name)
+            print('  Organisme:', financement.organisme)
+            print('  Financement:', financement.prise_en_charge, '€')
+            print('  Rémunération:', financement.remuneration, '€')
             print('')
     else:
         print('_')
     print('*' * 80)
     print('Non éligible')
     if failed:
-        for scenario in failed:
-            print('-', scenario.name)
+        for financement in failed:
+            print('-', financement.name)
     else:
         print('—')
 

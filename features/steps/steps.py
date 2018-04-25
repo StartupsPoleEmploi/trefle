@@ -31,15 +31,15 @@ def when_simulate(context):
     context.passed, _ = list(simulate(**context.data))
 
 
-@when('je sélectionne le financement «(?P<name>.+)»')
-def when_select_one(context, name):
+@when('je sélectionne le financement «(?P<nom>.+)»')
+def when_select_one(context, nom):
     assert context.passed, "No result found"
     for result in context.passed:
-        if result.name == name:
+        if result.nom == nom:
             context.result = result
             break
     else:
-        raise AssertionError(f'No result found with name {name}')
+        raise AssertionError(f'No result found with name {nom}')
 
 
 @then("l'organisme tutelle est «(?P<name>.+)»")
