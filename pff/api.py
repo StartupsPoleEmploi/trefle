@@ -1,4 +1,7 @@
-from roll import Roll
+import json
+from http import HTTPStatus
+
+from roll import Roll, HttpError
 
 from .core import simulate
 from .openapis import SCHEMA
@@ -9,7 +12,11 @@ app = Roll()
 
 @app.route('/simulate', methods=['POST'])
 async def simulate_(request, response):
-    passed, failed = simulate(**request.json)
+    try:
+        passed, failed = simulate(**request.json)
+    except ValueError as err:
+        raise HttpError(HTTPStatus.UNPROCESSABLE_ENTITY,
+                        json.dumps(err.args[0]))
     response.json = {'passed': passed, 'failed': failed}
 
 

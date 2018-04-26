@@ -12,6 +12,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Resultat'
+        422:
+          description: Les informations sont invalides
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Errors'
 components:
   schemas:
     Resultat:
@@ -27,3 +33,7 @@ components:
       type: array
       items:
         $ref: "#/components/schemas/Financement"
+    Errors:
+      type: object
+      additionalProperties:
+        type: string

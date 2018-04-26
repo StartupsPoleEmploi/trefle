@@ -103,7 +103,6 @@ formation:
     description: identifiant INTERCARIF de la formation
     type: string
     public: true
-    required: true
     label: identifiant de la formation
   code_financeur:
     description: code financeur
@@ -115,10 +114,6 @@ formation:
     type: boolean
     source: routine.extraire_copanef
     label: formation éligible COPANEF
-  eligible_cpf:
-    description: liste des éditeurs d'éligibilité CPF (COPANEF, COPAREF, CPNE)
-    type: List[str]
-    source: catalogue
   regions_coparef:
     description: régions d'éligibilité si COPAREF dans les listes_eligibilite_cpf
     type: List[int]
@@ -159,17 +154,11 @@ financement:
   nom:
     type: string
     public: true
-    required: true
     label: nom du financement
   # Do not use "type" for now, it's used as duck typing.
   genre:
     type: string
     label: type de financement
-  organisme:
-    nom:
-      public: true
-      type: string
-      label: nom de l'organisme
   remuneration:
     type: integer
     format: int32
@@ -198,6 +187,11 @@ financement:
     type: number
     format: float
     label: reste à charge applicable
+  organisme:
+    nom:
+      public: true
+      type: string
+      label: nom de l'organisme
 financements:
   eligibles:
     description: liste des identifiants de scénarios éligibles

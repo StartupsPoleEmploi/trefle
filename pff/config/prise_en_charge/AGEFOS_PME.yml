@@ -1,5 +1,8 @@
 SI le nom de l'organisme est «AGEFOS PME»
     ALORS le taux horaire applicable vaut 50
     ALORS le plafond horaire applicable est égal au solde CPF du bénéficiaire
-    SI le code CPF de la formation fait partie des codes CPF VAE
-        ALORS le plafond horaire applicable est égal à la durée en heures de la formation
+    # SI le code IDCC de l'établissement du bénéficiaire fait partie de []
+    # SI la formation est de type Permis B
+    #     ALORS le taux horaire applicable vaut 40
+    # SI la formation est un bilan de compétences
+    #     ALORS le taux horaire applicable vaut 75

@@ -5,7 +5,7 @@ import requests
 import yaml
 
 from .exceptions import NoDataError
-from .rules import Rule, Financement, VARIABLES
+from .rules import Rule, Financement
 
 with (Path(__file__).parent / 'config/idcc.yml').open() as f:
     IDCC = yaml.safe_load(f.read())
@@ -13,17 +13,22 @@ with (Path(__file__).parent / 'config/idcc.yml').open() as f:
 INTERCARIF_URL = 'https://labonneformation.pole-emploi.fr/ws_intercarif'
 
 
-def validate_data(data):
-    for key, value in data.items():
-        if key not in VARIABLES:
-            raise ValueError(f'Unknown key {key}')
-        type_ = VARIABLES[key]['type']
-        if type_ == 'boolean':
-            data[key] = bool(value)
-        elif type_ == 'integer':
-            data[key] = int(value)
-        elif type_ == 'number':
-            data[key] = float(value)
+def flatten(data, output=None, namespace=None):
+    """Turn {'a': {'b': 'value'}} in {'a.b': 'value'}."""
+    if output is None:
+        output = {}
+    if namespace is None:
+        namespace = []
+    for key, more in data.items():
+        ns = namespace.copy()
+        ns.append(key)
+        if isinstance(more, dict):
+            flatten(more, output, ns)
+            continue
+        name = '.'.join(ns)
+        output[name] = more
+    data.clear()
+    data.update(output)
 
 
 def idcc_to_organismes(data):
@@ -54,7 +59,7 @@ def check_financements(data):
 
 
 def populate_formation(data):
-    if 'formation.numero' not in data:
+    if not data.get('formation.numero'):
         return
 
     formation_id = data['formation.numero']
