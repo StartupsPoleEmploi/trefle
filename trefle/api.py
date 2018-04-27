@@ -2,12 +2,14 @@ import json
 from http import HTTPStatus
 
 from roll import Roll, HttpError
+from roll.extensions import cors
 
 from .core import simulate
 from .openapis import SCHEMA
 
 
 app = Roll()
+cors(app)
 
 
 @app.route('/simulate', methods=['POST'])
