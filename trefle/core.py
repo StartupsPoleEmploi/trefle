@@ -1,10 +1,9 @@
 from . import routine
-from .rules import CONSTANTS
 from .validators import validate
 
 
 def simulate(**data):
-    data.update(CONSTANTS)
+    routine.add_constants(data)
     routine.flatten(data)
     validate(data)
     routine.populate_formation(data)

@@ -162,6 +162,14 @@ financement:
   genre:
     type: string
     label: type de financement
+  description:
+    description: description du financement
+    type: string
+    public: true
+  demarches:
+    description: démarches à accomplir pour obtenir le financement
+    type: string
+    public: true
   remuneration:
     type: integer
     format: int32

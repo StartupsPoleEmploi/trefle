@@ -1,35 +1,7 @@
 import re
-from pathlib import Path
-
-import yaml
 
 from .exceptions import NoDataError, WrongPointerError
-
-
-VARIABLES = {}
-LABELS = {}
-CONSTANTS = {}
-ROOT = Path(__file__).parent
-
-
-def load_variables(data, output=None, namespace=None):
-    if output is None:
-        output = {}
-    if namespace is None:
-        namespace = []
-    for key, more in data.items():
-        ns = namespace.copy()
-        ns.append(key)
-        if 'type' in more:  # We have a variable.
-            name = '.'.join(ns)
-            output[name] = more
-            if ns[0] == 'constante':
-                CONSTANTS[name] = more['value']
-            if 'label' in more:
-                LABELS[more['label']] = name
-        else:
-            load_variables(more, output, ns)
-    return output
+from .config import VARIABLES, LABELS
 
 
 def isfloat(v):
@@ -38,6 +10,13 @@ def isfloat(v):
     except ValueError:
         return False
     return True
+
+
+def count_indent(s):
+    for i, c in enumerate(s):
+        if c != ' ':
+            return i
+    return len(s)
 
 
 class LazyValue:
@@ -306,61 +285,7 @@ class Rule:
                 for action in rule.actions:
                     action.do(data)
             elif failed is not None:
-                for action in rule.actions:
-                    failed.append(Financement(action.value.get()))
+                failed.append(rule)
 
     def __repr__(self):
         return f'<Rule: {self.conditions} => {self.actions}>'
-
-
-class Financement:
-
-    def __init__(self, name):
-        self.nom = name
-        self.organisme = None
-        self.prise_en_charge = None
-        self.remuneration = None
-
-    def __repr__(self):
-        return f'<Financement: {self.nom}'
-
-    def __call__(self, **data):
-        data.update({'financement.nom': self.nom,
-                     'financement.genre': self.nom.split('.')[0].upper()})
-        # TODO: use a routine and make it dynamic with financement type
-        self.organisme = data['beneficiaire.entreprise.opca']
-        data.update({'financement.organisme.nom': self.organisme})
-        Rule.process(PRISE_EN_CHARGE, data)
-        Rule.process(REMUNERATION, data)
-        # TODO: type should come from the variables.yml entry type
-        heures = data['beneficiaire.solde_cpf']
-        if ('financement.plafond_horaire' in data
-           and int(data['financement.plafond_horaire']) < heures):
-            heures = int(data['financement.plafond_horaire'])
-        prise_en_charge = int(data['financement.taux_horaire']) * heures
-        if ('financement.plafond_financier' in data
-           and int(data['financement.plafond_financier']) < prise_en_charge):
-            prise_en_charge = int(data['financement.plafond_financier'])
-        self.prise_en_charge = prise_en_charge
-        self.remuneration = int(data.get('financement.remuneration', 0))
-
-
-def load_rules(path):
-    with path.open() as rules_file:
-        return Rule.load(rules_file.readlines())
-
-
-def count_indent(s):
-    for i, c in enumerate(s):
-        if c != ' ':
-            return i
-    return len(s)
-
-
-with (ROOT / 'config/variables.yml').open() as f:
-    VARIABLES.update(load_variables(yaml.safe_load(f.read())))
-PRISE_EN_CHARGE = []
-for path in (ROOT / 'config/prise_en_charge').glob('*.rules'):
-    PRISE_EN_CHARGE.extend(load_rules(path))
-REMUNERATION = load_rules(ROOT / 'config/remuneration.rules')
-ELIGIBILITE = load_rules(Path(__file__).parent / 'config/eligibilite.rules')
