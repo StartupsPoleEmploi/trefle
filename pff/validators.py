@@ -2,8 +2,21 @@ from .rules import VARIABLES
 
 validators = []
 
+TRUE_VALUES = ('oui', 'yes', 'true')
+FALSE_VALUES = ('non', 'no', 'false')
+
+
+def to_bool(value):
+    value = str(value).lower()
+    if value in TRUE_VALUES:
+        return True
+    if value in FALSE_VALUES:
+        return False
+    raise ValueError
+
+
 TYPES = {
-    'boolean': bool,
+    'boolean': to_bool,
     'number': float,
     'integer': int,
 }

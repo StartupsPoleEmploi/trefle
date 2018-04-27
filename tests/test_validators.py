@@ -41,3 +41,36 @@ def test_validate_bad_integer():
         'beneficiaire.age': "foo n'est pas de type integer",
         'beneficiaire.solde_cpf': "blah n'est pas de type integer"
     }
+
+
+@pytest.mark.parametrize('input,expected', [
+    ('true', True),
+    ('oui', True),
+    ('yes', True),
+    ('false', False),
+    ('non', False),
+    ('no', False),
+])
+def test_validate_bool(input, expected):
+    data = {
+        'beneficiaire.droit_prive': input,
+        'beneficiaire.solde_cpf': 150,
+        'beneficiaire.remuneration': 1200,
+        'formation.numero': '23_24',
+    }
+    validate(data)
+    assert data['beneficiaire.droit_prive'] == expected
+
+
+def test_validate_bad_bool():
+    data = {
+        'beneficiaire.droit_prive': 'yep',
+        'beneficiaire.solde_cpf': 150,
+        'beneficiaire.remuneration': 1200,
+        'formation.numero': '23_24',
+    }
+    with pytest.raises(ValueError) as err:
+        validate(data)
+    assert err.value.args[0] == {
+        'beneficiaire.droit_prive': "yep n'est pas de type boolean"
+    }

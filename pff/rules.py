@@ -42,6 +42,8 @@ def isfloat(v):
 
 class LazyValue:
 
+    RAW_VALUES = (True, False)
+    # TODO: remove from here as we now validate input globally?
     TRUE_VALUES = ('oui', 'yes', 'true')
     FALSE_VALUES = ('non', 'no', 'false')
 
@@ -55,7 +57,9 @@ class LazyValue:
 
     def compile(self, variables):
         value = ...
-        if self.raw[0] == '«' and self.raw[-1] == '»':
+        if self.raw in self.RAW_VALUES:
+            value = self.raw
+        elif self.raw[0] == '«' and self.raw[-1] == '»':
             value = self.raw[1:-1]
         elif self.raw[0] == '[' and self.raw[-1] == ']':
             value = self.raw.split(',')  # TODO: type of members/constante?
@@ -63,8 +67,6 @@ class LazyValue:
             value = int(self.raw)
         elif isfloat(self.raw):
             value = float(self.raw)
-        elif self.raw.lower() in self.TRUE_VALUES + self.FALSE_VALUES:
-            value = self.bool(self.raw)
         else:
             try:
                 self.key = LABELS[self.raw]
@@ -209,7 +211,7 @@ class Condition:
         left = data['left']
         operator = data['operator']
         # No right means boolean check.
-        right = data.get('right', 'OUI')
+        right = data.get('right', True)
         if operator in self.NEGATIVES:
             operator = self.NEGATIVES[operator]
             self.negative = True
