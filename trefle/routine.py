@@ -5,7 +5,7 @@ import requests
 import yaml
 
 from .exceptions import NoDataError
-from .rules import Rule, Financement
+from .rules import Rule, Financement, ELIGIBILITE
 
 with (Path(__file__).parent / 'config/idcc.yml').open() as f:
     IDCC = yaml.safe_load(f.read())
@@ -45,10 +45,10 @@ def idcc_to_organismes(data):
     data['beneficiaire.entreprise.opacif'] = IDCC[idcc]['OPACIF']
 
 
-def check_eligibilite(data, rules):
+def check_eligibilite(data):
     data['financements.non_eligibles'] = []
     data['financements.eligibles'] = []
-    Rule.process(rules, data, data['financements.non_eligibles'])
+    Rule.process(ELIGIBILITE, data, data['financements.non_eligibles'])
 
 
 def check_financements(data):

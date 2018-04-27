@@ -360,7 +360,7 @@ def count_indent(s):
 with (ROOT / 'config/variables.yml').open() as f:
     VARIABLES.update(load_variables(yaml.safe_load(f.read())))
 PRISE_EN_CHARGE = []
-for path in (ROOT / 'config/prise_en_charge').glob('*.yml'):
+for path in (ROOT / 'config/prise_en_charge').glob('*.rules'):
     PRISE_EN_CHARGE.extend(load_rules(path))
-REMUNERATION = load_rules(ROOT / 'config/remuneration.yml')
-RULES = load_rules(Path(__file__).parent / 'config/rules.yml')
+REMUNERATION = load_rules(ROOT / 'config/remuneration.rules')
+ELIGIBILITE = load_rules(Path(__file__).parent / 'config/eligibilite.rules')
