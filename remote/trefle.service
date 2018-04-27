@@ -1,0 +1,16 @@
+[Unit]
+Description=Trefle
+After=syslog.target network.target postgresql.service
+
+[Service]
+Type=simple
+User=trefle
+ExecStart=/srv/trefle/venv/bin/gunicorn trefle.api:app --config gunicorn.conf
+WorkingDirectory=/srv/trefle/
+Restart=always
+RestartSec=5
+StandardOutput=journal
+SyslogIdentifier=Trefle
+
+[Install]
+WantedBy=default.target

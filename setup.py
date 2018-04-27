@@ -16,9 +16,9 @@ def is_pkg(line):
 with open('requirements.txt', encoding='utf-8') as reqs:
     install_requires = [l for l in reqs.read().split('\n') if is_pkg(l)]
 
-VERSION = (0, 8, 0)
+VERSION = (0, 1, 0)
 
-__author__ = 'Pyrates'
+__author__ = 'Yohan Boniface'
 __contact__ = "yohan.boniface@data.gouv.fr"
 __homepage__ = "https://github.com/pyrates/roll"
 __version__ = ".".join(map(str, VERSION))
