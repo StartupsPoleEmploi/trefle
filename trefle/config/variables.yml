@@ -93,6 +93,7 @@ beneficiaire:
       type: integer
       format: int32
       public: true
+      required: true
       label: IDCC de l'établissement du bénéficiaire
     region:
       description: région de l'entreprise
