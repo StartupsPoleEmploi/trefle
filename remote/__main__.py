@@ -87,7 +87,7 @@ def service():
 def deploy():
     """Deploy/update the trefle code base."""
     put('remote/gunicorn.conf', '/srv/trefle/gunicorn.conf')
-    pip('install -U git+https://framagit.org/ybon/trefle@deploy')
+    pip(f'install -U git+https://framagit.org/ybon/trefle@{config.version}')
     pip('install gunicorn')
     restart()
 
