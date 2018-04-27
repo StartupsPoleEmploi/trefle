@@ -9,7 +9,7 @@ from openapi_spec_validator import validate_spec
 from roll.extensions import traceback
 
 
-from pff.api import app as pffapp
+from trefle.api import app as trefleapp
 
 pytestmark = pytest.mark.asyncio
 
@@ -17,8 +17,8 @@ pytestmark = pytest.mark.asyncio
 @pytest.fixture(scope='session')
 def app():
     # Get the traceback in console in case of unhandled error.
-    traceback(pffapp)
-    yield pffapp
+    traceback(trefleapp)
+    yield trefleapp
 
 
 async def test_schema(client, app):

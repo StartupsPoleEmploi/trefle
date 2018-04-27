@@ -1,6 +1,6 @@
 import pytest
 
-from pff.rules import Condition, VARIABLES, LABELS
+from trefle.rules import Condition, VARIABLES, LABELS
 
 
 @pytest.fixture

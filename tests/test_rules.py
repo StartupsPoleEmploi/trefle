@@ -1,6 +1,6 @@
 import pytest
 
-from pff.rules import Rule, count_indent
+from trefle.rules import Rule, count_indent
 
 
 @pytest.mark.parametrize('input,expected', [

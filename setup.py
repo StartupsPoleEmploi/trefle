@@ -24,7 +24,7 @@ __homepage__ = "https://github.com/pyrates/roll"
 __version__ = ".".join(map(str, VERSION))
 
 setup(
-    name='pff',
+    name='trefle',
     version=__version__,
     description=__doc__,
     long_description=long_description,
@@ -47,6 +47,6 @@ setup(
     extras_require={'test': ['pytest'], 'docs': 'mkdocs'},
     include_package_data=True,
     entry_points={
-        'console_scripts': ['pff=pff.bin:main'],
+        'console_scripts': ['trefle=trefle.bin:main'],
     },
 )

@@ -1,4 +1,4 @@
-from pff.rules import LazyValue
+from trefle.rules import LazyValue
 
 
 VARIABLES = {

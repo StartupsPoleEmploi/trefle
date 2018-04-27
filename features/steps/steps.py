@@ -1,7 +1,7 @@
 from behave import given, when, then, use_step_matcher
 
-from pff.core import simulate
-from pff.rules import LABELS
+from trefle.core import simulate
+from trefle.rules import LABELS
 
 use_step_matcher('re')
 

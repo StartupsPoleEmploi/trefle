@@ -1,4 +1,4 @@
-from pff.rules import load_variables
+from trefle.rules import load_variables
 
 
 def test_load_variables():

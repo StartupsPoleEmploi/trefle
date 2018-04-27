@@ -1,4 +1,4 @@
-# PFF
+# Trefle
 
 ## Install
 
@@ -7,15 +7,15 @@
 
 ## Run a simulation
 
-    pff simulate var=value var2=value2…
+    trefle simulate var=value var2=value2…
 
 ## Run the dev server
 
-    pff serve
+    trefle serve
 
 ## Run unittests
 
-    py.test tests/
+    py.test
 
 ## Run integration tests
 

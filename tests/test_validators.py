@@ -1,7 +1,7 @@
 import pytest
 
 
-from pff.validators import validate
+from trefle.validators import validate
 
 
 def test_validate():
