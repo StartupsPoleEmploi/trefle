@@ -12,7 +12,7 @@ with (Path(__file__).parent / 'config/variables.yml').open() as f:
 def add_schema(name, data=None):
     if data is None:
         data = VARIABLES[name]
-    keys = ['type', 'format', 'description', 'nullable']
+    keys = ['type', 'format', 'description', 'nullable', 'enum']
     properties = {}
     required = []
     for key, props in data.items():

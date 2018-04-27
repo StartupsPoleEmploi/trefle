@@ -65,5 +65,12 @@ def validate_type(schema, value):
             try:
                 value = func(value)
             except (ValueError, TypeError):
-                raise ValueError(f"{value} n'est pas de type {type_}")
+                raise ValueError(f"`{value}` n'est pas de type {type_}")
+    return value
+
+
+@validator
+def validate_enum(schema, value):
+    if value and 'enum' in schema and value not in schema['enum']:
+        raise ValueError(f"`{value}` ne fait pas partie de {schema['enum']}")
     return value

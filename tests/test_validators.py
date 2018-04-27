@@ -1,45 +1,63 @@
 import pytest
 
-
+from trefle.rules import VARIABLES
 from trefle.validators import validate
 
 
-def test_validate():
+@pytest.fixture
+def patch_variables():
+    before = VARIABLES.copy()
+    VARIABLES.clear()
+
+    def patch(new):
+        VARIABLES.update(new)
+
+    yield patch
+    VARIABLES.clear()
+    VARIABLES.update(before)
+
+
+def test_validate_integer(patch_variables):
+    patch_variables({
+        'beneficiaire.age': {'type': 'integer'},
+        'beneficiaire.solde_cpf': {'type': 'integer'}
+    })
     data = {
-        'beneficiaire.droit_prive': True,
         'beneficiaire.age': '22',
         'beneficiaire.solde_cpf': '89',
-        'beneficiaire.remuneration': 1200,
-        'formation.numero': '23_24',
     }
     validate(data)
     assert data['beneficiaire.age'] == 22
     assert data['beneficiaire.solde_cpf'] == 89
 
 
-def test_validate_missing_required():
+def test_validate_missing_required(patch_variables):
+    patch_variables({
+        'beneficiaire.age': {'type': 'integer', 'required': True},
+        'beneficiaire.droit_prive': {'type': 'boolean', 'required': True},
+    })
     with pytest.raises(ValueError) as err:
-        validate({})
+        validate({'beneficiaire.birth': 22})
     assert err.value.args[0] == {
+        'beneficiaire.age': 'Ce champ est obligatoire',
         'beneficiaire.droit_prive': 'Ce champ est obligatoire',
-        'beneficiaire.remuneration': 'Ce champ est obligatoire',
-        'beneficiaire.solde_cpf': 'Ce champ est obligatoire'
     }
 
 
-def test_validate_bad_integer():
+def test_validate_bad_integer(patch_variables):
+    patch_variables({
+        'beneficiaire.age': {'type': 'integer'},
+        'beneficiaire.solde_cpf': {'type': 'integer', 'required': True},
+    })
     data = {
-        'beneficiaire.droit_prive': True,
         'beneficiaire.age': 'foo',
-        'beneficiaire.solde_cpf': 'blah',
-        'beneficiaire.remuneration': 1200,
-        'formation.numero': '23_24',
+        'beneficiaire.solde_cpf': 'blah'
     }
     with pytest.raises(ValueError) as err:
         validate(data)
     assert err.value.args[0] == {
-        'beneficiaire.age': "foo n'est pas de type integer",
-        'beneficiaire.solde_cpf': "blah n'est pas de type integer"
+        'beneficiaire.age': "`foo` n'est pas de type integer",
+        'beneficiaire.solde_cpf': "`blah` n'est pas de type integer"
     }
 
 
@@ -51,26 +69,45 @@ def test_validate_bad_integer():
     ('non', False),
     ('no', False),
 ])
-def test_validate_bool(input, expected):
+def test_validate_bool(input, expected, patch_variables):
+    patch_variables({
+        'beneficiaire.droit_prive': {'type': 'boolean', 'required': True}
+    })
     data = {
         'beneficiaire.droit_prive': input,
-        'beneficiaire.solde_cpf': 150,
-        'beneficiaire.remuneration': 1200,
-        'formation.numero': '23_24',
     }
     validate(data)
     assert data['beneficiaire.droit_prive'] == expected
 
 
-def test_validate_bad_bool():
-    data = {
-        'beneficiaire.droit_prive': 'yep',
-        'beneficiaire.solde_cpf': 150,
-        'beneficiaire.remuneration': 1200,
-        'formation.numero': '23_24',
-    }
+def test_validate_bad_bool(patch_variables):
+    patch_variables({
+        'beneficiaire.droit_prive': {'type': 'boolean', 'required': True}
+    })
+    data = {'beneficiaire.droit_prive': 'yep'}
     with pytest.raises(ValueError) as err:
         validate(data)
     assert err.value.args[0] == {
-        'beneficiaire.droit_prive': "yep n'est pas de type boolean"
+        'beneficiaire.droit_prive': "`yep` n'est pas de type boolean"
+    }
+
+
+def test_validate_enum(patch_variables):
+    patch_variables({
+        'beneficiaire.contrat': {'type': 'string', 'enum': ['cdd', 'cdi']}
+    })
+    data = {'beneficiaire.contrat': 'cdd'}
+    validate(data)
+    assert data['beneficiaire.contrat'] == 'cdd'
+
+
+def test_validate_bad_enum(patch_variables):
+    patch_variables({
+        'beneficiaire.contrat': {'type': 'string', 'enum': ['cdd', 'cdi']}
+    })
+    data = {'beneficiaire.contrat': 'cdg'}
+    with pytest.raises(ValueError) as err:
+        validate(data)
+    assert err.value.args[0] == {
+        'beneficiaire.contrat': "`cdg` ne fait pas partie de ['cdd', 'cdi']"
     }
