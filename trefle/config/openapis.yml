@@ -22,12 +22,12 @@ components:
   schemas:
     Resultat:
       required:
-        - passed
-        - failed
+        - eligibles
+        - non_eligibles
       properties:
-        passed:
+        eligibles:
           $ref: '#/components/schemas/Financements'
-        failed:
+        non_eligibles:
           $ref: '#/components/schemas/Financements'
     Financements:
       type: array
