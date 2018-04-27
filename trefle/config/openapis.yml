@@ -3,8 +3,8 @@ info:
   title: Moteur de financement salariés
   version: 1.0.0
 paths:
-  /simulate:
-    get:
+  /financement:
+    post:
       responses:
         200:
           description: Calcul effectué avec succès

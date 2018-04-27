@@ -31,7 +31,7 @@ async def test_simulate_endpoint(client, app):
     resp = await client.get('/schema')
     spec = create_spec(json.loads(resp.body))
 
-    resp = await client.post('/simulate', body={
+    resp = await client.post('/financement', body={
         'beneficiaire.solde_cpf': 10,
         'beneficiaire.remuneration': 1400,
         'beneficiaire.droit_prive': True,
@@ -39,7 +39,7 @@ async def test_simulate_endpoint(client, app):
     assert resp.status == HTTPStatus.OK
 
     validator = ResponseValidator(spec)
-    request = MockRequest('http://localhost', 'get', '/simulate')
+    request = MockRequest('http://localhost', 'post', '/financement')
     response = MockResponse(resp.body, resp.status.value)
     result = validator.validate(request, response)
     result.raise_for_errors()
@@ -49,7 +49,7 @@ async def test_simulate_endpoint_with_invalid_data(client, app):
     resp = await client.get('/schema')
     spec = create_spec(json.loads(resp.body))
 
-    resp = await client.post('/simulate', body={
+    resp = await client.post('/financement', body={
         'beneficiaire.remuneration': 1400,
         'beneficiaire.droit_prive': True,
         'beneficiaire.entreprise.idcc': 2706})
@@ -57,7 +57,7 @@ async def test_simulate_endpoint_with_invalid_data(client, app):
 
     # See https://github.com/p1c2u/openapi-core/issues/33
     # validator = ResponseValidator(spec)
-    # request = MockRequest('http://localhost', 'get', '/simulate')
+    # request = MockRequest('http://localhost', 'post', '/financement')
     # response = MockResponse(resp.body, resp.status.value)
     # result = validator.validate(request, response)
     # result.raise_for_errors()

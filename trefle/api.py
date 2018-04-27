@@ -12,7 +12,7 @@ app = Roll()
 cors(app)
 
 
-@app.route('/simulate', methods=['POST'])
+@app.route('/financement', methods=['POST'])
 async def simulate_(request, response):
     try:
         passed, failed = simulate(**request.json)
