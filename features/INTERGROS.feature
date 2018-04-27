@@ -8,6 +8,7 @@ Scénario: plafond financier INTERGROS sur formation VAE
     Et le solde CPF du bénéficiaire vaut 100
     Et l'IDCC de l'établissement du bénéficiaire vaut 2075
     Et la rémunération du bénéficiaire vaut 1400
+    Et le type de contrat du bénéficiaire vaut cdi
     Et le taux horaire de la formation vaut 25
     Et la durée en heures de la formation vaut 200
     Et le code CPF de la formation vaut 200
@@ -28,6 +29,7 @@ Scénario: plafond horaire INTERGROS sur formation VAE
     Et le solde CPF du bénéficiaire vaut 100
     Et l'IDCC de l'établissement du bénéficiaire vaut 2075
     Et la rémunération du bénéficiaire vaut 1400
+    Et le type de contrat du bénéficiaire vaut cdi
     Et le taux horaire de la formation vaut 25
     Et la durée en heures de la formation vaut 50
     Et le code CPF de la formation vaut 200

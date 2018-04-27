@@ -10,6 +10,7 @@ Scénario: cas nominal d'une formation COPANEF
     Et le solde CPF du bénéficiaire vaut 50
     Et l'IDCC de l'établissement du bénéficiaire vaut 1412
     Et la rémunération du bénéficiaire vaut 1400
+    Et le type de contrat du bénéficiaire vaut cdi
     Quand je demande un calcul de financement
     Et je sélectionne le financement «CPF sur son temps de travail»
     Alors l'organisme tutelle est «AGEFOS PME»
@@ -29,6 +30,7 @@ Scénario: plafond horaire d'une formation VAE
     Et le solde CPF du bénéficiaire vaut 50
     Et l'IDCC de l'établissement du bénéficiaire vaut 1412
     Et la rémunération du bénéficiaire vaut 1400
+    Et le type de contrat du bénéficiaire vaut cdi
     Et le code CPF de la formation vaut 200
     Quand je demande un calcul de financement
     Et je sélectionne le financement «CPF sur son temps de travail»

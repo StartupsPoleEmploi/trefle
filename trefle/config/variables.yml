@@ -72,6 +72,7 @@ beneficiaire:
     description: type de contrat du bénéficiaire
     type: string
     public: true
+    required: true
     enum: ['cdd', 'cdi', 'intermittent', 'interim']
     label: type de contrat du bénéficiaire
   anciennete_entreprise_actuelle:

@@ -35,6 +35,7 @@ async def test_simulate_endpoint(client, app):
         'beneficiaire.solde_cpf': 10,
         'beneficiaire.remuneration': 1400,
         'beneficiaire.droit_prive': True,
+        'beneficiaire.contrat': 'cdi',
         'beneficiaire.entreprise.idcc': 2706})
     assert resp.status == HTTPStatus.OK
 
