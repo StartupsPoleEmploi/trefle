@@ -52,13 +52,13 @@ def idcc_to_organismes(data):
 
 
 def check_eligibilite(data):
-    data['financements.non_eligibles'] = []
+    data['financements.non_eligibles'] = set()
     data['financements.eligibles'] = []
     failed = []
     Rule.process(ELIGIBILITE, data, failed)
     for rule in failed:
         for action in rule.actions:
-            data['financements.non_eligibles'].append(
+            data['financements.non_eligibles'].add(
                 Financement(action.value.get()))
 
 
@@ -127,19 +127,28 @@ class Financement:
         self.remuneration = None
         self.description = None
         self.demarches = None
+        # TODO: use id instead (and map to still use label in rules)?
+        properties = FINANCEMENTS[self.nom]
+        for key, value in properties.items():
+            setattr(self, key, value)
 
     def __repr__(self):
         return f'<Financement: {self.nom}'
 
+    def __eq__(self, other):
+        return hash(other) == hash(self.nom)
+
+    def __hash__(self):
+        # Allow to deduplicate results in set().
+        return hash(self.nom)
+
     def __call__(self, **data):
         # TODO only use financement.genre/type in rules.
-        properties = FINANCEMENTS[self.nom]
-        for key, value in properties.items():
-            setattr(self, key, value)
+        for key, value in self.__dict__.items():
             data[f'financement.{key}'] = value
         financement_to_organisme(data)
         self.organisme = data['financement.organisme.nom']
         compute_prise_en_charge(data)
         self.prise_en_charge = data['financement.prise_en_charge']
         compute_remuneration(data)
-        self.remuneration = int(data.get('financement.remuneration', 0))
+        self.remuneration = int(data['financement.remuneration'] or 0)

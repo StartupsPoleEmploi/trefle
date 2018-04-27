@@ -9,23 +9,25 @@ cpf:
     demarches: Pour une formation se déroulant en dehors du temps de travail, il n'est pas nécessaire de demander l'accord de l'employeur. Assurez-vous que votre compte personnel de formation est activé sur http://www.moncompteformation.gouv.fr/ Contactez directement votre Opca {organisme.nom} pour bénéficier gratuitement d’un conseil en évolution professionnelle et valider votre projet de formation et son financement CPF.
 cif:
   genre: CIF
+  description: todo
+  demarches: todo
   cdi:
     pendant_temps_de_travail:
-      nom: CIF sur le temps de travail en situation de CDI
+      nom: CIF CDI sur son temps de travail
     hors_temps_de_travail:
-      nom: CIF hors temps de travail en situation de CDI
+      nom: CIF CDI hors temps de travail
   cdd:
     pendant_temps_de_travail:
-      nom: CIF sur le temps de travail en situation de CDD
+      nom: CIF CDD sur son temps de travail
     hors_temps_de_travail:
-      nom: CIF hors temps de travail en situation de CDD
+      nom: CIF CDD hors temps de travail
   interim:
     pendant_temps_de_travail:
-      nom: CIF sur le temps de travail en situation de contrat interim
+      nom: CIF intérim sur son temps de travail
     hors_temps_de_travail:
-      nom: CIF hors temps de travail en situation de contrat interim
+      nom: CIF intérim hors temps de travail
   intermitent:
     pendant_temps_de_travail:
-      nom: CIF sur le temps de travail pour les intermitents
+      nom: CIF intermittent sur son temps de travail
     hors_temps_de_travail:
-      nom: CIF hors temps de travail pour les intermitents
+      nom: CIF intermittent hors temps de travail

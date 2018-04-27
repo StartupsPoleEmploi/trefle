@@ -161,6 +161,7 @@ financement:
   # Do not use "type" for now, it's used as duck typing.
   genre:
     type: string
+    public: true
     label: type de financement
   description:
     description: description du financement
