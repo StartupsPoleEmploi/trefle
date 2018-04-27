@@ -1,3 +1,5 @@
+import time
+
 from minicli import cli, run
 from roll.extensions import simple_server
 
@@ -13,7 +15,9 @@ def cli_simulate(*args):
         # LayValue only knows about labels.
         label = VARIABLES[key]['label']
         data[key] = LazyValue(label).get(**data)
+    start = time.perf_counter()
     passed, failed = simulate(**data)
+    duration = (time.perf_counter() - start)
     print('*' * 80)
     print('Éligible')
     if passed:
@@ -32,6 +36,7 @@ def cli_simulate(*args):
             print('-', financement.nom)
     else:
         print('—')
+    print(f'Duration: {duration} second')
 
 
 @cli
