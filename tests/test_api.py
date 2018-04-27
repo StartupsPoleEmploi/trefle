@@ -45,6 +45,16 @@ async def test_simulate_endpoint(client, app):
     result.raise_for_errors()
 
 
+async def test_simulate_endpoint_with_wrong_method(client, app):
+    resp = await client.get('/financement')
+    assert resp.status == HTTPStatus.METHOD_NOT_ALLOWED
+
+
+async def test_simulate_endpoint_with_empty_data(client, app):
+    resp = await client.post('/financement', body='')
+    assert resp.status == HTTPStatus.BAD_REQUEST
+
+
 async def test_simulate_endpoint_with_invalid_data(client, app):
     resp = await client.get('/schema')
     spec = create_spec(json.loads(resp.body))
