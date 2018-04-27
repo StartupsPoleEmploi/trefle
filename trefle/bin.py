@@ -18,7 +18,7 @@ def cli_simulate(*args):
     print('Éligible')
     if passed:
         for financement in passed:
-            print('- Nom:', financement.name)
+            print('- Nom:', financement.nom)
             print('  Organisme:', financement.organisme)
             print('  Financement:', financement.prise_en_charge, '€')
             print('  Rémunération:', financement.remuneration, '€')
@@ -29,7 +29,7 @@ def cli_simulate(*args):
     print('Non éligible')
     if failed:
         for financement in failed:
-            print('-', financement.name)
+            print('-', financement.nom)
     else:
         print('—')
 
