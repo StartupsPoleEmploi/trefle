@@ -1,0 +1,14 @@
+image: python:latest
+
+cache:
+  paths:
+  - ~/.cache/pip/
+
+before_script:
+  - python setup.py develop
+  - pip install -r requirements-dev.txt
+
+test:
+  script:
+  - py.test -v
+  - behave --lang fr
