@@ -94,7 +94,8 @@ def test_validate_bad_bool(patch_variables):
 
 def test_validate_enum(patch_variables):
     patch_variables({
-        'beneficiaire.contrat': {'type': 'string', 'enum': ['cdd', 'cdi']}
+        'beneficiaire.contrat': {'type': 'string',
+                                 'enum': {'cdd': 'CDD', 'cdi': 'CDI'}}
     })
     data = {'beneficiaire.contrat': 'cdd'}
     validate(data)
@@ -103,7 +104,8 @@ def test_validate_enum(patch_variables):
 
 def test_validate_bad_enum(patch_variables):
     patch_variables({
-        'beneficiaire.contrat': {'type': 'string', 'enum': ['cdd', 'cdi']}
+        'beneficiaire.contrat': {'type': 'string',
+                                 'enum': {'cdd': 'CDD', 'cdi': 'CDI'}}
     })
     data = {'beneficiaire.contrat': 'cdg'}
     with pytest.raises(ValueError) as err:

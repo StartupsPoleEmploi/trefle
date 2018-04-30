@@ -5,7 +5,7 @@ Scénario: cas nominal d'une formation COPANEF
     Soit un bénéficiaire et une formation
     Et c'est un bénéficiaire de droit privé
     Et la rémunération du bénéficiaire vaut 1400
-    Et le type de contrat du bénéficiaire vaut cdi
+    Et le type de contrat du bénéficiaire vaut CDI
     Et le solde CPF du bénéficiaire vaut 50
     Et c'est une formation éligible COPANEF
     Et le taux horaire de la formation vaut 25

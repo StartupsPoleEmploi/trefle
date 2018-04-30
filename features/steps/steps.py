@@ -1,9 +1,14 @@
 from behave import given, when, then, use_step_matcher
 
 from trefle.core import simulate
-from trefle.rules import LABELS
+from trefle.rules import LABELS, VARIABLES
 
 use_step_matcher('re')
+
+
+def revert(d):
+    """Revert a dict."""
+    return {v: k for k, v in d.items()}
 
 
 @given('un bénéficiaire et une formation')
@@ -11,17 +16,30 @@ def setup(context):
     context.data = {}
 
 
-@given("(?:le |la |l')(?P<key>.+) vaut (?P<value>.+)")
-def given_set_value(context, key, value):
-    context.data[LABELS[key]] = value
+@given(r"(?:le |la |l')(?P<label>.+) vaut «?(?P<value>[^»]+)»?")
+def given_set_value(context, label, value):
+    key = LABELS[label]
+    schema = VARIABLES[key]
+    if 'enum' in schema:
+        # Allow to use enum label in scenario description.
+        labels = revert(schema['enum'])
+        value = labels[value]
+    context.data[key] = value
 
 
-@given("c'est une? (?P<key>.+)")
+@given(r"c'est une formation éligible région «(?P<label>.+)»")
+def given_set_coparef(context, label):
+    regions = revert(VARIABLES['beneficiaire.entreprise.region']['enum'])
+    ref = regions[label]
+    context.data['formation.regions_coparef'] = [ref]
+
+
+@given(r"c'est une? (?P<key>.+)")
 def given_set_true(context, key):
     context.data[LABELS[key]] = True
 
 
-@given("ce n'est pas une? (?P<key>.+)")
+@given(r"ce n'est pas une? (?P<key>.+)")
 def given_set_false(context, key):
     context.data[LABELS[key]] = False
 
@@ -31,7 +49,7 @@ def when_simulate(context):
     context.passed, _ = list(simulate(**context.data))
 
 
-@when('je sélectionne le financement «(?P<nom>.+)»')
+@when(r'je sélectionne le financement «(?P<nom>.+)»')
 def when_select_one(context, nom):
     assert context.passed, "No result found"
     for result in context.passed:
@@ -42,7 +60,7 @@ def when_select_one(context, nom):
         raise AssertionError(f'No result found with name {nom}')
 
 
-@then("l'organisme tutelle est «(?P<name>.+)»")
+@then(r"l'organisme tutelle est «(?P<name>.+)»")
 def then_check_organisme(context, name):
     assert context.result.organisme == name,\
         f'{context.result.organisme} != {name}'

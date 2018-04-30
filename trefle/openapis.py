@@ -12,7 +12,7 @@ with (Path(__file__).parent / 'config/variables.yml').open() as f:
 def add_schema(name, data=None):
     if data is None:
         data = VARIABLES[name]
-    keys = ['type', 'format', 'description', 'nullable', 'enum']
+    schema_keys = ['type', 'format', 'description', 'nullable', 'enum']
     properties = {}
     required = []
     for key, props in data.items():
@@ -30,9 +30,12 @@ def add_schema(name, data=None):
         if not props.get('public'):
             continue
         properties[key] = {}
-        for subkey in keys:
+        for subkey in schema_keys:
             if subkey in props:
-                properties[key][subkey] = props[subkey]
+                value = props[subkey]
+                if subkey == 'enum':
+                    value = value.values()
+                properties[key][subkey] = value
     schema = {'properties': properties}
     if required:
         schema['required'] = required
