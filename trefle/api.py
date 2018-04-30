@@ -5,17 +5,11 @@ from roll import Roll, HttpError
 from roll.extensions import cors
 
 from .core import simulate
-from .config import init
 from .openapis import SCHEMA
 
 
 app = Roll()
 cors(app)
-
-
-@app.listen('startup')
-async def startup():
-    init()
 
 
 @app.route('/financement', methods=['POST'])

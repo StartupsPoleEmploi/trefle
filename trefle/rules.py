@@ -1,7 +1,9 @@
 import re
 
 from .exceptions import NoDataError, WrongPointerError
-from .config import VARIABLES, LABELS
+
+VARIABLES = {}
+LABELS = {}
 
 
 def isfloat(v):

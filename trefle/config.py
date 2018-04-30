@@ -2,9 +2,9 @@ from pathlib import Path
 
 import yaml
 
+from .rules import Rule, VARIABLES, LABELS
 
-VARIABLES = {}
-LABELS = {}
+
 CONSTANTS = {}
 PRISE_EN_CHARGE = []
 REMUNERATION = []
@@ -52,7 +52,6 @@ def load_financements(data, output=None, properties=None):
 
 
 def load_rules(path):
-    from .rules import Rule
     with path.open() as rules_file:
         return Rule.load(rules_file.readlines())
 
