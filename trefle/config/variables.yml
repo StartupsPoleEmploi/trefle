@@ -226,7 +226,7 @@ financement:
       public: true
       type: string
       label: nom de l'organisme
-financements:
+financements: []
   eligibles:
     description: liste des identifiants de scénarios éligibles
     type: List[str]

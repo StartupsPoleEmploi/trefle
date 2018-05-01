@@ -1,9 +1,15 @@
+import inspect
 import re
 
 from .exceptions import NoDataError, WrongPointerError
 
 VARIABLES = {}
 LABELS = {}
+
+
+def Label(v):
+    """Used as annotation for casting to variable id from variable label."""
+    return LABELS[v]
 
 
 def isfloat(v):
@@ -79,97 +85,79 @@ class LazyValue:
         return int(value)
 
 
-class Action:
+def action(pattern):
 
-    OPERATORS = {
-        'vaut': 'set',
-        'est égal': 'set',
-        'ajouter': 'add',
-    }
+    def wrapper(func):
+        Action.PATTERNS[pattern] = func
+        return func
 
-    PATTERNS = (
-        r"(l'|les? |la )(?P<key>.+) (?P<operator>est égal)e? (à la|à|aux?)? (?P<value>[\w«» +-]+)",
-        r"(l'|les? |la )(?P<key>.+) (?P<operator>vaut) (?P<value>[\w«» +-]+)",
-        r"(?P<operator>ajouter) (?P<value>[\w«» +-]+) aux? (?P<key>.+)",
-    )
+    return wrapper
+
+
+def condition(pattern):
+
+    def wrapper(func):
+        Condition.PATTERNS[pattern] = func
+        return func
+
+    return wrapper
+
+
+class Step:
+
+    def __repr__(self):
+        return f'<{self.__class__.__name__}: {self.raw}>'
+
+    def compile(self):
+        for pattern, func in self.PATTERNS.items():
+            match = re.match(pattern, self.raw)
+            if match:
+                self.func = func
+                break
+        else:
+            raise ValueError(f'No pattern match step: {self.raw}')
+        data = match.groupdict()
+        spec = inspect.signature(self.func)
+        for name, param in spec.parameters.items():
+            if name == 'data':
+                continue
+            value = data[name]
+            if param.annotation != inspect._empty:
+                try:
+                    value = param.annotation(value)
+                except Exception as err:
+                    # Give more context.
+                    err.args = (f'{err} (from `{self.raw}`)',)
+                    raise
+            self.params[name] = value
+
+
+class Action(Step):
+
+    PATTERNS = {}
 
     def __init__(self, raw):
         self.raw = raw
+        self.func = None
+        self.params = {}
         self.compile()
 
-    def __repr__(self):
-        return f'<Action: {self.raw}>'
-
-    def compile(self):
-        for pattern in self.PATTERNS:
-            match = re.match(pattern, self.raw)
-            if match:
-                break
-        else:
-            raise ValueError(f'No pattern match action: {self.raw}')
-        data = match.groupdict()
-        self.key = LABELS[data['key']]
-        operator = self.OPERATORS[data['operator']]
-        self.func = getattr(self, operator)
-        value = data['value']
+    def act(self, data):
         try:
-            self.value = LazyValue(value)
-        except WrongPointerError as err:
-            # Give more context.
-            raise WrongPointerError(f'{err} does not exist in {self.raw}')
-
-    def do(self, data):
-        try:
-            value = self.value.get(**data)
-            self.func(data, self.key, value)
+            self.func(data, **self.params)
         except NoDataError as err:
             raise NoDataError(f'Invalid key "{err}" for {self.raw}')
 
-    @staticmethod
-    def set(data, key, value):
-        data[key] = value
 
-    @staticmethod
-    def add(data, key, value):
-        if key not in data:
-            data[key] = []
-        data[key].append(value)
+class Condition(Step):
 
-
-class Condition:
-
-    PATTERNS = (
-        r"(?P<operator>c(e n)?'est( pas)?) une? (?P<left>.+)",
-        r"(l'|les? |la )(?P<left>.+) (?P<operator>est (supérieure?|inférieure?)( ou égale?)? à) (?P<right>[\w ]+)",
-        r"(l'|les? |la )(?P<left>.+) (?P<operator>est|vaut) (?P<right>[\w«» +-]+)",
-        r"(l'|les? |la )(?P<right>.+) (?P<operator>(fait|ne fait pas) partie) (de l'|des? |de la |du )(?P<left>.+)",
-        r"(l'|les? |la )(?P<left>.+) (?P<operator>contient|ne contient pas) (l'|les? |la )?(?P<right>[ \w«»]+)",
-    )
-    OPERATORS = {
-        "c'est": '__eq__',
-        "est supérieur à": '__gt__',
-        "est supérieur ou égal à": '__ge__',
-        "est supérieure à": '__gt__',
-        "est supérieure ou égale à": '__ge__',
-        "est inférieur à": '__lt__',
-        "est inférieur ou égal à": '__le__',
-        "est inférieure à": '__lt__',
-        "est inférieure ou égale à": '__le__',
-        "est": '__eq__',
-        "vaut": '__eq__',
-        'fait partie': '__contains__',
-        'contient': '__contains__',
-    }
-    NEGATIVES = {
-        "ce n'est pas": "c'est",
-        "ne fait pas partie": "fait partie",
-        "ne contient pas": "contient",
-    }
+    PATTERNS = {}
 
     def __init__(self, raw):
         if raw.startswith(('SI ', 'ET ')):
             raw = raw[3:]
         self.raw = raw
+        self.params = {}
         self.conditions = []
         self.negative = False
         if ' OU ' in self.raw:
@@ -181,49 +169,75 @@ class Condition:
         else:
             self.compile()
 
-    def compile(self):
-        for pattern in self.PATTERNS:
-            match = re.match(pattern, self.raw)
-            if match:
-                break
-        else:
-            raise ValueError(f'No pattern match condition: {self.raw}')
-        data = match.groupdict()
-        left = data['left']
-        operator = data['operator']
-        # No right means boolean check.
-        right = data.get('right', True)
-        if operator in self.NEGATIVES:
-            operator = self.NEGATIVES[operator]
-            self.negative = True
-        self.operator = self.OPERATORS[operator]
-        try:
-            self.left = LazyValue(left)
-            self.right = LazyValue(right)
-        except WrongPointerError as err:
-            # Give more context.
-            raise WrongPointerError(f'{err} does not exist in {self.raw}')
-
     def assess(self, **data):
         if self.conditions:
             if self.connective == 'OU':
                 return any([c.assess(**data) for c in self.conditions])
             return all([c.assess(**data) for c in self.conditions])
         try:
-            left = self.left.get(**data)
-            right = self.right.get(**data)
+            return self.func(data, **self.params)
         except NoDataError:
             return False
-        result = getattr(left, self.operator)(right)
-        if self.negative:
-            return not result
-        return result
 
-    def extract(self, data):
-        return data.get(self.key)
 
-    def __repr__(self):
-        return f'<Condition: {self.raw}>'
+@action(r"(l'|les? |la )(?P<key>.+) vaut (?P<value>[\w«» +-]+)")
+@action(r"(l'|les? |la )(?P<key>.+) est égale? (à la|à|aux?)? (?P<value>[\w«» +-]+)")
+def set_value(data, key: Label, value: LazyValue):
+    data[key] = value.get(**data)
+
+
+@action(r"ajouter (?P<value>[\w«» +-]+) aux? (?P<key>.+)")
+def add_value(data, key: Label, value: LazyValue):
+    if key not in data:
+        data[key] = []
+    data[key].append(value.get(**data))
+
+
+@condition(r"c'est une? (?P<key>.+)")
+def check_true(data, key: LazyValue):
+    return key.get(**data) is True
+
+
+@condition(r"ce n'est pas une? (?P<key>.+)")
+def check_false(data, key: LazyValue):
+    return key.get(**data) is False
+
+
+@condition(r"(l'|les? |la )(?P<left>.+) est supérieure? à (?P<right>[\w ]+)")
+def check_gt(data, left: LazyValue, right: LazyValue):
+    return left.get(**data) > right.get(**data)
+
+
+@condition(r"(l'|les? |la )(?P<left>.+) est supérieure? ou égale? à (?P<right>[\w ]+)")
+def check_ge(data, left: LazyValue, right: LazyValue):
+    return left.get(**data) >= right.get(**data)
+
+
+@condition(r"(l'|les? |la )(?P<left>.+) est inférieure? à (?P<right>[\w ]+)")
+def check_lt(data, left: LazyValue, right: LazyValue):
+    return left.get(**data) < right.get(**data)
+
+
+@condition(r"(l'|les? |la )(?P<left>.+) est inférieure? ou égale à (?P<right>[\w ]+)")
+def check_le(data, left: LazyValue, right: LazyValue):
+    return left.get(**data) <= right.get(**data)
+
+
+@condition(r"(l'|les? |la )(?P<left>.+) fait partie (de l'|des? |de la |du )(?P<right>.+)")
+@condition(r"(l'|les? |la )(?P<right>.+) contient (l'|les? |la )?(?P<left>[ \w«»]+)")
+def check_contain(data, left: LazyValue, right: LazyValue):
+    return left.get(**data) in right.get(**data)
+
+
+@condition(r"(l'|les? |la )(?P<left>.+) ne fait pas partie (de l'|des? |de la |du )(?P<right>.+)")
+@condition(r"(l'|les? |la )(?P<right>.+) ne contient pas (l'|les? |la )?(?P<left>[ \w«»]+)")
+def check_contain(data, left: LazyValue, right: LazyValue):
+    return left.get(**data) not in right.get(**data)
+
+
+@condition(r"(l'|les? |la )(?P<left>.+) (est|vaut) (?P<right>[\w«» +-]+)")
+def check_equal(data, left: LazyValue, right: LazyValue):
+    return left.get(**data) == right.get(**data)
 
 
 class Rule:
@@ -274,7 +288,7 @@ class Rule:
                     break
                 inner = tree[:]
                 outer.clear()
-                inner.append(Condition(line))
+                inner.append(Condition(line[3:]))
                 Rule.load(data, curr_indent, inner[:], rules, outer)
         if actions:
             rules.append(Rule(tree, actions))
@@ -285,7 +299,7 @@ class Rule:
         for rule in rules:
             if rule.assess(**data):
                 for action in rule.actions:
-                    action.do(data)
+                    action.act(data)
             elif failed is not None:
                 failed.append(rule)
 

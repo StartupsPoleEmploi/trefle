@@ -59,7 +59,7 @@ def check_eligibilite(data):
     for rule in failed:
         for action in rule.actions:
             data['financements.non_eligibles'].add(
-                Financement(action.value.get()))
+                Financement(action.params['value'].get()))
 
 
 def compute_prise_en_charge(data):
