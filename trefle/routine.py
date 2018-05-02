@@ -116,14 +116,14 @@ def compute_prise_en_charge(data, financement):
 
 def compute_remuneration(data, financement):
     Rule.process(REMUNERATION, data)
-    financement['remuneration'] = data['financement.remuneration']
+    # Outside of CPF, remuneration is not defined (for now)
+    financement['remuneration'] = data.get('financement.remuneration', 0)
 
 
-def populate_financements(data):
-    for financement in data['financements'].values():
-        if not financement.get('eligible'):
-            continue
-        data['financement.nom'] = financement['nom']
-        financement_to_organisme(data, financement)
-        compute_prise_en_charge(data, financement)
-        compute_remuneration(data, financement)
+def populate_financement(data, financement):
+    if not financement.get('eligible'):
+        return
+    data['financement.nom'] = financement['nom']
+    financement_to_organisme(data, financement)
+    compute_prise_en_charge(data, financement)
+    compute_remuneration(data, financement)
