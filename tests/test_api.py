@@ -36,8 +36,13 @@ async def test_simulate_endpoint(client, app):
         'beneficiaire.remuneration': 1400,
         'beneficiaire.droit_prive': True,
         'beneficiaire.contrat': 'cdi',
+        'formation.eligible_copanef': True,
         'beneficiaire.entreprise.idcc': 2706})
     assert resp.status == HTTPStatus.OK
+    assert 'collection' in json.loads(resp.body)
+    financements = json.loads(resp.body)['collection']
+    assert len(financements)
+    assert financements[0].get('eligible')
 
     validator = ResponseValidator(spec)
     request = MockRequest('http://localhost', 'post', '/financement')

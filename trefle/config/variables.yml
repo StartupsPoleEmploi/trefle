@@ -185,6 +185,11 @@ financement:
     type: string
     public: true
     label: type de financement
+  eligible:
+    description: définit si le financement est éligible
+    type: boolean
+    public: true
+    label: financement éligible
   description:
     description: description du financement
     type: string
