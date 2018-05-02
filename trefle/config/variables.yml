@@ -56,7 +56,7 @@ beneficiaire:
     format: int32
     public: true
     label: âge du bénéficiaire
-  experience_professionelle:
+  experience_professionnelle:
     description: nombre de mois travaillés sur les 5 dernières années
     type: integer
     format: int32

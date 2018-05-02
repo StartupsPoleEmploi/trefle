@@ -4,8 +4,8 @@ SI c'est un bénéficiaire de droit privé
             ALORS ajouter «CPF sur son temps de travail» aux financements possibles
             ALORS ajouter «CPF hors temps de travail» aux financements possibles
     SI le code financeur de la formation ne fait pas partie des codes financeurs collectifs
-        SI la durée en heures de la formation est inférieur à 1200
-            SI la durée en mois de la formation est inférieur à 12
+        SI la durée en heures de la formation est inférieure à 1200
+            SI la durée en mois de la formation est inférieure à 12
                 SI le type de contrat du bénéficiaire est «CDI»
                     SI l'IDCC de l'établissement du bénéficiaire ne fait pas partie des codes IDCC de l'artisanat
                         SI l'ancienneté du bénéficiaire dans son entreprise est supérieure à 12
