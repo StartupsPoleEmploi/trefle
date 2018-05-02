@@ -46,14 +46,14 @@ def given_set_false(context, key):
 
 @when('je demande un calcul de financement')
 def when_simulate(context):
-    context.passed, _ = list(simulate(**context.data))
+    context.passed = [f for f in simulate(**context.data) if f.get('eligible')]
 
 
 @when(r'je sélectionne le financement «(?P<nom>.+)»')
 def when_select_one(context, nom):
     assert context.passed, "No result found"
     for result in context.passed:
-        if result.nom == nom:
+        if result['nom'] == nom:
             context.result = result
             break
     else:
@@ -62,19 +62,21 @@ def when_select_one(context, nom):
 
 @then(r"l'organisme tutelle est «(?P<name>.+)»")
 def then_check_organisme(context, name):
-    assert context.result.organisme == name,\
-        f'{context.result.organisme} != {name}'
+    assert context.result['organisme']['nom'] == name,\
+        f'{context.result["organisme"]["nom"]} != {name}'
 
 
 @then(r'le montant de prise en charge vaut (?P<value>\d+)')
 def then_check_prise_en_charge(context, value):
-    assert context.result.prise_en_charge == int(value),\
-        f'{context.result.prise_en_charge} != {value}'
+    assert context.result['prise_en_charge'] == int(value),\
+        f'{context.result["prise_en_charge"]} != {value}'
 
 
 @then(r'la rémunération vaut (?P<value>\d+)')
 def then_check_remuneration(context, value):
-    assert context.result.remuneration == int(value)
+    assert context.result['remuneration'] == int(value),\
+        f'{context.result["remuneration"]} != {value}'
+
 
 
 @then("aucun financement n'est proposé")

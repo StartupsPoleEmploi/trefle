@@ -117,7 +117,7 @@ def compute_prise_en_charge(data, financement):
 def compute_remuneration(data, financement):
     Rule.process(REMUNERATION, data)
     # Outside of CPF, remuneration is not defined (for now)
-    financement['remuneration'] = data.get('financement.remuneration', 0)
+    financement['remuneration'] = data['financement.remuneration']
 
 
 def populate_financement(data, financement):
