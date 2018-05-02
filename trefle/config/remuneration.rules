@@ -1,5 +1,5 @@
 SI le nom du financement contient «CPF»
-    SI le nom du financement contient «en dehors du temps de travail»
+    SI le nom du financement contient «hors temps de travail»
         ALORS la rémunération possible est égale à 0
     SI le nom du financement contient «sur son temps de travail»
         ALORS la rémunération possible est égale à la rémunération du bénéficiaire
