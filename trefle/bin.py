@@ -16,29 +16,23 @@ def cli_simulate(*args):
         label = VARIABLES[key]['label']
         data[key] = LazyValue(label).get(**data)
     start = time.perf_counter()
-    passed, failed = simulate(**data)
+    financements = simulate(**data)
     duration = (time.perf_counter() - start)
     print('*' * 80)
     print('Éligible')
-    if passed:
-        for financement in passed:
-            print('- Nom:', financement.nom)
-            print('  Description:', financement.description)
-            print('  Démarches:', financement.demarches)
-            print('  Organisme:', financement.organisme)
-            print('  Financement:', financement.prise_en_charge, '€')
-            print('  Rémunération:', financement.remuneration, '€')
+    for financement in financements:
+        if financement.get('eligible'):
+            print('- Nom:', financement['nom'])
+            print('  Description:', financement['description'][:150], '…')
+            print('  Démarches:', financement['demarches'][:150], '…')
+            print('  Organisme:')
+            print('      Nom:', financement['organisme']['nom'])
+            print('  Financement:', financement['prise_en_charge'], '€')
+            print('  Rémunération:', financement['remuneration'], '€')
             print('')
     else:
-        print('_')
-    print('*' * 80)
-    print('Non éligible')
-    if failed:
-        for financement in failed:
-            print('-', financement.nom)
-    else:
-        print('—')
-    print(f'Duration: {duration} second')
+        print('Aucun financement éligible')
+    print(f'Duration: {round(duration, 4)} second')
 
 
 @cli

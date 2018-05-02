@@ -1,8 +1,8 @@
 SI c'est un bénéficiaire de droit privé
     SI la région de l'établissement du bénéficiaire fait partie des régions éligibles COPAREF OU c'est une formation éligible COPANEF OU le code NAF de l'établissement du bénéficiaire fait partie des codes NAF CPNE éligibles
         SI le solde CPF du bénéficiaire est supérieur à 0
-            ALORS ajouter «CPF sur son temps de travail» aux financements possibles
-            ALORS ajouter «CPF hors temps de travail» aux financements possibles
+            ALORS définir le financement «CPF sur son temps de travail» comme éligible
+            ALORS définir le financement «CPF hors temps de travail» comme éligible
     SI le code financeur de la formation ne fait pas partie des codes financeurs collectifs
         SI la durée en heures de la formation est inférieure à 1200
             SI la durée en mois de la formation est inférieure à 12
@@ -10,20 +10,20 @@ SI c'est un bénéficiaire de droit privé
                     SI l'IDCC de l'établissement du bénéficiaire ne fait pas partie des codes IDCC de l'artisanat
                         SI l'ancienneté du bénéficiaire dans son entreprise est supérieure à 12
                             SI l'expérience professionnelle du bénéficiaire dans les cinq dernières années est supérieure à 24
-                                ALORS ajouter «CIF CDI sur son temps de travail» aux financements possibles
-                                ALORS ajouter «CIF CDI hors temps de travail» aux financements possibles
+                                ALORS définir le financement «CIF CDI sur son temps de travail» comme éligible
+                                ALORS définir le financement «CIF CDI hors temps de travail» comme éligible
                     SI l'IDCC de l'établissement du bénéficiaire fait partie des codes IDCC de l'artisanat
                         SI l'ancienneté du bénéficiaire dans son entreprise est supérieure à 12
                             SI l'expérience professionnelle du bénéficiaire dans les cinq dernières années est supérieure à 36
-                                ALORS ajouter «CIF CDI sur son temps de travail» aux financements possibles
-                                ALORS ajouter «CIF CDI hors temps de travail» aux financements possibles
+                                ALORS définir le financement «CIF CDI sur son temps de travail» comme éligible
+                                ALORS définir le financement «CIF CDI hors temps de travail» comme éligible
                 SI le type de contrat du bénéficiaire est «CDD»
                     SI l'âge du bénéficiaire est inférieur à 26
                         SI l'expérience professionnelle du bénéficiaire dans les cinq dernières années est supérieure à 12
                             SI le nombre de mois travaillés par le bénéficiaire dans la dernière année est supérieur à 4
-                                ALORS ajouter «CIF CDD sur son temps de travail» aux financements possibles
-                                ALORS ajouter «CIF CDD hors temps de travail» aux financements possibles
+                                ALORS définir le financement «CIF CDD sur son temps de travail» comme éligible
+                                ALORS définir le financement «CIF CDD hors temps de travail» comme éligible
                     SI l'âge du bénéficiaire est supérieur ou égal à 26
                         SI l'expérience professionnelle du bénéficiaire dans les cinq dernières années est supérieure à 24
-                            ALORS ajouter «CIF CDD sur son temps de travail» aux financements possibles
-                            ALORS ajouter «CIF CDD hors temps de travail» aux financements possibles
+                            ALORS définir le financement «CIF CDD sur son temps de travail» comme éligible
+                            ALORS définir le financement «CIF CDD hors temps de travail» comme éligible

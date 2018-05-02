@@ -226,11 +226,4 @@ financement:
       public: true
       type: string
       label: nom de l'organisme
-financements: []
-  eligibles:
-    description: liste des identifiants de scénarios éligibles
-    type: List[str]
-    label: financements possibles
-  non_eligibles:
-    description: liste des identifiants de scénarios non éligibles
-    type: List[str]
+financements: {}

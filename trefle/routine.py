@@ -37,6 +37,11 @@ def add_constants(data):
     data.update(CONSTANTS)
 
 
+def preload_financements(data):
+    # Copy.
+    data['financements'] = {k: dict(v) for k, v in FINANCEMENTS.items()}
+
+
 def idcc_to_organismes(data):
     key = 'beneficiaire.entreprise.idcc'
     if key not in data:
@@ -52,38 +57,7 @@ def idcc_to_organismes(data):
 
 
 def check_eligibilite(data):
-    data['financements.non_eligibles'] = set()
-    data['financements.eligibles'] = []
-    failed = []
-    Rule.process(ELIGIBILITE, data, failed)
-    for rule in failed:
-        for action in rule.actions:
-            data['financements.non_eligibles'].add(
-                Financement(action.params['value'].get()))
-
-
-def compute_prise_en_charge(data):
-    Rule.process(PRISE_EN_CHARGE, data)
-    heures = data['beneficiaire.solde_cpf']
-    if ('financement.plafond_horaire' in data
-       and int(data['financement.plafond_horaire']) < heures):
-        heures = int(data['financement.plafond_horaire'])
-    prise_en_charge = int(data['financement.taux_horaire']) * heures
-    if ('financement.plafond_financier' in data
-       and int(data['financement.plafond_financier']) < prise_en_charge):
-        prise_en_charge = int(data['financement.plafond_financier'])
-    data['financement.prise_en_charge'] = prise_en_charge
-
-
-def compute_remuneration(data):
-    Rule.process(REMUNERATION, data)
-
-
-def check_financements(data):
-    for idx, name in enumerate(data['financements.eligibles']):
-        financement = Financement(name)
-        financement(**data)
-        data['financements.eligibles'][idx] = financement
+    Rule.process(ELIGIBILITE, data)
 
 
 def populate_formation(data):
@@ -108,47 +82,48 @@ def populate_formation_from_bytes(data, content):
     data['formation.regions'] = set(root.xpath('//extras[@info="eligibilite-cpf"]/extra[@info="region"]/child::text()'))
 
 
-def financement_to_organisme(data):
-    type_ = data['financement.genre']
+def financement_to_organisme(data, financement):
+    type_ = financement['genre']
     if type_ == 'CPF':
-        data['financement.organisme.nom'] = data['beneficiaire.entreprise.opca']  # noqa
+        organisme = load_organisme(data['beneficiaire.entreprise.opca'])
     elif type_ == 'CIF':
-        data['financement.organisme.nom'] = data['beneficiaire.entreprise.opacif']  # noqa
+        organisme = load_organisme(data['beneficiaire.entreprise.opacif'])
     else:
         raise NotImplementedError(f'Unknown financement type {type_}')
+    financement['organisme'] = organisme
+    data['financement.organisme.nom'] = organisme['nom']
 
 
-class Financement:
+def load_organisme(name):
+    # TODO load organisme details (email, phone…)
+    return {
+        'nom': name
+    }
 
-    def __init__(self, nom):
-        self.nom = nom
-        self.organisme = None
-        self.prise_en_charge = None
-        self.remuneration = None
-        self.description = None
-        self.demarches = None
-        # TODO: use id instead (and map to still use label in rules)?
-        properties = FINANCEMENTS[self.nom]
-        for key, value in properties.items():
-            setattr(self, key, value)
 
-    def __repr__(self):
-        return f'<Financement: {self.nom}'
+def compute_prise_en_charge(data, financement):
+    Rule.process(PRISE_EN_CHARGE, data)
+    heures = data['beneficiaire.solde_cpf']
+    if ('financement.plafond_horaire' in data
+       and int(data['financement.plafond_horaire']) < heures):
+        heures = int(data['financement.plafond_horaire'])
+    prise_en_charge = int(data['financement.taux_horaire']) * heures
+    if ('financement.plafond_financier' in data
+       and int(data['financement.plafond_financier']) < prise_en_charge):
+        prise_en_charge = int(data['financement.plafond_financier'])
+    financement['prise_en_charge'] = prise_en_charge
 
-    def __eq__(self, other):
-        return hash(other) == hash(self.nom)
 
-    def __hash__(self):
-        # Allow to deduplicate results in set().
-        return hash(self.nom)
+def compute_remuneration(data, financement):
+    Rule.process(REMUNERATION, data)
+    financement['remuneration'] = data['financement.remuneration']
 
-    def __call__(self, **data):
-        # TODO only use financement.genre/type in rules.
-        for key, value in self.__dict__.items():
-            data[f'financement.{key}'] = value
-        financement_to_organisme(data)
-        self.organisme = data['financement.organisme.nom']
-        compute_prise_en_charge(data)
-        self.prise_en_charge = data['financement.prise_en_charge']
-        compute_remuneration(data)
-        self.remuneration = int(data['financement.remuneration'] or 0)
+
+def populate_financements(data):
+    for financement in data['financements'].values():
+        if not financement.get('eligible'):
+            continue
+        data['financement.nom'] = financement['nom']
+        financement_to_organisme(data, financement)
+        compute_prise_en_charge(data, financement)
+        compute_remuneration(data, financement)

@@ -193,6 +193,13 @@ def add_value(data, key: Label, value: LazyValue):
     data[key].append(value.get(**data))
 
 
+@action(r"définir le financement «(?P<name>[\w +-]+)» comme éligible")
+def set_financement_eligible(data, name):
+    if name not in data['financements']:
+        raise ValueError(f'Unknown financement `{name}`')
+    data['financements'][name]['eligible'] = True
+
+
 @condition(r"c'est une? (?P<key>.+)")
 def check_true(data, key: LazyValue):
     return key.get(**data) is True

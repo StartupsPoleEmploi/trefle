@@ -15,11 +15,11 @@ cors(app)
 @app.route('/financement', methods=['POST'])
 async def simulate_(request, response):
     try:
-        passed, failed = simulate(**request.json)
+        financements = simulate(**request.json)
     except ValueError as err:
         raise HttpError(HTTPStatus.UNPROCESSABLE_ENTITY,
                         json.dumps(err.args[0]))
-    response.json = {'eligibles': passed, 'non_eligibles': failed}
+    response.json = {'collection': financements}
 
 
 @app.route('/schema')

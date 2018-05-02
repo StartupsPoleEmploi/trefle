@@ -11,23 +11,26 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Resultat'
+                $ref: '#/components/schemas/Collection'
         422:
           description: Les informations sont invalides
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Errors'
+        400:
+          description: Le format de la requête est invalide
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Errors'
 components:
   schemas:
-    Resultat:
+    Collection:
       required:
-        - eligibles
-        - non_eligibles
+        - collection
       properties:
-        eligibles:
-          $ref: '#/components/schemas/Financements'
-        non_eligibles:
+        collection:
           $ref: '#/components/schemas/Financements'
     Financements:
       type: array
