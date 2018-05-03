@@ -20,3 +20,17 @@
 ## Run integration tests
 
     behave --lang fr
+
+Get a detailed coverage report:
+
+    behave --lang fr -D coverage-format=short
+
+Get a more detailed coverage report:
+
+    behave --lang fr -D coverage-format=long
+
+Only check one rules step coverage:
+
+    behave --lang fr -D coverage=eligibilite
+    behave --lang fr -D coverage=remuneration
+    behave --lang fr -D coverage=prise_en_charge
