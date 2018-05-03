@@ -3,10 +3,10 @@ from trefle.rules import LazyValue
 
 VARIABLES = {
     'age': {
-        'type': 'int'
+        'type': 'integer'
     },
     'inscrit': {
-        'type': 'bool'
+        'type': 'boolean'
     },
 }
 
@@ -28,9 +28,9 @@ def test_lazyvalue_with_float_constant():
 
 def test_lazyvalue_with_int_variable():
     lv = LazyValue('âge du bénéficiaire', variables={'age': {'type': 'int'}})
-    assert lv.get(age='27') == 27
+    assert lv.get(age=27) == 27
 
 
 def test_lazyvalue_with_bool_variable():
     lv = LazyValue('âge du bénéficiaire', variables={'age': {'type': 'bool'}})
-    assert lv.get(age='OUI') is True
+    assert lv.get(age=True) is True
