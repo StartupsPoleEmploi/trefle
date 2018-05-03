@@ -11,32 +11,32 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Collection'
+                $ref: '#/components/schemas/collection'
         422:
           description: Les informations sont invalides
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Errors'
+                $ref: '#/components/schemas/errors'
         400:
           description: Le format de la requête est invalide
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Errors'
+                $ref: '#/components/schemas/errors'
 components:
   schemas:
-    Collection:
+    collection:
       required:
-        - collection
+        - financements
       properties:
-        collection:
-          $ref: '#/components/schemas/Financements'
-    Financements:
+        financements:
+          $ref: '#/components/schemas/financements'
+    financements:
       type: array
       items:
-        $ref: "#/components/schemas/Financement"
-    Errors:
+        $ref: "#/components/schemas/financement"
+    errors:
       type: object
       additionalProperties:
         type: string

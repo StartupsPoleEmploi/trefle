@@ -19,7 +19,7 @@ async def simulate_(request, response):
     except ValueError as err:
         raise HttpError(HTTPStatus.UNPROCESSABLE_ENTITY,
                         json.dumps(err.args[0]))
-    response.json = {'collection': financements}
+    response.json = {'financements': financements}
 
 
 @app.route('/schema')

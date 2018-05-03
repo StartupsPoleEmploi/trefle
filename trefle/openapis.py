@@ -23,7 +23,7 @@ def add_schema(name, data=None):
             add_schema(key, props)
             # Allow the foreign key to be null (eg. financement.organisme).
             properties[key] = {
-                'allOf': [{'$ref': f'#/components/schemas/{key.title()}'}],
+                'allOf': [{'$ref': f'#/components/schemas/{key}'}],
                 'nullable': True
             }
             continue
@@ -34,12 +34,12 @@ def add_schema(name, data=None):
             if subkey in props:
                 value = props[subkey]
                 if subkey == 'enum':
-                    value = value.values()
+                    value = value.keys()
                 properties[key][subkey] = value
     schema = {'properties': properties}
     if required:
         schema['required'] = required
-    SCHEMA['components']['schemas'][name.title()] = schema
+    SCHEMA['components']['schemas'][name] = schema
 
 
 add_schema('beneficiaire')
