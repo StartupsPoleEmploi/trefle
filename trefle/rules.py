@@ -31,15 +31,15 @@ class LazyValue:
 
     RAW_VALUES = (True, False)
 
-    def __init__(self, raw, variables=VARIABLES):
+    def __init__(self, raw):
         self.raw = raw
         self.get = None
-        self.compile(variables)
+        self.compile()
 
     def __repr__(self):
         return f'<LazyValue: {self.raw}>'
 
-    def compile(self, variables):
+    def compile(self):
         value = ...
         if self.raw in self.RAW_VALUES:
             value = self.raw

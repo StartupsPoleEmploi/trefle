@@ -1,20 +1,6 @@
 import pytest
 
-from trefle.rules import VARIABLES
 from trefle.validators import validate
-
-
-@pytest.fixture
-def patch_variables():
-    before = VARIABLES.copy()
-    VARIABLES.clear()
-
-    def patch(new):
-        VARIABLES.update(new)
-
-    yield patch
-    VARIABLES.clear()
-    VARIABLES.update(before)
 
 
 def test_validate_integer(patch_variables):
