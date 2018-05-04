@@ -2,5 +2,6 @@ openapi-core
 openapi-spec-validator
 pytest
 pytest-asyncio
+pytest-cov
 # See https://github.com/p1c2u/openapi-core/issues/17
 werkzeug
