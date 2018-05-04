@@ -51,6 +51,36 @@ async def test_simulate_endpoint(client, app):
     result.raise_for_errors()
 
 
+async def test_simulate_endpoint_filter_eligible(client, app):
+    body = {
+        'beneficiaire.solde_cpf': 10,
+        'beneficiaire.remuneration': 1400,
+        'beneficiaire.droit_prive': True,
+        'beneficiaire.contrat': 'cdi',
+        'formation.eligible_copanef': True,
+        'beneficiaire.entreprise.idcc': 2706
+    }
+    # Normal request.
+    resp = await client.post('/financement', body=body)
+    assert resp.status == HTTPStatus.OK
+    financements = json.loads(resp.body)['financements']
+    assert len(financements) == 10
+    # Filter eligible only
+    resp = await client.post('/financement?eligible=true', body=body)
+    assert resp.status == HTTPStatus.OK
+    financements = json.loads(resp.body)['financements']
+    assert len(financements) == 2
+    for financement in financements:
+        assert financement['eligible'] is True
+    # Filter non eligible only
+    resp = await client.post('/financement?eligible=false', body=body)
+    assert resp.status == HTTPStatus.OK
+    financements = json.loads(resp.body)['financements']
+    assert len(financements) == 8
+    for financement in financements:
+        assert financement['eligible'] is False
+
+
 async def test_simulate_endpoint_with_wrong_method(client, app):
     resp = await client.get('/financement')
     assert resp.status == HTTPStatus.METHOD_NOT_ALLOWED

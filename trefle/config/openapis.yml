@@ -5,6 +5,14 @@ info:
 paths:
   /financement:
     post:
+      summary: Lancer un calcul de financement
+      parameters:
+        - name: eligible
+          in: query
+          required: false
+          description: Permet de filtrer les financements selon leur éligibilité
+          schema:
+            type: boolean
       responses:
         200:
           description: Calcul effectué avec succès
