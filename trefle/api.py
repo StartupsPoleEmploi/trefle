@@ -21,8 +21,7 @@ async def simulate_(request, response):
                         json.dumps(err.args[0]))
     eligible = request.query.bool('eligible', None)
     if eligible is not None:
-        financements = [f for f in financements
-                        if f.get('eligible') == eligible]
+        financements = [f for f in financements if f['eligible'] == eligible]
     response.json = {'financements': financements}
 
 
