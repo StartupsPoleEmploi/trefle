@@ -84,11 +84,13 @@ async def test_simulate_endpoint_filter_eligible(client, app):
 async def test_simulate_endpoint_with_wrong_method(client, app):
     resp = await client.get('/financement')
     assert resp.status == HTTPStatus.METHOD_NOT_ALLOWED
+    assert 'application/json' in resp.headers['Content-Type']
 
 
 async def test_simulate_endpoint_with_empty_data(client, app):
     resp = await client.post('/financement', body='')
     assert resp.status == HTTPStatus.BAD_REQUEST
+    assert 'application/json' in resp.headers['Content-Type']
 
 
 async def test_simulate_endpoint_with_invalid_data(client, app):
@@ -100,6 +102,7 @@ async def test_simulate_endpoint_with_invalid_data(client, app):
         'beneficiaire.droit_prive': True,
         'beneficiaire.entreprise.idcc': 2706})
     assert resp.status == HTTPStatus.UNPROCESSABLE_ENTITY
+    assert 'application/json' in resp.headers['Content-Type']
 
     # See https://github.com/p1c2u/openapi-core/issues/33
     # validator = ResponseValidator(spec)

@@ -1,4 +1,3 @@
-import json
 from http import HTTPStatus
 
 from roll import Roll, HttpError
@@ -12,13 +11,20 @@ app = Roll()
 cors(app)
 
 
+@app.listen('error')
+async def json_error_response(request, response, error):
+    body = error.message
+    if isinstance(body, (str, bytes)):
+        body = {'error': body}
+    response.json = body
+
+
 @app.route('/financement', methods=['POST'])
 async def simulate_(request, response):
     try:
         financements = simulate(**request.json)
     except ValueError as err:
-        raise HttpError(HTTPStatus.UNPROCESSABLE_ENTITY,
-                        json.dumps(err.args[0]))
+        raise HttpError(HTTPStatus.UNPROCESSABLE_ENTITY, err.args[0])
     eligible = request.query.bool('eligible', None)
     if eligible is not None:
         financements = [f for f in financements if f['eligible'] == eligible]
