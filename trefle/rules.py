@@ -230,7 +230,7 @@ def check_le(data, left: LazyValue, right: LazyValue):
     return left.get(**data) <= right.get(**data)
 
 
-@condition(r"(l'|les? |la )(?P<left>.+) fait partie (de l'|des? |de la |du )(?P<right>.+)")
+@condition(r"(l'|les? |la )(?P<left>.+) fait partie (de l'|de la |des? |du )(?P<right>.+)")
 @condition(r"(l'|les? |la )(?P<right>.+) contient (l'|les? |la )?(?P<left>[ \w«»]+)")
 def check_contain(data, left: LazyValue, right: LazyValue):
     return left.get(**data) in right.get(**data)

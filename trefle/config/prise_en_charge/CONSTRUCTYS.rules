@@ -1,9 +1,14 @@
 SI le nom de l'organisme est «CONSTRUCTYS»
     ALORS le plafond horaire applicable est égal au solde CPF du bénéficiaire
-    # ALORS organisme.taux_horaire_clea VAUT "30\névaluation CLEA 60"
-    # ALORS organisme.taux_horaire_copanef VAUT "30\nsauf \n45 pour F°maintenance et conduite engin (formacode 31717) \n80 pourbilan de compétence (Certif Info n°93559) \n"
-    # ALORS organisme.taux_horaire_coparef VAUT "30\nsauf \n45 pour F°maintenance et conduite engin (formacode 31717) \n80 pour bilan de compétence (Certif Info n°93559) \n"
-    # ALORS organisme.taux_horaire_cpne VAUT "30\nsauf \n45 pour F°maintenance et conduite engin (formacode 31717) \n80 pour bilan de compétence (Certif Info n°93559) \n"
+    ALORS le taux horaire applicable vaut 30
+    SI le code CPF de la formation fait partie des codes CPF CleA
+        ALORS le taux horaire applicable vaut 60
+    SI la région de l'établissement du bénéficiaire fait partie des régions éligibles COPAREF OU c'est une formation éligible COPANEF OU le code NAF de l'établissement du bénéficiaire fait partie des codes NAF CPNE éligibles
+        # maintenance et conduite engin
+        SI la liste des codes FORMACODE de la formation contient 31717
+            ALORS le taux horaire applicable vaut 45
+        SI c'est un bilan de compétences
+            ALORS le taux horaire applicable vaut 80
     SI le code CPF de la formation fait partie des codes CPF VAE
         ALORS le taux horaire applicable vaut 80
         ALORS le plafond horaire applicable est égal à la durée en heures de la formation

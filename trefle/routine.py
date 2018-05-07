@@ -75,11 +75,34 @@ def populate_formation_from_bytes(data, content):
     tree = etree.fromstring(content)
     root = tree.find('offres/formation')
 
+    # TODO: move xpath definitions in the schema?
     data['formation.eligible_copanef'] = bool(root.xpath(
         '//extras[@info="eligibilite-cpf"]/extra[@info="france-entiere"][text()="1"]/../extra[@info="inter-branche"][text()="1"]'
     ))
-    data['formation.codes_naf'] = set(root.xpath('//extras[@info="eligibilite-cpf"]/extra[@info="branche"]/child::text()'))
-    data['formation.regions'] = set(root.xpath('//extras[@info="eligibilite-cpf"]/extra[@info="region"]/child::text()'))
+    data['formation.codes_naf'] = set(root.xpath(
+        '//extras[@info="eligibilite-cpf"]/extra[@info="branche"]/child::text()'))
+    data['formation.regions'] = set(root.xpath(
+        '//extras[@info="eligibilite-cpf"]/extra[@info="region"]/child::text()'))
+    data['formation.codes_formacode'] = root.xpath('//domaine-formation/code-FORMACODE/child::text()')
+    data['formation.niveau_sortie'] = root.xpath('number(//code-niveau-sortie/child::text())')
+    data['formation.codes_certifinfo'] = [
+        int(c) for c in root.xpath('//certification/code-CERTIFINFO/child::text()')]
+    data['formation.domaines_formacode'] = set([
+        c[:3] for c in data['formation.codes_formacode']])
+    data['formation.foad'] = bool(
+        root.xpath('//modalites-enseignement[text()="2"]'))
+    data['formation.toeic'] = bool(
+        {'constante.codes_certifinfo_toeic'} & set(data['formation.codes_certifinfo']))
+    data['formation.bulats'] = bool(
+        {'constante.codes_certifinfo_bulats'} & set(data['formation.codes_certifinfo']))
+    data['formation.caces'] = bool(
+        {'constante.codes_certifinfo_caces'} & set(data['formation.codes_certifinfo']))
+    data['formation.bec'] = bool(
+        {'constante.codes_certifinfo_bec'} & set(data['formation.codes_certifinfo']))
+    data['formation.bilan_de_competences'] = bool(
+        {'constante.codes_certifinfo_bilan_de_competences'} & set(data['formation.codes_certifinfo']))
+    data['formation.permis_b'] = bool(
+        {'constante.codes_certifinfo_permis_b'} & set(data['formation.codes_certifinfo']))
 
 
 def financement_to_organisme(data, financement):

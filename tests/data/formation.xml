@@ -4,6 +4,7 @@
         <formation numero="07_10" datecrea="20010503" datemaj="20171213" file="http://www.etoile.regioncentre.fr/metier-formation/lheo22/offre-10.xml" href="http://www.etoile.regioncentre.fr/GIP/accueiletoile/seformer/formation/detailformation/engineName/carifengine?screen=fiche_formation&amp;idFormation=10">
             <domaine-formation>
                 <code-FORMACODE ref="V12" tag="principal">22403</code-FORMACODE>
+                <code-FORMACODE ref="V12">22402</code-FORMACODE>
                 <code-NSF>233</code-NSF>
                 <code-ROME>F1604</code-ROME>
             </domaine-formation>

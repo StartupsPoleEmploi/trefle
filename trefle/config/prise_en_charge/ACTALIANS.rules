@@ -8,7 +8,7 @@ SI le nom de l'organisme est «ACTALIANS»
     SI c'est une formation éligible COPANEF
         ALORS le taux horaire applicable vaut 60
     SI la région de l'établissement du bénéficiaire fait partie des régions éligibles COPAREF
-        ALORS le taux horaire applicable vaut 0
-        ALORS le plafond horaire applicable vaut 0
+        ALORS le taux horaire applicable est égal au taux horaire de la formation
+        ALORS le plafond horaire applicable est égal au solde CPF du bénéficiaire
     SI le code NAF de l'établissement du bénéficiaire fait partie des codes NAF CPNE éligibles
         ALORS le taux horaire applicable vaut 60

@@ -3,6 +3,9 @@ APE:
   ressources:
     - https://www.insee.fr/fr/metadonnees/definition/c1507
     - http://site2.fpspp.org/FPSPP9/
+BEC: Business English Certificates, aussi appelé Cambridge English Business Certificates
+BULATS: Business Language Testing Service
+CACES: Certificat d'aptitude à la conduite en sécurité
 CIF: Compte individuel de formation, formation longue
 CPF: Compte personnel de formation, formation courte
 COPANEF: Conseil paritaire interprofessionnel national pour l’emploi et la formation; gère les formations nationales (accessibles à tout le monde)
@@ -23,7 +26,6 @@ NAF:
   ressources:
     - https://www.service-public.fr/professionnels-entreprises/vosdroits/F33050
     - https://www.insee.fr/fr/information/2406147
-VAE: validation des aquis de l'expérience
 OPCA:
   description: Un OPCA est un "Organisme Paritaire Collecteur Agréé" en charge de collecter les obligations financières des entreprises en matière de formation professionnelle. Il constitue également un interlocuteur privilégié pour les salariés qui souhaitent se former. Chaque OPCA est en charge d'une ou plusieurs conventions collectives, déterminées par voie législative.
   ressources:
@@ -33,3 +35,5 @@ OPCA:
     - http://site2.fpspp.org/FPSPP9/
     - https://www.arftlv.org/TELECHARGEMENT/2553/_liste_opca__pdf_.pdf
     - https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000024909327&categorieLien=id
+TOEIC: Test of English for International Communication
+VAE: validation des aquis de l'expérience

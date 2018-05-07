@@ -19,3 +19,7 @@ def test_populate_formation():
                                                '23.62Z', '78.20Z', '96.04Z',
                                                '96.09Z'}
         assert data['formation.regions'] == {'24'}
+        assert data['formation.codes_formacode'] == ['22403', '22402']
+        assert data['formation.domaines_formacode'] == {'224'}
+        assert data['formation.foad'] is False
+        assert data['formation.niveau_sortie'] == 4

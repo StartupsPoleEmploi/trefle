@@ -29,6 +29,35 @@ constante:
     format: int32
     value: 2997
     label: trois fois le SMIC
+  domaine_formacode_langue:
+    description: le domaine FORMACODE des formations en langue
+    type: integer
+    value: 152
+    label: domaine FORMACODE langues
+  codes_certifinfo_permis_b:
+    type: List[int]
+    value: [54664]
+    label: codes CERTIFINFO pour un permis B
+  codes_certifinfo_bilan_de_competences:
+    type: List[int]
+    value: [93559]
+    label: codes CERTIFINFO pour un bilan de compétences
+  codes_certifinfo_bulats:
+    type: List[int]
+    value: [95271, 84165, 84384]
+    label: codes CERTIFINFO BULATS
+  codes_certifinfo_bec:
+    type: List[int]
+    value: [84166, 98623]
+    label: codes CERTIFINFO BEC
+  codes_certifinfo_toeic:
+    type: List[int]
+    value: [84168]
+    label: codes CERTIFINFO TOEIC
+  codes_certifinfo_caces:
+    type: List[int]
+    value: [55673, 55674, 55675, 55676, 55677, 55803, 55804, 55805, 55806,55807, 55808, 55809,55810, 55811, 55812, 55813, 55814, 55815, 55816, 55817, 55818, 55819, 55820, 55822, 55821, 55823, 55824, 55825, 55826, 55827, 84700, 84449, 84700, 84715, 85312, 85338]
+    label: codes CERTIFINFO CACES
 beneficiaire:
   droit_prive:
     description: le bénéficiaire est salarié d'une entreprise de droit privé
@@ -144,6 +173,19 @@ formation:
     type: List[int]
     source: routine.formation_region
     label: régions éligibles COPAREF
+  codes_formacode:
+    type: List[int]
+    source: catalogue
+    label: liste des codes FORMACODE de la formation
+  domaines_formacode:
+    description: domaines (trois premiers caractères des codes) FORMACODE de la formation
+    type: List[int]
+    source: catalogue
+    label: liste des domaines FORMACODE de la formation
+  codes_certifinfo:
+    type: List[int]
+    source: catalogue
+    label: liste des codes CERTIFINFO de la formation
   heures:
     type: integer
     format: int32
@@ -175,6 +217,39 @@ formation:
     type: List[int]
     source: routine.naf_from_formation
     label: codes NAF CPNE éligibles
+  foad:
+    type: boolean
+    source: catalogue
+    label: formation ouverte à distance
+  toeic:
+    type: boolean
+    source: catalogue
+    label: formation TOEIC
+  bulats:
+    type: boolean
+    source: catalogue
+    label: formation BULATS
+  caces:
+    type: boolean
+    source: catalogue
+    label: formation CACES
+  bec:
+    type: boolean
+    source: catalogue
+    label: formation BEC
+  bilan_de_competences:
+    type: boolean
+    source: catalogue
+    label: bilan de compétences
+  permis_b:
+    type: boolean
+    source: catalogue
+    label: permis B
+  niveau_sortie:
+    description: le niveau du diplôme de sortie (licence, master…)
+    type: integer
+    format: int32
+    label: niveau de sortie de la formation
 financement:
   nom:
     type: string

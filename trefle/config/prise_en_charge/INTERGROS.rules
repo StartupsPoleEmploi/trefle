@@ -1,8 +1,8 @@
 SI le nom de l'organisme est «INTERGROS»
     ALORS le plafond horaire applicable est égal au solde CPF du bénéficiaire
-    # ALORS organisme.taux_horaire_copanef VAUT "30\nsi formation en liangue en FOAD 10"
-    # ALORS organisme.taux_horaire_coparef VAUT "30\nsi formation en liangue en FOAD 10"
-    # ALORS organisme.taux_horaire_cpne VAUT "30\nsi formation en liangue en FOAD 10"
+    ALORS le taux horaire applicable vaut 30
+    SI le domaine FORMACODE langues fait partie de la liste des domaines FORMACODE de la formation ET c'est une formation ouverte à distance
+        ALORS le taux horaire applicable vaut 10
     SI le code CPF de la formation fait partie des codes CPF VAE
         ALORS le taux horaire applicable est égal au taux horaire de la formation
         ALORS le plafond horaire applicable est égal à la durée en heures de la formation

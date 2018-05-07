@@ -1,9 +1,10 @@
 SI le nom de l'organisme est «FAT TT»
     ALORS le taux horaire applicable vaut 12
     ALORS le plafond horaire applicable est égal au solde CPF du bénéficiaire
-  # ALORS organisme.taux_horaire_copanef VAUT "12\n60 pour TOEIC (Certif Info n°84168) ou BULATS (Certif Info n°95271, 84165, 84384)\n10 si intitulé comprend CACES"
-  # ALORS organisme.taux_horaire_coparef VAUT "12\n60 pour TOEIC (Certif Info n°84168) ou BULATS (Certif Info n°95271, 84165, 84384)\n10 si intitulé comprend CACES"
-  # ALORS organisme.taux_horaire_cpne VAUT "12\n60 pour TOEIC (Certif Info n°84168) ou BULATS (Certif Info n°95271, 84165, 84384)\n10 si intitulé comprend CACES"
+    SI c'est une formation TOEIC OU c'est une formation BULATS
+        ALORS le taux horaire applicable vaut 60
+    SI c'est une formation CACES
+        ALORS le taux horaire applicable vaut 10
     SI le code CPF de la formation fait partie des codes CPF VAE
         ALORS le taux horaire applicable vaut 63
         ALORS le plafond horaire applicable vaut 24

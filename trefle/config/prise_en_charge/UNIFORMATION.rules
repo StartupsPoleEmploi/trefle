@@ -3,11 +3,18 @@ SI le nom de l'organisme est «UNIFORMATION»
         ALORS le taux horaire applicable vaut 40
         SI le code CPF de la formation fait partie des codes CPF VAE
             ALORS le taux horaire applicable vaut 56
-          # ALORS le plafond horaire applicable vaut "72h si VAE visée est de niveau V\n24 h pour les autres niveaux visés"
-        # ALORS organisme.plafond_financier_vae VAUT "2500 si la VAE visée est de niveau V\n1750 pour les autres niveaux"
-        # ALORS organisme.taux_horaire_clea VAUT "40 si durée de formation <  70h\n25 si durée de formation > ou = 70h\n"
+            ALORS le plafond horaire applicable vaut 24
+            ALORS le plafond financier applicable vaut 1750
+            SI le niveau de sortie de la formation vaut 5
+                ALORS le plafond horaire applicable vaut 72
+                ALORS le plafond financier applicable vaut 2500
+        SI le code CPF de la formation fait partie des codes CPF CleA
         # ALORS organisme.plafond_financier_clea VAUT "600 € pour les évaluations préalables\n300€ pour les évaluations finales"
-        # ALORS organisme.taux_horaire_coparef VAUT "40 si durée de formation <  70h\n25 si durée de formation > ou = 70h\n"
+            SI la durée en heures de la formation est supérieure ou égale à 70
+                ALORS le taux horaire applicable vaut 25
+        SI la région de l'établissement du bénéficiaire fait partie des régions éligibles COPAREF
+            SI la durée en heures de la formation est supérieure ou égale à 70
+                ALORS le taux horaire applicable vaut 25
     SI le nom du financement contient «CIF»
         SI le taux horaire TTC de la formation est inférieur à 18 OU le taux horaire HT de la formation est inférieur à 15
             ALORS le plafond financier applicable vaut 0

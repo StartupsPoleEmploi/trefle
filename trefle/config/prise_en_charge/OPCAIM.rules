@@ -1,4 +1,4 @@
-SI le nom de l'organisme est «OCPAIM»
+SI le nom de l'organisme est «OPCAIM»
     ALORS le taux horaire applicable vaut 45
     ALORS le plafond horaire applicable est égal au solde CPF du bénéficiaire
     SI le code CPF de la formation fait partie des codes CPF VAE

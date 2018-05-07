@@ -7,5 +7,5 @@ SI le nom de l'organisme est «ANFA»
     SI le code NAF de l'établissement du bénéficiaire fait partie des codes NAF CPNE éligibles
         ALORS le taux horaire applicable vaut 50
     # 60 si intitulé comprend \\"CQP\\"\n50 pour toute autre certification
-    # SI kkchose CONTIENT «CPQ»
+    # SI kkchose CONTIENT «CQP»
     #     ALORS le taux horaire applicable vaut 60
