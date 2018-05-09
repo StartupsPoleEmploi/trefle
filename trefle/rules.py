@@ -30,19 +30,16 @@ def count_indent(s):
 class LazyValue:
 
     RAW_VALUES = (True, False)
-    # TODO: remove from here as we now validate input globally?
-    TRUE_VALUES = ('oui', 'yes', 'true')
-    FALSE_VALUES = ('non', 'no', 'false')
 
-    def __init__(self, raw, variables=VARIABLES):
+    def __init__(self, raw):
         self.raw = raw
         self.get = None
-        self.compile(variables)
+        self.compile()
 
     def __repr__(self):
         return f'<LazyValue: {self.raw}>'
 
-    def compile(self, variables):
+    def compile(self):
         value = ...
         if self.raw in self.RAW_VALUES:
             value = self.raw
@@ -57,13 +54,9 @@ class LazyValue:
         else:
             try:
                 self.key = LABELS[self.raw]
-                type_ = getattr(self, variables[self.key]['type'])
-            except AttributeError:
-                self.get = lambda **d: self._get(**d)
             except KeyError:
                 raise WrongPointerError(self.raw)
-            else:
-                self.get = lambda **d: type_(self._get(**d))
+            self.get = lambda **d: self._get(**d)
         if value is not ...:
             self.get = lambda **d: value
 
@@ -72,17 +65,6 @@ class LazyValue:
             return data[self.key]
         except KeyError:
             raise NoDataError(self.raw)
-
-    def bool(self, value):
-        value = str(value).lower()
-        if value in self.TRUE_VALUES:
-            return True
-        if value in self.FALSE_VALUES:
-            return False
-        raise ValueError(f'Invalid boolean value for "{self.raw}": "{value}"')
-
-    def int(self, value):
-        return int(value)
 
 
 def action(pattern):
