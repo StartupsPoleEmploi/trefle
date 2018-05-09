@@ -114,7 +114,7 @@ def logs(lines=50):
 
     :lines: number of lines to retrieve
     """
-    run('journalctl --lines {} --unit trefle'.format(lines))
+    run(f'journalctl --lines {lines} --unit trefle --follow')
 
 
 @minicli.cli
