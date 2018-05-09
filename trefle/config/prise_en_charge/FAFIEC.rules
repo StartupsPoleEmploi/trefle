@@ -1,10 +1,10 @@
-SI le nom de l'organisme est «FAFIEC»
-    ALORS le taux horaire applicable vaut 40
-    ALORS le plafond horaire applicable est égal au solde CPF du bénéficiaire
-    SI le domaine FORMACODE langues fait partie de la liste des domaines FORMACODE de la formation
-        ALORS le taux horaire applicable vaut 25
-    SI c'est un bilan de compétences
-        ALORS le plafond financier applicable vaut 1750
-    SI le code CPF de la formation fait partie des codes CPF VAE
-        ALORS le taux horaire applicable vaut 100
-        ALORS le plafond horaire applicable est égal à la durée en heures de la formation
+Si le nom de l'organisme est «FAFIEC»
+    Alors le taux horaire applicable vaut 40
+    Alors le plafond horaire applicable est égal au solde CPF du bénéficiaire
+    Si le domaine FORMACODE langues fait partie de la liste des domaines FORMACODE de la formation
+        Alors le taux horaire applicable vaut 25
+    Si c'est un bilan de compétences
+        Alors le plafond financier applicable vaut 1750
+    Si le code CPF de la formation fait partie des codes CPF VAE
+        Alors le taux horaire applicable vaut 100
+        Alors le plafond horaire applicable est égal à la durée en heures de la formation

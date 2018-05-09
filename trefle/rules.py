@@ -1,3 +1,4 @@
+from collections import namedtuple
 import inspect
 import re
 
@@ -70,6 +71,7 @@ class LazyValue:
 def action(pattern):
 
     def wrapper(func):
+        # TODO: compile me.
         Action.PATTERNS[pattern] = func
         return func
 
@@ -97,7 +99,7 @@ class Step:
                 self.func = func
                 break
         else:
-            raise ValueError(f'No pattern match step: {self.raw}')
+            raise ValueError(f'No pattern match step: `{self.raw}`')
         data = match.groupdict()
         spec = inspect.signature(self.func)
         for name, param in spec.parameters.items():
@@ -134,26 +136,24 @@ class Action(Step):
 class Condition(Step):
 
     PATTERNS = {}
+    AND = 'ET'
+    OR = 'OU'
 
-    def __init__(self, raw):
-        if raw.startswith(('SI ', 'ET ')):
-            raw = raw[3:]
-        self.raw = raw
+    def __init__(self, terms, connective=None):
+        assert terms, 'Cannot create a Condition without terms'
         self.params = {}
         self.conditions = []
         self.negative = False
-        if ' OU ' in self.raw:
-            self.conditions = [Condition(s) for s in self.raw.split(' OU ')]
-            self.connective = 'OU'
-        elif ' ET ' in self.raw:
-            self.conditions = [Condition(s) for s in self.raw.split(' ET ')]
-            self.connective = 'ET'
+        self.connective = connective or self.AND
+        self.raw = f' {self.connective} '.join(terms)
+        if len(terms) > 1:
+            self.conditions = [Condition([t]) for t in terms]
         else:
             self.compile()
 
     def assess(self, **data):
         if self.conditions:
-            if self.connective == 'OU':
+            if self.connective == self.OR:
                 return any([c.assess(**data) for c in self.conditions])
             return all([c.assess(**data) for c in self.conditions])
         try:
@@ -229,6 +229,9 @@ def check_equal(data, left: LazyValue, right: LazyValue):
     return left.get(**data) == right.get(**data)
 
 
+Line = namedtuple('Line', ['indent', 'keyword', 'sentence'])
+
+
 class Rule:
 
     def __init__(self, conditions, actions):
@@ -239,48 +242,56 @@ class Rule:
     def assess(self, **data):
         return all(c.assess(**data) for c in self.conditions)
 
+    @staticmethod
+    def iter_rules(iterable):
+        iterator = iter(iterable)
+        previous = Line(0, None, None)
+        current = None
+        for raw in iterator:
+            indent = count_indent(raw)
+            line = raw.strip()
+            if not line or line.startswith('#'):
+                continue
+            keyword, sentence = line.split(maxsplit=1)
+            keyword = keyword.lower()
+            next_ = Line(indent, keyword, sentence)
+            if current:
+                yield (previous, current, next_)
+            previous = current
+            current = next_
+        yield (previous, current, Line(0, None, None))
+
     @classmethod
-    def load(cls, data, prev_indent=0, tree=None, rules=None, outer=None):
+    def load(cls, data, tree=None, rules=None):
         if rules is None:
             rules = []
-            data = iter(data)
+            data = cls.iter_rules(data)
+        # tree of conditions valid until now (higher indentation ihnerits
+        # conditions from lower indentations).
         if tree is None:
             tree = []
-        if outer is None:
-            outer = []
-        actions = []
-        while True:
-            if outer:
-                raw = outer[0]
-                outer.clear()
-            else:
-                try:
-                    raw = next(data)
-                except StopIteration:
-                    break
-            if not raw:
-                continue
-            curr_indent = count_indent(raw)
-            line = raw.strip()
-            if line.startswith('#'):
-                continue
-            if line.startswith('ALORS '):
-                actions.append(Action(line[6:]))
-                prev_indent = curr_indent
-            else:
-                if actions:
-                    rules.append(Rule(tree[:], actions))
-                    outer.clear()
-                    actions = []
-                if curr_indent < prev_indent:
-                    outer.append(raw)
-                    break
+        actions = []  # One or more actions of a rule.
+        terms = []  # One or more terms of a condition.
+        connective = None
+        for (prev, curr, next_) in data:
+            if curr.keyword == 'si' or (terms and curr.keyword in ('et', 'ou')):
+                terms.append(curr.sentence)
+                if not connective and curr.keyword == 'ou':
+                    connective = Condition.OR
+            elif curr.keyword == 'alors' or (actions and curr.keyword == 'et'):
+                actions.append(Action(curr.sentence))
+            if actions and (next_.indent < curr.indent or next_.keyword == 'si'):
+                rules.append(Rule(tree[:], actions))
+                actions = []
+            if next_.indent < curr.indent:
+                break  # Move back one step up in recursivity.
+            if next_.indent > curr.indent:
                 inner = tree[:]
-                outer.clear()
-                inner.append(Condition(line[3:]))
-                Rule.load(data, curr_indent, inner[:], rules, outer)
-        if actions:
-            rules.append(Rule(tree, actions))
+                if next_.keyword in ('si', 'alors') and terms:
+                    inner.append(Condition(terms[:], connective))
+                    terms = []
+                    connective = None
+                Rule.load(data, inner[:], rules)
         return rules
 
     @staticmethod

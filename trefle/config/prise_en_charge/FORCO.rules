@@ -1,15 +1,15 @@
-SI le nom de l'organisme est «FORCO»
-    ALORS le taux horaire applicable vaut 45
-    ALORS le plafond horaire applicable est égal au solde CPF du bénéficiaire
-    SI le code CPF de la formation fait partie des codes CPF VAE
+Si le nom de l'organisme est «FORCO»
+    Alors le taux horaire applicable vaut 45
+    Alors le plafond horaire applicable est égal au solde CPF du bénéficiaire
+    Si le code CPF de la formation fait partie des codes CPF VAE
         # idcc = commerce de détail non alimentaire
-        ALORS le plafond horaire applicable est égal à la durée en heures de la formation
-    SI c'est un permis B
-        ALORS le taux horaire applicable vaut 40
-        ALORS le plafond financier applicable vaut 750
-    SI l'IDCC de l'établissement du bénéficiaire fait partie de [0675,0468,1431,1487,2198,0043,1557,2162]
-        ALORS le taux horaire applicable vaut 40
-    SI l'IDCC de l'établissement du bénéficiaire fait partie de 1517
-        ALORS le taux horaire applicable vaut 50
-        SI le code CPF de la formation fait partie des codes CPF VAE
-            ALORS le plafond horaire applicable est égal à la durée en heures de la formation
+        Alors le plafond horaire applicable est égal à la durée en heures de la formation
+    Si c'est un permis B
+        Alors le taux horaire applicable vaut 40
+        Alors le plafond financier applicable vaut 750
+    Si l'IDCC de l'établissement du bénéficiaire fait partie de [0675,0468,1431,1487,2198,0043,1557,2162]
+        Alors le taux horaire applicable vaut 40
+    Si l'IDCC de l'établissement du bénéficiaire fait partie de 1517
+        Alors le taux horaire applicable vaut 50
+        Si le code CPF de la formation fait partie des codes CPF VAE
+            Alors le plafond horaire applicable est égal à la durée en heures de la formation

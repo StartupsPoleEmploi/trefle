@@ -1,8 +1,8 @@
-SI le nom de l'organisme est «FAFSEA»
-    ALORS le taux horaire applicable est égal au taux horaire de la formation
-    ALORS le plafond horaire applicable est égal au solde CPF du bénéficiaire
-    SI le code CPF de la formation fait partie des codes CPF VAE
-        ALORS le plafond horaire applicable est égal à la durée en heures de la formation
-    SI le nom du financement contient «CIF»
-        ALORS le plafond financier applicable vaut 18000
-        ALORS le taux horaire applicable vaut 27.45
+Si le nom de l'organisme est «FAFSEA»
+    Alors le taux horaire applicable est égal au taux horaire de la formation
+    Alors le plafond horaire applicable est égal au solde CPF du bénéficiaire
+    Si le code CPF de la formation fait partie des codes CPF VAE
+        Alors le plafond horaire applicable est égal à la durée en heures de la formation
+    Si le nom du financement contient «CIF»
+        Alors le plafond financier applicable vaut 18000
+        Alors le taux horaire applicable vaut 27.45

@@ -65,6 +65,7 @@ def populate_formation(data):
         return
 
     formation_id = data['formation.numero']
+    # TODO: async
     response = requests.get(f'{INTERCARIF_URL}?num={formation_id}')
     # TODO handle 400/500 responses
     populate_formation_from_bytes(data, response.content)

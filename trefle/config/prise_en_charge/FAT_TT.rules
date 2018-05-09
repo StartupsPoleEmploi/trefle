@@ -1,11 +1,15 @@
-SI le nom de l'organisme est «FAT TT»
-    ALORS le taux horaire applicable vaut 12
-    ALORS le plafond horaire applicable est égal au solde CPF du bénéficiaire
-    SI c'est une formation TOEIC OU c'est une formation BULATS
-        ALORS le taux horaire applicable vaut 60
-    SI c'est une formation CACES
-        ALORS le taux horaire applicable vaut 10
-    SI le code CPF de la formation fait partie des codes CPF VAE
-        ALORS le taux horaire applicable vaut 63
-        ALORS le plafond horaire applicable vaut 24
-        ALORS le plafond financier applicable vaut 1525
+Si le nom de l'organisme est «FAT TT»
+    Alors le taux horaire applicable vaut 12
+    Et le plafond horaire applicable est égal au solde CPF du bénéficiaire
+
+    Si c'est une formation TOEIC
+    Ou c'est une formation BULATS
+        Alors le taux horaire applicable vaut 60
+
+    Si c'est une formation CACES
+        Alors le taux horaire applicable vaut 10
+
+    Si le code CPF de la formation fait partie des codes CPF VAE
+        Alors le taux horaire applicable vaut 63
+        Et le plafond horaire applicable vaut 24
+        Et le plafond financier applicable vaut 1525

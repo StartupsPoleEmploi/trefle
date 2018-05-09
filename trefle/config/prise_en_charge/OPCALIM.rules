@@ -1,8 +1,8 @@
-SI le nom de l'organisme est «OPCALIM»
-    ALORS le taux horaire applicable vaut 50
-    ALORS le plafond horaire applicable est égal au solde CPF du bénéficiaire
-    ALORS le plafond financier applicable vaut 8000
-    SI le code CPF de la formation fait partie des codes CPF VAE
-        ALORS le plafond horaire applicable est égal à la durée en heures de la formation
-        SI le code NAF de l'établissement du bénéficiaire fait partie des codes NAF CPNE éligibles
-            ALORS le plafond financier applicable vaut 0
+Si le nom de l'organisme est «OPCALIM»
+    Alors le taux horaire applicable vaut 50
+    Alors le plafond horaire applicable est égal au solde CPF du bénéficiaire
+    Alors le plafond financier applicable vaut 8000
+    Si le code CPF de la formation fait partie des codes CPF VAE
+        Alors le plafond horaire applicable est égal à la durée en heures de la formation
+        Si le code NAF de l'établissement du bénéficiaire fait partie des codes NAF CPNE éligibles
+            Alors le plafond financier applicable vaut 0

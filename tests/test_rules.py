@@ -1,6 +1,6 @@
 import pytest
 
-from trefle.rules import Rule, count_indent
+from trefle.rules import Rule, count_indent, Condition
 
 
 @pytest.mark.parametrize('input,expected', [
@@ -14,14 +14,14 @@ def test_count_indent(input, expected):
 
 def test_rules_load():
     data = """
-SI c'est un bénéficiaire de droit privé
-    SI la région de l'établissement du bénéficiaire fait partie des régions éligibles COPAREF
-        ALORS la rémunération possible vaut 2000
-        ALORS le taux horaire applicable vaut 80
-    SI c'est une formation éligible COPANEF
-        SI le solde CPF du bénéficiaire est supérieur à 0
-            ALORS la rémunération possible vaut 1000
-            ALORS le taux horaire applicable vaut 60
+Si c'est un bénéficiaire de droit privé
+    Si la région de l'établissement du bénéficiaire fait partie des régions éligibles COPAREF
+        Alors la rémunération possible vaut 2000
+        Et le taux horaire applicable vaut 80
+    Si c'est une formation éligible COPANEF
+        Si le solde CPF du bénéficiaire est supérieur à 0
+            Alors la rémunération possible vaut 1000
+            Et le taux horaire applicable vaut 60
 """
     rules = Rule.load(data.split('\n'))
     print(rules)
@@ -42,14 +42,14 @@ SI c'est un bénéficiaire de droit privé
 
 def test_mixing_SI_and_ALORS_with_same_indent():
     data = """
-SI le nom de l'organisme est «BLAH»
-    ALORS le plafond horaire applicable vaut 150
-    SI c'est une formation éligible COPANEF
-        ALORS le taux horaire applicable vaut 60
-    SI le solde CPF du bénéficiaire est supérieur à 0
-        ALORS le taux horaire applicable vaut 50
-    SI c'est un bénéficiaire de droit privé
-        ALORS le taux horaire applicable vaut 40
+Si le nom de l'organisme est «BLAH»
+    Alors le plafond horaire applicable vaut 150
+    Si c'est une formation éligible COPANEF
+        Alors le taux horaire applicable vaut 60
+    Si le solde CPF du bénéficiaire est supérieur à 0
+        Alors le taux horaire applicable vaut 50
+    Si c'est un bénéficiaire de droit privé
+        Alors le taux horaire applicable vaut 40
 """
     rules = Rule.load(data.split('\n'))
     print(rules)
@@ -70,3 +70,49 @@ SI le nom de l'organisme est «BLAH»
     assert rules[3].conditions[0].raw == "le nom de l'organisme est «BLAH»"
     assert rules[3].conditions[1].raw == "c'est un bénéficiaire de droit privé"
     assert rules[3].actions[0].raw == 'le taux horaire applicable vaut 40'
+
+
+def test_mixing_Si_and_Et():
+    data = """
+Si le nom de l'organisme est «BLAH»
+    Alors le plafond horaire applicable vaut 150
+    Si c'est une formation éligible COPANEF
+    Et c'est un bénéficiaire de droit privé
+        Alors le taux horaire applicable vaut 60
+"""
+    rules = Rule.load(data.split('\n'))
+    print(rules)
+    assert len(rules) == 2
+    assert len(rules[0].conditions) == 1
+    assert rules[0].conditions[0].raw == "le nom de l'organisme est «BLAH»"
+    assert rules[0].actions[0].raw == 'le plafond horaire applicable vaut 150'
+    assert len(rules[1].conditions) == 2
+    assert rules[1].conditions[0].raw == "le nom de l'organisme est «BLAH»"
+    assert rules[1].conditions[1].connective == Condition.AND
+    assert rules[1].conditions[1].raw == ("c'est une formation éligible "
+                                          "COPANEF ET c'est un bénéficiaire "
+                                          "de droit privé")
+    assert rules[1].actions[0].raw == 'le taux horaire applicable vaut 60'
+
+
+def test_mixing_Si_and_Ou():
+    data = """
+Si le nom de l'organisme est «BLAH»
+    Alors le plafond horaire applicable vaut 150
+    Si c'est une formation éligible COPANEF
+    Ou c'est un bénéficiaire de droit privé
+        Alors le taux horaire applicable vaut 60
+"""
+    rules = Rule.load(data.split('\n'))
+    print(rules)
+    assert len(rules) == 2
+    assert len(rules[0].conditions) == 1
+    assert rules[0].conditions[0].raw == "le nom de l'organisme est «BLAH»"
+    assert rules[0].actions[0].raw == 'le plafond horaire applicable vaut 150'
+    assert len(rules[1].conditions) == 2
+    assert rules[1].conditions[0].raw == "le nom de l'organisme est «BLAH»"
+    assert rules[1].conditions[1].connective == Condition.OR
+    assert rules[1].conditions[1].raw == ("c'est une formation éligible "
+                                          "COPANEF OU c'est un bénéficiaire "
+                                          "de droit privé")
+    assert rules[1].actions[0].raw == 'le taux horaire applicable vaut 60'

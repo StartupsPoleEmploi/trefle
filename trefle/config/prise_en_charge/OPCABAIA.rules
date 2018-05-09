@@ -1,38 +1,41 @@
-SI le nom de l'organisme est «OPCABAIA»
-    ALORS le plafond horaire applicable est égal au solde CPF du bénéficiaire
-    ALORS le taux horaire applicable est égal au taux horaire de la formation
-    SI l'IDCC de l'établissement du bénéficiaire fait partie de [2335,1672,1801]
-        SI le niveau de sortie de la formation vaut 1
-            ALORS le plafond financier applicable vaut 16000
-        SI le niveau de sortie de la formation est supérieur ou égal à 2
-            ALORS le plafond financier applicable vaut 10000
-        SI c'est un bilan de compétences
-            ALORS le plafond financier applicable vaut 2100
-        SI c'est un permis B
-            ALORS le plafond financier applicable vaut 1500
-        SI le code CPF de la formation fait partie des codes CPF VAE
-            ALORS le plafond horaire applicable est égal à la durée en heures de la formation
-            ALORS le plafond financier applicable vaut 2500
-        SI le code CPF de la formation fait partie des codes CPF CleA
-            ALORS le plafond financier applicable vaut 10000
-    SI l'IDCC de l'établissement du bénéficiaire vaut 2120
-        SI le domaine FORMACODE langues fait partie de la liste des domaines FORMACODE de la formation
-            ALORS le taux horaire applicable vaut 37
-        SI c'est une formation éligible COPANEF OU la région de l'établissement du bénéficiaire fait partie des régions éligibles COPAREF
+Si le nom de l'organisme est «OPCABAIA»
+    Alors le plafond horaire applicable est égal au solde CPF du bénéficiaire
+    Et le taux horaire applicable est égal au taux horaire de la formation
+
+    Si l'IDCC de l'établissement du bénéficiaire fait partie de [2335,1672,1801]
+        Si le niveau de sortie de la formation vaut 1
+            Alors le plafond financier applicable vaut 16000
+        Si le niveau de sortie de la formation est supérieur ou égal à 2
+            Alors le plafond financier applicable vaut 10000
+        Si c'est un bilan de compétences
+            Alors le plafond financier applicable vaut 2100
+        Si c'est un permis B
+            Alors le plafond financier applicable vaut 1500
+        Si le code CPF de la formation fait partie des codes CPF VAE
+            Alors le plafond horaire applicable est égal à la durée en heures de la formation
+            Et le plafond financier applicable vaut 2500
+        Si le code CPF de la formation fait partie des codes CPF CleA
+            Alors le plafond financier applicable vaut 10000
+
+    Si l'IDCC de l'établissement du bénéficiaire vaut 2120
+        Si le domaine FORMACODE langues fait partie de la liste des domaines FORMACODE de la formation
+            Alors le taux horaire applicable vaut 37
+        Si c'est une formation éligible COPANEF
+        Ou la région de l'établissement du bénéficiaire fait partie des régions éligibles COPAREF
             # 8500/an ?
-            ALORS le plafond financier applicable vaut 8500
-            SI c'est un bilan de compétences
-                ALORS le plafond financier applicable vaut 2100
-            SI c'est un permis B
-                ALORS le plafond financier applicable vaut 1500
-        SI le code NAF de l'établissement du bénéficiaire fait partie des codes NAF CPNE éligibles
-            ALORS le plafond financier applicable vaut 12000
-            SI c'est un bilan de compétences
-                ALORS le plafond financier applicable vaut 2100
-            SI c'est un permis B
-                ALORS le plafond financier applicable vaut 1500
-        SI le code CPF de la formation fait partie des codes CPF VAE
-            ALORS le plafond horaire applicable est égal à la durée en heures de la formation
-            ALORS le plafond financier applicable vaut 2500
-        SI le code CPF de la formation fait partie des codes CPF VAE
-            ALORS le plafond financier applicable vaut 2500
+            Alors le plafond financier applicable vaut 8500
+            Si c'est un bilan de compétences
+                Alors le plafond financier applicable vaut 2100
+            Si c'est un permis B
+                Alors le plafond financier applicable vaut 1500
+        Si le code NAF de l'établissement du bénéficiaire fait partie des codes NAF CPNE éligibles
+            Alors le plafond financier applicable vaut 12000
+            Si c'est un bilan de compétences
+                Alors le plafond financier applicable vaut 2100
+            Si c'est un permis B
+                Alors le plafond financier applicable vaut 1500
+        Si le code CPF de la formation fait partie des codes CPF VAE
+            Alors le plafond horaire applicable est égal à la durée en heures de la formation
+            Et le plafond financier applicable vaut 2500
+        Si le code CPF de la formation fait partie des codes CPF VAE
+            Alors le plafond financier applicable vaut 2500
