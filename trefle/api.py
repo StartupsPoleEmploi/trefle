@@ -1,3 +1,4 @@
+import logging
 from http import HTTPStatus
 
 from roll import Roll, HttpError
@@ -6,6 +7,9 @@ from roll.extensions import cors
 from .core import simulate
 from .openapis import SCHEMA
 
+logger = logging.getLogger('trefle')
+logger.setLevel(logging.DEBUG)
+logger.addHandler(logging.StreamHandler())
 
 app = Roll()
 cors(app)
@@ -17,6 +21,8 @@ async def json_error_response(request, response, error):
     if isinstance(body, (str, bytes)):
         body = {'error': body}
     response.json = body
+    logger.debug(f'HttpError: status={error.status}, message={error.message}, '
+                 f'request={request.body}')
 
 
 @app.route('/financement', methods=['POST'])
