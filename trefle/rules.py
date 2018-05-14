@@ -243,11 +243,10 @@ class Rule:
         return all(c.assess(**data) for c in self.conditions)
 
     @staticmethod
-    def iter_rules(iterable):
-        iterator = iter(iterable)
+    def iter_lines(iterable):
         previous = Line(0, None, None)
         current = None
-        for raw in iterator:
+        for raw in iterable:
             indent = count_indent(raw)
             line = raw.strip()
             if not line or line.startswith('#'):
@@ -265,7 +264,7 @@ class Rule:
     def load(cls, data, tree=None, rules=None):
         if rules is None:
             rules = []
-            data = cls.iter_rules(data)
+            data = cls.iter_lines(data)
         # tree of conditions valid until now (higher indentation ihnerits
         # conditions from lower indentations).
         if tree is None:
