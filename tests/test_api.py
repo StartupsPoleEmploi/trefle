@@ -37,7 +37,7 @@ async def test_simulate_endpoint(client):
         'beneficiaire.droit_prive': True,
         'beneficiaire.contrat': 'cdi',
         'formation.eligible_copanef': True,
-        'beneficiaire.entreprise.insee': '2A004',
+        'beneficiaire.entreprise.commune': '2A004',
         'beneficiaire.entreprise.idcc': 2706})
     assert resp.status == HTTPStatus.OK
     assert 'financements' in json.loads(resp.body)
@@ -59,7 +59,7 @@ async def test_simulate_endpoint_filter_eligible(client):
         'beneficiaire.droit_prive': True,
         'beneficiaire.contrat': 'cdi',
         'formation.eligible_copanef': True,
-        'beneficiaire.entreprise.insee': '2A004',
+        'beneficiaire.entreprise.commune': '2A004',
         'beneficiaire.entreprise.idcc': 2706
     }
     # Normal request.
@@ -121,7 +121,7 @@ async def test_simulate_endpoint_with_upstream_error(client, mock_get):
         'beneficiaire.droit_prive': True,
         'beneficiaire.contrat': 'cdi',
         'formation.numero': '1234',
-        'beneficiaire.entreprise.insee': '2A004',
+        'beneficiaire.entreprise.commune': '2A004',
         'beneficiaire.entreprise.idcc': 2706
     }
     mock_get(status_code=500)
@@ -138,7 +138,7 @@ async def test_simulate_endpoint_with_invalid_formation_id(client, mock_get):
         'beneficiaire.droit_prive': True,
         'beneficiaire.contrat': 'cdi',
         'formation.numero': '1234',
-        'beneficiaire.entreprise.insee': '2A004',
+        'beneficiaire.entreprise.commune': '2A004',
         'beneficiaire.entreprise.idcc': 2706
     }
     content = b"""<?xml version="1.0" encoding="utf-8"?>

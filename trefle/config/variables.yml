@@ -128,7 +128,7 @@ beneficiaire:
       public: true
       required: true
       label: IDCC de l'établissement du bénéficiaire
-    insee:
+    commune:
       description: code INSEE de la commune de l'établissement du bénéficiaire
       type: string
       public: true

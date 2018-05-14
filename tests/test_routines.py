@@ -40,7 +40,7 @@ def test_populate_formation_from_bytes_with_empty_list():
 
 
 def test_insee_commune_to_region():
-    data = {'beneficiaire.entreprise.insee': '93031'}
+    data = {'beneficiaire.entreprise.commune': '93031'}
     routine.insee_commune_to_region(data)
     assert data['beneficiaire.entreprise.region'] == '11'  # IDF
 

@@ -58,13 +58,12 @@ def idcc_to_organismes(data):
 def insee_commune_to_region(data):
     if 'beneficiaire.entreprise.region' in data:
         return
-    key = 'beneficiaire.entreprise.insee'
+    key = 'beneficiaire.entreprise.commune'
     if key not in data:
         return
     dep = data[key][:2]
     if dep not in DEP_TO_REG:
-        raise ValueError(f'Invalid value for `beneficiaire.entreprise.insee`: '
-                         f'{data[key]}')
+        raise ValueError(f'Invalid value for `{key}`: {data[key]}')
     data['beneficiaire.entreprise.region'] = DEP_TO_REG[dep]
 
 
