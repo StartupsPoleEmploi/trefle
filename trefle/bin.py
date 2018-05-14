@@ -4,17 +4,12 @@ from minicli import cli, run
 from roll.extensions import simple_server
 
 from .core import simulate
-from .rules import LazyValue, VARIABLES
 from .api import app
 
 
 @cli(name='simulate')
 async def cli_simulate(*args):
     data = dict(a.split('=') for a in args)
-    for key in list(data.keys()):
-        # LayValue only knows about labels.
-        label = VARIABLES[key]['label']
-        data[key] = LazyValue(label).get(**data)
     start = time.perf_counter()
     financements = await simulate(**data)
     duration = (time.perf_counter() - start)
