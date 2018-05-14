@@ -95,6 +95,70 @@ async def test_simulate_endpoint_with_empty_data(client):
     assert 'application/json' in resp.headers['Content-Type']
 
 
+async def test_simulate_endpoint_with_empty_idcc(client):
+    resp = await client.get('/schema')
+
+    resp = await client.post('/financement', body={
+        'beneficiaire.solde_cpf': 10,
+        'beneficiaire.remuneration': 1400,
+        'beneficiaire.droit_prive': True,
+        'beneficiaire.contrat': 'cdi',
+        'formation.eligible_copanef': True,
+        'beneficiaire.entreprise.commune': '2A004',
+        'beneficiaire.entreprise.idcc': None})
+    assert resp.status == HTTPStatus.UNPROCESSABLE_ENTITY
+    assert json.loads(resp.body) == {
+        'beneficiaire.entreprise.idcc': 'Ce champ est obligatoire'}
+
+
+async def test_simulate_endpoint_with_invalid_idcc_format(client):
+    resp = await client.get('/schema')
+
+    resp = await client.post('/financement', body={
+        'beneficiaire.solde_cpf': 10,
+        'beneficiaire.remuneration': 1400,
+        'beneficiaire.droit_prive': True,
+        'beneficiaire.contrat': 'cdi',
+        'formation.eligible_copanef': True,
+        'beneficiaire.entreprise.commune': '2A004',
+        'beneficiaire.entreprise.idcc': 'foobar'})
+    assert resp.status == HTTPStatus.UNPROCESSABLE_ENTITY
+    assert json.loads(resp.body) == {
+        'beneficiaire.entreprise.idcc': "`foobar` n'est pas de type integer"}
+
+
+async def test_simulate_endpoint_with_unknown_idcc(client):
+    resp = await client.get('/schema')
+
+    resp = await client.post('/financement', body={
+        'beneficiaire.solde_cpf': 10,
+        'beneficiaire.remuneration': 1400,
+        'beneficiaire.droit_prive': True,
+        'beneficiaire.contrat': 'cdi',
+        'formation.eligible_copanef': True,
+        'beneficiaire.entreprise.commune': '2A004',
+        'beneficiaire.entreprise.idcc': 1234567})
+    assert resp.status == HTTPStatus.UNPROCESSABLE_ENTITY
+    assert json.loads(resp.body) == {
+        'beneficiaire.entreprise.idcc': "Valeur d'IDCC inconnue: `1234567`"}
+
+
+async def test_simulate_endpoint_with_unknown_departement(client):
+    resp = await client.get('/schema')
+
+    resp = await client.post('/financement', body={
+        'beneficiaire.solde_cpf': 10,
+        'beneficiaire.remuneration': 1400,
+        'beneficiaire.droit_prive': True,
+        'beneficiaire.contrat': 'cdi',
+        'formation.eligible_copanef': True,
+        'beneficiaire.entreprise.commune': '20001',
+        'beneficiaire.entreprise.idcc': 2706})
+    assert resp.status == HTTPStatus.UNPROCESSABLE_ENTITY
+    assert json.loads(resp.body) == {
+        'beneficiaire.entreprise.commune': "Valeur invalide: `20001`"}
+
+
 async def test_simulate_endpoint_with_invalid_data(client):
     resp = await client.get('/schema')
     spec = create_spec(json.loads(resp.body))

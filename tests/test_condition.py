@@ -58,6 +58,15 @@ def test_ge_int_condition(patch_variables):
     assert condition.assess(age=17) is False
 
 
+def test_le_int_condition(patch_variables):
+    patch_variables(VARIABLES)
+    condition = Condition(["l'âge du bénéficiaire "
+                           "est inférieur ou égal à 18"])
+    assert condition.assess(age=17) is True
+    assert condition.assess(age=18) is True
+    assert condition.assess(age=19) is False
+
+
 def test_equal_str_condition(patch_variables):
     patch_variables(VARIABLES)
     condition = Condition(["le type de contrat du bénéficiaire est «CDD»"])

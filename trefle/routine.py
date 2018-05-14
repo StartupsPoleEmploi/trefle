@@ -43,14 +43,10 @@ def preload_financements(data):
 
 def idcc_to_organismes(data):
     key = 'beneficiaire.entreprise.idcc'
-    if key not in data:
-        raise NoDataError('Missing idcc in data')
-    try:
-        idcc = int(data[key])
-    except (ValueError, TypeError):
-        raise ValueError(f'Invalid IDCC value {idcc}')
+    idcc = data[key]
     if idcc not in IDCC:
-        raise ValueError(f'Unknown IDCC {idcc}')
+        # TODO move this check to validators
+        raise ValueError({key: f"Valeur d'IDCC inconnue: `{idcc}`"})
     data['beneficiaire.entreprise.opca'] = IDCC[idcc]['OPCA']
     data['beneficiaire.entreprise.opacif'] = IDCC[idcc]['OPACIF']
 
@@ -63,7 +59,7 @@ def insee_commune_to_region(data):
         return
     dep = data[key][:2]
     if dep not in DEP_TO_REG:
-        raise ValueError(f'Invalid value for `{key}`: {data[key]}')
+        raise ValueError({key: f'Valeur invalide: `{data[key]}`'})
     data['beneficiaire.entreprise.region'] = DEP_TO_REG[dep]
 
 

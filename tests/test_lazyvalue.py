@@ -1,3 +1,6 @@
+import pytest
+
+from trefle.exceptions import WrongPointerError
 from trefle.rules import LazyValue
 
 
@@ -26,3 +29,8 @@ def test_lazyvalue_with_bool_variable(patch_variables):
     patch_variables({'a_key': {'type': 'boolean', 'label': 'a label'}})
     lv = LazyValue('a label')
     assert lv.get(a_key=True) is True
+
+
+def test_lazyvalue_raises_with_invalid_pointer():
+    with pytest.raises(WrongPointerError):
+        LazyValue('invalid pointer')

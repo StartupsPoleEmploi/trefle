@@ -1,5 +1,6 @@
 import pytest
 
+from trefle.exceptions import NoStepError, WrongPointerError
 from trefle.rules import Rule, count_indent, Condition
 
 
@@ -116,3 +117,39 @@ Si le nom de l'organisme est «BLAH»
                                           "COPANEF OU c'est un bénéficiaire "
                                           "de droit privé")
     assert rules[1].actions[0].raw == 'le taux horaire applicable vaut 60'
+
+
+def test_should_raise_if_no_pattern_match_condition():
+    data = """
+Si le nom de l'organisme pourrait bien être «BLAH»
+    Alors le plafond horaire applicable vaut 150
+"""
+    with pytest.raises(NoStepError):
+        Rule.load(data.split('\n'))
+
+
+def test_should_raise_if_no_pattern_match_action():
+    data = """
+Si le nom de l'organisme est «BLAH»
+    Alors le plafond horaire applicable pourrait bien être 150
+"""
+    with pytest.raises(NoStepError):
+        Rule.load(data.split('\n'))
+
+
+def test_should_raise_with_a_wrong_pointer_in_condition():
+    data = """
+Si le prénom de l'organisme est «BLAH»
+    Alors le plafond horaire applicable vaut 150
+"""
+    with pytest.raises(WrongPointerError):
+        Rule.load(data.split('\n'))
+
+
+def test_should_raise_with_a_wrong_pointer_in_action():
+    data = """
+Si le nom de l'organisme est «BLAH»
+    Alors le plafond de verre applicable vaut 150
+"""
+    with pytest.raises(WrongPointerError):
+        Rule.load(data.split('\n'))

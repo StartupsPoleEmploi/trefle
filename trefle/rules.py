@@ -2,7 +2,7 @@ from collections import namedtuple
 import inspect
 import re
 
-from .exceptions import NoDataError, WrongPointerError
+from .exceptions import NoDataError, WrongPointerError, NoStepError
 
 VARIABLES = {}
 LABELS = {}
@@ -10,7 +10,10 @@ LABELS = {}
 
 def Label(v):
     """Used as annotation for casting to variable id from variable label."""
-    return LABELS[v]
+    try:
+        return LABELS[v]
+    except KeyError:
+        raise WrongPointerError(v)
 
 
 def isfloat(v):
@@ -30,8 +33,6 @@ def count_indent(s):
 
 class LazyValue:
 
-    RAW_VALUES = (True, False)
-
     def __init__(self, raw):
         self.raw = raw
         self.get = None
@@ -42,9 +43,7 @@ class LazyValue:
 
     def compile(self):
         value = ...
-        if self.raw in self.RAW_VALUES:
-            value = self.raw
-        elif self.raw[0] == '«' and self.raw[-1] == '»':
+        if self.raw[0] == '«' and self.raw[-1] == '»':
             value = self.raw[1:-1]
         elif self.raw[0] == '[' and self.raw[-1] == ']':
             value = self.raw.split(',')  # TODO: type of members/constante?
@@ -99,7 +98,7 @@ class Step:
                 self.func = func
                 break
         else:
-            raise ValueError(f'No pattern match step: `{self.raw}`')
+            raise NoStepError(f'No pattern match step: `{self.raw}`')
         data = match.groupdict()
         spec = inspect.signature(self.func)
         for name, param in spec.parameters.items():
@@ -168,13 +167,6 @@ def set_value(data, key: Label, value: LazyValue):
     data[key] = value.get(**data)
 
 
-@action(r"ajouter (?P<value>[\w«» +-]+) aux? (?P<key>.+)")
-def add_value(data, key: Label, value: LazyValue):
-    if key not in data:
-        data[key] = []
-    data[key].append(value.get(**data))
-
-
 @action(r"définir le financement «(?P<name>[\w +-]+)» comme éligible")
 def set_financement_eligible(data, name):
     if name not in data['financements']:
@@ -207,7 +199,7 @@ def check_lt(data, left: LazyValue, right: LazyValue):
     return left.get(**data) < right.get(**data)
 
 
-@condition(r"(l'|les? |la )(?P<left>.+) est inférieure? ou égale à (?P<right>[\w ]+)")
+@condition(r"(l'|les? |la )(?P<left>.+) est inférieure? ou égale? à (?P<right>[\w ]+)")
 def check_le(data, left: LazyValue, right: LazyValue):
     return left.get(**data) <= right.get(**data)
 
