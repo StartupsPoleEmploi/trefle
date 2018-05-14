@@ -20,7 +20,7 @@ def patch_condition(context, condition):
 
     def assess_wrapper(**data):
         status = assess_orig(**data)
-        condition._statuses.add(status)
+        condition._return_values.add(status)
 
         params = {}
         for param in condition.params.values():
@@ -29,16 +29,15 @@ def patch_condition(context, condition):
             except NoDataError:  # No data were provided for this value.
                 value = None
             params[param.raw] = value
-        if params not in condition._params:
-            condition._params.append(params)
+        if params not in condition._called_with:
+            condition._called_with.append(params)
         return status
 
     condition.assess = assess_wrapper
-    condition._statuses = set()
-    condition._params = []
-    if condition.conditions:
-        for sub in condition.conditions:
-            patch_condition(context, sub)
+    condition._return_values = set()
+    condition._called_with = []
+    for sub in condition.conditions:
+        patch_condition(context, sub)
 
 
 def patch_rule(context, rule):
@@ -49,22 +48,23 @@ def patch_rule(context, rule):
 def compute_condition_coverage(context, condition, indent=0):
     func = red
     char = '✗'
-    if condition._statuses:
+    if condition._return_values:
         func = yellow
         char = '~'
-        if {False, True} == condition._statuses:
+        if {False, True} == condition._return_values:
             func = green
             char = '✓'
-    context.config.userdata['stats']['cover'] += len(condition._statuses)
+    context.config.userdata['stats']['cover'] += len(condition._return_values)
     if context.config.userdata.get('coverage-format', 'summary') != 'summary':
         print(" " * indent, func(f'{char} {condition}'))
         if context.config.userdata.get('coverage-format') == 'long':
-            if condition._statuses:
-                print(" " * indent, " " * 4, "• Statuses:",
-                      condition._statuses)
-            if condition._params:
+            if condition._return_values:
+                print(" " * indent, " " * 4, "• Returned statuses:",
+                      condition._return_values,
+                      "({}/2)".format(len(condition._return_values)))
+            if condition._called_with:
                 print(" " * indent, " " * 4, "• Params:")
-            for params in condition._params:
+            for params in condition._called_with:
                 print(" " * indent, " " * 8, params)
 
 
