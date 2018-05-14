@@ -9,14 +9,14 @@ from .api import app
 
 
 @cli(name='simulate')
-def cli_simulate(*args):
+async def cli_simulate(*args):
     data = dict(a.split('=') for a in args)
     for key in list(data.keys()):
         # LayValue only knows about labels.
         label = VARIABLES[key]['label']
         data[key] = LazyValue(label).get(**data)
     start = time.perf_counter()
-    financements = simulate(**data)
+    financements = await simulate(**data)
     duration = (time.perf_counter() - start)
     print('*' * 80)
     print('Éligible')

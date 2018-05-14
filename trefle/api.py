@@ -28,7 +28,7 @@ async def json_error_response(request, response, error):
 @app.route('/financement', methods=['POST'])
 async def simulate_(request, response):
     try:
-        financements = simulate(**request.json)
+        financements = await simulate(**request.json)
     except ValueError as err:
         raise HttpError(HTTPStatus.UNPROCESSABLE_ENTITY, err.args[0])
     eligible = request.query.bool('eligible', None)

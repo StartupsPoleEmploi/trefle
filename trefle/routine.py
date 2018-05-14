@@ -1,3 +1,4 @@
+import asyncio
 from pathlib import Path
 
 from lxml import etree
@@ -60,16 +61,19 @@ def check_eligibilite(data):
     Rule.process(ELIGIBILITE, data)
 
 
-def populate_formation(data):
+async def populate_formation(data):
     if not data.get('formation.numero'):
         return
 
     formation_id = data['formation.numero']
     # TODO: async
-    response = requests.get(f'{INTERCARIF_URL}?num={formation_id}')
+    response = await http_get(f'{INTERCARIF_URL}?num={formation_id}')
     # TODO handle 400/500 responses
     populate_formation_from_bytes(data, response.content)
 
+async def http_get(url):
+    loop = asyncio.get_event_loop()
+    return await loop.run_in_executor(None, requests.get, url)
 
 def populate_formation_from_bytes(data, content):
     content = content.replace(b' xmlns="http://www.lheo.org/2.2"', b'')
