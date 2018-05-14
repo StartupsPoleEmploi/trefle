@@ -1,3 +1,5 @@
+import re
+
 import pytest
 
 from trefle.validators import validate
@@ -99,3 +101,22 @@ def test_validate_bad_enum(patch_variables):
     assert err.value.args[0] == {
         'beneficiaire.contrat': "`cdg` ne fait pas partie de ['cdd', 'cdi']"
     }
+
+
+@pytest.mark.parametrize('input,valid', [
+    ('01111', True),
+    ('2A004', True),
+    ('A2004', False),
+    ('unvalid', False),
+])
+def test_validate_pattern(patch_variables, input, valid):
+    patch_variables({
+        'beneficiaire.insee': {
+            'type': 'string',
+            'pattern': re.compile('(2[AB]|[0-9]{2})[0-9]{3}')}})
+    data = {'beneficiaire.insee': input}
+    if not valid:
+        with pytest.raises(ValueError):
+            validate(data)
+    else:
+        validate(data)

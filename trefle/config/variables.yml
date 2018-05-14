@@ -128,10 +128,16 @@ beneficiaire:
       public: true
       required: true
       label: IDCC de l'établissement du bénéficiaire
+    insee:
+      description: code INSEE de la commune de l'établissement du bénéficiaire
+      type: string
+      public: true
+      # required: true  # Make me required when LBF is ready
+      pattern: (2[AB]|[0-9]{2})[0-9]{3}
+      label: code INSEE de la commune de l'établissement du bénéficiaire
     region:
       description: région de l'entreprise
       type: string
-      public: true
       label: région de l'établissement du bénéficiaire
       enum:
         '01': Guadeloupe

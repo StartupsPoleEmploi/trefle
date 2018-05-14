@@ -6,14 +6,12 @@ import requests
 import yaml
 
 from .config import (CONSTANTS, ELIGIBILITE, FINANCEMENTS, PRISE_EN_CHARGE,
-                     REMUNERATION)
+                     REMUNERATION, INTERCARIF_URL, DEP_TO_REG)
 from .exceptions import NoDataError, UpstreamError
 from .rules import Rule
 
 with (Path(__file__).parent / 'config/idcc.yml').open() as f:
     IDCC = yaml.safe_load(f.read())
-
-INTERCARIF_URL = 'https://labonneformation.pole-emploi.fr/ws_intercarif'
 
 
 def flatten(data, output=None, namespace=None):
@@ -55,6 +53,19 @@ def idcc_to_organismes(data):
         raise ValueError(f'Unknown IDCC {idcc}')
     data['beneficiaire.entreprise.opca'] = IDCC[idcc]['OPCA']
     data['beneficiaire.entreprise.opacif'] = IDCC[idcc]['OPACIF']
+
+
+def insee_commune_to_region(data):
+    if 'beneficiaire.entreprise.region' in data:
+        return
+    key = 'beneficiaire.entreprise.insee'
+    if key not in data:
+        return
+    dep = data[key][:2]
+    if dep not in DEP_TO_REG:
+        raise ValueError(f'Invalid value for `beneficiaire.entreprise.insee`: '
+                         f'{data[key]}')
+    data['beneficiaire.entreprise.region'] = DEP_TO_REG[dep]
 
 
 def check_eligibilite(data):

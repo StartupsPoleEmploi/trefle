@@ -75,3 +75,11 @@ def validate_enum(schema, value):
         raise ValueError(
             f"`{value}` ne fait pas partie de {list(schema['enum'].keys())}")
     return value
+
+
+@validator
+def validate_pattern(schema, value):
+    if value and 'pattern' in schema and not schema['pattern'].match(value):
+        raise ValueError(
+            f"`{value}` n'est pas au format {schema['pattern']}")
+    return value

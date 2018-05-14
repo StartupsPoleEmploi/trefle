@@ -39,6 +39,12 @@ def test_populate_formation_from_bytes_with_empty_list():
         routine.populate_formation_from_bytes(data, content)
 
 
+def test_insee_commune_to_region():
+    data = {'beneficiaire.entreprise.insee': '93031'}
+    routine.insee_commune_to_region(data)
+    assert data['beneficiaire.entreprise.region'] == '11'  # IDF
+
+
 @pytest.mark.asyncio
 async def test_populate_formation_upstream_error(mock_get):
     mock_get(status_code=500)

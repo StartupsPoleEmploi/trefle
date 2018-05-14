@@ -8,6 +8,7 @@ async def simulate(**data):
     routine.flatten(data)
     routine.preload_financements(data)
     validate(data)
+    routine.insee_commune_to_region(data)
     await routine.populate_formation(data)
     routine.idcc_to_organismes(data)
 
