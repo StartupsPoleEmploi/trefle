@@ -96,7 +96,7 @@ def populate_formation_from_bytes(data, content):
     ))
     data['formation.codes_naf'] = set(root.xpath(
         '//extras[@info="eligibilite-cpf"]/extra[@info="branche"]/child::text()'))
-    data['formation.regions'] = set(root.xpath(
+    data['formation.regions_coparef'] = set(root.xpath(
         '//extras[@info="eligibilite-cpf"]/extra[@info="region"]/child::text()'))
     data['formation.codes_formacode'] = root.xpath('//domaine-formation/code-FORMACODE/child::text()')
     data['formation.niveau_sortie'] = root.xpath('number(//code-niveau-sortie/child::text())')

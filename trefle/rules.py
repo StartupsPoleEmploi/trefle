@@ -220,7 +220,7 @@ def check_contain(data, left: LazyValue, right: LazyValue):
 
 @condition(r"(l'|les? |la )(?P<left>.+) ne fait pas partie (de l'|des? |de la |du )(?P<right>.+)")
 @condition(r"(l'|les? |la )(?P<right>.+) ne contient pas (l'|les? |la )?(?P<left>[ \w«»]+)")
-def check_contain(data, left: LazyValue, right: LazyValue):
+def check_not_contain(data, left: LazyValue, right: LazyValue):
     return left.get(**data) not in right.get(**data)
 
 
