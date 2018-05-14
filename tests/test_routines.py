@@ -1,4 +1,3 @@
-import unittest.mock
 from pathlib import Path
 
 import pytest
@@ -27,6 +26,17 @@ def test_populate_formation_from_bytes():
         assert data['formation.domaines_formacode'] == {'224'}
         assert data['formation.foad'] is False
         assert data['formation.niveau_sortie'] == 4
+
+
+def test_populate_formation_from_bytes_with_empty_list():
+    content = b"""<?xml version="1.0" encoding="utf-8"?>
+                  <lheo xmlns="http://www.lheo.org/2.2">
+                  <offres>
+                  </offres>
+                  </lheo>"""
+    data = {}
+    with pytest.raises(ValueError):
+        routine.populate_formation_from_bytes(data, content)
 
 
 @pytest.mark.asyncio

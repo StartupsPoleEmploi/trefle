@@ -127,3 +127,25 @@ async def test_simulate_endpoint_with_upstream_error(client, mock_get):
 
     assert resp.status == HTTPStatus.INTERNAL_SERVER_ERROR
     assert 'UPSTREAM_ERROR' in json.loads(resp.body)['error']
+
+
+async def test_simulate_endpoint_with_invalid_formation_id(client, mock_get):
+    body = {
+        'beneficiaire.solde_cpf': 10,
+        'beneficiaire.remuneration': 1400,
+        'beneficiaire.droit_prive': True,
+        'beneficiaire.contrat': 'cdi',
+        'formation.numero': '1234',
+        'beneficiaire.entreprise.idcc': 2706
+    }
+    content = b"""<?xml version="1.0" encoding="utf-8"?>
+                  <lheo xmlns="http://www.lheo.org/2.2">
+                  <offres>
+                  </offres>
+                  </lheo>"""
+    mock_get(content=content)
+    resp = await client.post('/financement', body=body)
+
+    assert resp.status == HTTPStatus.UNPROCESSABLE_ENTITY
+    assert json.loads(resp.body) == {
+        'error': 'Error with id `1234`: `No formation found`'}

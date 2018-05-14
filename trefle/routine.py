@@ -69,17 +69,26 @@ async def populate_formation(data):
     response = await http_get(f'{INTERCARIF_URL}?num={formation_id}')
     if response.status_code >= 500:
         raise UpstreamError(f"UPSTREAM_ERROR: {response.status_code}")
-    
-    populate_formation_from_bytes(data, response.content)
+
+    try:
+        populate_formation_from_bytes(data, response.content)
+    except ValueError as err:
+        # Give more context.
+        err.args = (f'Error with id `{formation_id}`: `{err}`',)
+        raise
+
 
 async def http_get(url):
     loop = asyncio.get_event_loop()
     return await loop.run_in_executor(None, requests.get, url)
 
+
 def populate_formation_from_bytes(data, content):
     content = content.replace(b' xmlns="http://www.lheo.org/2.2"', b'')
     tree = etree.fromstring(content)
     root = tree.find('offres/formation')
+    if root is None:
+        raise ValueError('No formation found')
 
     # TODO: move xpath definitions in the schema?
     data['formation.eligible_copanef'] = bool(root.xpath(
