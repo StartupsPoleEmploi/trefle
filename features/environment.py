@@ -1,4 +1,4 @@
-from trefle.config import ELIGIBILITE, PRISE_EN_CHARGE, REMUNERATION
+from trefle.config import ELIGIBILITE, PRISE_EN_CHARGE, REMUNERATION, LABELS
 from trefle.exceptions import NoDataError
 
 
@@ -24,6 +24,9 @@ def patch_condition(context, condition):
 
         params = {}
         for param in condition.params.values():
+            if param.raw not in LABELS:
+                # Do not redisplay raw static values
+                continue
             try:
                 value = param.get(**data)
             except NoDataError:  # No data were provided for this value.
