@@ -31,6 +31,8 @@ async def simulate_(request, response):
         financements = await simulate(**request.json)
     except ValueError as err:
         raise HttpError(HTTPStatus.UNPROCESSABLE_ENTITY, err.args[0])
+
+
     eligible = request.query.bool('eligible', None)
     if eligible is not None:
         financements = [f for f in financements if f['eligible'] == eligible]

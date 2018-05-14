@@ -7,7 +7,7 @@ import yaml
 
 from .config import (CONSTANTS, ELIGIBILITE, FINANCEMENTS, PRISE_EN_CHARGE,
                      REMUNERATION)
-from .exceptions import NoDataError
+from .exceptions import NoDataError, UpstreamError
 from .rules import Rule
 
 with (Path(__file__).parent / 'config/idcc.yml').open() as f:
@@ -66,9 +66,10 @@ async def populate_formation(data):
         return
 
     formation_id = data['formation.numero']
-    # TODO: async
     response = await http_get(f'{INTERCARIF_URL}?num={formation_id}')
-    # TODO handle 400/500 responses
+    if response.status_code >= 500:
+        raise UpstreamError(f"UPSTREAM_ERROR: {response.status_code}")
+    
     populate_formation_from_bytes(data, response.content)
 
 async def http_get(url):

@@ -1,5 +1,9 @@
+import unittest.mock
 from pathlib import Path
 
+import pytest
+
+from trefle import exceptions
 from trefle import routine
 
 
@@ -9,7 +13,7 @@ def test_flatten():
     assert data == {'a.b': 'value'}
 
 
-def test_populate_formation():
+def test_populate_formation_from_bytes():
     with Path(__file__).parent.joinpath('data/formation.xml').open('rb') as f:
         data = {}
         routine.populate_formation_from_bytes(data, f.read())
@@ -23,3 +27,10 @@ def test_populate_formation():
         assert data['formation.domaines_formacode'] == {'224'}
         assert data['formation.foad'] is False
         assert data['formation.niveau_sortie'] == 4
+
+
+@pytest.mark.asyncio
+async def test_populate_formation_upstream_error(mock_get):
+    mock_get(status_code=500)
+    with pytest.raises(exceptions.UpstreamError):
+        await routine.populate_formation({'formation.numero': 'ZORGLUB'})

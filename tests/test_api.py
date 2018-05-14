@@ -21,13 +21,13 @@ def app():
     yield trefleapp
 
 
-async def test_schema(client, app):
+async def test_schema(client):
     resp = await client.get('/schema')
     assert resp.status == HTTPStatus.OK
     validate_spec(json.loads(resp.body))
 
 
-async def test_simulate_endpoint(client, app):
+async def test_simulate_endpoint(client):
     resp = await client.get('/schema')
     spec = create_spec(json.loads(resp.body))
 
@@ -51,7 +51,7 @@ async def test_simulate_endpoint(client, app):
     result.raise_for_errors()
 
 
-async def test_simulate_endpoint_filter_eligible(client, app):
+async def test_simulate_endpoint_filter_eligible(client):
     body = {
         'beneficiaire.solde_cpf': 10,
         'beneficiaire.remuneration': 1400,
@@ -81,19 +81,19 @@ async def test_simulate_endpoint_filter_eligible(client, app):
         assert financement['eligible'] is False
 
 
-async def test_simulate_endpoint_with_wrong_method(client, app):
+async def test_simulate_endpoint_with_wrong_method(client):
     resp = await client.get('/financement')
     assert resp.status == HTTPStatus.METHOD_NOT_ALLOWED
     assert 'application/json' in resp.headers['Content-Type']
 
 
-async def test_simulate_endpoint_with_empty_data(client, app):
+async def test_simulate_endpoint_with_empty_data(client):
     resp = await client.post('/financement', body='')
     assert resp.status == HTTPStatus.BAD_REQUEST
     assert 'application/json' in resp.headers['Content-Type']
 
 
-async def test_simulate_endpoint_with_invalid_data(client, app):
+async def test_simulate_endpoint_with_invalid_data(client):
     resp = await client.get('/schema')
     spec = create_spec(json.loads(resp.body))
 
@@ -110,3 +110,20 @@ async def test_simulate_endpoint_with_invalid_data(client, app):
     # response = MockResponse(resp.body, resp.status.value)
     # result = validator.validate(request, response)
     # result.raise_for_errors()
+
+
+async def test_simulate_endpoint_with_upstream_error(client, mock_get):
+    body = {
+        'beneficiaire.solde_cpf': 10,
+        'beneficiaire.remuneration': 1400,
+        'beneficiaire.droit_prive': True,
+        'beneficiaire.contrat': 'cdi',
+        'formation.numero': '1234',
+        'beneficiaire.entreprise.idcc': 2706
+    }
+
+    mock_get(status_code=500)
+    resp = await client.post('/financement', body=body)
+
+    assert resp.status == HTTPStatus.INTERNAL_SERVER_ERROR
+    assert 'UPSTREAM_ERROR' in json.loads(resp.body)['error']
