@@ -99,16 +99,23 @@ Scénario: pouac pouac
     Soit un bénéficiaire et une formation""")
 
     for key, value in data.items():
-        label = VARIABLES[key]['label']
+        schema = VARIABLES[key]
+        label = schema['label']
         if isinstance(value, bool):
             # Et c'est un bénéficiaire de droit privé
+            article = 'un' if schema.get('gender') == 'masculine' else 'une'
             if value:
-                print(f"    Et c'est un {label}")
+                print(f"    Et c'est {article} {label}")
             else:
-                print(f"    Et ce n'est pas un {label}")
+                print(f"    Et ce n'est pas {article} {label}")
         else:
+            article = 'le ' if schema.get('gender') == 'masculine' else 'la '
+            if schema.get('number') == 'plural':
+                article = 'les '
+            elif label[0].lower() in 'aeiouy':
+                article = "l'"
             # Et le code CPF de la formation vaut 200
-            print(f"    Et le {label} vaut {value}")
+            print(f"    Et {article}{label} vaut {value}")
 
     print("    Quand je demande un calcul de financement")
     for financement in financements:

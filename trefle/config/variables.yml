@@ -70,6 +70,7 @@ beneficiaire:
     public: true
     required: true
     label: bénéficiaire de droit privé
+    gender: masculine
   solde_cpf:
     description: solde du compte CPF du bénéficiaire
     type: integer
@@ -77,6 +78,7 @@ beneficiaire:
     public: true
     required: true
     label: solde CPF du bénéficiaire
+    gender: masculine
   remuneration:
     description: Rémunération actuelle en euros
     type: integer
@@ -90,6 +92,7 @@ beneficiaire:
     format: int32
     public: true
     label: âge du bénéficiaire
+    gender: masculine
   experience_professionnelle:
     description: nombre de mois travaillés sur les 5 dernières années
     type: integer
@@ -102,6 +105,7 @@ beneficiaire:
     format: int32
     public: true
     label: nombre de mois travaillés par le bénéficiaire dans la dernière année
+    gender: masculine
   contrat:
     description: type de contrat du bénéficiaire
     type: string
@@ -113,6 +117,7 @@ beneficiaire:
       intermittent: intermittent
       interim: intérimaire
     label: type de contrat du bénéficiaire
+    gender: masculine
   anciennete_entreprise_actuelle:
     description: ancienneté en mois dans l'entreprise actuelle
     type: integer
@@ -125,6 +130,7 @@ beneficiaire:
       type: string
       public: true
       label: code NAF de l'établissement du bénéficiaire
+      gender: masculine
     idcc:
       description: l'identifiant de convention collective de l'établissement
       # TODO: uniformize the type (int but 0234 so str?)
@@ -133,6 +139,7 @@ beneficiaire:
       public: true
       required: true
       label: IDCC de l'établissement du bénéficiaire
+      gender: masculine
     commune:
       description: code INSEE de la commune de l'établissement du bénéficiaire
       type: string
@@ -140,6 +147,7 @@ beneficiaire:
       # required: true  # Make me required when LBF is ready
       pattern: (2[AB]|[0-9]{2})[0-9]{3}
       label: code INSEE de la commune de l'établissement du bénéficiaire
+      gender: masculine
     region:
       description: région de l'entreprise
       type: string
@@ -230,6 +238,7 @@ formation:
     type: List[int]
     source: routine.naf_from_formation
     label: codes NAF CPNE éligibles
+    number: plural
   foad:
     type: boolean
     source: catalogue
@@ -254,15 +263,18 @@ formation:
     type: boolean
     source: catalogue
     label: bilan de compétences
+    gender: masculine
   permis_b:
     type: boolean
     source: catalogue
     label: permis B
+    gender: masculine
   niveau_sortie:
     description: le niveau du diplôme de sortie (licence, master…)
     type: integer
     format: int32
     label: niveau de sortie de la formation
+    gender: masculine
 financement:
   nom:
     type: string
