@@ -25,6 +25,8 @@ def given_set_value(context, label, value):
         # Allow to use enum label in scenario description.
         labels = revert(schema['enum'])
         value = labels[value]
+    if value.startswith('['):
+        value = value[1:-1].split(',')  # TODO: Merge with LazyValue?
     context.data[key] = value
 
 

@@ -101,7 +101,17 @@ Scénario: pouac pouac
     for key, value in data.items():
         schema = VARIABLES[key]
         label = schema['label']
-        if isinstance(value, bool):
+        if 'enum' in schema:
+            value = schema['enum'][value]
+        if isinstance(value, str):
+            value = f'«{value}»'
+        if value != 0 and not value:
+            continue
+        if isinstance(value, (list, tuple, set)):
+            value = '[' + ','.join(str(v) for v in value) + ']'
+        if key == 'beneficiaire.entreprise.region':
+            print(f"    Et c'est une formation éligible région {value}")
+        elif isinstance(value, bool):
             # Et c'est un bénéficiaire de droit privé
             article = 'un' if schema.get('gender') == 'masculine' else 'une'
             if value:
