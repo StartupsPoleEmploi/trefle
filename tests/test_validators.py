@@ -12,7 +12,7 @@ def test_validate_integer(patch_variables):
     })
     data = {
         'beneficiaire.age': '22',
-        'beneficiaire.solde_cpf': '89',
+        'beneficiaire.solde_cpf': '89.0',
     }
     validate(data)
     assert data['beneficiaire.age'] == 22

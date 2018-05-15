@@ -15,10 +15,18 @@ def to_bool(value):
     raise ValueError
 
 
+def to_int(value):
+    """An int converter that allows to cast a float like string.
+
+    int('6.0') will raise a ValueError.
+    """
+    return int(float(value))
+
+
 TYPES = {
     'boolean': to_bool,
     'number': float,
-    'integer': int,
+    'integer': to_int,
 }
 
 
