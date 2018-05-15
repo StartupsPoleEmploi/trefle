@@ -1,5 +1,7 @@
 import base64
 import bz2
+import os
+import sys
 import time
 from urllib.parse import urlparse, parse_qs
 
@@ -7,13 +9,20 @@ from minicli import cli, run
 import phpserialize
 from roll.extensions import simple_server
 
-from .core import simulate
+
 from .api import app
+from .config import VARIABLES
+from .core import simulate
+from .routine import populate_formation
 from .validators import validate
 
 
 @cli(name='simulate')
 async def cli_simulate(*args):
+    """Simulate a call to the API.
+
+    Pass data as args in the form key=value.
+    """
     data = dict(a.split('=') for a in args)
     start = time.perf_counter()
     financements = await simulate(**data)
@@ -37,14 +46,21 @@ async def cli_simulate(*args):
 
 @cli
 def serve():
+    """Run a web server (for development only)."""
     simple_server(app)
 
 
 @cli
-async def decrypt_lbf_url(url):
-    charmap = {
-        # TODO fill me up with private charmap encryption values
-    }
+async def feature(url):
+    """Create a feature from an LBF URL.
+
+    :url: The raw LBF URL.
+    """
+    charmap = os.environ.get('LBF_CHARMAP')
+    if not charmap:
+        sys.exit("You need the LBF_CHARMAP env var to be set. It's on the "
+                 "form ab,cd…")
+    charmap = {from_: to for from_, to in charmap.split(',')}
 
     encrypted = parse_qs(urlparse(url).query)['a'][0]
     encrypted = "".join(charmap[char] for char in encrypted[8:])
@@ -67,20 +83,20 @@ async def decrypt_lbf_url(url):
         b'idcc': 'beneficiaire.entreprise.idcc',
         b'region': 'beneficiaire.entreprise.region',
         b'commune': 'beneficiaire.entreprise.commune',
+        b'idformintercarif': 'formation.numero',
     }
 
-    print(args)
-    data = {keymap[key]: value.decode() for key, value in args.items() if key in keymap}
-    # print(args)
+    data = {keymap[key]: value.decode() for key, value in args.items()
+            if key in keymap}
     validate(data)
+    await populate_formation(data)
+    del data['formation.numero']  # Prevent from calling twice the catalog api.
 
     financements = [f for f in await simulate(**data) if f['eligible']]
 
     print(f"""# {url}
 Scénario: pouac pouac
     Soit un bénéficiaire et une formation""")
-
-    from .config import VARIABLES
 
     for key, value in data.items():
         label = VARIABLES[key]['label']
@@ -91,21 +107,10 @@ Scénario: pouac pouac
             else:
                 print(f"    Et ce n'est pas un {label}")
         else:
-            # Et c'est une formation éligible COPANEF
-            # Et le solde CPF du bénéficiaire vaut 100
-            # Et l'IDCC de l'établissement du bénéficiaire vaut 2075
-            # Et la rémunération du bénéficiaire vaut 1400
-            # Et le type de contrat du bénéficiaire vaut CDI
-            # Et le taux horaire de la formation vaut 25
-            # Et la durée en heures de la formation vaut 200
             # Et le code CPF de la formation vaut 200
             print(f"    Et le {label} vaut {value}")
 
     print("    Quand je demande un calcul de financement")
-    # Et je sélectionne le financement «CPF sur son temps de travail»
-    # Alors l'organisme tutelle est «INTERGROS»
-    # Et le montant de prise en charge vaut 2000
-    # Et la rémunération vaut 1400
     for financement in financements:
         # Quand je sélectionne le financement «CPF hors temps de travail»
         print(f"    Quand je sélectionne le financement «{financement['nom']}»")
