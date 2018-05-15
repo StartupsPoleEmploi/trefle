@@ -2,8 +2,8 @@ from .rules import VARIABLES
 
 validators = []
 
-TRUE_VALUES = ('oui', 'yes', 'true')
-FALSE_VALUES = ('non', 'no', 'false')
+TRUE_VALUES = ('oui', 'yes', 'true', 'on')
+FALSE_VALUES = ('non', 'no', 'false', 'off')
 
 
 def to_bool(value):
@@ -39,9 +39,9 @@ def validate(data):
 
 
 def validate_field(name, value, schema, errors):
-    for validator in validators:
+    for validator_ in validators:
         try:
-            value = validator(schema, value)
+            value = validator_(schema, value)
         except ValueError as err:
             errors[name] = str(err)
             # Store only one error per field.
