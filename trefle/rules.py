@@ -163,6 +163,12 @@ class Condition(Step):
             return self.func(data, **self.params)
         except NoDataError:
             return False
+        except Exception as err:
+            # Give more context.
+            params = ' AND '.join(f'{value.raw}={value.get(**data)}'
+                                  for value in self.params.values())
+            err.args = (f'{err} (in `{self.raw}`, where {params})',)
+            raise
 
 
 @action(r"(l'|les? |la )(?P<key>.+) vaut (?P<value>[\w«» +-]+)")
