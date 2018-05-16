@@ -136,6 +136,8 @@ def financement_to_organisme(data, financement):
         raise NotImplementedError(f'Unknown financement type {type_}')
     financement['organisme'] = organisme
     data['financement.organisme.nom'] = organisme['nom']
+    # Q&D way to display the organisme details on LBF.
+    # TODO clean me.
     financement['demarches'] = financement['demarches'].format(**organisme)
 
 
