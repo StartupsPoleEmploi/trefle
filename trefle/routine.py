@@ -136,6 +136,7 @@ def financement_to_organisme(data, financement):
         raise NotImplementedError(f'Unknown financement type {type_}')
     financement['organisme'] = organisme
     data['financement.organisme.nom'] = organisme['nom']
+    financement['demarches'] = financement['demarches'].format(**organisme)
 
 
 def load_organisme(name):
