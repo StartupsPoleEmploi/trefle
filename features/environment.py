@@ -1,101 +1,54 @@
-from trefle.config import ELIGIBILITE, PRISE_EN_CHARGE, REMUNERATION, LABELS
-from trefle.exceptions import NoDataError
+from trefle.config import ELIGIBILITE, PRISE_EN_CHARGE, REMUNERATION
+from trefle.debugging import green, red, trace_rule, yellow
 
 
-def yellow(s):
-    return f'\x1b[1;33m{s}\x1b[0m'
-
-
-def green(s):
-    return f'\x1b[1;32m{s}\x1b[0m'
-
-
-def red(s):
-    return f'\x1b[1;31m{s}\x1b[0m'
-
-
-def patch_condition(context, condition):
-    assess_orig = condition.assess
-    context.config.userdata['stats']['statements'] += 2
-
-    def assess_wrapper(**data):
-        status = assess_orig(**data)
-        condition._return_values.add(status)
-
-        params = {}
-        for param in condition.params.values():
-            if param.raw not in LABELS:
-                # Do not redisplay raw static values
-                continue
-            try:
-                value = param.get(**data)
-            except NoDataError:  # No data were provided for this value.
-                value = None
-            params[param.raw] = value
-        if params not in condition._called_with:
-            condition._called_with.append(params)
-        return status
-
-    condition.assess = assess_wrapper
-    condition._return_values = set()
-    condition._called_with = []
-    for sub in condition.conditions:
-        patch_condition(context, sub)
-
-
-def patch_rule(context, rule):
-    for condition in rule.conditions:
-        patch_condition(context, condition)
-
-
-def compute_condition_coverage(context, condition, indent=0):
+def render_condition_coverage(context, condition, indent=0):
     func = red
     char = '✗'
-    if condition._return_values:
+    return_values = set(condition._return_values)
+    if return_values:
         func = yellow
         char = '~'
-        if {False, True} == condition._return_values:
+        if {False, True} == return_values:
             func = green
             char = '✓'
-    context.config.userdata['stats']['cover'] += len(condition._return_values)
     if context.config.userdata.get('coverage-format', 'summary') != 'summary':
         print(" " * indent, func(f'{char} {condition}'))
         if context.config.userdata.get('coverage-format') == 'long':
-            if condition._return_values:
+            if return_values:
                 print(" " * indent, " " * 4, "• Returned statuses:",
-                      condition._return_values,
-                      "({}/2)".format(len(condition._return_values)))
+                      return_values, "({}/2)".format(len(return_values)))
             if condition._called_with:
                 print(" " * indent, " " * 4, "• Params:")
-            for params in condition._called_with:
-                print(" " * indent, " " * 8, params)
+                called_with = []
+                for p in condition._called_with:
+                    if p not in called_with:
+                        called_with.append(p)
+                for params in called_with:
+                    print(" " * indent, " " * 8, params)
 
 
 def load_rules(context):
     rules = []
-    coverage = context.config.userdata.get('coverage', 'all')
-    if coverage in ['all', 'eligibilite']:
+    wanted = context.config.userdata.get('coverage', 'all')
+    if wanted in ['all', 'eligibilite']:
         rules.extend(ELIGIBILITE)
-    if coverage in ['all', 'remuneration']:
+    if wanted in ['all', 'remuneration']:
         rules.extend(REMUNERATION)
-    if coverage in ['all', 'prise_en_charge']:
+    if wanted in ['all', 'prise_en_charge']:
         rules.extend(PRISE_EN_CHARGE)
     return rules
 
 
 def before_all(context):
-    context.config.userdata['stats'] = {
-        'statements': 0,
-        'cover': 0
-    }
-    rules = load_rules(context)
-    for rule in rules:
-        patch_rule(context, rule)
+    for rule in load_rules(context):
+        trace_rule(rule)
 
 
 def after_all(context):
     rules = load_rules(context)
-    stats = context.config.userdata['stats']
+    statements = 0
+    covered = 0
     if rules:
         print('-' * 10, 'Rules coverage report', '-' * 10)
         for rule in rules:
@@ -105,9 +58,13 @@ def after_all(context):
             for condition in rule.conditions:
                 if condition.conditions:
                     for c in condition.conditions:
-                        compute_condition_coverage(context, c, indent=4)
+                        statements += 2
+                        covered += len(set(c._return_values))
+                        render_condition_coverage(context, c, indent=4)
                 else:
-                    compute_condition_coverage(context, condition)
-        coverage = round(stats['cover'] / stats['statements'] * 100, 2)
-        print(f'Coverage: {coverage}%', )
+                    statements += 2
+                    covered += len(set(condition._return_values))
+                    render_condition_coverage(context, condition)
+        coverage = round(covered / statements * 100, 2)
+        print(f'Coverage: {covered}/{statements} ({coverage}%)', )
         print('-' * 10, 'End coverage report', '-' * 10)
