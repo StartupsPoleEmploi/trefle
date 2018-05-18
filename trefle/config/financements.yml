@@ -18,7 +18,7 @@ cif:
       - ou se perfectionner
       - ou s'ouvrir plus largement à la culture et à la vie sociale.
     Attention, un delai de franchise s'applique aux salariés ayant déjà bénéficié d'un CIF. Il est au minimum  de 6 mois et  au maximum de 6 ans
-  demarches: "Pour une formation se déroulant sur le temps de travail, il est nécessaire de demander l'accord de l'employeur. Attention aux délais pour faire cette demande : trois mois pour une formation de six mois et plus, de deux mois pour les autres. Pour une formation hors temps de travail, il n'y a pas d'autorisation d'absence à demander. Retirer auprès de l'OPACIF {organisme.nom} un dossier de demande de prise en charge. Vérifier les délais pour faire cette demande. Indiquer votre accord pour compléter, si besoin, le financement de la formation avec votre Compte Personnel de Formation."
+  demarches: "Pour une formation se déroulant sur le temps de travail, il est nécessaire de demander l'accord de l'employeur. Attention aux délais pour faire cette demande : trois mois pour une formation de six mois et plus, de deux mois pour les autres. Pour une formation hors temps de travail, il n'y a pas d'autorisation d'absence à demander. Retirer auprès de l'OPACIF {nom} un dossier de demande de prise en charge. Vérifier les délais pour faire cette demande. Indiquer votre accord pour compléter, si besoin, le financement de la formation avec votre Compte Personnel de Formation."
   cdi:
     pendant_temps_de_travail:
       nom: CIF CDI sur son temps de travail
