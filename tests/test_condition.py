@@ -18,6 +18,10 @@ VARIABLES = {
         'type': 'List[str]',
         'label': "codes naf de la formation",
     },
+    'nafs_artisanat': {
+        'type': 'List[str]',
+        'label': "codes naf artisanat",
+    },
     'inscrit': {
         'type': 'boolean',
         'label': 'bénéficiaire inscrit',
@@ -112,3 +116,18 @@ def test_not_contains_condition(patch_variables):
     assert condition.assess(naf='123', nafs=['123', '456']) is False
     assert condition.assess(naf='123', nafs=['456']) is True
     assert condition.assess(unknown=True) is False
+
+
+def test_share_one(patch_variables):
+    patch_variables(VARIABLES)
+    condition = Condition(["les codes naf de la formation contiennent au "
+                           "moins un des codes naf artisanat"])
+    assert condition.assess(nafs=['123', '124'],
+                            nafs_artisanat=['123', '456']) is True
+    assert condition.assess(nafs=['123', '124'],
+                            nafs_artisanat=['123']) is True
+    assert condition.assess(nafs=['123'],
+                            nafs_artisanat=['123', '456']) is True
+    assert condition.assess(nafs=['123', '124'],
+                            nafs_artisanat=['125', '456']) is False
+    assert condition.assess(nafs_artisanat=['125', '456']) is False

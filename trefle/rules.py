@@ -45,6 +45,10 @@ class LazyValue:
         value = ...
         if self.raw[0] == '«' and self.raw[-1] == '»':
             value = self.raw[1:-1]
+            if value in LABELS:
+                # This is an enum.
+                # FIXME: Should we have a dedicated registry instead?
+                value = LABELS[value]
         elif self.raw[0] == '[' and self.raw[-1] == ']':
             value = self.raw.split(',')  # TODO: type of members/constante?
         elif self.raw.isdigit():
@@ -202,6 +206,11 @@ def check_lt(data, left: LazyValue, right: LazyValue):
 @condition(r"(l'|les? |la )(?P<left>.+) est inférieure? ou égale? à (?P<right>[\w ]+)")
 def check_le(data, left: LazyValue, right: LazyValue):
     return left.get(**data) <= right.get(**data)
+
+
+@condition(r"(l'|les? |la )(?P<left>.+) contien(nen)?t au moins (une?) des (?P<right>[ \w«»]+)")
+def check_share_one(data, left: LazyValue, right: LazyValue):
+    return len(set(left.get(**data) or []) & set(right.get(**data) or [])) > 0
 
 
 @condition(r"(l'|les? |la )(?P<left>.+) fait partie (de l'|de la |des? |du )(?P<right>.+)")

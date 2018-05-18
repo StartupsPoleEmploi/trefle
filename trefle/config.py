@@ -130,6 +130,9 @@ def load_variables(data, output=None, namespace=None):
                 CONSTANTS[name] = more['value']
             if 'label' in more:
                 LABELS[more['label']] = name
+            if 'enum' in more:
+                for key, label in more['enum'].items():
+                    LABELS[label] = key
             if 'pattern' in more:
                 more['pattern'] = re.compile(more['pattern'])
         else:

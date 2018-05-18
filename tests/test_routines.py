@@ -1,3 +1,4 @@
+from datetime import datetime
 from pathlib import Path
 
 import pytest
@@ -26,6 +27,9 @@ def test_populate_formation_from_bytes():
         assert data['formation.domaines_formacode'] == {'224'}
         assert data['formation.foad'] is False
         assert data['formation.niveau_sortie'] == 4
+        assert data['formation.heures'] == 697
+        assert data['formation.mois'] == 6
+        assert data['formation.codes_financeur'] == {10, 5, 2}
 
 
 def test_populate_formation_from_bytes_with_empty_list():
@@ -50,3 +54,12 @@ async def test_populate_formation_upstream_error(mock_get):
     mock_get(status_code=500)
     with pytest.raises(exceptions.UpstreamError):
         await routine.populate_formation({'formation.numero': 'ZORGLUB'})
+
+
+@pytest.mark.parametrize('start,end,months', [
+    ((2018, 1, 1), (2018, 5, 31), 5),
+    ((2018, 1, 1), (2018, 5, 1), 4),
+    ((2018, 1, 31), (2018, 5, 1), 3),
+])
+def test_diff_month(start, end, months):
+    assert routine.diff_month(datetime(*start), datetime(*end)) == months

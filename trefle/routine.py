@@ -1,4 +1,5 @@
 import asyncio
+from datetime import datetime
 from pathlib import Path
 
 from lxml import etree
@@ -7,11 +8,17 @@ import yaml
 
 from .config import (CONSTANTS, ELIGIBILITE, FINANCEMENTS, PRISE_EN_CHARGE,
                      REMUNERATION, INTERCARIF_URL, DEP_TO_REG)
-from .exceptions import NoDataError, UpstreamError
+from .exceptions import UpstreamError
 from .rules import Rule
 
 with (Path(__file__).parent / 'config/idcc.yml').open() as f:
     IDCC = yaml.safe_load(f.read())
+
+
+def diff_month(start, end):
+    return ((end.year - start.year) * 12
+            + (end.month - start.month)
+            + round((end.day - start.day) / 30))
 
 
 def flatten(data, output=None, namespace=None):
@@ -90,6 +97,8 @@ async def http_get(url):
 
 
 def populate_formation_from_bytes(data, content):
+    # Doc for leoh: http://lheo.gouv.fr/langage
+    # TODO: deal with action or session optional ids.
     content = content.replace(b' xmlns="http://www.lheo.org/2.2"', b'')
     tree = etree.fromstring(content)
     root = tree.find('offres/formation')
@@ -106,6 +115,7 @@ def populate_formation_from_bytes(data, content):
         '//extras[@info="eligibilite-cpf"]/extra[@info="region"]/child::text()'))
     data['formation.codes_formacode'] = root.xpath('//domaine-formation/code-FORMACODE/child::text()')
     data['formation.niveau_sortie'] = root.xpath('number(//code-niveau-sortie/child::text())')
+    data['formation.heures'] = root.xpath('number(//nombre-heures-total/child::text())')
     data['formation.codes_certifinfo'] = [
         int(c) for c in root.xpath('//certification/code-CERTIFINFO/child::text()')]
     data['formation.domaines_formacode'] = set([
@@ -120,10 +130,19 @@ def populate_formation_from_bytes(data, content):
         {'constante.codes_certifinfo_caces'} & set(data['formation.codes_certifinfo']))
     data['formation.bec'] = bool(
         {'constante.codes_certifinfo_bec'} & set(data['formation.codes_certifinfo']))
-    data['formation.bilan_de_competences'] = bool(
-        {'constante.codes_certifinfo_bilan_de_competences'} & set(data['formation.codes_certifinfo']))
-    data['formation.permis_b'] = bool(
-        {'constante.codes_certifinfo_permis_b'} & set(data['formation.codes_certifinfo']))
+    data['formation.bilan_de_competences'] = (
+        'constante.codes_certifinfo_bilan_de_competences'
+        in set(data['formation.codes_certifinfo']))
+    data['formation.permis_b'] = ('constante.codes_certifinfo_permis_b'
+                                  in set(data['formation.codes_certifinfo']))
+    data['formation.codes_financeur'] = set([
+        int(c) for c in root.xpath('//organisme-financeur/code-financeur/child::text()')])
+
+    # Compute duration in months.
+    debut = datetime.strptime(root.xpath('//periode/debut/child::text()')[0], '%Y%m%d')
+    fin = datetime.strptime(
+        root.xpath('//periode/fin/child::text()')[0], '%Y%m%d')
+    data['formation.mois'] = diff_month(debut, fin)
 
 
 def financement_to_organisme(data, financement):
@@ -149,12 +168,14 @@ def load_organisme(name):
 
 
 def compute_prise_en_charge(data, financement):
+    # TODO: return more details (taux horaire, plafond, etc.)
     Rule.process(PRISE_EN_CHARGE, data)
     heures = data['beneficiaire.solde_cpf']
     if ('financement.plafond_horaire' in data
        and int(data['financement.plafond_horaire']) < heures):
         heures = int(data['financement.plafond_horaire'])
-    prise_en_charge = int(data['financement.taux_horaire']) * heures
+    # TODO: deal with financement.taux_horaire empty
+    prise_en_charge = int(data.get('financement.taux_horaire', 0)) * heures
     if ('financement.plafond_financier' in data
        and int(data['financement.plafond_financier']) < prise_en_charge):
         prise_en_charge = int(data['financement.plafond_financier'])

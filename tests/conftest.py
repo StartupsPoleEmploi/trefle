@@ -6,16 +6,20 @@ from trefle.rules import LABELS, VARIABLES
 
 @pytest.fixture
 def patch_variables():
-    before = VARIABLES.copy()
+    before_variables = VARIABLES.copy()
+    before_labels = LABELS.copy()
 
     def patch(new):
         VARIABLES.clear()
         VARIABLES.update(new)
+        LABELS.clear()
         LABELS.update({v.get('label'): k for k, v in VARIABLES.items()})
 
     yield patch
     VARIABLES.clear()
-    VARIABLES.update(before)
+    VARIABLES.update(before_variables)
+    LABELS.clear()
+    LABELS.update(before_labels)
 
 
 @pytest.fixture

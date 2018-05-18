@@ -4,7 +4,8 @@ from trefle.exceptions import WrongPointerError
 from trefle.rules import LazyValue
 
 
-def test_lazyvalue_with_string_constant():
+def test_lazyvalue_with_string_constant(patch_variables):
+    patch_variables({})  # Make sure we have no labels.
     lv = LazyValue('«CDI»')
     assert lv.get() == 'CDI'
 

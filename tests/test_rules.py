@@ -119,6 +119,28 @@ Si le nom de l'organisme est «BLAH»
     assert rules[1].actions[0].raw == 'le taux horaire applicable vaut 60'
 
 
+# TODO FIXME
+@pytest.mark.xfail
+def test_with_two_steps_up():
+    data = """
+Si le nom de l'organisme est «BLAH»
+    Si c'est une formation éligible COPANEF
+        Alors la rémunération possible est égale à 1
+Si le nom de l'organisme est «BLOOH»
+    Alors la rémunération possible est égale à 2
+"""
+    rules = Rule.load(data.split('\n'))
+    print(rules)
+    assert len(rules) == 2
+    assert len(rules[0].conditions) == 2
+    assert rules[0].conditions[0].raw == "le nom de l'organisme est «BLAH»"
+    assert rules[0].conditions[1].raw == "c'est une formation éligible COPANEF"
+    assert rules[0].actions[0].raw == 'la rémunération possible est égale à 1'
+    assert len(rules[1].conditions) == 1
+    assert rules[1].conditions[0].raw == "le nom de l'organisme est «BLOOH»"
+    assert rules[1].actions[0].raw == 'la rémunération possible est égale à 2'
+
+
 def test_should_raise_if_no_pattern_match_condition():
     data = """
 Si le nom de l'organisme pourrait bien être «BLAH»

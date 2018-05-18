@@ -1,9 +1,14 @@
 constante:
+  codes_financeur_individuel:
+    description: ensemble des codes financeur individuel
+    type: List[int]
+    value: [0, 5, 10]
+    label: codes financeur individuel
   codes_financeur_collectif:
     description: ensemble des codes financeurs collectifs
     type: List[int]
     value: [2, 4, 6, 8, 9, 11, 12, 13, 15, 16]
-    label: codes financeurs collectifs
+    label: codes financeur collectif
   idcc_artisanat:
     description: ensemble des codes IDCC de l'artisanat
     type: List[int]
@@ -164,11 +169,13 @@ formation:
     type: string
     public: true
     label: identifiant de la formation
-  code_financeur:
-    description: code financeur
+  codes_financeur:
+    description: codes des organismes financeurs de la formation
     type: List[int]
     source: catalogue
-    label: code financeur de la formation
+    label: codes financeur de la formation
+    gender: masculine
+    number: plural
   eligible_copanef:
     description: cette formation est au catalogue COPANEF
     type: boolean
