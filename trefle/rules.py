@@ -233,6 +233,12 @@ def check_equal(data, left: LazyValue, right: LazyValue):
 Line = namedtuple('Line', ['indent', 'keyword', 'sentence'])
 
 
+class StopRecursivity(Exception):
+
+    def __init__(self, indent):
+        self.indent = indent
+
+
 class Rule:
 
     def __init__(self, conditions, actions):
@@ -284,14 +290,20 @@ class Rule:
                 rules.append(Rule(tree[:], actions))
                 actions = []
             if next_.indent < curr.indent:
-                break  # Move back one step up in recursivity.
+                raise StopRecursivity(indent=next_.indent)
+                # Move back one step up in recursivity.
             if next_.indent > curr.indent:
                 inner = tree[:]
                 if next_.keyword in ('si', 'alors') and terms:
                     inner.append(Condition(terms[:], connective))
                     terms = []
                     connective = None
-                Rule.load(data, inner[:], rules)
+                try:
+                    Rule.load(data, inner[:], rules)
+                except StopRecursivity as err:
+                    if err.indent < curr.indent:
+                        raise
+                    continue  # We are on the right level.
         return rules
 
     @staticmethod

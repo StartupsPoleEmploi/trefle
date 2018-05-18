@@ -119,8 +119,6 @@ Si le nom de l'organisme est «BLAH»
     assert rules[1].actions[0].raw == 'le taux horaire applicable vaut 60'
 
 
-# TODO FIXME
-@pytest.mark.xfail
 def test_with_two_steps_up():
     data = """
 Si le nom de l'organisme est «BLAH»
