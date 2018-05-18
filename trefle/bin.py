@@ -18,18 +18,23 @@ from .validators import validate
 
 
 @cli(name='simulate')
-async def cli_simulate(*args):
+async def cli_simulate(*args, url=None, trace=False, feature=False):
     """Simulate a call to the API.
 
     Pass data as args in the form key=value.
     """
-    data = dict(a.split('=') for a in args)
+    data = {}
+    if url:
+        data.update(await data_from_lbf_url(url))
+    if args:
+        data.update(a.split('=') for a in args)
     start = time.perf_counter()
     financements = await simulate(**data)
     duration = (time.perf_counter() - start)
     print('*' * 80)
     print('Éligible')
-    for financement in financements:
+    eligibles = [f for f in financements if f['eligible']]
+    for financement in eligibles:
         if financement.get('eligible'):
             print('- Nom:', financement['nom'])
             print('  Description:', financement['description'][:150], '…')
@@ -41,6 +46,10 @@ async def cli_simulate(*args):
             print('')
     if not financements:
         print('Aucun financement éligible')
+    if feature:
+        if url:
+            print(f'# {url}')
+        make_feature(data, eligibles)
     print(f'Duration: {round(duration, 4)} second')
 
 
@@ -50,12 +59,7 @@ def serve():
     simple_server(app)
 
 
-@cli
-async def feature(url):
-    """Create a feature from an LBF URL.
-
-    :url: The raw LBF URL.
-    """
+async def data_from_lbf_url(url):
     charmap = os.environ.get('LBF_CHARMAP')
     if not charmap:
         sys.exit("You need the LBF_CHARMAP env var to be set. It's on the "
@@ -90,12 +94,11 @@ async def feature(url):
             if key in keymap}
     validate(data)
     await populate_formation(data)
-    del data['formation.numero']  # Prevent from calling twice the catalog api.
+    return data
 
-    financements = [f for f in await simulate(**data) if f['eligible']]
 
-    print(f"""# {url}
-Scénario: pouac pouac
+def make_feature(data, financements):
+    print(f"""Scénario: pouac pouac
     Soit un bénéficiaire et une formation""")
 
     for key, value in data.items():
