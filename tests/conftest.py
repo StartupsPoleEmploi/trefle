@@ -1,23 +1,23 @@
 from collections import namedtuple
 import pytest
 
-from trefle.rules import LABELS, VARIABLES
+from trefle.rules import LABELS, SCHEMA
 
 
 @pytest.fixture
-def patch_variables():
-    before_variables = VARIABLES.copy()
+def patch_schema():
+    before_schema = SCHEMA.copy()
     before_labels = LABELS.copy()
 
     def patch(new):
-        VARIABLES.clear()
-        VARIABLES.update(new)
+        SCHEMA.clear()
+        SCHEMA.update(new)
         LABELS.clear()
-        LABELS.update({v.get('label'): k for k, v in VARIABLES.items()})
+        LABELS.update({v.get('label'): k for k, v in SCHEMA.items()})
 
     yield patch
-    VARIABLES.clear()
-    VARIABLES.update(before_variables)
+    SCHEMA.clear()
+    SCHEMA.update(before_schema)
     LABELS.clear()
     LABELS.update(before_labels)
 

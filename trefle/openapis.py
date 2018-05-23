@@ -3,15 +3,15 @@ from pathlib import Path
 import yaml
 
 with (Path(__file__).parent / 'config/openapis.yml').open() as f:
-    SCHEMA = yaml.safe_load(f.read())
+    OPENAPI = yaml.safe_load(f.read())
 
-with (Path(__file__).parent / 'config/variables.yml').open() as f:
-    VARIABLES = yaml.safe_load(f.read())
+with (Path(__file__).parent / 'config/schema.yml').open() as f:
+    SCHEMA = yaml.safe_load(f.read())
 
 
 def add_schema(name, data=None):
     if data is None:
-        data = VARIABLES[name]
+        data = SCHEMA[name]
     schema_keys = ['type', 'format', 'description', 'nullable', 'enum',
                    'pattern']
     properties = {}
@@ -40,7 +40,7 @@ def add_schema(name, data=None):
     schema = {'properties': properties}
     if required:
         schema['required'] = required
-    SCHEMA['components']['schemas'][name] = schema
+    OPENAPI['components']['schemas'][name] = schema
 
 
 add_schema('beneficiaire')

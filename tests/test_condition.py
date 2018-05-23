@@ -1,7 +1,7 @@
 from trefle.rules import Condition
 
 
-VARIABLES = {
+SCHEMA = {
     'age': {
         'type': 'integer',
         'label': 'âge du bénéficiaire',
@@ -29,32 +29,32 @@ VARIABLES = {
 }
 
 
-def test_boolean_condition(patch_variables):
-    patch_variables(VARIABLES)
+def test_boolean_condition(patch_schema):
+    patch_schema(SCHEMA)
     condition = Condition(["c'est un bénéficiaire inscrit"])
     assert condition.assess(inscrit=True) is True
     assert condition.assess(inscrit=False) is False
     assert condition.assess(unknown=True) is False
 
 
-def test_negative_boolean_condition(patch_variables):
-    patch_variables(VARIABLES)
+def test_negative_boolean_condition(patch_schema):
+    patch_schema(SCHEMA)
     condition = Condition(["ce n'est pas un bénéficiaire inscrit"])
     assert condition.assess(inscrit=False) is True
     assert condition.assess(inscrit=True) is False
     assert condition.assess(unknown='X') is False
 
 
-def test_gt_int_condition(patch_variables):
-    patch_variables(VARIABLES)
+def test_gt_int_condition(patch_schema):
+    patch_schema(SCHEMA)
     condition = Condition(["l'âge du bénéficiaire est supérieur à 18"])
     assert condition.assess(age=19) is True
     assert condition.assess(age=17) is False
     assert condition.assess(age=18) is False
 
 
-def test_ge_int_condition(patch_variables):
-    patch_variables(VARIABLES)
+def test_ge_int_condition(patch_schema):
+    patch_schema(SCHEMA)
     condition = Condition(["l'âge du bénéficiaire "
                            "est supérieur ou égal à 18"])
     assert condition.assess(age=19) is True
@@ -62,8 +62,8 @@ def test_ge_int_condition(patch_variables):
     assert condition.assess(age=17) is False
 
 
-def test_le_int_condition(patch_variables):
-    patch_variables(VARIABLES)
+def test_le_int_condition(patch_schema):
+    patch_schema(SCHEMA)
     condition = Condition(["l'âge du bénéficiaire "
                            "est inférieur ou égal à 18"])
     assert condition.assess(age=17) is True
@@ -71,16 +71,16 @@ def test_le_int_condition(patch_variables):
     assert condition.assess(age=19) is False
 
 
-def test_equal_str_condition(patch_variables):
-    patch_variables(VARIABLES)
+def test_equal_str_condition(patch_schema):
+    patch_schema(SCHEMA)
     condition = Condition(["le type de contrat du bénéficiaire est «CDD»"])
     assert condition.assess(contrat='CDD') is True
     assert condition.assess(contrat='CDI') is False
     assert condition.assess(inscrit=False) is False
 
 
-def test_equal_OR_combined_condition(patch_variables):
-    patch_variables(VARIABLES)
+def test_equal_OR_combined_condition(patch_schema):
+    patch_schema(SCHEMA)
     condition = Condition(["c'est un bénéficiaire inscrit",
                            "l'âge du bénéficiaire est supérieur à 50"],
                           connective=Condition.OR)
@@ -90,8 +90,8 @@ def test_equal_OR_combined_condition(patch_variables):
     assert condition.assess(inscrit=False, age=39) is False
 
 
-def test_equal_AND_combined_condition(patch_variables):
-    patch_variables(VARIABLES)
+def test_equal_AND_combined_condition(patch_schema):
+    patch_schema(SCHEMA)
     condition = Condition(["c'est un bénéficiaire inscrit",
                            "l'âge du bénéficiaire est supérieur à 50"],
                           connective=Condition.AND)
@@ -100,8 +100,8 @@ def test_equal_AND_combined_condition(patch_variables):
     assert condition.assess(inscrit=True, age=49) is False
 
 
-def test_contains_condition(patch_variables):
-    patch_variables(VARIABLES)
+def test_contains_condition(patch_schema):
+    patch_schema(SCHEMA)
     condition = Condition(["le code naf du bénéficiaire fait partie des "
                            "codes naf de la formation"])
     assert condition.assess(naf='123', nafs=['123', '456']) is True
@@ -109,8 +109,8 @@ def test_contains_condition(patch_variables):
     assert condition.assess(unknown=True) is False
 
 
-def test_not_contains_condition(patch_variables):
-    patch_variables(VARIABLES)
+def test_not_contains_condition(patch_schema):
+    patch_schema(SCHEMA)
     condition = Condition(["le code naf du bénéficiaire ne fait pas partie "
                            "des codes naf de la formation"])
     assert condition.assess(naf='123', nafs=['123', '456']) is False
@@ -118,8 +118,8 @@ def test_not_contains_condition(patch_variables):
     assert condition.assess(unknown=True) is False
 
 
-def test_share_one(patch_variables):
-    patch_variables(VARIABLES)
+def test_share_one(patch_schema):
+    patch_schema(SCHEMA)
     condition = Condition(["les codes naf de la formation contiennent au "
                            "moins un des codes naf artisanat"])
     assert condition.assess(nafs=['123', '124'],

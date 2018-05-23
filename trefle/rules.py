@@ -4,7 +4,7 @@ import re
 
 from .exceptions import NoDataError, WrongPointerError, NoStepError
 
-VARIABLES = {}
+SCHEMA = {}
 LABELS = {}
 
 

@@ -1,4 +1,4 @@
-from .rules import VARIABLES
+from .rules import SCHEMA
 
 validators = []
 
@@ -38,7 +38,7 @@ def validator(func):
 def validate(data):
     # Check all fields at once, more user friendly.
     errors = {}
-    for name, schema in VARIABLES.items():
+    for name, schema in SCHEMA.items():
         value = validate_field(name, data.get(name), schema, errors)
         if name in data:  # Do not create unwanted None values.
             data[name] = value

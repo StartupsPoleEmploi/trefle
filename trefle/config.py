@@ -3,7 +3,7 @@ import re
 
 import yaml
 
-from .rules import Rule, VARIABLES, LABELS
+from .rules import Rule, SCHEMA, LABELS
 
 
 CONSTANTS = {}
@@ -114,7 +114,7 @@ DEP_TO_REG = {
 }
 
 
-def load_variables(data, output=None, namespace=None):
+def load_schema(data, output=None, namespace=None):
     if output is None:
         output = {}
     if namespace is None:
@@ -135,7 +135,7 @@ def load_variables(data, output=None, namespace=None):
             if 'pattern' in more:
                 more['pattern'] = re.compile(more['pattern'])
         else:
-            load_variables(more, output, ns)
+            load_schema(more, output, ns)
     return output
 
 
@@ -164,8 +164,8 @@ def load_rules(path):
 
 def init():
     print('Initializing config')
-    with (ROOT / 'config/variables.yml').open() as f:
-        VARIABLES.update(load_variables(yaml.safe_load(f.read())))
+    with (ROOT / 'config/schema.yml').open() as f:
+        SCHEMA.update(load_schema(yaml.safe_load(f.read())))
     for path in sorted((ROOT / 'config/modalites').glob('*.rules')):
         MODALITES.extend(load_rules(path))
     ELIGIBILITE.extend(load_rules(ROOT / 'config/eligibilite.rules'))

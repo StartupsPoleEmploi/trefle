@@ -1,7 +1,7 @@
-from trefle.config import load_variables, load_financements
+from trefle.config import load_schema, load_financements
 
 
-def test_load_variables():
+def test_load_schema():
     data = {
         'beneficiaire': {
             'cpf': {
@@ -20,7 +20,7 @@ def test_load_variables():
             }
         }
     }
-    assert load_variables(data) == {
+    assert load_schema(data) == {
         'beneficiaire.cpf': {
             'type': 'bool',
             'description': 'blah'

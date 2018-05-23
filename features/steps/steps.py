@@ -2,7 +2,7 @@ from behave import given, when, then, use_step_matcher
 from behave.api.async_step import async_run_until_complete
 
 from trefle.core import simulate
-from trefle.rules import LABELS, VARIABLES
+from trefle.rules import LABELS, SCHEMA
 
 use_step_matcher('re')
 
@@ -20,7 +20,7 @@ def setup(context):
 @given(r"(?:le |la |l')(?P<label>.+) vaut «?(?P<value>[^»]+)»?")
 def given_set_value(context, label, value):
     key = LABELS[label]
-    schema = VARIABLES[key]
+    schema = SCHEMA[key]
     if 'enum' in schema:
         # Allow to use enum label in scenario description.
         labels = revert(schema['enum'])
@@ -32,7 +32,7 @@ def given_set_value(context, label, value):
 
 @given(r"c'est une formation éligible région «(?P<label>.+)»")
 def given_set_coparef(context, label):
-    regions = revert(VARIABLES['beneficiaire.entreprise.region']['enum'])
+    regions = revert(SCHEMA['beneficiaire.entreprise.region']['enum'])
     ref = regions[label]
     context.data['formation.regions_coparef'] = [ref]
 

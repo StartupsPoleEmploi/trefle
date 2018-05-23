@@ -6,7 +6,7 @@ from urllib.parse import parse_qs, urlparse
 
 import phpserialize
 
-from .config import LABELS, VARIABLES
+from .config import LABELS, SCHEMA
 from .exceptions import NoDataError
 from .routine import populate_formation
 from .validators import validate
@@ -99,7 +99,7 @@ def make_feature(data, financements, name='Donne-moi un nom'):
     steps = ["Soit un bénéficiaire et une formation"]
 
     for key, value in data.items():
-        schema = VARIABLES[key]
+        schema = SCHEMA[key]
         label = schema['label']
         if 'enum' in schema:
             value = schema['enum'][value]
