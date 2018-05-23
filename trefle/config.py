@@ -167,7 +167,8 @@ def init():
     print('Initializing config')
     with (ROOT / 'config/schema.yml').open() as f:
         SCHEMA.update(load_schema(yaml.safe_load(f.read())))
-    for path in sorted((ROOT / 'config/modalites').glob('*.rules')):
+    paths = (ROOT / 'config/modalites').glob('*.rules')
+    for path in sorted(paths, key=lambda p: p.name.lower()):
         MODALITES.extend(load_rules(path))
     ELIGIBILITE.extend(load_rules(ROOT / 'config/eligibilite.rules'))
     with (ROOT / 'config/financements.yml').open() as f:
