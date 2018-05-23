@@ -107,10 +107,14 @@ def make_feature(data, financements, name='Donne-moi un nom'):
             value = f'«{value}»'
         if value != 0 and not value:
             continue
+        if key == 'formation.regions_coparef':
+            for val in value:
+                regions = SCHEMA['beneficiaire.entreprise.region']['enum']
+                val = regions[val]
+                steps.append(f"Et c'est une formation éligible région «{val}»")
+                continue
         if isinstance(value, (list, tuple, set)):
             value = '[' + ','.join(str(v) for v in value) + ']'
-        if key == 'beneficiaire.entreprise.region':
-            steps.append(f"Et c'est une formation éligible région {value}")
         elif isinstance(value, bool):
             # Et c'est un bénéficiaire de droit privé
             article = 'un' if schema.get('gender') == 'masculine' else 'une'

@@ -17,7 +17,7 @@ def setup(context):
     context.data = {}
 
 
-@given(r"(?:le |la |l')(?P<label>.+) vaut «?(?P<value>[^»]+)»?")
+@given(r"(?:les? |la |l')(?P<label>.+) (?:vaut|valent) «?(?P<value>[^»]+)»?")
 def given_set_value(context, label, value):
     key = LABELS[label]
     schema = SCHEMA[key]
@@ -80,7 +80,6 @@ def then_check_prise_en_charge(context, value):
 def then_check_remuneration(context, value):
     assert context.result['remuneration'] == int(value),\
         f'{context.result["remuneration"]} != {value}'
-
 
 
 @then("aucun financement n'est proposé")
