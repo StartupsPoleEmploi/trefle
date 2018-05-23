@@ -1,4 +1,4 @@
-from trefle.config import ELIGIBILITE, PRISE_EN_CHARGE, REMUNERATION
+from trefle.config import ELIGIBILITE, MODALITES
 from trefle.debugging import green, red, trace_rule, yellow
 
 
@@ -33,10 +33,8 @@ def load_rules(context):
     wanted = context.config.userdata.get('coverage', 'all')
     if wanted in ['all', 'eligibilite']:
         rules.extend(ELIGIBILITE)
-    if wanted in ['all', 'remuneration']:
-        rules.extend(REMUNERATION)
-    if wanted in ['all', 'prise_en_charge']:
-        rules.extend(PRISE_EN_CHARGE)
+    if wanted in ['all', 'modalites']:
+        rules.extend(MODALITES)
     return rules
 
 

@@ -7,8 +7,7 @@ from .rules import Rule, VARIABLES, LABELS
 
 
 CONSTANTS = {}
-PRISE_EN_CHARGE = []
-REMUNERATION = []
+MODALITES = []
 ELIGIBILITE = []
 FINANCEMENTS = {}
 ROOT = Path(__file__).parent
@@ -167,10 +166,8 @@ def init():
     print('Initializing config')
     with (ROOT / 'config/variables.yml').open() as f:
         VARIABLES.update(load_variables(yaml.safe_load(f.read())))
-    for path in (ROOT / 'config/prise_en_charge').glob('*.rules'):
-        PRISE_EN_CHARGE.extend(load_rules(path))
-    REMUNERATION.extend(load_rules(ROOT / 'config/remuneration.rules'))
-    ELIGIBILITE.extend(
-        load_rules(Path(__file__).parent / 'config/eligibilite.rules'))
+    for path in sorted((ROOT / 'config/modalites').glob('*.rules')):
+        MODALITES.extend(load_rules(path))
+    ELIGIBILITE.extend(load_rules(ROOT / 'config/eligibilite.rules'))
     with (ROOT / 'config/financements.yml').open() as f:
         load_financements(yaml.safe_load(f.read()), FINANCEMENTS)

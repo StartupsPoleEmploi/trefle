@@ -6,8 +6,8 @@ from lxml import etree
 import requests
 import yaml
 
-from .config import (CONSTANTS, ELIGIBILITE, FINANCEMENTS, PRISE_EN_CHARGE,
-                     REMUNERATION, INTERCARIF_URL, DEP_TO_REG)
+from .config import (CONSTANTS, ELIGIBILITE, FINANCEMENTS, MODALITES,
+                     INTERCARIF_URL, DEP_TO_REG)
 from .exceptions import UpstreamError
 from .rules import Rule
 
@@ -167,9 +167,9 @@ def load_organisme(name):
     }
 
 
-def compute_prise_en_charge(data, financement):
+def compute_modalites(data, financement):
     # TODO: return more details (taux horaire, plafond, etc.)
-    Rule.process(PRISE_EN_CHARGE, data)
+    Rule.process(MODALITES, data)
     heures = data['beneficiaire.solde_cpf']
     if ('financement.plafond_horaire' in data
        and int(data['financement.plafond_horaire']) < heures):
@@ -180,10 +180,6 @@ def compute_prise_en_charge(data, financement):
        and int(data['financement.plafond_financier']) < prise_en_charge):
         prise_en_charge = int(data['financement.plafond_financier'])
     financement['prise_en_charge'] = prise_en_charge
-
-
-def compute_remuneration(data, financement):
-    Rule.process(REMUNERATION, data)
     # Outside of CPF, remuneration is not defined (for now)
     financement['remuneration'] = data['financement.remuneration']
 
@@ -193,5 +189,4 @@ def populate_financement(data, financement):
         return
     data['financement.nom'] = financement['nom']
     financement_to_organisme(data, financement)
-    compute_prise_en_charge(data, financement)
-    compute_remuneration(data, financement)
+    compute_modalites(data, financement)

@@ -40,5 +40,4 @@ Get a more detailed coverage report:
 Only check one rules step coverage:
 
     behave --lang fr -D coverage=eligibilite
-    behave --lang fr -D coverage=remuneration
-    behave --lang fr -D coverage=prise_en_charge
+    behave --lang fr -D coverage=modalites

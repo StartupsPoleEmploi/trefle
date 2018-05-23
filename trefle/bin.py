@@ -4,12 +4,12 @@ from minicli import cli, run
 from roll.extensions import simple_server
 
 from .api import app
-from .config import ELIGIBILITE, PRISE_EN_CHARGE, REMUNERATION
+from .config import ELIGIBILITE, MODALITES
 from .core import simulate
-from .debugging import (data_from_lbf_url, green, make_feature, red,
-                        trace_rule, yellow)
+from .debugging import data_from_lbf_url, green, make_feature, red, trace_rule
 
-RULES = ELIGIBILITE + PRISE_EN_CHARGE + REMUNERATION
+
+RULES = ELIGIBILITE + MODALITES
 
 
 @cli(name='simulate')
