@@ -88,7 +88,12 @@ async def data_from_lbf_url(url):
 
     data = {keymap[key]: value.decode() for key, value in args.items()
             if key in keymap}
-    validate(data)
+    try:
+        validate(data)
+    except Exception as err:
+        print('Error validating data.')
+        print(data)
+        sys.exit(err)
     await populate_formation(data)
     del data['formation.numero']
     return data
