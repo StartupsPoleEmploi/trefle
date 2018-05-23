@@ -1,7 +1,7 @@
-Fonctionnalité: INTERGROS
-    Les scénarios de test d'INTERGROS.
+Fonctionnalité: Intergros
+    Les scénarios de test d'Intergros.
 
-Scénario: plafond financier INTERGROS sur formation VAE
+Scénario: plafond financier Intergros sur formation VAE
     Soit un bénéficiaire et une formation
     Et c'est un bénéficiaire de droit privé
     Et c'est une formation éligible COPANEF
@@ -14,15 +14,15 @@ Scénario: plafond financier INTERGROS sur formation VAE
     Et le code CPF de la formation vaut 200
     Quand je demande un calcul de financement
     Et je sélectionne le financement «CPF sur son temps de travail»
-    Alors l'organisme tutelle est «INTERGROS»
+    Alors l'organisme tutelle est «Intergros»
     Et le montant de prise en charge vaut 2000
     Et la rémunération vaut 1400
     Quand je sélectionne le financement «CPF hors temps de travail»
-    Alors l'organisme tutelle est «INTERGROS»
+    Alors l'organisme tutelle est «Intergros»
     Et le montant de prise en charge vaut 2000
     Et la rémunération vaut 0
 
-Scénario: plafond horaire INTERGROS sur formation VAE
+Scénario: plafond horaire Intergros sur formation VAE
     Soit un bénéficiaire et une formation
     Et c'est un bénéficiaire de droit privé
     Et c'est une formation éligible COPANEF
@@ -35,10 +35,10 @@ Scénario: plafond horaire INTERGROS sur formation VAE
     Et le code CPF de la formation vaut 200
     Quand je demande un calcul de financement
     Et je sélectionne le financement «CPF sur son temps de travail»
-    Alors l'organisme tutelle est «INTERGROS»
+    Alors l'organisme tutelle est «Intergros»
     Et le montant de prise en charge vaut 1250
     Et la rémunération vaut 1400
     Quand je sélectionne le financement «CPF hors temps de travail»
-    Alors l'organisme tutelle est «INTERGROS»
+    Alors l'organisme tutelle est «Intergros»
     Et le montant de prise en charge vaut 1250
     Et la rémunération vaut 0

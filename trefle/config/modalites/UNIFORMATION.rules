@@ -1,4 +1,4 @@
-Si le nom de l'organisme est «UNIFORMATION»
+Si le nom de l'organisme est «Uniformation»
 
     Si le nom du financement contient «CPF»
         Alors le taux horaire applicable vaut 40

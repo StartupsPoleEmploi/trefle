@@ -1,4 +1,4 @@
-Si le nom de l'organisme est «FAFIEC»
+Si le nom de l'organisme est «Fafiec»
     Alors le taux horaire applicable vaut 40
     Alors le plafond horaire applicable est égal au solde CPF du bénéficiaire
     Si le domaine FORMACODE langues fait partie de la liste des domaines FORMACODE de la formation

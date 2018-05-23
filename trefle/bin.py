@@ -51,6 +51,7 @@ async def cli_simulate(*args, url=None, trace=False, feature=False,
             print('  Démarches:', financement['demarches'][:150], '…')
             print('  Organisme:')
             print('      Nom:', financement['organisme']['nom'])
+            print('      Site web:', financement['organisme']['web'])
             print('  Financement:', financement['prise_en_charge'], '€')
             print('  Rémunération:', financement['remuneration'], '€')
             print('')

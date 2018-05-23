@@ -1,4 +1,4 @@
-Si le nom de l'organisme est «FORCO»
+Si le nom de l'organisme est «Forco»
     Alors le taux horaire applicable vaut 45
     Alors le plafond horaire applicable est égal au solde CPF du bénéficiaire
     Si le code CPF de la formation fait partie des codes CPF VAE

@@ -1,4 +1,4 @@
-Si le nom de l'organisme est «FAFIH»
+Si le nom de l'organisme est «Fafih»
     Alors le taux horaire applicable vaut 40
     Alors le plafond horaire applicable est égal au solde CPF du bénéficiaire
     # CQP => chercher CQP dans l'intitulé et dans l'objectif de la formation

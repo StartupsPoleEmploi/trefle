@@ -231,7 +231,7 @@ def check_not_contain(data, left: LazyValue, right: LazyValue):
     return left.get(**data) not in right.get(**data)
 
 
-@condition(r"(l'|les? |la )(?P<left>.+) (est|vaut) (?P<right>[\w«» +-]+)")
+@condition(r"(l'|les? |la )(?P<left>.+) (est|vaut) (?P<right>[\w«» +-\.]+)")
 def check_equal(data, left: LazyValue, right: LazyValue):
     return left.get(**data) == right.get(**data)
 

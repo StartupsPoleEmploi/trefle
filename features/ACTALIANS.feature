@@ -12,11 +12,11 @@ Scénario: cas nominal d'une formation COPANEF
     Et l'IDCC de l'établissement du bénéficiaire vaut 2706
     Quand je demande un calcul de financement
     Et je sélectionne le financement «CPF sur son temps de travail»
-    Alors l'organisme tutelle est «ACTALIANS»
+    Alors l'organisme tutelle est «Actalians»
     Et le montant de prise en charge vaut 3000
     Et la rémunération vaut 1400
     Quand je sélectionne le financement «CPF hors temps de travail»
-    Alors l'organisme tutelle est «ACTALIANS»
+    Alors l'organisme tutelle est «Actalians»
     Et le montant de prise en charge vaut 3000
     Et la rémunération vaut 0
 
@@ -35,11 +35,11 @@ Scénario: formation COPAREF IDF
     Et le type de contrat du bénéficiaire vaut CDI
     Quand je demande un calcul de financement
     Et je sélectionne le financement «CPF sur son temps de travail»
-    Alors l'organisme tutelle est «ACTALIANS»
+    Alors l'organisme tutelle est «Actalians»
     Et le montant de prise en charge vaut 2500
     Et la rémunération vaut 1600
     Quand je sélectionne le financement «CPF hors temps de travail»
-    Alors l'organisme tutelle est «ACTALIANS»
+    Alors l'organisme tutelle est «Actalians»
     Et le montant de prise en charge vaut 2500
     Et la rémunération vaut 0
 
@@ -59,11 +59,11 @@ Scénario: formation COPAREF IDF sur code INSEE commune
     Et le type de contrat du bénéficiaire vaut CDI
     Quand je demande un calcul de financement
     Et je sélectionne le financement «CPF sur son temps de travail»
-    Alors l'organisme tutelle est «ACTALIANS»
+    Alors l'organisme tutelle est «Actalians»
     Et le montant de prise en charge vaut 2500
     Et la rémunération vaut 1600
     Quand je sélectionne le financement «CPF hors temps de travail»
-    Alors l'organisme tutelle est «ACTALIANS»
+    Alors l'organisme tutelle est «Actalians»
     Et le montant de prise en charge vaut 2500
     Et la rémunération vaut 0
 

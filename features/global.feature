@@ -51,10 +51,10 @@ Scénario: pouac pouac
     Et ce n'est pas un permis B
     Quand je demande un calcul de financement
     Quand je sélectionne le financement «CPF sur son temps de travail»
-    Alors l'organisme tutelle est «FAFIEC»
+    Alors l'organisme tutelle est «Fafiec»
     Et le montant de prise en charge vaut 4800
     Et la rémunération vaut 1600
     Quand je sélectionne le financement «CPF hors temps de travail»
-    Alors l'organisme tutelle est «FAFIEC»
+    Alors l'organisme tutelle est «Fafiec»
     Et le montant de prise en charge vaut 4800
     Et la rémunération vaut 0

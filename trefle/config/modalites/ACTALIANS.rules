@@ -1,4 +1,4 @@
-Si le nom de l'organisme est «ACTALIANS»
+Si le nom de l'organisme est «Actalians»
     Alors le plafond horaire applicable vaut 150
     Si le code CPF de la formation fait partie des codes CPF VAE
         Alors le taux horaire applicable vaut 75

@@ -331,4 +331,16 @@ financement:
       public: true
       type: string
       label: nom de l'organisme
+    adresse:
+      public: true
+      type: string
+      label: adresse postale de l'organisme
+    telephone:
+      public: true
+      type: string
+      label: téléphone de l'organisme
+    web:
+      public: true
+      type: string
+      label: site web de l'organisme
 financements: {}

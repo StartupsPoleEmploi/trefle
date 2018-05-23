@@ -10,6 +10,7 @@ CONSTANTS = {}
 MODALITES = []
 ELIGIBILITE = []
 FINANCEMENTS = {}
+ORGANISMES = {}
 ROOT = Path(__file__).parent
 
 INTERCARIF_URL = 'https://labonneformation.pole-emploi.fr/ws_intercarif'
@@ -171,3 +172,5 @@ def init():
     ELIGIBILITE.extend(load_rules(ROOT / 'config/eligibilite.rules'))
     with (ROOT / 'config/financements.yml').open() as f:
         load_financements(yaml.safe_load(f.read()), FINANCEMENTS)
+    with (ROOT / 'config/organismes.yml').open() as f:
+        ORGANISMES.update(yaml.safe_load(f.read()))

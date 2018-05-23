@@ -1,6 +1,6 @@
 2706:
     Convention collective: Administrateurs & mandataires judiciaires
-    OPCA: ACTALIANS
+    OPCA: Actalians
     OPACIF: FONGECIF
 1412:
     Convention collective: Aéraulique, thermique et frigorifique
@@ -8,49 +8,49 @@
     OPACIF: FONGECIF
 1391:
     Convention collective: "Aéroports Région parisienne: manutention et nettoyage"
-    OPCA: OPCALIA
+    OPCA: Opcalia
     OPACIF: FONGECIF
 5576:
     Convention collective: AGEFOS PME
-    # OPCA: AGEFOS PME OU OPCALIA
+    # OPCA: AGEFOS PME OU Opcalia
     OPCA: AGEFOS PME
     OPACIF: FONGECIF
 5577:
     Convention collective: "Agence Française de Développement: statut"
-    # OPCA: AGEFOS PME OU OPCALIA
+    # OPCA: AGEFOS PME OU Opcalia
     OPCA: AGEFOS PME
     OPACIF: FONGECIF
 5578:
     Convention collective: Agence Nationale pour les Chèques Vacances
-    # OPCA: AGEFOS PME OU OPCALIA
+    # OPCA: AGEFOS PME OU Opcalia
     OPCA: AGEFOS PME
     OPACIF: FONGECIF
 5564:
     Convention collective: 'Agence Pour l’Emploi des Cadres (APEC)'
-    # OPCA: AGEFOS PME OU OPCALIA
+    # OPCA: AGEFOS PME OU Opcalia
     OPCA: AGEFOS PME
     OPACIF: FONGECIF
 2397:
     Convention collective: Agences de mannequins
-    # OPCA: AGEFOS PME OU OPCALIA
+    # OPCA: AGEFOS PME OU Opcalia
     OPCA: AGEFOS PME
     OPACIF: FONGECIF
 2978:
     Convention collective: Agences de recherches privées
-    # OPCA: AGEFOS PME OU OPCALIA
+    # OPCA: AGEFOS PME OU Opcalia
     OPCA: AGEFOS PME
     OPACIF: FONGECIF
 2941:
     Convention collective: "Aide à domicile: aide accompagnement soins et services à domicile"
-    OPCA: UNIFORMATION
-    OPACIF: UNIFORMATION
+    OPCA: Uniformation
+    OPACIF: Uniformation
 1314:
     Convention collective: "Alimentation : gérants mandataires non salariés"
-    OPCA: FORCO
+    OPCA: Forco
     OPACIF: FONGECIF
 1341:
     Convention collective: "Alimentation : industries agroalimentaires de la Réunion"
-    # OPCA: AGEFOS PME OU OPCALIA
+    # OPCA: AGEFOS PME OU Opcalia
     OPCA: AGEFOS PME
     OPACIF: FONGECIF
 3109:
@@ -59,12 +59,12 @@
     OPACIF: FONGECIF
 5559:
     Convention collective: Alliance emploi
-    # OPCA: AGEFOS PME OU OPCALIA
+    # OPCA: AGEFOS PME OU Opcalia
     OPCA: AGEFOS PME
     OPACIF: FONGECIF
 7515:
     Convention collective: Aménagement foncier et établissement rural SAFER
-    # OPCA: AGEFOS PME OU OPCALIA
+    # OPCA: AGEFOS PME OU Opcalia
     OPCA: AGEFOS PME
     OPACIF: FONGECIF
 1880:
@@ -77,13 +77,13 @@
     OPACIF: FONGECIF
 824:
     Convention collective: Animateurs éducation Populaire
-    # OPCA: AGEFOS PME OU OPCALIA
+    # OPCA: AGEFOS PME OU Opcalia
     OPCA: AGEFOS PME
     OPACIF: FONGECIF
 1518:
     Convention collective: Animation (ex socio-culturelle)
-    OPCA: UNIFORMATION
-    OPACIF: UNIFORMATION
+    OPCA: Uniformation
+    OPACIF: Uniformation
 7010:
     Convention collective: Aquaculture (exploitations)
     OPCA: FAFSEA
@@ -98,27 +98,27 @@
     OPACIF: FAFSEA
 2666:
     Convention collective: "'Architecture: conseils d’architecture d’urbanisme et d’environnement'"
-    OPCA: UNIFORMATION
-    OPACIF: UNIFORMATION
+    OPCA: Uniformation
+    OPACIF: Uniformation
 2332:
     Convention collective: "Architecture: entreprises"
-    OPCA: ACTALIANS
+    OPCA: Actalians
     OPACIF: FONGECIF
 5567:
     Convention collective: ARTE
-    OPCA: AFDAS
-    OPACIF: AFDAS
+    OPCA: Afdas
+    OPACIF: Afdas
 1734:
     Convention collective: "Artistes-interprètes : émissions de télévision"
-    OPCA: AFDAS
-    OPACIF: AFDAS
+    OPCA: Afdas
+    OPACIF: Afdas
 1285:
     Convention collective: "Artistique : entreprises artistiques et culturelles"
-    OPCA: AFDAS
-    OPACIF: AFDAS
+    OPCA: Afdas
+    OPACIF: Afdas
 2272:
     Convention collective: Assainissement et maintenance industrielle
-    # OPCA: AGEFOS PME OU OPCALIA
+    # OPCA: AGEFOS PME OU Opcalia
     OPCA: AGEFOS PME
     OPACIF: FONGECIF
 1801:
@@ -131,7 +131,7 @@
     OPACIF: FONGECIF
 5539:
     Convention collective: Association pour la Formation Professionnelle des Adultes (AFPA)
-    # OPCA: AGEFOS PME OU OPCALIA
+    # OPCA: AGEFOS PME OU Opcalia
     OPCA: AGEFOS PME
     OPACIF: FONGECIF
 3160:
@@ -168,11 +168,11 @@
     OPACIF: FONGECIF
 2642:
     Convention collective: "Audiovisuel : production"
-    OPCA: AFDAS
-    OPACIF: AFDAS
+    OPCA: Afdas
+    OPACIF: Afdas
 1247:
     Convention collective: Auto moto de la Réunion
-    OPCA: OPCALIA
+    OPCA: Opcalia
     OPACIF: FONGECIF
 1090:
     Convention collective: Automobile
@@ -180,17 +180,17 @@
     OPACIF: FONGECIF
 2360:
     Convention collective: "Automobile : Guyane"
-    # OPCA: AGEFOS PME OU OPCALIA
+    # OPCA: AGEFOS PME OU Opcalia
     OPCA: AGEFOS PME
     OPACIF: FONGECIF
 2583:
     Convention collective: Autoroutes
-    # OPCA: AGEFOS PME OU OPCALIA
+    # OPCA: AGEFOS PME OU Opcalia
     OPCA: AGEFOS PME
     OPACIF: FONGECIF
 2329:
     Convention collective: "Avocats au Conseil d'État et à la Cour de cassation : personnel salarié"
-    OPCA: ACTALIANS
+    OPCA: Actalians
     OPACIF: FONGECIF
 2120:
     Convention collective: Banque
@@ -202,7 +202,7 @@
     OPACIF: UNAGECIF
 5560:
     Convention collective: "Banque: Banque Populaire"
-    OPCA: OPCALIA
+    OPCA: Opcalia
     OPACIF: FONGECIF
 5005:
     Convention collective: "'Banque: Caisse d’Epargne'"
@@ -210,309 +210,309 @@
     OPACIF: FONGECIF
 2704:
     Convention collective: Banques de la Guadeloupe, de Saint-Martin et de Saint-Barthélémy
-    # OPCA: AGEFOS PME OU OPCALIA
+    # OPCA: AGEFOS PME OU Opcalia
     OPCA: AGEFOS PME
     OPACIF: FONGECIF
 5542:
     Convention collective: Basket ball professionnel
-    # OPCA: AGEFOS PME OU OPCALIA
+    # OPCA: AGEFOS PME OU Opcalia
     OPCA: AGEFOS PME
     OPACIF: FONGECIF
 2707:
     Convention collective: "Bâtiment : ETAM (Région parisienne hors Seine et Marne)"
-    OPCA: CONSTRUCTYS
+    OPCA: Constructys
     OPACIF: FONGECIF
 190:
     Convention collective: "Bâtiment : Ille-et-Vilaine"
-    OPCA: CONSTRUCTYS
+    OPCA: Constructys
     OPACIF: FONGECIF
 142:
     Convention collective: "Bâtiment : ouviers (Haute-Saône)"
-    OPCA: CONSTRUCTYS
+    OPCA: Constructys
     OPACIF: FONGECIF
 1668:
     Convention collective: "Bâtiment : ouvriers (Alsace)"
-    OPCA: CONSTRUCTYS
+    OPCA: Constructys
     OPACIF: FONGECIF
 2194:
     Convention collective: "Bâtiment : ouvriers (Aquitaine -10 salariés)"
-    OPCA: CONSTRUCTYS
+    OPCA: Constructys
     OPACIF: FONGECIF
 2195:
     Convention collective: "Bâtiment : ouvriers (Aquitaine +10 salariés)"
-    OPCA: CONSTRUCTYS
+    OPCA: Constructys
     OPACIF: FONGECIF
 208:
     Convention collective: "Bâtiment : ouvriers (Belfort)"
-    OPCA: CONSTRUCTYS
+    OPCA: Constructys
     OPACIF: FONGECIF
 1876:
     Convention collective: "Bâtiment : ouvriers (Bretagne)"
-    OPCA: CONSTRUCTYS
+    OPCA: Constructys
     OPACIF: FONGECIF
 2585:
     Convention collective: "Bâtiment : ouvriers (Champagne-Ardennes - 10 salariés)"
-    OPCA: CONSTRUCTYS
+    OPCA: Constructys
     OPACIF: FONGECIF
 2584:
     Convention collective: "Bâtiment : ouvriers (Champagne-Ardennes + 10 salariés)"
-    OPCA: CONSTRUCTYS
+    OPCA: Constructys
     OPACIF: FONGECIF
 1638:
     Convention collective: "Bâtiment : ouvriers (Cher - 10 salariés)"
-    OPCA: CONSTRUCTYS
+    OPCA: Constructys
     OPACIF: FONGECIF
 1642:
     Convention collective: "Bâtiment : ouvriers (Cher +10 salariés)"
-    OPCA: CONSTRUCTYS
+    OPCA: Constructys
     OPACIF: FONGECIF
 2145:
     Convention collective: "Bâtiment : ouvriers (Corse)"
-    OPCA: CONSTRUCTYS
+    OPCA: Constructys
     OPACIF: FONGECIF
 2667:
     Convention collective: "Bâtiment : ouvriers (Drôme-Ardèche)"
-    OPCA: CONSTRUCTYS
+    OPCA: Constructys
     OPACIF: FONGECIF
 365:
     Convention collective: "Bâtiment : ouvriers (Gers)"
-    OPCA: CONSTRUCTYS
+    OPCA: Constructys
     OPACIF: FONGECIF
 134:
     Convention collective: "Bâtiment : ouvriers (Hautes-Pyrénées)"
-    OPCA: CONSTRUCTYS
+    OPCA: Constructys
     OPACIF: FONGECIF
 361:
     Convention collective: "Bâtiment : ouvriers (Indre)"
-    OPCA: CONSTRUCTYS
+    OPCA: Constructys
     OPACIF: FONGECIF
 2032:
     Convention collective: "Bâtiment : ouvriers (Isère - 10 salariés)"
-    OPCA: CONSTRUCTYS
+    OPCA: Constructys
     OPACIF: FONGECIF
 2033:
     Convention collective: "Bâtiment : ouvriers (Isère +10 salariés)"
-    OPCA: CONSTRUCTYS
+    OPCA: Constructys
     OPACIF: FONGECIF
 132:
     Convention collective: "Bâtiment : ouvriers (la Marne)"
-    OPCA: CONSTRUCTYS
+    OPCA: Constructys
     OPACIF: FONGECIF
 2267:
     Convention collective: "Bâtiment : ouvriers (Languedoc-Roussillon - 10 salariés)"
-    OPCA: CONSTRUCTYS
+    OPCA: Constructys
     OPACIF: FONGECIF
 409:
     Convention collective: "Bâtiment : ouvriers (Limousin)"
-    OPCA: CONSTRUCTYS
+    OPCA: Constructys
     OPACIF: FONGECIF
 797:
     Convention collective: "Bâtiment : ouvriers (Loir-et-Cher)"
-    OPCA: CONSTRUCTYS
+    OPCA: Constructys
     OPACIF: FONGECIF
 1886:
     Convention collective: "Bâtiment : ouvriers (Loire)"
-    OPCA: CONSTRUCTYS
+    OPCA: Constructys
     OPACIF: FONGECIF
 456:
     Convention collective: "Bâtiment : ouvriers (Morbihan)"
-    OPCA: CONSTRUCTYS
+    OPCA: Constructys
     OPACIF: FONGECIF
 1596:
     Convention collective: "Bâtiment : ouvriers (Nationale - 10 salariés)"
-    OPCA: CONSTRUCTYS
+    OPCA: Constructys
     OPACIF: FONGECIF
 1597:
     Convention collective: "Bâtiment : ouvriers (Nationale + 10 salariés)"
-    OPCA: CONSTRUCTYS
+    OPCA: Constructys
     OPACIF: FONGECIF
 1785:
     Convention collective: "Bâtiment : ouvriers (Normandie Basse)"
-    OPCA: CONSTRUCTYS
+    OPCA: Constructys
     OPACIF: FONGECIF
 1722:
     Convention collective: "Bâtiment : ouvriers (Normandie Haute)"
-    OPCA: CONSTRUCTYS
+    OPCA: Constructys
     OPACIF: FONGECIF
 2625:
     Convention collective: "Bâtiment : ouvriers (Pays de la Loire)"
-    OPCA: CONSTRUCTYS
+    OPCA: Constructys
     OPACIF: FONGECIF
 1779:
     Convention collective: "'Bâtiment : ouvriers (Provence-Alpes-Côte d’Azur - 10 salariés)'"
-    OPCA: CONSTRUCTYS
+    OPCA: Constructys
     OPACIF: FONGECIF
 1780:
     Convention collective: "'Bâtiment : ouvriers (Provence-Alpes-Côte d’Azur + 10 salariés)'"
-    OPCA: CONSTRUCTYS
+    OPCA: Constructys
     OPACIF: FONGECIF
 2354:
     Convention collective: "Bâtiment : ouvriers (Savoie)"
-    OPCA: CONSTRUCTYS
+    OPCA: Constructys
     OPACIF: FONGECIF
 1758:
     Convention collective: "Bâtiment : ouvriers (Tarn - 10 salariés)"
-    OPCA: CONSTRUCTYS
+    OPCA: Constructys
     OPACIF: FONGECIF
 1759:
     Convention collective: "Bâtiment : ouvriers (Tarn + 10 salariés)"
-    OPCA: CONSTRUCTYS
+    OPCA: Constructys
     OPACIF: FONGECIF
 149:
     Convention collective: "Bâtiment : ouvriers (Vienne)"
-    OPCA: CONSTRUCTYS
+    OPCA: Constructys
     OPACIF: FONGECIF
 152:
     Convention collective: "Bâtiment : ouvriers (Yonne)"
-    OPCA: CONSTRUCTYS
+    OPCA: Constructys
     OPACIF: FONGECIF
 1740:
     Convention collective: "Bâtiment : ouvriers du bâtiment de la région parisienne"
-    OPCA: CONSTRUCTYS
+    OPCA: Constructys
     OPACIF: FONGECIF
 2420:
     Convention collective: Bâtiment cadres
-    OPCA: CONSTRUCTYS
+    OPCA: Constructys
     OPACIF: FONGECIF
 357:
     Convention collective: 'Bâtiment de l’équipement électrique et des travaux publics (Haute-Garonne)'
-    OPCA: CONSTRUCTYS
+    OPCA: Constructys
     OPACIF: FONGECIF
 76:
     Convention collective: Bâtiment de la Charente
-    OPCA: CONSTRUCTYS
+    OPCA: Constructys
     OPACIF: FONGECIF
 71:
     Convention collective: Bâtiment du Finistère
-    OPCA: CONSTRUCTYS
+    OPCA: Constructys
     OPACIF: FONGECIF
 140:
     Convention collective: Bâtiment du Puy-de-Dôme
-    OPCA: CONSTRUCTYS
+    OPCA: Constructys
     OPACIF: FONGECIF
 279:
     Convention collective: "'Bâtiment et des travaux publics : ouvriers (l’Allier)'"
-    OPCA: CONSTRUCTYS
+    OPCA: Constructys
     OPACIF: FONGECIF
 171:
     Convention collective: "Bâtiment et des travaux publics : ouvriers (Seine- et-Marne)"
-    OPCA: CONSTRUCTYS
+    OPCA: Constructys
     OPACIF: FONGECIF
 157:
     Convention collective: "Bâtiment et des travaux publics : ouvriers (Vosges)"
-    OPCA: CONSTRUCTYS
+    OPCA: Constructys
     OPACIF: FONGECIF
 1062:
     Convention collective: "Bâtiment et travaux publics : Guadeloupe (ETAM)"
-    OPCA: CONSTRUCTYS
+    OPCA: Constructys
     OPACIF: FONGECIF
 3144:
     Convention collective: "Bâtiment et travaux publics : Guadeloupe (ETAM)"
-    OPCA: CONSTRUCTYS
+    OPCA: Constructys
     OPACIF: FONGECIF
 2328:
     Convention collective: "Bâtiment et travaux publics : Guadeloupe (ouvriers)"
-    OPCA: CONSTRUCTYS
+    OPCA: Constructys
     OPACIF: FONGECIF
 3128:
     Convention collective: "Bâtiment et travaux publics : Guyane (ETAM)"
-    OPCA: CONSTRUCTYS
+    OPCA: Constructys
     OPACIF: FONGECIF
 3204:
     Convention collective: "Bâtiment et travaux publics : Guyane (ingénieurs et cadres)"
-    OPCA: CONSTRUCTYS
+    OPCA: Constructys
     OPACIF: FONGECIF
 2870:
     Convention collective: "Bâtiment et travaux publics : Guyane (ouvriers)"
-    OPCA: CONSTRUCTYS
+    OPCA: Constructys
     OPACIF: FONGECIF
 1402:
     Convention collective: "Bâtiment et travaux publics : Haute-Savoie"
-    OPCA: CONSTRUCTYS
+    OPCA: Constructys
     OPACIF: FONGECIF
 137:
     Convention collective: "Bâtiment et travaux publics : Indre-et-Loire"
-    OPCA: CONSTRUCTYS
+    OPCA: Constructys
     OPACIF: FONGECIF
 7:
     Convention collective: "Bâtiment et travaux publics : industrie (Rhône)"
-    OPCA: CONSTRUCTYS
+    OPCA: Constructys
     OPACIF: FONGECIF
 627:
     Convention collective: "Bâtiment et travaux publics : la Réunion (ETAM)"
-    OPCA: CONSTRUCTYS
+    OPCA: Constructys
     OPACIF: FONGECIF
 771:
     Convention collective: "Bâtiment et travaux publics : la Réunion (ingénieurs assimilés et cadres)"
-    OPCA: CONSTRUCTYS
+    OPCA: Constructys
     OPACIF: FONGECIF
 2389:
     Convention collective: "Bâtiment et travaux publics : la Réunion (ouvriers)"
-    OPCA: CONSTRUCTYS
+    OPCA: Constructys
     OPACIF: FONGECIF
 749:
     Convention collective: "Bâtiment et travaux publics : Martinique (ouvriers)"
-    OPCA: CONSTRUCTYS
+    OPCA: Constructys
     OPACIF: FONGECIF
 80:
     Convention collective: "Bâtiment et travaux publics : Moselle"
-    OPCA: CONSTRUCTYS
+    OPCA: Constructys
     OPACIF: FONGECIF
 252:
     Convention collective: "Bâtiment et travaux publics : ouvriers (Ain)"
-    OPCA: CONSTRUCTYS
+    OPCA: Constructys
     OPACIF: FONGECIF
 372:
     Convention collective: "Bâtiment et travaux publics : ouvriers (Ariège)"
-    OPCA: CONSTRUCTYS
+    OPCA: Constructys
     OPACIF: FONGECIF
 585:
     Convention collective: "Bâtiment et travaux publics : ouvriers (Aube)"
-    OPCA: CONSTRUCTYS
+    OPCA: Constructys
     OPACIF: FONGECIF
 192:
     Convention collective: "Bâtiment et travaux publics : ouvriers (Doubs)"
-    OPCA: CONSTRUCTYS
+    OPCA: Constructys
     OPACIF: FONGECIF
 599:
     Convention collective: "Bâtiment et travaux publics : ouvriers (Meurthe-et-Moselle)"
-    OPCA: CONSTRUCTYS
+    OPCA: Constructys
     OPACIF: FONGECIF
 146:
     Convention collective: "Bâtiment et travaux publics : ouvriers (Nièvre)"
-    OPCA: CONSTRUCTYS
+    OPCA: Constructys
     OPACIF: FONGECIF
 362:
     Convention collective: "Bâtiment et travaux publics : ouvriers (Tarn-et- Garonne)"
-    OPCA: CONSTRUCTYS
+    OPCA: Constructys
     OPACIF: FONGECIF
 351:
     Convention collective: "Bâtiment et travaux publics : ouvriers (Vendée)"
-    OPCA: CONSTRUCTYS
+    OPCA: Constructys
     OPACIF: FONGECIF
 416:
     Convention collective: "'Bâtiment et travaux publics : ouvriers Côtes-du-Nord (Côtes d’Armor)'"
-    OPCA: CONSTRUCTYS
+    OPCA: Constructys
     OPACIF: FONGECIF
 1049:
     Convention collective: "Bâtiment et travaux publics : Saint-Pierre-et-Miquelon"
-    OPCA: CONSTRUCTYS
+    OPCA: Constructys
     OPACIF: FONGECIF
 3107:
     Convention collective: Bâtiment et travaux publics (et annexes) de la Martinique (ETAM)
-    OPCA: CONSTRUCTYS
+    OPCA: Constructys
     OPACIF: FONGECIF
 436:
     Convention collective: "Bâtiment et travaux publics: ouvriers (Charente-Maritime)"
-    OPCA: CONSTRUCTYS
+    OPCA: Constructys
     OPACIF: FONGECIF
 2609:
     Convention collective: Bâtiment ETAM
-    OPCA: CONSTRUCTYS
+    OPCA: Constructys
     OPACIF: FONGECIF
 1843:
     Convention collective: "Bâtiment: cadres Région parisienne"
-    OPCA: CONSTRUCTYS
+    OPCA: Constructys
     OPACIF: FONGECIF
 7001:
     Convention collective: Bétail et viande (coopératives et SICA)
@@ -524,11 +524,11 @@
     OPACIF: FONGECIF
 2002:
     Convention collective: "Blanchisserie, teinturerie, nettoyage : interrégionale"
-    OPCA: OPCALIA
+    OPCA: Opcalia
     OPACIF: FONGECIF
 528:
     Convention collective: "Blanchisserie, teinturerie, nettoyage : Nord-Pas-de-Calais"
-    OPCA: OPCALIA
+    OPCA: Opcalia
     OPACIF: FONGECIF
 2089:
     Convention collective: "Bois : panneaux à base de bois"
@@ -540,7 +540,7 @@
     OPACIF: FONGECIF
 1947:
     Convention collective: 'Bois d’œuvre et produits dérivés'
-    OPCA: INTERGROS
+    OPCA: Intergros
     OPACIF: FONGECIF
 172:
     Convention collective: Bois de pin maritime en forêt de Gascogne
@@ -548,21 +548,21 @@
     OPACIF: FONGECIF
 1536:
     Convention collective: "Boissons : distributeurs conseils hors domicile"
-    OPCA: INTERGROS
+    OPCA: Intergros
     OPACIF: OPCALIM
 985:
     Convention collective: "Boucherie charcuterie: personnel (Haut-Rhin)"
-    # OPCA: AGEFOS PME OU OPCALIA
+    # OPCA: AGEFOS PME OU Opcalia
     OPCA: AGEFOS PME
     OPACIF: FONGECIF
 992:
     Convention collective: Boucherie, boucherie-charcuterie, boucherie hippophagique
-    # OPCA: AGEFOS PME OU OPCALIA
+    # OPCA: AGEFOS PME OU Opcalia
     OPCA: AGEFOS PME
     OPACIF: FONGECIF
 769:
     Convention collective: "Boucherie: Région lyonnaise (Rhône)"
-    # OPCA: AGEFOS PME OU OPCALIA
+    # OPCA: AGEFOS PME OU Opcalia
     OPCA: AGEFOS PME
     OPACIF: FONGECIF
 845:
@@ -583,12 +583,12 @@
     OPACIF: FONGECIF
 2250:
     Convention collective: "Boulangerie-pâtisserie : Guyane"
-    # OPCA: AGEFOS PME OU OPCALIA
+    # OPCA: AGEFOS PME OU Opcalia
     OPCA: AGEFOS PME
     OPACIF: FONGECIF
 901:
     Convention collective: "Boulangerie-pâtisserie : Martinique"
-    # OPCA: AGEFOS PME OU OPCALIA
+    # OPCA: AGEFOS PME OU Opcalia
     OPCA: AGEFOS PME
     OPACIF: FONGECIF
 1747:
@@ -605,59 +605,59 @@
     OPACIF: FONGECIF
 1543:
     Convention collective: Boyauderie
-    # OPCA: AGEFOS PME OU OPCALIA
+    # OPCA: AGEFOS PME OU Opcalia
     OPCA: AGEFOS PME
     OPACIF: FONGECIF
 1606:
     Convention collective: Bricolage (vente au détail en libre-service)
-    OPCA: FORCO
+    OPCA: Forco
     OPACIF: FONGECIF
 1486:
     Convention collective: 'Bureaux d’études techniques, cabinets d’ingénieurs-conseils et société de conseil'
-    OPCA: FAFIEC
+    OPCA: Fafiec
     OPACIF: FONGECIF
 1850:
     Convention collective: "'Cabinet d’avocats: Avocats salariés'"
-    OPCA: ACTALIANS
+    OPCA: Actalians
     OPACIF: FONGECIF
 1000:
     Convention collective: "'Cabinets d’avocats : personnel salarié'"
-    OPCA: ACTALIANS
+    OPCA: Actalians
     OPACIF: FONGECIF
 426:
     Convention collective: "'Cabinets d’avocats: personnel (Nantes Loire-Atlantique)'"
-    # OPCA: AGEFOS PME OU OPCALIA
+    # OPCA: AGEFOS PME OU Opcalia
     OPCA: AGEFOS PME
     OPACIF: FONGECIF
 1147:
     Convention collective: Cabinets médicaux
-    OPCA: ACTALIANS
+    OPCA: Actalians
     OPACIF: FONGECIF
 2060:
     Convention collective: Cafétérias
-    OPCA: FAFIH
+    OPCA: Fafih
     OPACIF: FONGECIF
 1618:
     Convention collective: "Camping : industries"
-    # OPCA: AGEFOS PME OU OPCALIA
+    # OPCA: AGEFOS PME OU Opcalia
     OPCA: AGEFOS PME
     OPACIF: FONGECIF
 2046:
     Convention collective: "Cancer : centres de lutte"
-    OPCA: UNIFAF
-    OPACIF: UNIFAF
+    OPCA: Unifaf
+    OPACIF: Unifaf
 45:
     Convention collective: Caoutchouc
-    OPCA: OPCALIA
+    OPCA: Opcalia
     OPACIF: FONGECIF
 694:
     Convention collective: Carénage de Saint-Nazaire et sa région (Loire-Atlantique)
-    # OPCA: AGEFOS PME OU OPCALIA
+    # OPCA: AGEFOS PME OU Opcalia
     OPCA: AGEFOS PME
     OPACIF: FONGECIF
 195:
     Convention collective: "Carénage piquage et travaux maritimes connexes: entreprises Région havraise (Seine-Maritime)"
-    # OPCA: AGEFOS PME OU OPCALIA
+    # OPCA: AGEFOS PME OU Opcalia
     OPCA: AGEFOS PME
     OPACIF: FONGECIF
 211:
@@ -678,22 +678,22 @@
     OPACIF: FONGECIF
 2257:
     Convention collective: Casinos
-    OPCA: FAFIH
+    OPCA: Fafih
     OPACIF: FONGECIF
 5568:
     Convention collective: Centre de coopération internationale en recherche agronomique pour le développement (CIRAD)
-    # OPCA: AGEFOS PME OU OPCALIA
+    # OPCA: AGEFOS PME OU Opcalia
     OPCA: AGEFOS PME
     OPACIF: FONGECIF
 5546:
     Convention collective: 'Centre National d’Etudes Spatiales (CNES)'
-    # OPCA: AGEFOS PME OU OPCALIA
+    # OPCA: AGEFOS PME OU Opcalia
     OPCA: AGEFOS PME
     OPACIF: FONGECIF
 783:
     Convention collective: "Centres : hébergement et réadaptation sociale"
-    OPCA: UNIFAF
-    OPACIF: UNIFAF
+    OPCA: Unifaf
+    OPACIF: Unifaf
 7512:
     Convention collective: 'Centres d’économie rurale'
     OPCA: FAFSEA
@@ -708,7 +708,7 @@
     OPACIF: FAFSEA
 1237:
     Convention collective: Centres de gestion agréés
-    # OPCA: AGEFOS PME OU OPCALIA
+    # OPCA: AGEFOS PME OU Opcalia
     OPCA: AGEFOS PME
     OPACIF: FONGECIF
 7020:
@@ -725,7 +725,7 @@
     OPACIF: FAFSEA
 1800:
     Convention collective: 'Céramique d’art'
-    # OPCA: AGEFOS PME OU OPCALIA
+    # OPCA: AGEFOS PME OU Opcalia
     OPCA: AGEFOS PME
     OPACIF: FONGECIF
 1558:
@@ -738,8 +738,8 @@
     OPACIF: OPCALIM
 2411:
     Convention collective: Chaînes thématiques
-    OPCA: AFDAS
-    OPACIF: AFDAS
+    OPCA: Afdas
+    OPACIF: Afdas
 8243:
     Convention collective: Champignonnières Centre
     OPCA: FAFSEA
@@ -774,7 +774,7 @@
     OPACIF: FONGECIF
 5526:
     Convention collective: Charte du foot ball professionnel
-    # OPCA: AGEFOS PME OU OPCALIA
+    # OPCA: AGEFOS PME OU Opcalia
     OPCA: AGEFOS PME
     OPACIF: FONGECIF
 2697:
@@ -783,11 +783,11 @@
     OPACIF: FONGECIF
 468:
     Convention collective: "Chaussure : commerce succursaliste"
-    OPCA: FORCO
+    OPCA: Forco
     OPACIF: FONGECIF
 1580:
     Convention collective: "Chaussure et articles chaussants : industrie"
-    OPCA: OPCALIA
+    OPCA: Opcalia
     OPACIF: FONGECIF
 733:
     Convention collective: "Chaussures : détaillants"
@@ -799,7 +799,7 @@
     OPACIF: FONGECIF
 418:
     Convention collective: Chemiserie sur mesure
-    OPCA: OPCALIA
+    OPCA: Opcalia
     OPACIF: FONGECIF
 44:
     Convention collective: "Chimie : industries"
@@ -819,31 +819,31 @@
     OPACIF: FONGECIF
 892:
     Convention collective: "Cinéma : Distribution des films (cadres et agents de maîtrise)"
-    OPCA: AFDAS
-    OPACIF: AFDAS
+    OPCA: Afdas
+    OPACIF: Afdas
 716:
     Convention collective: "Cinéma : Distribution des films (employés et ouvriers)"
-    OPCA: AFDAS
-    OPACIF: AFDAS
+    OPCA: Afdas
+    OPACIF: Afdas
 1307:
     Convention collective: "Cinéma : exploitation"
-    OPCA: AFDAS
-    OPACIF: AFDAS
+    OPCA: Afdas
+    OPACIF: Afdas
 625:
     Convention collective: "Cinéma : exploitation (services généraux et administratifs : cadres)"
-    OPCA: AFDAS
-    OPACIF: AFDAS
+    OPCA: Afdas
+    OPACIF: Afdas
 889:
     Convention collective: "Cinéma : exploitation cinématographique services généraux et administratifs (Employés, techniciens et ouvriers)"
-    OPCA: AFDAS
-    OPACIF: AFDAS
+    OPCA: Afdas
+    OPACIF: Afdas
 3097:
     Convention collective: "Cinéma : production cinématographique"
-    OPCA: AFDAS
-    OPACIF: AFDAS
+    OPCA: Afdas
+    OPACIF: Afdas
 5547:
     Convention collective: Club Méditerranée
-    # OPCA: AGEFOS PME OU OPCALIA
+    # OPCA: AGEFOS PME OU Opcalia
     OPCA: AGEFOS PME
     OPACIF: FONGECIF
 2596:
@@ -856,146 +856,146 @@
     OPACIF: FONGECIF
 5569:
     Convention collective: Comédie française
-    OPCA: AFDAS
-    OPACIF: AFDAS
+    OPCA: Afdas
+    OPACIF: Afdas
 232:
     Convention collective: "'Commerces de détail d’alimentation générale : Somme'"
-    # OPCA: AGEFOS PME OU OPCALIA
+    # OPCA: AGEFOS PME OU Opcalia
     OPCA: AGEFOS PME
     OPACIF: FONGECIF
 541:
     Convention collective: "Commerces de détail des chaussures : Loire- Atlantique"
-    # OPCA: AGEFOS PME OU OPCALIA
+    # OPCA: AGEFOS PME OU Opcalia
     OPCA: AGEFOS PME
     OPACIF: FONGECIF
 2216:
     Convention collective: Commerces de détail et gros à de prédominance alimentaire
-    OPCA: FORCO
+    OPCA: Forco
     OPACIF: FONGECIF
 784:
     Convention collective: "Commerces de détail non alimentaire : Besançon (Doubs)"
-    OPCA: FORCO
+    OPCA: Forco
     OPACIF: FONGECIF
 881:
     Convention collective: "Commerces de détail non alimentaire : petits et moyens commerces (Rouen et sa région - Haute-Normandie sauf le Havre)"
-    OPCA: FORCO
+    OPCA: Forco
     OPACIF: FONGECIF
 120:
     Convention collective: Commerces de détail non alimentaire de Bourges
-    OPCA: FORCO
+    OPCA: Forco
     OPACIF: FONGECIF
 1517:
     Convention collective: Commerces de détail non alimentaires
-    OPCA: FORCO
+    OPCA: Forco
     OPACIF: FONGECIF
 794:
     Convention collective: "Commerces de détail non alimentaires : agglomération cherbourgeoise (Manche)"
-    OPCA: FORCO
+    OPCA: Forco
     OPACIF: FONGECIF
 704:
     Convention collective: "Commerces de détail non alimentaires : agglomération de Toulon (Var)"
-    OPCA: FORCO
+    OPCA: Forco
     OPACIF: FONGECIF
 1240:
     Convention collective: "Commerces de détail non alimentaires : Ain"
-    OPCA: FORCO
+    OPCA: Forco
     OPACIF: FONGECIF
 1385:
     Convention collective: "Commerces de détail non alimentaires : Ardennes"
-    OPCA: FORCO
+    OPCA: Forco
     OPACIF: FONGECIF
 548:
     Convention collective: "Commerces de détail non alimentaires : Aube"
-    OPCA: FORCO
+    OPCA: Forco
     OPACIF: FONGECIF
 1076:
     Convention collective: "Commerces de détail non alimentaires : Béziers (Hérault)"
-    OPCA: FORCO
+    OPCA: Forco
     OPACIF: FONGECIF
 1276:
     Convention collective: "Commerces de détail non alimentaires : Finistère"
-    OPCA: FORCO
+    OPCA: Forco
     OPACIF: FONGECIF
 1406:
     Convention collective: "Commerces de détail non alimentaires : Gironde"
-    OPCA: FORCO
+    OPCA: Forco
     OPACIF: FONGECIF
 671:
     Convention collective: "Commerces de détail non alimentaires : Grenoble (Isère)"
-    OPCA: FORCO
+    OPCA: Forco
     OPACIF: FONGECIF
 1415:
     Convention collective: "Commerces de détail non alimentaires : Loire"
-    OPCA: FORCO
+    OPCA: Forco
     OPACIF: FONGECIF
 711:
     Convention collective: "Commerces de détail non alimentaires : Lyon"
-    OPCA: FORCO
+    OPCA: Forco
     OPACIF: FONGECIF
 1202:
     Convention collective: "Commerces de détail non alimentaires : Maine-et-Loire"
-    OPCA: FORCO
+    OPCA: Forco
     OPACIF: FONGECIF
 814:
     Convention collective: "Commerces de détail non alimentaires : Meurthe-et-Moselle"
-    OPCA: FORCO
+    OPCA: Forco
     OPACIF: FONGECIF
 455:
     Convention collective: "Commerces de détail non alimentaires : Meuse"
-    OPCA: FORCO
+    OPCA: Forco
     OPACIF: FONGECIF
 1088:
     Convention collective: "Commerces de détail non alimentaires : Montpellier"
-    OPCA: FORCO
+    OPCA: Forco
     OPACIF: FONGECIF
 1343:
     Convention collective: "Commerces de détail non alimentaires : Morbihan"
-    OPCA: FORCO
+    OPCA: Forco
     OPACIF: FONGECIF
 24:
     Convention collective: "Commerces de détail non alimentaires : Nevers"
-    OPCA: FORCO
+    OPCA: Forco
     OPACIF: FONGECIF
 782:
     Convention collective: "Commerces de détail non alimentaires : Oise"
-    OPCA: FORCO
+    OPCA: Forco
     OPACIF: FONGECIF
 894:
     Convention collective: "Commerces de détail non alimentaires : Rennes"
-    OPCA: FORCO
+    OPCA: Forco
     OPACIF: FONGECIF
 1970:
     Convention collective: "Commerces de détail non alimentaires : Rhin (Bas et Haut)"
-    OPCA: FORCO
+    OPCA: Forco
     OPACIF: FONGECIF
 210:
     Convention collective: "Commerces de détail non alimentaires : Saint- Malo"
-    # OPCA: AGEFOS PME OU OPCALIA
+    # OPCA: AGEFOS PME OU Opcalia
     OPCA: AGEFOS PME
     OPACIF: FONGECIF
 1394:
     Convention collective: "Commerces de détail non alimentaires : Tarn"
-    OPCA: FORCO
+    OPCA: Forco
     OPACIF: FONGECIF
 406:
     Convention collective: "Commerces de détail non alimentaires: Calvados, élargie au département de la Mayenne"
-    OPCA: FORCO
+    OPCA: Forco
     OPACIF: FONGECIF
 573:
     Convention collective: Commerces de gros
-    OPCA: INTERGROS
+    OPCA: Intergros
     OPACIF: FONGECIF
 3140:
     Convention collective: "Commerces, services commerciaux et hôtels, cafés, restaurants : Saint-Pierre-et-Miquelon"
-    OPCA: FAFIH
+    OPCA: Fafih
     OPACIF: FONGECIF
 2785:
     Convention collective: Commissaires-priseurs judiciaires et sociétés de ventes volontaires
-    OPCA: ACTALIANS
+    OPCA: Actalians
     OPACIF: FONGECIF
 1980:
     Convention collective: "Commissionnaires en douane et agents auxiliaires : Martinique"
-    # OPCA: AGEFOS PME OU OPCALIA
+    # OPCA: AGEFOS PME OU Opcalia
     OPCA: AGEFOS PME
     OPACIF: FONGECIF
 7019:
@@ -1004,7 +1004,7 @@
     OPACIF: FONGECIF
 1624:
     Convention collective: "Confiserie, chocolaterie, biscuiterie : commerce de gros"
-    # OPCA: AGEFOS PME OU OPCALIA
+    # OPCA: AGEFOS PME OU Opcalia
     OPCA: AGEFOS PME
     OPACIF: FONGECIF
 1286:
@@ -1017,37 +1017,37 @@
     OPACIF: FONGECIF
 1057:
     Convention collective: Consignataires de navire et manutentionnaires de la Martinique
-    # OPCA: AGEFOS PME OU OPCALIA
+    # OPCA: AGEFOS PME OU Opcalia
     OPCA: AGEFOS PME
     OPACIF: FONGECIF
 5505:
     Convention collective: 'Convention d’entreprise Commissariat à l’énergie anatomique (CEA)'
-    # OPCA: AGEFOS PME OU OPCALIA
+    # OPCA: AGEFOS PME OU Opcalia
     OPCA: AGEFOS PME
     OPACIF: FONGECIF
 5514:
     Convention collective: 'Convention d’entreprise Crédit Foncier'
-    # OPCA: AGEFOS PME OU OPCALIA
+    # OPCA: AGEFOS PME OU Opcalia
     OPCA: AGEFOS PME
     OPACIF: FONGECIF
 5522:
     Convention collective: 'Convention d’entreprise Établissement français du sang'
-    # OPCA: AGEFOS PME OU OPCALIA
+    # OPCA: AGEFOS PME OU Opcalia
     OPCA: AGEFOS PME
     OPACIF: FONGECIF
 5524:
     Convention collective: 'Convention d’entreprise France terre d’asile'
-    # OPCA: AGEFOS PME OU OPCALIA
+    # OPCA: AGEFOS PME OU Opcalia
     OPCA: AGEFOS PME
     OPACIF: FONGECIF
 5513:
     Convention collective: 'Convention d’entreprise IFREMER'
-    # OPCA: AGEFOS PME OU OPCALIA
+    # OPCA: AGEFOS PME OU Opcalia
     OPCA: AGEFOS PME
     OPACIF: FONGECIF
 5516:
     Convention collective: 'Convention d’entreprise La Poste - France Télécom'
-    # OPCA: AGEFOS PME OU OPCALIA
+    # OPCA: AGEFOS PME OU Opcalia
     OPCA: AGEFOS PME
     OPACIF: FONGECIF
 5509:
@@ -1064,11 +1064,11 @@
     OPACIF: FONGECIF
 1325:
     Convention collective: "Coopératives de consommation : gérants non salariés"
-    OPCA: OPCALIA
+    OPCA: Opcalia
     OPACIF: FONGECIF
 179:
     Convention collective: "Coopératives de consommation : salariés"
-    OPCA: OPCALIA
+    OPCA: Opcalia
     OPACIF: FONGECIF
 8435:
     Convention collective: 'Coopératives fruitières fromagères des départements de l’Ain'
@@ -1080,36 +1080,36 @@
     OPACIF: OPCALIM
 1561:
     Convention collective: Cordonnerie multiservice
-    OPCA: OPCALIA
+    OPCA: Opcalia
     OPACIF: FONGECIF
 39:
     Convention collective: Courtiers en valeurs mobilières de Paris
-    # OPCA: AGEFOS PME OU OPCALIA
+    # OPCA: AGEFOS PME OU Opcalia
     OPCA: AGEFOS PME
     OPACIF: FONGECIF
 572:
     Convention collective: "Couture et haute-couture: Rhône-Alpes"
-    # OPCA: AGEFOS PME OU OPCALIA
+    # OPCA: AGEFOS PME OU Opcalia
     OPCA: AGEFOS PME
     OPACIF: FONGECIF
 303:
     Convention collective: Couture parisienne
-    OPCA: OPCALIA
+    OPCA: Opcalia
     OPACIF: FONGECIF
 270:
     Convention collective: "Couture: Bouches-du-Rhône"
-    # OPCA: AGEFOS PME OU OPCALIA
+    # OPCA: AGEFOS PME OU Opcalia
     OPCA: AGEFOS PME
     OPACIF: FONGECIF
 311:
     Convention collective: "Couture: Loire-Atlantique"
-    # OPCA: AGEFOS PME OU OPCALIA
+    # OPCA: AGEFOS PME OU Opcalia
     OPCA: AGEFOS PME
     OPACIF: FONGECIF
 2717:
     Convention collective: "Création et événement : entreprises techniques"
-    OPCA: AFDAS
-    OPACIF: AFDAS
+    OPCA: Afdas
+    OPACIF: Afdas
 7501:
     Convention collective: Crédit agricole
     OPCA: FAFSEA
@@ -1120,17 +1120,17 @@
     OPACIF: FAFSEA
 2622:
     Convention collective: Crédit maritime mutuel
-    # OPCA: AGEFOS PME OU OPCALIA
+    # OPCA: AGEFOS PME OU Opcalia
     OPCA: AGEFOS PME
     OPACIF: FONGECIF
 1468:
     Convention collective: Crédit Mutuel
-    # OPCA: AGEFOS PME OU OPCALIA
+    # OPCA: AGEFOS PME OU Opcalia
     OPCA: AGEFOS PME
     OPACIF: FONGECIF
 207:
     Convention collective: "Cuirs et peaux : industries"
-    OPCA: OPCALIA
+    OPCA: Opcalia
     OPACIF: FONGECIF
 2754:
     Convention collective: "Cuisine à usage domestique : magasins prestataires de services"
@@ -1158,20 +1158,20 @@
     OPACIF: FAFSEA
 2149:
     Convention collective: Déchets
-    OPCA: OPCALIA
+    OPCA: Opcalia
     OPACIF: FONGECIF
 1619:
     Convention collective: "Dentaires : cabinets"
-    OPCA: ACTALIANS
+    OPCA: Actalians
     OPACIF: FONGECIF
 635:
     Convention collective: "Dentaires : négoce en fournitures"
-    # OPCA: AGEFOS PME OU OPCALIA
+    # OPCA: AGEFOS PME OU Opcalia
     OPCA: AGEFOS PME
     OPACIF: FONGECIF
 993:
     Convention collective: "Dentaires : prothésistes et laboratoires de prothèse dentaire"
-    OPCA: OPCALIA
+    OPCA: Opcalia
     OPACIF: FONGECIF
 8215:
     Convention collective: Déshydratation région Champagne-Ardenne
@@ -1179,38 +1179,38 @@
     OPACIF: FONGECIF
 1605:
     Convention collective: Désinfection, désinsectisation, dératisation (3D)
-    OPCA: OPCALIA
+    OPCA: Opcalia
     OPACIF: FONGECIF
 265:
     Convention collective: "Dessinateurs : cabinets (Lyon et localités de la communauté urbaine de Lyon (Rhône))"
-    # OPCA: AGEFOS PME OU OPCALIA
+    # OPCA: AGEFOS PME OU Opcalia
     OPCA: AGEFOS PME
     OPACIF: FONGECIF
 281:
     Convention collective: "Dessinateurs pour textiles, papiers peints, toiles cirées et linoleums: Région parisienne"
-    # OPCA: AGEFOS PME OU OPCALIA
+    # OPCA: AGEFOS PME OU Opcalia
     OPCA: AGEFOS PME
     OPACIF: FONGECIF
 2070:
     Convention collective: "Développement économique : organismes"
-    # OPCA: AGEFOS PME OU OPCALIA
+    # OPCA: AGEFOS PME OU Opcalia
     OPCA: AGEFOS PME
     OPACIF: FONGECIF
 2793:
     Convention collective: Direction des organismes de Sécurité Sociale et de la CAF
-    OPCA: UNIFORMATION
-    OPACIF: UNIFORMATION
+    OPCA: Uniformation
+    OPACIF: Uniformation
 7503:
     Convention collective: Distilleries viticoles (coopératives et unions) et distillation (SICA)
     OPCA: OPCALIM
     OPACIF: OPCALIM
 2372:
     Convention collective: Distribution directe
-    OPCA: AFDAS
-    OPACIF: AFDAS
+    OPCA: Afdas
+    OPACIF: Afdas
 2147:
     Convention collective: "Eau : services et assainissement"
-    OPCA: OPCALIA
+    OPCA: Opcalia
     OPACIF: FONGECIF
 1513:
     Convention collective: "Eaux embouteillées, boissons sans alcool, bières : production"
@@ -1218,91 +1218,91 @@
     OPACIF: FONGECIF
 1726:
     Convention collective: Economistes de la construction, métreurs-vérificateurs
-    OPCA: ACTALIANS
+    OPCA: Actalians
     OPACIF: FONGECIF
 2121:
     Convention collective: Édition
-    OPCA: AFDAS
-    OPACIF: AFDAS
+    OPCA: Afdas
+    OPACIF: Afdas
 2770:
     Convention collective: Edition phonographique
-    OPCA: AFDAS
-    OPACIF: AFDAS
+    OPCA: Afdas
+    OPACIF: Afdas
 1686:
     Convention collective: "Électronique, audio-visuel, équipement ménager : commerces et services"
     OPCA: AGEFOS PME
     OPACIF: FONGECIF
 285:
     Convention collective: Enseignement primaire laïque enseignants
-    OPCA: OPCALIA
+    OPCA: Opcalia
     OPACIF: FONGECIF
 713:
     Convention collective: "Enseignement primaire privé des arrondissements de Saint-Etienne et Montbrison (Loire): surveillants personnels administratifs et de service"
-    OPCA: OPCALIA
+    OPCA: Opcalia
     OPACIF: FONGECIF
 2281:
     Convention collective: "Enseignement privé : directeurs (primaire catholique)"
-    OPCA: OPCALIA
+    OPCA: Opcalia
     OPACIF: FONGECIF
 2152:
     Convention collective: "Enseignement privé : formateurs des CFA et des CFC et maîtres professionnels des écoles de production"
-    OPCA: OPCALIA
+    OPCA: Opcalia
     OPACIF: FONGECIF
 1545:
     Convention collective: "Enseignement privé : maîtres (primaire catholique)"
-    OPCA: OPCALIA
+    OPCA: Opcalia
     OPACIF: FONGECIF
 1326:
     Convention collective: "Enseignement privé : maîtres (primaire)"
-    OPCA: OPCALIA
+    OPCA: Opcalia
     OPACIF: FONGECIF
 390:
     Convention collective: "Enseignement privé : professeurs du secondaire"
-    OPCA: OPCALIA
+    OPCA: Opcalia
     OPACIF: FONGECIF
 1334:
     Convention collective: "Enseignement privé : psychologues"
-    OPCA: OPCALIA
+    OPCA: Opcalia
     OPACIF: FONGECIF
 2408:
     Convention collective: "'Enseignement privé : services administratifs, personnel d’éducation et documentalistes'"
-    OPCA: OPCALIA
+    OPCA: Opcalia
     OPACIF: FONGECIF
 2101:
     Convention collective: Enseignement privé à distance
-    OPCA: ACTALIANS
+    OPCA: Actalians
     OPACIF: FONGECIF
 7507:
     Convention collective: "Enseignement privé agricole: personnels administratifs et techniques"
-    OPCA: OPCALIA
+    OPCA: Opcalia
     OPACIF: FONGECIF
 7505:
     Convention collective: "Enseignement privé agricole: personnels de formation"
-    OPCA: OPCALIA
+    OPCA: Opcalia
     OPACIF: FONGECIF
 7506:
     Convention collective: "Enseignement privé agricole: personnels de la vie scolaire"
-    OPCA: OPCALIA
+    OPCA: Opcalia
     OPACIF: FONGECIF
 2691:
     Convention collective: Enseignement privé hors contrat
-    OPCA: ACTALIANS
+    OPCA: Actalians
     OPACIF: FONGECIF
 1446:
     Convention collective: Enseignement privé technique hors contrat
-    OPCA: OPCALIA
+    OPCA: Opcalia
     OPACIF: FONGECIF
 73:
     Convention collective: Enseignement secondaire laïque professeurs
-    OPCA: OPCALIA
+    OPCA: Opcalia
     OPACIF: FONGECIF
 2636:
     Convention collective: Enseignement supérieur privé (FESIC)
-    OPCA: OPCALIA
+    OPCA: Opcalia
     OPACIF: FONGECIF
 2364:
     Convention collective: Enseignement technique sous contrat simple
-    OPCA: OPCALIA
+    OPCA: Opcalia
     OPACIF: FONGECIF
 8723:
     Convention collective: Entretien forestier Gascogne
@@ -1310,11 +1310,11 @@
     OPACIF: FAFSEA
 1790:
     Convention collective: 'Espace de loisirs, d’attractions et culturels'
-    OPCA: AFDAS
-    OPACIF: AFDAS
+    OPCA: Afdas
+    OPACIF: Afdas
 3032:
     Convention collective: Esthétique- cosmétique et enseignement associé
-    OPCA: OPCALIA
+    OPCA: Opcalia
     OPACIF: FONGECIF
 8214:
     Convention collective: ETAR Aube Marne polyculture Marne
@@ -1374,7 +1374,7 @@
     OPACIF: FONGECIF
 1951:
     Convention collective: "Expertises en automobiles: cabinets ou entreprises"
-    OPCA: ACTALIANS
+    OPCA: Actalians
     OPACIF: FONGECIF
 9011:
     Convention collective: Exploitations agricoles Ain
@@ -1950,8 +1950,8 @@
     OPACIF: FONGECIF
 2412:
     Convention collective: "'Films d’animation : production'"
-    OPCA: AFDAS
-    OPACIF: AFDAS
+    OPCA: Afdas
+    OPACIF: Afdas
 1978:
     Convention collective: Fleuristes et vente et services des animaux familiers
     OPCA: FAFSEA
@@ -1962,35 +1962,35 @@
     OPACIF: OPCALIM
 5571:
     Convention collective: 'Fondation d’Auteuil'
-    # OPCA: AGEFOS PME OU OPCALIA
+    # OPCA: AGEFOS PME OU Opcalia
     OPCA: AGEFOS PME
     OPACIF: FONGECIF
 5507:
     Convention collective: "Football : personnels administratifs et assimilés"
-    # OPCA: AGEFOS PME OU OPCALIA
+    # OPCA: AGEFOS PME OU Opcalia
     OPCA: AGEFOS PME
     OPACIF: FONGECIF
 1516:
     Convention collective: "Formation : organismes"
-    # OPCA: AGEFOS PME OU OPCALIA
+    # OPCA: AGEFOS PME OU Opcalia
     OPCA: AGEFOS PME
     OPACIF: FONGECIF
 673:
     Convention collective: Fourrure
-    # OPCA: AGEFOS PME OU OPCALIA
+    # OPCA: AGEFOS PME OU Opcalia
     OPCA: AGEFOS PME
     OPACIF: FONGECIF
 2336:
     Convention collective: Foyers de jeunes travailleurs
-    OPCA: UNIFORMATION
-    OPACIF: UNIFORMATION
+    OPCA: Uniformation
+    OPACIF: Uniformation
 5579:
     Convention collective: France télévision
-    OPCA: AFDAS
-    OPACIF: AFDAS
+    OPCA: Afdas
+    OPACIF: Afdas
 1405:
     Convention collective: "'Fruits et légumes : entreprises d’expédition et d’exportation'"
-    OPCA: INTERGROS
+    OPCA: Intergros
     OPACIF: FONGECIF
 1505:
     Convention collective: "Fruits, légumes, épicerie, produits laitiers : commerce de détail"
@@ -1998,11 +1998,11 @@
     OPACIF: FONGECIF
 354:
     Convention collective: Ganterie de peau
-    OPCA: OPCALIA
+    OPCA: Opcalia
     OPACIF: FONGECIF
 7015:
     Convention collective: Gardes-chasse et gardes-pêche particuliers
-    # OPCA: AGEFOS PME OU OPCALIA
+    # OPCA: AGEFOS PME OU Opcalia
     OPCA: AGEFOS PME
     OPACIF: FONGECIF
 1043:
@@ -2015,39 +2015,39 @@
     OPACIF: FAFSEA
 2543:
     Convention collective: Géomètres-experts, géomètres-topographes, photogrammètres et experts fonciers
-    OPCA: ACTALIANS
+    OPCA: Actalians
     OPACIF: FONGECIF
 2021:
     Convention collective: Golf
-    OPCA: UNIFORMATION
-    OPACIF: UNIFORMATION
+    OPCA: Uniformation
+    OPACIF: Uniformation
 2156:
     Convention collective: Grands magasins et magasins populaires
-    OPCA: FORCO
+    OPCA: Forco
     OPACIF: FONGECIF
 240:
     Convention collective: "Greffiers des tribunaux de commerce : personnel"
-    OPCA: ACTALIANS
+    OPCA: Actalians
     OPACIF: FONGECIF
 5574:
     Convention collective: Groupe Canal +
-    OPCA: AFDAS
-    OPACIF: AFDAS
+    OPCA: Afdas
+    OPACIF: Afdas
 5575:
     Convention collective: Groupe Métropole Télévision
-    OPCA: AFDAS
-    OPACIF: AFDAS
+    OPCA: Afdas
+    OPACIF: Afdas
 5565:
     Convention collective: Groupe TF1
-    OPCA: AFDAS
-    OPACIF: AFDAS
+    OPCA: Afdas
+    OPACIF: Afdas
 247:
     Convention collective: "Habillement : industrie"
-    OPCA: OPCALIA
+    OPCA: Opcalia
     OPACIF: FONGECIF
 675:
     Convention collective: "Habillement : maisons à succursales de vente au détail"
-    OPCA: FORCO
+    OPCA: Forco
     OPACIF: FONGECIF
 1483:
     Convention collective: "Habillement et articles textiles : commerce de détail"
@@ -2055,27 +2055,27 @@
     OPACIF: FONGECIF
 500:
     Convention collective: "Habillement, mercerie, chaussure et jouet : commerces de gros"
-    OPCA: INTERGROS
+    OPCA: Intergros
     OPACIF: FONGECIF
 1278:
     Convention collective: "Habitat : personnels PACT et ARIM"
-    OPCA: UNIFORMATION
-    OPACIF: UNIFORMATION
+    OPCA: Uniformation
+    OPACIF: Uniformation
 2526:
     Convention collective: "Habitat social : organisations professionnelles"
-    OPCA: UNIFORMATION
-    OPACIF: UNIFORMATION
+    OPCA: Uniformation
+    OPACIF: Uniformation
 413:
     Convention collective: "Handicapées : établissements et services pour personnes inadaptées et handicapées"
-    OPCA: UNIFAF
-    OPACIF: UNIFAF
+    OPCA: Unifaf
+    OPACIF: Unifaf
 1001:
     Convention collective: "Handicapés : établissements et services; médecins spécialisés"
-    OPCA: UNIFAF
-    OPACIF: UNIFAF
+    OPCA: Unifaf
+    OPACIF: Unifaf
 1944:
     Convention collective: "Hélicoptères : personnel navigant technique des exploitants"
-    OPCA: OPCALIA
+    OPCA: Opcalia
     OPACIF: FONGECIF
 8115:
     Convention collective: Hippodromes Île-de-France Cabourg Caen Chantilly Deauville
@@ -2083,19 +2083,19 @@
     OPACIF: FAFSEA
 2150:
     Convention collective: "HLM : personnels des sociétés anonymes et fondations"
-    OPCA: UNIFORMATION
-    OPACIF: UNIFORMATION
+    OPCA: Uniformation
+    OPACIF: Uniformation
 1588:
     Convention collective: "HLM : personnels des sociétés coopératives"
-    OPCA: UNIFORMATION
-    OPACIF: UNIFORMATION
+    OPCA: Uniformation
+    OPACIF: Uniformation
 1044:
     Convention collective: "Horlogerie : commerces de gros"
-    OPCA: FORCO
+    OPCA: Forco
     OPACIF: FONGECIF
 1487:
     Convention collective: "Horlogerie, bijouterie : commerce de détail"
-    OPCA: FORCO
+    OPCA: Forco
     OPACIF: FONGECIF
 8423:
     Convention collective: Horticulture Alsace
@@ -2111,19 +2111,19 @@
     OPACIF: FAFSEA
 2264:
     Convention collective: Hospitalisation privée à but lucratif
-    OPCA: ACTALIANS
+    OPCA: Actalians
     OPACIF: FONGECIF
 29:
     Convention collective: Hospitalisation privée à but non lucratif
-    OPCA: UNIFAF
-    OPACIF: UNIFAF
+    OPCA: Unifaf
+    OPACIF: Unifaf
 931:
     Convention collective: "Hôteliers restaurateurs et débitants de boissons: Bas-Rhin"
-    OPCA: FAFIH
+    OPCA: Fafih
     OPACIF: FONGECIF
 871:
     Convention collective: "Hôteliers restaurateurs et débitants: Haut-Rhin"
-    OPCA: FAFIH
+    OPCA: Fafih
     OPACIF: FONGECIF
 1631:
     Convention collective: Hôtellerie de plein Air
@@ -2131,67 +2131,67 @@
     OPACIF: FONGECIF
 800:
     Convention collective: Hôtels (chaînes)
-    OPCA: FAFIH
+    OPCA: Fafih
     OPACIF: FONGECIF
 189:
     Convention collective: "'Hôtels cafés restaurants brasseries et tous les établissements s’y rattachant: Rhône'"
-    OPCA: FAFIH
+    OPCA: Fafih
     OPACIF: FONGECIF
 1284:
     Convention collective: "Hôtels cafés restaurants: Gironde"
-    OPCA: FAFIH
+    OPCA: Fafih
     OPACIF: FONGECIF
 1370:
     Convention collective: "Hôtels de tourisme : trois, quatre, quatre étoiles luxe (Région parisienne hors Seine et Marne)"
-    OPCA: FAFIH
+    OPCA: Fafih
     OPACIF: FONGECIF
 1979:
     Convention collective: Hôtels, cafés, restaurants
-    OPCA: FAFIH
+    OPCA: Fafih
     OPACIF: FONGECIF
 601:
     Convention collective: "Hôtels, cafés, restaurants : Alpes-de-Haute-Provence"
-    OPCA: FAFIH
+    OPCA: Fafih
     OPACIF: FONGECIF
 1017:
     Convention collective: "Hôtels, cafés, restaurants : Bouches-du-Rhône"
-    OPCA: FAFIH
+    OPCA: Fafih
     OPACIF: FONGECIF
 1128:
     Convention collective: "Hôtels, cafés, restaurants : Haute-Saône"
-    OPCA: FAFIH
+    OPCA: Fafih
     OPACIF: FONGECIF
 564:
     Convention collective: "Hôtels, cafés, restaurants : Isère"
-    OPCA: FAFIH
+    OPCA: Fafih
     OPACIF: FONGECIF
 1075:
     Convention collective: "Hôtels, cafés, restaurants : Meurthe-et-Moselle"
-    OPCA: FAFIH
+    OPCA: Fafih
     OPACIF: FONGECIF
 1140:
     Convention collective: "Hôtels, cafés, restaurants : Saint-Pierre-et-Miquelon"
-    OPCA: FAFIH
+    OPCA: Fafih
     OPACIF: FONGECIF
 1030:
     Convention collective: "Hôtels, cafés, restaurants : Seine Maritime"
-    OPCA: FAFIH
+    OPCA: Fafih
     OPACIF: FONGECIF
 1260:
     Convention collective: "Hôtels, cafés, restaurants : Var"
-    OPCA: FAFIH
+    OPCA: Fafih
     OPACIF: FONGECIF
 1235:
     Convention collective: "Hôtels, cafés, restaurants : Vosges"
-    OPCA: FAFIH
+    OPCA: Fafih
     OPACIF: FONGECIF
 1320:
     Convention collective: Hôtels, cafés, restaurants du Nord
-    OPCA: FAFIH
+    OPCA: Fafih
     OPACIF: FONGECIF
 1921:
     Convention collective: "Huissiers de justice : personnel"
-    OPCA: ACTALIANS
+    OPCA: Actalians
     OPACIF: FONGECIF
 1527:
     Convention collective: Immobilier
@@ -2199,8 +2199,8 @@
     OPACIF: FONGECIF
 43:
     Convention collective: "Importation-exportation : entreprises de commission, de courtage et de commerce intracommunautaire"
-    # OPCA: FORCO OU INTERGROS
-    OPCA: FORCO
+    # OPCA: Forco OU Intergros
+    OPCA: Forco
     OPACIF: FONGECIF
 184:
     Convention collective: Imprimeries de labeur et industries graphiques
@@ -2208,39 +2208,39 @@
     OPACIF: FONGECIF
 194:
     Convention collective: "Industrie du bâtiment : Cantal"
-    OPCA: CONSTRUCTYS
+    OPCA: Constructys
     OPACIF: FONGECIF
 568:
     Convention collective: "Industrie hôtelière : arrondissement de Bayonne"
-    OPCA: FAFIH
+    OPCA: Fafih
     OPACIF: FONGECIF
 607:
     Convention collective: "Industrie hôtelière : employés (Loire)"
-    OPCA: FAFIH
+    OPCA: Fafih
     OPACIF: FONGECIF
 968:
     Convention collective: "Industrie hôtelière : Pyrénées-Orientales"
-    OPCA: FAFIH
+    OPCA: Fafih
     OPACIF: FONGECIF
 547:
     Convention collective: "Industrie hôtelière : Vaucluse"
-    OPCA: FAFIH
+    OPCA: Fafih
     OPACIF: FONGECIF
 667:
     Convention collective: "'Industrie hôtelière: Côte-d’Or'"
-    OPCA: FAFIH
+    OPCA: Fafih
     OPACIF: FONGECIF
 427:
     Convention collective: "Industrie textile: Elbeuf Louviers et de la région (Seine- Maritime, Eure, Calvados, Eure-et-Loir, Loire-Atlantique)"
-    OPCA: OPCALIA
+    OPCA: Opcalia
     OPACIF: FONGECIF
 392:
     Convention collective: "Industrie textile: Roubaix-Tourcoing, vallée de la Lys"
-    OPCA: OPCALIA
+    OPCA: Opcalia
     OPACIF: FONGECIF
 25:
     Convention collective: 'Industries du peigne de la Vallée de l’Hers et du Touyre'
-    # OPCA: AGEFOS PME OU OPCALIA
+    # OPCA: AGEFOS PME OU Opcalia
     OPCA: AGEFOS PME
     OPACIF: FONGECIF
 5001:
@@ -2249,34 +2249,34 @@
     OPACIF: UNAGECIF
 3016:
     Convention collective: "Insertion : ateliers et chantiers"
-    OPCA: UNIFORMATION
-    OPACIF: UNIFORMATION
+    OPCA: Uniformation
+    OPACIF: Uniformation
 5549:
     Convention collective: Institut de radioprotection et de sûreté nucléaire (IRSN)
-    # OPCA: AGEFOS PME OU OPCALIA
+    # OPCA: AGEFOS PME OU Opcalia
     OPCA: AGEFOS PME
     OPACIF: FONGECIF
 5582:
     Convention collective: 'Institut national de l’audiovisuel'
-    OPCA: AFDAS
-    OPACIF: AFDAS
+    OPCA: Afdas
+    OPACIF: Afdas
 5532:
     Convention collective: Institut national de la recherche scientifique (INRS)
-    # OPCA: AGEFOS PME OU OPCALIA
+    # OPCA: AGEFOS PME OU Opcalia
     OPCA: AGEFOS PME
     OPACIF: FONGECIF
 1420:
     Convention collective: 'Institutions d’assurance chômage'
-    # OPCA: AGEFOS PME OU OPCALIA
+    # OPCA: AGEFOS PME OU Opcalia
     OPCA: AGEFOS PME
     OPACIF: FONGECIF
 1794:
     Convention collective: Institutions de retraites complémentaires
-    OPCA: UNIFORMATION
-    OPACIF: UNIFORMATION
+    OPCA: Uniformation
+    OPACIF: Uniformation
 715:
     Convention collective: Instruments à écrire et industries connexes
-    # OPCA: AGEFOS PME OU OPCALIA
+    # OPCA: AGEFOS PME OU Opcalia
     OPCA: AGEFOS PME
     OPACIF: FONGECIF
 1760:
@@ -2285,20 +2285,20 @@
     OPACIF: FAFSEA
 1607:
     Convention collective: Jeux, jouets, articles de fêtes
-    OPCA: OPCALIA
+    OPCA: Opcalia
     OPACIF: FONGECIF
 1480:
     Convention collective: Journalistes
-    OPCA: AFDAS
-    OPACIF: AFDAS
+    OPCA: Afdas
+    OPACIF: Afdas
 5584:
     Convention collective: Laboratoire national de métrologie et d’essais
-    # OPCA: AGEFOS PME OU OPCALIA
+    # OPCA: AGEFOS PME OU Opcalia
     OPCA: AGEFOS PME
     OPACIF: FONGECIF
 959:
     Convention collective: Laboratoires de biologie médicale extrahospitaliers
-    OPCA: ACTALIANS
+    OPCA: Actalians
     OPACIF: FONGECIF
 7004:
     Convention collective: "Lait : coopératives agricoles et SICA"
@@ -2330,56 +2330,56 @@
     OPACIF: FONGECIF
 735:
     Convention collective: "Machines à coudre : commerce"
-    # OPCA: AGEFOS PME OU OPCALIA
+    # OPCA: AGEFOS PME OU Opcalia
     OPCA: AGEFOS PME
     OPACIF: FONGECIF
 1671:
     Convention collective: 'Maisons d’étudiants'
-    OPCA: AGEFOS PME OU OPCALIA OU UNIFORMATION
-    OPCA: AGEFOS PME OU OPCALIA OU UNIFORMATION
+    OPCA: AGEFOS PME OU Opcalia OU Uniformation
+    OPCA: AGEFOS PME OU Opcalia OU Uniformation
     OPCA: AGEFOS
-    OPACIF: UNIFORMATION
+    OPACIF: Uniformation
 7508:
     Convention collective: Maisons familiales rurales
     OPCA: FAFSEA
     OPACIF: FONGECIF
 1072:
     Convention collective: Manutention dans le port de Saint- Pierre
-    # OPCA: AGEFOS PME OU OPCALIA
+    # OPCA: AGEFOS PME OU Opcalia
     OPCA: AGEFOS PME
     OPACIF: FONGECIF
 1751:
     Convention collective: "Manutention des ports de Marseille: cadres des services auxiliaires"
-    # OPCA: AGEFOS PME OU OPCALIA
+    # OPCA: AGEFOS PME OU Opcalia
     OPCA: AGEFOS PME
     OPACIF: FONGECIF
 1750:
     Convention collective: "Manutention des ports de Marseille: employés des services auxiliaires"
-    # OPCA: AGEFOS PME OU OPCALIA
+    # OPCA: AGEFOS PME OU Opcalia
     OPCA: AGEFOS PME
     OPACIF: FONGECIF
 1461:
     Convention collective: "Manutention des ports de Marseille: personnel de surveillance des services auxiliaires"
-    # OPCA: AGEFOS PME OU OPCALIA
+    # OPCA: AGEFOS PME OU Opcalia
     OPCA: AGEFOS PME
     OPACIF: FONGECIF
 2304:
     Convention collective: "'Manutention du port de Dunkerque: mensualisation dans les entreprises et mesures sociales d’accompagnement'"
-    # OPCA: AGEFOS PME OU OPCALIA
+    # OPCA: AGEFOS PME OU Opcalia
     OPCA: AGEFOS PME
     OPACIF: FONGECIF
 538:
     Convention collective: Manutention ferroviaire et travaux connexes
-    OPCA: OPCALIA
+    OPCA: Opcalia
     OPACIF: FONGECIF
 1923:
     Convention collective: "Manutention portuaire : Guadeloupe"
-    # OPCA: AGEFOS PME OU OPCALIA
+    # OPCA: AGEFOS PME OU Opcalia
     OPCA: AGEFOS PME
     OPACIF: FONGECIF
 2480:
     Convention collective: Manutention portuaire Fort de France
-    # OPCA: AGEFOS PME OU OPCALIA
+    # OPCA: AGEFOS PME OU Opcalia
     OPCA: AGEFOS PME
     OPACIF: FONGECIF
 8534:
@@ -2396,7 +2396,7 @@
     OPACIF: FAFSEA
 2931:
     Convention collective: Marchés financiers
-    # OPCA: AGEFOS PME OU OPCALIA
+    # OPCA: AGEFOS PME OU Opcalia
     OPCA: AGEFOS PME
     OPACIF: FONGECIF
 1589:
@@ -2405,19 +2405,19 @@
     OPACIF: FONGECIF
 2528:
     Convention collective: "Maroquinerie : industries"
-    OPCA: OPCALIA
+    OPCA: Opcalia
     OPACIF: FONGECIF
 652:
     Convention collective: Matériaux de construction (négoce) cadres
-    OPCA: INTERGROS
+    OPCA: Intergros
     OPACIF: FONGECIF
 533:
     Convention collective: Matériaux de construction (négoce) ETAM
-    OPCA: INTERGROS
+    OPCA: Intergros
     OPACIF: FONGECIF
 398:
     Convention collective: Matériaux de construction (négoce) ouvriers
-    OPCA: INTERGROS
+    OPCA: Intergros
     OPACIF: FONGECIF
 1404:
     Convention collective: "Matériels agricoles, de BTP et de manutention : maintenance, distribution et location"
@@ -2425,12 +2425,12 @@
     OPACIF: FONGECIF
 405:
     Convention collective: "Médico-sociaux : établissements"
-    # OPCA: AGEFOS PME OU OPCALIA
+    # OPCA: AGEFOS PME OU Opcalia
     OPCA: AGEFOS PME
     OPACIF: FONGECIF
 1982:
     Convention collective: "Médico-techniques : négoce et prestations de services"
-    OPCA: FORCO
+    OPCA: Forco
     OPACIF: FONGECIF
 83:
     Convention collective: Menuiseries, charpentes et constructions industrialisées
@@ -2754,7 +2754,7 @@
     OPACIF: FONGECIF
 2025:
     Convention collective: "Mines : Guyane"
-    # OPCA: AGEFOS PME OU OPCALIA
+    # OPCA: AGEFOS PME OU Opcalia
     OPCA: AGEFOS PME
     OPACIF: FONGECIF
 1499:
@@ -2763,31 +2763,31 @@
     OPACIF: FONGECIF
 2190:
     Convention collective: Missions Locals et PAIO
-    OPCA: UNIFORMATION
-    OPACIF: UNIFORMATION
+    OPCA: Uniformation
+    OPACIF: Uniformation
 350:
     Convention collective: Mode et chapellerie
-    OPCA: OPCALIA
+    OPCA: Opcalia
     OPACIF: FONGECIF
 1016:
     Convention collective: "Musique : édition (cadres et agents de maîtrise)"
-    OPCA: AFDAS
-    OPACIF: AFDAS
+    OPCA: Afdas
+    OPACIF: Afdas
 1194:
     Convention collective: "Musique : édition (des employés)"
-    OPCA: AFDAS
-    OPACIF: AFDAS
+    OPCA: Afdas
+    OPACIF: Afdas
 2128:
     Convention collective: Mutualité
-    OPCA: UNIFORMATION
-    OPACIF: UNIFORMATION
+    OPCA: Uniformation
+    OPACIF: Uniformation
 7502:
     Convention collective: Mutualité sociale agricole
     OPCA: FAFSEA
     OPACIF: FAFSEA
 2972:
     Convention collective: "Navigation (entreprises) : personnel sédentaire"
-    OPCA: OPCA TRANSPORTS ET SERVICES
+    OPCA: OPCA Transports et Services
     OPACIF: FONGECIF
 1423:
     Convention collective: Navigation de plaisance
@@ -2795,50 +2795,50 @@
     OPACIF: FONGECIF
 3:
     Convention collective: "Navigation intérieure (transport de marchandises) : personnel navigant"
-    OPCA: OPCA TRANSPORTS ET SERVICES
+    OPCA: OPCA Transports et Services
     OPACIF: FONGECIF
 2174:
     Convention collective: "Navigation intérieure (transport de marchandises) : personnel sédentaire"
-    OPCA: OPCA TRANSPORTS ET SERVICES
+    OPCA: OPCA Transports et Services
     OPACIF: FONGECIF
 1974:
     Convention collective: "Navigation intérieure (transport de passagers) : personnel sédentaire et navigant"
-    OPCA: OPCA TRANSPORTS ET SERVICES
+    OPCA: OPCA Transports et Services
     OPACIF: FONGECIF
 2205:
     Convention collective: Notariat
-    OPCA: ACTALIANS
+    OPCA: Actalians
     OPACIF: FONGECIF
 2075:
     Convention collective: 'Oeufs et industries en produits d’œufs'
-    OPCA: INTERGROS
+    OPCA: Intergros
     OPACIF: FONGECIF
 5006:
     Convention collective: 'Offices publics de l’habitat'
-    OPCA: UNIFORMATION
-    OPACIF: UNIFORMATION
+    OPCA: Uniformation
+    OPACIF: Uniformation
 2727:
     Convention collective: Omnipraticiens exerçant dans les centres de santé miniers
-    # OPCA: AGEFOS PME OU OPCALIA
+    # OPCA: AGEFOS PME OU Opcalia
     OPCA: AGEFOS PME
     OPACIF: FONGECIF
 5570:
     Convention collective: Opéra de Paris
-    OPCA: AFDAS
-    OPACIF: AFDAS
+    OPCA: Afdas
+    OPACIF: Afdas
 1431:
     Convention collective: Optique - lunetterie de détail
-    OPCA: FORCO
+    OPCA: Forco
     OPACIF: FONGECIF
 7509:
     Convention collective: Organismes de formation agricole (GOFPA)
-    # OPCA: AGEFOS PME OU OPCALIA
+    # OPCA: AGEFOS PME OU Opcalia
     OPCA: AGEFOS PME
     OPACIF: FONGECIF
 218:
     Convention collective: Organismes de Sécurité Sociale
-    OPCA: UNIFORMATION
-    OPACIF: UNIFORMATION
+    OPCA: Uniformation
+    OPACIF: Uniformation
 8821:
     Convention collective: Ouvriers forestiers communes ONF Rhône Alpes
     OPCA: FAFSEA
@@ -2889,7 +2889,7 @@
     OPACIF: FAFSEA
 1465:
     Convention collective: Peintres en lettres et publicité peinte
-    # OPCA: AGEFOS PME OU OPCALIA
+    # OPCA: AGEFOS PME OU Opcalia
     OPCA: AGEFOS PME
     OPACIF: FONGECIF
 8235:
@@ -2910,7 +2910,7 @@
     OPACIF: OPCALIM
 2702:
     Convention collective: Personnel des banques de la Martinique
-    # OPCA: AGEFOS PME OU OPCALIA
+    # OPCA: AGEFOS PME OU Opcalia
     OPCA: AGEFOS PME
     OPACIF: FONGECIF
 1388:
@@ -2927,7 +2927,7 @@
     OPACIF: FONGECIF
 1996:
     Convention collective: 'Pharmacie d’officine'
-    OPCA: ACTALIANS
+    OPCA: Actalians
     OPACIF: FONGECIF
 1555:
     Convention collective: "Pharmacie, parapharmacie, produits vétérinaires : fabrication et commerce"
@@ -2935,21 +2935,21 @@
     OPACIF: FONGECIF
 1069:
     Convention collective: "Pharmacie: répartition et dépôts pharmaceutiques de la Martinique"
-    # OPCA: AGEFOS PME OU OPCALIA
+    # OPCA: AGEFOS PME OU Opcalia
     OPCA: AGEFOS PME
     OPACIF: FONGECIF
 2162:
     Convention collective: Photographie
-    OPCA: FORCO
+    OPCA: Forco
     OPACIF: FONGECIF
 5585:
     Convention collective: Pioneer
-    # OPCA: AGEFOS PME OU OPCALIA
+    # OPCA: AGEFOS PME OU Opcalia
     OPCA: AGEFOS PME
     OPACIF: FONGECIF
 1113:
     Convention collective: "Pipe et fume-cigarette: industrie (région de Saint Claude _Jura)"
-    # OPCA: AGEFOS PME OU OPCALIA
+    # OPCA: AGEFOS PME OU Opcalia
     OPCA: AGEFOS PME
     OPACIF: FONGECIF
 292:
@@ -2962,8 +2962,8 @@
     OPACIF: FONGECIF
 2847:
     Convention collective: Pôle emploi
-    OPCA: UNIFORMATION
-    OPACIF: UNIFORMATION
+    OPCA: Uniformation
+    OPACIF: Uniformation
 8422:
     Convention collective: Polyculture Alsace
     OPCA: FAFSEA
@@ -2990,7 +2990,7 @@
     OPACIF: FAFSEA
 759:
     Convention collective: Pompes funèbres
-    OPCA: OPCALIA
+    OPCA: Opcalia
     OPACIF: FONGECIF
 1182:
     Convention collective: Ports de plaisance
@@ -2998,103 +2998,103 @@
     OPACIF: FONGECIF
 3017:
     Convention collective: Ports et manutention
-    OPCA: OPCA TRANSPORTS ET SERVICES
+    OPCA: OPCA Transports et Services
     OPACIF: FONGECIF
 1903:
     Convention collective: "'Presse : agences (personnel d’encadrement)'"
-    OPCA: AFDAS
-    OPACIF: AFDAS
+    OPCA: Afdas
+    OPACIF: Afdas
 2683:
     Convention collective: "Presse : portage"
-    OPCA: AFDAS
-    OPACIF: AFDAS
+    OPCA: Afdas
+    OPACIF: Afdas
 1874:
     Convention collective: 'Presse d’information spécialisée (cadres, techniciens, agents de maîtrise)'
-    OPCA: AFDAS
-    OPACIF: AFDAS
+    OPCA: Afdas
+    OPACIF: Afdas
 1871:
     Convention collective: 'Presse d’information spécialisée (employés)'
-    OPCA: AFDAS
-    OPACIF: AFDAS
+    OPCA: Afdas
+    OPACIF: Afdas
 214:
     Convention collective: "Presse de la région parisienne: ouvriers"
-    OPCA: AFDAS
-    OPACIF: AFDAS
+    OPCA: Afdas
+    OPACIF: Afdas
 766:
     Convention collective: Presse hebdomadaire Région parisienne employés
-    OPCA: AFDAS
-    OPACIF: AFDAS
+    OPCA: Afdas
+    OPACIF: Afdas
 1563:
     Convention collective: "Presse hebdomadaire régionale : cadres"
-    OPCA: AFDAS
-    OPACIF: AFDAS
+    OPCA: Afdas
+    OPACIF: Afdas
 1281:
     Convention collective: "Presse hebdomadaire régionale : employés"
-    OPCA: AFDAS
-    OPACIF: AFDAS
+    OPCA: Afdas
+    OPACIF: Afdas
 3201:
     Convention collective: "Presse magazine : éditeurs (cadres)"
-    OPCA: AFDAS
-    OPACIF: AFDAS
+    OPCA: Afdas
+    OPACIF: Afdas
 3202:
     Convention collective: "Presse magazine : éditeurs (employés)"
-    OPCA: AFDAS
-    OPACIF: AFDAS
+    OPCA: Afdas
+    OPACIF: Afdas
 1972:
     Convention collective: 'Presse magazine et d’information (Presse périodiques employés)'
-    OPCA: AFDAS
-    OPACIF: AFDAS
+    OPCA: Afdas
+    OPACIF: Afdas
 781:
     Convention collective: "Presse quotidienne départementale : cadres administratifs"
-    OPCA: AFDAS
-    OPACIF: AFDAS
+    OPCA: Afdas
+    OPACIF: Afdas
 1018:
     Convention collective: "Presse quotidienne départementale : cadres techniques"
-    OPCA: AFDAS
-    OPACIF: AFDAS
+    OPCA: Afdas
+    OPACIF: Afdas
 693:
     Convention collective: "Presse quotidienne départementale : employés"
-    OPCA: AFDAS
-    OPACIF: AFDAS
+    OPCA: Afdas
+    OPACIF: Afdas
 1083:
     Convention collective: "Presse quotidienne départementale : ouvriers"
-    OPCA: AFDAS
-    OPACIF: AFDAS
+    OPCA: Afdas
+    OPACIF: Afdas
 509:
     Convention collective: "Presse quotidienne parisienne: cadres administratifs"
-    OPCA: AFDAS
-    OPACIF: AFDAS
+    OPCA: Afdas
+    OPACIF: Afdas
 306:
     Convention collective: "Presse quotidienne parisienne: cadres techniques"
-    OPCA: AFDAS
-    OPACIF: AFDAS
+    OPCA: Afdas
+    OPACIF: Afdas
 394:
     Convention collective: "Presse quotidienne parisienne: employés"
-    OPCA: AFDAS
-    OPACIF: AFDAS
+    OPCA: Afdas
+    OPACIF: Afdas
 698:
     Convention collective: "Presse quotidienne régionale : employés"
-    OPCA: AFDAS
-    OPACIF: AFDAS
+    OPCA: Afdas
+    OPACIF: Afdas
 1895:
     Convention collective: "Presse quotidienne régionale : encadrement"
-    OPCA: AFDAS
-    OPACIF: AFDAS
+    OPCA: Afdas
+    OPACIF: Afdas
 598:
     Convention collective: "Presse quotidienne régionale : ouvriers"
-    OPCA: AFDAS
-    OPACIF: AFDAS
+    OPCA: Afdas
+    OPACIF: Afdas
 2014:
     Convention collective: "Presse: agence (employés)"
-    OPCA: AFDAS
-    OPACIF: AFDAS
+    OPCA: Afdas
+    OPACIF: Afdas
 2098:
     Convention collective: Prestataires de services secteur tertiaire
     OPCA: AGEFOS PME
     OPACIF: FONGECIF
 1351:
     Convention collective: Prévention et sécurité
-    OPCA: OPCALIA
+    OPCA: Opcalia
     OPACIF: FONGECIF
 9496:
     Convention collective: Producteurs graines Maine et Loire cadres
@@ -3106,23 +3106,23 @@
     OPACIF: FAFSEA
 435:
     Convention collective: Production cinématographique (acteurs et acteurs de complément)
-    OPCA: AFDAS
-    OPACIF: AFDAS
+    OPCA: Afdas
+    OPACIF: Afdas
 388:
     Convention collective: Production cinématographique (cadres, agents de maîtrise et assistants des auditoriums)
-    OPCA: AFDAS
-    OPACIF: AFDAS
+    OPCA: Afdas
+    OPACIF: Afdas
 1396:
     Convention collective: "Produits alimentaires élaborés : industries"
     OPCA: OPCALIM
     OPACIF: FONGECIF
 1077:
     Convention collective: "Produits du sol : négoce et industrie"
-    OPCA: INTERGROS
+    OPCA: Intergros
     OPACIF: FONGECIF
 3168:
     Convention collective: Professions de la photographie
-    OPCA: FORCO
+    OPCA: Forco
     OPACIF: FONGECIF
 1512:
     Convention collective: Promotion immobilière
@@ -3130,90 +3130,90 @@
     OPACIF: FONGECIF
 3043:
     Convention collective: Propreté et services associées
-    OPCA: OPCA TRANSPORTS ET SERVICES
+    OPCA: OPCA Transports et Services
     OPACIF: FONGECIF
 86:
     Convention collective: Publicité française (cadres, techniciens et employés)
-    OPCA: AFDAS
-    OPACIF: AFDAS
+    OPCA: Afdas
+    OPACIF: Afdas
 731:
     Convention collective: "Quincaillerie : commerces (cadres)"
-    OPCA: INTERGROS
+    OPCA: Intergros
     OPACIF: FONGECIF
 1383:
     Convention collective: "Quincaillerie : commerces (ETAM)"
-    OPCA: INTERGROS
+    OPCA: Intergros
     OPACIF: FONGECIF
 5580:
     Convention collective: Radio France
-    OPCA: AFDAS
-    OPACIF: AFDAS
+    OPCA: Afdas
+    OPACIF: Afdas
 5581:
     Convention collective: Radio France internationale
-    OPCA: AFDAS
-    OPACIF: AFDAS
+    OPCA: Afdas
+    OPACIF: Afdas
 1922:
     Convention collective: Radiodiffusion
-    OPCA: AFDAS
-    OPACIF: AFDAS
+    OPCA: Afdas
+    OPACIF: Afdas
 637:
     Convention collective: "Récupération : industries et commerce"
-    OPCA: OPCALIA
+    OPCA: Opcalia
     OPACIF: FONGECIF
 3105:
     Convention collective: Régies de quartier
-    OPCA: UNIFORMATION
-    OPACIF: UNIFORMATION
+    OPCA: Uniformation
+    OPACIF: Uniformation
 2798:
     Convention collective: Régime social des indépendants, employés et cadres
-    OPCA: UNIFORMATION
-    OPACIF: UNIFORMATION
+    OPCA: Uniformation
+    OPACIF: Uniformation
 2796:
     Convention collective: Régime social des indépendants, personnel de direction
-    OPCA: UNIFORMATION
-    OPACIF: UNIFORMATION
+    OPCA: Uniformation
+    OPACIF: Uniformation
 2797:
     Convention collective: Régime social des indépendants, praticiens conseils
-    OPCA: UNIFORMATION
-    OPACIF: UNIFORMATION
+    OPCA: Uniformation
+    OPACIF: Uniformation
 454:
     Convention collective: Remontées mécaniques
     OPCA: AGEFOS PME
     OPACIF: FONGECIF
 5555:
     Convention collective: 'Remorquage maritime navigant d’exécution'
-    OPCA: OPCA TRANSPORTS ET SERVICES
+    OPCA: OPCA Transports et Services
     OPACIF: FONGECIF
 5554:
     Convention collective: Remorquage maritime officiers
-    OPCA: OPCA TRANSPORTS ET SERVICES
+    OPCA: OPCA Transports et Services
     OPACIF: FONGECIF
 201:
     Convention collective: "Renseignements commerciaux : agences (cadres)"
-    # OPCA: AGEFOS PME OU OPCALIA
+    # OPCA: AGEFOS PME OU Opcalia
     OPCA: AGEFOS PME
     OPACIF: FONGECIF
 818:
     Convention collective: Réparation navale de Brest (Finistère)
-    # OPCA: AGEFOS PME OU OPCALIA
+    # OPCA: AGEFOS PME OU Opcalia
     OPCA: AGEFOS PME
     OPACIF: FONGECIF
 706:
     Convention collective: "Reprographie : personnel de la reprographie"
-    # OPCA: AGEFOS PME OU OPCALIA
+    # OPCA: AGEFOS PME OU Opcalia
     OPCA: AGEFOS PME
     OPACIF: FONGECIF
 1266:
     Convention collective: Restauration de collectivités
-    OPCA: FAFIH
+    OPCA: Fafih
     OPACIF: FONGECIF
 1311:
     Convention collective: Restauration ferroviaire
-    OPCA: FAFIH
+    OPCA: Fafih
     OPACIF: FONGECIF
 575:
     Convention collective: Restauration publique
-    OPCA: FAFIH
+    OPCA: Fafih
     OPACIF: FONGECIF
 1501:
     Convention collective: Restauration rapide
@@ -3221,22 +3221,22 @@
     OPACIF: FONGECIF
 5563:
     Convention collective: Réunion des musées nationaux
-    # OPCA: AGEFOS PME OU OPCALIA
+    # OPCA: AGEFOS PME OU Opcalia
     OPCA: AGEFOS PME
     OPACIF: FONGECIF
 5543:
     Convention collective: RFF (SNCF)
-    # OPCA: AGEFOS PME OU OPCALIA
+    # OPCA: AGEFOS PME OU Opcalia
     OPCA: AGEFOS PME
     OPACIF: FONGECIF
 5541:
     Convention collective: Rugby professionnel
-    # OPCA: AGEFOS PME OU OPCALIA
+    # OPCA: AGEFOS PME OU Opcalia
     OPCA: AGEFOS PME
     OPACIF: FONGECIF
 897:
     Convention collective: "Santé au travail : services interentreprises"
-    # OPCA: AGEFOS PME OU OPCALIA
+    # OPCA: AGEFOS PME OU Opcalia
     OPCA: AGEFOS PME
     OPACIF: FONGECIF
 8412:
@@ -3253,8 +3253,8 @@
     OPACIF: FAFSEA
 2603:
     Convention collective: Sécurité sociale (praticiens conseils)
-    OPCA: UNIFORMATION
-    OPACIF: UNIFORMATION
+    OPCA: Uniformation
+    OPACIF: Uniformation
 7021:
     Convention collective: "Sélection et reproduction animale : entreprises"
     OPCA: OPCALIM
@@ -3269,86 +3269,86 @@
     OPACIF: FONGECIF
 2344:
     Convention collective: Sidérurgie
-    # OPCA: AGEFOS PME OU OPCALIA
+    # OPCA: AGEFOS PME OU Opcalia
     OPCA: AGEFOS PME
     OPACIF: FONGECIF
 1261:
     Convention collective: Sociaux et socioculturels (centres) et autres acteurs du lien social (associations)
-    OPCA: UNIFORMATION
-    OPACIF: UNIFORMATION
+    OPCA: Uniformation
+    OPACIF: Uniformation
 5586:
     Convention collective: Société des Auteurs, Compositeurs et Editeurs de Musique (SACEM)
-    OPCA: AFDAS
-    OPACIF: AFDAS
+    OPCA: Afdas
+    OPACIF: Afdas
 1014:
     Convention collective: 'Sociétés d’économie mixte d’autoroutes'
-    # OPCA: AGEFOS PME OU OPCALIA
+    # OPCA: AGEFOS PME OU Opcalia
     OPCA: AGEFOS PME
     OPACIF: FONGECIF
 5537:
     Convention collective: Sociétés de secours minières dentistes
-    # OPCA: AGEFOS PME OU OPCALIA
+    # OPCA: AGEFOS PME OU Opcalia
     OPCA: AGEFOS PME
     OPACIF: FONGECIF
 2668:
     Convention collective: Sociétés de secours minières et de leurs établissements, des unions régionales et des assistants sociaux régionaux
-    # OPCA: AGEFOS PME OU OPCALIA
+    # OPCA: AGEFOS PME OU Opcalia
     OPCA: AGEFOS PME
     OPACIF: FONGECIF
 5538:
     Convention collective: Sociétés de secours minières médecins spécialistes
-    # OPCA: AGEFOS PME OU OPCALIA
+    # OPCA: AGEFOS PME OU Opcalia
     OPCA: AGEFOS PME
     OPACIF: FONGECIF
 5519:
     Convention collective: Sociétés de secours minières salariés
-    # OPCA: AGEFOS PME OU OPCALIA
+    # OPCA: AGEFOS PME OU Opcalia
     OPCA: AGEFOS PME
     OPACIF: FONGECIF
 478:
     Convention collective: Sociétés financières
-    # OPCA: AGEFOS PME OU OPCALIA
+    # OPCA: AGEFOS PME OU Opcalia
     OPCA: AGEFOS PME
     OPACIF: FONGECIF
 3090:
     Convention collective: "Spectacle vivant : secteur privé"
-    OPCA: AFDAS
-    OPACIF: AFDAS
+    OPCA: Afdas
+    OPACIF: Afdas
 2511:
     Convention collective: Sport
-    OPCA: UNIFORMATION
-    OPACIF: UNIFORMATION
+    OPCA: Uniformation
+    OPACIF: Uniformation
 1557:
     Convention collective: "Sport : commerce des articles de sport et équipements de loisirs"
-    OPCA: FORCO
+    OPCA: Forco
     OPACIF: FONGECIF
 1961:
     Convention collective: Stations-service en Guadeloupe
-    # OPCA: AGEFOS PME OU OPCALIA
+    # OPCA: AGEFOS PME OU Opcalia
     OPCA: AGEFOS PME
     OPACIF: FONGECIF
 5011:
     Convention collective: 'Statut de l’Aéroport de Paris'
-    OPCA: OPCALIA
+    OPCA: Opcalia
     OPACIF: FONGECIF
 5017:
     Convention collective: 'Statut de l’Église ou convention diocésaine'
-    # OPCA: AGEFOS PME OU OPCALIA
+    # OPCA: AGEFOS PME OU Opcalia
     OPCA: AGEFOS PME
     OPACIF: FONGECIF
 5003:
     Convention collective: 'Statut de la Fonction publique d’État'
-    # OPCA: AGEFOS PME OU OPCALIA
+    # OPCA: AGEFOS PME OU Opcalia
     OPCA: AGEFOS PME
     OPACIF: FONGECIF
 5022:
     Convention collective: Statut de la Fonction publique hospitalière
-    # OPCA: AGEFOS PME OU OPCALIA
+    # OPCA: AGEFOS PME OU Opcalia
     OPCA: AGEFOS PME
     OPACIF: FONGECIF
 5021:
     Convention collective: Statut de la Fonction publique territoriale
-    # OPCA: AGEFOS PME OU OPCALIA
+    # OPCA: AGEFOS PME OU Opcalia
     OPCA: AGEFOS PME
     OPACIF: FONGECIF
 5019:
@@ -3357,37 +3357,37 @@
     OPACIF: FAFSEA
 5018:
     Convention collective: 'Statut des Chambres de commerce et d’industrie'
-    # OPCA: AGEFOS PME OU OPCALIA
+    # OPCA: AGEFOS PME OU Opcalia
     OPCA: AGEFOS PME
     OPACIF: FONGECIF
 5010:
     Convention collective: 'Statut des Chambres des métiers & de l’artisanat'
-    # OPCA: AGEFOS PME OU OPCALIA
+    # OPCA: AGEFOS PME OU Opcalia
     OPCA: AGEFOS PME
     OPACIF: FONGECIF
 5012:
     Convention collective: Statut des chemins de fer
-    # OPCA: AGEFOS PME OU OPCALIA
+    # OPCA: AGEFOS PME OU Opcalia
     OPCA: AGEFOS PME
     OPACIF: FONGECIF
 5100:
     Convention collective: Statut divers
-    # OPCA: AGEFOS PME OU OPCALIA
+    # OPCA: AGEFOS PME OU Opcalia
     OPCA: AGEFOS PME
     OPACIF: FONGECIF
 5015:
     Convention collective: Statut du Centre Natioal de la recherche Scientifique (CNRS)
-    # OPCA: AGEFOS PME OU OPCALIA
+    # OPCA: AGEFOS PME OU Opcalia
     OPCA: AGEFOS PME
     OPACIF: FONGECIF
 5002:
     Convention collective: Statut du Mineur
-    # OPCA: AGEFOS PME OU OPCALIA
+    # OPCA: AGEFOS PME OU Opcalia
     OPCA: AGEFOS PME
     OPACIF: FONGECIF
 5004:
     Convention collective: Statut EPAVN Villes nouvelles
-    # OPCA: AGEFOS PME OU OPCALIA
+    # OPCA: AGEFOS PME OU Opcalia
     OPCA: AGEFOS PME
     OPACIF: FONGECIF
 2728:
@@ -3396,7 +3396,7 @@
     OPACIF: FONGECIF
 2230:
     Convention collective: "'Surveillance de la qualité de l’air : associations agréées'"
-    # OPCA: AGEFOS PME OU OPCALIA
+    # OPCA: AGEFOS PME OU Opcalia
     OPCA: AGEFOS PME
     OPACIF: FONGECIF
 9103:
@@ -3409,33 +3409,33 @@
     OPACIF: FAFSEA
 780:
     Convention collective: "Tailleurs sur mesure : Région parisienne"
-    OPCA: OPCALIA
+    OPCA: Opcalia
     OPACIF: FONGECIF
 233:
     Convention collective: "Tailleurs: maîtres et artisans (Loire-Atlantique)"
-    # OPCA: AGEFOS PME OU OPCALIA
+    # OPCA: AGEFOS PME OU Opcalia
     OPCA: AGEFOS PME
     OPACIF: FONGECIF
 131:
     Convention collective: 'Tapisserie d’art d’Aubusson-Felletin'
-    OPCA: OPCALIA
+    OPCA: Opcalia
     OPACIF: FONGECIF
 2219:
     Convention collective: Taxis parisiens salariés
-    # OPCA: AGEFOS PME OU OPCALIA
+    # OPCA: AGEFOS PME OU Opcalia
     OPCA: AGEFOS PME
     OPACIF: FONGECIF
 2148:
     Convention collective: Télécommunications
-    OPCA: OPCALIA
+    OPCA: Opcalia
     OPACIF: FONGECIF
 18:
     Convention collective: "Textiles : industries"
-    OPCA: OPCALIA
+    OPCA: Opcalia
     OPACIF: FONGECIF
 1942:
     Convention collective: Textiles artificiels et synthétiques et produits assimilés
-    OPCA: OPCALIA
+    OPCA: Opcalia
     OPACIF: FONGECIF
 2104:
     Convention collective: Thermalisme
@@ -3443,40 +3443,40 @@
     OPACIF: FONGECIF
 1256:
     Convention collective: "Thermiques : équipements (cadres)"
-    OPCA: OPCALIA
+    OPCA: Opcalia
     OPACIF: FONGECIF
 998:
     Convention collective: "Thermiques : équipements (OETAM)"
-    OPCA: OPCALIA
+    OPCA: Opcalia
     OPACIF: FONGECIF
 35:
     Convention collective: "Tissages de soierie du Sud-Est: ETAM"
-    OPCA: OPCALIA
+    OPCA: Opcalia
     OPACIF: FONGECIF
 642:
     Convention collective: "Tissages de soierie du Sud-Est: ouvriers"
-    OPCA: OPCALIA
+    OPCA: Opcalia
     OPACIF: FONGECIF
 57:
     Convention collective: "Tisseurs à domicile rubanier: Région de Saint-Etienne"
-    # OPCA: AGEFOS PME OU OPCALIA
+    # OPCA: AGEFOS PME OU Opcalia
     OPCA: AGEFOS PME
     OPACIF: FONGECIF
 1761:
     Convention collective: "Tissus, tapis et linge de maison : commerce de gros"
-    OPCA: INTERGROS
+    OPCA: Intergros
     OPACIF: FONGECIF
 1710:
     Convention collective: "Tourisme : agences de voyages et de tourisme"
-    OPCA: OPCA TRANSPORTS ET SERVICES
+    OPCA: OPCA Transports et Services
     OPACIF: FONGECIF
 412:
     Convention collective: "Tourisme : guides accompagnateurs au service des agences de voyage et de service"
-    OPCA: OPCA TRANSPORTS ET SERVICES
+    OPCA: OPCA Transports et Services
     OPACIF: FONGECIF
 349:
     Convention collective: "Tourisme : guides interprètes Région parisienne"
-    # OPCA: AGEFOS PME OU OPCALIA
+    # OPCA: AGEFOS PME OU Opcalia
     OPCA: AGEFOS PME
     OPACIF: FONGECIF
 1909:
@@ -3485,40 +3485,40 @@
     OPACIF: FONGECIF
 1316:
     Convention collective: Tourisme social et familial
-    OPCA: UNIFORMATION
-    OPACIF: UNIFORMATION
+    OPCA: Uniformation
+    OPACIF: Uniformation
 2658:
     Convention collective: "Tourisme: guides accompagnateurs et guides animateurs en milieu amazonien"
-    # OPCA: AGEFOS PME OU OPCALIA
+    # OPCA: AGEFOS PME OU Opcalia
     OPCA: AGEFOS PME
     OPACIF: FONGECIF
 275:
     Convention collective: "Transport aérien : personnel au sol"
-    OPCA: OPCALIA
+    OPCA: Opcalia
     OPACIF: FONGECIF
 964:
     Convention collective: Transports aériens régionaux
-    OPCA: OPCALIA
+    OPCA: Opcalia
     OPACIF: FONGECIF
 16:
     Convention collective: Transports de fonds et de valeurs
-    OPCA: OPCA TRANSPORTS ET SERVICES
+    OPCA: OPCA Transports et Services
     OPACIF: FONGECIF
 5520:
     Convention collective: Transports maritimes officiers
-    OPCA: OPCA TRANSPORTS ET SERVICES
+    OPCA: OPCA Transports et Services
     OPACIF: FONGECIF
 5521:
     Convention collective: 'Transports maritimes personnel navigant d’exécution'
-    OPCA: OPCA TRANSPORTS ET SERVICES
+    OPCA: OPCA Transports et Services
     OPACIF: FONGECIF
 1424:
     Convention collective: "Transports publics urbains : réseaux de voyageurs"
-    OPCA: OPCA TRANSPORTS ET SERVICES
+    OPCA: OPCA Transports et Services
     OPACIF: FONGECIF
 1612:
     Convention collective: Travail aérien essais réceptions
-    # OPCA: AGEFOS PME OU OPCALIA
+    # OPCA: AGEFOS PME OU Opcalia
     OPCA: AGEFOS PME
     OPACIF: FONGECIF
 2378:
@@ -3531,27 +3531,27 @@
     OPACIF: FAF.TT
 2409:
     Convention collective: "Travaux publics : cadres (+ de 10 salariés)"
-    OPCA: CONSTRUCTYS
+    OPCA: Constructys
     OPACIF: FONGECIF
 2614:
     Convention collective: "Travaux publics : ETAM (+ de 10 salariés)"
-    OPCA: CONSTRUCTYS
+    OPCA: Constructys
     OPACIF: FONGECIF
 1702:
     Convention collective: "Travaux publics : ouvriers (+ de 10 salariés)"
-    OPCA: CONSTRUCTYS
+    OPCA: Constructys
     OPACIF: FONGECIF
 2034:
     Convention collective: Travaux publics ouvriers (Isère)
-    OPCA: CONSTRUCTYS
+    OPCA: Constructys
     OPACIF: FONGECIF
 2582:
     Convention collective: Travaux publics ouvriers (Savoie)
-    OPCA: CONSTRUCTYS
+    OPCA: Constructys
     OPACIF: FONGECIF
 752:
     Convention collective: "Tresses rigides et élastiques: Région de Saint-Chamond et du Puy et Yssingeaux (Loire, Haute-Loire )"
-    # OPCA: AGEFOS PME OU OPCALIA
+    # OPCA: AGEFOS PME OU Opcalia
     OPCA: AGEFOS PME
     OPACIF: FONGECIF
 1170:
@@ -3560,24 +3560,24 @@
     OPACIF: FONGECIF
 5573:
     Convention collective: 'Union des Groupements d’Achats Publics (UGAP)'
-    # OPCA: AGEFOS PME OU OPCALIA
+    # OPCA: AGEFOS PME OU Opcalia
     OPCA: AGEFOS PME
     OPACIF: FONGECIF
 2270:
     Convention collective: Universités et instituts catholiques de France (UDESCA)
-    OPCA: OPCALIA
+    OPCA: Opcalia
     OPACIF: FONGECIF
 2198:
     Convention collective: Vente à distance
-    OPCA: FORCO
+    OPCA: Forco
     OPACIF: FONGECIF
 1821:
     Convention collective: "Verre : fabrication à la main, semi-automatique et mixte"
-    OPCA: OPCALIA
+    OPCA: Opcalia
     OPACIF: FONGECIF
 669:
     Convention collective: "Verre : fabrication mécanique"
-    OPCA: OPCALIA
+    OPCA: Opcalia
     OPACIF: FONGECIF
 2306:
     Convention collective: "Verre : métiers"
@@ -3585,11 +3585,11 @@
     OPACIF: FONGECIF
 1875:
     Convention collective: "Vétérinaires : personnel salarié"
-    OPCA: ACTALIANS
+    OPCA: Actalians
     OPACIF: FONGECIF
 2564:
     Convention collective: "Vétérinaires : praticiens salariés"
-    OPCA: ACTALIANS
+    OPCA: Actalians
     OPACIF: FONGECIF
 1534:
     Convention collective: "Viandes : industries et commerce en gros"
@@ -3613,21 +3613,21 @@
     OPACIF: FAFSEA
 1945:
     Convention collective: Vitrail
-    # OPCA: AGEFOS PME OU OPCALIA
+    # OPCA: AGEFOS PME OU Opcalia
     OPCA: AGEFOS PME
     OPACIF: FONGECIF
 779:
     Convention collective: Voies ferrées d'intérêt local
-    # OPCA: AGEFOS PME OU OPCALIA
+    # OPCA: AGEFOS PME OU Opcalia
     OPCA: AGEFOS PME
     OPACIF: FONGECIF
 1938:
     Convention collective: "Volailles : industries de la transformation"
-    OPCA: OPCALIA
+    OPCA: Opcalia
     OPACIF: FONGECIF
 804:
     Convention collective: Voyageurs, représentants, placiers (VRP)
-    # OPCA: AGEFOS PME OU OPCALIA
+    # OPCA: AGEFOS PME OU Opcalia
     OPCA: AGEFOS PME
     OPACIF: FONGECIF
 7017:

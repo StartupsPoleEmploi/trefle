@@ -1,13 +1,13 @@
 import asyncio
-from datetime import datetime
 from pathlib import Path
+from datetime import datetime
 
-from lxml import etree
 import requests
 import yaml
+from lxml import etree
 
-from .config import (CONSTANTS, ELIGIBILITE, FINANCEMENTS, MODALITES,
-                     INTERCARIF_URL, DEP_TO_REG)
+from .config import (CONSTANTS, DEP_TO_REG, ELIGIBILITE, FINANCEMENTS,
+                     INTERCARIF_URL, MODALITES, ORGANISMES)
 from .exceptions import UpstreamError
 from .rules import Rule
 
@@ -162,9 +162,9 @@ def financement_to_organisme(data, financement):
 
 def load_organisme(name):
     # TODO load organisme details (email, phone…)
-    return {
-        'nom': name
-    }
+    data = {'nom': name}
+    data.update(ORGANISMES[name])
+    return data
 
 
 def compute_modalites(data, financement):

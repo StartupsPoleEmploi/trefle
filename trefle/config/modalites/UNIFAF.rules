@@ -1,4 +1,4 @@
-Si le nom de l'organisme est «UNIFAF»
+Si le nom de l'organisme est «Unifaf»
     Si le nom du financement contient «CPF»
         Alors le taux horaire applicable vaut 50
         Alors le plafond horaire applicable est égal au solde CPF du bénéficiaire
