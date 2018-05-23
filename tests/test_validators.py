@@ -56,6 +56,8 @@ def test_validate_bad_integer(patch_schema):
     ('false', False),
     ('non', False),
     ('no', False),
+    ('0', False),
+    ('1', True),
 ])
 def test_validate_bool(input, expected, patch_schema):
     patch_schema({

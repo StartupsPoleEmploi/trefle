@@ -2,8 +2,8 @@ from .rules import SCHEMA
 
 validators = []
 
-TRUE_VALUES = ('oui', 'yes', 'true', 'on')
-FALSE_VALUES = ('non', 'no', 'false', 'off')
+TRUE_VALUES = ('oui', 'yes', 'true', 'on', '1')
+FALSE_VALUES = ('non', 'no', 'false', 'off', '0')
 
 
 def to_bool(value):
