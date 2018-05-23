@@ -25,11 +25,21 @@ cif:
     hors_temps_de_travail:
       nom: CIF CDI hors temps de travail
   cdd:
+    demarches: |-
+      Si la formation se déroule pendant votre temps de travail, il est nécessaire d' avoir  une autorisation d'absence de votre employeur. Attention aux délais pour faire cette demande : trois mois pour une formation de six mois et plus, de deux mois pour les autres.
+      Retirer auprès de l'OPACIF {nom} un dossier de demande de prise en charge. Vérifier les délais pour faire cette demande.
+      Indiquer votre accord pour compléter, si besoin, le financement de la formation avec votre Compte Personnel de Formation.
+      Démarrer la formation au plus tard 12 mois après la fin de votre CDD.
+
     pendant_temps_de_travail:
       nom: CIF CDD sur son temps de travail
     hors_temps_de_travail:
       nom: CIF CDD hors temps de travail
   interim:
+    demarches: |-
+      Faite une demande d’autorisation d’absence auprès de l'agence d'intérim avec laquelle vous avez conclu votre CDI intérimaire, en cours de contrat ou dans un délai de trois maximum après la fin de votre contrat. Prenez contact avec l'organisme {nom} pour monter le dossier de financement.
+      La formation doit démarrer au plus tard 12 mois après le dépôt de la demande d'absence,
+      Dans certains cas, l'organisme peut participer aux frais de transport et/ou d’hébergement. Faire la demande dans le dossier CIF ou au plus tard un mois après la fin de la formation. Les frais de repas ne sont pas pris en charge par l'organisme.
     pendant_temps_de_travail:
       nom: CIF intérim sur son temps de travail
     hors_temps_de_travail:
