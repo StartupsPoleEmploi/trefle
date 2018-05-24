@@ -64,9 +64,9 @@ class LazyValue:
         if value is not ...:
             self.get = lambda **d: value
 
-    def _get(self, **data):
+    def _get(self, **context):
         try:
-            return data[self.key]
+            return context[self.key]
         except KeyError:
             raise NoDataError(self.raw)
 
@@ -106,7 +106,7 @@ class Step:
         data = match.groupdict()
         spec = inspect.signature(self.func)
         for name, param in spec.parameters.items():
-            if name == 'data':
+            if name == 'context':
                 continue
             value = data[name]
             if param.annotation != inspect._empty:
@@ -129,9 +129,9 @@ class Action(Step):
         self.params = {}
         self.compile()
 
-    def act(self, data):
+    def act(self, context):
         try:
-            self.func(data, **self.params)
+            self.func(context, **self.params)
         except NoDataError as err:
             raise NoDataError(f'Invalid key "{err}" for {self.raw}')
 
@@ -154,18 +154,18 @@ class Condition(Step):
         else:
             self.compile()
 
-    def assess(self, **data):
+    def assess(self, **context):
         if self.conditions:
             if self.connective == self.OR:
-                return any([c.assess(**data) for c in self.conditions])
-            return all([c.assess(**data) for c in self.conditions])
+                return any([c.assess(**context) for c in self.conditions])
+            return all([c.assess(**context) for c in self.conditions])
         try:
-            return self.func(data, **self.params)
+            return self.func(context, **self.params)
         except NoDataError:
             return False
         except Exception as err:
             # Give more context.
-            params = ' AND '.join(f'{value.raw}={value.get(**data)}'
+            params = ' AND '.join(f'{value.raw}={value.get(**context)}'
                                   for value in self.params.values())
             err.args = (f'{err} (in `{self.raw}`, where {params})',)
             raise
@@ -173,67 +173,67 @@ class Condition(Step):
 
 @action(r"(l'|les? |la )(?P<key>.+) (vaut|est) (?P<value>[\w«» +\-']+)")
 @action(r"(l'|les? |la )(?P<key>.+) est égale? (à la|à|aux?)? (?P<value>[\w«» +\-']+)")
-def set_value(data, key: Label, value: LazyValue):
-    data[key] = value.get(**data)
+def set_value(context, key: Label, value: LazyValue):
+    context[key] = value.get(**context)
 
 
 @action(r"définir le financement «(?P<name>[\w +-]+)» comme éligible")
-def set_financement_eligible(data, name):
-    if name not in data['financements']:
+def set_financement_eligible(context, name):
+    if name not in context['financements']:
         raise ValueError(f'Unknown financement `{name}`')
-    data['financements'][name]['eligible'] = True
+    context['financements'][name]['eligible'] = True
 
 
 @condition(r"c'est une? (?P<key>.+)")
-def check_true(data, key: LazyValue):
-    return key.get(**data) is True
+def check_true(context, key: LazyValue):
+    return key.get(**context) is True
 
 
 @condition(r"ce n'est pas une? (?P<key>.+)")
-def check_false(data, key: LazyValue):
-    return key.get(**data) is False
+def check_false(context, key: LazyValue):
+    return key.get(**context) is False
 
 
 @condition(r"(l'|les? |la )(?P<left>.+) est supérieure? à (?P<right>[\w ]+)")
-def check_gt(data, left: LazyValue, right: LazyValue):
-    return left.get(**data) > right.get(**data)
+def check_gt(context, left: LazyValue, right: LazyValue):
+    return left.get(**context) > right.get(**context)
 
 
 @condition(r"(l'|les? |la )(?P<left>.+) est supérieure? ou égale? à (?P<right>[\w ]+)")
-def check_ge(data, left: LazyValue, right: LazyValue):
-    return left.get(**data) >= right.get(**data)
+def check_ge(context, left: LazyValue, right: LazyValue):
+    return left.get(**context) >= right.get(**context)
 
 
 @condition(r"(l'|les? |la )(?P<left>.+) est inférieure? à (?P<right>[\w ]+)")
-def check_lt(data, left: LazyValue, right: LazyValue):
-    return left.get(**data) < right.get(**data)
+def check_lt(context, left: LazyValue, right: LazyValue):
+    return left.get(**context) < right.get(**context)
 
 
 @condition(r"(l'|les? |la )(?P<left>.+) est inférieure? ou égale? à (?P<right>[\w ]+)")
-def check_le(data, left: LazyValue, right: LazyValue):
-    return left.get(**data) <= right.get(**data)
+def check_le(context, left: LazyValue, right: LazyValue):
+    return left.get(**context) <= right.get(**context)
 
 
 @condition(r"(l'|les? |la )(?P<left>.+) contien(nen)?t au moins (une?) des (?P<right>[ \w«»]+)")
-def check_share_one(data, left: LazyValue, right: LazyValue):
-    return len(set(left.get(**data) or []) & set(right.get(**data) or [])) > 0
+def check_share_one(context, left: LazyValue, right: LazyValue):
+    return len(set(left.get(**context) or []) & set(right.get(**context) or [])) > 0
 
 
 @condition(r"(l'|les? |la )(?P<left>.+) fait partie (de l'|de la |des? |du )(?P<right>.+)")
 @condition(r"(l'|les? |la )(?P<right>.+) contient (l'|les? |la )?(?P<left>[ \w«»]+)")
-def check_contain(data, left: LazyValue, right: LazyValue):
-    return left.get(**data) in right.get(**data)
+def check_contain(context, left: LazyValue, right: LazyValue):
+    return left.get(**context) in right.get(**context)
 
 
 @condition(r"(l'|les? |la )(?P<left>.+) ne fait pas partie (de l'|des? |de la |du )(?P<right>.+)")
 @condition(r"(l'|les? |la )(?P<right>.+) ne contient pas (l'|les? |la )?(?P<left>[ \w«»]+)")
-def check_not_contain(data, left: LazyValue, right: LazyValue):
-    return left.get(**data) not in right.get(**data)
+def check_not_contain(context, left: LazyValue, right: LazyValue):
+    return left.get(**context) not in right.get(**context)
 
 
 @condition(r"(l'|les? |la )(?P<left>.+) (est|vaut) (?P<right>[\w«» +\-\.']+)")
-def check_equal(data, left: LazyValue, right: LazyValue):
-    return left.get(**data) == right.get(**data)
+def check_equal(context, left: LazyValue, right: LazyValue):
+    return left.get(**context) == right.get(**context)
 
 
 Line = namedtuple('Line', ['indent', 'keyword', 'sentence'])
@@ -252,8 +252,8 @@ class Rule:
         self.conditions = conditions
         self.actions = actions
 
-    def assess(self, **data):
-        return all(c.assess(**data) for c in self.conditions)
+    def assess(self, **context):
+        return all(c.assess(**context) for c in self.conditions)
 
     @staticmethod
     def iter_lines(iterable):
@@ -274,10 +274,10 @@ class Rule:
         yield (previous, current, Line(0, None, None))
 
     @classmethod
-    def load(cls, data, tree=None, rules=None):
+    def load(cls, lines, tree=None, rules=None):
         if rules is None:
             rules = []
-            data = cls.iter_lines(data)
+            lines = cls.iter_lines(lines)
         # tree of conditions valid until now (higher indentation ihnerits
         # conditions from lower indentations).
         if tree is None:
@@ -285,7 +285,7 @@ class Rule:
         actions = []  # One or more actions of a rule.
         terms = []  # One or more terms of a condition.
         connective = None
-        for (prev, curr, next_) in data:
+        for (prev, curr, next_) in lines:
             if curr.keyword == 'si' or (terms and curr.keyword in ('et', 'ou')):
                 terms.append(curr.sentence)
                 if not connective and curr.keyword == 'ou':
@@ -305,7 +305,7 @@ class Rule:
                     terms = []
                     connective = None
                 try:
-                    Rule.load(data, inner[:], rules)
+                    Rule.load(lines, inner[:], rules)
                 except StopRecursivity as err:
                     if err.indent < curr.indent:
                         raise
@@ -313,11 +313,11 @@ class Rule:
         return rules
 
     @staticmethod
-    def process(rules, data, failed=None):
+    def process(rules, context, failed=None):
         for rule in rules:
-            if rule.assess(**data):
+            if rule.assess(**context):
                 for action in rule.actions:
-                    action.act(data)
+                    action.act(context)
             elif failed is not None:
                 failed.append(rule)
 
