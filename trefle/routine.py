@@ -122,19 +122,12 @@ def populate_formation_from_bytes(context, content):
         c[:3] for c in context['formation.codes_formacode']])
     context['formation.foad'] = bool(
         root.xpath('//modalites-enseignement[text()="2"]'))
-    context['formation.toeic'] = bool(
-        {'constante.codes_certifinfo_toeic'} & set(context['formation.codes_certifinfo']))
-    context['formation.bulats'] = bool(
-        {'constante.codes_certifinfo_bulats'} & set(context['formation.codes_certifinfo']))
-    context['formation.caces'] = bool(
-        {'constante.codes_certifinfo_caces'} & set(context['formation.codes_certifinfo']))
-    context['formation.bec'] = bool(
-        {'constante.codes_certifinfo_bec'} & set(context['formation.codes_certifinfo']))
-    context['formation.bilan_de_competences'] = (
-        'constante.codes_certifinfo_bilan_de_competences'
-        in set(context['formation.codes_certifinfo']))
-    context['formation.permis_b'] = ('constante.codes_certifinfo_permis_b'
-                                     in set(context['formation.codes_certifinfo']))
+    context['formation.toeic'] = bool(set(context['constante.codes_certifinfo_toeic']) & set(context['formation.codes_certifinfo']))
+    context['formation.bulats'] = bool(set(context['constante.codes_certifinfo_bulats']) & set(context['formation.codes_certifinfo']))
+    context['formation.caces'] = bool(set(context['constante.codes_certifinfo_caces']) & set(context['formation.codes_certifinfo']))
+    context['formation.bec'] = bool(set(context['constante.codes_certifinfo_bec']) & set(context['formation.codes_certifinfo']))
+    context['formation.bilan_de_competences'] = bool(set(context['constante.codes_certifinfo_bilan_de_competences']) & set(context['formation.codes_certifinfo']))
+    context['formation.permis_b'] = bool(set(context['constante.codes_certifinfo_permis_b']) & set(context['formation.codes_certifinfo']))
     context['formation.codes_financeur'] = set([
         int(c) for c in root.xpath('//organisme-financeur/code-financeur/child::text()')])
 

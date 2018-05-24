@@ -8,7 +8,7 @@ import phpserialize
 
 from .config import LABELS, SCHEMA
 from .exceptions import NoDataError
-from .routine import populate_formation
+from .routine import populate_formation, add_constants
 from .validators import validate
 
 
@@ -94,6 +94,7 @@ async def data_from_lbf_url(url):
         print('Error validating data.')
         print(data)
         sys.exit(err)
+    add_constants(data)
     await populate_formation(data)
     del data['formation.numero']
     return data
