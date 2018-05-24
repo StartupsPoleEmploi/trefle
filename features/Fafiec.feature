@@ -35,3 +35,27 @@ Scénario: cas nominal Fafiec
     Alors l'organisme à contacter est «Fafiec»
     Et le montant de prise en charge vaut 4800
     Et la rémunération vaut 0
+
+
+Scénario: CPF sur CPNE
+    Soit un bénéficiaire et une formation
+    Et c'est un bénéficiaire de droit privé
+    Et la rémunération du bénéficiaire vaut 1600
+    Et le solde CPF du bénéficiaire vaut 120
+    Et le type de contrat du bénéficiaire vaut «CDD»
+    Et l'expérience professionnelle du bénéficiaire dans les cinq dernières années vaut 48
+    Et le nombre de mois travaillés par le bénéficiaire dans la dernière année vaut 12
+    Et l'ancienneté du bénéficiaire dans son entreprise vaut 12
+    Et le code NAF de l'établissement du bénéficiaire vaut «6202A»
+    Et l'IDCC de l'établissement du bénéficiaire vaut 1486
+    Et ce n'est pas une formation éligible COPANEF
+    Et les codes NAF CPNE éligibles valent [6202A]
+    Quand je demande un calcul de financement
+    Quand je sélectionne le financement «CPF sur son temps de travail»
+    Alors l'organisme à contacter est «Fafiec»
+    Et le montant de prise en charge vaut 4800
+    Et la rémunération vaut 1600
+    Quand je sélectionne le financement «CPF hors temps de travail»
+    Alors l'organisme à contacter est «Fafiec»
+    Et le montant de prise en charge vaut 4800
+    Et la rémunération vaut 0
