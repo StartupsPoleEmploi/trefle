@@ -331,6 +331,10 @@ financement:
       public: true
       type: string
       label: nom de l'organisme
+    agence:
+      description: le nom de l'antenne locale à contacter le cas échéant
+      type: string
+      label: nom de l'agence à contacter
     adresse:
       public: true
       type: string

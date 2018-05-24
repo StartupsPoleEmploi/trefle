@@ -142,7 +142,7 @@ def make_feature(data, financements, name='Donne-moi un nom'):
         steps.append(f"Quand je sélectionne le financement "
                      f"«{financement['nom']}»")
         # Alors l'organisme tutelle est «INTERGROS»
-        steps.append(f"Alors l'organisme tutelle est "
+        steps.append(f"Alors l'organisme à contacter est "
                      f"«{financement['organisme']['nom']}»")
         # Et le montant de prise en charge vaut 2000
         steps.append(f"Et le montant de prise en charge vaut "

@@ -171,8 +171,8 @@ class Condition(Step):
             raise
 
 
-@action(r"(l'|les? |la )(?P<key>.+) vaut (?P<value>[\w«» +-]+)")
-@action(r"(l'|les? |la )(?P<key>.+) est égale? (à la|à|aux?)? (?P<value>[\w«» +-]+)")
+@action(r"(l'|les? |la )(?P<key>.+) (vaut|est) (?P<value>[\w«» +\-']+)")
+@action(r"(l'|les? |la )(?P<key>.+) est égale? (à la|à|aux?)? (?P<value>[\w«» +\-']+)")
 def set_value(data, key: Label, value: LazyValue):
     data[key] = value.get(**data)
 
@@ -231,7 +231,7 @@ def check_not_contain(data, left: LazyValue, right: LazyValue):
     return left.get(**data) not in right.get(**data)
 
 
-@condition(r"(l'|les? |la )(?P<left>.+) (est|vaut) (?P<right>[\w«» +-\.]+)")
+@condition(r"(l'|les? |la )(?P<left>.+) (est|vaut) (?P<right>[\w«» +\-\.']+)")
 def check_equal(data, left: LazyValue, right: LazyValue):
     return left.get(**data) == right.get(**data)
 

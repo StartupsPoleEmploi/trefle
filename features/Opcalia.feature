@@ -26,10 +26,10 @@ Scénario: Donne-moi un nom
     Et la durée en mois de la formation vaut 98
     Quand je demande un calcul de financement
     Quand je sélectionne le financement «CPF sur son temps de travail»
-    Alors l'organisme tutelle est «Opcalia»
+    Alors l'organisme à contacter est «Opcalia Auvergne Rhône Alpes»
     Et le montant de prise en charge vaut 7500
     Et la rémunération vaut 1400
     Quand je sélectionne le financement «CPF hors temps de travail»
-    Alors l'organisme tutelle est «Opcalia»
+    Alors l'organisme à contacter est «Opcalia Auvergne Rhône Alpes»
     Et le montant de prise en charge vaut 7500
     Et la rémunération vaut 0

@@ -18,10 +18,10 @@ Scénario: Formation COPANEF
     Et la durée en mois de la formation vaut 22
     Quand je demande un calcul de financement
     Quand je sélectionne le financement «CPF sur son temps de travail»
-    Alors l'organisme tutelle est «Constructys»
+    Alors l'organisme à contacter est «Constructys»
     Et le montant de prise en charge vaut 3000
     Et la rémunération vaut 1400
     Quand je sélectionne le financement «CPF hors temps de travail»
-    Alors l'organisme tutelle est «Constructys»
+    Alors l'organisme à contacter est «Constructys»
     Et le montant de prise en charge vaut 3000
     Et la rémunération vaut 0

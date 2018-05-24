@@ -64,7 +64,7 @@ def when_select_one(context, nom):
         raise AssertionError(f'No result found with name {nom}')
 
 
-@then(r"l'organisme tutelle est «(?P<name>.+)»")
+@then(r"l'organisme à contacter est «(?P<name>.+)»")
 def then_check_organisme(context, name):
     assert context.result['organisme']['nom'] == name,\
         f'{context.result["organisme"]["nom"]} != {name}'

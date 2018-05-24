@@ -74,9 +74,184 @@ AGEFOS PME:
   adresse: 187 quai de Valmy 75010 Paris
   telephone: 01 44 90 46 46
   web: www.agefos-pme.com
+AGEFOS PME Antilles Guyane:
+  adresse: Immeuble Arno Sons Zac de Houëlbourg Sud II 97122 Baie Mahault
+  telephone: 05 90 26 93 62/05 90 41 98 16
+  web: www.agefos-pme-antillesguyane.com
+AGEFOS PME Auvergne Rhône Alpes:
+  adresse: 50 rue Saint Jean de Dieu BP7077 69348 Lyon cedex 07
+  telephone: 04 72 71 55 30
+  web: www.agefos-pme-auvergnerhonealpes.com
+AGEFOS PME Bourgogne Franche Comté:
+  adresse: 5 rue de Broglie CS56623 21066 Dijon cedex
+  telephone: 0820 420 051*
+  web: www.agefos-pme-bfc.com
+AGEFOS PME Bretagne:
+  adresse: Immeuble Hermès 6 place des Colombes CS56424 35064 Rennes cedex
+  telephone: 02 99 78 47 20
+  web: www.agefos-pme-bretagne.com
+AGEFOS PME Centre Val de Loire:
+  adresse: 4 place Jean Monnet 45000 Orléans cedex
+  telephone: 02 38 62 62 18
+  web: www.agefos-pme-centre.com
+AGEFOS PME CGM:
+  adresse: 55 rue Ampère 75017 Paris
+  telephone: 01 44 01 89 89
+  web: agefospme-cgm.fr
+AGEFOS PME Corse:
+  adresse: Route du Stade Allée des Fleurs 20600 Furiani
+  telephone: 04 95 58 92 00
+  web: www.agefos-pme-corse.com
+AGEFOS PME Délégation Auvergne:
+  adresse: 52-54 boulevard Berthelot CS40407 63011 Clermont Ferrand cedex 01
+  telephone: 04 73 31 95 95
+  web: www.agefos-pme-auvergnerhonealpes.com
+AGEFOS PME délégation interdépartementale Franche Comté:
+  adresse: 2 rue de l'Industrie BP76337 25017 Besançon cedex
+  telephone: 0820 42 00 51*
+  web: www.agefos-pme-bfc.com
+AGEFOS PME établissement Agefomat:
+  adresse: 35 rue Froidevaux 75014 Paris
+  telephone: 01 43 22 70 70
+  web: www.agefomat.com
+AGEFOS PME Grand Est - Territoire d'Alsace:
+  adresse: 28 rue Kilbs BP145 Bischoffsheim 67214 Obernai cedex
+  telephone: 03 88 49 41 51
+  web: www.agefos-pme-grandest.com
+AGEFOS PME Grand Est - Territoire de Champagne Ardenne:
+  adresse: Centre d'affaires Santos Dumont bâtiment A8 BP286 51687 Reims cedex 2
+  telephone: 03 26 83 50 90
+  web: www.agefos-pme-grandest.com
+AGEFOS PME Grand Est - Territoire de Lorraine:
+  adresse: 3 rue de Berlange 57140 Woippy
+  telephone: 03 87 32 03 90
+  web: www.agefos-pme-grandest.com
+AGEFOS PME Hauts de France:
+  adresse: Pôle Jules Verne 15 rue de l'Ile Mystérieuse 80440 Boves
+  telephone: 03 22 35 42 52
+  web: www.agefos-pme-hautsdefrance.com
+AGEFOS PME Ile de France:
+  adresse: 11 rue Hélène 75849 Paris cedex 17
+  web: www.agefos-pme-iledefrance.com
+AGEFOS PME La Réunion:
+  adresse: 32 rue de Cayenne BP310 97458 Saint Pierre cedex
+  telephone: 02 62 96 11 80
+  web: www.agefos-pme-reunion.com
+AGEFOS PME Normandie:
+  adresse: Citis 8 rue d'Atalante BP10268 14209 Hérouville Saint Clair cedex
+  telephone: 02 31 50 17 17
+  web: www.agefos-pme-normandie.com
+AGEFOS PME Nouvelle Aquitaine:
+  adresse: 7 avenue du Millac 33370 Artigues près Bordeaux
+  telephone: 05 57 77 34 84
+  web: www.agefos-pme-nouvelleaquitaine.com
+AGEFOS PME Occitanie:
+  adresse: Parc technologique du canal 14 avenue de l'Europe Bâtiment Houston BP42125 31521 Ramonville Saint Agne cedex
+  telephone: 05 62 26 83 26
+  web: www.agefos-pme-occitanie.com
+AGEFOS PME Occitanie délégation interdépartementale Montpellier:
+  adresse: quartier d'entreprise Tournezy plan Louis Jouvet bât A4 CS10015 34078 Montpellier cedex 3
+  telephone: 04 67 07 04 50
+  web: www.agefos-pme-occitanie.com
+AGEFOS PME Pays de la Loire:
+  adresse: 1 square de la Nouvelle France BP20548 49305 Cholet cedex
+  telephone: 02 41 49 14 40
+  web: www.agefos-pme-plpc.com
+AGEFOS PME Provence Alpes Côte d'Azur:
+  adresse: 146 rue Paradis CS30001 13294 Marseille cedex 06
+  telephone: 04 91 14 08 80
+  web: www.agefos-pme-paca.com
+SPP Pêche et cultures marines:
+  adresse: c/o Agefos Pme 7 rue Félix Le Dantec CS 83039 29334 Quimper cedex
+  telephone: 02 98 97 26 52
+  web: www.spppcm.fr
 Opcalia:
   adresse: 47 rue de la Victoire 75009 Paris
   telephone: 01 44 71 99 00
+  web: www.opcalia.com
+Opcalia Auvergne Rhône Alpes:
+  adresse: 66 avenue Jean Mermoz BP8048 69351 Lyon cedex 08
+  telephone: 04 78 77 06 87
+  web: www.opcalia.com
+Opcalia Bourgogne Franche Comté:
+  adresse: 6 allée André Bourland BP67007 21070 Dijon cedex
+  telephone: 03 80 77 85 75
+  web: www.opcalia.com
+Opcalia Bretagne:
+  adresse: 4 bis allée du Bâtiment 35000 Rennes
+  telephone: 02 23 20 00 20
+  web: www.opcalia.com
+Opcalia Centre Val de Loire:
+  adresse: 22 rue Vallée Maillard BP80008 41913 Blois cedex 9
+  telephone: 02 54 90 40 40
+  web: www.opcalia.com
+Opcalia Corse:
+  adresse: Immeuble Bouttaud KM5 Route de Mezzavia 20190 Ajaccio
+  telephone: 04 95 23 34 81
+  web: www.opcalia.com
+Opcalia département enseignement privé:
+  adresse: 47 rue de la Victoire 75009 Paris
+  telephone: 01 44 71 99 00
+  web: www.opcalia.com
+Opcalia département télécoms:
+  adresse: 47 rue de la Victoire 75009 Paris
+  telephone: 01 44 71 99 00
+  web: www.opcalia.com
+Opcalia département textiles, mode, cuirs:
+  adresse: 47 rue de la Victoire 75009 Paris
+  telephone: 01 48 24 10 59
+  web: www.opcalia.com
+Opcalia Grand Est:
+  adresse: 18 rue des Métiers 68000 Colmar
+  telephone: 03 89 21 64 70
+  web: www.opcalia.com
+Opcalia Guadeloupe:
+  adresse: Immeuble Bravo Voie Verte BP2393 97188 Jarry cedex
+  telephone: 05 90 60 18 13
+  web: www.opcalia.com
+Opcalia Guyane:
+  adresse: 1897 route de Montjoly CS30810 97338 Cayenne cedex
+  telephone: 05 94 28 45 64
+  web: www.opcalia.com
+Opcalia Hauts de France:
+  adresse: 96 rue Nationale 59000 Lille
+  telephone: 03 61 26 60 15
+  web: www.opcalia.com
+Opcalia Ile de France:
+  adresse: 47 rue de la Victoire 75009 Paris
+  telephone: 01 44 06 77 10
+  web: www.opcalia.com
+Opcalia Martinique:
+  adresse: route Chateauboeuf, 97200 FORT DE FRANCE
+  telephone: 05 96 50 79 31
+  web: www.opcalia.com
+Opcalia Mayotte:
+  adresse: 20 Immeuble Archipel ZI Kawéni BP469 97600 Mamoudzou
+  telephone: 02 69 61 44 45
+  web: www.opcalia.com
+Opcalia Normandie:
+  adresse: Immeuble le Galilée Technoparc des Bocquets 10 allée Enrico Fermi BP436 76235 Bois Guillaume cedex
+  telephone: 02 35 12 17 17
+  web: www.opcalia.com
+Opcalia Nouvelle Aquitaine:
+  adresse: Bureaux de Bordeaux Lac 1 Bâtiment 8 4 allée de Chavailles 33525 Bruges cedex
+  telephone: 05 56 69 85 08
+  web: www.opcalia.com
+Opcalia Occitanie:
+  adresse: Le Belvédère 11 boulevard des Récollets CS97802 31078 Toulouse cedex 4
+  telephone: 05 61 14 51 61
+  web: www.opcalia.com
+Opcalia Pays de la Loire:
+  adresse: Europarc la Chantrerie 8 rue Edouard Nignon CS30803 44308 Nantes cedex 3
+  telephone: 02 40 99 38 00
+  web: www.opcalia.com
+Opcalia Provence Alpes Côte d'Azur:
+  adresse: Les Carrés de l'Arc bâtiment C rond point du Canet 13590 Meyreuil
+  telephone: 04 42 91 27 99
+  web: www.opcalia.com
+Opcalia Réunion:
+  adresse: Centre d'affaires de la Mare 5 rue André Lardy Bâtiment C La Turbine 97438 Sainte Marie
+  telephone: 02 62 90 23 45
   web: www.opcalia.com
 Fongecif:
   adresse: TODO

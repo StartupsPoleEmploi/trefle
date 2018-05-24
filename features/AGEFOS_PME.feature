@@ -13,11 +13,11 @@ Scénario: cas nominal d'une formation COPANEF
     Et le type de contrat du bénéficiaire vaut CDI
     Quand je demande un calcul de financement
     Et je sélectionne le financement «CPF sur son temps de travail»
-    Alors l'organisme tutelle est «AGEFOS PME»
+    Alors l'organisme à contacter est «AGEFOS PME»
     Et le montant de prise en charge vaut 2500
     Et la rémunération vaut 1400
     Quand je sélectionne le financement «CPF hors temps de travail»
-    Alors l'organisme tutelle est «AGEFOS PME»
+    Alors l'organisme à contacter est «AGEFOS PME»
     Et le montant de prise en charge vaut 2500
     Et la rémunération vaut 0
 
@@ -34,11 +34,11 @@ Scénario: plafond horaire d'une formation VAE
     Et le code CPF de la formation vaut 200
     Quand je demande un calcul de financement
     Et je sélectionne le financement «CPF sur son temps de travail»
-    Alors l'organisme tutelle est «AGEFOS PME»
+    Alors l'organisme à contacter est «AGEFOS PME»
     Et le montant de prise en charge vaut 2500
     Et la rémunération vaut 1400
     Quand je sélectionne le financement «CPF hors temps de travail»
-    Alors l'organisme tutelle est «AGEFOS PME»
+    Alors l'organisme à contacter est «AGEFOS PME»
     Et le montant de prise en charge vaut 2500
     Et la rémunération vaut 0
 
@@ -57,11 +57,11 @@ Scénario: cas nominal d'une formation Région (Conseil régional)
     Et le type de contrat du bénéficiaire vaut CDI
     Quand je demande un calcul de financement
     Et je sélectionne le financement «CPF sur son temps de travail»
-    Alors l'organisme tutelle est «AGEFOS PME»
+    Alors l'organisme à contacter est «AGEFOS PME Provence Alpes Côte d'Azur»
     Et le montant de prise en charge vaut 7500
     Et la rémunération vaut 2000
     Quand je sélectionne le financement «CPF hors temps de travail»
-    Alors l'organisme tutelle est «AGEFOS PME»
+    Alors l'organisme à contacter est «AGEFOS PME Provence Alpes Côte d'Azur»
     Et le montant de prise en charge vaut 7500
     Et la rémunération vaut 0
 
@@ -91,10 +91,10 @@ Scénario: plafond horaire sur une formation simple
     Et la durée en mois de la formation vaut 6
     Quand je demande un calcul de financement
     Quand je sélectionne le financement «CPF sur son temps de travail»
-    Alors l'organisme tutelle est «AGEFOS PME»
+    Alors l'organisme à contacter est «AGEFOS PME Provence Alpes Côte d'Azur»
     Et le montant de prise en charge vaut 7500
     Et la rémunération vaut 1400
     Quand je sélectionne le financement «CPF hors temps de travail»
-    Alors l'organisme tutelle est «AGEFOS PME»
+    Alors l'organisme à contacter est «AGEFOS PME Provence Alpes Côte d'Azur»
     Et le montant de prise en charge vaut 7500
     Et la rémunération vaut 0

@@ -139,7 +139,8 @@ def populate_formation_from_bytes(data, content):
         int(c) for c in root.xpath('//organisme-financeur/code-financeur/child::text()')])
 
     # Compute duration in months.
-    debut = datetime.strptime(root.xpath('//periode/debut/child::text()')[0], '%Y%m%d')
+    debut = datetime.strptime(root.xpath('//periode/debut/child::text()')[0],
+                              '%Y%m%d')
     fin = datetime.strptime(
         root.xpath('//periode/fin/child::text()')[0], '%Y%m%d')
     data['formation.mois'] = diff_month(debut, fin)
@@ -148,22 +149,27 @@ def populate_formation_from_bytes(data, content):
 def financement_to_organisme(data, financement):
     type_ = financement['genre']
     if type_ == 'CPF':
-        organisme = load_organisme(data['beneficiaire.entreprise.opca'])
+        nom = data['beneficiaire.entreprise.opca']
     elif type_ == 'CIF':
-        organisme = load_organisme(data['beneficiaire.entreprise.opacif'])
+        nom = data['beneficiaire.entreprise.opacif']
     else:
         raise NotImplementedError(f'Unknown financement type {type_}')
+    data['financement.organisme.nom'] = nom
+
+
+def load_organisme_contact_details(data, financement):
+    nom = data.get('financement.organisme.agence',
+                   data['financement.organisme.nom'])
+    organisme = load_organisme(nom)
     financement['organisme'] = organisme
-    data['financement.organisme.nom'] = organisme['nom']
     # Q&D way to display the organisme details on LBF.
     # TODO clean me.
     financement['demarches'] = financement['demarches'].format(**organisme)
 
 
-def load_organisme(name):
-    # TODO load organisme details (email, phone…)
-    data = {'nom': name}
-    data.update(ORGANISMES[name])
+def load_organisme(nom):
+    data = {'nom': nom}
+    data.update(ORGANISMES[nom])
     return data
 
 
@@ -190,3 +196,4 @@ def populate_financement(data, financement):
     data['financement.nom'] = financement['nom']
     financement_to_organisme(data, financement)
     compute_modalites(data, financement)
+    load_organisme_contact_details(data, financement)
