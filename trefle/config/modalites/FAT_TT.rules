@@ -1,15 +1,15 @@
 Si le nom de l'organisme est «FAT.TT»
-    Alors le taux horaire applicable vaut 12
+    Alors le prix horaire plafond applicable vaut 12
     Et le plafond horaire applicable est égal au solde CPF du bénéficiaire
 
     Si c'est une formation TOEIC
     Ou c'est une formation BULATS
-        Alors le taux horaire applicable vaut 60
+        Alors le prix horaire plafond applicable vaut 60
 
     Si c'est une formation CACES
-        Alors le taux horaire applicable vaut 10
+        Alors le prix horaire plafond applicable vaut 10
 
     Si le code CPF de la formation fait partie des codes CPF VAE
-        Alors le taux horaire applicable vaut 63
+        Alors le prix horaire plafond applicable vaut 63
         Et le plafond horaire applicable vaut 24
         Et le plafond financier applicable vaut 1525

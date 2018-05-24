@@ -1,9 +1,5 @@
-# TODO replace with financement.genre
-Si le nom du financement contient «CIF»
-    # TODO proper CIF remuneration
-    Alors la rémunération possible est égale à 0
 Si le nom du financement contient «CPF»
-    Si le nom du financement contient «hors temps de travail»
-        Alors la rémunération possible est égale à 0
+    # Par défaut, sur un CPF, on ne dépasse pas le solde du compte du bénéficiaire.
+    Alors le plafond horaire applicable est égale au solde CPF du bénéficiaire
     Si le nom du financement contient «sur son temps de travail»
         Alors la rémunération possible est égale à la rémunération du bénéficiaire

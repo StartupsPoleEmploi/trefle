@@ -1,5 +1,5 @@
 Si le nom de l'organisme est «Fafih»
-    Alors le taux horaire applicable vaut 40
+    Alors le prix horaire plafond applicable vaut 40
     Alors le plafond horaire applicable est égal au solde CPF du bénéficiaire
     # CQP => chercher CQP dans l'intitulé et dans l'objectif de la formation
     # Alors organisme.plafond_financier_vae VAUT "1 500 € maxi si la certification validée est un CQP\n2 500 € maxi si la certification validée est jusqu'à un niveau bac +2 \n3 500 € maxi si la certification validée est de nivea bac + 3 et plusI"
@@ -9,5 +9,5 @@ Si le nom de l'organisme est «Fafih»
         Si c'est un permis B
             Alors le plafond financier applicable vaut 750
     Si le code CPF de la formation fait partie des codes CPF VAE
-        Alors le taux horaire applicable vaut 0
+        Alors le prix horaire plafond applicable vaut 0
         Alors le plafond horaire applicable vaut 0

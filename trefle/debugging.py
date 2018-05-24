@@ -145,8 +145,12 @@ def make_feature(data, financements, name='Donne-moi un nom'):
         # Alors l'organisme tutelle est «INTERGROS»
         steps.append(f"Alors l'organisme à contacter est "
                      f"«{financement['organisme']['nom']}»")
-        # Et le montant de prise en charge vaut 2000
-        steps.append(f"Et le montant de prise en charge vaut "
-                     f"{financement['prise_en_charge']}")
+        if financement.get('prise_en_charge') is not None:
+            # Et le montant de prise en charge vaut 2000
+            steps.append(f"Et le montant de prise en charge vaut "
+                         f"{financement['prise_en_charge']}")
+        elif financement.get('plafond_prise_en_charge'):
+            steps.append(f"Et le plafond de prise en charge vaut "
+                         f"{financement['plafond_prise_en_charge']}")
         steps.append(f"Et la rémunération vaut {financement['remuneration']}")
     return header + '\n    '.join(steps)

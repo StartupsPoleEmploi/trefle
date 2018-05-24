@@ -4,12 +4,25 @@ from minicli import cli, run
 from roll.extensions import simple_server
 
 from .api import app
-from .config import ELIGIBILITE, MODALITES
+from .config import ELIGIBILITE, MODALITES, SCHEMA
 from .core import simulate
 from .debugging import data_from_lbf_url, green, make_feature, red, trace_rule
 
 
 RULES = ELIGIBILITE + MODALITES
+
+
+def parse_args(args):
+    data = {}
+    for arg in args:
+        key, value = arg.split('=')
+        schema = SCHEMA[key]
+        if value.startswith('['):
+            value = value[1:-1].split(',')  # TODO: Merge with LazyValue?
+            if schema['type'] == 'List[int]':
+                value = [int(v) for v in value]
+        data[key] = value
+    return data
 
 
 @cli(name='simulate')
@@ -27,9 +40,8 @@ async def cli_simulate(*args, url=None, trace=False, feature=False,
     if url:
         data = await data_from_lbf_url(url)
     if args:
-        data.update(a.split('=') for a in args)
+        data.update(parse_args(args))
     if trace:
-        # TODO: merge PRISE_EN_CHARGE and REMUNERATION ?
         for rule in RULES:
             trace_rule(rule)
     if show_data:

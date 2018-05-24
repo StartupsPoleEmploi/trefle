@@ -1,0 +1,20 @@
+Si le nom de l'organisme est «Fongecif»
+    # Et le prix horaire plafond applicable est égale au prix horaire de la formation
+    Alors le plafond financier applicable vaut 18000
+    Et le prix horaire plafond applicable vaut 27.45
+
+    # TODO: dont check financement name
+    Si le nom du financement contient «sur son temps de travail»
+        Alors la rémunération possible est égale à la rémunération du bénéficiaire
+
+    # TODO Formation partiellement ou totalement prise en charge, sur une durée maximale d'un an, ou de deux ans si la formation est à temps partiel.
+    Si la rémunération du bénéficiaire est supérieure à deux fois le SMIC
+        # TODO: do we want to write 5% instead of 0.05?
+        # Alors le reste à charge applicable est égal à 0.05
+        # Alors le reste à charge applicable est égal à 5% de la rémunération possible
+
+        Si le nom du financement contient «sur son temps de travail»
+            Alors la rémunération possible est égale à 80% de la rémunération du bénéficiaire
+
+        # Si la rémunération du bénéficiaire est supérieure à trois fois le SMIC
+            # Et le reste à charge applicable est égal à 10% de la rémunération possible

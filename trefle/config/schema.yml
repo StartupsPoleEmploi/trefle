@@ -24,6 +24,7 @@ constante:
     type: List[int]
     value: [201, 207, 208]
     label: codes CPF CleA
+  # https://www.service-public.fr/particuliers/vosdroits/F2300
   deux_smic:
     type: integer
     format: int32
@@ -32,7 +33,7 @@ constante:
   trois_smic:
     type: integer
     format: int32
-    value: 2997
+    value: 5994
     label: trois fois le SMIC
   domaine_formacode_langue:
     description: le domaine FORMACODE des formations en langue
@@ -76,7 +77,6 @@ beneficiaire:
     type: integer
     format: int32
     public: true
-    required: true
     label: solde CPF du bénéficiaire
     gender: masculine
   remuneration:
@@ -215,27 +215,35 @@ formation:
     type: integer
     format: int32
     label: durée en mois de la formation
-  taux_horaire:
+  prix_horaire:
     type: integer
-    format: int32
-    label: taux horaire de la formation
-  taux_horaire_ttc:
+    format: float
+    label: prix horaire de la formation
+    description: prix horaire TTC de la formation
+    gender: masculine
+  prix_total:
     type: integer
-    format: int32
-    label: taux horaire TTC de la formation
-  taux_horaire_ht:
+    format: float
+    label: prix total de la formation
+    description: prix total TTC de la formation
+    gender: masculine
+  prix_horaire_ttc:
     type: integer
-    format: int32
-    label: taux horaire HT de la formation
+    format: float
+    label: prix horaire TTC de la formation
+  prix_horaire_ht:
+    type: integer
+    format: float
+    label: prix horaire HT de la formation
   cpf:
-    description: code CPF de la formation (plusieurs? cf tag_cpf)
+    description: code CPF de la formation
     type: integer
     format: int32
     source: catalogue
     label: code CPF de la formation
   codes_naf:
     description: codes NAF des différents CPNE
-    type: List[int]
+    type: List[str]
     source: routine.naf_from_formation
     label: codes NAF CPNE éligibles
     number: plural
@@ -309,7 +317,15 @@ financement:
     format: int32
     public: true
     nullable: true
-    label: montant de prise en charge possible
+    label: montant de prise en charge calculé
+    description: valeur définie seulement si le prix horaire de la formation est défini
+  plafond_prise_en_charge:
+    type: integer
+    format: int32
+    public: true
+    nullable: true
+    label: plafond de prise en charge
+    description: Ce champ est défini quand on ne connaît pas le prix horaire de la formation. C'est donc une prise en charge maximale théorique, la prise en charge réelle dépendra du prix exact de la formation.
   plafond_financier:
     type: integer
     format: int32
@@ -318,13 +334,20 @@ financement:
     type: integer
     format: int32
     label: plafond horaire applicable
-  taux_horaire:
+    description: nombre maximal d'heures prises en charge
+  plafond_prix_horaire:
     type: integer
     format: int32
-    label: taux horaire applicable
+    label: prix horaire plafond applicable
+    description: prix horaire maximum
+  prix_horaire:
+    type: integer
+    format: int32
+    label: prix horaire applicable
   reste_a_charge:
     type: number
     format: float
+    public: true
     label: reste à charge applicable
   organisme:
     nom:

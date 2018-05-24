@@ -27,6 +27,8 @@ def given_set_value(context, label, value):
         value = labels[value]
     if value.startswith('['):
         value = value[1:-1].split(',')  # TODO: Merge with LazyValue?
+        if schema['type'] == 'List[int]':
+            value = [int(v) for v in value]
     context.data[key] = value
 
 
@@ -74,6 +76,18 @@ def then_check_organisme(context, name):
 def then_check_prise_en_charge(context, value):
     assert context.result['prise_en_charge'] == int(value),\
         f'{context.result["prise_en_charge"]} != {value}'
+
+
+@then(r'le plafond de prise en charge vaut (?P<value>\d+)')
+def then_check_plafond_prise_en_charge(context, value):
+    assert context.result['plafond_prise_en_charge'] == int(value),\
+        f'{context.result["plafond_prise_en_charge"]} != {value}'
+
+
+@then(r'le reste à charge vaut (?P<value>\d+)')
+def then_check_reste_a_charge(context, value):
+    assert context.result['reste_a_charge'] == int(value),\
+        f'{context.result["reste_a_charge"]} != {value}'
 
 
 @then(r'la rémunération vaut (?P<value>\d+)')

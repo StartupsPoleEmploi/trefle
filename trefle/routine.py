@@ -116,6 +116,14 @@ def populate_formation_from_bytes(context, content):
     context['formation.codes_formacode'] = root.xpath('//domaine-formation/code-FORMACODE/child::text()')
     context['formation.niveau_sortie'] = root.xpath('number(//code-niveau-sortie/child::text())')
     context['formation.heures'] = root.xpath('number(//nombre-heures-total/child::text())')
+    try:
+        context['formation.prix_horaire'] = float(root.xpath('//prix-horaire-TTC/child::text()'))
+    except (TypeError, ValueError):
+        pass
+    try:
+        context['formation.prix_total'] = float(root.xpath('//prix-total-TTC/child::text()'))
+    except (TypeError, ValueError):
+        pass
     context['formation.codes_certifinfo'] = [
         int(c) for c in root.xpath('//certification/code-CERTIFINFO/child::text()')]
     context['formation.domaines_formacode'] = set([
@@ -169,18 +177,46 @@ def load_organisme(nom):
 def compute_modalites(context, financement):
     # TODO: return more details (taux horaire, plafond, etc.)
     Rule.process(MODALITES, context)
-    heures = context['beneficiaire.solde_cpf']
-    if ('financement.plafond_horaire' in context
-       and int(context['financement.plafond_horaire']) < heures):
-        heures = int(context['financement.plafond_horaire'])
-    # TODO: deal with financement.taux_horaire empty
-    prise_en_charge = int(context.get('financement.taux_horaire', 0)) * heures
-    if ('financement.plafond_financier' in context
-       and int(context['financement.plafond_financier']) < prise_en_charge):
-        prise_en_charge = int(context['financement.plafond_financier'])
-    financement['prise_en_charge'] = prise_en_charge
-    # Outside of CPF, remuneration is not defined (for now)
-    financement['remuneration'] = context['financement.remuneration']
+    # Input:
+    # Solde CPF bénéficiaire
+    # nombre d'heures de la formation
+    # prix horaire de la formation
+    # nombre maximum d'heures prises en charge
+    # taux horaire maximum
+    # plafond financier
+    # reste à charge
+    # remuneration bénéficiaire
+    # Output:
+    # - prise en charge effective
+    # - plafond de prise en charge
+    # - reste à charge
+    # - remuneration
+    # - pourcentage de rémunération?
+    # solde_cpf should only used in rules.
+    # heures = context.get('beneficiaire.solde_cpf', 0)
+    heures = context['formation.heures']
+    heures = min(context['formation.heures'],
+                 context.get('financement.plafond_horaire', heures))
+    prix_horaire = context.get('formation.prix_horaire', 0)
+    plafond_financier = context.get('financement.plafond_financier', None)
+    reste_a_charge = context.get('financement.reste_a_charge', 0)
+    plafond_prix_horaire = context['financement.plafond_prix_horaire']
+    financement['reste_a_charge'] = reste_a_charge
+    if prix_horaire > 0:  # We can deal with a real prise_en_charge.
+        if plafond_prix_horaire and plafond_prix_horaire < prix_horaire:
+            prix_horaire = plafond_prix_horaire
+        prise_en_charge = prix_horaire * heures
+        if plafond_financier and plafond_financier < prise_en_charge:
+            prise_en_charge = plafond_financier
+        financement['prise_en_charge'] = prise_en_charge - reste_a_charge
+        financement['prix_horaire'] = prix_horaire
+    else:
+        financement['prise_en_charge'] = None  # Means unknown.
+    if not plafond_financier:
+        plafond_financier = heures * plafond_prix_horaire
+    financement['plafond_prise_en_charge'] = plafond_financier - reste_a_charge
+    # FIXME: should we define default remuneration in common rules instead?
+    financement['remuneration'] = context.get('financement.remuneration', 0)
 
 
 def populate_financement(context, financement):

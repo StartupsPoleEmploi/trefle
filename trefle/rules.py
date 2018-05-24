@@ -133,7 +133,7 @@ class Action(Step):
         try:
             self.func(context, **self.params)
         except NoDataError as err:
-            raise NoDataError(f'Invalid key "{err}" for {self.raw}')
+            raise NoDataError(f'No data for `{err}` in `{self.raw}`')
 
 
 class Condition(Step):
@@ -171,10 +171,15 @@ class Condition(Step):
             raise
 
 
-@action(r"(l'|les? |la )(?P<key>.+) (vaut|est) (?P<value>[\w«» +\-']+)")
-@action(r"(l'|les? |la )(?P<key>.+) est égale? (à la|à|aux?)? (?P<value>[\w«» +\-']+)")
+@action(r"(l'|les? |la )(?P<key>.+) (vaut|est) (?P<value>[\w«» +\-'\.]+)$")
+@action(r"(l'|les? |la )(?P<key>.+) est égale? (à la|à|aux?)? (?P<value>[\w«» +\-\.']+)$")
 def set_value(context, key: Label, value: LazyValue):
     context[key] = value.get(**context)
+
+
+@action(r"(l'|les? |la )(?P<key>.+) est égale? à (?P<rate>[\d\.]+)% (de la|du) (?P<value>[\w«» +\-\.']+)$")
+def set_percent(context, key: Label, rate: float, value: LazyValue):
+    context[key] = value.get(**context) * rate / 100
 
 
 @action(r"définir le financement «(?P<name>[\w +-]+)» comme éligible")

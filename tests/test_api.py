@@ -37,6 +37,7 @@ async def test_simulate_endpoint(client):
         'beneficiaire.droit_prive': True,
         'beneficiaire.contrat': 'cdi',
         'formation.eligible_copanef': True,
+        'formation.heures': 100,
         'beneficiaire.entreprise.commune': '2A004',
         'beneficiaire.entreprise.idcc': 2706})
     assert resp.status == HTTPStatus.OK
@@ -52,6 +53,47 @@ async def test_simulate_endpoint(client):
     result.raise_for_errors()
 
 
+async def test_simulate_endpoint_without_formation_prix_horaire(client):
+    resp = await client.get('/schema')
+
+    resp = await client.post('/financement', body={
+        'beneficiaire.solde_cpf': 10,
+        'beneficiaire.remuneration': 1400,
+        'beneficiaire.droit_prive': True,
+        'beneficiaire.contrat': 'cdi',
+        'formation.eligible_copanef': True,
+        'formation.heures': 100,
+        'beneficiaire.entreprise.commune': '2A004',
+        'beneficiaire.entreprise.idcc': 2706})
+    assert resp.status == HTTPStatus.OK
+    assert 'financements' in json.loads(resp.body)
+    financements = json.loads(resp.body)['financements']
+    assert len(financements)
+    assert financements[0]['prise_en_charge'] is None
+    assert financements[0]['plafond_prise_en_charge'] > 0
+
+
+async def test_simulate_endpoint_with_formation_prix_horaire(client):
+    resp = await client.get('/schema')
+
+    resp = await client.post('/financement', body={
+        'beneficiaire.solde_cpf': 10,
+        'beneficiaire.remuneration': 1400,
+        'beneficiaire.droit_prive': True,
+        'beneficiaire.contrat': 'cdi',
+        'formation.eligible_copanef': True,
+        'formation.heures': 100,
+        'formation.prix_horaire': 25,
+        'beneficiaire.entreprise.commune': '2A004',
+        'beneficiaire.entreprise.idcc': 2706})
+    assert resp.status == HTTPStatus.OK
+    assert 'financements' in json.loads(resp.body)
+    financements = json.loads(resp.body)['financements']
+    assert len(financements)
+    assert financements[0]['plafond_prise_en_charge'] > 0
+    assert financements[0]['prise_en_charge'] > 0
+
+
 async def test_simulate_endpoint_filter_eligible(client):
     body = {
         'beneficiaire.solde_cpf': 10,
@@ -59,6 +101,7 @@ async def test_simulate_endpoint_filter_eligible(client):
         'beneficiaire.droit_prive': True,
         'beneficiaire.contrat': 'cdi',
         'formation.eligible_copanef': True,
+        'formation.heures': 100,
         'beneficiaire.entreprise.commune': '2A004',
         'beneficiaire.entreprise.idcc': 2706
     }
@@ -104,6 +147,7 @@ async def test_simulate_endpoint_with_empty_idcc(client):
         'beneficiaire.droit_prive': True,
         'beneficiaire.contrat': 'cdi',
         'formation.eligible_copanef': True,
+        'formation.heures': 100,
         'beneficiaire.entreprise.commune': '2A004',
         'beneficiaire.entreprise.idcc': None})
     assert resp.status == HTTPStatus.UNPROCESSABLE_ENTITY
@@ -120,6 +164,7 @@ async def test_simulate_endpoint_with_invalid_idcc_format(client):
         'beneficiaire.droit_prive': True,
         'beneficiaire.contrat': 'cdi',
         'formation.eligible_copanef': True,
+        'formation.heures': 100,
         'beneficiaire.entreprise.commune': '2A004',
         'beneficiaire.entreprise.idcc': 'foobar'})
     assert resp.status == HTTPStatus.UNPROCESSABLE_ENTITY
@@ -136,6 +181,7 @@ async def test_simulate_endpoint_with_unknown_idcc(client):
         'beneficiaire.droit_prive': True,
         'beneficiaire.contrat': 'cdi',
         'formation.eligible_copanef': True,
+        'formation.heures': 100,
         'beneficiaire.entreprise.commune': '2A004',
         'beneficiaire.entreprise.idcc': 1234567})
     assert resp.status == HTTPStatus.UNPROCESSABLE_ENTITY
@@ -152,6 +198,7 @@ async def test_simulate_endpoint_with_unknown_departement(client):
         'beneficiaire.droit_prive': True,
         'beneficiaire.contrat': 'cdi',
         'formation.eligible_copanef': True,
+        'formation.heures': 100,
         'beneficiaire.entreprise.commune': '20001',
         'beneficiaire.entreprise.idcc': 2706})
     assert resp.status == HTTPStatus.UNPROCESSABLE_ENTITY

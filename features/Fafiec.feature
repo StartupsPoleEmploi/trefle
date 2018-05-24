@@ -15,6 +15,7 @@ Scénario: cas nominal Fafiec
     Et l'IDCC de l'établissement du bénéficiaire vaut 1486
     Et c'est une formation éligible région «Île-de-France»
     Et c'est une formation éligible COPANEF
+    Et la durée en heures de la formation vaut 1384
     Et la liste des codes FORMACODE de la formation vaut [31094,31067,31084]
     Et le niveau de sortie de la formation vaut 6.0
     Et la liste des codes CERTIFINFO de la formation vaut [76575]
@@ -29,11 +30,11 @@ Scénario: cas nominal Fafiec
     Quand je demande un calcul de financement
     Quand je sélectionne le financement «CPF sur son temps de travail»
     Alors l'organisme à contacter est «Fafiec»
-    Et le montant de prise en charge vaut 4800
+    Et le plafond de prise en charge vaut 4800
     Et la rémunération vaut 1600
     Quand je sélectionne le financement «CPF hors temps de travail»
     Alors l'organisme à contacter est «Fafiec»
-    Et le montant de prise en charge vaut 4800
+    Et le plafond de prise en charge vaut 4800
     Et la rémunération vaut 0
 
 
@@ -50,12 +51,13 @@ Scénario: CPF sur CPNE
     Et l'IDCC de l'établissement du bénéficiaire vaut 1486
     Et ce n'est pas une formation éligible COPANEF
     Et les codes NAF CPNE éligibles valent [6202A]
+    Et la durée en heures de la formation vaut 100
     Quand je demande un calcul de financement
     Quand je sélectionne le financement «CPF sur son temps de travail»
     Alors l'organisme à contacter est «Fafiec»
-    Et le montant de prise en charge vaut 4800
+    Et le plafond de prise en charge vaut 4000
     Et la rémunération vaut 1600
     Quand je sélectionne le financement «CPF hors temps de travail»
     Alors l'organisme à contacter est «Fafiec»
-    Et le montant de prise en charge vaut 4800
+    Et le plafond de prise en charge vaut 4000
     Et la rémunération vaut 0

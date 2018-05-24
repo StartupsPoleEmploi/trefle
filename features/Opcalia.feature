@@ -27,9 +27,9 @@ Scénario: Donne-moi un nom
     Quand je demande un calcul de financement
     Quand je sélectionne le financement «CPF sur son temps de travail»
     Alors l'organisme à contacter est «Opcalia Auvergne Rhône Alpes»
-    Et le montant de prise en charge vaut 7500
+    Et le plafond de prise en charge vaut 7500
     Et la rémunération vaut 1400
     Quand je sélectionne le financement «CPF hors temps de travail»
     Alors l'organisme à contacter est «Opcalia Auvergne Rhône Alpes»
-    Et le montant de prise en charge vaut 7500
+    Et le plafond de prise en charge vaut 7500
     Et la rémunération vaut 0

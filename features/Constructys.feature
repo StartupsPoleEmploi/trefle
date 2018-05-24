@@ -1,5 +1,5 @@
 Fonctionnalité: Constructys
-    Les scénarios de test d'Constructys.
+    Les scénarios de test de Constructys.
 
 # https://labonneformation-trefle.beta.pole-emploi.fr/engager-les-demarches?a=bS3u%3DqLuGVeKYcg4TkJiTI8ZPj3ssmWCQ4ssllQysssGt_CC2Ps4c21cBcHavvvNpG33ciusBi31H6HKsssssNf70nBo1iH6vv0jJs28kk4gxeKg6L8K17n3pwyY%3DqYuSHu30VXk91wooGxx9g0cVrbk0AZvhs3Q%3DgvtR%3Do9KtgRrZygTKvPrkrMRypQst2LgZ4w9oPQX4kyGhBs2mF7yWVKse2JKBHY0loPK14I14416JJM-n_ZlXRFX2Ohdq9iVY82FQX5-L2d-Jr0QULdbiUjvcUk3u84-rZNQ1_I0DGp7BQi7t7Hia5YjKo2tgvX4YGjiF2uIarNrdE3HydRJtpVy23hhhBBtyZo33x7hSALCFt9QXnRcwv5wy9Eg5eB_gw4KyT6pa-0-JlqclgqHgXgRGG_FXZG
 Scénario: Formation COPANEF
@@ -19,9 +19,9 @@ Scénario: Formation COPANEF
     Quand je demande un calcul de financement
     Quand je sélectionne le financement «CPF sur son temps de travail»
     Alors l'organisme à contacter est «Constructys»
-    Et le montant de prise en charge vaut 3000
+    Et le plafond de prise en charge vaut 3000
     Et la rémunération vaut 1400
     Quand je sélectionne le financement «CPF hors temps de travail»
     Alors l'organisme à contacter est «Constructys»
-    Et le montant de prise en charge vaut 3000
+    Et le plafond de prise en charge vaut 3000
     Et la rémunération vaut 0

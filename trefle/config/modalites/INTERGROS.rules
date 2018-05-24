@@ -1,15 +1,15 @@
 Si le nom de l'organisme est «Intergros»
     Alors le plafond horaire applicable est égal au solde CPF du bénéficiaire
-    Et le taux horaire applicable vaut 30
+    Et le prix horaire plafond applicable vaut 30
 
     Si le domaine FORMACODE langues fait partie de la liste des domaines FORMACODE de la formation
     Et c'est une formation ouverte à distance
-        Alors le taux horaire applicable vaut 10
+        Alors le prix horaire plafond applicable vaut 10
 
     Si le code CPF de la formation fait partie des codes CPF VAE
-        Alors le taux horaire applicable est égal au taux horaire de la formation
+        Alors le prix horaire plafond applicable est égal au prix horaire de la formation
         Et le plafond horaire applicable est égal à la durée en heures de la formation
         Et le plafond financier applicable vaut 2000
 
     Si le code CPF de la formation fait partie des codes CPF CleA
-        Alors le taux horaire applicable vaut 18
+        Alors le prix horaire plafond applicable vaut 18

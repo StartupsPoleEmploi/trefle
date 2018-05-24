@@ -1,19 +1,19 @@
 Si le nom de l'organisme est «Constructys»
     Alors le plafond horaire applicable est égal au solde CPF du bénéficiaire
-    Et le taux horaire applicable vaut 30
+    Et le prix horaire plafond applicable vaut 30
 
     Si le code CPF de la formation fait partie des codes CPF CleA
-        Alors le taux horaire applicable vaut 60
+        Alors le prix horaire plafond applicable vaut 60
 
     Si la région de l'établissement du bénéficiaire fait partie des régions éligibles COPAREF
     Ou c'est une formation éligible COPANEF
     Ou le code NAF de l'établissement du bénéficiaire fait partie des codes NAF CPNE éligibles
         # maintenance et conduite engin
         Si la liste des codes FORMACODE de la formation contient 31717
-            Alors le taux horaire applicable vaut 45
+            Alors le prix horaire plafond applicable vaut 45
         Si c'est un bilan de compétences
-            Alors le taux horaire applicable vaut 80
+            Alors le prix horaire plafond applicable vaut 80
 
     Si le code CPF de la formation fait partie des codes CPF VAE
-        Alors le taux horaire applicable vaut 80
+        Alors le prix horaire plafond applicable vaut 80
         Et le plafond horaire applicable est égal à la durée en heures de la formation
