@@ -15,21 +15,22 @@ def test_flatten():
 
 def test_populate_formation_from_bytes():
     with Path(__file__).parent.joinpath('data/formation.xml').open('rb') as f:
-        data = {}
-        routine.populate_formation_from_bytes(data, f.read())
+        cotnext = {}
+        routine.add_constants(cotnext)
+        routine.populate_formation_from_bytes(cotnext, f.read())
 
-        assert data['formation.eligible_copanef'] is True
-        assert data['formation.codes_naf'] == {'01.62Z', '05.20Z', '23.61Z',
-                                               '23.62Z', '78.20Z', '96.04Z',
-                                               '96.09Z'}
-        assert data['formation.regions_coparef'] == {'24'}
-        assert data['formation.codes_formacode'] == ['22403', '22402']
-        assert data['formation.domaines_formacode'] == {'224'}
-        assert data['formation.foad'] is False
-        assert data['formation.niveau_sortie'] == 4
-        assert data['formation.heures'] == 697
-        assert data['formation.mois'] == 6
-        assert data['formation.codes_financeur'] == {10, 5, 2}
+        assert cotnext['formation.eligible_copanef'] is True
+        assert cotnext['formation.codes_naf'] == {'01.62Z', '05.20Z', '23.61Z',
+                                                  '23.62Z', '78.20Z', '96.04Z',
+                                                  '96.09Z'}
+        assert cotnext['formation.regions_coparef'] == {'24'}
+        assert cotnext['formation.codes_formacode'] == ['22403', '22402']
+        assert cotnext['formation.domaines_formacode'] == {'224'}
+        assert cotnext['formation.foad'] is False
+        assert cotnext['formation.niveau_sortie'] == 4
+        assert cotnext['formation.heures'] == 697
+        assert cotnext['formation.mois'] == 6
+        assert cotnext['formation.codes_financeur'] == {10, 5, 2}
 
 
 def test_populate_formation_from_bytes_with_empty_list():
@@ -38,15 +39,15 @@ def test_populate_formation_from_bytes_with_empty_list():
                   <offres>
                   </offres>
                   </lheo>"""
-    data = {}
+    context = {}
     with pytest.raises(ValueError):
-        routine.populate_formation_from_bytes(data, content)
+        routine.populate_formation_from_bytes(context, content)
 
 
 def test_insee_commune_to_region():
-    data = {'beneficiaire.entreprise.commune': '93031'}
-    routine.insee_commune_to_region(data)
-    assert data['beneficiaire.entreprise.region'] == '11'  # IDF
+    context = {'beneficiaire.entreprise.commune': '93031'}
+    routine.insee_commune_to_region(context)
+    assert context['beneficiaire.entreprise.region'] == '11'  # IDF
 
 
 @pytest.mark.asyncio
