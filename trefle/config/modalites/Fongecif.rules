@@ -7,14 +7,9 @@ Si le nom de l'organisme est «Fongecif»
     Si le nom du financement contient «sur son temps de travail»
         Alors la rémunération possible est égale à la rémunération du bénéficiaire
 
-    # TODO Formation partiellement ou totalement prise en charge, sur une durée maximale d'un an, ou de deux ans si la formation est à temps partiel.
-    Si la rémunération du bénéficiaire est supérieure à deux fois le SMIC
-        # TODO: do we want to write 5% instead of 0.05?
-        # Alors le reste à charge applicable est égal à 0.05
-        # Alors le reste à charge applicable est égal à 5% de la rémunération possible
+        # TODO Formation partiellement ou totalement prise en charge, sur une durée maximale d'un an, ou de deux ans si la formation est à temps partiel.
+        Si la rémunération du bénéficiaire est supérieure à deux fois le SMIC
+            Alors la rémunération possible est égale à 95% de la rémunération du bénéficiaire
 
-        Si le nom du financement contient «sur son temps de travail»
-            Alors la rémunération possible est égale à 80% de la rémunération du bénéficiaire
-
-        # Si la rémunération du bénéficiaire est supérieure à trois fois le SMIC
-            # Et le reste à charge applicable est égal à 10% de la rémunération possible
+            Si la rémunération du bénéficiaire est supérieure à trois fois le SMIC
+                Alors la rémunération possible est égale à 90% de la rémunération du bénéficiaire

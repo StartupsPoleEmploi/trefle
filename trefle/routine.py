@@ -176,25 +176,8 @@ def load_organisme(nom):
 
 
 def compute_modalites(context, financement):
-    # TODO: return more details (taux horaire, plafond, etc.)
     Rule.process(MODALITES, context)
-    # Input:
-    # Solde CPF bénéficiaire
-    # nombre d'heures de la formation
-    # prix horaire de la formation
-    # nombre maximum d'heures prises en charge
-    # taux horaire maximum
-    # plafond financier
-    # reste à charge
-    # remuneration bénéficiaire
-    # Output:
-    # - prise en charge effective
-    # - plafond de prise en charge
-    # - reste à charge
-    # - remuneration
-    # - pourcentage de rémunération?
-    # solde_cpf should only used in rules.
-    # heures = context.get('beneficiaire.solde_cpf', 0)
+    # TODO: HT vs TTC everywhere
     heures = context['formation.heures']
     heures = min(context['formation.heures'],
                  context.get('financement.plafond_horaire', heures))
