@@ -138,7 +138,8 @@ def populate_formation_from_bytes(context, content):
     context['formation.permis_b'] = bool(set(context['constante.codes_certifinfo_permis_b']) & set(context['formation.codes_certifinfo']))
     context['formation.codes_financeur'] = set([
         int(c) for c in root.xpath('//organisme-financeur/code-financeur/child::text()')])
-
+    # http://lheo.gouv.fr/langage#dict-AIS
+    context['formation.qualifiante'] = root.xpath('number(//objectif-general-formation/child::text())') in [6, 7]
     # Compute duration in months.
     debut = datetime.strptime(root.xpath('//periode/debut/child::text()')[0],
                               '%Y%m%d')
@@ -198,9 +199,9 @@ def compute_modalites(context, financement):
     heures = min(context['formation.heures'],
                  context.get('financement.plafond_horaire', heures))
     prix_horaire = context.get('formation.prix_horaire', 0)
-    plafond_financier = context.get('financement.plafond_financier', None)
+    plafond_financier = context.get('financement.plafond_financier')
     reste_a_charge = context.get('financement.reste_a_charge', 0)
-    plafond_prix_horaire = context['financement.plafond_prix_horaire']
+    plafond_prix_horaire = context.get('financement.plafond_prix_horaire', 0)
     financement['reste_a_charge'] = reste_a_charge
     if prix_horaire > 0:  # We can deal with a real prise_en_charge.
         if plafond_prix_horaire and plafond_prix_horaire < prix_horaire:
@@ -216,7 +217,11 @@ def compute_modalites(context, financement):
         plafond_financier = heures * plafond_prix_horaire
     financement['plafond_prise_en_charge'] = plafond_financier - reste_a_charge
     # FIXME: should we define default remuneration in common rules instead?
-    financement['remuneration'] = context.get('financement.remuneration', 0)
+    remuneration = context.get('financement.remuneration', 0)
+    plafond_remuneration = context.get('financement.plafond_remuneration', 0)
+    if plafond_remuneration and plafond_remuneration < remuneration:
+        remuneration = plafond_remuneration
+    financement['remuneration'] = remuneration
 
 
 def populate_financement(context, financement):

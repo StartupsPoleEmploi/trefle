@@ -189,6 +189,14 @@ def set_financement_eligible(context, name):
     context['financements'][name]['eligible'] = True
 
 
+@action(r"il n'y a pas de (?P<key>[\w ]+)$")
+def unset_key(context, key: Label):
+    try:
+        del context[key]
+    except KeyError:
+        pass
+
+
 @condition(r"c'est une? (?P<key>.+)")
 def check_true(context, key: LazyValue):
     return key.get(**context) is True

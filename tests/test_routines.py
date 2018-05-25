@@ -15,22 +15,23 @@ def test_flatten():
 
 def test_populate_formation_from_bytes():
     with Path(__file__).parent.joinpath('data/formation.xml').open('rb') as f:
-        cotnext = {}
-        routine.add_constants(cotnext)
-        routine.populate_formation_from_bytes(cotnext, f.read())
+        context = {}
+        routine.add_constants(context)
+        routine.populate_formation_from_bytes(context, f.read())
 
-        assert cotnext['formation.eligible_copanef'] is True
-        assert cotnext['formation.codes_naf'] == {'01.62Z', '05.20Z', '23.61Z',
+        assert context['formation.eligible_copanef'] is True
+        assert context['formation.codes_naf'] == {'01.62Z', '05.20Z', '23.61Z',
                                                   '23.62Z', '78.20Z', '96.04Z',
                                                   '96.09Z'}
-        assert cotnext['formation.regions_coparef'] == {'24'}
-        assert cotnext['formation.codes_formacode'] == ['22403', '22402']
-        assert cotnext['formation.domaines_formacode'] == {'224'}
-        assert cotnext['formation.foad'] is False
-        assert cotnext['formation.niveau_sortie'] == 4
-        assert cotnext['formation.heures'] == 697
-        assert cotnext['formation.mois'] == 6
-        assert cotnext['formation.codes_financeur'] == {10, 5, 2}
+        assert context['formation.regions_coparef'] == {'24'}
+        assert context['formation.codes_formacode'] == ['22403', '22402']
+        assert context['formation.domaines_formacode'] == {'224'}
+        assert context['formation.foad'] is False
+        assert context['formation.niveau_sortie'] == 4
+        assert context['formation.heures'] == 697
+        assert context['formation.mois'] == 6
+        assert context['formation.codes_financeur'] == {10, 5, 2}
+        assert context['formation.qualifiante'] is True
 
 
 def test_populate_formation_from_bytes_with_empty_list():

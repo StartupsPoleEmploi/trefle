@@ -277,6 +277,10 @@ formation:
     source: catalogue
     label: permis B
     gender: masculine
+  qualifiante:
+    type: boolean
+    source: catalogue
+    label: formation qualifiante
   niveau_sortie:
     description: le niveau du diplôme de sortie (licence, master…)
     type: integer
@@ -312,6 +316,12 @@ financement:
     public: true
     nullable: true
     label: rémunération possible
+  plafond_remuneration:
+    type: integer
+    format: int32
+    public: true
+    nullable: true
+    label: plafond de rémunération applicable
   prise_en_charge:
     type: integer
     format: int32
