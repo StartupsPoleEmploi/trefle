@@ -1,8 +1,23 @@
 Si le nom de l'organisme est «FAFSEA»
-    Alors le prix horaire plafond applicable est égal au prix horaire de la formation
-    Alors le plafond horaire applicable est égal au solde CPF du bénéficiaire
-    Si le code CPF de la formation fait partie des codes CPF VAE
-        Alors le plafond horaire applicable est égal à la durée en heures de la formation
+    Si le nom du financement contient «CPF»
+        Alors le prix horaire plafond applicable est égal au prix horaire de la formation
+        Et le plafond horaire applicable est égal au solde CPF du bénéficiaire
+
+        Si le code CPF de la formation fait partie des codes CPF VAE
+            Alors le plafond horaire applicable est égal à la durée en heures de la formation
+
     Si le nom du financement contient «CIF»
         Alors le plafond financier applicable vaut 18000
-        Alors le prix horaire plafond applicable vaut 27.45
+        Et le prix horaire plafond applicable vaut 27.45
+
+        Si le nom du financement contient «sur son temps de travail»
+            Alors la rémunération possible est égale à la rémunération du bénéficiaire
+
+            Si la rémunération du bénéficiaire est supérieure à deux fois le SMIC
+                Alors la rémunération possible est égale à 80% de la rémunération du bénéficiaire
+
+                # TODO: how to properly make this dynamic with SMIC value?
+                # pour un salaire  > à 2 fois le SMIC : 80 % du salaire antérieur avec un minimum de 2 fois le SMIC.
+                # 3746 = deux fois le smix / 0.8
+                Si la rémunération du bénéficiaire est inférieure à 3746:
+                    Alors la rémunération possible est égale à deux fois le SMIC
