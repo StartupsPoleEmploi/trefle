@@ -127,6 +127,7 @@ beneficiaire:
   entreprise:
     naf:
       description: l'identifiant NAF/APE de l'entreprise
+      # TODO: deal with optionnal dot: 21.27Z
       type: string
       public: true
       label: code NAF de l'établissement du bénéficiaire
