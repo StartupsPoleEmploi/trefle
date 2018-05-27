@@ -19,7 +19,8 @@ def parse_args(args):
         schema = SCHEMA[key]
         if value.startswith('['):
             value = value[1:-1].split(',')  # TODO: Merge with LazyValue?
-            if schema['type'] == 'List[int]':
+            if (schema['type'] == 'array'
+               and schema['items']['type'] == 'integer'):
                 value = [int(v) for v in value]
         data[key] = value
     return data

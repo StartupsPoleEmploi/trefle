@@ -38,13 +38,12 @@ def test_load_schema():
 
 def test_load_financements():
     data = {
-        'cpf': {
-            'genre': 'CPF',
-            'temps_de_travail': {
+        'CPF': {
+            'temps de travail': {
                 'nom': 'CPF sur son temps de travail',
                 'description': 'blah'
             },
-            'hors_temps_de_travail': {
+            'hors temps de travail': {
                 'nom': 'CPF hors temps de travail',
                 'description': 'bleuh'
             },
@@ -52,12 +51,12 @@ def test_load_financements():
     }
     assert load_financements(data) == {
         'CPF sur son temps de travail': {
-            'genre': 'CPF',
+            'tags': ['CPF', 'temps de travail'],
             'description': 'blah',
             'nom': 'CPF sur son temps de travail',
         },
         'CPF hors temps de travail': {
-            'genre': 'CPF',
+            'tags': ['CPF', 'hors temps de travail'],
             'description': 'bleuh',
             'nom': 'CPF hors temps de travail',
         },

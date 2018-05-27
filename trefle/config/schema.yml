@@ -1,27 +1,38 @@
 constante:
   codes_financeur_individuel:
     description: ensemble des codes financeur individuel
-    type: List[int]
+    type: array
+    items:
+      type: integer
     value: [0, 5, 10]
     label: codes financeur individuel
   codes_financeur_collectif:
     description: ensemble des codes financeurs collectifs
-    type: List[int]
+    type: array
+    items:
+      type: integer
     value: [2, 4, 6, 8, 9, 11, 12, 13, 15, 16]
     label: codes financeur collectif
   idcc_artisanat:
     description: ensemble des codes IDCC de l'artisanat
-    type: List[int]
+    type: array
+    items:
+      type: integer
+    # TODO find correct values.
     value: [12345]
     label: codes IDCC de l'artisanat
   codes_cpf_vae:
     description: liste des codes CPF identifiant une formation VAE
-    type: List[int]
+    type: array
+    items:
+      type: integer
     value: [200]
     label: codes CPF VAE
   codes_cpf_clea:
     description: liste des codes CPF identifiant une formation CleA
-    type: List[int]
+    type: array
+    items:
+      type: integer
     value: [201, 207, 208]
     label: codes CPF CleA
   # https://www.service-public.fr/particuliers/vosdroits/F2300
@@ -41,27 +52,39 @@ constante:
     value: 152
     label: domaine FORMACODE langues
   codes_certifinfo_permis_b:
-    type: List[int]
+    type: array
+    items:
+      type: integer
     value: [54664]
     label: codes CERTIFINFO pour un permis B
   codes_certifinfo_bilan_de_competences:
-    type: List[int]
+    type: array
+    items:
+      type: integer
     value: [93559]
     label: codes CERTIFINFO pour un bilan de compétences
   codes_certifinfo_bulats:
-    type: List[int]
+    type: array
+    items:
+      type: integer
     value: [95271, 84165, 84384]
     label: codes CERTIFINFO BULATS
   codes_certifinfo_bec:
-    type: List[int]
+    type: array
+    items:
+      type: integer
     value: [84166, 98623]
     label: codes CERTIFINFO BEC
   codes_certifinfo_toeic:
-    type: List[int]
+    type: array
+    items:
+      type: integer
     value: [84168]
     label: codes CERTIFINFO TOEIC
   codes_certifinfo_caces:
-    type: List[int]
+    type: array
+    items:
+      type: integer
     value: [55673, 55674, 55675, 55676, 55677, 55803, 55804, 55805, 55806,55807, 55808, 55809,55810, 55811, 55812, 55813, 55814, 55815, 55816, 55817, 55818, 55819, 55820, 55822, 55821, 55823, 55824, 55825, 55826, 55827, 84700, 84449, 84700, 84715, 85312, 85338]
     label: codes CERTIFINFO CACES
 beneficiaire:
@@ -180,7 +203,9 @@ formation:
     label: identifiant de la formation
   codes_financeur:
     description: codes des organismes financeurs de la formation
-    type: List[int]
+    type: array
+    items:
+      type: integer
     source: catalogue
     label: codes financeur de la formation
     gender: masculine
@@ -192,20 +217,28 @@ formation:
     label: formation éligible COPANEF
   regions_coparef:
     description: régions d'éligibilité si COPAREF dans les listes_eligibilite_cpf
-    type: List[int]
+    type: array
+    items:
+      type: string
     source: routine.formation_region
     label: régions éligibles COPAREF
   codes_formacode:
-    type: List[int]
+    type: array
+    items:
+      type: integer
     source: catalogue
     label: liste des codes FORMACODE de la formation
   domaines_formacode:
     description: domaines (trois premiers caractères des codes) FORMACODE de la formation
-    type: List[int]
+    type: array
+    items:
+      type: integer
     source: catalogue
     label: liste des domaines FORMACODE de la formation
   codes_certifinfo:
-    type: List[int]
+    type: array
+    items:
+      type: integer
     source: catalogue
     label: liste des codes CERTIFINFO de la formation
   heures:
@@ -244,7 +277,9 @@ formation:
     label: code CPF de la formation
   codes_naf:
     description: codes NAF des différents CPNE
-    type: List[str]
+    type: array
+    items:
+      type: string
     source: routine.naf_from_formation
     label: codes NAF CPNE éligibles
     number: plural
@@ -293,11 +328,12 @@ financement:
     type: string
     public: true
     label: nom du financement
-  # Do not use "type" for now, it's used as duck typing.
-  genre:
-    type: string
+  tags:
+    type: array
+    items:
+      type: string
     public: true
-    label: type de financement
+    label: catégories du financement
   eligible:
     description: définit si le financement est éligible
     type: boolean

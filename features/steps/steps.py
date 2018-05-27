@@ -27,7 +27,8 @@ def given_set_value(context, label, value):
         value = labels[value]
     if value.startswith('['):
         value = value[1:-1].split(',')  # TODO: Merge with LazyValue?
-        if schema['type'] == 'List[int]':
+        if (schema['type'] == 'array'
+           and schema['items']['type'] == 'integer'):
             value = [int(v) for v in value]
     context.data[key] = value
 

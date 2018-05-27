@@ -1,16 +1,14 @@
-cpf:
+CPF:
   eligible: false
-  genre: CPF
   description: le compte personnel de formation (CPF) permet au salarié d'acquérir des droits et de les mobiliser pour financer des actions de formation tout au long de sa vie professionnelle.
-  temps_de_travail:
+  sur son temps de travail:
     nom: CPF sur son temps de travail
     demarches: Pour une formation se déroulant sur le temps de travail, il est nécessaire de demander l'accord de l'employeur Assurez vous que votre compte personnel de formation est activé sur http://www.moncompteformation.gouv.fr/ . Contacter votre employeur pour bénéficier gratuitement d’un conseil en évolution professionnelle et valider votre projet de formation et son financement CPF.
-  hors_temps_de_travail:
+  hors temps de travail:
     nom: CPF hors temps de travail
     demarches: Pour une formation se déroulant en dehors du temps de travail, il n'est pas nécessaire de demander l'accord de l'employeur. Assurez-vous que votre compte personnel de formation est activé sur http://www.moncompteformation.gouv.fr/ Contactez directement votre Opca {nom} pour bénéficier gratuitement d’un conseil en évolution professionnelle et valider votre projet de formation et son financement CPF.
-cif:
+CIF:
   eligible: false
-  genre: CIF
   description: |-
     Le congé individuel de formation (CIF) permet au salarié  de suivre, à son initiative et à titre individuel, une  formation, dans le but de :
       - se reconvertir
@@ -19,33 +17,33 @@ cif:
       - ou s'ouvrir plus largement à la culture et à la vie sociale.
     Attention, un delai de franchise s'applique aux salariés ayant déjà bénéficié d'un CIF. Il est au minimum  de 6 mois et  au maximum de 6 ans
   demarches: "Pour une formation se déroulant sur le temps de travail, il est nécessaire de demander l'accord de l'employeur. Attention aux délais pour faire cette demande : trois mois pour une formation de six mois et plus, de deux mois pour les autres. Pour une formation hors temps de travail, il n'y a pas d'autorisation d'absence à demander. Retirer auprès de l'OPACIF {nom} un dossier de demande de prise en charge. Vérifier les délais pour faire cette demande. Indiquer votre accord pour compléter, si besoin, le financement de la formation avec votre Compte Personnel de Formation."
-  cdi:
-    pendant_temps_de_travail:
+  CDI:
+    sur son temps de travail:
       nom: CIF CDI sur son temps de travail
-    hors_temps_de_travail:
+    hors temps de travail:
       nom: CIF CDI hors temps de travail
-  cdd:
+  CDD:
     demarches: |-
       Si la formation se déroule pendant votre temps de travail, il est nécessaire d' avoir  une autorisation d'absence de votre employeur. Attention aux délais pour faire cette demande : trois mois pour une formation de six mois et plus, de deux mois pour les autres.
       Retirer auprès de l'OPACIF {nom} un dossier de demande de prise en charge. Vérifier les délais pour faire cette demande.
       Indiquer votre accord pour compléter, si besoin, le financement de la formation avec votre Compte Personnel de Formation.
       Démarrer la formation au plus tard 12 mois après la fin de votre CDD.
 
-    pendant_temps_de_travail:
+    sur son temps de travail:
       nom: CIF CDD sur son temps de travail
-    hors_temps_de_travail:
+    hors temps de travail:
       nom: CIF CDD hors temps de travail
   interim:
     demarches: |-
       Faite une demande d’autorisation d’absence auprès de l'agence d'intérim avec laquelle vous avez conclu votre CDI intérimaire, en cours de contrat ou dans un délai de trois maximum après la fin de votre contrat. Prenez contact avec l'organisme {nom} pour monter le dossier de financement.
       La formation doit démarrer au plus tard 12 mois après le dépôt de la demande d'absence,
       Dans certains cas, l'organisme peut participer aux frais de transport et/ou d’hébergement. Faire la demande dans le dossier CIF ou au plus tard un mois après la fin de la formation. Les frais de repas ne sont pas pris en charge par l'organisme.
-    pendant_temps_de_travail:
+    sur son temps de travail:
       nom: CIF intérim sur son temps de travail
-    hors_temps_de_travail:
+    hors temps de travail:
       nom: CIF intérim hors temps de travail
-  intermitent:
-    pendant_temps_de_travail:
+  intermittent:
+    sur son temps de travail:
       nom: CIF intermittent sur son temps de travail
-    hors_temps_de_travail:
+    hors temps de travail:
       nom: CIF intermittent hors temps de travail

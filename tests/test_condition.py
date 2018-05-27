@@ -15,11 +15,13 @@ SCHEMA = {
         'label': "code naf du bénéficiaire",
     },
     'nafs': {
-        'type': 'List[str]',
+        'type': 'array',
+        'items': {'type': 'integer'},
         'label': "codes naf de la formation",
     },
     'nafs_artisanat': {
-        'type': 'List[str]',
+        'type': 'array',
+        'items': {'type': 'string'},
         'label': "codes naf artisanat",
     },
     'inscrit': {

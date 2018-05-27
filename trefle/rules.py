@@ -207,6 +207,11 @@ def check_false(context, key: LazyValue):
     return key.get(**context) is False
 
 
+@condition(r"le financement est de type (?P<tag>.+)")
+def check_type(context, tag: LazyValue):
+    return tag.get(**context) in context['financement.tags']
+
+
 @condition(r"(l'|les? |la )(?P<left>.+) est supérieure? à (?P<right>[\w ]+)")
 def check_gt(context, left: LazyValue, right: LazyValue):
     return left.get(**context) > right.get(**context)

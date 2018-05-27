@@ -1,6 +1,6 @@
 Si le nom de l'organisme est «Uniformation»
 
-    Si le nom du financement contient «CPF»
+    Si le financement est de type «CPF»
         Alors le prix horaire plafond applicable vaut 40
 
         Si le code CPF de la formation fait partie des codes CPF VAE
@@ -21,7 +21,7 @@ Si le nom de l'organisme est «Uniformation»
             Si la durée en heures de la formation est supérieure ou égale à 70
                 Alors le prix horaire plafond applicable vaut 25
 
-    Si le nom du financement contient «CIF»
+    Si le financement est de type «CIF»
         # TODO: Ou le prix horaire HT de la formation est inférieur à 15
         # Cette info n'est pas dans le schéma Lheo.
         Alors le prix horaire plafond applicable vaut 18
@@ -30,5 +30,5 @@ Si le nom de l'organisme est «Uniformation»
         Si c'est une formation qualifiante
             Alors le plafond de rémunération applicable vaut 7519
 
-        Si le nom du financement contient «sur son temps de travail»
+        Si le financement est de type «sur son temps de travail»
             Alors la rémunération possible est égale à la rémunération du bénéficiaire

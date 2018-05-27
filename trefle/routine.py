@@ -37,6 +37,7 @@ def flatten(data, output=None, namespace=None):
         output[name] = more
     data.clear()
     data.update(output)
+    return data
 
 
 def add_constants(context):
@@ -149,13 +150,13 @@ def populate_formation_from_bytes(context, content):
 
 
 def financement_to_organisme(context, financement):
-    type_ = financement['genre']
-    if type_ == 'CPF':
+    tags = financement['tags']
+    if 'CPF' in tags:
         nom = context['beneficiaire.entreprise.opca']
-    elif type_ == 'CIF':
+    elif 'CIF' in tags:
         nom = context['beneficiaire.entreprise.opacif']
     else:
-        raise NotImplementedError(f'Unknown financement type {type_}')
+        raise NotImplementedError(f'Unknown financement type {tags}')
     context['financement.organisme.nom'] = nom
 
 
@@ -210,7 +211,9 @@ def compute_modalites(context, financement):
 def populate_financement(context, financement):
     if not financement.get('eligible'):
         return
+    # TODO: use flatten() instead?
     context['financement.nom'] = financement['nom']
+    context['financement.tags'] = financement['tags']
     financement_to_organisme(context, financement)
     compute_modalites(context, financement)
     load_organisme_contact_details(context, financement)

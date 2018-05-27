@@ -13,7 +13,7 @@ def add_schema(name, data=None):
     if data is None:
         data = SCHEMA[name]
     schema_keys = ['type', 'format', 'description', 'nullable', 'enum',
-                   'pattern']
+                   'pattern', 'items']
     properties = {}
     required = []
     for key, props in data.items():
