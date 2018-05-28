@@ -35,6 +35,8 @@ async def simulate_(request, response):
     eligible = request.query.bool('eligible', None)
     if eligible is not None:
         financements = [f for f in financements if f['eligible'] == eligible]
+    for tag in request.query.list('tags', []):
+        financements = [f for f in financements if tag in f['tags']]
     response.json = {'financements': financements}
 
 
