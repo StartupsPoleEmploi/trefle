@@ -74,8 +74,7 @@ class LazyValue:
 def action(pattern):
 
     def wrapper(func):
-        # TODO: compile me.
-        Action.PATTERNS[pattern] = func
+        Action.PATTERNS[re.compile(pattern)] = func
         return func
 
     return wrapper
@@ -84,7 +83,7 @@ def action(pattern):
 def condition(pattern):
 
     def wrapper(func):
-        Condition.PATTERNS[pattern] = func
+        Condition.PATTERNS[re.compile(pattern)] = func
         return func
 
     return wrapper
@@ -97,7 +96,7 @@ class Step:
 
     def compile(self):
         for pattern, func in self.PATTERNS.items():
-            match = re.match(pattern, self.raw)
+            match = pattern.match(self.raw)
             if match:
                 self.func = func
                 break
