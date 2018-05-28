@@ -142,13 +142,62 @@ async def test_simulate_endpoint_filter_tags(client):
     assert resp.status == HTTPStatus.OK
     financements = json.loads(resp.body)['financements']
     assert len(financements) == 10
-    # Filter eligible only
+    # Filter CPF only
     resp = await client.post('/financement?tags=CPF', body=body)
     assert resp.status == HTTPStatus.OK
     financements = json.loads(resp.body)['financements']
     assert len(financements) == 2
     for financement in financements:
         assert 'CPF' in financement['tags']
+
+
+async def test_simulate_endpoint_mix_filters(client):
+    body = {
+        'beneficiaire.solde_cpf': 10,
+        'beneficiaire.remuneration': 1400,
+        'beneficiaire.droit_prive': True,
+        'beneficiaire.contrat': 'cdi',
+        'formation.eligible_copanef': True,
+        'formation.heures': 100,
+        'beneficiaire.entreprise.commune': '2A004',
+        'beneficiaire.entreprise.idcc': 2706
+    }
+    # Normal request.
+    resp = await client.post('/financement', body=body)
+    assert resp.status == HTTPStatus.OK
+    financements = json.loads(resp.body)['financements']
+    assert len(financements) == 10
+    # Filter CPF only
+    resp = await client.post('/financement?tags=hors%20temps%20de%20travail'
+                             '&eligible=1', body=body)
+    assert resp.status == HTTPStatus.OK
+    financements = json.loads(resp.body)['financements']
+    assert len(financements) == 1
+
+
+async def test_simulate_hors_temps_de_travail(client):
+    body = {
+        'beneficiaire.solde_cpf': 10,
+        'beneficiaire.remuneration': 1400,
+        'beneficiaire.droit_prive': True,
+        'beneficiaire.contrat': 'cdi',
+        'formation.eligible_copanef': True,
+        'formation.heures': 100,
+        'beneficiaire.entreprise.commune': '2A004',
+        'beneficiaire.entreprise.idcc': 2706
+    }
+    # Normal request.
+    resp = await client.post('/financement', body=body)
+    assert resp.status == HTTPStatus.OK
+    financements = json.loads(resp.body)['financements']
+    assert len(financements) == 10
+    # Filter eligible only
+    resp = await client.post('/financement?tags=hors%20temps%20de%20travail'
+                             '&eligible=1', body=body)
+    assert resp.status == HTTPStatus.OK
+    financements = json.loads(resp.body)['financements']
+    assert len(financements) == 1
+    assert 'remuneration_details' in financements[0]
 
 
 async def test_simulate_endpoint_with_wrong_method(client):
