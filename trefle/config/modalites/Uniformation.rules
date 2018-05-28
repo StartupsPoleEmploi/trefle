@@ -13,13 +13,14 @@ Si le nom de l'organisme est «Uniformation»
                 Et le plafond financier applicable vaut 2500
 
         Si le code CPF de la formation fait partie des codes CPF CleA
+        Ou la région de l'établissement du bénéficiaire fait partie des régions éligibles COPAREF
         # Alors organisme.plafond_financier_clea VAUT "600 € pour les évaluations préalables\n300€ pour les évaluations finales"
             Si la durée en heures de la formation est supérieure ou égale à 70
                 Alors le prix horaire plafond applicable vaut 25
 
-        Si la région de l'établissement du bénéficiaire fait partie des régions éligibles COPAREF
-            Si la durée en heures de la formation est supérieure ou égale à 70
-                Alors le prix horaire plafond applicable vaut 25
+        Si c'est une formation éligible COPANEF
+        Et c'est un bilan de compétences
+            Alors le prix horaire plafond applicable vaut 56
 
     Si le financement est de type «CIF»
         # TODO: Ou le prix horaire HT de la formation est inférieur à 15
