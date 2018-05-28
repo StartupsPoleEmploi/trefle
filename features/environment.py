@@ -1,3 +1,5 @@
+import sys
+
 from trefle.config import ELIGIBILITE, MODALITES
 from trefle.debugging import green, red, trace_rule, yellow
 
@@ -47,22 +49,28 @@ def after_all(context):
     rules = load_rules(context)
     statements = 0
     covered = 0
+    userdata = context.config.userdata
+    format_ = userdata.get('coverage-format', 'summary')
     if rules:
         print('-' * 10, 'Rules coverage report', '-' * 10)
         for rule in rules:
-            if context.config.userdata.get('coverage-format',
-                                           'summary') != 'summary':
+            if format_ != 'summary':
                 print('—' * 80)
             for condition in rule.conditions:
                 if condition.conditions:
-                    for c in condition.conditions:
-                        statements += 2
-                        covered += len(set(c._return_values))
-                        render_condition_coverage(context, c, indent=4)
+                    indent = 4
+                    conditions = condition.conditions
                 else:
+                    indent = 0
+                    conditions = [condition]
+                for c in conditions:
                     statements += 2
-                    covered += len(set(condition._return_values))
-                    render_condition_coverage(context, condition)
+                    new_covered = len(set(c._return_values))
+                    covered += new_covered
+                    render_condition_coverage(context, c, indent=indent)
+                    if format_ != 'summary':
+                        if new_covered < int(userdata.get('coverage-exit', 0)):
+                            sys.exit('Coverage exited on user request!')
         coverage = round(covered / statements * 100, 2)
         print(f'Coverage: {covered}/{statements} ({coverage}%)', )
         print('-' * 10, 'End coverage report', '-' * 10)

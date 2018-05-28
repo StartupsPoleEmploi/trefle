@@ -24,7 +24,7 @@ constante:
     items:
       type: integer
     # TODO find correct values.
-    value: [12345]
+    value: [1596]
     label: codes IDCC de l'artisanat
   codes_cpf_vae:
     description: liste des codes CPF identifiant une formation VAE
