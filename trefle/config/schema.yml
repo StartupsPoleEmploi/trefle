@@ -23,8 +23,8 @@ constante:
     type: array
     items:
       type: integer
-    # TODO find correct values.
-    value: [1596]
+    # TODO: IDCC must be a string to accept values like "1722A"
+    value: [1596, 1638, 1758, 1779, 2032, 2194, 2195, 2267, 2585]
     label: codes IDCC de l'artisanat
   codes_cpf_vae:
     description: liste des codes CPF identifiant une formation VAE
