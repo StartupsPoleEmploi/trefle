@@ -33,3 +33,9 @@ Si c'est un bénéficiaire de droit privé
             Et l'expérience professionnelle du bénéficiaire dans les cinq dernières années est supérieure à 24
                 Alors définir le financement «CIF CDD sur son temps de travail» comme éligible
                 Et définir le financement «CIF CDD hors temps de travail» comme éligible
+
+        Si le type de contrat du bénéficiaire est «intermittent»
+        Et l'expérience professionnelle du bénéficiaire dans les cinq dernières années est supérieure ou égale à 24
+        Et la durée en heures de la formation est supérieure ou égale à 105
+            Alors définir le financement «CIF intermittents sur son temps de travail» comme éligible
+            Et définir le financement «CIF intermittents hors temps de travail» comme éligible

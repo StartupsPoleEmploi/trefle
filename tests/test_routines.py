@@ -30,6 +30,8 @@ def test_populate_formation_from_bytes():
         assert context['formation.niveau_sortie'] == 4
         assert context['formation.heures'] == 697
         assert context['formation.mois'] == 6
+        assert context['formation.semaines'] == 26
+        assert context['formation.duree_hebdomadaire'] == 27
         assert context['formation.codes_financeur'] == {10, 5, 2}
         assert context['formation.qualifiante'] is True
 
@@ -62,6 +64,18 @@ async def test_populate_formation_upstream_error(mock_get):
     ((2018, 1, 1), (2018, 5, 31), 5),
     ((2018, 1, 1), (2018, 5, 1), 4),
     ((2018, 1, 31), (2018, 5, 1), 3),
+    ((2018, 1, 1), (2019, 5, 31), 17),
 ])
 def test_diff_month(start, end, months):
     assert routine.diff_month(datetime(*start), datetime(*end)) == months
+
+
+@pytest.mark.parametrize('start,end,weeks', [
+    ((2018, 1, 1), (2018, 5, 31), 21),
+    ((2018, 1, 1), (2018, 5, 1), 17),
+    ((2018, 1, 31), (2018, 5, 1), 13),
+    ((2018, 1, 1), (2019, 5, 31), 74),
+    ((2018, 1, 1), (2019, 1, 1), 52),
+])
+def test_diff_week(start, end, weeks):
+    assert routine.diff_week(datetime(*start), datetime(*end)) == weeks

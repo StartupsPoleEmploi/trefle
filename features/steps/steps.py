@@ -17,7 +17,7 @@ def setup(context):
     context.data = {}
 
 
-@given(r"(?:les? |la |l')(?P<label>.+) (?:vaut|valent) «?(?P<value>[^»]+)»?")
+@given(r"(?:les? |la |l')(?P<label>.+) (?:est|vaut|valent) «?(?P<value>[^»]+)»?")
 def given_set_value(context, label, value):
     key = LABELS[label]
     schema = SCHEMA[key]

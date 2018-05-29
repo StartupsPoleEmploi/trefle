@@ -21,6 +21,10 @@ def diff_month(start, end):
             + round((end.day - start.day) / 30))
 
 
+def diff_week(start, end):
+    return round((end - start).days / 7)
+
+
 def flatten(data, output=None, namespace=None):
     """Turn {'a': {'b': 'value'}} in {'a.b': 'value'}."""
     if output is None:
@@ -147,6 +151,10 @@ def populate_formation_from_bytes(context, content):
     fin = datetime.strptime(
         root.xpath('//periode/fin/child::text()')[0], '%Y%m%d')
     context['formation.mois'] = diff_month(debut, fin)
+    semaines = diff_week(debut, fin)
+    context['formation.semaines'] = semaines
+    context['formation.duree_hebdomadaire'] = round(
+        context['formation.heures'] / semaines)
 
 
 def financement_to_organisme(context, financement):

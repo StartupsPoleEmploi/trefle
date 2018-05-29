@@ -49,8 +49,13 @@ constante:
   trois_smic:
     type: integer
     format: int32
-    value: 5994
+    value: 4495
     label: trois fois le SMIC
+  quatre_smic:
+    type: integer
+    format: int32
+    value: 5994
+    label: quatre fois le SMIC
   domaine_formacode_langue:
     description: le domaine FORMACODE des formations en langue
     type: integer
@@ -133,6 +138,13 @@ beneficiaire:
     format: int32
     public: true
     label: nombre de mois travaillés par le bénéficiaire dans la dernière année
+    gender: masculine
+  jours_travailles:
+    description: nombre de jours travaillés dans les cinq dernières années (pour les intermittents)
+    type: integer
+    format: int32
+    public: true
+    label: nombre de jours travaillés par le bénéficiaire dans les cinq dernières années
     gender: masculine
   contrat:
     description: type de contrat du bénéficiaire
@@ -254,6 +266,14 @@ formation:
     type: integer
     format: int32
     label: durée en mois de la formation
+  semaines:
+    type: integer
+    format: int32
+    label: durée en semaines de la formation
+  duree_hebdomadaire:
+    type: integer
+    format: int32
+    label: durée hebdomadaire de la formation
   prix_horaire:
     type: integer
     format: float

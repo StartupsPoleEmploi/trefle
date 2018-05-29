@@ -56,6 +56,19 @@ CIF:
       nom: CIF intérim hors temps de travail
   intermittent:
     sur son temps de travail:
-      nom: CIF intermittent sur son temps de travail
+      nom: CIF intermittents sur son temps de travail
+      demarches: |-
+        Contacter les conseillers Afdas pour vous informer sur les différents dispositifs de formation et vous accompagner dans l’élaboration de votre dossier :
+        Si vous résidez en région Ile-de-France ou Centre, appelez le 01 44 78 38 39.
+        Pour les autres régions, contactez votre délégation régionale Afdas.
+        L’Afdas étudie les demandes de prise en charge des frais de déplacement et d’hébergement sous réserve que les frais annexes soient dûment justifiés, la demande de prise en charge soit complétée et retournée à l’Afdas en même temps
+        que votre dossier CIF.
+        Si votre demande est acceptée, il vous appartiendra d’informer votre conseiller Pôle Emploi de votre entrée en stage.
+        Attention aux critères d'accès
+        Sur les 220 jours de travail ou cachets requis pour demander un CIF, vous devez justifier de :
+        - Pour les artistes interprètes et musiciens : 60 jours ou cachets répartis sur les 24 derniers mois ou 30 jours ou cachets répartis sur les 12 derniers mois
+        - Pour les techniciens du spectacle vivant ou réalisateurs : 88 jours de travail ou cachets répartis sur les 24 derniers mois ou 44 jours ou cachets répartis sur les 12 derniers mois
+        - Pour les techniciens de l’audiovisuel : 130 jours de travail ou cachets répartis sur les 24 derniers mois ou 65 jours de travail ou cachets répartis sur les 12 derniers mois.
+        Délai de carence en mois = durée en heures du dernier CIF /12.
     hors temps de travail:
-      nom: CIF intermittent hors temps de travail
+      nom: CIF intermittents hors temps de travail
