@@ -12,7 +12,7 @@ CPF:
     demarches: |-
       Pour une formation se déroulant en dehors du temps de travail, il n'est pas nécessaire de demander l'accord de l'employeur.
       Assurez-vous que votre compte personnel de formation est activé sur http://www.moncompteformation.gouv.fr/.
-      Contactez directement votre Opca {nom} pour bénéficier gratuitement d’un conseil en évolution professionnelle et valider votre projet de formation et son financement CPF.
+      Contactez directement votre organisme {nom} pour bénéficier gratuitement d’un conseil en évolution professionnelle et valider votre projet de formation et son financement CPF.
 CIF:
   eligible: false
   description: |-
