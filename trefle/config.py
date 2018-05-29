@@ -11,7 +11,8 @@ MODALITES = []
 ELIGIBILITE = []
 FINANCEMENTS = {}
 ORGANISMES = {}
-ROOT = Path(__file__).parent
+ROOT = Path(__file__).parent / 'config'
+IDCC = {}
 
 INTERCARIF_URL = 'https://labonneformation.pole-emploi.fr/ws_intercarif'
 DEP_TO_REG = {
@@ -90,13 +91,16 @@ def load_rules(path):
 
 def init():
     print('Initializing config')
-    with (ROOT / 'config/schema.yml').open() as f:
+    with (ROOT / 'schema.yml').open() as f:
         SCHEMA.update(load_schema(yaml.safe_load(f.read())))
-    paths = (ROOT / 'config/modalites').glob('*.rules')
+    paths = (ROOT / 'modalites').glob('*.rules')
     for path in sorted(paths, key=lambda p: p.name.lower()):
         MODALITES.extend(load_rules(path))
-    ELIGIBILITE.extend(load_rules(ROOT / 'config/eligibilite.rules'))
-    with (ROOT / 'config/financements.yml').open() as f:
+    ELIGIBILITE.extend(load_rules(ROOT / 'eligibilite.rules'))
+    with (ROOT / 'financements.yml').open() as f:
         load_financements(yaml.safe_load(f.read()), FINANCEMENTS)
-    with (ROOT / 'config/organismes.yml').open() as f:
+    with (ROOT / 'organismes.yml').open() as f:
         ORGANISMES.update(yaml.safe_load(f.read()))
+    with (ROOT / 'idcc.yml').open() as f:
+        IDCC.update(yaml.safe_load(f.read()))
+    print('Done initializing config')

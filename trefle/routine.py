@@ -1,18 +1,13 @@
 import asyncio
-from pathlib import Path
 from datetime import datetime
 
 import requests
-import yaml
 from lxml import etree
 
-from .config import (CONSTANTS, DEP_TO_REG, ELIGIBILITE, FINANCEMENTS,
+from .config import (CONSTANTS, DEP_TO_REG, ELIGIBILITE, FINANCEMENTS, IDCC,
                      INTERCARIF_URL, MODALITES, ORGANISMES)
 from .exceptions import UpstreamError
 from .rules import Rule
-
-with (Path(__file__).parent / 'config/idcc.yml').open() as f:
-    IDCC = yaml.safe_load(f.read())
 
 
 def diff_month(start, end):
@@ -56,9 +51,6 @@ def preload_financements(context):
 def idcc_to_organismes(context):
     key = 'beneficiaire.entreprise.idcc'
     idcc = context[key]
-    if idcc not in IDCC:
-        # TODO move this check to validators
-        raise ValueError({key: f"Valeur d'IDCC inconnue: `{idcc}`"})
     context['beneficiaire.entreprise.opca'] = IDCC[idcc]['OPCA']
     context['beneficiaire.entreprise.opacif'] = IDCC[idcc]['OPACIF']
 

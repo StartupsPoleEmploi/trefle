@@ -122,3 +122,21 @@ def test_validate_pattern(patch_schema, input, valid):
             validate(data)
     else:
         validate(data)
+
+
+@pytest.mark.parametrize('input,output', [
+    ('1412', '1412'),
+    ('0024', '24'),
+    ('1722A', '1722A'),
+    ('unvalid', False),
+])
+def test_validate_idcc(patch_schema, input, output):
+    patch_schema({
+        'idcc': {'type': 'string', 'format': 'idcc'}})
+    data = {'idcc': input}
+    if not output:
+        with pytest.raises(ValueError):
+            validate(data)
+    else:
+        validate(data)
+        assert data['idcc'] == output

@@ -243,7 +243,7 @@ async def test_simulate_endpoint_with_invalid_idcc_format(client):
         'beneficiaire.entreprise.idcc': 'foobar'})
     assert resp.status == HTTPStatus.UNPROCESSABLE_ENTITY
     assert json.loads(resp.body) == {
-        'beneficiaire.entreprise.idcc': "`foobar` n'est pas de type integer"}
+        'beneficiaire.entreprise.idcc': "Valeur d'IDCC inconnue: `foobar`"}
 
 
 async def test_simulate_endpoint_with_unknown_idcc(client):

@@ -22,9 +22,9 @@ constante:
     description: ensemble des codes IDCC de l'artisanat
     type: array
     items:
-      type: integer
-    # TODO: IDCC must be a string to accept values like "1722A"
-    value: [1596, 1638, 1758, 1779, 2032, 2194, 2195, 2267, 2585]
+      type: string
+      format: idcc
+    value: ["1596", "1638", "1722A", "1758", "1779", "2032", "2194", "2195", "2267", "2585"]
     label: codes IDCC de l'artisanat
   codes_cpf_vae:
     description: liste des codes CPF identifiant une formation VAE
@@ -175,8 +175,8 @@ beneficiaire:
     idcc:
       description: l'identifiant de convention collective de l'établissement
       # TODO: uniformize the type (int but 0234 so str?)
-      type: integer
-      format: int32
+      type: string
+      format: idcc
       public: true
       required: true
       label: IDCC de l'établissement du bénéficiaire

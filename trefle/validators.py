@@ -1,4 +1,5 @@
 from .rules import SCHEMA
+from .config import IDCC
 
 validators = []
 
@@ -23,10 +24,23 @@ def to_int(value):
     return int(float(value))
 
 
+def to_idcc(value):
+    while value and value[0] == '0':
+        value = value[1:]
+    if value not in IDCC:
+        raise ValueError(f"Valeur d'IDCC inconnue: `{value}`")
+    return value
+
+
 TYPES = {
     'boolean': to_bool,
     'number': float,
     'integer': to_int,
+    'string': str,
+}
+
+FORMATS = {
+    'idcc': to_idcc
 }
 
 
@@ -74,6 +88,16 @@ def validate_type(schema, value):
                 value = func(value)
             except (ValueError, TypeError):
                 raise ValueError(f"`{value}` n'est pas de type {type_}")
+    return value
+
+
+@validator
+def validate_format(schema, value):
+    if value is not None:
+        format_ = schema.get('format')
+        func = FORMATS.get(format_)
+        if func:
+            value = func(value)  # May raise a ValueError
     return value
 
 
