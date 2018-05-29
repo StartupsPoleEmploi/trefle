@@ -140,3 +140,15 @@ def test_validate_idcc(patch_schema, input, output):
     else:
         validate(data)
         assert data['idcc'] == output
+
+
+@pytest.mark.parametrize('input,output', [
+    ('6202A', '6202A'),
+    ('62.02A', '6202A'),
+])
+def test_validate_naf(patch_schema, input, output):
+    patch_schema({
+        'naf': {'type': 'string', 'format': 'naf'}})
+    data = {'naf': input}
+    validate(data)
+    assert data['naf'] == output

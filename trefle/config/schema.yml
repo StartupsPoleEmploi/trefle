@@ -167,8 +167,9 @@ beneficiaire:
   entreprise:
     naf:
       description: l'identifiant NAF/APE de l'entreprise
-      # TODO: deal with optionnal dot: 21.27Z
       type: string
+      format: naf
+      pattern: \d{2}\.?\d{2}[a-zA-Z]
       public: true
       label: code NAF de l'établissement du bénéficiaire
       gender: masculine
@@ -304,6 +305,7 @@ formation:
     type: array
     items:
       type: string
+      format: naf
     source: routine.naf_from_formation
     label: codes NAF CPNE éligibles
     number: plural

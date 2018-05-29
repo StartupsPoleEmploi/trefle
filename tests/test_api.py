@@ -263,6 +263,25 @@ async def test_simulate_endpoint_with_unknown_idcc(client):
         'beneficiaire.entreprise.idcc': "Valeur d'IDCC inconnue: `1234567`"}
 
 
+async def test_simulate_endpoint_with_invalid_naf(client):
+    resp = await client.get('/schema')
+
+    resp = await client.post('/financement', body={
+        'beneficiaire.solde_cpf': 10,
+        'beneficiaire.remuneration': 1400,
+        'beneficiaire.droit_prive': True,
+        'beneficiaire.contrat': 'cdi',
+        'formation.eligible_copanef': True,
+        'formation.heures': 100,
+        'beneficiaire.entreprise.commune': '2A004',
+        'beneficiaire.entreprise.naf': '12345',
+        'beneficiaire.entreprise.idcc': '1486'})
+    assert resp.status == HTTPStatus.UNPROCESSABLE_ENTITY
+    assert json.loads(resp.body) == {
+        'beneficiaire.entreprise.naf': ("`12345` n'est pas au format "
+                                        "\\d{2}\\.?\\d{2}[a-zA-Z]")}
+
+
 async def test_simulate_endpoint_with_unknown_departement(client):
     resp = await client.get('/schema')
 

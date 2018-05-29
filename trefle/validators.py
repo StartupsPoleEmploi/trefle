@@ -32,6 +32,10 @@ def to_idcc(value):
     return value
 
 
+def to_naf(value):
+    return value.replace('.', '')
+
+
 TYPES = {
     'boolean': to_bool,
     'number': float,
@@ -40,7 +44,8 @@ TYPES = {
 }
 
 FORMATS = {
-    'idcc': to_idcc
+    'idcc': to_idcc,
+    'naf': to_naf,
 }
 
 
@@ -113,5 +118,5 @@ def validate_enum(schema, value):
 def validate_pattern(schema, value):
     if value and 'pattern' in schema and not schema['pattern'].match(value):
         raise ValueError(
-            f"`{value}` n'est pas au format {schema['pattern']}")
+            f"`{value}` n'est pas au format {schema['pattern'].pattern}")
     return value
