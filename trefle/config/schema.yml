@@ -174,7 +174,6 @@ beneficiaire:
       gender: masculine
     idcc:
       description: l'identifiant de convention collective de l'établissement
-      # TODO: uniformize the type (int but 0234 so str?)
       type: string
       format: idcc
       public: true
