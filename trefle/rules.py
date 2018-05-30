@@ -36,6 +36,8 @@ class LazyValue:
     def __init__(self, raw):
         self.raw = raw
         self.get = None
+        self.default = None
+        self.key = None
         self.compile()
 
     def __repr__(self):
@@ -61,6 +63,7 @@ class LazyValue:
             except KeyError:
                 raise WrongPointerError(self.raw)
             self.get = lambda **d: self._get(**d)
+            self.default = SCHEMA[self.key].get('default')
         if value is not ...:
             self.get = lambda **d: value
 
@@ -68,6 +71,8 @@ class LazyValue:
         try:
             return context[self.key]
         except KeyError:
+            if self.default is not None:
+                return self.default
             raise NoDataError(self.raw)
 
 

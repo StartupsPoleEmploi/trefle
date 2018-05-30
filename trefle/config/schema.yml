@@ -293,6 +293,7 @@ formation:
   prix_horaire:
     type: integer
     format: float
+    default: 0
     label: prix horaire de la formation
     description: prix horaire TTC de la formation
     gender: masculine
