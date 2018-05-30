@@ -1,6 +1,7 @@
 from pathlib import Path
 import re
 
+from unidecode import unidecode
 import yaml
 
 from .rules import Rule, SCHEMA, LABELS
@@ -89,6 +90,11 @@ def load_rules(path):
         return Rule.load(rules_file.readlines())
 
 
+# TODO: move in utils?
+def fold_name(s):
+    return unidecode(s).lower().replace(' ', '')
+
+
 def init():
     print('Initializing config')
     with (ROOT / 'schema.yml').open() as f:
@@ -100,7 +106,12 @@ def init():
     with (ROOT / 'financements.yml').open() as f:
         load_financements(yaml.safe_load(f.read()), FINANCEMENTS)
     with (ROOT / 'organismes.yml').open() as f:
-        ORGANISMES.update(yaml.safe_load(f.read()))
+        for name, data in yaml.safe_load(f.read()).items():
+            organisme = data
+            data['nom'] = name
+            ORGANISMES[name] = organisme
+            # Also add a folded key, for user input sourced name.
+            ORGANISMES[fold_name(name)] = organisme
     with (ROOT / 'idcc.yml').open() as f:
         IDCC.update(yaml.safe_load(f.read()))
     print('Done initializing config')

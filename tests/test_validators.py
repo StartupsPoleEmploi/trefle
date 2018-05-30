@@ -152,3 +152,21 @@ def test_validate_naf(patch_schema, input, output):
     data = {'naf': input}
     validate(data)
     assert data['naf'] == output
+
+
+@pytest.mark.parametrize('input,output', [
+    ('AGEFOS PME', 'AGEFOS PME'),
+    ('Agefos PME', 'AGEFOS PME'),
+    ('AgéfosPME', 'AGEFOS PME'),
+    ('unknown', False),
+])
+def test_validate_organisme(patch_schema, input, output):
+    patch_schema({
+        'opca': {'type': 'string', 'format': 'opca'}})
+    data = {'opca': input}
+    if not output:
+        with pytest.raises(ValueError):
+            validate(data)
+    else:
+        validate(data)
+        assert data['opca'] == output

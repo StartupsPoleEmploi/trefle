@@ -212,6 +212,22 @@ beneficiaire:
         '84': Auvergne-Rhône-Alpes
         '93': Provence-Alpes-Côte d'Azur
         '94': Corse
+    opca:
+      description: L'OPCA auquel est rattaché l'établissement du bénéficiaire. Optionnel, habituellement déduit de l'IDCC.
+      type: string
+      format: opca
+      public: true
+      nullable: true
+      label: OPCA de l'établissement du bénéficiaire
+      gender: masculine
+    opacif:
+      description: L'OPACIF auquel est rattaché l'établissement du bénéficiaire. Optionnel, habituellement déduit de l'IDCC.
+      type: string
+      format: opacif
+      public: true
+      nullable: true
+      label: OPACIF de l'établissement du bénéficiaire
+      gender: masculine
 formation:
   numero:
     description: identifiant INTERCARIF de la formation

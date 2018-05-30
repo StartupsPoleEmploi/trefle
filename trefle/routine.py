@@ -49,10 +49,12 @@ def preload_financements(context):
 
 
 def idcc_to_organismes(context):
-    key = 'beneficiaire.entreprise.idcc'
-    idcc = context[key]
-    context['beneficiaire.entreprise.opca'] = IDCC[idcc]['OPCA']
-    context['beneficiaire.entreprise.opacif'] = IDCC[idcc]['OPACIF']
+    idcc = context['beneficiaire.entreprise.idcc']
+    # Allow to force value in input data.
+    if 'beneficiaire.entreprise.opca' not in context:
+        context['beneficiaire.entreprise.opca'] = IDCC[idcc]['OPCA']
+    if 'beneficiaire.entreprise.opacif' not in context:
+        context['beneficiaire.entreprise.opacif'] = IDCC[idcc]['OPACIF']
 
 
 def insee_commune_to_region(context):
@@ -171,9 +173,7 @@ def load_organisme_contact_details(context, financement):
 
 
 def load_organisme(nom):
-    data = {'nom': nom}
-    data.update(ORGANISMES[nom])
-    return data
+    return ORGANISMES[nom]
 
 
 def compute_modalites(context, financement):

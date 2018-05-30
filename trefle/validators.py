@@ -1,5 +1,5 @@
 from .rules import SCHEMA
-from .config import IDCC
+from .config import IDCC, ORGANISMES, fold_name
 
 validators = []
 
@@ -32,6 +32,13 @@ def to_idcc(value):
     return value
 
 
+def to_organisme(value):
+    folded = fold_name(value)
+    if folded not in ORGANISMES:
+        raise ValueError(f"Organisme inconnu: `{value}`")
+    return ORGANISMES[folded]['nom']
+
+
 def to_naf(value):
     return value.replace('.', '')
 
@@ -46,6 +53,8 @@ TYPES = {
 FORMATS = {
     'idcc': to_idcc,
     'naf': to_naf,
+    'opca': to_organisme,
+    'opacif': to_organisme,
 }
 
 

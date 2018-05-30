@@ -6,3 +6,4 @@ PyYAML==3.12
 requests==2.18.4
 roll==0.8.0
 ujson==1.35
+unidecode==1.0.22
