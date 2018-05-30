@@ -287,18 +287,18 @@ Scénario: Formation de 12 mois
     Et l'IDCC de l'établissement du bénéficiaire vaut «1412»
     Et la région de l'établissement du bénéficiaire vaut «Normandie»
     Et ce n'est pas une formation éligible COPANEF
+    Et la régions éligibles COPAREF vaut [25]
+    Et la liste des codes FORMACODE de la formation vaut [31715,31715,31795]
     Et le niveau de sortie de la formation vaut 1
     Et la durée en heures de la formation vaut 14
-    Et ce n'est pas une formation ouverte à distance
-    Et ce n'est pas une formation TOEIC
-    Et ce n'est pas une formation BULATS
+    Et la liste des codes CERTIFINFO de la formation vaut [55824]
+    Et la liste des domaines FORMACODE de la formation vaut [317]
     Et c'est une formation CACES
-    Et ce n'est pas une formation BEC
-    Et ce n'est pas un bilan de compétences
-    Et ce n'est pas un permis B
+    Et les codes financeur de la formation vaut [0,16,10,5]
     Et c'est une formation qualifiante
     Et la durée en mois de la formation vaut 12
     Et la durée en semaines de la formation vaut 52
+    Et la durée hebdomadaire de la formation vaut 0
     Quand je demande un calcul de financement
     Quand je sélectionne le financement «CIF CDI sur son temps de travail»
     Alors l'organisme à contacter est «Fongecif Normandie»
