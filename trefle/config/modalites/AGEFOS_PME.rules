@@ -38,3 +38,6 @@ Si le nom de l'organisme est «AGEFOS PME»
         Alors le nom de l'agence à contacter est «AGEFOS PME Provence Alpes Côte d'Azur»
     Si la région de l'établissement du bénéficiaire est «Corse»
         Alors le nom de l'agence à contacter est «AGEFOS PME Corse»
+    Si l'IDCC de l'établissement du bénéficiaire vaut «1404»
+    Ou le code NAF de l'établissement du bénéficiaire fait partie de [0162Z,3312Z,4661Z,4663Z,4669B,4752A,4752B,7729Z,7731Z,7732Z,7739Z,9522Z,2830Z,4399E,4662Z,9329Z]
+        Alors le nom de l'agence à contacter est «AGEFOS PME établissement Agefomat»
