@@ -36,9 +36,6 @@ def add_schema(name, data=None):
                 value = props[subkey]
                 if subkey == 'enum':
                     value = value.keys()
-                if subkey == 'format' and value in ['idcc', 'naf']:
-                    # https://github.com/p1c2u/openapi-core/issues/41
-                    continue
                 properties[key][subkey] = value
     schema = {'properties': properties}
     if required:

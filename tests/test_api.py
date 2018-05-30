@@ -3,7 +3,7 @@ import json
 
 import pytest
 from openapi_core import create_spec
-from openapi_core.wrappers import MockRequest, MockResponse
+from openapi_core.wrappers.mock import MockRequest, MockResponse
 from openapi_core.validators import ResponseValidator
 from openapi_spec_validator import validate_spec
 from roll.extensions import traceback
@@ -310,12 +310,11 @@ async def test_simulate_endpoint_with_invalid_data(client):
     assert resp.status == HTTPStatus.UNPROCESSABLE_ENTITY
     assert 'application/json' in resp.headers['Content-Type']
 
-    # See https://github.com/p1c2u/openapi-core/issues/33
-    # validator = ResponseValidator(spec)
-    # request = MockRequest('http://localhost', 'post', '/financement')
-    # response = MockResponse(resp.body, resp.status.value)
-    # result = validator.validate(request, response)
-    # result.raise_for_errors()
+    validator = ResponseValidator(spec)
+    request = MockRequest('http://localhost', 'post', '/financement')
+    response = MockResponse(resp.body, resp.status.value)
+    result = validator.validate(request, response)
+    result.raise_for_errors()
 
 
 async def test_simulate_endpoint_with_upstream_error(client, mock_get):
