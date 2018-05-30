@@ -95,6 +95,7 @@ async def data_from_lbf_url(url):
         print(data)
         sys.exit(err)
     add_constants(data)
+    print(f'Processing formation {data["formation.numero"]}')
     await populate_formation(data)
     del data['formation.numero']
     return data
@@ -105,6 +106,8 @@ def make_feature(data, financements, name='Donne-moi un nom'):
     steps = ["Soit un bénéficiaire et une formation"]
 
     for key, value in data.items():
+        if key.startswith('constante'):
+            continue
         schema = SCHEMA[key]
         label = schema['label']
         if 'enum' in schema:
@@ -116,6 +119,11 @@ def make_feature(data, financements, name='Donne-moi un nom'):
         if key == 'formation.regions_coparef':
             for val in value:
                 regions = SCHEMA['beneficiaire.entreprise.region']['enum']
+                if val not in regions:
+                    # TODO: log anomalies in a file to share them with catalog
+                    # producer?
+                    print(f'Région inconnue (ancienne région?): {val}')
+                    continue
                 val = regions[val]
                 steps.append(f"Et c'est une formation éligible région «{val}»")
                 continue

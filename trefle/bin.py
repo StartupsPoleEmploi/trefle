@@ -50,6 +50,8 @@ async def cli_simulate(*args, url=None, trace=False, feature=False,
         print(tpl.format('key', 'value'))
         print('| {0}| {0}|'.format('-'*50))
         for key, value in data.items():
+            if key.startswith('constante'):
+                continue
             print(tpl.format(key, str(value)))
     start = time.perf_counter()
     financements = await simulate(**data)

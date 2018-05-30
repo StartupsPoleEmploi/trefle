@@ -8,8 +8,8 @@ Si c'est un bénéficiaire de droit privé
             Et définir le financement «CPF hors temps de travail» comme éligible
 
     Si les codes financeur de la formation contiennent au moins un des codes financeur individuel
-    Et la durée en heures de la formation est inférieure à 1200
-    Et la durée en mois de la formation est inférieure à 12
+    Et la durée en heures de la formation est inférieure ou égale à 1200
+    Et la durée en mois de la formation est inférieure ou égale à 12
 
         Si le type de contrat du bénéficiaire est «CDI»
             Si l'IDCC de l'établissement du bénéficiaire ne fait pas partie des codes IDCC de l'artisanat
