@@ -1,5 +1,6 @@
 import time
 
+import ujson as json
 from minicli import cli, run
 from roll.extensions import simple_server
 
@@ -7,7 +8,7 @@ from .api import app
 from .config import ELIGIBILITE, MODALITES, SCHEMA
 from .core import simulate
 from .debugging import data_from_lbf_url, green, make_feature, red, trace_rule
-
+from .routine import add_constants, flatten, populate_formation
 
 RULES = ELIGIBILITE + MODALITES
 
@@ -27,21 +28,28 @@ def parse_args(args):
 
 
 @cli(name='simulate')
-async def cli_simulate(*args, url=None, trace=False, feature=False,
-                       show_data=False):
+async def cli_simulate(*args, data: json.loads={}, url=None, trace=False,
+                       output_feature=False, show_data=False):
     """Simulate a call to the API.
 
     Pass data as args in the form key=value.
+    :body: data in json form (for example from a request body).
     :url: Optionnal LBF URL to retrieve data from.
     :trace: Display a trace of all checked conditions.
     :feature: Render a Gherkin Feature with given data.
     :show_data: Render a table with used data.
     """
-    data = {}
+    flatten(data)
     if url:
         data = await data_from_lbf_url(url)
     if args:
         data.update(parse_args(args))
+    if 'formation.numero' in data:
+        # Process formation before, so we can show data before validate, to
+        # help debuggin in case it fails.
+        add_constants(data)
+        print(f'Processing formation {data["formation.numero"]}')
+        await populate_formation(data)
     if trace:
         for rule in RULES:
             trace_rule(rule)
@@ -53,6 +61,9 @@ async def cli_simulate(*args, url=None, trace=False, feature=False,
             if key.startswith('constante'):
                 continue
             print(tpl.format(key, str(value)))
+    if 'formation.numero' in data:
+        # We already processed the formation, prevent to process it twice.
+        del data['formation.numero']
     start = time.perf_counter()
     financements = await simulate(**data)
     duration = (time.perf_counter() - start)
@@ -72,7 +83,7 @@ async def cli_simulate(*args, url=None, trace=False, feature=False,
             print('')
     if not financements:
         print('Aucun financement éligible')
-    if feature:
+    if output_feature:
         if url:
             print(f'# {url}')
         print(make_feature(data, eligibles))

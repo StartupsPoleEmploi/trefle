@@ -8,7 +8,6 @@ import phpserialize
 
 from .config import LABELS, SCHEMA
 from .exceptions import NoDataError
-from .routine import populate_formation, add_constants
 from .validators import validate
 
 
@@ -94,10 +93,6 @@ async def data_from_lbf_url(url):
         print('Error validating data.')
         print(data)
         sys.exit(err)
-    add_constants(data)
-    print(f'Processing formation {data["formation.numero"]}')
-    await populate_formation(data)
-    del data['formation.numero']
     return data
 
 
@@ -127,9 +122,7 @@ def make_feature(data, financements, name='Donne-moi un nom'):
                 val = regions[val]
                 steps.append(f"Et c'est une formation éligible région «{val}»")
                 continue
-        if isinstance(value, (list, tuple, set)):
-            value = '[' + ','.join(str(v) for v in value) + ']'
-        elif isinstance(value, bool):
+        if isinstance(value, bool):
             # Et c'est un bénéficiaire de droit privé
             article = 'un' if schema.get('gender') == 'masculine' else 'une'
             if value:
@@ -137,6 +130,8 @@ def make_feature(data, financements, name='Donne-moi un nom'):
             else:
                 steps.append(f"Et ce n'est pas {article} {label}")
         else:
+            if isinstance(value, (list, tuple, set)):
+                value = '[' + ','.join(str(v) for v in value) + ']'
             article = 'le ' if schema.get('gender') == 'masculine' else 'la '
             if schema.get('number') == 'plural':
                 article = 'les '

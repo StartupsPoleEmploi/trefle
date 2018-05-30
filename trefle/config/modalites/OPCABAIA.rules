@@ -17,7 +17,7 @@ Si le nom de l'organisme est «OPCABAIA»
         Si le code CPF de la formation fait partie des codes CPF CleA
             Alors le plafond financier applicable vaut 10000
 
-    Si l'IDCC de l'établissement du bénéficiaire vaut 2120
+    Si l'IDCC de l'établissement du bénéficiaire vaut «2120»
         Si le domaine FORMACODE langues fait partie de la liste des domaines FORMACODE de la formation
             Alors le prix horaire plafond applicable vaut 37
         Si c'est une formation éligible COPANEF
