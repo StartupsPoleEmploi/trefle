@@ -1,5 +1,6 @@
 import asyncio
 from datetime import datetime
+from math import ceil
 
 import requests
 from lxml import etree
@@ -10,6 +11,7 @@ from .exceptions import UpstreamError
 from .rules import Rule
 
 
+# TODO: move to utils.py?
 def diff_month(start, end):
     return ((end.year - start.year) * 12
             + (end.month - start.month)
@@ -17,7 +19,9 @@ def diff_month(start, end):
 
 
 def diff_week(start, end):
-    return round((end - start).days / 7)
+    # Ceil: we count a week even for a day
+    # +1: the end bound is inclusive
+    return ceil(((end - start).days + 1) / 7)
 
 
 def flatten(data, output=None, namespace=None):

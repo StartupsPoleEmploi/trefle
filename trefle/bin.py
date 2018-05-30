@@ -54,6 +54,7 @@ async def cli_simulate(*args, data: json.loads={}, url=None, trace=False,
         for rule in RULES:
             trace_rule(rule)
     if show_data:
+        print('-' * 105)
         tpl = '| {:<50}| {:<50}|'
         print(tpl.format('key', 'value'))
         print('| {0}| {0}|'.format('-'*50))
@@ -61,6 +62,7 @@ async def cli_simulate(*args, data: json.loads={}, url=None, trace=False,
             if key.startswith('constante'):
                 continue
             print(tpl.format(key, str(value)))
+        print('-' * 105)
     if 'formation.numero' in data:
         # We already processed the formation, prevent to process it twice.
         del data['formation.numero']
