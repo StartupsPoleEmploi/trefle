@@ -3,6 +3,7 @@ Si le nom de l'organisme est «Opcalia»
     Alors le plafond horaire applicable est égal au solde CPF du bénéficiaire
     Si le code CPF de la formation fait partie des codes CPF VAE
         Alors le plafond horaire applicable est égal à la durée en heures de la formation
+
     Si la région de l'établissement du bénéficiaire est «Guadeloupe»
         Alors le nom de l'agence à contacter est «Opcalia Guadeloupe»
     Si la région de l'établissement du bénéficiaire est «Martinique»

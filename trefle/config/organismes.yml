@@ -253,7 +253,111 @@ Opcalia Réunion:
   adresse: Centre d'affaires de la Mare 5 rue André Lardy Bâtiment C La Turbine 97438 Sainte Marie
   telephone: 02 62 90 23 45
   web: www.opcalia.com
+# TODO: should we only keep main organisme info and then point to contact pages like http://www.moncepmonfongecif.fr/reseau/notre-presence
+# or http://www.agefos-pme.com/fileadmin/user_upload/20-Partage/pdf/liste_regions.pdf ?
 Fongecif:
-  adresse: TODO
-  telephone: TODO
   web: http://www.moncepmonfongecif.fr/
+Fongecif Auvergne Rhône Alpes - Antenne Auvergne:
+  adresse: Pôle Gambetta 4 avenue Marx Dormoy 63000 Clermont Ferrand
+  telephone : 04 72 82 50 50
+  web: www.fongecif-ara.fr
+Fongecif Auvergne Rhône Alpes:
+  adresse: Immeuble Le Premium 131 boulevard de Stalingrad 69624 Villeurbanne cedex
+  telephone : 04 72 82 50 50
+  web: www.fongecif-ara.fr
+Fongecif Bourgogne Franche Comté - Site de Besançon:
+  adresse: 15 rue Xavier Marmier 25000 Besançon
+  telephone : 03 81 52 82 83
+  web: www.fongecifbfc.org
+Fongecif Bourgogne Franche Comté:
+  adresse: Centre d'affaire Manouchka 6 rue Ez Penottes 21000 Dijon
+  telephone : 03 80 53 22 44
+  web: www.fongecifbfc.org
+Fongecif Bretagne:
+  adresse: 1A allée Ermengarde d'Anjou CS14440 35044 Rennes cedex
+  telephone : 02 99 29 72 48
+  web: www.fongecif-bretagne.org
+Fongecif Centre Val de Loire:
+  adresse: 931 rue de Bourges Olivet la Source CS 46037 45060 Orléans cedex 2
+  telephone : 02 38 49 35 35
+  web: www.fongecifcentre.com
+Fongecif Corsica:
+  adresse: Immeuble Sampolo bâtiment B 28 avenue Colonel Colonna d'Ornano 20000 Ajaccio
+  telephone : 04 95 20 57 79
+  web: www.fongecif-corsica.com
+Fongecif Grand Est - Pôle territorial de Nancy:
+  adresse: Le Trident 6 rue Cyfflé BP 20116 54003 Nancy cedex
+  telephone : 03 83 30 82 80
+  web: www.fongecif-grandest.org
+Fongecif Grand Est - Pôle territorial de Reims:
+  adresse: 33 bis rue Hincmar 51100 Reims
+  telephone : 03 26 03 10 10
+  web: www.fongecif-grandest.org
+Fongecif Grand Est:
+  adresse: Pôle 2005 197 avenue d'Alsace 68027 Colmar cedex
+  telephone : 03 89 20 17 50
+  web: www.fongecif-grandest.org
+Fongecif Guadeloupe:
+  adresse: 73 les Hauts de Blachon 97122 Baie Mahault
+  telephone : 05 90 32 10 33
+  web: www.fongecif-guadeloupe.fr
+Fongecif Guyane:
+  adresse: 971 route de Montjoly 97354 Remire-Montjoly
+  telephone : 05 94 35 75 87
+  web: www.fongecif-guyane.com
+Fongecif Hauts de France:
+  adresse: 9 rue de l'Abbé Stahl TSA 80003 59705 Marcq en Baroeul cedex
+  telephone : 03 59 61 62 63
+  web: fongecif-hdf.fr
+Fongecif Hauts de France - Antenne d'Amiens:
+  adresse: 49 avenue d'Italie 80094 Amiens cedex 3
+  telephone : 03 59 61 62 63
+  web: fongecif-hdf.fr
+Fongecif Ile de France:
+  adresse: 2 ter boulevard Saint Martin 75498 Paris cedex 10
+  telephone : 01 44 10 58 58
+  web: www.fongecif-idf.fr
+Fongecif Martinique:
+  adresse: Domaine de Montgérald 1 avenue Louis Domergue 97200 Fort de France
+  telephone : 05 96 38 29 42
+  web: www.fongecif-martinique.fr
+Fongecif Normandie:
+  adresse: Citis Immeuble Manager 15 avenue de Cambridge 14200 Hérouville Saint Clair
+  telephone : 02 31 46 26 46
+  web: www.fongecifnormandie.org
+Fongecif Normandie - Antenne de Rouen:
+  adresse: Immeuble Lavoisier 95 allée Alfred Nobel 76230 Bois Guillaume
+  telephone : 02 35 07 95 55
+  web: www.fongecifnormandie.org
+Fongecif Nouvelle Aquitaine:
+  adresse: Les bureaux du Lac II Immeuble M rue Robert Caumont 33049 Bordeaux cedex
+  telephone : 09 72 61 55 50
+  web: www.fongecifnouvelleaquitaine.org
+Fongecif Nouvelle Aquitaine - Site de Limoges:
+  adresse: 25 cours Jean Pénicaud 87000 Limoges
+  telephone : 09 72 61 55 50
+  web: www.fongecifnouvelleaquitaine.org
+Fongecif Nouvelle Aquitaine - Site de Niort:
+  adresse: 31 avenue de Verdun BP 70026 79001 Niort cedex
+  telephone : 09 72 61 55 50
+  web: www.fongecifnouvelleaquitaine.org
+Fongecif Occitanie - Antenne Languedoc Roussillon:
+  adresse: Parc d'activités la Peyrière 10 rue Robert Schuman 34430 Saint Jean de Vedas
+  telephone : 0800 00 74 74*
+  web: www.fongecif-occitanie.org
+Fongecif Occitanie:
+  adresse: Parc technologique du Canal 4 rue Giotto CS 72280 31522 Ramonville Saint Agne cedex
+  telephone : 05 62 26 87 87
+  web: www.fongecif-occitanie.org
+Fongecif Pays de la Loire:
+  adresse: 9 boulevard Alexandre Millerand BP 20135 44201 Nantes cedex 2
+  telephone : 0810 19 16 80*
+  web: www.fongecif-pdl.fr
+Fongecif Provence Alpes Côte d'Azur:
+  adresse: Les Docks Atrium 10.8 10 place de la Joliette CS 97212 13567 Marseille cedex 02
+  telephone : 0805 850 100*
+  web: www.fongecif-paca.com
+Fongecif Réunion:
+  adresse: Centre d'affaires de la Mare 5 rue André Lardy bât C La Turbine 97438 Sainte Marie
+  telephone : 02 62 94 03 84
+  web: www.fongecif-reunion.com
