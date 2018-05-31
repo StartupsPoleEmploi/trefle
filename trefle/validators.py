@@ -40,7 +40,7 @@ def to_organisme(value):
 
 
 def to_naf(value):
-    return value.replace('.', '')
+    return value.replace('.', '').upper()
 
 
 TYPES = {

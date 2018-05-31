@@ -5,10 +5,11 @@ from math import ceil
 import requests
 from lxml import etree
 
-from .config import (CONSTANTS, DEP_TO_REG, ELIGIBILITE, FINANCEMENTS, IDCC,
-                     INTERCARIF_URL, MODALITES, ORGANISMES)
+from .config import (CONSTANTS, DEP_TO_REG, ELIGIBILITE, ELIGIBILITE_URL,
+                     FINANCEMENTS, IDCC, INTERCARIF_URL, MODALITES, ORGANISMES)
 from .exceptions import UpstreamError
 from .rules import Rule
+from .validators import to_naf
 
 
 # TODO: move to utils.py?
@@ -83,11 +84,9 @@ async def populate_formation(context):
 
     formation_id = context['formation.numero']
     response = await http_get(f'{INTERCARIF_URL}?num={formation_id}')
-    if response.status_code >= 500:
-        raise UpstreamError(f"UPSTREAM_ERROR: {response.status_code}")
 
     try:
-        populate_formation_from_bytes(context, response.content)
+        await populate_formation_from_bytes(context, response.content)
     except ValueError as err:
         # Give more context.
         err.args = (f'Error with id `{formation_id}`: `{err}`',)
@@ -96,10 +95,21 @@ async def populate_formation(context):
 
 async def http_get(url):
     loop = asyncio.get_event_loop()
-    return await loop.run_in_executor(None, requests.get, url)
+    response = await loop.run_in_executor(None, requests.get, url)
+    if response.status_code >= 500:
+        raise UpstreamError(f"UPSTREAM_ERROR: {url} {response.status_code}")
+    return response
 
 
-def populate_formation_from_bytes(context, content):
+async def retrieve_codes_naf(ids):
+    params = ''.join(f'&id[]={id}' for id in ids)
+    url = f'{ELIGIBILITE_URL}{params}'
+    response = await http_get(url)
+    tree = etree.fromstring(response.content)
+    return tree.xpath('//branche/child::text()')
+
+
+async def populate_formation_from_bytes(context, content):
     # Doc for leoh: http://lheo.gouv.fr/langage
     # TODO: deal with action or session optional ids.
     content = content.replace(b' xmlns="http://www.lheo.org/2.2"', b'')
@@ -114,6 +124,12 @@ def populate_formation_from_bytes(context, content):
     ))
     context['formation.codes_naf'] = set(root.xpath(
         '//extras[@info="eligibilite-cpf"]/extra[@info="branche"]/child::text()'))
+    if not context['formation.codes_naf']:
+        ids = set(root.xpath('//extras[@info="eligibilite-cpf"]/extra[@info="france-entiere"][text()="1"]/../extra[@info="inter-branche"][text()="0"]/../@numero'))
+        if ids:
+            context['formation.codes_naf'] = await retrieve_codes_naf(ids)
+    context['formation.codes_naf'] = set(
+        to_naf(c) for c in context['formation.codes_naf'])
     context['formation.regions_coparef'] = set(root.xpath(
         '//extras[@info="eligibilite-cpf"]/extra[@info="region"]/child::text()'))
     context['formation.codes_formacode'] = root.xpath('//domaine-formation/code-FORMACODE/child::text()')
@@ -144,15 +160,22 @@ def populate_formation_from_bytes(context, content):
     # http://lheo.gouv.fr/langage#dict-AIS
     context['formation.qualifiante'] = root.xpath('number(//objectif-general-formation/child::text())') in [6, 7]
     # Compute duration in months.
-    debut = datetime.strptime(root.xpath('//periode/debut/child::text()')[0],
-                              '%Y%m%d')
-    fin = datetime.strptime(
-        root.xpath('//periode/fin/child::text()')[0], '%Y%m%d')
-    context['formation.mois'] = diff_month(debut, fin)
-    semaines = diff_week(debut, fin)
-    context['formation.semaines'] = semaines
-    context['formation.duree_hebdomadaire'] = round(
-        context['formation.heures'] / semaines)
+    try:
+        debut = datetime.strptime(
+            root.xpath('//periode/debut/child::text()')[0], '%Y%m%d')
+        fin = datetime.strptime(
+            root.xpath('//periode/fin/child::text()')[0], '%Y%m%d')
+    except ValueError:
+        # TODO log
+        context['formation.mois'] = 1
+        context['formation.semaines'] = 1
+        context['formation.duree_hebdomadaire'] = 0
+    else:
+        context['formation.mois'] = diff_month(debut, fin)
+        semaines = diff_week(debut, fin)
+        context['formation.semaines'] = semaines
+        context['formation.duree_hebdomadaire'] = round(
+            context['formation.heures'] / semaines)
 
 
 def financement_to_organisme(context, financement):

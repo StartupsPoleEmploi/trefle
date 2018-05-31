@@ -144,6 +144,7 @@ def test_validate_idcc(patch_schema, input, output):
 
 @pytest.mark.parametrize('input,output', [
     ('6202A', '6202A'),
+    ('6202a', '6202A'),
     ('62.02A', '6202A'),
 ])
 def test_validate_naf(patch_schema, input, output):

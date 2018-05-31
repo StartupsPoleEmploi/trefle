@@ -70,8 +70,11 @@ async def cli_simulate(*args, data: json.loads={}, url=None, trace=False,
     financements = await simulate(**data)
     duration = (time.perf_counter() - start)
     print('*' * 105)
-    print('Éligible')
     eligibles = [f for f in financements if f['eligible']]
+    if eligibles:
+        print('Financements éligibles')
+    else:
+        print('Aucun financement éligible')
     for financement in eligibles:
         if financement.get('eligible'):
             print('- Nom:', financement['nom'])
@@ -80,11 +83,13 @@ async def cli_simulate(*args, data: json.loads={}, url=None, trace=False,
             print('  Organisme:')
             print('      Nom:', financement['organisme']['nom'])
             print('      Site web:', financement['organisme']['web'])
-            print('  Financement:', financement['prise_en_charge'], '€')
+            if financement['prise_en_charge']:
+                print('  Financement:', financement['prise_en_charge'], '€')
+            if financement['plafond_prise_en_charge']:
+                print('  Plafond financement:',
+                      financement['plafond_prise_en_charge'], '€')
             print('  Rémunération:', financement['remuneration'], '€')
             print('')
-    if not financements:
-        print('Aucun financement éligible')
     if output_feature:
         if url:
             print(f'# {url}')

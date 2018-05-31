@@ -13,16 +13,17 @@ def test_flatten():
     assert data == {'a.b': 'value'}
 
 
-def test_populate_formation_from_bytes():
+@pytest.mark.asyncio
+async def test_populate_formation_from_bytes():
     with Path(__file__).parent.joinpath('data/formation.xml').open('rb') as f:
         context = {}
         routine.add_constants(context)
-        routine.populate_formation_from_bytes(context, f.read())
+        await routine.populate_formation_from_bytes(context, f.read())
 
         assert context['formation.eligible_copanef'] is True
-        assert context['formation.codes_naf'] == {'01.62Z', '05.20Z', '23.61Z',
-                                                  '23.62Z', '78.20Z', '96.04Z',
-                                                  '96.09Z'}
+        assert context['formation.codes_naf'] == {'0162Z', '0520Z', '2361Z',
+                                                  '2362Z', '7820Z', '9604Z',
+                                                  '9609Z'}
         assert context['formation.regions_coparef'] == {'24'}
         assert context['formation.codes_formacode'] == ['22403', '22402']
         assert context['formation.domaines_formacode'] == {'224'}
@@ -36,7 +37,8 @@ def test_populate_formation_from_bytes():
         assert context['formation.qualifiante'] is True
 
 
-def test_populate_formation_from_bytes_with_empty_list():
+@pytest.mark.asyncio
+async def test_populate_formation_from_bytes_with_empty_list():
     content = b"""<?xml version="1.0" encoding="utf-8"?>
                   <lheo xmlns="http://www.lheo.org/2.2">
                   <offres>
@@ -44,7 +46,7 @@ def test_populate_formation_from_bytes_with_empty_list():
                   </lheo>"""
     context = {}
     with pytest.raises(ValueError):
-        routine.populate_formation_from_bytes(context, content)
+        await routine.populate_formation_from_bytes(context, content)
 
 
 def test_insee_commune_to_region():
@@ -58,6 +60,28 @@ async def test_populate_formation_upstream_error(mock_get):
     mock_get(status_code=500)
     with pytest.raises(exceptions.UpstreamError):
         await routine.populate_formation({'formation.numero': 'ZORGLUB'})
+
+
+@pytest.mark.asyncio
+async def test_retrieve_codes_naf(mock_get):
+    content = b"""<?xml version="1.0" encoding="utf-8"?>
+<eligibilites-cpf>
+<statut>OK</statut>
+<nombre-resultats>2</nombre-resultats>
+<eligibilite-cpf>
+<id-cpf>139555</id-cpf>
+<branche>47.64Z</branche>
+<branche>55.20Z</branche>
+<branche>70.10Z</branche>
+<branche>77.21Z</branche>
+</eligibilite-cpf>
+<eligibilite-cpf>
+<id-cpf>182860</id-cpf>
+</eligibilite-cpf>
+</eligibilites-cpf>"""
+    mock_get(content=content)
+    assert await routine.retrieve_codes_naf(ids=['139555', '182860']) == [
+        '47.64Z', '55.20Z', '70.10Z', '77.21Z']
 
 
 @pytest.mark.parametrize('start,end,months', [

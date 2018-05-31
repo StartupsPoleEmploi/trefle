@@ -16,6 +16,7 @@ ROOT = Path(__file__).parent / 'config'
 IDCC = {}
 
 INTERCARIF_URL = 'https://labonneformation.pole-emploi.fr/ws_intercarif'
+ELIGIBILITE_URL = 'http://www.intercariforef.org/serviceweb2/eligibilite/?filtre=branche&'
 DEP_TO_REG = {
     '01': '84', '02': '32', '03': '84', '04': '93', '05': '93', '06': '93',
     '07': '84', '08': '44', '09': '76', '10': '44', '11': '76', '12': '76',
