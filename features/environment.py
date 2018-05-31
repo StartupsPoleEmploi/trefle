@@ -1,3 +1,4 @@
+import json
 import sys
 
 from trefle.config import ELIGIBILITE, MODALITES
@@ -74,3 +75,9 @@ def after_all(context):
         coverage = round(covered / statements * 100, 2)
         print(f'Coverage: {covered}/{statements} ({coverage}%)', )
         print('-' * 10, 'End coverage report', '-' * 10)
+
+
+def after_step(context, step):
+    if step.status == "failed":
+        print('Data was:')
+        print(json.dumps(context.data))
