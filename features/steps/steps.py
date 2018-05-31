@@ -56,6 +56,12 @@ async def when_simulate(context):
     context.passed = [f for f in await simulate(**context.data) if f.get('eligible')]
 
 
+@then(r"il y a (?P<expected>\d+) financements? proposés?")
+def then_check_count(context, expected):
+    found = len(context.passed)
+    assert found == int(expected), f'Found {found}'
+
+
 @when(r'je sélectionne le financement «(?P<nom>.+)»')
 def when_select_one(context, nom):
     assert context.passed, "No result found"

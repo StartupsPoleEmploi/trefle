@@ -106,16 +106,16 @@ Scénario: CIF CDI avec plafond prix horaire
     Et le prix horaire de la formation vaut 30
     Et l'IDCC de l'établissement du bénéficiaire vaut 2706
     Et les codes financeur de la formation valent [0]
-    Et la durée en heures de la formation vaut 100
+    Et la durée en heures de la formation vaut 120
     Et la durée en mois de la formation vaut 10
     Quand je demande un calcul de financement
     Et je sélectionne le financement «CIF CDI sur son temps de travail»
     Alors l'organisme à contacter est «Fongecif»
-    Et le montant de prise en charge vaut 2745
+    Et le montant de prise en charge vaut 3294
     Et la rémunération vaut 1400
     Quand je sélectionne le financement «CIF CDI hors temps de travail»
     Alors l'organisme à contacter est «Fongecif»
-    Et le montant de prise en charge vaut 2745
+    Et le montant de prise en charge vaut 3294
     Et la rémunération vaut 0
 
 
@@ -306,7 +306,7 @@ Scénario: Formation de 12 mois
     Et la régions éligibles COPAREF vaut [25]
     Et la liste des codes FORMACODE de la formation vaut [31715,31715,31795]
     Et le niveau de sortie de la formation vaut 1
-    Et la durée en heures de la formation vaut 14
+    Et la durée en heures de la formation vaut 1000
     Et la liste des codes CERTIFINFO de la formation vaut [55824]
     Et la liste des domaines FORMACODE de la formation vaut [317]
     Et c'est une formation CACES

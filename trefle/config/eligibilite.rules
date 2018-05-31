@@ -16,23 +16,27 @@ Si c'est un bénéficiaire de droit privé
             Et l'ancienneté du bénéficiaire dans son entreprise est supérieure à 12
             Et l'expérience professionnelle du bénéficiaire dans les cinq dernières années est supérieure ou égale à 24
                 Alors définir le financement «CIF CDI sur son temps de travail» comme éligible
-                Et définir le financement «CIF CDI hors temps de travail» comme éligible
+                Si la durée en heures de la formation est supérieure ou égale à 120
+                    Alors définir le financement «CIF CDI hors temps de travail» comme éligible
             Si l'IDCC de l'établissement du bénéficiaire fait partie des codes IDCC de l'artisanat
             Et l'ancienneté du bénéficiaire dans son entreprise est supérieure à 12
             Et l'expérience professionnelle du bénéficiaire dans les cinq dernières années est supérieure ou égale à 36
                 Alors définir le financement «CIF CDI sur son temps de travail» comme éligible
-                Et définir le financement «CIF CDI hors temps de travail» comme éligible
+                Si la durée en heures de la formation est supérieure ou égale à 120
+                    Alors définir le financement «CIF CDI hors temps de travail» comme éligible
 
         Si le type de contrat du bénéficiaire est «CDD»
             Si l'âge du bénéficiaire est inférieur à 26
             Et l'expérience professionnelle du bénéficiaire dans les cinq dernières années est supérieure ou égale à 12
             Et le nombre de mois travaillés par le bénéficiaire dans la dernière année est supérieur ou égal à 4
                 Alors définir le financement «CIF CDD sur son temps de travail» comme éligible
-                Et définir le financement «CIF CDD hors temps de travail» comme éligible
+                Si la durée en heures de la formation est supérieure ou égale à 120
+                    Alors définir le financement «CIF CDD hors temps de travail» comme éligible
             Si l'âge du bénéficiaire est supérieur ou égal à 26
             Et l'expérience professionnelle du bénéficiaire dans les cinq dernières années est supérieure ou égale à 24
                 Alors définir le financement «CIF CDD sur son temps de travail» comme éligible
-                Et définir le financement «CIF CDD hors temps de travail» comme éligible
+                Si la durée en heures de la formation est supérieure ou égale à 120
+                    Alors définir le financement «CIF CDD hors temps de travail» comme éligible
 
         Si le type de contrat du bénéficiaire est «intermittent»
         Et l'expérience professionnelle du bénéficiaire dans les cinq dernières années est supérieure ou égale à 24

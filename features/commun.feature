@@ -63,8 +63,8 @@ Scénario: CIF et CPF
     Et ce n'est pas une formation éligible COPANEF
     Et les codes NAF CPNE éligibles vaut [7830Z,8299Z,4633Z,1089Z]
     Et la liste des codes FORMACODE de la formation vaut [44028,42866,42056]
-    Et le niveau de sortie de la formation vaut 1.0
-    Et la durée en heures de la formation vaut 21.0
+    Et le niveau de sortie de la formation vaut 1
+    Et la durée en heures de la formation vaut 210
     Et la liste des codes CERTIFINFO de la formation vaut [87647]
     Et la liste des domaines FORMACODE de la formation vaut [420,440,428]
     Et les codes financeur de la formation vaut [5]
@@ -74,11 +74,11 @@ Scénario: CIF et CPF
     Quand je demande un calcul de financement
     Quand je sélectionne le financement «CPF sur son temps de travail»
     Alors l'organisme à contacter est «AGEFOS PME Auvergne Rhône Alpes»
-    Et le plafond de prise en charge vaut 1050
+    Et le plafond de prise en charge vaut 7500
     Et la rémunération vaut 1500
     Quand je sélectionne le financement «CPF hors temps de travail»
     Alors l'organisme à contacter est «AGEFOS PME Auvergne Rhône Alpes»
-    Et le plafond de prise en charge vaut 1050
+    Et le plafond de prise en charge vaut 7500
     Et la rémunération vaut 0
     Quand je sélectionne le financement «CIF CDI sur son temps de travail»
     Alors l'organisme à contacter est «Fongecif Auvergne Rhône Alpes»
