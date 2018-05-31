@@ -13,12 +13,12 @@ Si c'est un bénéficiaire de droit privé
 
         Si le type de contrat du bénéficiaire est «CDI»
             Si l'IDCC de l'établissement du bénéficiaire ne fait pas partie des codes IDCC de l'artisanat
-            Et l'ancienneté du bénéficiaire dans son entreprise est supérieure ou égale à 12
+            Et l'ancienneté du bénéficiaire dans son entreprise est supérieure à 12
             Et l'expérience professionnelle du bénéficiaire dans les cinq dernières années est supérieure ou égale à 24
                 Alors définir le financement «CIF CDI sur son temps de travail» comme éligible
                 Et définir le financement «CIF CDI hors temps de travail» comme éligible
             Si l'IDCC de l'établissement du bénéficiaire fait partie des codes IDCC de l'artisanat
-            Et l'ancienneté du bénéficiaire dans son entreprise est supérieure ou égale à 12
+            Et l'ancienneté du bénéficiaire dans son entreprise est supérieure à 12
             Et l'expérience professionnelle du bénéficiaire dans les cinq dernières années est supérieure ou égale à 36
                 Alors définir le financement «CIF CDI sur son temps de travail» comme éligible
                 Et définir le financement «CIF CDI hors temps de travail» comme éligible
