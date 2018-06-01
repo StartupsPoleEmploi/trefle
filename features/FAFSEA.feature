@@ -118,7 +118,7 @@ Scénario: CIF CDI avec moins de 120 heures
     Et la rémunération du bénéficiaire vaut 1400
     Et l'ancienneté du bénéficiaire dans son entreprise vaut 24
     Et l'expérience professionnelle du bénéficiaire dans les cinq dernières années vaut 36
-    Et le type de contrat du bénéficiaire vaut CDI
+    Et le type de contrat du bénéficiaire vaut «CDI»
     Et le prix horaire de la formation vaut 15
     Et l'IDCC de l'établissement du bénéficiaire vaut 7010
     Et les codes financeur de la formation valent [0]

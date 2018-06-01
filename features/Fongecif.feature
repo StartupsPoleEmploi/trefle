@@ -272,6 +272,68 @@ Scénario: cas d'un CIF CDI dans l'artisanat d'un jeune manquant d'ancienneté p
     Alors aucun financement n'est proposé
 
 
+Scénario: CIF CDI avec moins de 120 heures et IDCC artisanat
+    Soit un bénéficiaire et une formation
+    Et c'est un bénéficiaire de droit privé
+    Et la rémunération du bénéficiaire vaut 1400
+    Et l'ancienneté du bénéficiaire dans son entreprise vaut 24
+    Et l'expérience professionnelle du bénéficiaire dans les cinq dernières années vaut 36
+    Et le type de contrat du bénéficiaire vaut «CDI»
+    Et le prix horaire de la formation vaut 15
+    Et l'IDCC de l'établissement du bénéficiaire vaut 1596
+    Et les codes financeur de la formation valent [0]
+    Et la durée en heures de la formation vaut 100
+    Et la durée en mois de la formation vaut 10
+    Quand je demande un calcul de financement
+    Alors il y a 1 financement proposé
+    Quand je sélectionne le financement «CIF CDI sur son temps de travail»
+    Alors l'organisme à contacter est «Fongecif»
+    Et le montant de prise en charge vaut 1500
+    Et la rémunération vaut 1400
+
+
+Scénario: CIF CDD pour une formation de moins de 120 heures
+    Soit un bénéficiaire et une formation
+    Et c'est un bénéficiaire de droit privé
+    Et la rémunération du bénéficiaire vaut 1400
+    Et l'ancienneté du bénéficiaire dans son entreprise vaut 24
+    Et l'expérience professionnelle du bénéficiaire dans les cinq dernières années vaut 25
+    Et le type de contrat du bénéficiaire vaut «CDD»
+    Et le prix horaire de la formation vaut 25
+    Et l'IDCC de l'établissement du bénéficiaire vaut 2706
+    Et les codes financeur de la formation valent [0]
+    Et la durée en heures de la formation vaut 100
+    Et la durée en mois de la formation vaut 10
+    Et l'âge du bénéficiaire vaut 30
+    Quand je demande un calcul de financement
+    Alors il y a 1 financement proposé
+    Quand je sélectionne le financement «CIF CDD sur son temps de travail»
+    Alors l'organisme à contacter est «Fongecif»
+    Et le montant de prise en charge vaut 2500
+    Et la rémunération vaut 1400
+
+
+Scénario: CIF CDD pour une formation de moins de 120 heures et un jeune de moins de 26 ans
+    Soit un bénéficiaire et une formation
+    Et c'est un bénéficiaire de droit privé
+    Et la rémunération du bénéficiaire vaut 1400
+    Et le nombre de mois travaillés par le bénéficiaire dans la dernière année vaut 4
+    Et l'expérience professionnelle du bénéficiaire dans les cinq dernières années vaut 16
+    Et le type de contrat du bénéficiaire vaut «CDD»
+    Et le prix horaire de la formation vaut 25
+    Et l'IDCC de l'établissement du bénéficiaire vaut 2706
+    Et les codes financeur de la formation valent [0]
+    Et la durée en heures de la formation vaut 100
+    Et la durée en mois de la formation vaut 10
+    Et l'âge du bénéficiaire vaut 24
+    Quand je demande un calcul de financement
+    Alors il y a 1 financement proposé
+    Quand je sélectionne le financement «CIF CDD sur son temps de travail»
+    Alors l'organisme à contacter est «Fongecif»
+    Et le montant de prise en charge vaut 2500
+    Et la rémunération vaut 1400
+
+
 Scénario: CIF CDI en Corse
     Soit un bénéficiaire et une formation
     Et c'est un bénéficiaire de droit privé

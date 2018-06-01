@@ -44,7 +44,7 @@ Scénario: plafond prix horaire d'une formation VAE
     Et le montant de prise en charge vaut 7000
     Et la rémunération vaut 0
 
-Scénario: plafond prix horaire d'une formation VAE
+Scénario: plafond horaire d'une formation VAE
     Soit un bénéficiaire et une formation
     Et c'est un bénéficiaire de droit privé
     Et c'est une formation éligible COPANEF
