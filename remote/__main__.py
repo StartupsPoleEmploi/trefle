@@ -27,12 +27,10 @@ def pip(command):
 @minicli.cli
 def system():
     """Setup the system."""
-    with sudo(set_home=False, login=False):
+    with sudo():
         run('apt update')
         run('apt install -y nginx git software-properties-common gcc '
-            'python-virtualenv')
-        run('add-apt-repository --yes --update ppa:jonathonf/python-3.6')
-        run('apt-get install -y python3.6 python3.6-dev')
+            'python-virtualenv python3.6 python3.6-dev pkg-config')
         mkdir('/srv/trefle/data')
         run('useradd -N trefle -d /srv/trefle/ || exit 0')
         chown('trefle:users', '/srv/trefle/')
@@ -79,8 +77,9 @@ def cli(command):
 @minicli.cli
 def service():
     """Deploy/update the trefle systemd service."""
-    put('remote/trefle.service', '/etc/systemd/system/trefle.service')
-    systemctl('enable trefle.service')
+    with sudo():
+        put('remote/trefle.service', '/etc/systemd/system/trefle.service')
+        systemctl('enable trefle.service')
 
 
 @minicli.cli
