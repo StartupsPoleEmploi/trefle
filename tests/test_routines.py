@@ -25,8 +25,8 @@ async def test_populate_formation_from_bytes():
                                                   '2362Z', '7820Z', '9604Z',
                                                   '9609Z'}
         assert context['formation.regions_coparef'] == {'24'}
-        assert context['formation.codes_formacode'] == ['22403', '22402']
-        assert context['formation.domaines_formacode'] == {'224'}
+        assert context['formation.codes_formacode'] == [22403, 22402]
+        assert context['formation.domaines_formacode'] == {224}
         assert context['formation.foad'] is False
         assert context['formation.niveau_sortie'] == 4
         assert context['formation.heures'] == 697

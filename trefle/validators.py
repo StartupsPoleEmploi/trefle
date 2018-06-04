@@ -43,6 +43,10 @@ def to_naf(value):
     return value.replace('.', '').upper()
 
 
+def to_domaine_formacode(value):
+    return int(str(value)[:3])
+
+
 TYPES = {
     'boolean': to_bool,
     'number': float,
@@ -55,6 +59,7 @@ FORMATS = {
     'naf': to_naf,
     'opca': to_organisme,
     'opacif': to_organisme,
+    'domaine_formacode': to_domaine_formacode,
 }
 
 
@@ -96,6 +101,8 @@ def validate_required(schema, value):
 def validate_type(schema, value):
     if value is not None:
         type_ = schema['type']
+        if type_ == 'array':
+            return [validate_type(schema['items'], v) for v in value]
         func = TYPES.get(type_)
         if func:
             try:
@@ -109,6 +116,9 @@ def validate_type(schema, value):
 def validate_format(schema, value):
     if value is not None:
         format_ = schema.get('format')
+        type_ = schema['type']
+        if type_ == 'array':
+            return [validate_format(schema['items'], v) for v in value]
         func = FORMATS.get(format_)
         if func:
             value = func(value)  # May raise a ValueError

@@ -6,10 +6,11 @@ import requests
 from lxml import etree
 
 from .config import (CONSTANTS, DEP_TO_REG, ELIGIBILITE, ELIGIBILITE_URL,
-                     FINANCEMENTS, IDCC, INTERCARIF_URL, MODALITES, ORGANISMES)
+                     FINANCEMENTS, IDCC, INTERCARIF_URL, MODALITES, ORGANISMES,
+                     SCHEMA)
 from .exceptions import UpstreamError
 from .rules import Rule
-from .validators import to_naf
+from .validators import to_naf, validate_type, validate_format
 
 
 # TODO: move to utils.py?
@@ -106,7 +107,7 @@ async def retrieve_codes_naf(ids):
     url = f'{ELIGIBILITE_URL}{params}'
     response = await http_get(url)
     tree = etree.fromstring(response.content)
-    return tree.xpath('//branche/child::text()')
+    return set(to_naf(c) for c in tree.xpath('//branche/child::text()'))
 
 
 async def populate_formation_from_bytes(context, content):
@@ -118,47 +119,42 @@ async def populate_formation_from_bytes(context, content):
     if root is None:
         raise ValueError('No formation found')
 
-    # TODO: move xpath definitions in the schema?
-    context['formation.eligible_copanef'] = bool(root.xpath(
-        '//extras[@info="eligibilite-cpf"]/extra[@info="france-entiere"][text()="1"]/../extra[@info="inter-branche"][text()="1"]'
-    ))
-    context['formation.codes_naf'] = set(root.xpath(
-        '//extras[@info="eligibilite-cpf"]/extra[@info="branche"]/child::text()'))
+    for key, schema in SCHEMA.items():
+        if schema.get('source') == 'catalogue' and schema.get('xpath'):
+            value = root.xpath(schema['xpath'])
+            try:
+                value = validate_type(schema, value)
+                value = validate_format(schema, value)
+            except ValueError:
+                continue  # Should we raise/validate required?
+            if schema.get('format') == 'set':
+                value = set(value)
+            context[key] = value
+
     if not context['formation.codes_naf']:
         ids = set(root.xpath('//extras[@info="eligibilite-cpf"]/extra[@info="france-entiere"][text()="1"]/../extra[@info="inter-branche"][text()="0"]/../@numero'))
         if ids:
             context['formation.codes_naf'] = await retrieve_codes_naf(ids)
-    context['formation.codes_naf'] = set(
-        to_naf(c) for c in context['formation.codes_naf'])
-    context['formation.regions_coparef'] = set(root.xpath(
-        '//extras[@info="eligibilite-cpf"]/extra[@info="region"]/child::text()'))
-    context['formation.codes_formacode'] = root.xpath('//domaine-formation/code-FORMACODE/child::text()')
-    context['formation.niveau_sortie'] = root.xpath('number(//code-niveau-sortie/child::text())')
-    context['formation.heures'] = root.xpath('number(//nombre-heures-total/child::text())')
-    try:
-        context['formation.prix_horaire'] = float(root.xpath('//prix-horaire-TTC/child::text()'))
-    except (TypeError, ValueError):
-        pass
-    try:
-        context['formation.prix_total'] = float(root.xpath('//prix-total-TTC/child::text()'))
-    except (TypeError, ValueError):
-        pass
-    context['formation.codes_certifinfo'] = [
-        int(c) for c in root.xpath('//certification/code-CERTIFINFO/child::text()')]
-    context['formation.domaines_formacode'] = set([
-        c[:3] for c in context['formation.codes_formacode']])
-    context['formation.foad'] = bool(
-        root.xpath('//modalites-enseignement[text()="2"]'))
-    context['formation.toeic'] = bool(set(context['constante.codes_certifinfo_toeic']) & set(context['formation.codes_certifinfo']))
-    context['formation.bulats'] = bool(set(context['constante.codes_certifinfo_bulats']) & set(context['formation.codes_certifinfo']))
-    context['formation.caces'] = bool(set(context['constante.codes_certifinfo_caces']) & set(context['formation.codes_certifinfo']))
-    context['formation.bec'] = bool(set(context['constante.codes_certifinfo_bec']) & set(context['formation.codes_certifinfo']))
-    context['formation.bilan_de_competences'] = bool(set(context['constante.codes_certifinfo_bilan_de_competences']) & set(context['formation.codes_certifinfo']))
-    context['formation.permis_b'] = bool(set(context['constante.codes_certifinfo_permis_b']) & set(context['formation.codes_certifinfo']))
-    context['formation.codes_financeur'] = set([
-        int(c) for c in root.xpath('//organisme-financeur/code-financeur/child::text()')])
+
+    # CERTIFINFO subsets
+    codes_certifinfo = set(context['formation.codes_certifinfo'])
+    context['formation.toeic'] = bool(
+        set(context['constante.codes_certifinfo_toeic']) & codes_certifinfo)
+    context['formation.bulats'] = bool(
+        set(context['constante.codes_certifinfo_bulats']) & codes_certifinfo)
+    context['formation.caces'] = bool(
+        set(context['constante.codes_certifinfo_caces']) & codes_certifinfo)
+    context['formation.bec'] = bool(
+        set(context['constante.codes_certifinfo_bec']) & codes_certifinfo)
+    context['formation.bilan_de_competences'] = bool(
+        set(context['constante.codes_certifinfo_bilan_de_competences'])
+        & codes_certifinfo)
+    context['formation.permis_b'] = bool(
+        set(context['constante.codes_certifinfo_permis_b']) & codes_certifinfo)
+
     # http://lheo.gouv.fr/langage#dict-AIS
     context['formation.qualifiante'] = root.xpath('number(//objectif-general-formation/child::text())') in [6, 7]
+
     # Compute duration in months.
     try:
         debut = datetime.strptime(

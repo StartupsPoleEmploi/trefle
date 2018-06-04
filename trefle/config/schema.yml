@@ -237,35 +237,44 @@ formation:
   codes_financeur:
     description: codes des organismes financeurs de la formation
     type: array
+    format: set
     items:
       type: integer
     source: catalogue
+    xpath: //organisme-financeur/code-financeur/child::text()
     label: codes financeur de la formation
     gender: masculine
     number: plural
   eligible_copanef:
     description: cette formation est au catalogue COPANEF
     type: boolean
-    source: routine.extraire_copanef
+    source: catalogue
+    xpath: boolean(//extras[@info="eligibilite-cpf"]/extra[@info="france-entiere"][text()="1"]/../extra[@info="inter-branche"][text()="1"])
     label: formation éligible COPANEF
   regions_coparef:
     description: régions d'éligibilité si COPAREF dans les listes_eligibilite_cpf
     type: array
+    format: set
     items:
       type: string
-    source: routine.formation_region
+    source: catalogue
+    xpath: //extras[@info="eligibilite-cpf"]/extra[@info="region"]/child::text()
     label: régions éligibles COPAREF
   codes_formacode:
     type: array
     items:
       type: integer
     source: catalogue
+    xpath: //domaine-formation/code-FORMACODE/child::text()
     label: liste des codes FORMACODE de la formation
   domaines_formacode:
     description: domaines (trois premiers caractères des codes) FORMACODE de la formation
     type: array
+    format: set
     items:
       type: integer
+      format: domaine_formacode
+    xpath: //domaine-formation/code-FORMACODE/child::text()
     source: catalogue
     label: liste des domaines FORMACODE de la formation
   codes_certifinfo:
@@ -273,10 +282,13 @@ formation:
     items:
       type: integer
     source: catalogue
+    xpath: //certification/code-CERTIFINFO/child::text()
     label: liste des codes CERTIFINFO de la formation
   heures:
     type: integer
     format: int32
+    source: catalogue
+    xpath: number(//nombre-heures-total/child::text())
     label: durée en heures de la formation
   mois:
     type: integer
@@ -294,12 +306,16 @@ formation:
     type: integer
     format: float
     default: 0
+    source: catalogue
+    xpath: //prix-horaire-TTC/child::text()
     label: prix horaire de la formation
     description: prix horaire TTC de la formation
     gender: masculine
   prix_total:
     type: integer
     format: float
+    source: catalogue
+    xpath: //prix-total-TTC/child::text()
     label: prix total de la formation
     description: prix total TTC de la formation
     gender: masculine
@@ -320,15 +336,18 @@ formation:
   codes_naf:
     description: codes NAF des différents CPNE
     type: array
+    format: set
     items:
       type: string
       format: naf
-    source: routine.naf_from_formation
+    source: catalogue
+    xpath: //extras[@info="eligibilite-cpf"]/extra[@info="branche"]/child::text()
     label: codes NAF CPNE éligibles
     number: plural
   foad:
     type: boolean
     source: catalogue
+    xpath: boolean(//modalites-enseignement[text()="2"])
     label: formation ouverte à distance
   toeic:
     type: boolean
@@ -365,6 +384,8 @@ formation:
     type: integer
     format: int32
     label: niveau de sortie de la formation
+    source: catalogue
+    xpath: number(//code-niveau-sortie/child::text())
     gender: masculine
 financement:
   nom:
