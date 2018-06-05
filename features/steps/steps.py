@@ -86,21 +86,21 @@ def then_check_organisme(context, name):
         f'{context.result["organisme"]["nom"]} != {name}'
 
 
-@then(r'le montant de prise en charge vaut (?P<value>\d+)')
+@then(r'le montant de prise en charge vaut (?P<value>[\d\.]+)')
 def then_check_prise_en_charge(context, value):
-    assert context.result['prise_en_charge'] == int(value),\
+    assert context.result['prise_en_charge'] == float(value),\
         f'{context.result["prise_en_charge"]} != {value}'
 
 
-@then(r'le plafond de prise en charge vaut (?P<value>\d+)')
+@then(r'le plafond de prise en charge vaut (?P<value>[\d\.]+)')
 def then_check_plafond_prise_en_charge(context, value):
-    assert context.result['plafond_prise_en_charge'] == int(value),\
+    assert context.result['plafond_prise_en_charge'] == float(value),\
         f'{context.result["plafond_prise_en_charge"]} != {value}'
 
 
-@then(r'le reste à charge vaut (?P<value>\d+)')
+@then(r'le reste à charge vaut (?P<value>[\d\.]+)')
 def then_check_reste_a_charge(context, value):
-    assert context.result['reste_a_charge'] == int(value),\
+    assert context.result['reste_a_charge'] == float(value),\
         f'{context.result["reste_a_charge"]} != {value}'
 
 
