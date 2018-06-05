@@ -153,6 +153,14 @@ class Condition(Step):
         self.negative = False
         self.connective = connective or self.AND
         self.raw = f' {self.connective} '.join(terms)
+        if len(terms) == 1:
+            terms = terms[0].split(', et ')
+            if len(terms) > 1:
+                self.connective = self.AND
+            else:
+                terms = terms[0].split(', ou ')
+                if len(terms) > 1:
+                    self.connective = self.OR
         if len(terms) > 1:
             self.conditions = [Condition([t]) for t in terms]
         else:
@@ -339,7 +347,12 @@ class Rule:
         for rule in rules:
             if rule.assess(**context):
                 for action in rule.actions:
-                    action.act(context)
+                    try:
+                        action.act(context)
+                    except NoDataError as err:
+                        # Give more context.
+                        err.args = (f'{err} (from `{rule}`)',)
+                        raise
             elif failed is not None:
                 failed.append(rule)
 

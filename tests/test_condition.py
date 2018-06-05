@@ -92,11 +92,30 @@ def test_equal_OR_combined_condition(patch_schema):
     assert condition.assess(inscrit=False, age=39) is False
 
 
+def test_line_condition_with_OR(patch_schema):
+    patch_schema(SCHEMA)
+    condition = Condition(["c'est un bénéficiaire inscrit, ou l'âge du "
+                           "bénéficiaire est supérieur à 50"])
+    assert len(condition.conditions) == 2
+    assert condition.assess(inscrit=True, age=39) is True
+    assert condition.assess(inscrit=False, age=51) is True
+    assert condition.assess(inscrit=False, age=39) is False
+
+
 def test_equal_AND_combined_condition(patch_schema):
     patch_schema(SCHEMA)
     condition = Condition(["c'est un bénéficiaire inscrit",
                            "l'âge du bénéficiaire est supérieur à 50"],
                           connective=Condition.AND)
+    assert len(condition.conditions) == 2
+    assert condition.assess(inscrit=True, age=60) is True
+    assert condition.assess(inscrit=True, age=49) is False
+
+
+def test_inline_condition_with_AND(patch_schema):
+    patch_schema(SCHEMA)
+    condition = Condition(["c'est un bénéficiaire inscrit, et l'âge du "
+                           "bénéficiaire est supérieur à 50"])
     assert len(condition.conditions) == 2
     assert condition.assess(inscrit=True, age=60) is True
     assert condition.assess(inscrit=True, age=49) is False

@@ -119,6 +119,23 @@ Si le nom de l'organisme est «BLAH»
     assert rules[1].actions[0].raw == 'le prix horaire applicable vaut 60'
 
 
+def test_inline_conditions_with():
+    data = """
+Si le nom de l'organisme est «BLAH»
+    Si c'est une formation éligible COPANEF, et c'est un bénéficiaire de droit privé
+        Alors le plafond horaire applicable vaut 99
+"""
+    rules = Rule.load(data.split('\n'))
+    print(rules)
+    assert len(rules) == 1
+    assert len(rules[0].conditions) == 2
+    assert rules[0].conditions[0].raw == "le nom de l'organisme est «BLAH»"
+    assert len(rules[0].conditions[1].conditions) == 2
+    assert rules[0].conditions[1].conditions[0].raw == "c'est une formation éligible COPANEF"  # noqa
+    assert rules[0].conditions[1].conditions[1].raw == "c'est un bénéficiaire de droit privé"  # noqa
+    assert rules[0].actions[0].raw == 'le plafond horaire applicable vaut 99'
+
+
 def test_with_two_steps_up():
     data = """
 Si le nom de l'organisme est «BLAH»
