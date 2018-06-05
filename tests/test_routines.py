@@ -80,8 +80,8 @@ async def test_retrieve_codes_naf(mock_get):
 </eligibilite-cpf>
 </eligibilites-cpf>"""
     mock_get(content=content)
-    assert await routine.retrieve_codes_naf(ids=['139555', '182860']) == [
-        '47.64Z', '55.20Z', '70.10Z', '77.21Z']
+    assert await routine.retrieve_codes_naf(ids=['139555', '182860']) == {
+        '4764Z', '5520Z', '7010Z', '7721Z'}
 
 
 @pytest.mark.parametrize('start,end,months', [
