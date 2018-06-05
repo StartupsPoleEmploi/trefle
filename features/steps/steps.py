@@ -62,6 +62,13 @@ def then_check_count(context, expected):
     assert found == int(expected), f'Found {found}'
 
 
+@then(r"le financement «(?P<nom>.+)» n'est pas proposé")
+def then_check_missing(context, nom):
+    for financement in context.passed:
+        if financement['nom'] == nom:
+            raise AssertionError(f'{nom} was found')
+
+
 @when(r'je sélectionne le financement «(?P<nom>.+)»')
 def when_select_one(context, nom):
     assert context.passed, "No result found"
