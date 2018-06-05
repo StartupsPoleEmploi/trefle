@@ -82,9 +82,9 @@ Scénario: CIF et CPF
     Et la rémunération vaut 0
     Quand je sélectionne le financement «CIF CDI sur son temps de travail»
     Alors l'organisme à contacter est «Fongecif Auvergne Rhône Alpes»
-    Et le plafond de prise en charge vaut 18000
+    Et le plafond de prise en charge vaut 5764.5
     Et la rémunération vaut 1500
     Quand je sélectionne le financement «CIF CDI hors temps de travail»
     Alors l'organisme à contacter est «Fongecif Auvergne Rhône Alpes»
-    Et le plafond de prise en charge vaut 18000
+    Et le plafond de prise en charge vaut 5764.5
     Et la rémunération vaut 0

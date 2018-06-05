@@ -38,7 +38,8 @@ Scénario: cas d'un CIF CDI avec moins de 24 mois d'expérience professionnelle
     Et la durée en heures de la formation vaut 500
     Et la durée en mois de la formation vaut 10
     Quand je demande un calcul de financement
-    Alors aucun financement n'est proposé
+    Alors le financement «CIF CDI sur son temps de travail» n'est pas proposé
+    Et le financement «CIF CDI hors temps de travail» n'est pas proposé
 
 
 Scénario: cas d'un CIF CDI avec moins de 12 mois d'ancienneté dans l'entreprise
@@ -54,7 +55,8 @@ Scénario: cas d'un CIF CDI avec moins de 12 mois d'ancienneté dans l'entrepris
     Et la durée en heures de la formation vaut 500
     Et la durée en mois de la formation vaut 10
     Quand je demande un calcul de financement
-    Alors aucun financement n'est proposé
+    Alors le financement «CIF CDI sur son temps de travail» n'est pas proposé
+    Et le financement «CIF CDI hors temps de travail» n'est pas proposé
 
 
 Scénario: cas d'un CIF CDI avec 12 mois d'ancienneté dans l'entreprise (moins d'un an donc)
@@ -70,7 +72,8 @@ Scénario: cas d'un CIF CDI avec 12 mois d'ancienneté dans l'entreprise (moins 
     Et la durée en heures de la formation vaut 500
     Et la durée en mois de la formation vaut 10
     Quand je demande un calcul de financement
-    Alors aucun financement n'est proposé
+    Alors le financement «CIF CDI sur son temps de travail» n'est pas proposé
+    Et le financement «CIF CDI hors temps de travail» n'est pas proposé
 
 
 Scénario: CIF CDI avec plafond financier
@@ -205,7 +208,8 @@ Scénario: cas nominal d'un CIF CDD pour un bénéficiaire âgé de plus de 26 a
     Et la durée en mois de la formation vaut 10
     Et l'âge du bénéficiaire vaut 30
     Quand je demande un calcul de financement
-    Alors aucun financement n'est proposé
+    Alors le financement «CIF CDI sur son temps de travail» n'est pas proposé
+    Et le financement «CIF CDI hors temps de travail» n'est pas proposé
 
 
 Scénario: cas nominal d'un CIF CDD pour un bénéficiaire âgé de moins de 26 ans
@@ -269,7 +273,8 @@ Scénario: cas d'un CIF CDI dans l'artisanat d'un jeune manquant d'ancienneté p
     Et la durée en heures de la formation vaut 500
     Et la durée en mois de la formation vaut 10
     Quand je demande un calcul de financement
-    Alors aucun financement n'est proposé
+    Alors le financement «CIF CDI sur son temps de travail» n'est pas proposé
+    Et le financement «CIF CDI hors temps de travail» n'est pas proposé
 
 
 Scénario: CIF CDI avec moins de 120 heures et IDCC artisanat
@@ -285,7 +290,7 @@ Scénario: CIF CDI avec moins de 120 heures et IDCC artisanat
     Et la durée en heures de la formation vaut 100
     Et la durée en mois de la formation vaut 10
     Quand je demande un calcul de financement
-    Alors il y a 1 financement proposé
+    Alors le financement «CIF CDI hors temps de travail» n'est pas proposé
     Quand je sélectionne le financement «CIF CDI sur son temps de travail»
     Alors l'organisme à contacter est «Fongecif»
     Et le montant de prise en charge vaut 1500

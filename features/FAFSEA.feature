@@ -125,7 +125,7 @@ Scénario: CIF CDI avec moins de 120 heures
     Et la durée en heures de la formation vaut 100
     Et la durée en mois de la formation vaut 10
     Quand je demande un calcul de financement
-    Alors il y a 1 financement proposé
+    Alors le financement «CIF CDI hors temps de travail» n'est pas proposé
     Quand je sélectionne le financement «CIF CDI sur son temps de travail»
     Alors l'organisme à contacter est «FAFSEA»
     Et le montant de prise en charge vaut 1500

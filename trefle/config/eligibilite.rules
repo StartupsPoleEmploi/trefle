@@ -43,3 +43,10 @@ Si c'est un bénéficiaire de droit privé
         Et la durée en heures de la formation est supérieure ou égale à 105
             Alors définir le financement «CIF intermittents sur son temps de travail» comme éligible
             Et définir le financement «CIF intermittents hors temps de travail» comme éligible
+
+    Si la durée en heures de la formation est supérieure ou égale à 70, et la durée en mois de la formation est inférieure ou égale à 12
+    Ou le code CPF de la formation fait partie des codes CPF VAE, ou le code CPF de la formation fait partie des codes CPF CleA
+        Si le type de contrat du bénéficiaire est «CDI»
+        Ou le type de contrat du bénéficiaire est «CDD», et c'est une entreprise d'insertion par l'activité économique
+            Alors définir le financement «Période de professionnalisation sur son temps de travail» comme éligible
+            Et définir le financement «Période de professionnalisation hors temps de travail» comme éligible

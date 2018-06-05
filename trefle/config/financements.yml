@@ -72,3 +72,13 @@ CIF:
         Délai de carence en mois = durée en heures du dernier CIF /12.
     hors temps de travail:
       nom: CIF intermittents hors temps de travail
+période de professionnalisation:
+  eligible: false
+  description: Le financement de cette formation peut être réalisé dans le cadre d'une période de professionnalisation intégrée au plan de formation de votre entreprise.
+  demarches: Contactez votre entreprise pour les modalités de mise en œuvre.
+  ressources:
+  - https://www.service-public.fr/particuliers/vosdroits/F13516
+  sur son temps de travail:
+    nom: Période de professionnalisation sur son temps de travail
+  hors temps de travail:
+    nom: Période de professionnalisation hors temps de travail

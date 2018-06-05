@@ -176,7 +176,8 @@ async def populate_formation_from_bytes(context, content):
 
 def financement_to_organisme(context, financement):
     tags = financement['tags']
-    if 'CPF' in tags:
+    # TODO: add an "organisme_type" key in financements.yml instead?
+    if 'CPF' in tags or "période de professionnalisation" in tags:
         nom = context['beneficiaire.entreprise.opca']
     elif 'CIF' in tags:
         nom = context['beneficiaire.entreprise.opacif']
@@ -210,17 +211,21 @@ def compute_modalites(context, financement):
     reste_a_charge = context.get('financement.reste_a_charge', 0)
     plafond_prix_horaire = context.get('financement.plafond_prix_horaire', 0)
     financement['reste_a_charge'] = reste_a_charge
-    if prix_horaire > 0:  # We can deal with a real prise_en_charge.
-        if plafond_prix_horaire and plafond_prix_horaire < prix_horaire:
-            prix_horaire = plafond_prix_horaire
-        prise_en_charge = prix_horaire * heures
-        if plafond_financier and plafond_financier < prise_en_charge:
-            prise_en_charge = plafond_financier
-        financement['prise_en_charge'] = prise_en_charge - reste_a_charge
-        financement['prix_horaire'] = prix_horaire
-    else:
-        financement['prise_en_charge'] = None  # Means unknown.
-    if not plafond_financier:
+    prise_en_charge = context.get('financement.prise_en_charge', None)
+    if not prise_en_charge:
+        if prix_horaire > 0:  # We can deal with a real prise_en_charge.
+            if plafond_prix_horaire and plafond_prix_horaire < prix_horaire:
+                prix_horaire = plafond_prix_horaire
+            prise_en_charge = prix_horaire * heures
+            if plafond_financier and plafond_financier < prise_en_charge:
+                prise_en_charge = plafond_financier
+            prise_en_charge = prise_en_charge - reste_a_charge
+            financement['prix_horaire'] = prix_horaire
+    financement['prise_en_charge'] = prise_en_charge
+    # If we have heures AND plafond_prix_horaire we have the real plafond.
+    plafond_effectif = heures * plafond_prix_horaire
+    if not plafond_financier or (plafond_effectif
+                                 and plafond_effectif < plafond_financier):
         plafond_financier = heures * plafond_prix_horaire
     financement['plafond_prise_en_charge'] = plafond_financier - reste_a_charge
     # FIXME: should we define default remuneration in common rules instead?

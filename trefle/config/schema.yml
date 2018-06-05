@@ -228,6 +228,10 @@ beneficiaire:
       nullable: true
       label: OPACIF de l'établissement du bénéficiaire
       gender: masculine
+    iae:
+      description: définit si c'est une entreprise d'insertion par l'activité économique
+      type: boolean
+      label: entreprise d'insertion par l'activité économique
 formation:
   numero:
     description: identifiant INTERCARIF de la formation
@@ -433,7 +437,7 @@ financement:
     format: int32
     public: true
     nullable: true
-    label: montant de prise en charge calculé
+    label: montant de prise en charge applicable
     description: valeur définie seulement si le prix horaire de la formation est défini
   plafond_prise_en_charge:
     type: integer
@@ -465,6 +469,13 @@ financement:
     format: float
     public: true
     label: reste à charge applicable
+  ressources:
+    type: array
+    public: true
+    items:
+      type: string
+      format: url
+    description: Liste d'adresses Internet pour en savoir plus sur le sujet.
   organisme:
     nom:
       public: true
