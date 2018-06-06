@@ -1,5 +1,4 @@
 import asyncio
-from datetime import datetime
 from math import ceil
 
 import requests
@@ -136,8 +135,12 @@ async def populate_formation_from_bytes(context, content):
         if ids:
             context['formation.codes_naf'] = await retrieve_codes_naf(ids)
 
+    extrapolate_formation_context(context)
+
+
+def extrapolate_formation_context(context):
     # CERTIFINFO subsets
-    codes_certifinfo = set(context['formation.codes_certifinfo'])
+    codes_certifinfo = context['formation.codes_certifinfo']
     context['formation.toeic'] = bool(
         set(context['constante.codes_certifinfo_toeic']) & codes_certifinfo)
     context['formation.bulats'] = bool(
@@ -152,26 +155,24 @@ async def populate_formation_from_bytes(context, content):
     context['formation.permis_b'] = bool(
         set(context['constante.codes_certifinfo_permis_b']) & codes_certifinfo)
 
-    # http://lheo.gouv.fr/langage#dict-AIS
-    context['formation.qualifiante'] = root.xpath('number(//objectif-general-formation/child::text())') in [6, 7]
+    # CPF subsets
+    codes_cpf = context['formation.codes_cpf']
+    context['formation.clea'] = bool(
+        set(context['constante.codes_cpf_clea']) & codes_cpf)
+    context['formation.vae'] = bool(
+        set(context['constante.codes_cpf_vae']) & codes_cpf)
 
-    # Compute duration in months.
-    try:
-        debut = datetime.strptime(
-            root.xpath('//periode/debut/child::text()')[0], '%Y%m%d')
-        fin = datetime.strptime(
-            root.xpath('//periode/fin/child::text()')[0], '%Y%m%d')
-    except ValueError:
-        # TODO log
-        context['formation.mois'] = 1
-        context['formation.semaines'] = 1
-        context['formation.duree_hebdomadaire'] = 0
-    else:
-        context['formation.mois'] = diff_month(debut, fin)
-        semaines = diff_week(debut, fin)
-        context['formation.semaines'] = semaines
-        context['formation.duree_hebdomadaire'] = round(
-            context['formation.heures'] / semaines)
+    # http://lheo.gouv.fr/langage#dict-AIS
+    context['formation.qualifiante'] = (
+        context['formation.objectif_general_formation'] in [6, 7])
+
+    # Compute durations.
+    context['formation.mois'] = diff_month(context['formation.debut'],
+                                           context['formation.fin'])
+    semaines = diff_week(context['formation.debut'], context['formation.fin'])
+    context['formation.semaines'] = semaines
+    context['formation.duree_hebdomadaire'] = round(
+        context['formation.heures'] / semaines)
 
 
 def financement_to_organisme(context, financement):

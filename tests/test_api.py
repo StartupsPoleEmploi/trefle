@@ -114,14 +114,14 @@ async def test_simulate_endpoint_filter_eligible(client):
     resp = await client.post('/financement?eligible=true', body=body)
     assert resp.status == HTTPStatus.OK
     financements = json.loads(resp.body)['financements']
-    assert len(financements) == 2
+    assert len(financements) == 4
     for financement in financements:
         assert financement['eligible'] is True
     # Filter non eligible only
     resp = await client.post('/financement?eligible=false', body=body)
     assert resp.status == HTTPStatus.OK
     financements = json.loads(resp.body)['financements']
-    assert len(financements) == 10
+    assert len(financements) == 8
     for financement in financements:
         assert financement['eligible'] is False
 
@@ -172,7 +172,7 @@ async def test_simulate_endpoint_mix_filters(client):
                              '&eligible=1', body=body)
     assert resp.status == HTTPStatus.OK
     financements = json.loads(resp.body)['financements']
-    assert len(financements) == 1
+    assert len(financements) == 2
 
 
 async def test_simulate_hors_temps_de_travail(client):
@@ -196,7 +196,7 @@ async def test_simulate_hors_temps_de_travail(client):
                              '&eligible=1', body=body)
     assert resp.status == HTTPStatus.OK
     financements = json.loads(resp.body)['financements']
-    assert len(financements) == 1
+    assert len(financements) == 2
     assert 'remuneration_details' in financements[0]
 
 

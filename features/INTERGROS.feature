@@ -11,7 +11,7 @@ Scénario: plafond financier Intergros sur formation VAE
     Et le type de contrat du bénéficiaire vaut CDI
     Et le prix horaire de la formation vaut 25
     Et la durée en heures de la formation vaut 200
-    Et le code CPF de la formation vaut 200
+    Et c'est une formation VAE
     Quand je demande un calcul de financement
     Et je sélectionne le financement «CPF sur son temps de travail»
     Alors l'organisme à contacter est «Intergros»
@@ -32,7 +32,7 @@ Scénario: plafond horaire Intergros sur formation VAE
     Et le type de contrat du bénéficiaire vaut CDI
     Et le prix horaire de la formation vaut 25
     Et la durée en heures de la formation vaut 50
-    Et le code CPF de la formation vaut 200
+    Et c'est une formation VAE
     Quand je demande un calcul de financement
     Et je sélectionne le financement «CPF sur son temps de travail»
     Alors l'organisme à contacter est «Intergros»

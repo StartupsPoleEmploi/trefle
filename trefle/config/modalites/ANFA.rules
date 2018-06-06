@@ -1,7 +1,7 @@
 Si le nom de l'organisme est «ANFA»
     Alors le prix horaire plafond applicable vaut 40
     Alors le plafond horaire applicable est égal au solde CPF du bénéficiaire
-    Si le code CPF de la formation fait partie des codes CPF VAE
+    Si c'est une formation VAE
         Alors le prix horaire plafond applicable vaut 40
         Alors le plafond horaire applicable est égal à la durée en heures de la formation
     Si le code NAF de l'établissement du bénéficiaire fait partie des codes NAF CPNE éligibles

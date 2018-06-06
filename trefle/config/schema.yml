@@ -283,6 +283,7 @@ formation:
     label: liste des domaines FORMACODE de la formation
   codes_certifinfo:
     type: array
+    format: set
     items:
       type: integer
     source: catalogue
@@ -297,14 +298,20 @@ formation:
   mois:
     type: integer
     format: int32
+    # Sane default to prevent division by zero.
+    # TODO: should we raise instead and log?
+    default: 1
     label: durée en mois de la formation
   semaines:
     type: integer
     format: int32
+    # Sane default to prevent division by zero.
+    default: 1
     label: durée en semaines de la formation
   duree_hebdomadaire:
     type: integer
     format: int32
+    default: 0
     label: durée hebdomadaire de la formation
   prix_horaire:
     type: integer
@@ -331,12 +338,16 @@ formation:
     type: integer
     format: float
     label: prix horaire HT de la formation
-  cpf:
-    description: code CPF de la formation
-    type: integer
-    format: int32
+  codes_cpf:
+    description: codes CPF de la formation
+    type: array
+    format: set
+    items:
+      type: integer
+      format: int32
     source: catalogue
-    label: code CPF de la formation
+    xpath: //extras[@info="eligibilite-cpf"]/@numero
+    label: liste des codes CPF de la formation
   codes_naf:
     description: codes NAF des différents CPNE
     type: array
@@ -348,6 +359,24 @@ formation:
     xpath: //extras[@info="eligibilite-cpf"]/extra[@info="branche"]/child::text()
     label: codes NAF CPNE éligibles
     number: plural
+  objectif_general_formation:
+    description: code AIF de la formation (http://lheo.gouv.fr/langage#dict-AIS)
+    type: integer
+    formation: int32
+    source: catalogue
+    xpath: number(//objectif-general-formation/child::text())
+  debut:
+    description: date de début de la formation
+    type: string
+    format: date
+    source: catalogue
+    xpath: string((//periode/debut)[1]/child::text())
+  fin:
+    description: date de fin de la formation
+    type: string
+    format: date
+    source: catalogue
+    xpath: string((//periode/fin)[1]/child::text())
   foad:
     type: boolean
     source: catalogue
@@ -383,6 +412,14 @@ formation:
     type: boolean
     source: catalogue
     label: formation qualifiante
+  vae:
+    type: boolean
+    source: catalogue
+    label: formation VAE
+  clea:
+    type: boolean
+    source: catalogue
+    label: formation CléA
   niveau_sortie:
     description: le niveau du diplôme de sortie (licence, master…)
     type: integer

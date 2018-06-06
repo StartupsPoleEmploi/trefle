@@ -10,7 +10,8 @@ Scénario: le bénéficiaire n'a pas d'heures CPF sur son compte
     Et c'est une formation éligible COPANEF
     Et l'IDCC de l'établissement du bénéficiaire vaut 2706
     Quand je demande un calcul de financement
-    Alors aucun financement n'est proposé
+    Alors le financement «CPF CDI sur son temps de travail» n'est pas proposé
+    Et le financement «CPF CDI hors temps de travail» n'est pas proposé
 
 Scénario: le bénéficiaire n'est pas de droit privé
     Soit un bénéficiaire et une formation
@@ -34,7 +35,8 @@ Scénario: cas d'une formation CPF avec solde CPF null
     Et le prix horaire de la formation vaut 25
     Et la durée en heures de la formation vaut 100
     Quand je demande un calcul de financement
-    Alors aucun financement n'est proposé
+    Alors le financement «CPF CDI sur son temps de travail» n'est pas proposé
+    Et le financement «CPF CDI hors temps de travail» n'est pas proposé
 
 Scénario: cas d'une formation CPF sans solde CPF
     Soit un bénéficiaire et une formation
@@ -46,7 +48,8 @@ Scénario: cas d'une formation CPF sans solde CPF
     Et le prix horaire de la formation vaut 25
     Et la durée en heures de la formation vaut 100
     Quand je demande un calcul de financement
-    Alors aucun financement n'est proposé
+    Alors le financement «CPF CDI sur son temps de travail» n'est pas proposé
+    Et le financement «CPF CDI hors temps de travail» n'est pas proposé
 
 # https://labonneformation-trefle.beta.pole-emploi.fr/engager-les-demarches?a=M5M3uqubGVeKYcg4TkJiTDe4PsIssmpCQ4ssllQwsGsGt_CCkPs4cgsuafeH_jdeWeK5rYYjs3s-3avGaPoyHN3YacmHKo3vK2Y8Ide6QYjYmQa001ie0u0fyyhcRom2FLex9VJ4LOjq9c4I38mveWUKdP9BhAr-oGZgRgGUZiAxBG6-87BIKHB1%3DbYpaDcYct7197jo2QQpRDe7x8aHXbSFyvH3DjsY3m4D44X6sddOh_TXJndjlTc%3DBhUhU9pV7iLf59yjAQ%3DDO1R1Qa8PjmH7kgY-5mSOc0yYxOURVjVdHvUxBgLrcDrpe_OU2B3xUoN412YgMGoAfgJ-rwabSlxgM-NvflcmG0CRptDINONmsFXVhmMqAw%3D%3DwIK-GS7a-m%3DXhtbDMNIWIH46Gp-g
 Scénario: CIF et CPF

@@ -35,6 +35,10 @@ async def test_populate_formation_from_bytes():
         assert context['formation.duree_hebdomadaire'] == 27
         assert context['formation.codes_financeur'] == {10, 5, 2}
         assert context['formation.qualifiante'] is True
+        assert context['formation.codes_cpf'] == {167204, 13352, 1487, 18320,
+                                                  130805}
+        assert context['formation.vae'] is False
+        assert context['formation.clea'] is False
 
 
 @pytest.mark.asyncio

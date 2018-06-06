@@ -4,7 +4,7 @@ Si le nom de l'organisme est «Unifaf»
         Alors le prix horaire plafond applicable vaut 50
         Alors le plafond horaire applicable est égal au solde CPF du bénéficiaire
 
-        Si le code CPF de la formation fait partie des codes CPF VAE
+        Si c'est une formation VAE
             Alors le prix horaire plafond applicable vaut 66.66
             Alors le plafond horaire applicable est égal à la durée en heures de la formation
 

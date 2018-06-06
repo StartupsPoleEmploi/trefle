@@ -62,7 +62,7 @@ Scénario: période de professionnalisation CDI en CléA
     Et l'IDCC de l'établissement du bénéficiaire vaut «247»
     Et la durée en heures de la formation vaut 500
     Et la durée en mois de la formation vaut 10
-    Et le code CPF de la formation vaut 201
+    Et c'est une formation CléA
     Quand je demande un calcul de financement
     Quand je sélectionne le financement «Période de professionnalisation sur son temps de travail»
     Alors l'organisme à contacter est «Opcalia»
@@ -82,7 +82,7 @@ Scénario: période de professionnalisation CDI VAE
     Et l'IDCC de l'établissement du bénéficiaire vaut «247»
     Et la durée en heures de la formation vaut 10
     Et la durée en mois de la formation vaut 1
-    Et le code CPF de la formation vaut 200
+    Et c'est une formation VAE
     Quand je demande un calcul de financement
     Quand je sélectionne le financement «Période de professionnalisation sur son temps de travail»
     Alors l'organisme à contacter est «Opcalia»

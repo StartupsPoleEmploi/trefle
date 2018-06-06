@@ -11,10 +11,10 @@ Si le nom de l'organisme est «OPCABAIA»
             Alors le plafond financier applicable vaut 2100
         Si c'est un permis B
             Alors le plafond financier applicable vaut 1500
-        Si le code CPF de la formation fait partie des codes CPF VAE
+        Si c'est une formation VAE
             Alors le plafond horaire applicable est égal à la durée en heures de la formation
             Et le plafond financier applicable vaut 2500
-        Si le code CPF de la formation fait partie des codes CPF CleA
+        Si c'est une formation CléA
             Alors le plafond financier applicable vaut 10000
 
     Si l'IDCC de l'établissement du bénéficiaire vaut «2120»
@@ -34,8 +34,8 @@ Si le nom de l'organisme est «OPCABAIA»
                 Alors le plafond financier applicable vaut 2100
             Si c'est un permis B
                 Alors le plafond financier applicable vaut 1500
-        Si le code CPF de la formation fait partie des codes CPF VAE
+        Si c'est une formation VAE
             Alors le plafond horaire applicable est égal à la durée en heures de la formation
             Et le plafond financier applicable vaut 2500
-        Si le code CPF de la formation fait partie des codes CPF VAE
+        Si c'est une formation VAE
             Alors le plafond financier applicable vaut 2500

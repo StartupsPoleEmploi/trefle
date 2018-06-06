@@ -8,6 +8,6 @@ Si le nom de l'organisme est «Fafih»
             Alors le plafond financier applicable vaut 2000
         Si c'est un permis B
             Alors le plafond financier applicable vaut 750
-    Si le code CPF de la formation fait partie des codes CPF VAE
+    Si c'est une formation VAE
         Alors le prix horaire plafond applicable vaut 0
         Alors le plafond horaire applicable vaut 0

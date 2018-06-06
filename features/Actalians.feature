@@ -79,7 +79,7 @@ Scénario: formation VAE avec prix horaire supérieur au plafond
     Et c'est une formation éligible COPANEF
     Et le prix horaire de la formation vaut 25
     Et l'IDCC de l'établissement du bénéficiaire vaut 2706
-    Et le code CPF de la formation vaut 200
+    Et c'est une formation VAE
     Et la durée en heures de la formation vaut 50
     Quand je demande un calcul de financement
     Et je sélectionne le financement «CPF sur son temps de travail»
@@ -101,7 +101,7 @@ Scénario: formation CleA avec prix horaire supérieur au plafond
     Et c'est une formation éligible COPANEF
     Et le prix horaire de la formation vaut 30
     Et l'IDCC de l'établissement du bénéficiaire vaut 2706
-    Et le code CPF de la formation vaut 201
+    Et c'est une formation CléA
     Et la durée en heures de la formation vaut 50
     Quand je demande un calcul de financement
     Et je sélectionne le financement «CPF sur son temps de travail»

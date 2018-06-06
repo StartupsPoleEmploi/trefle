@@ -1,3 +1,4 @@
+from datetime import datetime
 import re
 
 import pytest
@@ -171,3 +172,22 @@ def test_validate_organisme(patch_schema, input, output):
     else:
         validate(data)
         assert data['opca'] == output
+
+
+@pytest.mark.parametrize('input,output', [
+    ('20180606', datetime(2018, 6, 6)),
+    ('20180606 00:00:00', datetime(2018, 6, 6)),
+    ('20180600', datetime(2018, 6, 1)),
+    ('20180000', datetime(2018, 1, 1)),
+    ('unknown', False),
+])
+def test_validate_date(patch_schema, input, output):
+    patch_schema({
+        'debut': {'type': 'string', 'format': 'date'}})
+    data = {'debut': input}
+    if not output:
+        with pytest.raises(ValueError):
+            validate(data)
+    else:
+        validate(data)
+        assert data['debut'] == output

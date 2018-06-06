@@ -2,13 +2,13 @@ Si le nom de l'organisme est «OPCA_DEFI»
     Alors le plafond horaire applicable est égal au solde CPF du bénéficiaire
     Si l'IDCC de l'établissement du bénéficiaire vaut 292
         Alors le prix horaire plafond applicable vaut 25
-        Si le code CPF de la formation fait partie des codes CPF VAE
+        Si c'est une formation VAE
             Alors le plafond horaire applicable est égal à la durée en heures de la formation
         Si le code NAF de l'établissement du bénéficiaire fait partie des codes NAF CPNE éligibles
             Alors le prix horaire plafond applicable est égal au prix horaire de la formation
     Si l'IDCC de l'établissement du bénéficiaire vaut 0044
         Alors le prix horaire plafond applicable vaut 35
-        Si le code CPF de la formation fait partie des codes CPF VAE
+        Si c'est une formation VAE
             Alors le prix horaire plafond applicable est égal au prix horaire de la formation
             Alors le plafond financier applicable vaut 5000
         Si c'est une formation éligible COPANEF
@@ -24,14 +24,14 @@ Si le nom de l'organisme est «OPCA_DEFI»
     Si l'IDCC de l'établissement du bénéficiaire fait partie de [76,1388]
         Alors le prix horaire plafond applicable est égal au prix horaire de la formation
         Alors le plafond horaire applicable est égal au solde CPF du bénéficiaire
-        Si le code CPF de la formation fait partie des codes CPF VAE
+        Si c'est une formation VAE
             Alors le plafond horaire applicable est égal à la durée en heures de la formation
     Si l'IDCC de l'établissement du bénéficiaire vaut 1555
         Alors le plafond horaire applicable est égal au solde CPF du bénéficiaire
-        Si le code CPF de la formation fait partie des codes CPF VAE
+        Si c'est une formation VAE
             Alors le prix horaire plafond applicable est égal au prix horaire de la formation
             Alors le plafond horaire applicable est égal à la durée en heures de la formation
-        Si le code CPF de la formation fait partie des codes CPF VAE
+        Si c'est une formation VAE
             Alors le prix horaire plafond applicable est égal au prix horaire de la formation
         Si le domaine FORMACODE langues fait partie de la liste des domaines FORMACODE de la formation
             Alors le prix horaire plafond applicable vaut 12

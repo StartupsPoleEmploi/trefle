@@ -1,7 +1,7 @@
 Si le nom de l'organisme est «Forco»
     Alors le prix horaire plafond applicable vaut 45
     Alors le plafond horaire applicable est égal au solde CPF du bénéficiaire
-    Si le code CPF de la formation fait partie des codes CPF VAE
+    Si c'est une formation VAE
         # idcc = commerce de détail non alimentaire
         Alors le plafond horaire applicable est égal à la durée en heures de la formation
     Si c'est un permis B
@@ -11,5 +11,5 @@ Si le nom de l'organisme est «Forco»
         Alors le prix horaire plafond applicable vaut 40
     Si l'IDCC de l'établissement du bénéficiaire vaut «1517»
         Alors le prix horaire plafond applicable vaut 50
-        Si le code CPF de la formation fait partie des codes CPF VAE
+        Si c'est une formation VAE
             Alors le plafond horaire applicable est égal à la durée en heures de la formation

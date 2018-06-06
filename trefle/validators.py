@@ -1,3 +1,6 @@
+from contextlib import suppress
+from datetime import datetime
+
 from .rules import SCHEMA
 from .config import IDCC, ORGANISMES, fold_name
 
@@ -47,6 +50,20 @@ def to_domaine_formacode(value):
     return int(str(value)[:3])
 
 
+def to_date(value):
+    # LHEO date is quite a mess, let's try to do our best.
+    with suppress(ValueError):
+        return datetime.strptime(value[:8], '%Y%m%d')
+
+    # Consider the day was invalid, try with month only.
+    with suppress(ValueError):
+        return datetime.strptime(value[:6], '%Y%m')
+
+    # Consider even the month was invalid, try with year only.
+    # But let's raise this time, row will be logged and skipped.
+    return datetime.strptime(value[:4], '%Y')
+
+
 TYPES = {
     'boolean': to_bool,
     'number': float,
@@ -60,6 +77,7 @@ FORMATS = {
     'opca': to_organisme,
     'opacif': to_organisme,
     'domaine_formacode': to_domaine_formacode,
+    'date': to_date,
 }
 
 

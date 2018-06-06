@@ -9,7 +9,7 @@ Si le nom de l'organisme est «FAT.TT»
     Si c'est une formation CACES
         Alors le prix horaire plafond applicable vaut 10
 
-    Si le code CPF de la formation fait partie des codes CPF VAE
+    Si c'est une formation VAE
         Alors le prix horaire plafond applicable vaut 63
         Et le plafond horaire applicable vaut 24
         Et le plafond financier applicable vaut 1525

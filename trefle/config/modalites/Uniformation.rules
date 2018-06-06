@@ -3,7 +3,7 @@ Si le nom de l'organisme est «Uniformation»
     Si le financement est de type «CPF»
         Alors le prix horaire plafond applicable vaut 40
 
-        Si le code CPF de la formation fait partie des codes CPF VAE
+        Si c'est une formation VAE
             Alors le prix horaire plafond applicable vaut 56
             Et le plafond horaire applicable vaut 24
             Et le plafond financier applicable vaut 1750
@@ -12,7 +12,7 @@ Si le nom de l'organisme est «Uniformation»
                 Alors le plafond horaire applicable vaut 72
                 Et le plafond financier applicable vaut 2500
 
-        Si le code CPF de la formation fait partie des codes CPF CleA
+        Si c'est une formation CléA
         Ou la région de l'établissement du bénéficiaire fait partie des régions éligibles COPAREF
         # Alors organisme.plafond_financier_clea VAUT "600 € pour les évaluations préalables\n300€ pour les évaluations finales"
             Si la durée en heures de la formation est supérieure ou égale à 70

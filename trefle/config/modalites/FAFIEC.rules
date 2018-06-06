@@ -5,6 +5,6 @@ Si le nom de l'organisme est «Fafiec»
         Alors le prix horaire plafond applicable vaut 25
     Si c'est un bilan de compétences
         Alors le plafond financier applicable vaut 1750
-    Si le code CPF de la formation fait partie des codes CPF VAE
+    Si c'est une formation VAE
         Alors le prix horaire plafond applicable vaut 100
         Alors le plafond horaire applicable est égal à la durée en heures de la formation
