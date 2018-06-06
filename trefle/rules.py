@@ -52,7 +52,7 @@ class LazyValue:
                 # FIXME: Should we have a dedicated registry instead?
                 value = LABELS[value]
         elif self.raw[0] == '[' and self.raw[-1] == ']':
-            value = self.raw.split(',')  # TODO: type of members/constante?
+            value = self.raw[1:-1].split(',')  # TODO: type of members/constant
         elif self.raw.isdigit():
             value = int(self.raw)
         elif isfloat(self.raw):

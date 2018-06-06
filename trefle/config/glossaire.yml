@@ -8,6 +8,11 @@ BULATS: Business Language Testing Service
 CACES: Certificat d'aptitude à la conduite en sécurité
 CIF: Compte individuel de formation, formation longue
 CPF: Compte personnel de formation, formation courte
+CQP:
+  description: certificat de qualification professionnelle
+  ressources:
+    - http://travail-emploi.gouv.fr/formation-professionnelle/evoluer-professionnellement/article/certificat-de-qualification-professionnelle-cqp
+CQPI: certificat de qualification professionnelle inter-branches
 COPANEF: Conseil paritaire interprofessionnel national pour l’emploi et la formation; gère les formations nationales (accessibles à tout le monde)
 COPAREF: Conseils paritaires interprofessionnels régionaux pour l’emploi et la formation; gèrent les formations régionales (accessibles aux salariés travaillant dans la région)
 CPNE: Commissions paritaires nationales de l’emploi; gèrent les formations de la branche (accessibles aux salariés de la branche)
