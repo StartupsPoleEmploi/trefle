@@ -125,7 +125,10 @@ async def populate_formation_from_bytes(context, content):
                 value = validate_type(schema, value)
                 value = validate_format(schema, value)
             except ValueError:
-                continue  # Should we raise/validate required?
+                if 'default' in schema:
+                    value = schema['default']
+                else:
+                    continue  # Should we raise/validate required?
             if schema.get('format') == 'set':
                 value = set(value)
             context[key] = value

@@ -364,6 +364,7 @@ formation:
     type: integer
     formation: int32
     source: catalogue
+    default: null
     xpath: number(//objectif-general-formation/child::text())
   debut:
     description: date de début de la formation
