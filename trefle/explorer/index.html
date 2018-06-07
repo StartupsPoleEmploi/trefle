@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<title>Trèfle feuille à feuille</title>
+<script src="vendor/riot/riot%2Bcompiler.js"></script>
+<script src="vendor/riot/route%2Btag.min.js"></script>
+<link rel="stylesheet" type="text/css" href="app.css">
+<script type="text/javascript" src="mixin/view.mixin.js"></script>
+<script src="components/navbar.tag.html" type="riot/tag"></script>
+<script src="components/schema.tag.html" type="riot/tag"></script>
+<script src="components/rules.tag.html" type="riot/tag"></script>
+
+<app>
+  <header data-is=navbar class=header></header>
+  <section class=main>
+    <schema></schema>
+    <rules></rules>
+  </section>
+</app>
+
+<script>
+  riot.mount('navbar')
+
+  const views = {
+    // '/': () => riot.mount(''),
+    '/schema': () => riot.mount('schema'),
+    '/rules': () => riot.mount('rules'),
+    // '/feed/*': (link) => riot.mount('editfeed', {link: link}),
+    // '/territory/*/*/*': (...args) => mount('territory-list', {id: args.join('/')}),
+  }
+  for (let name in views) {
+    route(name, views[name])
+  }
+
+  let SCHEMA
+
+  fetch('/explore/schema')
+  .then((response) => response.json())
+  .then((data) => {
+    SCHEMA = data
+    route.start(true)
+  })
+
+</script>

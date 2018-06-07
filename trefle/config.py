@@ -14,6 +14,7 @@ FINANCEMENTS = {}
 ORGANISMES = {}
 ROOT = Path(__file__).parent / 'config'
 IDCC = {}
+RAW_RULES = {}
 
 INTERCARIF_URL = 'https://labonneformation.pole-emploi.fr/ws_intercarif'
 ELIGIBILITE_URL = 'http://www.intercariforef.org/serviceweb2/eligibilite/?filtre=branche&'
@@ -88,7 +89,9 @@ def load_financements(data, output=None, properties=None, namespace=None):
 
 def load_rules(path):
     with path.open() as rules_file:
-        return Rule.load(rules_file.readlines())
+        data = rules_file.read()
+        RAW_RULES[path.stem] = data
+        return Rule.load(data.split('\n'))
 
 
 # TODO: move in utils?
@@ -100,10 +103,10 @@ def init():
     print('Initializing config')
     with (ROOT / 'schema.yml').open() as f:
         SCHEMA.update(load_schema(yaml.safe_load(f.read())))
+    ELIGIBILITE.extend(load_rules(ROOT / 'eligibilite.rules'))
     paths = (ROOT / 'modalites').glob('*.rules')
     for path in sorted(paths, key=lambda p: p.name.lower()):
         MODALITES.extend(load_rules(path))
-    ELIGIBILITE.extend(load_rules(ROOT / 'eligibilite.rules'))
     with (ROOT / 'financements.yml').open() as f:
         load_financements(yaml.safe_load(f.read()), FINANCEMENTS)
     with (ROOT / 'organismes.yml').open() as f:

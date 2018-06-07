@@ -1,8 +1,9 @@
 import time
+from pathlib import Path
 
 import ujson as json
 from minicli import cli, run
-from roll.extensions import simple_server
+from roll.extensions import simple_server, static
 
 from .api import app
 from .config import ELIGIBILITE, MODALITES, SCHEMA
@@ -128,6 +129,8 @@ def render_trace_rules():
 @cli
 def serve():
     """Run a web server (for development only)."""
+    # Debug only.
+    static(app, '/explorer/', Path(__file__).parent / 'explorer')
     simple_server(app)
 
 

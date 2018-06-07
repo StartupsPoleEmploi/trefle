@@ -1,0 +1,28 @@
+<schema>
+  <dl each={ props, name in items }>
+    <dt>{props.label || props.description} <em>({props.type})</em></dt>
+    <dd if={props.value}><strong>Valeur</strong> {props.value}</dd>
+    <dd if={props.description}><strong>Description</strong> {props.description}</dd>
+    <dd if={props.source}><strong>Source</strong> {props.source}</dd>
+    <dd if={props.xpath}><strong>LHEO</strong> {props.xpath}</dd>
+  </dl>
+
+  <script>
+    this.items = SCHEMA
+
+    this.mixin(View)
+  </script>
+
+  <style>
+    :scope dt {
+      font-variant: small-caps;
+    }
+    :scope dt em {
+      font-variant: normal;
+    }
+    :scope dl {
+      margin-top: 10px;
+    }
+  </style>
+
+</schema>

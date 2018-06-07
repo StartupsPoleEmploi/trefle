@@ -1,0 +1,83 @@
+<rules>
+  <div each={ raw, name in items }>
+    <h3>{name}</h3>
+    <pre data-is=raw content="{ raw }"/>
+  </div>
+
+  <script>
+    this.items = []
+
+    this.on('mount', () => this.load())
+
+    load () {
+      fetch('/explore/rules')
+      .then((response) => response.json())
+      .then((data) => {
+        this.items = data
+        this.update()
+      })
+    }
+
+    this.mixin(View)
+  </script>
+
+  <style>
+    :scope pre {
+      padding: 5px;
+      border: solid 1px #68c3a3;
+      background-color: #eee;
+      max-width: 1000px;
+      /*overflow: auto;*/
+      font-family: 'mono_regular';
+    }
+    :scope pre strong {
+      font-family: 'mono_bold';
+      font-weight: normal;
+    }
+    :scope pre .comment {
+      font-family: 'mono_italic';
+      color: #666;
+    }
+    :scope pre .keyword {
+      font-family: 'mono_semibold';
+    }
+    :scope pre .constant {
+      font-family: 'mono_semibold';
+      text-decoration: underline dotted;
+      cursor: help;
+    }
+    :scope pre .string,
+    :scope pre .number {
+      font-family: 'mono_semibold';
+    }
+    :scope h3 {
+      font-variant: small-caps;
+    }
+  </style>
+
+</rules>
+
+<raw>
+  raw = opts.content
+  raw = raw.replace(/Si /g, '<strong>Si </strong>')
+  raw = raw.replace(/Ou /g, '<strong>Ou </strong>')
+  raw = raw.replace(/, ou /g, '<strong>, ou </strong>')
+  raw = raw.replace(/Et /g, '<strong>Et </strong>')
+  raw = raw.replace(/, et /g, '<strong>, et </strong>')
+  raw = raw.replace(/Alors /g, '<strong>Alors </strong>')
+  raw = raw.replace(/(#.+)/g, "<em class=comment>$1</em>")
+  raw = raw.replace(/( \d+)/g, "<span class=number>$1</span>")
+  raw = raw.replace(/(«.+»)/g, "<span class=string>$1</span>")
+  for (const [key, schema] of Object.entries(SCHEMA)) {
+    if (schema.label) {
+      let replace = `<span class='keyword tooltip'>$1<span class=tooltip-content>`
+      replace += `<strong>Description</strong> ${schema.description || schema.label}<br>`
+      if (schema.value) replace += `<strong>Value</strong> ${schema.value}<br>`
+      if (schema.source) replace += `<strong>Source</strong> ${schema.source}`
+      replace += `</span></span>`
+      raw = raw.replace(new RegExp('(' + schema.label + ')', 'g'), replace)
+    }
+  }
+  this.root.innerHTML = raw
+</raw>
+

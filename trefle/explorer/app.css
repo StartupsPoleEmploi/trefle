@@ -1,0 +1,125 @@
+@font-face {
+    font-family: 'sans_italic';
+    src: url('./font/sourcesanspro-it-webfont.woff2') format('woff2'),
+         url('./font/sourcesanspro-it-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: italic;
+
+}
+@font-face {
+    font-family: 'sans_light';
+    src: url('./font/sourcesanspro-light-webfont.woff2') format('woff2'),
+         url('./font/sourcesanspro-light-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+@font-face {
+    font-family: 'sans_regular';
+    src: url('./font/sourcesanspro-regular-webfont.woff2') format('woff2'),
+         url('./font/sourcesanspro-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+@font-face {
+    font-family: 'sans_bold';
+    src: url('./font/sourcesanspro-bold-webfont.woff2') format('woff2'),
+         url('./font/sourcesanspro-bold-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: bold;
+
+}
+@font-face {
+    font-family: 'mono_regular';
+    src: url('./font/sourcecodepro-regular-webfont.woff2') format('woff2'),
+         url('./font/sourcecodepro-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+@font-face {
+    font-family: 'mono_bold';
+    src: url('./font/sourcecodepro-bold-webfont.woff2') format('woff2'),
+         url('./font/sourcecodepro-bold-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: bold;
+}
+
+@font-face {
+    font-family: 'mono_semibold';
+    src: url('./font/sourcecodepro-semibold-webfont.woff2') format('woff2'),
+         url('./font/sourcecodepro-semibold-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+@font-face {
+    font-family: 'mono_medium';
+    src: url('./font/sourcecodepro-medium-webfont.woff2') format('woff2'),
+         url('./font/sourcecodepro-medium-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+@font-face {
+    font-family: 'mono_italic';
+    src: url('./font/sourcecodepro-it-webfont.woff2') format('woff2'),
+         url('./font/sourcecodepro-it-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+html, body, a, p, div, li, dl {
+  margin: 0;
+  padding: 0;
+  color: #222;
+  font-family: 'sans_regular';
+/*  font-size: 1.1em;
+  line-height: 1.4em;
+*/}
+.main {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 2fr 2fr;
+  grid-gap: 10px;
+}
+a {
+  text-decoration: none;
+}
+
+/************** Tool Tip Styles ********************************/
+.tooltip {
+  display: inline-block;
+  position: relative;
+  cursor: help;
+}
+.tooltip:hover {
+  text-decoration: underline dotted;
+}
+.tooltip .tooltip-content {
+  display: none;
+  background: #eee;
+  border: 1px solid #68c3a3;
+  font-size: 0.875em;
+  padding: 1em;
+  position: absolute;
+  left: 0;
+  bottom: calc(100% + 20px);
+  min-width: 150px;
+  z-index: 10;
+}
+.tooltip .tooltip-content:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -27px;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 10px solid #68c3a3;
+}
+.tooltip:hover .tooltip-content {
+  display: inline-block;
+}
+

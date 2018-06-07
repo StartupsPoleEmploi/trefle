@@ -1,0 +1,41 @@
+<navbar>
+  <h1><a href=".">☘</a></h1>
+  <section>
+    <a href="#schema" class="button button-link">Schéma</a>
+    <a href="#rules" class="button button-link">Règles de gestion</a>
+  </section>
+
+  <style>
+    :scope {
+      display: block;
+      padding: 2em;
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: 1fr 5fr;
+      background-color: #68c3a3;
+    }
+    :scope h1 {
+      display: inline-block;
+      font-size: 3em;
+      line-height: 1em;
+    }
+    :scope section a {
+      font-size: 1.4em;
+      font-variant: small-caps;
+    }
+    :scope section a:hover {
+      text-decoration: underline dotted;
+    }
+    :scope a + a {
+      margin-left: 1em;
+    }
+    :scope * {
+      display: flex;
+      align-items: center;
+    }
+  </style>
+
+  <script>
+
+  </script>
+</navbar>

@@ -1,12 +1,14 @@
 import logging
 import pkg_resources
 from http import HTTPStatus
+from pathlib import Path
 
 from roll import Roll, HttpError
 from roll.extensions import cors
 
 from .core import simulate
 from .openapis import OPENAPI
+from .config import SCHEMA, RAW_RULES
 
 logger = logging.getLogger('trefle')
 logger.setLevel(logging.DEBUG)
@@ -53,3 +55,13 @@ async def simulate_(request, response):
 @app.route('/schema')
 async def schema(request, response):
     response.json = OPENAPI
+
+
+@app.route('/explore/schema')
+async def explore_schema(request, response):
+    response.json = SCHEMA
+
+
+@app.route('/explore/rules')
+async def explore_rules(request, response):
+    response.json = RAW_RULES
