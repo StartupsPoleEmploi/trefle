@@ -197,7 +197,6 @@ async def test_simulate_hors_temps_de_travail(client):
     assert resp.status == HTTPStatus.OK
     financements = json.loads(resp.body)['financements']
     assert len(financements) == 2
-    assert 'remuneration_details' in financements[0]
 
 
 async def test_simulate_endpoint_with_wrong_method(client):

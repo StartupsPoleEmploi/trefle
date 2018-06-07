@@ -1,9 +1,4 @@
 constante:
-  wording:
-    remuneration_hors_temps_de_travail:
-      type: string
-      value: Il n'y a pas de rémunération prise en charge pour une formation hors du temps de travail.
-      label: explication de la rémunération hors temps de travail
   codes_financeur_individuel:
     description: ensemble des codes financeur individuel
     type: array
@@ -459,11 +454,6 @@ financement:
     public: true
     nullable: true
     label: rémunération possible
-  remuneration_details:
-    type: string
-    public: true
-    nullable: true
-    description: Explications optionnelles sur la rémunération retournée.
   plafond_remuneration:
     type: integer
     format: int32

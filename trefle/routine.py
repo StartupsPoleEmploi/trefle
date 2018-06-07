@@ -238,9 +238,6 @@ def compute_modalites(context, financement):
     if plafond_remuneration and plafond_remuneration < remuneration:
         remuneration = plafond_remuneration
     financement['remuneration'] = remuneration
-    if not remuneration and 'hors temps de travail' in financement['tags']:
-        financement['remuneration_details'] = \
-            context['constante.wording.remuneration_hors_temps_de_travail']
 
 
 def populate_financement(context, financement):
