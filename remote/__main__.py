@@ -113,7 +113,8 @@ def logs(lines=50):
 
     :lines: number of lines to retrieve
     """
-    run(f'journalctl --lines {lines} --unit trefle --follow')
+    with sudo():
+        run(f'journalctl --lines {lines} --unit trefle --follow')
 
 
 @minicli.cli
