@@ -356,6 +356,7 @@ formation:
     number: plural
   objectif_general_formation:
     description: code AIF de la formation (http://lheo.gouv.fr/langage#dict-AIS)
+    label: code AIF de la formation
     type: integer
     formation: int32
     source: catalogue
@@ -363,12 +364,14 @@ formation:
     xpath: number(//objectif-general-formation/child::text())
   debut:
     description: date de début de la formation
+    label: date de début de la formation
     type: string
     format: date
     source: catalogue
     xpath: string((//periode/debut)[1]/child::text())
   fin:
     description: date de fin de la formation
+    label: date de fin de la formation
     type: string
     format: date
     source: catalogue

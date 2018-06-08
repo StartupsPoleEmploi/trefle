@@ -1,9 +1,15 @@
 Si le nom de l'organisme est «AGEFOS PME»
-    Alors le prix horaire plafond applicable vaut 50
-    Si c'est un permis B
-        Alors le prix horaire plafond applicable vaut 40
-    Si c'est un bilan de compétences
-        Alors le prix horaire plafond applicable vaut 75
+
+    Si le financement est de type «CPF»
+        Alors le prix horaire plafond applicable vaut 50
+        Si c'est un permis B
+            Alors le prix horaire plafond applicable vaut 40
+        Si c'est un bilan de compétences
+            Alors le prix horaire plafond applicable vaut 75
+
+    Si le financement est de type «période de professionnalisation»
+        Alors le prix horaire plafond applicable vaut 9.15
+
     Si la région de l'établissement du bénéficiaire est «Guadeloupe»
     Ou la région de l'établissement du bénéficiaire est «Martinique»
     Ou la région de l'établissement du bénéficiaire est «Guyane»
