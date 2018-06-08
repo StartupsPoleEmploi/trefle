@@ -1,14 +1,14 @@
 import logging
 import pkg_resources
 from http import HTTPStatus
-from pathlib import Path
 
-from roll import Roll, HttpError
+from roll import HttpError, Roll
 from roll.extensions import cors
 
+from .config import RAW_RULES, SCHEMA
 from .core import simulate
+from .debugging import data_from_lbf_url, make_feature
 from .openapis import OPENAPI
-from .config import SCHEMA, RAW_RULES
 
 logger = logging.getLogger('trefle')
 logger.setLevel(logging.DEBUG)
@@ -39,8 +39,9 @@ async def json_error_response(request, response, error):
 
 @app.route('/financement', methods=['POST'])
 async def simulate_(request, response):
+    context = request.json
     try:
-        financements = await simulate(**request.json)
+        financements = await simulate(context)
     except ValueError as err:
         raise HttpError(HTTPStatus.UNPROCESSABLE_ENTITY, err.args[0])
 
@@ -49,7 +50,15 @@ async def simulate_(request, response):
         financements = [f for f in financements if f['eligible'] == eligible]
     for tag in request.query.list('tags', []):
         financements = [f for f in financements if tag in f['tags']]
-    response.json = {'financements': financements}
+    body = {'financements': financements}
+    del context['financements']
+    if request.query.bool('context', False):
+        body['context'] = {k: {'label': SCHEMA[k]['label'], 'value': v}
+                           for k, v in context.items()
+                           if k in SCHEMA and 'label' in SCHEMA[k]}
+    if request.query.bool('scenario', False):
+        body['scenario'] = make_feature(context, financements)
+    response.json = body
 
 
 @app.route('/schema')
@@ -65,3 +74,8 @@ async def explore_schema(request, response):
 @app.route('/explore/rules')
 async def explore_rules(request, response):
     response.json = RAW_RULES
+
+
+@app.route('/explore/decode-lbf-url')
+async def decode_lbf_url(request, response):
+    response.json = data_from_lbf_url(request.query.get('url'))

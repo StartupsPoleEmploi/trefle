@@ -3,7 +3,7 @@ from pathlib import Path
 
 import ujson as json
 from minicli import cli, run
-from roll.extensions import simple_server, static
+from roll.extensions import simple_server, static, traceback
 
 from .api import app
 from .config import ELIGIBILITE, MODALITES, SCHEMA
@@ -42,7 +42,7 @@ async def cli_simulate(*args, data: json.loads={}, url=None, trace=False,
     """
     flatten(data)
     if url:
-        data = await data_from_lbf_url(url)
+        data = data_from_lbf_url(url)
     if args:
         data.update(parse_args(args))
     if 'formation.numero' in data:
@@ -68,7 +68,7 @@ async def cli_simulate(*args, data: json.loads={}, url=None, trace=False,
         # We already processed the formation, prevent to process it twice.
         del data['formation.numero']
     start = time.perf_counter()
-    financements = await simulate(**data)
+    financements = await simulate(data)
     duration = (time.perf_counter() - start)
     print('*' * 105)
     eligibles = [f for f in financements if f['eligible']]
@@ -131,6 +131,7 @@ def serve():
     """Run a web server (for development only)."""
     # Debug only.
     static(app, '/explorer/', Path(__file__).parent / 'explorer')
+    traceback(app)
     simple_server(app)
 
 

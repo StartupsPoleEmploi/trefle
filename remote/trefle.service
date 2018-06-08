@@ -7,6 +7,7 @@ Type=simple
 User=trefle
 ExecStart=/srv/trefle/venv/bin/gunicorn trefle.api:app --config gunicorn.conf
 WorkingDirectory=/srv/trefle/
+EnvironmentFile=/srv/trefle/env
 Restart=always
 RestartSec=5
 StandardOutput=journal

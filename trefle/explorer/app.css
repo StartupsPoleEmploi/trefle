@@ -70,6 +70,9 @@
     font-style: italic;
 
 }
+html, body {
+  width: 100%;
+}
 html, body, a, p, div, li, dl {
   margin: 0;
   padding: 0;
@@ -82,11 +85,69 @@ html, body, a, p, div, li, dl {
   max-width: 1280px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: 1fr 2fr 2fr;
+  /*grid-template-columns: 1fr 2fr 2fr;*/
   grid-gap: 10px;
+}
+ul {
+  padding: 0;
+}
+li {
+  list-style: none;
 }
 a {
   text-decoration: none;
+}
+
+/* Rule */
+pre {
+  padding: 5px;
+  border: solid 1px #68c3a3;
+  background-color: #eee;
+  max-width: 1200px;
+  font-family: 'mono';
+}
+pre strong {
+  font-family: 'mono';
+  font-weight: bold;
+}
+pre .comment {
+  font-family: 'mono';
+  font-style: italic;
+  color: #666;
+}
+pre .keyword {
+  font-family: 'mono';
+  font-weight: 600;
+}
+pre .constant {
+  font-family: 'mono';
+  font-weight: 600;
+  text-decoration: underline dotted;
+  cursor: help;
+}
+pre .string,
+pre .number {
+  font-family: 'mono';
+  font-weight: 600;
+}
+
+
+
+/*** FORMS ***/
+input[type=text] {
+  line-height: 3em;
+}
+input[type=submit],
+.button {
+  background-color: #68c3a3;
+  border: none;
+  padding: 0 10px;
+  line-height: 3em;
+  cursor: pointer;
+}
+input[type=submit]:hover,
+.button:hover {
+  background-color: #56bc98;
 }
 
 /************** Tool Tip Styles ********************************/

@@ -53,8 +53,7 @@ def given_set_false(context, key):
 @when('je demande un calcul de financement')
 @async_run_until_complete
 async def when_simulate(context):
-    context.passed = [f for f in await simulate(**context.data)
-                      if f.get('eligible')]
+    context.passed = [f for f in await simulate(context.data) if f['eligible']]
 
 
 @then(r"il y a (?P<expected>\d+) financements? proposés?")

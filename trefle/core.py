@@ -2,7 +2,7 @@ from . import routine
 from .validators import validate
 
 
-async def simulate(**context):
+async def simulate(context):
     # Prepare context
     routine.add_constants(context)
     routine.flatten(context)

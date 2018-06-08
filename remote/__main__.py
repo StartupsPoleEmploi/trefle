@@ -1,3 +1,6 @@
+import os
+import sys
+from io import StringIO
 import urllib.request
 
 
@@ -137,13 +140,34 @@ def ssh_keys():
 @minicli.cli
 def access_logs():
     """See the nginx access logs."""
-    run('tail -F /var/log/nginx/access.log')
+    with sudo():
+        run('tail -F /var/log/nginx/access.log')
 
 
 @minicli.cli
 def error_logs():
     """See the nginx error logs."""
-    run('tail -F /var/log/nginx/error.log')
+    with sudo():
+        run('tail -F /var/log/nginx/error.log')
+
+
+@minicli.cli
+def upload_env():
+    """Upload environment vars to the server.
+
+    Use those to deal with info not commitable.
+    """
+    keys = ['LBF_CHARMAP']
+    content = ''
+    for key in keys:
+        try:
+            content += '{}={}\n'.format(key, os.environ[key])
+        except KeyError as e:
+            sys.exit('The {} environment variable does not exist.'.format(e))
+    path = '/srv/trefle/env'
+    if exists(path):
+        run(f'cat {path}')
+    put(StringIO(content), path)
 
 
 @minicli.wrap

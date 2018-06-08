@@ -1,0 +1,95 @@
+<simulate>
+  <section>
+    <h2>Depuis une URL LBF</h2>
+    <form onsubmit={ submit }>
+      <input type="text" ref="url" placeholder="Entrer une URL LBF">
+      <input type="submit" value="Simuler">
+    </form>
+  </section>
+  <section class=results if={financements + ''}>
+    <h2>Financements</h2>
+    <ul if={financements}>
+      <li each={financements}>
+        <h4>{nom}</h4>
+        <p><strong>Description</strong> {description}</p>
+        <p><strong>Démarches</strong> {demarches}</p>
+        <p><strong>Prise en charge</strong> {prise_en_charge}</p>
+        <p><strong>Plafond de prise en charge</strong> {plafond_prise_en_charge}</p>
+        <p><strong>Plafond de prix horaire</strong> {plafond_prix_horaire}</p>
+        <p><strong>Rémunération</strong> {remuneration}</p>
+        <p><strong>Organisme</strong> {organisme.nom}</p>
+      </li>
+    </ul>
+    <h2>Contexte</h2>
+    <table>
+      <tr each={ props in context }><th>{props.label}</th><td>{props.value + ''}</td></tr>
+    </table>
+    <h2>Scénario de test</h2>
+    <pre data-is=rule if={ scenario } content={ scenario }/>
+  </section>
+  <script>
+    this.financements = []
+    this.context = {}
+    this.mixin(View)
+
+    decodeLBFURL (url, then) {
+      fetch(`/explore/decode-lbf-url?url=${encodeURIComponent(url)}`)
+      .then((response) => response.json())
+      .then(then)
+    }
+
+    simulate (data) {
+      fetch('/financement?eligible=1&context=1&scenario=1', {
+        method: 'post',
+        body: JSON.stringify(data)
+      })
+      .then((response) => response.json())
+      .then((data) => {
+        this.financements = data.financements
+        this.context = data.context
+        this.scenario = data.scenario
+        this.update()
+      })
+    }
+
+    submit (e) {
+      e.preventDefault();
+      const url = this.refs.url.value
+      if (!url) return
+      this.decodeLBFURL(url, this.simulate)
+    }
+
+  </script>
+
+  <style scoped>
+    :scope {
+      display: grid;
+      grid-template-columns: 2fr 4fr;
+      grid-gap: 10px;
+      overflow: hidden;
+    }
+    h2 {
+      font-variant: small-caps;
+    }
+    .results {
+      padding: 10px;
+      border-left: 1px solid #ddd;
+    }
+    table {
+      table-layout: fixed;
+      width: 100%;
+      overflow: hidden;
+    }
+    th {
+      text-align: left;
+      width: 40%;
+    }
+    td {
+      width: 50%;
+    }
+    tr:nth-child(even) {
+      background: #eee;
+    }
+  </style>
+
+</simulate>

@@ -55,7 +55,7 @@ def trace_rule(rule):
         trace_condition(condition)
 
 
-async def data_from_lbf_url(url):
+def data_from_lbf_url(url):
     charmap = os.environ.get('LBF_CHARMAP')
     if not charmap:
         sys.exit("You need the LBF_CHARMAP env var to be set. It's on the "
@@ -89,10 +89,10 @@ async def data_from_lbf_url(url):
             if key in keymap}
     try:
         validate(data)
-    except Exception as err:
+    except Exception:
         print('Error validating data.')
         print(data)
-        sys.exit(err)
+        raise
     return data
 
 

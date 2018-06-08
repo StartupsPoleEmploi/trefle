@@ -1,0 +1,25 @@
+<rule>
+  raw = opts.content.replace(/Si /g, '<strong>Si </strong>')
+                    .replace(/Soit /g, '<strong>Soit </strong>')
+                    .replace(/Quand /g, '<strong>Quand </strong>')
+                    .replace(/Scénario: /g, '<strong>Scénario: </strong>')
+                    .replace(/Ou /g, '<strong>Ou </strong>')
+                    .replace(/, ou /g, '<strong>, ou </strong>')
+                    .replace(/Et /g, '<strong>Et </strong>')
+                    .replace(/, et /g, '<strong>, et </strong>')
+                    .replace(/Alors /g, '<strong>Alors </strong>')
+                    .replace(/(#.+)/g, "<em class=comment>$1</em>")
+                    .replace(/( \d+)/g, "<span class=number>$1</span>")
+                    .replace(/(«.+»)/g, "<span class=string>$1</span>")
+  for (const [key, schema] of Object.entries(SCHEMA)) {
+    if (schema.label) {
+      let replace = `<span class='keyword tooltip'>$1<span class=tooltip-content>`
+      replace += `<strong>Description</strong> ${schema.description || schema.label}<br>`
+      if (schema.value) replace += `<strong>Value</strong> ${schema.value}<br>`
+      if (schema.source) replace += `<strong>Source</strong> ${schema.source}`
+      replace += `</span></span>`
+      raw = raw.replace(new RegExp(`(${schema.label})`, 'g'), replace)
+    }
+  }
+  this.root.innerHTML = raw
+</rule>

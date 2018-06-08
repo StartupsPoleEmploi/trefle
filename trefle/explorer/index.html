@@ -7,13 +7,16 @@
 <script type="text/javascript" src="mixin/view.mixin.js"></script>
 <script src="components/navbar.tag.html" type="riot/tag"></script>
 <script src="components/schema.tag.html" type="riot/tag"></script>
+<script src="components/rule.tag.html" type="riot/tag"></script>
 <script src="components/rules.tag.html" type="riot/tag"></script>
+<script src="components/simulate.tag.html" type="riot/tag"></script>
 
 <app>
   <header data-is=navbar class=header></header>
   <section class=main>
     <schema></schema>
     <rules></rules>
+    <simulate></simulate>
   </section>
 </app>
 
@@ -21,6 +24,7 @@
   riot.mount('navbar')
   route('/schema', () => riot.mount('schema'))
   route('/rules', () => riot.mount('rules'))
+  route('/simulate', () => riot.mount('simulate'))
 
   let SCHEMA
 
