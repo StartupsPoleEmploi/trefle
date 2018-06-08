@@ -1,5 +1,5 @@
 @font-face {
-    font-family: 'sans_italic';
+    font-family: 'sans';
     src: url('./font/sourcesanspro-it-webfont.woff2') format('woff2'),
          url('./font/sourcesanspro-it-webfont.woff') format('woff');
     font-weight: normal;
@@ -7,15 +7,15 @@
 
 }
 @font-face {
-    font-family: 'sans_light';
+    font-family: 'sans';
     src: url('./font/sourcesanspro-light-webfont.woff2') format('woff2'),
          url('./font/sourcesanspro-light-webfont.woff') format('woff');
-    font-weight: normal;
+    font-weight: 300;
     font-style: normal;
 
 }
 @font-face {
-    font-family: 'sans_regular';
+    font-family: 'sans';
     src: url('./font/sourcesanspro-regular-webfont.woff2') format('woff2'),
          url('./font/sourcesanspro-regular-webfont.woff') format('woff');
     font-weight: normal;
@@ -23,15 +23,15 @@
 
 }
 @font-face {
-    font-family: 'sans_bold';
+    font-family: 'sans';
     src: url('./font/sourcesanspro-bold-webfont.woff2') format('woff2'),
          url('./font/sourcesanspro-bold-webfont.woff') format('woff');
-    font-weight: normal;
-    font-style: bold;
+    font-weight: bold;
+    font-style: normal;
 
 }
 @font-face {
-    font-family: 'mono_regular';
+    font-family: 'mono';
     src: url('./font/sourcecodepro-regular-webfont.woff2') format('woff2'),
          url('./font/sourcecodepro-regular-webfont.woff') format('woff');
     font-weight: normal;
@@ -39,42 +39,42 @@
 
 }
 @font-face {
-    font-family: 'mono_bold';
+    font-family: 'mono';
     src: url('./font/sourcecodepro-bold-webfont.woff2') format('woff2'),
          url('./font/sourcecodepro-bold-webfont.woff') format('woff');
-    font-weight: normal;
-    font-style: bold;
+    font-weight: bold;
+    font-style: normal;
 }
 
 @font-face {
-    font-family: 'mono_semibold';
+    font-family: 'mono';
     src: url('./font/sourcecodepro-semibold-webfont.woff2') format('woff2'),
          url('./font/sourcecodepro-semibold-webfont.woff') format('woff');
-    font-weight: normal;
+    font-weight: 600;
     font-style: normal;
 
 }
 @font-face {
-    font-family: 'mono_medium';
+    font-family: 'mono';
     src: url('./font/sourcecodepro-medium-webfont.woff2') format('woff2'),
          url('./font/sourcecodepro-medium-webfont.woff') format('woff');
-    font-weight: normal;
+    font-weight: 500;
     font-style: normal;
 
 }
 @font-face {
-    font-family: 'mono_italic';
+    font-family: 'mono';
     src: url('./font/sourcecodepro-it-webfont.woff2') format('woff2'),
          url('./font/sourcecodepro-it-webfont.woff') format('woff');
     font-weight: normal;
-    font-style: normal;
+    font-style: italic;
 
 }
 html, body, a, p, div, li, dl {
   margin: 0;
   padding: 0;
   color: #222;
-  font-family: 'sans_regular';
+  font-family: 'sans';
 /*  font-size: 1.1em;
   line-height: 1.4em;
 */}

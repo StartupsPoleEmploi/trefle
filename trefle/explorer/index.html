@@ -19,17 +19,8 @@
 
 <script>
   riot.mount('navbar')
-
-  const views = {
-    // '/': () => riot.mount(''),
-    '/schema': () => riot.mount('schema'),
-    '/rules': () => riot.mount('rules'),
-    // '/feed/*': (link) => riot.mount('editfeed', {link: link}),
-    // '/territory/*/*/*': (...args) => mount('territory-list', {id: args.join('/')}),
-  }
-  for (let name in views) {
-    route(name, views[name])
-  }
+  route('/schema', () => riot.mount('schema'))
+  route('/rules', () => riot.mount('rules'))
 
   let SCHEMA
 

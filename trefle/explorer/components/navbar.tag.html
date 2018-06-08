@@ -5,7 +5,7 @@
     <a href="#rules" class="button button-link">Règles de gestion</a>
   </section>
 
-  <style>
+  <style scoped>
     :scope {
       display: block;
       padding: 2em;
@@ -14,22 +14,22 @@
       grid-template-columns: 1fr 5fr;
       background-color: #68c3a3;
     }
-    :scope h1 {
+    h1 {
       display: inline-block;
       font-size: 3em;
       line-height: 1em;
     }
-    :scope section a {
+    section a {
       font-size: 1.4em;
       font-variant: small-caps;
     }
-    :scope section a:hover {
+    section a:hover {
       text-decoration: underline dotted;
     }
-    :scope a + a {
+    a + a {
       margin-left: 1em;
     }
-    :scope * {
+    * {
       display: flex;
       align-items: center;
     }
