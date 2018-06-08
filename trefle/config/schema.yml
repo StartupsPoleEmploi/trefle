@@ -486,6 +486,7 @@ financement:
   plafond_prix_horaire:
     type: integer
     format: int32
+    public: true
     label: prix horaire plafond applicable
     description: prix horaire maximum
   prix_horaire:

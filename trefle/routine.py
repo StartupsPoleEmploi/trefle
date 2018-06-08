@@ -231,6 +231,7 @@ def compute_modalites(context, financement):
     if not plafond_financier or (plafond_effectif
                                  and plafond_effectif < plafond_financier):
         plafond_financier = heures * plafond_prix_horaire
+    financement['plafond_prix_horaire'] = plafond_prix_horaire
     financement['plafond_prise_en_charge'] = plafond_financier - reste_a_charge
     # FIXME: should we define default remuneration in common rules instead?
     remuneration = context.get('financement.remuneration', 0)

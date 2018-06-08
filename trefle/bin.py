@@ -85,6 +85,8 @@ async def cli_simulate(*args, data: json.loads={}, url=None, trace=False,
             print('      Site web:', financement['organisme']['web'])
             if financement['prise_en_charge']:
                 print('  Financement:', financement['prise_en_charge'], '€')
+            if financement['plafond_prix_horaire']:
+                print('  Plafond horaire:', financement['plafond_prix_horaire'], '€')
             if financement['plafond_prise_en_charge']:
                 print('  Plafond financement:',
                       financement['plafond_prise_en_charge'], '€')
