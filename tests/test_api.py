@@ -109,12 +109,12 @@ async def test_simulate_endpoint_filter_eligible(client):
     resp = await client.post('/financement', body=body)
     assert resp.status == HTTPStatus.OK
     financements = json.loads(resp.body)['financements']
-    assert len(financements) == 12
+    assert len(financements) == 11
     # Filter eligible only
     resp = await client.post('/financement?eligible=true', body=body)
     assert resp.status == HTTPStatus.OK
     financements = json.loads(resp.body)['financements']
-    assert len(financements) == 4
+    assert len(financements) == 3
     for financement in financements:
         assert financement['eligible'] is True
     # Filter non eligible only
@@ -141,7 +141,7 @@ async def test_simulate_endpoint_filter_tags(client):
     resp = await client.post('/financement', body=body)
     assert resp.status == HTTPStatus.OK
     financements = json.loads(resp.body)['financements']
-    assert len(financements) == 12
+    assert len(financements) == 11
     # Filter CPF only
     resp = await client.post('/financement?tags=CPF', body=body)
     assert resp.status == HTTPStatus.OK
@@ -166,13 +166,13 @@ async def test_simulate_endpoint_mix_filters(client):
     resp = await client.post('/financement', body=body)
     assert resp.status == HTTPStatus.OK
     financements = json.loads(resp.body)['financements']
-    assert len(financements) == 12
+    assert len(financements) == 11
     # Filter CPF only
     resp = await client.post('/financement?tags=hors%20temps%20de%20travail'
                              '&eligible=1', body=body)
     assert resp.status == HTTPStatus.OK
     financements = json.loads(resp.body)['financements']
-    assert len(financements) == 2
+    assert len(financements) == 1
 
 
 async def test_simulate_hors_temps_de_travail(client):
@@ -190,13 +190,13 @@ async def test_simulate_hors_temps_de_travail(client):
     resp = await client.post('/financement', body=body)
     assert resp.status == HTTPStatus.OK
     financements = json.loads(resp.body)['financements']
-    assert len(financements) == 12
+    assert len(financements) == 11
     # Filter eligible only
     resp = await client.post('/financement?tags=hors%20temps%20de%20travail'
                              '&eligible=1', body=body)
     assert resp.status == HTTPStatus.OK
     financements = json.loads(resp.body)['financements']
-    assert len(financements) == 2
+    assert len(financements) == 1
 
 
 async def test_simulate_endpoint_with_wrong_method(client):

@@ -166,7 +166,3 @@ Scénario: Cas nominal d'une période de professionnalisation CDI
     Alors l'organisme à contacter est «Uniformation»
     Et le plafond de prise en charge vaut 1200
     Et la rémunération vaut 1400
-    Quand je sélectionne le financement «Période de professionnalisation hors temps de travail»
-    Alors l'organisme à contacter est «Uniformation»
-    Et le plafond de prise en charge vaut 1200
-    Et la rémunération vaut 1400

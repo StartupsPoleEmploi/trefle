@@ -48,10 +48,6 @@ Scénario: Cas nominal d'une période de professionnalisation CDI
     Alors l'organisme à contacter est «Opcalia»
     Et le plafond de prise en charge vaut 6000
     Et la rémunération vaut 1400
-    Quand je sélectionne le financement «Période de professionnalisation hors temps de travail»
-    Alors l'organisme à contacter est «Opcalia»
-    Et le plafond de prise en charge vaut 6000
-    Et la rémunération vaut 1400
 
 
 Scénario: période de professionnalisation CDI en CléA
@@ -68,10 +64,6 @@ Scénario: période de professionnalisation CDI en CléA
     Alors l'organisme à contacter est «Opcalia»
     Et le montant de prise en charge vaut 500
     Et la rémunération vaut 1400
-    Quand je sélectionne le financement «Période de professionnalisation hors temps de travail»
-    Alors l'organisme à contacter est «Opcalia»
-    Et le montant de prise en charge vaut 500
-    Et la rémunération vaut 1400
 
 
 Scénario: période de professionnalisation CDI VAE
@@ -85,10 +77,6 @@ Scénario: période de professionnalisation CDI VAE
     Et c'est une formation VAE
     Quand je demande un calcul de financement
     Quand je sélectionne le financement «Période de professionnalisation sur son temps de travail»
-    Alors l'organisme à contacter est «Opcalia»
-    Et le plafond de prise en charge vaut 450
-    Et la rémunération vaut 1400
-    Quand je sélectionne le financement «Période de professionnalisation hors temps de travail»
     Alors l'organisme à contacter est «Opcalia»
     Et le plafond de prise en charge vaut 450
     Et la rémunération vaut 1400

@@ -49,4 +49,3 @@ Si c'est un bénéficiaire de droit privé
         Si le type de contrat du bénéficiaire est «CDI»
         Ou le type de contrat du bénéficiaire est «CDD», et c'est une entreprise d'insertion par l'activité économique
             Alors définir le financement «Période de professionnalisation sur son temps de travail» comme éligible
-            Et définir le financement «Période de professionnalisation hors temps de travail» comme éligible
