@@ -1,4 +1,39 @@
 <rule>
+  <pre ref=pre></pre>
+  <style scoped>
+    pre {
+      padding: 5px;
+      border: solid 1px #68c3a3;
+      background-color: #eee;
+      max-width: 1200px;
+      font-family: 'mono';
+    }
+    pre strong {
+      font-family: 'mono';
+      font-weight: bold;
+    }
+    pre .comment {
+      font-family: 'mono';
+      font-style: italic;
+      color: #666;
+    }
+    pre .keyword {
+      font-family: 'mono';
+      font-weight: 600;
+    }
+    pre .constant {
+      font-family: 'mono';
+      font-weight: 600;
+      text-decoration: underline dotted;
+      cursor: help;
+    }
+    pre .string,
+    pre .number {
+      font-family: 'mono';
+      font-weight: 600;
+    }
+  </style>
+  <script>
   raw = opts.content.replace(/Si /g, '<strong>Si </strong>')
                     .replace(/Soit /g, '<strong>Soit </strong>')
                     .replace(/Quand /g, '<strong>Quand </strong>')
@@ -21,5 +56,8 @@
       raw = raw.replace(new RegExp(`(${schema.label})`, 'g'), replace)
     }
   }
-  this.root.innerHTML = raw
+  this.on('mount', () => {
+    this.refs.pre.innerHTML = raw
+  })
+  </script>
 </rule>

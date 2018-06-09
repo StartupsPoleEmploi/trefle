@@ -1,7 +1,7 @@
 <rules>
   <div each={ raw, name in items }>
-    <h3>{name}</h3>
-    <pre data-is=rule content={ raw }/>
+    <h3>{ name }</h3>
+    <rule content={ raw }></rule>
   </div>
 
   <script>
@@ -9,7 +9,7 @@
 
     this.on('mount', () => this.load())
 
-    load () {
+    this.load = () => {
       fetch('/explore/rules')
       .then((response) => response.json())
       .then((data) => {
