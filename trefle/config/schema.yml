@@ -287,6 +287,7 @@ formation:
   heures:
     type: integer
     format: int32
+    default: 0
     source: catalogue
     xpath: number(//nombre-heures-total/child::text())
     label: durée en heures de la formation
