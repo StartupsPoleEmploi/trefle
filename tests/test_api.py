@@ -45,6 +45,7 @@ async def test_simulate_endpoint(client):
     financements = json.loads(resp.body)['financements']
     assert len(financements)
     assert financements[0].get('eligible')
+    assert 'Version' in resp.headers
 
     validator = ResponseValidator(spec)
     request = MockRequest('http://localhost', 'post', '/financement')

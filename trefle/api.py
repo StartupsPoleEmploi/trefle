@@ -1,4 +1,5 @@
 import logging
+import pkg_resources
 from http import HTTPStatus
 
 from roll import Roll, HttpError
@@ -13,6 +14,14 @@ logger.addHandler(logging.StreamHandler())
 
 app = Roll()
 cors(app)
+
+
+VERSION = pkg_resources.get_distribution(__package__).version
+
+
+@app.listen('response')
+async def expose_version(request, response):
+    response.headers['Version'] = VERSION
 
 
 @app.listen('error')
