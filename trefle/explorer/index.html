@@ -10,6 +10,8 @@
 <script src="components/rule.tag.html" type="riot/tag"></script>
 <script src="components/rules.tag.html" type="riot/tag"></script>
 <script src="components/simulate.tag.html" type="riot/tag"></script>
+<script src="components/tools.tag.html" type="riot/tag"></script>
+<script src="components/idcc-search.tag.html" type="riot/tag"></script>
 
 <app>
   <header data-is=navbar class=header></header>
@@ -17,6 +19,7 @@
     <schema></schema>
     <rules></rules>
     <simulate></simulate>
+    <tools></tools>
   </section>
 </app>
 
@@ -25,6 +28,7 @@
   route('/schema', () => riot.mount('schema'))
   route('/rules', () => riot.mount('rules'))
   route('/simulate', () => riot.mount('simulate'))
+  route('/tools', () => riot.mount('tools'))
 
   let SCHEMA
 

@@ -1,0 +1,53 @@
+<idcc-search>
+  <section>
+    <h2>Recherche IDCC</h2>
+    <form onsubmit={ this.submit }>
+      <input type="text" ref="idcc" placeholder="Chercher une convention collective" name="idcc-autocomplete">
+      <input type="submit" value="Chercher">
+    </form>
+  </section>
+  <section class=results if={ this.refs.idcc.value }>
+    <h2>Conventions collectives</h2>
+    <ul if={ this.results.length }>
+      <li each={ this.results }>{ name } <strong>({ code })</strong></li>
+    </ul>
+    <p if={ this.refs.idcc.value && !this.results.length }>Aucune convention collective trouvée pour la recherche «{ this.refs.idcc.value }».</p>
+  </section>
+  <script>
+    this.results = []
+
+    this.search = (text) => {
+      fetch(`http://163.172.180.45/search/?q=${text}`)
+      .then((response) => response.json())
+      .then((data) => {
+        this.results = data.results
+        this.update()
+      })
+    }
+
+    this.submit = (e) => {
+      e.preventDefault();
+      const text = this.refs.idcc.value
+      if (!text) return
+      this.search(text)
+    }
+
+  </script>
+
+  <style scoped>
+    :scope {
+      display: grid;
+      grid-template-columns: 2fr 4fr;
+      grid-gap: 10px;
+      overflow: hidden;
+    }
+    h2 {
+      font-variant: small-caps;
+    }
+    .results {
+      padding: 10px;
+      border-left: 1px solid #ddd;
+    }
+  </style>
+
+</idcc-search>
