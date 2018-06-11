@@ -263,7 +263,12 @@ async def test_simulate_endpoint_with_unknown_idcc(client):
         'beneficiaire.entreprise.idcc': "Valeur d'IDCC inconnue: `1234567`"}
 
 
-async def test_simulate_endpoint_with_invalid_naf(client):
+@pytest.mark.parametrize('naf', [
+    '12345',
+    'A1234A',
+    '1234AA',
+])
+async def test_simulate_endpoint_with_invalid_naf(client, naf):
     resp = await client.get('/schema')
 
     resp = await client.post('/financement', body={
@@ -274,12 +279,34 @@ async def test_simulate_endpoint_with_invalid_naf(client):
         'formation.eligible_copanef': True,
         'formation.heures': 100,
         'beneficiaire.entreprise.commune': '2A004',
-        'beneficiaire.entreprise.naf': '12345',
+        'beneficiaire.entreprise.naf': naf,
         'beneficiaire.entreprise.idcc': '1486'})
     assert resp.status == HTTPStatus.UNPROCESSABLE_ENTITY
     assert json.loads(resp.body) == {
-        'beneficiaire.entreprise.naf': ("`12345` n'est pas au format "
-                                        "\\d{2}\\.?\\d{2}[a-zA-Z]")}
+        'beneficiaire.entreprise.naf': (f"`{naf}` n'est pas au format "
+                                        "^\\d{2}\\.?\\d{2}[a-zA-Z]$")}
+
+
+@pytest.mark.parametrize('insee', [
+    '123456',
+    'A12345',
+])
+async def test_simulate_endpoint_with_invalid_insee(client, insee):
+    resp = await client.get('/schema')
+
+    resp = await client.post('/financement', body={
+        'beneficiaire.solde_cpf': 10,
+        'beneficiaire.remuneration': 1400,
+        'beneficiaire.droit_prive': True,
+        'beneficiaire.contrat': 'cdi',
+        'formation.eligible_copanef': True,
+        'formation.heures': 100,
+        'beneficiaire.entreprise.commune': insee,
+        'beneficiaire.entreprise.idcc': 2706})
+    assert resp.status == HTTPStatus.UNPROCESSABLE_ENTITY
+    assert json.loads(resp.body) == {
+        'beneficiaire.entreprise.commune': (f"`{insee}` n'est pas au format "
+                                            "^(2[AB]|[0-9]{2})[0-9]{3}$")}
 
 
 async def test_simulate_endpoint_with_unknown_departement(client):
