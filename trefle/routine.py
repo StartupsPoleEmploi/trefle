@@ -170,12 +170,18 @@ def extrapolate_formation_context(context):
         context['formation.objectif_general_formation'] in [6, 7])
 
     # Compute durations.
-    context['formation.mois'] = diff_month(context['formation.debut'],
-                                           context['formation.fin'])
-    semaines = diff_week(context['formation.debut'], context['formation.fin'])
+    if 'formation.debut' in context and 'formation.fin' in context:
+        mois = diff_month(context['formation.debut'], context['formation.fin'])
+        semaines = diff_week(context['formation.debut'],
+                             context['formation.fin'])
+        duree_hebdo = round(context['formation.heures'] / semaines)
+    else:
+        mois = SCHEMA['formation.mois']['default']
+        semaines = SCHEMA['formation.semaines']['default']
+        duree_hebdo = SCHEMA['formation.duree_hebdomadaire']['default']
     context['formation.semaines'] = semaines
-    context['formation.duree_hebdomadaire'] = round(
-        context['formation.heures'] / semaines)
+    context['formation.mois'] = mois
+    context['formation.duree_hebdomadaire'] = duree_hebdo
 
 
 def financement_to_organisme(context, financement):
