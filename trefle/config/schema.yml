@@ -110,7 +110,7 @@ beneficiaire:
   remuneration:
     description: Rémunération actuelle en euros
     type: integer
-    format: int32
+    format: remuneration
     public: true
     required: true
     label: rémunération du bénéficiaire

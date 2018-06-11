@@ -45,8 +45,8 @@ def test_validate_bad_integer(patch_schema):
     with pytest.raises(ValueError) as err:
         validate(data)
     assert err.value.args[0] == {
-        'beneficiaire.age': "`foo` n'est pas de type integer",
-        'beneficiaire.solde_cpf': "`blah` n'est pas de type integer"
+        'beneficiaire.age': "`foo` n'est pas un nombre",
+        'beneficiaire.solde_cpf': "`blah` n'est pas un nombre"
     }
 
 
@@ -79,7 +79,7 @@ def test_validate_bad_bool(patch_schema):
     with pytest.raises(ValueError) as err:
         validate(data)
     assert err.value.args[0] == {
-        'beneficiaire.droit_prive': "`yep` n'est pas de type boolean"
+        'beneficiaire.droit_prive': "`yep` n'est pas de type booléen"
     }
 
 
@@ -147,6 +147,9 @@ def test_validate_idcc(patch_schema, input, output):
     ('6202A', '6202A'),
     ('6202a', '6202A'),
     ('62.02A', '6202A'),
+    ('APE 62.02A', '6202A'),
+    ('NAF 62.02A', '6202A'),
+    ('8810 A', '8810A'),
 ])
 def test_validate_naf(patch_schema, input, output):
     patch_schema({
@@ -191,3 +194,23 @@ def test_validate_date(patch_schema, input, output):
     else:
         validate(data)
         assert data['debut'] == output
+
+
+@pytest.mark.parametrize('input,expected', [
+    ['1600', 1600],
+    ['1600€', 1600],
+    ['1600 €', 1600],
+    ['1600,0 €', 1600],
+    ['1600,50', 1600.5],
+    ['blah', False],
+])
+def test_format_remuneration(patch_schema, input, expected):
+    patch_schema({
+        'remuneration': {'type': 'string', 'format': 'remuneration'}})
+    data = {'remuneration': input}
+    if not expected:
+        with pytest.raises(ValueError):
+            validate(data)
+    else:
+        validate(data)
+        assert data['remuneration'] == expected

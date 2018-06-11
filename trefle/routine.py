@@ -9,7 +9,7 @@ from .config import (CONSTANTS, DEP_TO_REG, ELIGIBILITE, ELIGIBILITE_URL,
                      SCHEMA)
 from .exceptions import UpstreamError
 from .rules import Rule
-from .validators import to_naf, validate_type, validate_format
+from .validators import format_naf, validate_format
 
 
 # TODO: move to utils.py?
@@ -106,7 +106,7 @@ async def retrieve_codes_naf(ids):
     url = f'{ELIGIBILITE_URL}{params}'
     response = await http_get(url)
     tree = etree.fromstring(response.content)
-    return set(to_naf(c) for c in tree.xpath('//branche/child::text()'))
+    return set(format_naf(c) for c in tree.xpath('//branche/child::text()'))
 
 
 async def populate_formation_from_bytes(context, content):
@@ -122,7 +122,6 @@ async def populate_formation_from_bytes(context, content):
         if schema.get('source') == 'catalogue' and schema.get('xpath'):
             value = root.xpath(schema['xpath'])
             try:
-                value = validate_type(schema, value)
                 value = validate_format(schema, value)
             except ValueError:
                 if 'default' in schema:

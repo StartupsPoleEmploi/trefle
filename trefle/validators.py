@@ -5,29 +5,50 @@ from .rules import SCHEMA
 from .config import IDCC, ORGANISMES, fold_name
 
 validators = []
+formatters = {}
 
 TRUE_VALUES = ('oui', 'yes', 'true', 'on', '1')
 FALSE_VALUES = ('non', 'no', 'false', 'off', '0')
 
 
-def to_bool(value):
+def formatter(*formats):
+    def wrapper(func):
+        formatters.update({f: func for f in formats})
+        return func
+    return wrapper
+
+
+def validator(func):
+    validators.append(func)
+    return func
+
+
+@formatter('boolean')
+def format_boolean(value):
     value = str(value).lower()
     if value in TRUE_VALUES:
         return True
     if value in FALSE_VALUES:
         return False
-    raise ValueError
+    raise ValueError(f"`{value}` n'est pas de type booléen")
 
 
-def to_int(value):
+@formatter('integer')
+def format_integer(value):
     """An int converter that allows to cast a float like string.
 
-    int('6.0') will raise a ValueError.
+    int('6.0') would raise a ValueError.
     """
-    return int(float(value))
+    try:
+        return int(float(value))
+    except ValueError:
+        # French message
+        raise ValueError(f"`{value}` n'est pas un nombre")
 
 
-def to_idcc(value):
+@formatter('idcc')
+def format_idcc(value):
+    value = str(value)
     while value and value[0] == '0':
         value = value[1:]
     if value not in IDCC:
@@ -35,22 +56,27 @@ def to_idcc(value):
     return value
 
 
-def to_organisme(value):
+@formatter('opca', 'opacif')
+def format_organisme(value):
     folded = fold_name(value)
     if folded not in ORGANISMES:
         raise ValueError(f"Organisme inconnu: `{value}`")
     return ORGANISMES[folded]['nom']
 
 
-def to_naf(value):
-    return value.replace('.', '').upper()
+@formatter('naf')
+def format_naf(value):
+    value = value.replace('.', '').upper().replace(' ', '')
+    return value.replace('NAF', '').replace('APE', '').strip()
 
 
-def to_domaine_formacode(value):
+@formatter('domaine_formacode')
+def format_domaine_formacode(value):
     return int(str(value)[:3])
 
 
-def to_date(value):
+@formatter('date')
+def format_date(value):
     # LHEO date is quite a mess, let's try to do our best.
     with suppress(ValueError):
         return datetime.strptime(value[:8], '%Y%m%d')
@@ -64,26 +90,12 @@ def to_date(value):
     return datetime.strptime(value[:4], '%Y')
 
 
-TYPES = {
-    'boolean': to_bool,
-    'number': float,
-    'integer': to_int,
-    'string': str,
-}
-
-FORMATS = {
-    'idcc': to_idcc,
-    'naf': to_naf,
-    'opca': to_organisme,
-    'opacif': to_organisme,
-    'domaine_formacode': to_domaine_formacode,
-    'date': to_date,
-}
-
-
-def validator(func):
-    validators.append(func)
-    return func
+@formatter('remuneration')
+def format_remuneration(value):
+    value = str(value).replace(',', '.')  # French uses "," as delimiter.
+    value = value.replace('€', '')
+    value = value.strip()
+    return float(value)
 
 
 def validate(data):
@@ -116,30 +128,20 @@ def validate_required(schema, value):
 
 
 @validator
-def validate_type(schema, value):
+def validate_format(schema, value):
     if value is not None:
         type_ = schema['type']
+        format_ = schema.get('format')
         if type_ == 'array':
-            return [validate_type(schema['items'], v) for v in value]
-        func = TYPES.get(type_)
+            return [validate_format(schema['items'], v) for v in value]
+        # If there is formatter, it has precedence, and should take care of the
+        # type too (so it can deal with cleaning the data before).
+        func = formatters.get(format_, formatters.get(type_))
         if func:
             try:
                 value = func(value)
-            except (ValueError, TypeError):
+            except TypeError:
                 raise ValueError(f"`{value}` n'est pas de type {type_}")
-    return value
-
-
-@validator
-def validate_format(schema, value):
-    if value is not None:
-        format_ = schema.get('format')
-        type_ = schema['type']
-        if type_ == 'array':
-            return [validate_format(schema['items'], v) for v in value]
-        func = FORMATS.get(format_)
-        if func:
-            value = func(value)  # May raise a ValueError
     return value
 
 

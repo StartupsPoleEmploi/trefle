@@ -382,3 +382,16 @@ async def test_simulate_endpoint_with_invalid_formation_id(client, mock_get):
     assert resp.status == HTTPStatus.UNPROCESSABLE_ENTITY
     assert json.loads(resp.body) == {
         'error': 'Error with id `1234`: `No formation found`'}
+
+
+async def test_remuneration_parsing_should_be_liberal(client):
+    resp = await client.post('/financement', body={
+        'beneficiaire.solde_cpf': 10,
+        'beneficiaire.remuneration': '1600,0 €',
+        'beneficiaire.droit_prive': True,
+        'beneficiaire.contrat': 'cdi',
+        'formation.eligible_copanef': True,
+        'formation.heures': 100,
+        'beneficiaire.entreprise.commune': '12345',
+        'beneficiaire.entreprise.idcc': 2706})
+    assert resp.status == HTTPStatus.OK
