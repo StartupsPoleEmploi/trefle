@@ -1,0 +1,24 @@
+<glossary>
+  <dl each={ props, name in this.items }>
+    <dt>{name}</dt>
+    <dd>{ props.description || props }</dd>
+    <dd if={props.ressources}>
+      <strong>Ressources externes</strong>
+      <ul>
+        <li each={url in props.ressources}><a href="{ url }">{ url }</a></li>
+      </dd>
+    </dd>
+  </dl>
+
+  <script>
+    this.items = []
+    fetch('/explore/glossary')
+    .then((response) => response.json())
+    .then((data) => {
+      this.items = data
+      this.update()
+    })
+    this.mixin(View)
+  </script>
+
+</glossary>

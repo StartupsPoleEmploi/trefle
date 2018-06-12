@@ -151,3 +151,15 @@ input[type=submit]:hover,
   display: inline-block;
 }
 
+/* Glossary like list */
+dt {
+  font-variant: small-caps;
+}
+dt em {
+  font-variant: normal;
+}
+dl {
+  margin-top: 10px;
+  font-size: 1.1em;
+}
+

@@ -395,3 +395,9 @@ async def test_remuneration_parsing_should_be_liberal(client):
         'beneficiaire.entreprise.commune': '12345',
         'beneficiaire.entreprise.idcc': 2706})
     assert resp.status == HTTPStatus.OK
+
+
+async def test_glossary(client):
+    resp = await client.get('/explore/glossary')
+    assert resp.status == HTTPStatus.OK
+    assert 'OPCA' in json.loads(resp.body)

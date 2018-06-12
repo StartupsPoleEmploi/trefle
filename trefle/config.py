@@ -15,6 +15,7 @@ ORGANISMES = {}
 ROOT = Path(__file__).parent / 'config'
 IDCC = {}
 RAW_RULES = {}
+GLOSSARY = {}
 
 INTERCARIF_URL = 'https://labonneformation.pole-emploi.fr/ws_intercarif'
 ELIGIBILITE_URL = 'http://www.intercariforef.org/serviceweb2/eligibilite/?filtre=branche&'
@@ -118,4 +119,6 @@ def init():
             ORGANISMES[fold_name(name)] = organisme
     with (ROOT / 'idcc.yml').open() as f:
         IDCC.update(yaml.safe_load(f.read()))
+    with (ROOT / 'glossaire.yml').open() as f:
+        GLOSSARY.update(yaml.safe_load(f.read()))
     print('Done initializing config')

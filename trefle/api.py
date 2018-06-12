@@ -5,7 +5,7 @@ from http import HTTPStatus
 from roll import HttpError, Roll
 from roll.extensions import cors
 
-from .config import RAW_RULES, SCHEMA
+from .config import RAW_RULES, SCHEMA, GLOSSARY
 from .core import simulate
 from .debugging import data_from_lbf_url, make_feature
 from .openapis import OPENAPI
@@ -74,6 +74,11 @@ async def explore_schema(request, response):
 @app.route('/explore/rules')
 async def explore_rules(request, response):
     response.json = RAW_RULES
+
+
+@app.route('/explore/glossary')
+async def explore_glossary(request, response):
+    response.json = GLOSSARY
 
 
 @app.route('/explore/decode-lbf-url')

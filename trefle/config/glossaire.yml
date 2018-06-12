@@ -1,5 +1,5 @@
 APE:
-  description: "activité principale exercée". Toute entreprise et chacun de ses établissements se voit attribuer par l'Insee, lors de son inscription au répertoire SIRENE, un code caractérisant son activité principale par référence à la nomenclature d'activités française (NAF rév. 2). Plus précisément, on distingue le code APEN pour l'entreprise et le code APET pour les établissements. Voir NAF.
+  description: activité principale exercée. Toute entreprise et chacun de ses établissements se voit attribuer par l'Insee, lors de son inscription au répertoire SIRENE, un code caractérisant son activité principale par référence à la nomenclature d'activités française (NAF rév. 2). Plus précisément, on distingue le code APEN pour l'entreprise et le code APET pour les établissements. Voir NAF.
   ressources:
     - https://www.insee.fr/fr/metadonnees/definition/c1507
     - http://site2.fpspp.org/FPSPP9/
@@ -18,7 +18,7 @@ COPAREF: Conseils paritaires interprofessionnels régionaux pour l’emploi et l
 CPNE: Commissions paritaires nationales de l’emploi; gèrent les formations de la branche (accessibles aux salariés de la branche)
 ESA: Enquête Sectorielle Annuelle
 IDCC:
-  description: identifiant de convention collective; Le code IDCC numéro séquentiel croissant (exemple : 787) est la clé d’accès privilégiée à chaque convention ; il s’agit d’un code unique attribué par le ministère chargé du travail  à chaque convention. L’exemple 787 concerne la convention relative aux cabinet d’experts-comptables et commissaires aux comptes.
+  description: "identifiant de convention collective; Le code IDCC numéro séquentiel croissant (exemple : 787) est la clé d’accès privilégiée à chaque convention ; il s’agit d’un code unique attribué par le ministère chargé du travail  à chaque convention. L’exemple 787 concerne la convention relative aux cabinet d’experts-comptables et commissaires aux comptes."
   ressources:
     - https://www.legifrance.gouv.fr/Aide/Utilisation/Conventions-collectives-recherche-simple
     - https://www.elections-professionnelles.travail.gouv.fr/rechercheIdcc
@@ -41,4 +41,7 @@ OPCA:
     - https://www.arftlv.org/TELECHARGEMENT/2553/_liste_opca__pdf_.pdf
     - https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000024909327&categorieLien=id
 TOEIC: Test of English for International Communication
-VAE: validation des aquis de l'expérience
+VAE:
+  description: validation des acquis de l'expérience
+  ressources:
+    - http://www.vae.gouv.fr/

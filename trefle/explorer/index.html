@@ -7,6 +7,7 @@
 <script type="text/javascript" src="mixin/view.mixin.js"></script>
 <script src="components/navbar.tag.html" type="riot/tag"></script>
 <script src="components/schema.tag.html" type="riot/tag"></script>
+<script src="components/glossary.tag.html" type="riot/tag"></script>
 <script src="components/rule.tag.html" type="riot/tag"></script>
 <script src="components/rules.tag.html" type="riot/tag"></script>
 <script src="components/simulate.tag.html" type="riot/tag"></script>
@@ -20,6 +21,7 @@
     <rules></rules>
     <simulate></simulate>
     <tools></tools>
+    <glossary></glossary>
   </section>
 </app>
 
@@ -29,6 +31,7 @@
   route('/rules', () => riot.mount('rules'))
   route('/simulate', () => riot.mount('simulate'))
   route('/tools', () => riot.mount('tools'))
+  route('/glossary', () => riot.mount('glossary'))
 
   let SCHEMA
 
