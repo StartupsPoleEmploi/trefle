@@ -45,31 +45,26 @@ async def cli_simulate(*args, data: json.loads={}, url=None, trace=False,
         data = data_from_lbf_url(url)
     if args:
         data.update(parse_args(args))
-    if 'formation.numero' in data:
-        # Process formation before, so we can show data before validate, to
-        # help debuggin in case it fails.
-        add_constants(data)
-        print(f'Processing formation {data["formation.numero"]}')
-        await populate_formation(data)
     if trace:
         for rule in RULES:
             trace_rule(rule)
-    if show_data:
-        print('-' * 105)
-        tpl = '| {:<50}| {:<50}|'
-        print(tpl.format('key', 'value'))
-        print('| {0}| {0}|'.format('-'*50))
-        for key, value in data.items():
-            if key.startswith('constante'):
-                continue
-            print(tpl.format(key, str(value)))
-        print('-' * 105)
-    if 'formation.numero' in data:
-        # We already processed the formation, prevent to process it twice.
-        del data['formation.numero']
-    start = time.perf_counter()
-    financements = await simulate(data)
-    duration = (time.perf_counter() - start)
+    try:
+        start = time.perf_counter()
+        financements = await simulate(data)
+        duration = (time.perf_counter() - start)
+    except Exception:
+        raise
+    finally:
+        if show_data:
+            print('-' * 105)
+            tpl = '| {:<50}| {:<50}|'
+            print(tpl.format('key', 'value'))
+            print('| {0}| {0}|'.format('-'*50))
+            for key, value in data.items():
+                if key.startswith(('constante', 'financements')):
+                    continue
+                print(tpl.format(key, str(value)))
+            print('-' * 105)
     print('*' * 105)
     eligibles = [f for f in financements if f['eligible']]
     if eligibles:

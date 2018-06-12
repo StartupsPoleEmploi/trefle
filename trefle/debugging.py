@@ -87,12 +87,6 @@ def data_from_lbf_url(url):
 
     data = {keymap[key]: value.decode() for key, value in args.items()
             if key in keymap}
-    try:
-        validate(data)
-    except Exception:
-        print('Error validating data.')
-        print(data)
-        raise
     return data
 
 

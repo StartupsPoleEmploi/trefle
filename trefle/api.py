@@ -83,7 +83,4 @@ async def explore_glossary(request, response):
 
 @app.route('/explore/decode-lbf-url')
 async def decode_lbf_url(request, response):
-    try:
-        response.json = data_from_lbf_url(request.query.get('url'))
-    except ValueError as err:
-        raise HttpError(HTTPStatus.UNPROCESSABLE_ENTITY, err.args[0])
+    response.json = data_from_lbf_url(request.query.get('url'))
