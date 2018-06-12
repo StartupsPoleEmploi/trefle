@@ -51,7 +51,8 @@
         let replace = `<span class='keyword tooltip'>$1<span class=tooltip-content>`
         replace += `<strong>Description</strong> ${schema.description || schema.label}<br>`
         if (schema.value) replace += `<strong>Valeur</strong> ${schema.value}<br>`
-        if (schema.source) replace += `<strong>Source</strong> ${schema.source}`
+        if (schema.source) replace += `<strong>Source</strong> ${schema.source}<br>`
+        if (schema.default !== undefined) replace += `<strong>Par défaut</strong> ${schema.default}`
         replace += `</span></span>`
         this.raw = this.raw.replace(new RegExp(`(${schema.label})`, 'g'), replace)
       }
