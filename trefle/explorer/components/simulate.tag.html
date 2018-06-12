@@ -6,6 +6,11 @@
       <input type="submit" value="Simuler">
     </form>
   </section>
+  <section if={ !this.financements.length }>
+    <ul>
+      <li each={ message, key in this.errors }><strong>{ key }</strong> { message }</li>
+    </ul>
+  </section>
   <section class=results if={ this.financements.length }>
     <h2>Financements</h2>
     <ul if={ this.financements.length }>
@@ -30,12 +35,23 @@
   <script>
     this.financements = []
     this.context = {}
+    this.errors = {}
     this.mixin(View)
 
-    this.decodeLBFURL = (url, then) => {
+    this.dataErrors = (data) => {
+        this.errors = data
+        this.update()
+    }
+
+    this.handleResponse = (response, callback) => {
+        const promise = response.json()
+        if (response.ok) promise.then(callback)
+        else promise.then(this.dataErrors)
+    }
+
+    this.decodeLBFURL = (url, callback) => {
       fetch(`/explore/decode-lbf-url?url=${encodeURIComponent(url)}`)
-      .then((response) => response.json())
-      .then(then)
+      .then((response) => this.handleResponse(response, callback))
     }
 
     this.simulate = (data) => {
@@ -43,13 +59,12 @@
         method: 'post',
         body: JSON.stringify(data)
       })
-      .then((response) => response.json())
-      .then((data) => {
+      .then((response) => this.handleResponse(response, (data) => {
         this.financements = data.financements
         this.context = data.context
         this.scenario = data.scenario
         this.update()
-      })
+      }))
     }
 
     this.submit = (e) => {
