@@ -31,8 +31,8 @@ async def json_error_response(request, response, error):
         body = {'error': body}
     response.json = body
     if error.status != HTTPStatus.NOT_FOUND:
-        logger.debug(f'HttpError: status={error.status}, '
-                     f'message={error.message}, request={request.body}')
+        logger.debug(f'HttpError: status={error.status}, version={VERSION}, '
+                     f'message={response.body}, request={request.body}')
 
 
 @app.route('/financement', methods=['POST'])
