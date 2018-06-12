@@ -333,10 +333,6 @@ formation:
     label: prix total de la formation
     description: prix total TTC de la formation
     gender: masculine
-  prix_horaire_ttc:
-    type: integer
-    format: float
-    label: prix horaire TTC de la formation
   prix_horaire_ht:
     type: integer
     format: float
