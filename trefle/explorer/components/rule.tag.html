@@ -44,7 +44,7 @@
                       .replace(/, et /g, '<strong>, et </strong>')
                       .replace(/Alors /g, '<strong>Alors </strong>')
                       .replace(/(#.+)/g, "<em class=comment>$1</em>")
-                      .replace(/( \d+)/g, "<span class=number>$1</span>")
+                      .replace(/( [\d\.]+)/g, "<span class=number>$1</span>")
                       .replace(/(«.+»)/g, "<span class=string>$1</span>")
     for (const [key, schema] of Object.entries(SCHEMA)) {
       if (schema.label) {
