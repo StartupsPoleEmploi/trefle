@@ -2,4 +2,4 @@ ssh_keys_urls:
   ybon: http://nuage.yohanboniface.me/id_rsa.pub
 version: master
 trefle:
-  version: 0.1.2
+  version: 0.1.3
