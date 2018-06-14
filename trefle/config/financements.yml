@@ -55,8 +55,8 @@ CIF:
     hors temps de travail:
       nom: CIF intérim hors temps de travail
   intermittent:
-    sur son temps de travail:
-      nom: CIF intermittents sur son temps de travail
+    hors temps de travail:
+      nom: CIF intermittents hors temps de travail
       demarches: |-
         Contacter les conseillers Afdas pour vous informer sur les différents dispositifs de formation et vous accompagner dans l’élaboration de votre dossier :
         Si vous résidez en région Ile-de-France ou Centre, appelez le 01 44 78 38 39.
@@ -70,8 +70,6 @@ CIF:
         - Pour les techniciens du spectacle vivant ou réalisateurs : 88 jours de travail ou cachets répartis sur les 24 derniers mois ou 44 jours ou cachets répartis sur les 12 derniers mois
         - Pour les techniciens de l’audiovisuel : 130 jours de travail ou cachets répartis sur les 24 derniers mois ou 65 jours de travail ou cachets répartis sur les 12 derniers mois.
         Délai de carence en mois = durée en heures du dernier CIF /12.
-    hors temps de travail:
-      nom: CIF intermittents hors temps de travail
 période de professionnalisation:
   eligible: false
   description: Le financement de cette formation peut être réalisé dans le cadre d'une période de professionnalisation intégrée au plan de formation de votre entreprise.

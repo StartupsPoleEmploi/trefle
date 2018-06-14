@@ -9,20 +9,19 @@ Si le nom de l'organisme est «Afdas»
 
     Si le financement est de type «CIF»
 
-        Si le financement est de type «sur son temps de travail»
-            Alors la rémunération possible est égale à la rémunération du bénéficiaire
+        Alors la rémunération possible est égale à la rémunération du bénéficiaire
 
-            Si la rémunération du bénéficiaire est supérieure à deux fois le SMIC
-                Alors la rémunération possible est égale à 80% de la rémunération du bénéficiaire
+        Si la rémunération du bénéficiaire est supérieure à deux fois le SMIC
+            Alors la rémunération possible est égale à 80% de la rémunération du bénéficiaire
 
-                # TODO: how to properly make this dynamic with SMIC value?
-                # 3746 = deux fois le smic / 0.8
-                Si la rémunération du bénéficiaire est inférieure à 3746:
-                    Alors la rémunération possible est égale à deux fois le SMIC
+            # TODO: how to properly make this dynamic with SMIC value?
+            # 3746 = deux fois le smic / 0.8
+            Si la rémunération du bénéficiaire est inférieure à 3746:
+                Alors la rémunération possible est égale à deux fois le SMIC
 
-                # 7492 = quatre fois le smic / 0.8
-                Si la rémunération du bénéficiaire est supérieur à 7492
-                    Alors la rémunération possible est égale à quatre fois le SMIC
+            # 7492 = quatre fois le smic / 0.8
+            Si la rémunération du bénéficiaire est supérieur à 7492
+                Alors la rémunération possible est égale à quatre fois le SMIC
 
         Si le type de contrat du bénéficiaire est «CDI»
             # HT

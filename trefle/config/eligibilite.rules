@@ -41,8 +41,7 @@ Si c'est un bénéficiaire de droit privé
         Si le type de contrat du bénéficiaire est «intermittent»
         Et l'expérience professionnelle du bénéficiaire dans les cinq dernières années est supérieure ou égale à 24
         Et la durée en heures de la formation est supérieure ou égale à 105
-            Alors définir le financement «CIF intermittents sur son temps de travail» comme éligible
-            Et définir le financement «CIF intermittents hors temps de travail» comme éligible
+            Alors définir le financement «CIF intermittents hors temps de travail» comme éligible
 
     Si la durée en heures de la formation est supérieure ou égale à 70, et la durée en mois de la formation est inférieure ou égale à 12
     Ou c'est une formation VAE, ou c'est une formation CléA

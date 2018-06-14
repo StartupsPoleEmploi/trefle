@@ -14,14 +14,10 @@ Scénario: cas nominal d'un intermittent
     Et la durée en heures de la formation vaut 500
     Et la durée en mois de la formation vaut 10
     Quand je demande un calcul de financement
-    Et je sélectionne le financement «CIF intermittents sur son temps de travail»
+    Et je sélectionne le financement «CIF intermittents hors temps de travail»
     Alors l'organisme à contacter est «Afdas»
     Et le montant de prise en charge vaut 7500
     Et la rémunération vaut 1400
-    Quand je sélectionne le financement «CIF intermittents hors temps de travail»
-    Alors l'organisme à contacter est «Afdas»
-    Et le montant de prise en charge vaut 7500
-    Et la rémunération vaut 0
 
 Scénario: plafond prix horaire d'une formation VAE
     Soit un bénéficiaire et une formation
