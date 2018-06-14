@@ -281,6 +281,7 @@ formation:
     format: int32
     source: catalogue
     xpath: number(//certification/code-CERTIFINFO/child::text())
+    default: null
     label: code CERTIFINFO de la formation
     gender: masculine
   code_rncp:
