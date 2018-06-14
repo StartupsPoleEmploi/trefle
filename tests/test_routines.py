@@ -40,6 +40,8 @@ async def test_populate_formation_from_bytes():
         assert context['formation.vae'] is False
         assert context['formation.clea'] is False
         assert context['formation.code_certifinfo'] == 80735
+        assert context['formation.code_rncp'] == 320
+        assert context['formation.rncp'] is True
 
 
 @pytest.mark.asyncio

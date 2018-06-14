@@ -283,6 +283,13 @@ formation:
     xpath: number(//certification/code-CERTIFINFO/child::text())
     label: code CERTIFINFO de la formation
     gender: masculine
+  code_rncp:
+    type: integer
+    format: int32
+    source: catalogue
+    xpath: number(//certification/code-RNCP/child::text())
+    label: code RNCP de la formation
+    gender: masculine
   heures:
     type: integer
     format: int32
@@ -419,6 +426,12 @@ formation:
     type: boolean
     source: catalogue
     label: formation CléA
+  rncp:
+    type: boolean
+    source: catalogue
+    xpath: boolean(//certification/code-RNCP/child::text())
+    label: formation RNCP
+    description: cette formation est inscrite au RNCP
   niveau_sortie:
     description: le niveau du diplôme de sortie (licence, master…)
     type: integer
