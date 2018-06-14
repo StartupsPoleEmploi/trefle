@@ -132,7 +132,7 @@ def ssh_keys():
     with sudo():
         for name, url in config.get('ssh_key_urls', {}).items():
             with urllib.request.urlopen(url) as response:
-                key = response.read().replace('\n', '')
+                key = response.read().decode().replace('\n', '')
             run('grep -q -r "{key}" .ssh/authorized_keys || echo "{key}" '
                 '| tee --append .ssh/authorized_keys'.format(key=key))
 
