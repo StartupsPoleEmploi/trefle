@@ -113,8 +113,8 @@ beneficiaire:
     description: Rémunération actuelle en euros
     type: integer
     format: remuneration
+    default: 0
     public: true
-    required: true
     label: rémunération du bénéficiaire
   age:
     description: âge du beneficiaire

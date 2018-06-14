@@ -91,3 +91,43 @@ Scénario: CIF et CPF
     Alors l'organisme à contacter est «Fongecif Auvergne Rhône Alpes»
     Et le plafond de prise en charge vaut 5764.5
     Et la rémunération vaut 0
+
+
+Scénario: le bénéficiaire n'a pas défini de rémunération
+    Soit un bénéficiaire et une formation
+    Et c'est un bénéficiaire de droit privé
+    Et le solde CPF du bénéficiaire vaut 150
+    Et le type de contrat du bénéficiaire vaut «CDI»
+    Et l'expérience professionnelle du bénéficiaire dans les cinq dernières années vaut 24
+    Et l'ancienneté du bénéficiaire dans son entreprise vaut 24
+    Et le code NAF de l'établissement du bénéficiaire vaut «7830Z»
+    Et l'IDCC de l'établissement du bénéficiaire vaut «2397»
+    Et la région de l'établissement du bénéficiaire vaut «Auvergne-Rhône-Alpes»
+    Et ce n'est pas une formation éligible COPANEF
+    Et les codes NAF CPNE éligibles vaut [7830Z,8299Z,4633Z,1089Z]
+    Et la liste des codes FORMACODE de la formation vaut [44028,42866,42056]
+    Et le niveau de sortie de la formation vaut 1
+    Et la durée en heures de la formation vaut 210
+    Et le code CERTIFINFO de la formation vaut 87647
+    Et la liste des domaines FORMACODE de la formation vaut [420,440,428]
+    Et les codes financeur de la formation vaut [5]
+    Et la durée en mois de la formation vaut 12
+    Et la durée en semaines de la formation vaut 52
+    Et la durée hebdomadaire de la formation vaut 35
+    Quand je demande un calcul de financement
+    Quand je sélectionne le financement «CPF sur son temps de travail»
+    Alors l'organisme à contacter est «AGEFOS PME Auvergne Rhône Alpes»
+    Et le plafond de prise en charge vaut 7500
+    Et la rémunération vaut 0
+    Quand je sélectionne le financement «CPF hors temps de travail»
+    Alors l'organisme à contacter est «AGEFOS PME Auvergne Rhône Alpes»
+    Et le plafond de prise en charge vaut 7500
+    Et la rémunération vaut 0
+    Quand je sélectionne le financement «CIF CDI sur son temps de travail»
+    Alors l'organisme à contacter est «Fongecif Auvergne Rhône Alpes»
+    Et le plafond de prise en charge vaut 5764.5
+    Et la rémunération vaut 0
+    Quand je sélectionne le financement «CIF CDI hors temps de travail»
+    Alors l'organisme à contacter est «Fongecif Auvergne Rhône Alpes»
+    Et le plafond de prise en charge vaut 5764.5
+    Et la rémunération vaut 0
