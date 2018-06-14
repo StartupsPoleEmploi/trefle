@@ -14,16 +14,14 @@
 <script src="components/tools.tag.html" type="riot/tag"></script>
 <script src="components/idcc-search.tag.html" type="riot/tag"></script>
 
-<app>
-  <header data-is=navbar class=header></header>
-  <section class=main>
-    <schema></schema>
-    <rules></rules>
-    <simulate></simulate>
-    <tools></tools>
-    <glossary></glossary>
-  </section>
-</app>
+<header data-is=navbar></header>
+<main>
+  <schema class=full></schema>
+  <glossary class=full></glossary>
+  <rules class=full></rules>
+  <simulate class=tools></simulate>
+  <tools></tools>
+</main>
 
 <script>
   riot.mount('navbar')

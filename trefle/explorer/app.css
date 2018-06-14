@@ -70,23 +70,14 @@
     font-style: italic;
 
 }
-html, body {
-  width: 100%;
-}
 html, body, a, p, div, li, dl {
   margin: 0;
   padding: 0;
   color: #222;
   font-family: 'sans';
-/*  font-size: 1.1em;
-  line-height: 1.4em;
-*/}
-.main {
-  max-width: 1280px;
-  margin: 0 auto;
-  display: grid;
-  /*grid-template-columns: 1fr 2fr 2fr;*/
-  grid-gap: 10px;
+}
+html, body {
+  width: 100%;
 }
 ul {
   padding: 0;
@@ -96,6 +87,18 @@ li {
 }
 a {
   text-decoration: none;
+}
+.full, .tools {
+  margin: 0 auto;
+  max-width: 1280px;
+  display: block;
+}
+.tools {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+}
+main {
+  padding: 10px;
 }
 
 
@@ -111,6 +114,7 @@ input[type=submit],
   padding: 0 10px;
   line-height: 3em;
   cursor: pointer;
+  color: #fff;
 }
 input[type=submit]:hover,
 .button:hover {

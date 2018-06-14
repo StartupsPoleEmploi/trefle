@@ -1,32 +1,30 @@
 <navbar>
   <h1><a href=".">☘</a></h1>
-  <section>
+  <nav>
     <a href="#schema">Schéma</a>
     <a href="#rules">Règles de gestion</a>
     <a href="#simulate">Simuler</a>
     <a href="#tools">Outils</a>
     <a href="#glossary">Glossaire</a>
-  </section>
+  </nav>
 
   <style scoped>
     :scope {
-      display: block;
-      padding: 2em;
-      grid-column: 1 / -1;
       display: grid;
-      grid-template-columns: 1fr 5fr;
-      background-color: #68c3a3;
+      grid-template-columns: 1fr 4fr;
+      padding: 2em;
+      border-bottom: 1px solid #eee;
     }
     h1 {
       display: inline-block;
       font-size: 3em;
       line-height: 1em;
     }
-    section a {
+    nav a {
       font-size: 1.4em;
       font-variant: small-caps;
     }
-    section a:hover {
+    nav a:hover {
       text-decoration: underline dotted;
     }
     a + a {

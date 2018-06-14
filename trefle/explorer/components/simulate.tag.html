@@ -6,14 +6,14 @@
       <input type="submit" value="Simuler">
     </form>
   </section>
-  <section if={ !this.financements.length }>
+  <section if={ Object.keys(this.errors).length } class=results>
     <ul>
       <li each={ message, key in this.errors }><strong>{ key }</strong> { message }</li>
     </ul>
   </section>
   <section class=results if={ this.financements.length }>
     <h2>Financements</h2>
-    <ul if={ this.financements.length }>
+    <ul>
       <li each={ this.financements }>
         <h4>{nom}</h4>
         <p><strong>Description</strong> {description}</p>
@@ -27,7 +27,7 @@
     </ul>
     <h2>Contexte</h2>
     <table>
-      <tr each={ props in this.context }><th>{ props.label }</th><td>{ props.value.toString() }</td></tr>
+      <tr each={ props in this.context }><th>{ props.label }</th><td>{ this.renderValue(props.value) }</td></tr>
     </table>
     <h2>Scénario de test</h2>
     <rule if={ this.scenario } content={ this.scenario }></rule>
@@ -74,15 +74,14 @@
       this.decodeLBFURL(url, this.simulate)
     }
 
+    this.renderValue = (value) => {
+      if (Array.isArray(value)) return value.join(', ')
+      return value
+    }
+
   </script>
 
   <style scoped>
-    :scope {
-      display: grid;
-      grid-template-columns: 2fr 4fr;
-      grid-gap: 10px;
-      overflow: hidden;
-    }
     h2 {
       font-variant: small-caps;
     }

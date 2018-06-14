@@ -7,6 +7,7 @@
       background-color: #eee;
       max-width: 1200px;
       font-family: 'mono';
+      white-space: pre-wrap;
     }
     pre strong {
       font-family: 'mono';
@@ -46,6 +47,7 @@
                       .replace(/(#.+)/g, "<em class=comment>$1</em>")
                       .replace(/( [\d\.]+)/g, "<span class=number>$1</span>")
                       .replace(/(«.+»)/g, "<span class=string>$1</span>")
+                      .replace(/,([^ ])/g, ", $1")
     for (const [key, schema] of Object.entries(SCHEMA)) {
       if (schema.label) {
         let replace = `<span class='tooltip'><span class='keyword'>$1</span><span class=tooltip-content>`
