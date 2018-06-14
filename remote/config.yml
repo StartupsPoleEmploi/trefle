@@ -1,6 +1,6 @@
 ssh_key_urls:
   ybon: http://nuage.yohanboniface.me/id_rsa.pub
   regisb: http://minutebutterfly.com/id_rsa.pub
-version: explorer
+version: master
 trefle:
   version: 0.1.3
