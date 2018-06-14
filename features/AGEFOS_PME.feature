@@ -151,7 +151,7 @@ Scénario: période de professionnalisation + CPF
     Et la régions éligibles COPAREF vaut [93]
     Et la liste des codes FORMACODE de la formation vaut [44028]
     Et la liste des domaines FORMACODE de la formation vaut [440]
-    Et la liste des codes CERTIFINFO de la formation vaut [30958]
+    Et le code CERTIFINFO de la formation vaut 30958
     Et la durée en heures de la formation vaut 805
     Et la liste des codes CPF de la formation vaut [18082,161236,157711]
     Et les codes NAF CPNE éligibles vaut [8810A,8559B,8891A,8810B,9609Z,8622A,8622C,8899A,8621Z,7830Z,8899B]

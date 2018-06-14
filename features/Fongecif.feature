@@ -374,7 +374,7 @@ Scénario: Formation de 12 mois
     Et la liste des codes FORMACODE de la formation vaut [31715,31715,31795]
     Et le niveau de sortie de la formation vaut 1
     Et la durée en heures de la formation vaut 1000
-    Et la liste des codes CERTIFINFO de la formation vaut [55824]
+    Et le code CERTIFINFO de la formation vaut 55824
     Et la liste des domaines FORMACODE de la formation vaut [317]
     Et c'est une formation CACES
     Et les codes financeur de la formation vaut [0,16,10,5]

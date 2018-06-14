@@ -19,7 +19,7 @@ Scénario: Formation CPF
     Et la régions éligibles COPAREF vaut [52]
     Et la liste des codes FORMACODE de la formation vaut [42752]
     Et la liste des domaines FORMACODE de la formation vaut [427]
-    Et la liste des codes CERTIFINFO de la formation vaut [83257]
+    Et le code CERTIFINFO de la formation vaut 83257
     Et la durée en heures de la formation vaut 2236
     Et les codes NAF CPNE éligibles vaut [9499Z,5610B,7990Z,5040Z,5621Z,5121Z,5520Z,9321Z,5110Z,9200Z,9329Z,9103Z,5629B]
     Et le niveau de sortie de la formation vaut 1

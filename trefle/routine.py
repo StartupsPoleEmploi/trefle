@@ -141,21 +141,20 @@ async def populate_formation_from_bytes(context, content):
 
 
 def extrapolate_formation_context(context):
-    # CERTIFINFO subsets
-    codes_certifinfo = context['formation.codes_certifinfo']
-    context['formation.toeic'] = bool(
-        set(context['constante.codes_certifinfo_toeic']) & codes_certifinfo)
-    context['formation.bulats'] = bool(
-        set(context['constante.codes_certifinfo_bulats']) & codes_certifinfo)
-    context['formation.caces'] = bool(
-        set(context['constante.codes_certifinfo_caces']) & codes_certifinfo)
-    context['formation.bec'] = bool(
-        set(context['constante.codes_certifinfo_bec']) & codes_certifinfo)
-    context['formation.bilan_de_competences'] = bool(
-        set(context['constante.codes_certifinfo_bilan_de_competences'])
-        & codes_certifinfo)
-    context['formation.permis_b'] = bool(
-        set(context['constante.codes_certifinfo_permis_b']) & codes_certifinfo)
+    # CERTIFINFO matches
+    code_certifinfo = context['formation.code_certifinfo']
+    context['formation.toeic'] = (
+        code_certifinfo in context['constante.codes_toeic'])
+    context['formation.bulats'] = (
+        code_certifinfo in context['constante.codes_bulats'])
+    context['formation.caces'] = (
+        code_certifinfo in context['constante.codes_caces'])
+    context['formation.bec'] = (
+        code_certifinfo in context['constante.codes_bec'])
+    context['formation.bilan_de_competences'] = (
+        code_certifinfo in context['constante.codes_bilan_de_competences'])
+    context['formation.permis_b'] = (
+        code_certifinfo in context['constante.codes_permis_b'])
 
     # CPF subsets
     codes_cpf = context['formation.codes_cpf']

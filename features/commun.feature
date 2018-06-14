@@ -68,7 +68,7 @@ Scénario: CIF et CPF
     Et la liste des codes FORMACODE de la formation vaut [44028,42866,42056]
     Et le niveau de sortie de la formation vaut 1
     Et la durée en heures de la formation vaut 210
-    Et la liste des codes CERTIFINFO de la formation vaut [87647]
+    Et le code CERTIFINFO de la formation vaut 87647
     Et la liste des domaines FORMACODE de la formation vaut [420,440,428]
     Et les codes financeur de la formation vaut [5]
     Et la durée en mois de la formation vaut 12

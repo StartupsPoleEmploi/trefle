@@ -56,37 +56,37 @@ constante:
     type: integer
     value: 152
     label: domaine FORMACODE langues
-  codes_certifinfo_permis_b:
+  codes_permis_b:
     type: array
     items:
       type: integer
     value: [54664]
     label: codes CERTIFINFO pour un permis B
-  codes_certifinfo_bilan_de_competences:
+  codes_bilan_de_competences:
     type: array
     items:
       type: integer
     value: [93559]
     label: codes CERTIFINFO pour un bilan de compétences
-  codes_certifinfo_bulats:
+  codes_bulats:
     type: array
     items:
       type: integer
     value: [95271, 84165, 84384]
     label: codes CERTIFINFO BULATS
-  codes_certifinfo_bec:
+  codes_bec:
     type: array
     items:
       type: integer
     value: [84166, 98623]
     label: codes CERTIFINFO BEC
-  codes_certifinfo_toeic:
+  codes_toeic:
     type: array
     items:
       type: integer
     value: [84168]
     label: codes CERTIFINFO TOEIC
-  codes_certifinfo_caces:
+  codes_caces:
     type: array
     items:
       type: integer
@@ -276,14 +276,13 @@ formation:
     xpath: //domaine-formation/code-FORMACODE/child::text()
     source: catalogue
     label: liste des domaines FORMACODE de la formation
-  codes_certifinfo:
-    type: array
-    format: set
-    items:
-      type: integer
+  code_certifinfo:
+    type: integer
+    format: int32
     source: catalogue
-    xpath: //certification/code-CERTIFINFO/child::text()
-    label: liste des codes CERTIFINFO de la formation
+    xpath: number(//certification/code-CERTIFINFO/child::text())
+    label: code CERTIFINFO de la formation
+    gender: masculine
   heures:
     type: integer
     format: int32
