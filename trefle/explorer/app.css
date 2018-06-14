@@ -98,7 +98,15 @@ a {
   grid-template-columns: 1fr 2fr;
 }
 main {
-  padding: 10px;
+  padding: 1rem;
+}
+pre {
+  padding: 5px;
+  border: solid 1px #68c3a3;
+  background-color: #eee;
+  max-width: 1200px;
+  font-family: 'mono';
+  white-space: pre-wrap;
 }
 
 

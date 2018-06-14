@@ -78,15 +78,19 @@ def check_eligibilite(context):
     Rule.process(ELIGIBILITE, context)
 
 
+async def get_formation_xml(formation_id):
+    return (await http_get(f'{INTERCARIF_URL}?num={formation_id}')).content
+
+
 async def populate_formation(context):
     if not context.get('formation.numero'):
         return
 
     formation_id = context['formation.numero']
-    response = await http_get(f'{INTERCARIF_URL}?num={formation_id}')
+    xml = await get_formation_xml(formation_id)
 
     try:
-        await populate_formation_from_bytes(context, response.content)
+        await populate_formation_from_bytes(context, xml)
     except ValueError as err:
         # Give more context.
         err.args = (f'Error with id `{formation_id}`: `{err}`',)

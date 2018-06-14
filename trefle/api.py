@@ -9,6 +9,7 @@ from .config import RAW_RULES, SCHEMA, GLOSSARY
 from .core import simulate
 from .debugging import data_from_lbf_url, make_feature
 from .openapis import OPENAPI
+from .routine import get_formation_xml
 
 logger = logging.getLogger('trefle')
 logger.setLevel(logging.DEBUG)
@@ -79,6 +80,12 @@ async def explore_rules(request, response):
 @app.route('/explore/glossary')
 async def explore_glossary(request, response):
     response.json = GLOSSARY
+
+
+@app.route('/explore/catalog')
+async def explore_catalog(request, response):
+    response.body = await get_formation_xml(request.query.get('id'))
+    response.headers['Content-Type'] = 'text/xml'
 
 
 @app.route('/explore/decode-lbf-url')
