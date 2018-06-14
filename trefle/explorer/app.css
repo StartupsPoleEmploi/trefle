@@ -108,12 +108,16 @@ pre {
   font-family: 'mono';
   white-space: pre-wrap;
 }
-
-
+p {
+  margin: 1rem 0;
+}
 
 /*** FORMS ***/
 input[type=text] {
   line-height: 3em;
+  border: 1px solid #eee;
+  padding: 0 .5rem;
+  min-width: 300px;
 }
 input[type=submit],
 .button {
