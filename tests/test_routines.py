@@ -44,6 +44,19 @@ async def test_populate_formation_from_bytes():
         assert context['formation.rncp'] is True
 
 
+@pytest.mark.parametrize('path,key,value', [
+    ('without_certifinfo', 'formation.code_certifinfo', None),
+    ('without_rncp', 'formation.rncp', False),
+])
+@pytest.mark.asyncio
+async def test_populate_formation_from_bytes_edge_cases(path, key, value):
+    with Path(__file__).parent.joinpath(f'data/{path}.xml').open('rb') as f:
+        context = {}
+        routine.add_constants(context)
+        await routine.populate_formation_from_bytes(context, f.read())
+        assert context[key] == value
+
+
 @pytest.mark.asyncio
 async def test_populate_formation_from_bytes_with_empty_list():
     content = b"""<?xml version="1.0" encoding="utf-8"?>
