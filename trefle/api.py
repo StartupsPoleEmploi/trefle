@@ -54,8 +54,7 @@ async def simulate_(request, response):
     body = {'financements': financements}
     del context['financements']
     if request.query.bool('context', False):
-        body['context'] = {k: {'label': SCHEMA[k]['label'], 'value': v}
-                           for k, v in context.items()
+        body['context'] = {k: v for k, v in context.items()
                            if k in SCHEMA and 'label' in SCHEMA[k]}
     if request.query.bool('scenario', False):
         body['scenario'] = make_feature(context, financements)

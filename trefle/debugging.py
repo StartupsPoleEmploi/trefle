@@ -8,7 +8,6 @@ import phpserialize
 
 from .config import LABELS, SCHEMA
 from .exceptions import NoDataError
-from .validators import validate
 
 
 def yellow(s):

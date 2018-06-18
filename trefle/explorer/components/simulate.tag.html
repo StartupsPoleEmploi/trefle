@@ -2,11 +2,11 @@
   <section>
     <h2>Depuis une URL LBF</h2>
     <form onsubmit={ this.submit }>
-      <input type="text" ref="url" placeholder="Entrer une URL LBF" name="lbfurl">
+      <input type="url" ref="url" placeholder="Entrer une URL LBF" name="lbfurl">
       <input type="submit" value="Simuler">
     </form>
   </section>
-  <section if={ Object.keys(this.errors).length } class=results>
+  <section if={ Object.keys(this.errors).length && !this.financements.length } class=results>
     <ul>
       <li each={ message, key in this.errors }><strong>{ key }</strong> { message }</li>
     </ul>
@@ -27,7 +27,7 @@
     </ul>
     <h2>Contexte</h2>
     <table>
-      <tr each={ props in this.context }><th>{ props.label }</th><td>{ this.renderValue(props.value) }</td></tr>
+      <tr each={ value, key in this.context }><th>{ this.renderLabel(key, value) }</th><td>{ this.renderValue(key, value) }</td></tr>
     </table>
     <h2>Scénario de test</h2>
     <rule if={ this.scenario } content={ this.scenario }></rule>
@@ -74,9 +74,14 @@
       this.decodeLBFURL(url, this.simulate)
     }
 
-    this.renderValue = (value) => {
-      if (Array.isArray(value)) return value.join(', ')
+    this.renderValue = (key, value) => {
+      if (SCHEMA[key]['type'] === 'array') return value.join(', ')
+      if (SCHEMA[key]['format'] === 'date') return (new Date(value * 1000)).toLocaleDateString()
       return value
+    }
+
+    this.renderLabel = (key, value) => {
+      return SCHEMA[key]['label']
     }
 
   </script>

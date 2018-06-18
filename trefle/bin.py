@@ -9,7 +9,7 @@ from .api import app
 from .config import ELIGIBILITE, MODALITES, SCHEMA
 from .core import simulate
 from .debugging import data_from_lbf_url, green, make_feature, red, trace_rule
-from .routine import add_constants, flatten, populate_formation
+from .routine import flatten
 
 RULES = ELIGIBILITE + MODALITES
 
