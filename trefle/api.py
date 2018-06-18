@@ -5,7 +5,7 @@ from http import HTTPStatus
 from roll import HttpError, Roll
 from roll.extensions import cors
 
-from .config import RAW_RULES, SCHEMA, GLOSSARY
+from .config import RAW_RULES, SCHEMA, GLOSSARY, NAF
 from .core import simulate
 from .debugging import data_from_lbf_url, make_feature
 from .openapis import OPENAPI
@@ -65,6 +65,11 @@ async def simulate_(request, response):
 @app.route('/schema')
 async def schema(request, response):
     response.json = OPENAPI
+
+
+@app.route('/naf')
+async def naf(request, response):
+    response.json = NAF.get(request.query.get('q'), [])
 
 
 @app.route('/explore/schema')

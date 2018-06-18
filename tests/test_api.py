@@ -401,3 +401,10 @@ async def test_glossary(client):
     resp = await client.get('/explore/glossary')
     assert resp.status == HTTPStatus.OK
     assert 'OPCA' in json.loads(resp.body)
+
+
+async def test_naf_search(client):
+    resp = await client.get('/naf?q=620')
+    assert resp.status == HTTPStatus.OK
+    assert json.loads(resp.body) == ['6201Z', '6202A', '6202B', '6203Z',
+                                     '6209Z']

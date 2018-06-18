@@ -6,6 +6,7 @@
 - add a prototype of an explorer
 - beneficiaire.remuneration is no more mandatory
 - remove "CIF intermittents sur son temps de travail"
+- add /naf endpoint for naf code autocompletion
 
 
 ## 0.1.3

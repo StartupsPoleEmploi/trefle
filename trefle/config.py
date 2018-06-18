@@ -1,5 +1,7 @@
-from pathlib import Path
+import csv
 import re
+from collections import defaultdict
+from pathlib import Path
 
 from unidecode import unidecode
 import yaml
@@ -16,6 +18,7 @@ ROOT = Path(__file__).parent / 'config'
 IDCC = {}
 RAW_RULES = {}
 GLOSSARY = {}
+NAF = {}
 
 INTERCARIF_URL = 'https://labonneformation.pole-emploi.fr/ws_intercarif'
 ELIGIBILITE_URL = 'http://www.intercariforef.org/serviceweb2/eligibilite/?filtre=branche&'
@@ -100,6 +103,20 @@ def fold_name(s):
     return unidecode(s).lower().replace(' ', '')
 
 
+def load_naf(data):
+    # Data from https://www.insee.fr/fr/information/2406147
+    from .validators import format_naf
+    out = defaultdict(list)
+    reader = csv.DictReader(data.split('\n'), delimiter=';')
+    for line in reader:
+        if not line or len(line['code']) != 6:
+            continue
+        code = format_naf(line['code'])
+        for i in range(2, len(code)):
+            out[code[:i]].append(code)
+    return out
+
+
 def init():
     print('Initializing config')
     with (ROOT / 'schema.yml').open() as f:
@@ -121,4 +138,6 @@ def init():
         IDCC.update(yaml.safe_load(f.read()))
     with (ROOT / 'glossaire.yml').open() as f:
         GLOSSARY.update(yaml.safe_load(f.read()))
+    with (ROOT / 'naf.csv').open() as f:
+        NAF.update(load_naf(f.read()))
     print('Done initializing config')
