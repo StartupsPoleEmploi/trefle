@@ -1,3 +1,5 @@
+hupper
+minicli
 openapi-core
 openapi-spec-validator
 pytest

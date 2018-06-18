@@ -1,6 +1,7 @@
 import time
 from pathlib import Path
 
+import hupper
 import ujson as json
 from minicli import cli, run
 from roll.extensions import simple_server, static, traceback
@@ -122,10 +123,12 @@ def render_trace_rules():
 
 
 @cli
-def serve():
+def serve(reload=False):
     """Run a web server (for development only)."""
     # Debug only.
     static(app, '/explorer/', Path(__file__).parent / 'explorer')
+    if reload:
+        hupper.start_reloader('trefle.bin.serve')
     traceback(app)
     simple_server(app)
 
