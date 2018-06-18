@@ -127,14 +127,14 @@ def status():
 
 
 @minicli.cli
-def ssh_keys():
+def ssh_keys(path='.ssh/authorized_keys'):
     """Install ssh keys from remote urls."""
     with sudo():
         for name, url in config.get('ssh_key_urls', {}).items():
             with urllib.request.urlopen(url) as response:
                 key = response.read().decode().replace('\n', '')
-            run('grep -q -r "{key}" .ssh/authorized_keys || echo "{key}" '
-                '| tee --append .ssh/authorized_keys'.format(key=key))
+            run(f'grep -q -r "{key}" {path} || echo "{key}" '
+                f'| tee --append {path}')
 
 
 @minicli.cli
