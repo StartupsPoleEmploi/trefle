@@ -30,11 +30,11 @@ Scénario: cas nominal Fafiec
     Quand je demande un calcul de financement
     Quand je sélectionne le financement «CPF sur son temps de travail»
     Alors l'organisme à contacter est «Fafiec»
-    Et le plafond de prise en charge vaut 4800
+    Et le plafond de prise en charge vaut 9600
     Et la rémunération vaut 1600
     Quand je sélectionne le financement «CPF hors temps de travail»
     Alors l'organisme à contacter est «Fafiec»
-    Et le plafond de prise en charge vaut 4800
+    Et le plafond de prise en charge vaut 9600
     Et la rémunération vaut 0
 
 
@@ -55,11 +55,11 @@ Scénario: CPF sur CPNE
     Quand je demande un calcul de financement
     Quand je sélectionne le financement «CPF sur son temps de travail»
     Alors l'organisme à contacter est «Fafiec»
-    Et le plafond de prise en charge vaut 4000
+    Et le plafond de prise en charge vaut 8000
     Et la rémunération vaut 1600
     Quand je sélectionne le financement «CPF hors temps de travail»
     Alors l'organisme à contacter est «Fafiec»
-    Et le plafond de prise en charge vaut 4000
+    Et le plafond de prise en charge vaut 8000
     Et la rémunération vaut 0
 
 
