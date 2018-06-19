@@ -10,6 +10,7 @@
 - added a '--reload' option to the dev server
 - fixed the CIF rules to match when there is no code financeur at all in the
   formation data
+- add Fafiec rules for "période de professionnalisation"
 
 
 ## 0.1.3
