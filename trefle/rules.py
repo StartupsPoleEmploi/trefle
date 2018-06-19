@@ -63,7 +63,7 @@ class LazyValue:
             except KeyError:
                 raise WrongPointerError(self.raw)
             self.get = lambda **d: self._get(**d)
-            self.default = SCHEMA[self.key].get('default')
+            self.default = self.compute_default()
         if value is not ...:
             self.get = lambda **d: value
 
@@ -71,9 +71,17 @@ class LazyValue:
         try:
             return context[self.key]
         except KeyError:
-            if self.default is not None:
+            if self.default is not ...:
                 return self.default
             raise NoDataError(self.raw)
+
+    def compute_default(self):
+        schema = SCHEMA[self.key]
+        if 'default' in schema:
+            return schema['default']
+        elif schema['type'] == 'array':
+            return []
+        return ...
 
 
 def action(pattern):
@@ -247,6 +255,11 @@ def check_le(context, left: LazyValue, right: LazyValue):
 @condition(r"(l'|les? |la )(?P<left>.+) contien(nen)?t au moins (une?) des (?P<right>[ \w«»]+)")
 def check_share_one(context, left: LazyValue, right: LazyValue):
     return len(set(left.get(**context) or []) & set(right.get(**context) or [])) > 0
+
+
+@condition(r"(l'|les? |la )(?P<left>.+) ne contien(nen)?t aucun des (?P<right>[ \w«»]+)")
+def check_not_share_one(context, left: LazyValue, right: LazyValue):
+    return len(set(left.get(**context) or []) & set(right.get(**context) or [])) == 0
 
 
 @condition(r"(l'|les? |la )(?P<left>.+) fait partie (de l'|de la |des? |du )(?P<right>.+)")

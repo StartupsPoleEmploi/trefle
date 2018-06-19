@@ -358,7 +358,6 @@ Scénario: CIF CDI en Corse
     Quand je sélectionne le financement «CIF CDI hors temps de travail»
     Alors l'organisme à contacter est «Fongecif Corsica»
 
-# https://labonneformation-trefle.beta.pole-emploi.fr/engager-les-demarches?a=SdCOL%3DbLGVeKYcg4TkJiTImSLjGssw3CQ4ssllQvsGsst_CCTPs4cEJc7g8Bj8Rv2PuY8I5H4eKRmi32vvviGsss3s33yeHSoOBsUsssMkaX3S69eKn4ObIEG%3DM27_895omh%3Dosrin9VkJCN1ERDpLrno4yuiprGmE%3DJy5HS7vvBdshgIVXxe%3DcB0pKkwivfQ0%3D2_uNGL2ekmG9CKsd2RkY3sR2KYe5hRGlJebF84mZhi2KFTh2vctKVT7yu7qXorGebvgmYTecf4SRVnvo3Gd9QBsPEa3SSWfQGtO6cbWfSLf0djEco7FoIm4ds95Bm15LC94OWY7aRiUButexJvlrxYMM9usFSUESmvsBjW52gMO9lgqHgXgRGGPVFeszz
 Scénario: Formation de 12 mois
     Soit un bénéficiaire et une formation
     Et la rémunération du bénéficiaire vaut 1500
@@ -377,7 +376,7 @@ Scénario: Formation de 12 mois
     Et le code CERTIFINFO de la formation vaut 55824
     Et la liste des domaines FORMACODE de la formation vaut [317]
     Et c'est une formation CACES
-    Et les codes financeur de la formation vaut [0,16,10,5]
+    Et les codes financeur de la formation valent [0,10,5]
     Et c'est une formation qualifiante
     Et la durée en mois de la formation vaut 12
     Et la durée en semaines de la formation vaut 52
@@ -391,3 +390,55 @@ Scénario: Formation de 12 mois
     Alors l'organisme à contacter est «Fongecif Normandie»
     Et le plafond de prise en charge vaut 18000
     Et la rémunération vaut 0
+
+@wip
+Scénario: Sans code financeur
+    Soit un bénéficiaire et une formation
+    Et la rémunération du bénéficiaire vaut 1500
+    Et c'est un bénéficiaire de droit privé
+    Et le type de contrat du bénéficiaire vaut «CDI»
+    Et l'expérience professionnelle du bénéficiaire dans les cinq dernières années vaut 48
+    Et l'ancienneté du bénéficiaire dans son entreprise vaut 24
+    Et le code NAF de l'établissement du bénéficiaire vaut «2825z»
+    Et l'IDCC de l'établissement du bénéficiaire vaut «1412»
+    Et la durée en heures de la formation vaut 1000
+    Et la durée en mois de la formation vaut 12
+    Et la durée en semaines de la formation vaut 52
+    Et la durée hebdomadaire de la formation vaut 0
+    Quand je demande un calcul de financement
+    Quand je sélectionne le financement «CIF CDI sur son temps de travail»
+    Alors l'organisme à contacter est «Fongecif»
+    Et le plafond de prise en charge vaut 18000
+    Et la rémunération vaut 1500
+    Quand je sélectionne le financement «CIF CDI hors temps de travail»
+    Alors l'organisme à contacter est «Fongecif»
+    Et le plafond de prise en charge vaut 18000
+    Et la rémunération vaut 0
+
+# https://labonneformation-trefle.beta.pole-emploi.fr/engager-les-demarches?a=SdCOL%3DbLGVeKYcg4TkJiTImSLjGssw3CQ4ssllQvsGsst_CCTPs4cEJc7g8Bj8Rv2PuY8I5H4eKRmi32vvviGsss3s33yeHSoOBsUsssMkaX3S69eKn4ObIEG%3DM27_895omh%3Dosrin9VkJCN1ERDpLrno4yuiprGmE%3DJy5HS7vvBdshgIVXxe%3DcB0pKkwivfQ0%3D2_uNGL2ekmG9CKsd2RkY3sR2KYe5hRGlJebF84mZhi2KFTh2vctKVT7yu7qXorGebvgmYTecf4SRVnvo3Gd9QBsPEa3SSWfQGtO6cbWfSLf0djEco7FoIm4ds95Bm15LC94OWY7aRiUButexJvlrxYMM9usFSUESmvsBjW52gMO9lgqHgXgRGGPVFeszz
+Scénario: Avec un code financeur collectif
+    Soit un bénéficiaire et une formation
+    Et la rémunération du bénéficiaire vaut 1500
+    Et c'est un bénéficiaire de droit privé
+    Et le type de contrat du bénéficiaire vaut «CDI»
+    Et l'expérience professionnelle du bénéficiaire dans les cinq dernières années vaut 48
+    Et l'ancienneté du bénéficiaire dans son entreprise vaut 24
+    Et le code NAF de l'établissement du bénéficiaire vaut «2825z»
+    Et l'IDCC de l'établissement du bénéficiaire vaut «1412»
+    Et la région de l'établissement du bénéficiaire vaut «Normandie»
+    Et ce n'est pas une formation éligible COPANEF
+    Et la régions éligibles COPAREF vaut [25]
+    Et la liste des codes FORMACODE de la formation vaut [31715,31715,31795]
+    Et le niveau de sortie de la formation vaut 1
+    Et la durée en heures de la formation vaut 1000
+    Et le code CERTIFINFO de la formation vaut 55824
+    Et la liste des domaines FORMACODE de la formation vaut [317]
+    Et c'est une formation CACES
+    Et les codes financeur de la formation valent [0,10,5,16]
+    Et c'est une formation qualifiante
+    Et la durée en mois de la formation vaut 12
+    Et la durée en semaines de la formation vaut 52
+    Et la durée hebdomadaire de la formation vaut 0
+    Quand je demande un calcul de financement
+    Alors le financement «CIF CDI sur son temps de travail» n'est pas proposé
+    Et le financement «CIF CDI hors temps de travail» n'est pas proposé
