@@ -1,4 +1,5 @@
 Si le nom de l'organisme est «FAFSEA»
+
     Si le financement est de type «CPF»
         Alors le prix horaire plafond applicable est égal au prix horaire de la formation
         Et le plafond horaire applicable est égal au solde CPF du bénéficiaire
@@ -21,3 +22,8 @@ Si le nom de l'organisme est «FAFSEA»
                 # 3746 = deux fois le smix / 0.8
                 Si la rémunération du bénéficiaire est inférieure à 3746:
                     Alors la rémunération possible est égale à deux fois le SMIC
+
+    Si le financement est de type «période de professionnalisation»
+        Alors le plafond financier applicable vaut 6750
+        Et le prix horaire plafond applicable vaut 25
+        Et la rémunération possible est égale à la rémunération du bénéficiaire
