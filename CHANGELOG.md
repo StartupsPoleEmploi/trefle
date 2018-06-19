@@ -7,6 +7,9 @@
 - beneficiaire.remuneration is no more mandatory
 - remove "CIF intermittents sur son temps de travail"
 - add /naf endpoint for naf code autocompletion
+- added a '--reload' option to the dev server
+- fixed the CIF rules to match when there is no code financeur at all in the
+  formation data
 
 
 ## 0.1.3
