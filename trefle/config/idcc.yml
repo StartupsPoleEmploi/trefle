@@ -672,6 +672,10 @@
     # OPCA: AGEFOS PME OU Opcalia
     OPCA: AGEFOS PME
     OPACIF: Fongecif
+"2111":
+    Convention collective: "Particulier employeur : salariés"
+    OPCA: AGEFOS PME
+    OPACIF: Fongecif
 "211":
     Convention collective: "Carrières et matériaux : industries (cadres)"
     OPCA: OPCA 3+
@@ -1348,6 +1352,10 @@
     Convention collective: ETAR CUMA Loir et Cher
     OPCA: FAFSEA
     OPACIF: FAFSEA
+"9413":
+    Convention collective: Exploitations pépinières horticulture Loir et Cher
+    OPCA: FAFSEA
+    OPACIF: FAFSEA
 "9583":
     Convention collective: ETAR CUMA Nièvre
     OPCA: FAFSEA
@@ -1520,6 +1528,10 @@
     Convention collective: Exploitations agricoles Meurthe et Moselle
     OPCA: FAFSEA
     OPACIF: FAFSEA
+"9542":
+    Convention collective: Exploitations pépinières horticulture Meurthe et Moselle
+    OPCA: FAFSEA
+    OPACIF: FAFSEA
 "9623":
     Convention collective: Exploitations agricoles Pas de Calais Cadres
     OPCA: FAFSEA
@@ -1620,6 +1632,10 @@
     Convention collective: Exploitations forestières Meuse
     OPCA: FAFSEA
     OPACIF: FAFSEA
+"9552":
+    Convention collective: Exploitations pépinières horticulture Meuse
+    OPCA: FAFSEA
+    OPACIF: FAFSEA
 "9571":
     Convention collective: Exploitations forestières Moselle
     OPCA: FAFSEA
@@ -1708,6 +1724,10 @@
     Convention collective: Exploitations horticoles Fruits Calvados
     OPCA: FAFSEA
     OPACIF: FAFSEA
+"9101":
+    Convention collective: Exploitations polyculture Aube
+    OPCA: FAFSEA
+    OPACIF: FAFSEA
 "9102":
     Convention collective: Exploitations maraîchères et horticulture Aube
     OPCA: FAFSEA
@@ -1744,8 +1764,16 @@
     Convention collective: Exploitations pépinières horticulture Haute Normandie
     OPCA: FAFSEA
     OPACIF: FAFSEA
+"9351":
+    Convention collective: Exploitations polyculture, élevage et CUMA Ille et Vilaine
+    OPCA: FAFSEA
+    OPACIF: FAFSEA
 "9352":
     Convention collective: Exploitations pépinières horticulture Ille et Vilaine
+    OPCA: FAFSEA
+    OPACIF: FAFSEA
+"9361":
+    Convention collective: Exploitations polyculture, élevage et CUMA Indre
     OPCA: FAFSEA
     OPACIF: FAFSEA
 "9362":
@@ -1766,6 +1794,10 @@
     OPACIF: FAFSEA
 "9492":
     Convention collective: Exploitations pépinières horticulture Maine et Loire
+    OPCA: FAFSEA
+    OPACIF: FAFSEA
+"9501":
+    Convention collective: Exploitations agricoles Manche
     OPCA: FAFSEA
     OPACIF: FAFSEA
 "9502":
@@ -1824,6 +1856,10 @@
     Convention collective: Exploitations pépinières horticulture Vendée
     OPCA: FAFSEA
     OPACIF: FAFSEA
+"9853":
+    Convention collective: Exploitations maraîchères Vendée
+    OPCA: FAFSEA
+    OPACIF: FAFSEA
 "9232":
     Convention collective: Exploitations pépinières sylvicoles Creuse
     OPCA: FAFSEA
@@ -1850,6 +1886,10 @@
     OPACIF: FAFSEA
 "9171":
     Convention collective: Exploitations polyculture Charente Maritime
+    OPCA: FAFSEA
+    OPACIF: FAFSEA
+"9182":
+    Convention collective: Exploitations pépinières horticulture Cher
     OPCA: FAFSEA
     OPACIF: FAFSEA
 "9181":
@@ -2648,6 +2688,11 @@
     Convention collective: "Métallurgie : Oise"
     OPCA: OPCAIM
     OPACIF: Fongecif
+"2701":
+    Convention collective: "Banques : Guyane"
+    # OPCA: AGEFOS PME ou Opcalia
+    OPCA: AGEFOS PME
+    OPACIF: Fongecif
 "948":
     Convention collective: "Métallurgie : Orne"
     OPCA: OPCAIM
@@ -2984,6 +3029,10 @@
     Convention collective: Polyculture CUMA Haute Loire Lozère
     OPCA: FAFSEA
     OPACIF: FAFSEA
+"8826":
+    Convention collective: Exploitations trav agricoles CUMA Savoie Hte Savoie
+    OPCA: FAFSEA
+    OPACIF: FAFSEA
 "8825":
     Convention collective: Polyculture CUMA Rhône Alpes cadres
     OPCA: FAFSEA
@@ -3052,6 +3101,14 @@
     Convention collective: "Presse magazine : éditeurs (employés)"
     OPCA: Afdas
     OPACIF: Afdas
+"3203":
+    Convention collective: "Structures associatives de pêche de loisir et de protection du milieu aquatique"
+    OPCA: FAFSEA
+    OPACIF: FAFSEA
+"3205":
+    Convention collective: "Géomètres-experts, géomètres-topographes, photogrammètres et experts fonciers"
+    OPCA: Actalians
+    OPACIF: Fongecif
 "1972":
     Convention collective: 'Presse magazine et d’information (Presse périodiques employés)'
     OPCA: Afdas
@@ -3190,6 +3247,16 @@
     OPACIF: Uniformation
 "454":
     Convention collective: Remontées mécaniques
+    OPCA: AGEFOS PME
+    OPACIF: Fongecif
+"5556":
+    Convention collective: Passages d'eau officiers
+    # OPCA: AGEFOS PME OU Opcalia
+    OPCA: AGEFOS PME
+    OPACIF: Fongecif
+"5557":
+    Convention collective: Passages d'eau personnel navigant d'exécution
+    # OPCA: AGEFOS PME OU Opcalia
     OPCA: AGEFOS PME
     OPACIF: Fongecif
 "5555":
@@ -3549,6 +3616,10 @@
     Convention collective: "Travaux publics : ETAM (+ de 10 salariés)"
     OPCA: Constructys
     OPACIF: Fongecif
+"1700":
+    Convention collective: "Sucreries, sucreries-distilleries et distilleries de la Guadeloupe"
+    OPCA: FAFSEA
+    OPACIF: FAFSEA
 "1702":
     Convention collective: "Travaux publics : ouvriers (+ de 10 salariés)"
     OPCA: Constructys
