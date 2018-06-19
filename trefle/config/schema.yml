@@ -362,8 +362,8 @@ formation:
     label: codes NAF CPNE éligibles
     number: plural
   objectif_general_formation:
-    description: code AIF de la formation (http://lheo.gouv.fr/langage#dict-AIS)
-    label: code AIF de la formation
+    description: code AIS de la formation (http://lheo.gouv.fr/langage#dict-AIS)
+    label: code AIS de la formation
     type: integer
     formation: int32
     source: catalogue
