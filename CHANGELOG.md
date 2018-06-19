@@ -12,6 +12,7 @@
   formation data
 - add Fafiec rules for "période de professionnalisation"
 - add FAFSEA rules for "période de professionnalisation"
+- add a default "prix horaire plafond" for "période de professionnalisation"
 
 
 ## 0.1.3

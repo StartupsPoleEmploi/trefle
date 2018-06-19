@@ -6,3 +6,5 @@ Si le financement est de type «CPF»
 
 Si le financement est de type «période de professionnalisation»
     Alors la rémunération possible est égale à la rémunération du bénéficiaire
+    # Par défaut.
+    Et le prix horaire plafond applicable vaut 9.15
