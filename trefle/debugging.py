@@ -80,7 +80,7 @@ def data_from_lbf_url(url):
         b'naf': 'beneficiaire.entreprise.naf',
         b'idcc': 'beneficiaire.entreprise.idcc',
         b'region': 'beneficiaire.entreprise.region',
-        b'commune': 'beneficiaire.entreprise.commune',
+        b'entrepriselocationinsee': 'beneficiaire.entreprise.commune',
         b'idformintercarif': 'formation.numero',
     }
 
