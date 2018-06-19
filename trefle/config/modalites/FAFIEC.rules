@@ -1,7 +1,7 @@
 Si le nom de l'organisme est «Fafiec»
 
     Si le financement est de type «CPF»
-        Alors le prix horaire plafond applicable vaut 40
+        Alors le prix horaire plafond applicable vaut 80
         Alors le plafond horaire applicable est égal au solde CPF du bénéficiaire
         Si le domaine FORMACODE langues fait partie de la liste des domaines FORMACODE de la formation
             Alors le prix horaire plafond applicable vaut 25
