@@ -94,7 +94,10 @@ def load_financements(data, output=None, properties=None, namespace=None):
 def load_rules(path):
     with path.open() as rules_file:
         data = rules_file.read()
-        RAW_RULES[path.stem] = data
+        RAW_RULES[path.stem] = {
+            'data': data,
+            'path': str(path.relative_to(ROOT)),
+        }
         return Rule.load(data.split('\n'))
 
 

@@ -1,7 +1,7 @@
 <rules>
-  <div each={ raw, name in items }>
-    <h3>{ name }</h3>
-    <rule content={ raw }></rule>
+  <div each={ props, name in items }>
+    <h3>{ name } <a href=https://framagit.org/ybon/trefle/tree/master/trefle/config/{ props.path } target=_blank> <i class="icon">edit</i></a></h3>
+    <rule content={ props.data }></rule>
   </div>
 
   <script>
