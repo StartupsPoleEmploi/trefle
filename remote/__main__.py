@@ -8,15 +8,6 @@ import minicli
 from usine import run, sudo, connect, mkdir, chown, exists, put, config
 
 
-def python(command):
-    """Run a python command on the remote server.
-
-    :command: the python command to run.
-    """
-    with sudo(user='trefle'):
-        run('/srv/trefle/venv/bin/python {}'.format(command))
-
-
 @minicli.cli
 def pip(command):
     """Run a pip command on the remote server.
