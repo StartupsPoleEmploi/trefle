@@ -1,0 +1,4 @@
+---
+ssh_keys:
+  - http://nuage.yohanboniface.me/id_rsa.pub
+  - https://minutebutterfly.com/id_rsa.pub

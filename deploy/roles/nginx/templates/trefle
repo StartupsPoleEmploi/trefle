@@ -1,0 +1,20 @@
+upstream trefle {
+    {% for host in groups['app'] %}
+    server {{ hostvars[host]['ansible_host'] }}:8000;
+    {% endfor %}
+}
+
+server {
+    listen 80 default_server;
+    server_name trefle.yohanboniface.me trefle.beta.labonneformation.pole-emploi.fr {{ ansible_host }};
+    charset     utf-8;
+    client_max_body_size 25M;
+
+    location /explorer/ {
+        alias /var/www/trefle/explorer/;
+    }
+
+    location / {
+        proxy_pass http://trefle/;
+    }
+}

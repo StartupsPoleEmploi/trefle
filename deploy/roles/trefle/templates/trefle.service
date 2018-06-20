@@ -1,0 +1,17 @@
+[Unit]
+Description=Trefle
+After=syslog.target network.target
+
+[Service]
+Type=simple
+User={{ ansible_user }}
+ExecStart={{ trefle_root }}/venv/bin/gunicorn trefle.api:app --config gunicorn.conf
+WorkingDirectory={{ trefle_root }}
+EnvironmentFile={{ trefle_root}}/env
+Restart=always
+RestartSec=5
+StandardOutput=journal
+SyslogIdentifier=Trefle
+
+[Install]
+WantedBy=default.target

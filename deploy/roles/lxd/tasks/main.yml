@@ -1,0 +1,40 @@
+---
+- name: Add admin ssh keys to lxd user
+  authorized_key:
+    key: "{{ item }}"
+    user: "{{ ansible_user }}"
+  with_items: "{{ ssh_keys }}"
+  become: yes
+
+- name: System requirement
+  apt:
+    name: "{{ item }}"
+  with_items:
+    - lxd
+    - lxd-client
+    # Required for ssh ProxyCommand to work
+    - netcat-traditional
+  become: yes
+
+- name: Allow user to run lxd commands
+  user:
+    name: "{{ ansible_user }}"
+    groups:
+      - lxd
+    append: yes
+  become: yes
+
+- name: Upload configuration
+  copy:
+    src: lxd.yml
+    dest: /tmp/lxd.yml
+
+- name: Upload network configuration
+  template:
+    src: network-config-trefle.yml
+    dest: /tmp/network-config-trefle.yml
+
+- name: Configure lxd
+  shell: "cat /tmp/lxd.yml | lxd init --preseed"
+
+- import_tasks: trefle.yml

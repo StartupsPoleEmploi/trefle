@@ -1,0 +1,24 @@
+---
+- name: Install nginx
+  apt:
+    name: nginx
+  become: yes
+
+- name: Remove default configuration
+  file:
+    path: /etc/nginx/sites-enabled/default
+    state: absent
+  become: yes
+
+- name: Configure trefle
+  template:
+    src: trefle
+    dest: /etc/nginx/sites-enabled/trefle
+  become: yes
+
+- name: Check nginx configuration
+  command: nginx -t
+
+- name: Reload nginx
+  command: nginx -s reload
+  become: yes

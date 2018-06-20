@@ -1,0 +1,16 @@
+---
+- name: Upgrade system
+  apt:
+    update_cache: yes
+    cache_valid_time: 86400
+    upgrade: yes
+  become: yes
+
+- name: Install commonly required packages
+  apt:
+    name: "{{ item }}"
+  with_items:
+    # Actually, this is required to run ansible
+    - python
+    - tmux
+  become: yes

@@ -1,0 +1,66 @@
+---
+- name: Install system packages
+  apt:
+    name: "{{ item }}"
+  with_items:
+    - gcc
+    - git
+    - pkg-config
+    - python-virtualenv
+    - python3.6
+    - python3.6-dev
+    - software-properties-common
+  become: yes
+
+- name: Create required directory
+  file:
+    path: "{{ trefle_root }}"
+    owner: "{{ ansible_user }}"
+    state: directory
+  become: yes
+
+- name: Create virtualenv
+  pip:
+    name: pip
+    state: latest
+    virtualenv: "{{ trefle_root }}/venv" 
+    virtualenv_python: python3.6
+
+- name: Install required python packages
+  pip:
+    virtualenv: "{{ trefle_root }}/venv" 
+    name: "{{ item }}"
+  with_items:
+    - gunicorn
+
+- name: Install trefle
+  pip:
+    virtualenv: "{{ trefle_root }}/venv" 
+    name: "git+https://framagit.org/ybon/trefle@{{ trefle_version }}"
+    state: latest
+
+- name: Setup environment
+  template:
+    src: env
+    dest: "{{ trefle_root}}/env"
+
+- name: Copy static explorer assets
+  command: "rsync -avr --delete {{ trefle_root }}/venv/lib/python3.6/site-packages/trefle/explorer/ /var/www/trefle/explorer"
+
+- name: Setup gunicorn
+  copy:
+    src: gunicorn.conf
+    dest: "{{ trefle_root }}/gunicorn.conf"
+
+- name: Setup trefle systemd service
+  template:
+    src: trefle.service
+    dest: /etc/systemd/system/trefle.service
+  become: yes
+
+- name: Start trefle service
+  systemd:
+    name: trefle
+    state: restarted
+    daemon_reload: yes
+  become: yes

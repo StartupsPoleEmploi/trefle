@@ -1,0 +1,15 @@
+---
+- hosts: "all"
+  roles:
+    - {role: base, tags: ["base"]}
+
+- hosts: "proxy"
+  roles:
+    - {role: lxd, tags: ["lxd"]}
+    - {role: nginx, tags: ["nginx"]}
+
+- hosts: "app"
+  vars_files:
+    - secrets.yml
+  roles:
+    - {role: trefle, tags: ["trefle"]}

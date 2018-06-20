@@ -1,0 +1,5 @@
+proxy ansible_user=root ansible_host=163.172.190.40
+trefle ansible_user=ubuntu ansible_host=10.10.10.10 ansible_ssh_common_args=' -o ProxyCommand="ssh -W %h:%p root@163.172.190.40"'
+
+[app]
+trefle

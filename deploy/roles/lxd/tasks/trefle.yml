@@ -1,0 +1,32 @@
+---
+- name: Check presence of Trefle lxc Container
+  command: lxc info local:trefle
+  register: trefle_lxc_present
+  ignore_errors: yes
+
+- name: Launch trefle container
+  shell: lxc launch ubuntu:18.04 trefle --config=user.network-config="$(cat /tmp/network-config-trefle.yml)" --config=raw.lxc="lxc.apparmor.allow_incomplete=1"
+  when: trefle_lxc_present is failed
+
+- name: Install bare minimum packages
+  command: lxc exec local:trefle -- apt install -y python
+
+- name: Add authorized ssh keys
+  command: lxc file push $HOME/.ssh/authorized_keys local:trefle/home/ubuntu/.ssh/
+
+- name: Make authorized keys readable
+  command: lxc exec local:trefle -- chown ubuntu:ubuntu /home/ubuntu/.ssh/authorized_keys
+
+- name: Create shared directory
+  file:
+    path: /var/www/trefle
+    state: directory
+    mode: 0777
+
+- name: Check if shared directory already exists
+  command: lxc config device get local:trefle shared-trefle path
+  register: trefle_shared_directory_exists
+
+- name: Share directory
+  command: lxc config device add local:trefle shared-trefle disk source=/var/www/trefle path=/var/www/trefle
+  when: trefle_shared_directory_exists is failed
