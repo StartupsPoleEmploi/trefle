@@ -2,6 +2,7 @@ import base64
 import bz2
 import os
 import sys
+from datetime import datetime
 from urllib.parse import parse_qs, urlparse
 
 import phpserialize
@@ -86,6 +87,11 @@ def data_from_lbf_url(url):
 
     data = {keymap[key]: value.decode() for key, value in args.items()
             if key in keymap}
+    if b'birthdate' in args:
+        # Poor man age computation.
+        # TODO: use dateutil or delorean here and in routine.py
+        data['beneficiaire.age'] = (datetime.now().year -
+                                    int(args[b'birthdate'][-4:]))
     return data
 
 
