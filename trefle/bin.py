@@ -9,7 +9,8 @@ from roll.extensions import simple_server, static, traceback
 from .api import app
 from .config import ELIGIBILITE, MODALITES, SCHEMA
 from .core import simulate
-from .debugging import data_from_lbf_url, green, make_feature, red, trace_rule
+from .debugging import (data_from_lbf_url, green, make_feature, red,
+                        trace_condition)
 from .routine import flatten
 
 RULES = ELIGIBILITE + MODALITES
@@ -48,7 +49,7 @@ async def cli_simulate(*args, data: json.loads={}, url=None, trace=False,
         data.update(parse_args(args))
     if trace:
         for rule in RULES:
-            trace_rule(rule)
+            trace_condition(rule.root)
     try:
         start = time.perf_counter()
         financements = await simulate(data)
@@ -94,32 +95,33 @@ async def cli_simulate(*args, data: json.loads={}, url=None, trace=False,
             print(f'# {url}')
         print(make_feature(data, eligibles))
     if trace:
-        render_trace_rules()
+        for rule in RULES:
+            print('\n{:—^105}'.format(rule.name))
+            render_trace_condition(rule.root)
     print(f'Duration: {round(duration, 4)} second')
 
 
-def render_trace_rules():
-    for rule in RULES:
-        print('—'*105)
-        for condition in rule.conditions:
-            if condition.conditions:
-                conditions = condition.conditions
-            else:
-                conditions = [condition]
-            for condition in conditions:
-                calls = []
-                for call in zip(condition._return_values,
-                                condition._called_with):
-                    if call not in calls:
-                        calls.append(call)
-                print(" " * 4, condition)
-                for return_value, params in calls:
-                    func = red
-                    char = '✗'
-                    if return_value is True:
-                        func = green
-                        char = '✓'
-                    print(" " * 8, func(f'{char} {params}'))
+def render_trace_condition(condition):
+    if condition.terms:
+        for sub in condition.terms:
+            render_trace_condition(sub)
+    else:
+        calls = []
+        indent = condition.level * 4
+        for call in zip(condition._return_values,
+                        condition._called_with):
+            if call not in calls:
+                calls.append(call)
+        print(" " * indent, condition)
+        for return_value, params in calls:
+            func = red
+            char = '✗'
+            if return_value is True:
+                func = green
+                char = '✓'
+            print(" " * indent, func(f'  {char} {params}'))
+    for child in condition.children:
+        render_trace_condition(child)
 
 
 @cli

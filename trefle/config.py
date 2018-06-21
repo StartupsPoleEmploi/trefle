@@ -98,7 +98,7 @@ def load_rules(path):
             'data': data,
             'path': str(path.relative_to(ROOT)),
         }
-        return Rule.load(data.split('\n'))
+        return Rule.load(data.splitlines(), path.stem)
 
 
 # TODO: move in utils?

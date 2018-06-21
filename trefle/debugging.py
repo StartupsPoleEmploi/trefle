@@ -26,8 +26,8 @@ def red(s):
 def trace_condition(condition):
     assess_orig = condition.assess
 
-    def assess_wrapper(**data):
-        status = assess_orig(**data)
+    def assess_wrapper(context):
+        status = assess_orig(context)
         condition._return_values.append(status)
 
         params = {}
@@ -36,7 +36,7 @@ def trace_condition(condition):
                 # Do not redisplay raw static values
                 continue
             try:
-                value = param.get(**data)
+                value = param.get(**context)
             except NoDataError:  # No data were provided for this value.
                 value = None
             params[param.raw] = value
@@ -46,13 +46,10 @@ def trace_condition(condition):
     condition.assess = assess_wrapper
     condition._return_values = []
     condition._called_with = []
-    for sub in condition.conditions:
+    for sub in condition.terms:
         trace_condition(sub)
-
-
-def trace_rule(rule):
-    for condition in rule.conditions:
-        trace_condition(condition)
+    for child in condition.children:
+        trace_condition(child)
 
 
 def data_from_lbf_url(url):

@@ -154,13 +154,15 @@ class Condition(Step):
     AND = 'ET'
     OR = 'OU'
 
-    def __init__(self, terms, connective=None):
+    def __init__(self, terms, connective=None, level=0):
         assert terms, 'Cannot create a Condition without terms'
         self.params = {}
-        self.conditions = []
+        self.children = []
+        self.actions = []
+        self.terms = []
         self.negative = False
         self.connective = connective or self.AND
-        self.raw = f' {self.connective} '.join(terms)
+        self.level = level
         if len(terms) == 1:
             terms = terms[0].split(', et ')
             if len(terms) > 1:
@@ -169,26 +171,37 @@ class Condition(Step):
                 terms = terms[0].split(', ou ')
                 if len(terms) > 1:
                     self.connective = self.OR
+        self.raw = f' {self.connective} '.join(terms)
         if len(terms) > 1:
-            self.conditions = [Condition([t]) for t in terms]
+            self.terms = [Condition([t], level=self.level) for t in terms]
         else:
             self.compile()
 
-    def assess(self, **context):
-        if self.conditions:
+    def assess(self, context):
+        if self.terms:
             if self.connective == self.OR:
-                return any([c.assess(**context) for c in self.conditions])
-            return all([c.assess(**context) for c in self.conditions])
-        try:
-            return self.func(context, **self.params)
-        except NoDataError:
-            return False
-        except Exception as err:
-            # Give more context.
-            params = ' AND '.join(f'{value.raw}={value.get(**context)}'
-                                  for value in self.params.values())
-            err.args = (f'{err} (in `{self.raw}`, where {params})',)
-            raise
+                status = any([c.assess(context) for c in self.terms])
+            else:
+                status = all(c.assess(context) for c in self.terms)
+        else:
+            try:
+                status = self.func(context, **self.params)
+            except NoDataError:
+                status = False
+            except Exception as err:
+                # Give more context.
+                params = ' AND '.join(f'{value.raw}={value.get(**context)}'
+                                      for value in self.params.values())
+                err.args = (f'{err} (in `{self.raw}`, where {params})',)
+                raise
+        if status is True:
+            if self.actions:
+                for action in self.actions:
+                    action.act(context)
+            if self.children:
+                for child in self.children:
+                    child.assess(context)
+        return status
 
 
 @action(r"(l'|les? |la )(?P<key>.+) (vaut|est) (?P<value>[\w«» +\-'\.]+)$")
@@ -290,13 +303,13 @@ class StopRecursivity(Exception):
 
 class Rule:
 
-    def __init__(self, conditions, actions):
-        assert conditions, 'Cannot create a rule without conditions'
-        self.conditions = conditions
-        self.actions = actions
+    def __init__(self, name, root):
+        assert root, 'Cannot create a rule without root'
+        self.root = root
+        self.name = name
 
-    def assess(self, **context):
-        return all(c.assess(**context) for c in self.conditions)
+    def assess(self, context):
+        return self.root.assess(context)
 
     @staticmethod
     def iter_lines(iterable):
@@ -317,18 +330,18 @@ class Rule:
         yield (previous, current, Line(0, None, None))
 
     @classmethod
-    def load(cls, lines, tree=None, rules=None):
+    def load(cls, lines, name, rules=None, parent=None):
         if rules is None:
             rules = []
             lines = cls.iter_lines(lines)
-        # tree of conditions valid until now (higher indentation ihnerits
+        # rules of conditions valid until now (higher indentation ihnerits
         # conditions from lower indentations).
-        if tree is None:
-            tree = []
+        current = None
         actions = []  # One or more actions of a rule.
         terms = []  # One or more terms of a condition.
         connective = None
         for (prev, curr, next_) in lines:
+            assert curr.indent % 4 == 0, f'Wrong indentation: {curr.sentence}'
             if curr.keyword == 'si' or (terms and curr.keyword in ('et', 'ou')):
                 terms.append(curr.sentence)
                 if not connective and curr.keyword == 'ou':
@@ -336,38 +349,41 @@ class Rule:
             elif curr.keyword == 'alors' or (actions and curr.keyword == 'et'):
                 actions.append(Action(curr.sentence))
             if actions and (next_.indent < curr.indent or next_.keyword == 'si'):
-                rules.append(Rule(tree[:], actions))
+                parent.actions = actions
                 actions = []
             if next_.indent < curr.indent:
                 raise StopRecursivity(indent=next_.indent)
                 # Move back one step up in recursivity.
             if next_.indent > curr.indent:
-                inner = tree[:]
+                # inner = tree[:]
                 if next_.keyword in ('si', 'alors') and terms:
-                    inner.append(Condition(terms[:], connective))
+                    current = Condition(terms[:], connective,
+                                        level=int(curr.indent/4))
+                    if curr.indent == 0:
+                        rules.append(Rule(name, current))
+                        parent = current
+                    else:
+                        parent.children.append(current)
                     terms = []
                     connective = None
                 try:
-                    Rule.load(lines, inner[:], rules)
+                    Rule.load(lines, name, rules, current)
                 except StopRecursivity as err:
                     if err.indent < curr.indent:
                         raise
                     continue  # We are on the right level.
+            #     yield parent
         return rules
 
     @staticmethod
-    def process(rules, context, failed=None):
+    def process(rules, context):
         for rule in rules:
-            if rule.assess(**context):
-                for action in rule.actions:
-                    try:
-                        action.act(context)
-                    except NoDataError as err:
-                        # Give more context.
-                        err.args = (f'{err} (from `{rule}`)',)
-                        raise
-            elif failed is not None:
-                failed.append(rule)
+            try:
+                rule.assess(context)
+            except NoDataError as err:
+                # Give more context.
+                err.args = (f'{err} (from `{rule}`)',)
+                raise
 
     def __repr__(self):
-        return f'<Rule: {self.conditions} => {self.actions}>'
+        return f'<Rule: {self.name}>'
