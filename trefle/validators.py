@@ -95,6 +95,8 @@ def format_remuneration(value):
     value = str(value).replace(',', '.')  # French uses "," as delimiter.
     value = value.replace('€', '')
     value = value.strip()
+    if not value:
+        value = 0
     return float(value)
 
 

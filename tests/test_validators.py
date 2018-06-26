@@ -203,12 +203,13 @@ def test_validate_date(patch_schema, input, output):
     ['1600,0 €', 1600],
     ['1600,50', 1600.5],
     ['blah', False],
+    ['', 0],
 ])
 def test_format_remuneration(patch_schema, input, expected):
     patch_schema({
         'remuneration': {'type': 'string', 'format': 'remuneration'}})
     data = {'remuneration': input}
-    if not expected:
+    if expected is False:
         with pytest.raises(ValueError):
             validate(data)
     else:
