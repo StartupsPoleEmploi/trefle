@@ -26,9 +26,9 @@ Si c'est un bénéficiaire de droit privé
                     Alors définir le financement «CIF CDI hors temps de travail» comme éligible
 
         Si le type de contrat du bénéficiaire est «CDD»
+        Et le nombre de mois travaillés par le bénéficiaire dans la dernière année est supérieur ou égal à 4
             Si l'âge du bénéficiaire est inférieur à 26
             Et l'expérience professionnelle du bénéficiaire dans les cinq dernières années est supérieure ou égale à 12
-            Et le nombre de mois travaillés par le bénéficiaire dans la dernière année est supérieur ou égal à 4
                 Alors définir le financement «CIF CDD sur son temps de travail» comme éligible
                 Si la durée en heures de la formation est supérieure ou égale à 120
                     Alors définir le financement «CIF CDD hors temps de travail» comme éligible

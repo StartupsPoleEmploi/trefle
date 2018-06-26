@@ -175,6 +175,7 @@ Scénario: cas nominal d'un CIF CDD pour un bénéficiaire âgé de plus de 26 a
     Et c'est un bénéficiaire de droit privé
     Et la rémunération du bénéficiaire vaut 1400
     Et l'ancienneté du bénéficiaire dans son entreprise vaut 24
+    Et le nombre de mois travaillés par le bénéficiaire dans la dernière année vaut 8
     Et l'expérience professionnelle du bénéficiaire dans les cinq dernières années vaut 25
     Et le type de contrat du bénéficiaire vaut CDD
     Et le prix horaire de la formation vaut 25
@@ -192,6 +193,25 @@ Scénario: cas nominal d'un CIF CDD pour un bénéficiaire âgé de plus de 26 a
     Alors l'organisme à contacter est «Fongecif»
     Et le montant de prise en charge vaut 12500
     Et la rémunération vaut 0
+
+
+Scénario: cas nominal d'un CIF CDD pour un bénéficiaire âgé de plus de 26 ans n'ayant pas assez travaillé dans les 12 derniers mois
+    Soit un bénéficiaire et une formation
+    Et c'est un bénéficiaire de droit privé
+    Et la rémunération du bénéficiaire vaut 1400
+    Et l'ancienneté du bénéficiaire dans son entreprise vaut 24
+    Et le nombre de mois travaillés par le bénéficiaire dans la dernière année vaut 3
+    Et l'expérience professionnelle du bénéficiaire dans les cinq dernières années vaut 25
+    Et le type de contrat du bénéficiaire vaut CDD
+    Et le prix horaire de la formation vaut 25
+    Et l'IDCC de l'établissement du bénéficiaire vaut 2706
+    Et les codes financeur de la formation valent [0]
+    Et la durée en heures de la formation vaut 500
+    Et la durée en mois de la formation vaut 10
+    Et l'âge du bénéficiaire vaut 30
+    Quand je demande un calcul de financement
+    Alors le financement «CIF CDI sur son temps de travail» n'est pas proposé
+    Et le financement «CIF CDI hors temps de travail» n'est pas proposé
 
 
 Scénario: cas nominal d'un CIF CDD pour un bénéficiaire âgé de plus de 26 ans manquant d'expérience professionnelle
@@ -303,6 +323,7 @@ Scénario: CIF CDD pour une formation de moins de 120 heures
     Et la rémunération du bénéficiaire vaut 1400
     Et l'ancienneté du bénéficiaire dans son entreprise vaut 24
     Et l'expérience professionnelle du bénéficiaire dans les cinq dernières années vaut 25
+    Et le nombre de mois travaillés par le bénéficiaire dans la dernière année vaut 8
     Et le type de contrat du bénéficiaire vaut «CDD»
     Et le prix horaire de la formation vaut 25
     Et l'IDCC de l'établissement du bénéficiaire vaut 2706
