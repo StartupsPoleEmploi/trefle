@@ -100,7 +100,7 @@ def make_feature(data, financements, name='Donne-moi un nom'):
     steps = ["Soit un bénéficiaire et une formation"]
 
     for key, value in data.items():
-        if key.startswith('constante'):
+        if key.startswith(('constante', 'financements')):
             continue
         schema = SCHEMA[key]
         label = schema['label']
