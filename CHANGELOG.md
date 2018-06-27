@@ -2,6 +2,14 @@
 
 ## dev
 
+- now keep tree structure when loading rules
+- fixed crash when beneficiaire.remuneration was an empty string
+- Added check "nombre de mois travaillés dans la dernière année" also for people
+  older than 26 years old
+
+
+## 0.2.0
+
 - there is only one CERTIFINFO per formation
 - add a prototype of an explorer
 - beneficiaire.remuneration is no more mandatory
