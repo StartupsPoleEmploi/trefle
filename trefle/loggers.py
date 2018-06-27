@@ -24,7 +24,7 @@ def log_simulate(context, financements=None, errors=None):
     financements = financements or []
     errors = errors or []
     message = {
-        'date': str(datetime.now()),
+        'date': datetime.utcnow().isoformat(),
         'context': context,
         'financements': [f['nom'] for f in financements if f['eligible']],
         'errors': errors,
