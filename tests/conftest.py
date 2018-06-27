@@ -1,4 +1,7 @@
+import os
 from collections import namedtuple
+from pathlib import Path
+
 import pytest
 
 from trefle.rules import LABELS, SCHEMA
@@ -31,3 +34,9 @@ def mock_get(monkeypatch):
             return Response(status_code=status_code, content=content)
         monkeypatch.setattr('requests.get', _get)
     return patch
+
+
+def pytest_configure(config):
+    logs_dir = '/tmp/trefle-tests'
+    os.environ['TREFLE_LOG_DIR'] = logs_dir
+    Path(logs_dir).mkdir(exist_ok=True)

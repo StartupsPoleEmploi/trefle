@@ -6,8 +6,8 @@ async def simulate(context):
     # Prepare context
     routine.add_constants(context)
     routine.flatten(context)
-    routine.preload_financements(context)
     validate(context)
+    routine.preload_financements(context)
     routine.insee_commune_to_region(context)
     await routine.populate_formation(context)
     routine.idcc_to_organismes(context)

@@ -1,25 +1,18 @@
-import logging
-import pkg_resources
 from http import HTTPStatus
 
 from roll import HttpError, Roll
 from roll.extensions import cors
 
+from . import VERSION
 from .config import RAW_RULES, SCHEMA, GLOSSARY, NAF
 from .core import simulate
 from .debugging import data_from_lbf_url, make_feature
+from .loggers import logger, log_financements
 from .openapis import OPENAPI
 from .routine import get_formation_xml
 
-logger = logging.getLogger('trefle')
-logger.setLevel(logging.DEBUG)
-logger.addHandler(logging.StreamHandler())
-
 app = Roll()
 cors(app)
-
-
-VERSION = pkg_resources.get_distribution(__package__).version
 
 
 @app.listen('response')
@@ -29,13 +22,13 @@ async def expose_version(request, response):
 
 @app.listen('error')
 async def json_error_response(request, response, error):
-    body = error.message
-    if isinstance(body, (str, bytes)):
-        body = {'error': body}
-    response.json = body
+    if isinstance(error.message, (str, bytes)):
+        error.message = {'error': error.message}
+    response.json = error.message
     if error.status != HTTPStatus.NOT_FOUND:
         logger.debug(f'HttpError: status={error.status}, version={VERSION}, '
                      f'message={response.body}, request={request.body}')
+
 
 
 @app.route('/financement', methods=['POST'])
@@ -44,6 +37,9 @@ async def simulate_(request, response):
     try:
         financements = await simulate(context)
     except ValueError as err:
+        if isinstance(err.args[0], dict):
+            # FIXME this can be improved
+            log_financements(context, errors=err.args[0])
         raise HttpError(HTTPStatus.UNPROCESSABLE_ENTITY, err.args[0])
 
     eligible = request.query.bool('eligible', None)
@@ -59,6 +55,8 @@ async def simulate_(request, response):
     if request.query.bool('scenario', False):
         body['scenario'] = make_feature(context, financements)
     response.json = body
+
+    log_financements(context, financements=financements)
 
 
 @app.route('/schema')

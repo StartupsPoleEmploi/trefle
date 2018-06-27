@@ -1,5 +1,7 @@
-from http import HTTPStatus
 import json
+import os
+from http import HTTPStatus
+from pathlib import Path
 
 import pytest
 from openapi_core import create_spec
@@ -43,7 +45,7 @@ async def test_simulate_endpoint(client):
     assert resp.status == HTTPStatus.OK
     assert 'financements' in json.loads(resp.body)
     financements = json.loads(resp.body)['financements']
-    assert len(financements)
+    assert financements
     assert financements[0].get('eligible')
     assert 'Version' in resp.headers
 
@@ -69,7 +71,7 @@ async def test_simulate_endpoint_without_formation_prix_horaire(client):
     assert resp.status == HTTPStatus.OK
     assert 'financements' in json.loads(resp.body)
     financements = json.loads(resp.body)['financements']
-    assert len(financements)
+    assert financements
     assert financements[0]['prise_en_charge'] is None
     assert financements[0]['plafond_prise_en_charge'] > 0
 
@@ -90,7 +92,7 @@ async def test_simulate_endpoint_with_formation_prix_horaire(client):
     assert resp.status == HTTPStatus.OK
     assert 'financements' in json.loads(resp.body)
     financements = json.loads(resp.body)['financements']
-    assert len(financements)
+    assert financements
     assert financements[0]['plafond_prise_en_charge'] > 0
     assert financements[0]['prise_en_charge'] > 0
 
@@ -198,6 +200,54 @@ async def test_simulate_hors_temps_de_travail(client):
     assert resp.status == HTTPStatus.OK
     financements = json.loads(resp.body)['financements']
     assert len(financements) == 1
+
+
+async def test_simulate_triggers_log(client):
+    body = {
+        'beneficiaire.solde_cpf': 10,
+        'beneficiaire.remuneration': 1400,
+        'beneficiaire.droit_prive': True,
+        'beneficiaire.contrat': 'cdi',
+        'formation.eligible_copanef': True,
+        'formation.heures': 100,
+        'beneficiaire.entreprise.commune': '2A004',
+        'beneficiaire.entreprise.idcc': 2706
+    }
+
+    log_path = Path(os.environ['TREFLE_LOG_DIR']).joinpath('trefle-requests.log')
+    log_path.write_text('')
+    await client.post('/financement', body=body)
+    lines = log_path.read_text().splitlines()
+    assert len(lines) == 1
+    log_data = json.loads(lines[0])
+    assert log_data['financements']
+    assert 'version' in log_data
+    assert 'date' in log_data
+    assert not log_data['errors']
+
+
+async def test_simulate_error_triggers_log(client):
+    body = {
+        'beneficiaire.solde_cpf': 10,
+        'beneficiaire.remuneration': 1400,
+        # 'beneficiaire.droit_prive': True,
+        'beneficiaire.contrat': 'cdi',
+        'formation.eligible_copanef': True,
+        'formation.heures': 100,
+        'beneficiaire.entreprise.commune': '2A004',
+        'beneficiaire.entreprise.idcc': 2706
+    }
+
+    log_path = Path(os.environ['TREFLE_LOG_DIR']).joinpath('trefle-requests.log')
+    log_path.write_text('')
+    await client.post('/financement', body=body)
+    lines = log_path.read_text().splitlines()
+    assert len(lines) == 1
+    log_data = json.loads(lines[0])
+    assert not log_data['financements']
+    assert 'version' in log_data
+    assert 'date' in log_data
+    assert 'beneficiaire.droit_prive' in log_data['errors']
 
 
 async def test_simulate_endpoint_with_wrong_method(client):
