@@ -25,7 +25,7 @@ def system():
         run('apt update')
         run('apt install -y nginx git software-properties-common gcc '
             'python-virtualenv python3.6 python3.6-dev pkg-config')
-        mkdir('/srv/trefle/data')
+        mkdir('/srv/trefle/logs')
         run('useradd -N trefle -d /srv/trefle/ || exit 0')
         chown('trefle:users', '/srv/trefle/')
         run('chsh -s /bin/bash trefle')
@@ -143,16 +143,26 @@ def error_logs():
 
 
 @minicli.cli
+def simulate_logs():
+    """See the simulate logs."""
+    with sudo():
+        run('tail -F /srv/trefle/logs/trefle-simulate.log')
+
+
+@minicli.cli
 def upload_env():
     """Upload environment vars to the server.
 
     Use those to deal with info not commitable.
     """
-    keys = ['LBF_CHARMAP']
+    vars_ = {
+        'LBF_CHARMAP': None,
+        'TREFLE_LOG_DIR': '/srv/trefle/logs'
+    }
     content = ''
-    for key in keys:
+    for key, value in vars_.items():
         try:
-            content += '{}={}\n'.format(key, os.environ[key])
+            content += '{}={}\n'.format(key, value or os.environ[key])
         except KeyError as e:
             sys.exit('The {} environment variable does not exist.'.format(e))
     path = '/srv/trefle/env'
