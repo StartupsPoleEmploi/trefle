@@ -3,7 +3,6 @@ Si le nom de l'organisme est «Fongecif»
     Alors le plafond financier applicable vaut 18000
     Et le prix horaire plafond applicable vaut 27.45
 
-    # TODO: dont check financement name
     Si le financement est de type «sur son temps de travail»
         Alors la rémunération possible est égale à la rémunération du bénéficiaire
 
