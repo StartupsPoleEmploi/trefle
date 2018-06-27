@@ -6,6 +6,7 @@
 - fixed crash when beneficiaire.remuneration was an empty string
 - Added check "nombre de mois travaillés dans la dernière année" also for people
   older than 26 years old
+- Added simulate logs
 
 
 ## 0.2.0
