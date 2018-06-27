@@ -1,8 +1,9 @@
 from datetime import datetime
-import json
 import logging
 import logging.handlers
 import os
+
+import ujson as json
 
 from . import VERSION
 
