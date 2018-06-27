@@ -31,38 +31,38 @@ def parse_args(args):
 
 
 @cli(name='simulate')
-async def cli_simulate(*args, data: json.loads={}, url=None, trace=False,
-                       output_feature=False, show_data=False):
+async def cli_simulate(*args, context: json.loads={}, url=None, trace=False,
+                       output_feature=False, show_context=False):
     """Simulate a call to the API.
 
-    Pass data as args in the form key=value.
-    :body: data in json form (for example from a request body).
-    :url: Optionnal LBF URL to retrieve data from.
+    Pass context as args in the form key=value.
+    :context: context in json form (for example from a request body).
+    :url: Optionnal LBF URL to retrieve context from.
     :trace: Display a trace of all checked conditions.
-    :feature: Render a Gherkin Feature with given data.
-    :show_data: Render a table with used data.
+    :feature: Render a Gherkin Feature with given context.
+    :show_context: Render a table with used context.
     """
-    flatten(data)
+    flatten(context)
     if url:
-        data = data_from_lbf_url(url)
+        context = data_from_lbf_url(url)
     if args:
-        data.update(parse_args(args))
+        context.update(parse_args(args))
     if trace:
         for rule in RULES:
             trace_condition(rule.root)
     try:
         start = time.perf_counter()
-        financements = await simulate(data)
+        financements = await simulate(context)
         duration = (time.perf_counter() - start)
     except Exception:
         raise
     finally:
-        if show_data:
+        if show_context:
             print('-' * 105)
             tpl = '| {:<50}| {:<50}|'
             print(tpl.format('key', 'value'))
             print('| {0}| {0}|'.format('-'*50))
-            for key, value in data.items():
+            for key, value in context.items():
                 if key.startswith(('constante', 'financements')):
                     continue
                 print(tpl.format(key, str(value)))
@@ -93,7 +93,7 @@ async def cli_simulate(*args, data: json.loads={}, url=None, trace=False,
     if output_feature:
         if url:
             print(f'# {url}')
-        print(make_feature(data, eligibles))
+        print(make_feature(context, eligibles))
     if trace:
         for rule in RULES:
             print('\n{:—^105}'.format(rule.name))
