@@ -59,7 +59,7 @@ Scénario: CIF et CPF
     Et le solde CPF du bénéficiaire vaut 150
     Et le type de contrat du bénéficiaire vaut «CDI»
     Et l'expérience professionnelle du bénéficiaire dans les cinq dernières années vaut 24
-    Et l'ancienneté du bénéficiaire dans son entreprise vaut 24
+    Et l'ancienneté en mois du bénéficiaire dans son entreprise vaut 24
     Et le code NAF de l'établissement du bénéficiaire vaut «7830Z»
     Et l'IDCC de l'établissement du bénéficiaire vaut «2397»
     Et la région de l'établissement du bénéficiaire vaut «Auvergne-Rhône-Alpes»
@@ -99,7 +99,7 @@ Scénario: le bénéficiaire n'a pas défini de rémunération
     Et le solde CPF du bénéficiaire vaut 150
     Et le type de contrat du bénéficiaire vaut «CDI»
     Et l'expérience professionnelle du bénéficiaire dans les cinq dernières années vaut 24
-    Et l'ancienneté du bénéficiaire dans son entreprise vaut 24
+    Et l'ancienneté en mois du bénéficiaire dans son entreprise vaut 24
     Et le code NAF de l'établissement du bénéficiaire vaut «7830Z»
     Et l'IDCC de l'établissement du bénéficiaire vaut «2397»
     Et la région de l'établissement du bénéficiaire vaut «Auvergne-Rhône-Alpes»

@@ -73,7 +73,7 @@ Scénario: plafond horaire sur une formation simple
     Et le solde CPF du bénéficiaire vaut 150
     Et le type de contrat du bénéficiaire vaut «CDI»
     Et l'expérience professionnelle du bénéficiaire dans les cinq dernières années vaut 50
-    Et l'ancienneté du bénéficiaire dans son entreprise vaut 50
+    Et l'ancienneté en mois du bénéficiaire dans son entreprise vaut 50
     Et le code NAF de l'établissement du bénéficiaire vaut «8891A»
     Et l'IDCC de l'établissement du bénéficiaire vaut 2395
     Et la région de l'établissement du bénéficiaire vaut «Provence-Alpes-Côte d'Azur»
@@ -141,7 +141,7 @@ Scénario: période de professionnalisation + CPF
     Et le solde CPF du bénéficiaire vaut 150
     Et le type de contrat du bénéficiaire vaut «CDI»
     Et l'expérience professionnelle du bénéficiaire dans les cinq dernières années vaut 12
-    Et l'ancienneté du bénéficiaire dans son entreprise vaut 12
+    Et l'ancienneté en mois du bénéficiaire dans son entreprise vaut 12
     Et le code NAF de l'établissement du bénéficiaire vaut «8891A»
     Et l'IDCC de l'établissement du bénéficiaire vaut «2395»
     Et la région de l'établissement du bénéficiaire vaut «Provence-Alpes-Côte d'Azur»

@@ -9,7 +9,7 @@ Scénario: CPF intermittent
     Et le solde CPF du bénéficiaire vaut 150
     Et le type de contrat du bénéficiaire vaut «intermittent»
     Et l'expérience professionnelle du bénéficiaire dans les cinq dernières années vaut 24
-    Et l'ancienneté du bénéficiaire dans son entreprise vaut 12
+    Et l'ancienneté en mois du bénéficiaire dans son entreprise vaut 12
     Et le code NAF de l'établissement du bénéficiaire vaut «1411Z»
     Et l'IDCC de l'établissement du bénéficiaire vaut 247
     Et la région de l'établissement du bénéficiaire vaut «Auvergne-Rhône-Alpes»

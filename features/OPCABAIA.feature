@@ -9,7 +9,7 @@ Scénario: CPF avec IDCC 1672
     Et le âge du bénéficiaire vaut 28
     Et l'expérience professionnelle du bénéficiaire dans les cinq dernières années vaut 28
     Et le type de contrat du bénéficiaire vaut «CDI»
-    Et l'ancienneté du bénéficiaire dans son entreprise vaut 6
+    Et l'ancienneté en mois du bénéficiaire dans son entreprise vaut 6
     Et le code NAF de l'établissement du bénéficiaire vaut «6512Z»
     Et l'IDCC de l'établissement du bénéficiaire vaut «1672»
     Et la région de l'établissement du bénéficiaire vaut «Île-de-France»

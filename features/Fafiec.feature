@@ -10,7 +10,7 @@ Scénario: cas nominal Fafiec
     Et le type de contrat du bénéficiaire vaut «CDD»
     Et l'expérience professionnelle du bénéficiaire dans les cinq dernières années vaut 48
     Et le nombre de mois travaillés par le bénéficiaire dans la dernière année vaut 12
-    Et l'ancienneté du bénéficiaire dans son entreprise vaut 12
+    Et l'ancienneté en mois du bénéficiaire dans son entreprise vaut 12
     Et le code NAF de l'établissement du bénéficiaire vaut «6202A»
     Et l'IDCC de l'établissement du bénéficiaire vaut 1486
     Et c'est une formation éligible région «Île-de-France»
@@ -46,7 +46,7 @@ Scénario: CPF sur CPNE
     Et le type de contrat du bénéficiaire vaut «CDD»
     Et l'expérience professionnelle du bénéficiaire dans les cinq dernières années vaut 48
     Et le nombre de mois travaillés par le bénéficiaire dans la dernière année vaut 12
-    Et l'ancienneté du bénéficiaire dans son entreprise vaut 12
+    Et l'ancienneté en mois du bénéficiaire dans son entreprise vaut 12
     Et le code NAF de l'établissement du bénéficiaire vaut «6202A»
     Et l'IDCC de l'établissement du bénéficiaire vaut 1486
     Et ce n'est pas une formation éligible COPANEF

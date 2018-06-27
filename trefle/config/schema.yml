@@ -143,6 +143,13 @@ beneficiaire:
     public: true
     label: nombre de jours travaillés par le bénéficiaire dans les cinq dernières années
     gender: masculine
+  heures_travaillees:
+    description: nombre d'heures travaillées dans les 18 derniers mois (pour les intérimaires)
+    type: integer
+    format: int32
+    public: true
+    label: nombre d'heures travaillées par le bénéficiaire dans les dix-huit derniers mois
+    gender: masculine
   contrat:
     description: type de contrat du bénéficiaire
     type: string
@@ -155,12 +162,19 @@ beneficiaire:
       interim: intérimaire
     label: type de contrat du bénéficiaire
     gender: masculine
-  anciennete_entreprise_actuelle:
+  mois_entreprise:
     description: ancienneté en mois dans l'entreprise actuelle
+    alias: anciennete_entreprise_actuelle
     type: integer
     format: int32
     public: true
-    label: ancienneté du bénéficiaire dans son entreprise
+    label: ancienneté en mois du bénéficiaire dans son entreprise
+  heures_entreprise:
+    description: ancienneté en heures dans l'entreprise
+    type: integer
+    format: int32
+    public: true
+    label: ancienneté en heures du bénéficiaire dans son entreprise
   entreprise:
     naf:
       description: l'identifiant NAF/APE de l'entreprise

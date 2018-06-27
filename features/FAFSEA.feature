@@ -5,7 +5,7 @@ Scénario: cas nominal d'un CIF CDI
     Soit un bénéficiaire et une formation
     Et c'est un bénéficiaire de droit privé
     Et la rémunération du bénéficiaire vaut 1400
-    Et l'ancienneté du bénéficiaire dans son entreprise vaut 24
+    Et l'ancienneté en mois du bénéficiaire dans son entreprise vaut 24
     Et l'expérience professionnelle du bénéficiaire dans les cinq dernières années vaut 36
     Et le type de contrat du bénéficiaire vaut CDI
     Et le prix horaire de la formation vaut 15
@@ -27,7 +27,7 @@ Scénario: CIF CDI avec plafond de prix horaire
     Soit un bénéficiaire et une formation
     Et c'est un bénéficiaire de droit privé
     Et la rémunération du bénéficiaire vaut 1400
-    Et l'ancienneté du bénéficiaire dans son entreprise vaut 24
+    Et l'ancienneté en mois du bénéficiaire dans son entreprise vaut 24
     Et l'expérience professionnelle du bénéficiaire dans les cinq dernières années vaut 36
     Et le type de contrat du bénéficiaire vaut CDI
     Et le prix horaire de la formation vaut 30
@@ -49,7 +49,7 @@ Scénario: CIF CDI avec plafond financier
     Soit un bénéficiaire et une formation
     Et c'est un bénéficiaire de droit privé
     Et la rémunération du bénéficiaire vaut 1400
-    Et l'ancienneté du bénéficiaire dans son entreprise vaut 24
+    Et l'ancienneté en mois du bénéficiaire dans son entreprise vaut 24
     Et l'expérience professionnelle du bénéficiaire dans les cinq dernières années vaut 36
     Et le type de contrat du bénéficiaire vaut CDI
     Et le prix horaire de la formation vaut 30
@@ -71,7 +71,7 @@ Scénario: CIF CDI avec plafond de rémunération
     Soit un bénéficiaire et une formation
     Et c'est un bénéficiaire de droit privé
     Et la rémunération du bénéficiaire vaut 10000
-    Et l'ancienneté du bénéficiaire dans son entreprise vaut 24
+    Et l'ancienneté en mois du bénéficiaire dans son entreprise vaut 24
     Et l'expérience professionnelle du bénéficiaire dans les cinq dernières années vaut 36
     Et le type de contrat du bénéficiaire vaut CDI
     Et le prix horaire de la formation vaut 10
@@ -94,7 +94,7 @@ Scénario: CIF CDI avec plafond de rémunération et plancher à deux SMIC
     Soit un bénéficiaire et une formation
     Et c'est un bénéficiaire de droit privé
     Et la rémunération du bénéficiaire vaut 3500
-    Et l'ancienneté du bénéficiaire dans son entreprise vaut 24
+    Et l'ancienneté en mois du bénéficiaire dans son entreprise vaut 24
     Et l'expérience professionnelle du bénéficiaire dans les cinq dernières années vaut 36
     Et le type de contrat du bénéficiaire vaut CDI
     Et le prix horaire de la formation vaut 10
@@ -116,7 +116,7 @@ Scénario: CIF CDI avec moins de 120 heures
     Soit un bénéficiaire et une formation
     Et c'est un bénéficiaire de droit privé
     Et la rémunération du bénéficiaire vaut 1400
-    Et l'ancienneté du bénéficiaire dans son entreprise vaut 24
+    Et l'ancienneté en mois du bénéficiaire dans son entreprise vaut 24
     Et l'expérience professionnelle du bénéficiaire dans les cinq dernières années vaut 36
     Et le type de contrat du bénéficiaire vaut «CDI»
     Et le prix horaire de la formation vaut 15

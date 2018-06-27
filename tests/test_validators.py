@@ -215,3 +215,27 @@ def test_format_remuneration(patch_schema, input, expected):
     else:
         validate(data)
         assert data['remuneration'] == expected
+
+
+def test_should_resolve_alias_if_value_is_none(patch_schema):
+    patch_schema({
+        'remuneration': {'type': 'string', 'alias': 'salaire'}})
+    data = {'salaire': 1000}
+    validate(data)
+    assert data['remuneration'] == 1000
+
+
+def test_should_not_resolve_alias_if_original_key_is_set(patch_schema):
+    patch_schema({
+        'remuneration': {'type': 'string', 'alias': 'salaire'}})
+    data = {'salaire': 1000, 'remuneration': 1100}
+    validate(data)
+    assert data['remuneration'] == 1100
+
+
+def test_should_fail_if_alias_is_not_present(patch_schema):
+    patch_schema({
+        'remuneration': {'type': 'string', 'alias': 'salaire'}})
+    data = {}
+    validate(data)
+    assert not data

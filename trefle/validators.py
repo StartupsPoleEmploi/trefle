@@ -104,8 +104,12 @@ def validate(data):
     # Check all fields at once, more user friendly.
     errors = {}
     for name, schema in SCHEMA.items():
-        value = validate_field(name, data.get(name), schema, errors)
-        if name in data:  # Do not create unwanted None values.
+        value = data.get(name)
+        # Allow to keep retrocompat names.
+        if value is None and 'alias' in schema:
+            value = data.get(schema['alias'])
+        value = validate_field(name, value, schema, errors)
+        if name in data or value is not None:  # Do not create None values.
             data[name] = value
     if errors:
         raise ValueError(errors)

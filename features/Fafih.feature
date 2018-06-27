@@ -10,7 +10,7 @@ Scénario: Cas d'un permis B
     Et le type de contrat du bénéficiaire vaut «CDD»
     Et l'expérience professionnelle du bénéficiaire dans les cinq dernières années vaut 48
     Et le nombre de mois travaillés par le bénéficiaire dans la dernière année vaut 12
-    Et l'ancienneté du bénéficiaire dans son entreprise vaut 12
+    Et l'ancienneté en mois du bénéficiaire dans son entreprise vaut 12
     Et le code NAF de l'établissement du bénéficiaire vaut «5510Z»
     Et l'IDCC de l'établissement du bénéficiaire vaut 800
     Et la région de l'établissement du bénéficiaire vaut «Île-de-France»
@@ -39,7 +39,7 @@ Scénario: Cas d'un bilan de compétences
     Et le type de contrat du bénéficiaire vaut «CDD»
     Et l'expérience professionnelle du bénéficiaire dans les cinq dernières années vaut 48
     Et le nombre de mois travaillés par le bénéficiaire dans la dernière année vaut 12
-    Et l'ancienneté du bénéficiaire dans son entreprise vaut 12
+    Et l'ancienneté en mois du bénéficiaire dans son entreprise vaut 12
     Et le code NAF de l'établissement du bénéficiaire vaut «5510Z»
     Et l'IDCC de l'établissement du bénéficiaire vaut 800
     Et la région de l'établissement du bénéficiaire vaut «Île-de-France»

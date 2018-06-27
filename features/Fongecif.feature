@@ -6,7 +6,7 @@ Scénario: cas nominal d'un CIF CDI
     Soit un bénéficiaire et une formation
     Et c'est un bénéficiaire de droit privé
     Et la rémunération du bénéficiaire vaut 1400
-    Et l'ancienneté du bénéficiaire dans son entreprise vaut 24
+    Et l'ancienneté en mois du bénéficiaire dans son entreprise vaut 24
     Et l'expérience professionnelle du bénéficiaire dans les cinq dernières années vaut 36
     Et le type de contrat du bénéficiaire vaut CDI
     Et le prix horaire de la formation vaut 25
@@ -29,7 +29,7 @@ Scénario: cas d'un CIF CDI avec moins de 24 mois d'expérience professionnelle
     Soit un bénéficiaire et une formation
     Et c'est un bénéficiaire de droit privé
     Et la rémunération du bénéficiaire vaut 1400
-    Et l'ancienneté du bénéficiaire dans son entreprise vaut 20
+    Et l'ancienneté en mois du bénéficiaire dans son entreprise vaut 20
     Et l'expérience professionnelle du bénéficiaire dans les cinq dernières années vaut 20
     Et le type de contrat du bénéficiaire vaut CDI
     Et le prix horaire de la formation vaut 25
@@ -46,7 +46,7 @@ Scénario: cas d'un CIF CDI avec moins de 12 mois d'ancienneté dans l'entrepris
     Soit un bénéficiaire et une formation
     Et c'est un bénéficiaire de droit privé
     Et la rémunération du bénéficiaire vaut 1400
-    Et l'ancienneté du bénéficiaire dans son entreprise vaut 11
+    Et l'ancienneté en mois du bénéficiaire dans son entreprise vaut 11
     Et l'expérience professionnelle du bénéficiaire dans les cinq dernières années vaut 36
     Et le type de contrat du bénéficiaire vaut CDI
     Et le prix horaire de la formation vaut 25
@@ -63,7 +63,7 @@ Scénario: cas d'un CIF CDI avec 12 mois d'ancienneté dans l'entreprise (moins 
     Soit un bénéficiaire et une formation
     Et c'est un bénéficiaire de droit privé
     Et la rémunération du bénéficiaire vaut 1400
-    Et l'ancienneté du bénéficiaire dans son entreprise vaut 11
+    Et l'ancienneté en mois du bénéficiaire dans son entreprise vaut 11
     Et l'expérience professionnelle du bénéficiaire dans les cinq dernières années vaut 36
     Et le type de contrat du bénéficiaire vaut CDI
     Et le prix horaire de la formation vaut 25
@@ -80,7 +80,7 @@ Scénario: CIF CDI avec plafond financier
     Soit un bénéficiaire et une formation
     Et c'est un bénéficiaire de droit privé
     Et la rémunération du bénéficiaire vaut 1400
-    Et l'ancienneté du bénéficiaire dans son entreprise vaut 24
+    Et l'ancienneté en mois du bénéficiaire dans son entreprise vaut 24
     Et l'expérience professionnelle du bénéficiaire dans les cinq dernières années vaut 36
     Et le type de contrat du bénéficiaire vaut CDI
     Et le prix horaire de la formation vaut 25
@@ -103,7 +103,7 @@ Scénario: CIF CDI avec plafond prix horaire
     Soit un bénéficiaire et une formation
     Et c'est un bénéficiaire de droit privé
     Et la rémunération du bénéficiaire vaut 1400
-    Et l'ancienneté du bénéficiaire dans son entreprise vaut 24
+    Et l'ancienneté en mois du bénéficiaire dans son entreprise vaut 24
     Et l'expérience professionnelle du bénéficiaire dans les cinq dernières années vaut 36
     Et le type de contrat du bénéficiaire vaut CDI
     Et le prix horaire de la formation vaut 30
@@ -126,7 +126,7 @@ Scénario: CIF CDI avec un salaire > 2 SMIC
     Soit un bénéficiaire et une formation
     Et c'est un bénéficiaire de droit privé
     Et la rémunération du bénéficiaire vaut 3000
-    Et l'ancienneté du bénéficiaire dans son entreprise vaut 24
+    Et l'ancienneté en mois du bénéficiaire dans son entreprise vaut 24
     Et l'expérience professionnelle du bénéficiaire dans les cinq dernières années vaut 36
     Et le type de contrat du bénéficiaire vaut CDI
     Et le prix horaire de la formation vaut 25
@@ -151,7 +151,7 @@ Scénario: CIF CDI avec un salaire > 3 SMIC
     Soit un bénéficiaire et une formation
     Et c'est un bénéficiaire de droit privé
     Et la rémunération du bénéficiaire vaut 6000
-    Et l'ancienneté du bénéficiaire dans son entreprise vaut 24
+    Et l'ancienneté en mois du bénéficiaire dans son entreprise vaut 24
     Et l'expérience professionnelle du bénéficiaire dans les cinq dernières années vaut 36
     Et le type de contrat du bénéficiaire vaut CDI
     Et le prix horaire de la formation vaut 25
@@ -174,7 +174,7 @@ Scénario: cas nominal d'un CIF CDD pour un bénéficiaire âgé de plus de 26 a
     Soit un bénéficiaire et une formation
     Et c'est un bénéficiaire de droit privé
     Et la rémunération du bénéficiaire vaut 1400
-    Et l'ancienneté du bénéficiaire dans son entreprise vaut 24
+    Et l'ancienneté en mois du bénéficiaire dans son entreprise vaut 24
     Et le nombre de mois travaillés par le bénéficiaire dans la dernière année vaut 8
     Et l'expérience professionnelle du bénéficiaire dans les cinq dernières années vaut 25
     Et le type de contrat du bénéficiaire vaut CDD
@@ -199,7 +199,7 @@ Scénario: cas nominal d'un CIF CDD pour un bénéficiaire âgé de plus de 26 a
     Soit un bénéficiaire et une formation
     Et c'est un bénéficiaire de droit privé
     Et la rémunération du bénéficiaire vaut 1400
-    Et l'ancienneté du bénéficiaire dans son entreprise vaut 24
+    Et l'ancienneté en mois du bénéficiaire dans son entreprise vaut 24
     Et le nombre de mois travaillés par le bénéficiaire dans la dernière année vaut 3
     Et l'expérience professionnelle du bénéficiaire dans les cinq dernières années vaut 25
     Et le type de contrat du bénéficiaire vaut CDD
@@ -218,7 +218,7 @@ Scénario: cas nominal d'un CIF CDD pour un bénéficiaire âgé de plus de 26 a
     Soit un bénéficiaire et une formation
     Et c'est un bénéficiaire de droit privé
     Et la rémunération du bénéficiaire vaut 1400
-    Et l'ancienneté du bénéficiaire dans son entreprise vaut 24
+    Et l'ancienneté en mois du bénéficiaire dans son entreprise vaut 24
     Et l'expérience professionnelle du bénéficiaire dans les cinq dernières années vaut 11
     Et le type de contrat du bénéficiaire vaut CDD
     Et le prix horaire de la formation vaut 25
@@ -236,7 +236,7 @@ Scénario: cas nominal d'un CIF CDD pour un bénéficiaire âgé de moins de 26 
     Soit un bénéficiaire et une formation
     Et c'est un bénéficiaire de droit privé
     Et la rémunération du bénéficiaire vaut 1400
-    Et l'ancienneté du bénéficiaire dans son entreprise vaut 24
+    Et l'ancienneté en mois du bénéficiaire dans son entreprise vaut 24
     Et l'expérience professionnelle du bénéficiaire dans les cinq dernières années vaut 14
     Et le nombre de mois travaillés par le bénéficiaire dans la dernière année vaut 8
     Et le type de contrat du bénéficiaire vaut CDD
@@ -261,7 +261,7 @@ Scénario: cas d'un CIF CDI d'un jeune de moins de 26 ans dans l'artisanat
     Soit un bénéficiaire et une formation
     Et c'est un bénéficiaire de droit privé
     Et la rémunération du bénéficiaire vaut 1400
-    Et l'ancienneté du bénéficiaire dans son entreprise vaut 24
+    Et l'ancienneté en mois du bénéficiaire dans son entreprise vaut 24
     Et l'expérience professionnelle du bénéficiaire dans les cinq dernières années vaut 40
     Et le type de contrat du bénéficiaire vaut CDI
     Et le prix horaire de la formation vaut 25
@@ -284,7 +284,7 @@ Scénario: cas d'un CIF CDI dans l'artisanat d'un jeune manquant d'ancienneté p
     Soit un bénéficiaire et une formation
     Et c'est un bénéficiaire de droit privé
     Et la rémunération du bénéficiaire vaut 1400
-    Et l'ancienneté du bénéficiaire dans son entreprise vaut 24
+    Et l'ancienneté en mois du bénéficiaire dans son entreprise vaut 24
     Et l'expérience professionnelle du bénéficiaire dans les cinq dernières années vaut 30
     Et le type de contrat du bénéficiaire vaut CDI
     Et le prix horaire de la formation vaut 25
@@ -301,7 +301,7 @@ Scénario: CIF CDI avec moins de 120 heures et IDCC artisanat
     Soit un bénéficiaire et une formation
     Et c'est un bénéficiaire de droit privé
     Et la rémunération du bénéficiaire vaut 1400
-    Et l'ancienneté du bénéficiaire dans son entreprise vaut 24
+    Et l'ancienneté en mois du bénéficiaire dans son entreprise vaut 24
     Et l'expérience professionnelle du bénéficiaire dans les cinq dernières années vaut 36
     Et le type de contrat du bénéficiaire vaut «CDI»
     Et le prix horaire de la formation vaut 15
@@ -321,7 +321,7 @@ Scénario: CIF CDD pour une formation de moins de 120 heures
     Soit un bénéficiaire et une formation
     Et c'est un bénéficiaire de droit privé
     Et la rémunération du bénéficiaire vaut 1400
-    Et l'ancienneté du bénéficiaire dans son entreprise vaut 24
+    Et l'ancienneté en mois du bénéficiaire dans son entreprise vaut 24
     Et l'expérience professionnelle du bénéficiaire dans les cinq dernières années vaut 25
     Et le nombre de mois travaillés par le bénéficiaire dans la dernière année vaut 8
     Et le type de contrat du bénéficiaire vaut «CDD»
@@ -364,7 +364,7 @@ Scénario: CIF CDI en Corse
     Soit un bénéficiaire et une formation
     Et c'est un bénéficiaire de droit privé
     Et la rémunération du bénéficiaire vaut 1400
-    Et l'ancienneté du bénéficiaire dans son entreprise vaut 24
+    Et l'ancienneté en mois du bénéficiaire dans son entreprise vaut 24
     Et l'expérience professionnelle du bénéficiaire dans les cinq dernières années vaut 36
     Et le type de contrat du bénéficiaire vaut CDI
     Et le prix horaire de la formation vaut 25
@@ -385,7 +385,7 @@ Scénario: Formation de 12 mois
     Et c'est un bénéficiaire de droit privé
     Et le type de contrat du bénéficiaire vaut «CDI»
     Et l'expérience professionnelle du bénéficiaire dans les cinq dernières années vaut 48
-    Et l'ancienneté du bénéficiaire dans son entreprise vaut 24
+    Et l'ancienneté en mois du bénéficiaire dans son entreprise vaut 24
     Et le code NAF de l'établissement du bénéficiaire vaut «2825z»
     Et l'IDCC de l'établissement du bénéficiaire vaut «1412»
     Et la région de l'établissement du bénéficiaire vaut «Normandie»
@@ -419,7 +419,7 @@ Scénario: Sans code financeur
     Et c'est un bénéficiaire de droit privé
     Et le type de contrat du bénéficiaire vaut «CDI»
     Et l'expérience professionnelle du bénéficiaire dans les cinq dernières années vaut 48
-    Et l'ancienneté du bénéficiaire dans son entreprise vaut 24
+    Et l'ancienneté en mois du bénéficiaire dans son entreprise vaut 24
     Et le code NAF de l'établissement du bénéficiaire vaut «2825z»
     Et l'IDCC de l'établissement du bénéficiaire vaut «1412»
     Et la durée en heures de la formation vaut 1000
@@ -443,7 +443,7 @@ Scénario: Avec un code financeur collectif
     Et c'est un bénéficiaire de droit privé
     Et le type de contrat du bénéficiaire vaut «CDI»
     Et l'expérience professionnelle du bénéficiaire dans les cinq dernières années vaut 48
-    Et l'ancienneté du bénéficiaire dans son entreprise vaut 24
+    Et l'ancienneté en mois du bénéficiaire dans son entreprise vaut 24
     Et le code NAF de l'établissement du bénéficiaire vaut «2825z»
     Et l'IDCC de l'établissement du bénéficiaire vaut «1412»
     Et la région de l'établissement du bénéficiaire vaut «Normandie»
