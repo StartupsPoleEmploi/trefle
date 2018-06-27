@@ -1,0 +1,16 @@
+---
+
+- name: Create shared directory
+  file:
+    path: "{{ volume.src }}"
+    state: directory
+    mode: 0777
+
+- name: Check if shared directory already exists
+  command: "lxc config device get local:{{ lxc.name }} {{ volume.name }} path"
+  register: shared_directory_exists
+  ignore_errors: yes
+
+- name: Share directory
+  command: "lxc config device add local:{{ lxc.name }} shared-{{ lxc.name }} disk source={{ volume.src }} path={{ volume.dst }}"
+  when: shared_directory_exists is failed

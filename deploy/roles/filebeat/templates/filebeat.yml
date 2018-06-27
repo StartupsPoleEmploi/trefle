@@ -1,0 +1,28 @@
+filebeat:
+  inputs:
+    - type: log
+      paths:
+        - /srv/trefle/logs/trefle-simulate.log
+      json:
+        keys_under_root: true
+
+  registry_file: /var/lib/filebeat/registry
+
+output:
+
+  elasticsearch:
+    hosts: ["http://{{ hostvars['elasticsearch']['ansible_host'] }}:9200"]
+    indices:
+      - index: "trefle-simulate-%{+yyyy.MM.dd}"
+        when.contains:
+          source: "trefle-simulate.log"
+
+logging:
+  to_files: true
+  files:
+    path: /var/log/filebeat
+    name: filebeat
+    rotateeverybytes: 10485760 # = 10MB
+    keepfiles: 7
+
+  level: info

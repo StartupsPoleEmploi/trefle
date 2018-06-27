@@ -12,11 +12,14 @@
     - software-properties-common
   become: yes
 
-- name: Create required directory
+- name: Create required directories
   file:
-    path: "{{ trefle_root }}"
+    path: "{{ item }}"
     owner: "{{ ansible_user }}"
     state: directory
+  with_items:
+    - "{{ trefle_root }}"
+    - "{{ trefle_root }}/logs"
   become: yes
 
 - name: Create virtualenv

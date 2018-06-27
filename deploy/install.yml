@@ -13,3 +13,8 @@
     - secrets.yml
   roles:
     - {role: trefle, tags: ["trefle"]}
+    - {role: filebeat, tags: ["filebeat"]}
+
+- hosts: "elasticsearch"
+  roles:
+    - {role: elasticsearch, tags: ["elasticsearch"]}

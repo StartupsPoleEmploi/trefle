@@ -1,0 +1,60 @@
+---
+- name: System requirements
+  apt:
+    name: default-jre
+  become: yes
+
+# Elasticsearch
+- name: Download elasticsearch
+  get_url:
+    url: https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-6.3.0.deb
+    dest: /tmp/elasticsearch.deb
+    checksum: sha512:37e52552a4a55165cc73fd52c4f25194e576f5dd93a6a2540adb8caec270fb1928916394718760ecbccae5b66b751202c8804ce9d32e4d1ec136f4e19529ea39
+
+- name: Install elasticsearch
+  apt:
+    deb: /tmp/elasticsearch.deb
+  become: yes
+
+- name: Configure elasticsearch
+  template:
+    src: elasticsearch.yml
+    dest: /etc/elasticsearch/elasticsearch.yml
+    backup: yes
+  become: yes
+
+- name: Restart elasticsearch
+  service:
+    name: elasticsearch
+    state: restarted
+    enabled: yes
+  become: yes
+
+# Kibana
+- name: Download kibana
+  get_url:
+    url: https://artifacts.elastic.co/downloads/kibana/kibana-6.3.0-amd64.deb
+    dest: /tmp/kibana.deb
+    checksum: sha512:717ea30ecff3b699d8190ffb6f3fcd98548f30c2149f01f27816ab54bf672250feb3919daac5776a045cf6ffa5b028370f5ccdba827136c379877b0f6ab4c088
+
+- name: Install kibana
+  apt:
+    deb: /tmp/kibana.deb
+  become: yes
+
+- name: Configure kibana
+  template:
+    src: kibana.yml
+    dest: /etc/kibana/kibana.yml
+    backup: yes
+  become: yes
+
+- name: Restart kibana
+  service:
+    name: kibana
+    state: restarted
+    enabled: yes
+  become: yes
+
+
+# TODO setup curator to get rid of old indices

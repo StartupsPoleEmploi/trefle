@@ -16,6 +16,20 @@
     - netcat-traditional
   become: yes
 
+# Setting sysctl properties for elasticsearch must be performed on the host:
+# containers do not have the permissions to modify the sysctl values
+- name: Set sysctl configuration
+  copy:
+    src: sysctl.conf
+    dest: /etc/sysctl.d/98-trefle.conf
+  become: yes
+  register: sysctl_config
+
+- name: Reload sysctl configuration
+  command: sysctl --system
+  become: yes
+  when: sysctl_config.changed
+
 - name: Allow user to run lxd commands
   user:
     name: "{{ ansible_user }}"
@@ -29,12 +43,19 @@
     src: lxd.yml
     dest: /tmp/lxd.yml
 
-- name: Upload network configuration
-  template:
-    src: network-config-trefle.yml
-    dest: /tmp/network-config-trefle.yml
-
 - name: Configure lxd
   shell: "cat /tmp/lxd.yml | lxd init --preseed"
 
-- import_tasks: trefle.yml
+- import_tasks: lxc.yml
+  vars:
+    - lxc:
+        name: trefle
+        volumes:
+          - name: shared-trefle
+            src: /var/www/trefle
+            dst: /var/www/trefle
+
+- import_tasks: lxc.yml
+  vars:
+    - lxc:
+        name: elasticsearch

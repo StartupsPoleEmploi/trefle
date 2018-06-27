@@ -1,0 +1,29 @@
+---
+- name: Upload network configuration
+  template:
+    src: network-config.yml
+    dest: "/tmp/network-config-{{ lxc.name }}.yml"
+
+- name: Check presence of Trefle lxc Container
+  command: "lxc info local:{{ lxc.name }}"
+  register: lxc_present
+  ignore_errors: yes
+
+- name: Launch trefle container
+  shell: 'lxc launch ubuntu:18.04 {{ lxc.name }} --config=user.network-config="$(cat /tmp/network-config-{{ lxc.name }}.yml)" --config=raw.lxc="lxc.apparmor.allow_incomplete=1"'
+  when: lxc_present is failed
+
+- name: Install bare minimum packages
+  command: "lxc exec local:{{ lxc.name }} -- apt install -y python"
+
+- name: Add authorized ssh keys
+  command: "lxc file push $HOME/.ssh/authorized_keys local:{{ lxc.name }}/home/ubuntu/.ssh/"
+
+- name: Make authorized keys readable
+  command: "lxc exec local:{{ lxc.name }} -- chown ubuntu:ubuntu /home/ubuntu/.ssh/authorized_keys"
+
+- include_tasks: volume.yml
+  vars:
+    volume: "{{ item }}"
+  with_items: "{{ lxc.volumes }}"
+  when: lxc.volumes is defined

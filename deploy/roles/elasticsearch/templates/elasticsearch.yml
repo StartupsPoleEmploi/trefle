@@ -1,0 +1,5 @@
+cluster.name: trefle
+network.host: {{ hostvars['elasticsearch']['ansible_host'] }}
+http.port: 9200
+path.data: /var/lib/elasticsearch
+path.logs: /var/log/elasticsearch

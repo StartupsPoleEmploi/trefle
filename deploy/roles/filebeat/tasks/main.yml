@@ -1,0 +1,24 @@
+- name: Download Filebeat
+  get_url:
+    url: https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-6.3.0-amd64.deb
+    dest: /tmp/filebeat.deb
+    checksum: sha512:6eabb9db2da59176de1634ae12500a0eac70718d475e242bb16cead9e9fe2af2e35c4f8a1cac01797e0a10583e0752e33811f237a48ef7d0910399c2ee38efbb
+
+- name: Install filebeat
+  apt:
+    deb: /tmp/filebeat.deb
+  become: yes
+
+- name: Configure filebeat
+  template:
+    src: filebeat.yml
+    dest: /etc/filebeat/filebeat.yml
+    backup: yes
+  become: yes
+
+- name: Restart filebeat
+  service:
+    name: filebeat
+    state: restarted
+    enabled: yes
+  become: yes

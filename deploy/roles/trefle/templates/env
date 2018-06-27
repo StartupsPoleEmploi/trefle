@@ -1,1 +1,2 @@
-LBF_CHARMAP={{ LBF_CHARMAP }}
+LBF_CHARMAP={{ lbf_charmap }}
+TREFLE_LOG_DIR={{ trefle_root }}/logs

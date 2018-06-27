@@ -12,5 +12,6 @@
   with_items:
     # Actually, this is required to run ansible
     - python
+    - language-pack-fr
     - tmux
   become: yes

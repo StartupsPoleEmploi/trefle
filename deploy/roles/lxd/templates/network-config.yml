@@ -5,7 +5,7 @@ config:
     subnets:
       - type: static
         ipv4: true
-        address: {{ hostvars['trefle']['ansible_host'] }}
+        address: {{ hostvars[lxc['name']]['ansible_host'] }}
         netmask: 255.255.255.0
         gateway: 10.10.10.1
         control: auto

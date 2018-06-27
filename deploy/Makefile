@@ -16,8 +16,11 @@ access-logs:
 error-logs:
 	ansible proxy -b -a "tail -$(lines) /var/log/nginx/error.log"
 
-logs:
+app-logs:
 	ansible proxy -b -a "journalctl --lines $(lines) --unit trefle"
+
+simulate-logs:
+	ansible proxy -b -a "tail -$(lines) /srv/trefle/logs/trefle-simulate.log"
 
 status:
 	ansible proxy -b -a "systemctl status nginx"
