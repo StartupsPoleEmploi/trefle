@@ -7,7 +7,7 @@ from . import VERSION
 from .config import RAW_RULES, SCHEMA, GLOSSARY, NAF
 from .core import simulate
 from .debugging import data_from_lbf_url, make_feature
-from .loggers import logger, log_financements
+from .loggers import logger, log_simulate
 from .openapis import OPENAPI
 from .routine import get_formation_xml
 
@@ -30,7 +30,6 @@ async def json_error_response(request, response, error):
                      f'message={response.body}, request={request.body}')
 
 
-
 @app.route('/financement', methods=['POST'])
 async def simulate_(request, response):
     context = request.json
@@ -39,7 +38,7 @@ async def simulate_(request, response):
     except ValueError as err:
         if isinstance(err.args[0], dict):
             # FIXME this can be improved
-            log_financements(context, errors=err.args[0])
+            log_simulate(context, errors=err.args[0])
         raise HttpError(HTTPStatus.UNPROCESSABLE_ENTITY, err.args[0])
 
     eligible = request.query.bool('eligible', None)
@@ -56,7 +55,7 @@ async def simulate_(request, response):
         body['scenario'] = make_feature(context, financements)
     response.json = body
 
-    log_financements(context, financements=financements)
+    log_simulate(context, financements=financements)
 
 
 @app.route('/schema')

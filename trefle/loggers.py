@@ -13,13 +13,14 @@ logger.addHandler(logging.StreamHandler())
 request_logger = logging.getLogger('request_logger')
 request_logger.setLevel(logging.INFO)
 request_logger.addHandler(logging.handlers.TimedRotatingFileHandler(
-    os.path.join(os.environ.get('TREFLE_LOG_DIR', '/tmp'), 'trefle-requests.log'),
+    os.path.join(os.environ.get('TREFLE_LOG_DIR', '/tmp'),
+                 'trefle-simulate.log'),
     when='midnight',
     backupCount=10,
 ))
 
 
-def log_financements(context, financements=None, errors=None):
+def log_simulate(context, financements=None, errors=None):
     financements = financements or []
     errors = errors or []
     message = {

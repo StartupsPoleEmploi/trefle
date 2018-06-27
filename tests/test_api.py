@@ -214,7 +214,7 @@ async def test_simulate_triggers_log(client):
         'beneficiaire.entreprise.idcc': 2706
     }
 
-    log_path = Path(os.environ['TREFLE_LOG_DIR']).joinpath('trefle-requests.log')
+    log_path = Path(os.environ['TREFLE_LOG_DIR']) / 'trefle-simulate.log'
     log_path.write_text('')
     await client.post('/financement', body=body)
     lines = log_path.read_text().splitlines()
@@ -238,7 +238,7 @@ async def test_simulate_error_triggers_log(client):
         'beneficiaire.entreprise.idcc': 2706
     }
 
-    log_path = Path(os.environ['TREFLE_LOG_DIR']).joinpath('trefle-requests.log')
+    log_path = Path(os.environ['TREFLE_LOG_DIR']) / 'trefle-simulate.log'
     log_path.write_text('')
     await client.post('/financement', body=body)
     lines = log_path.read_text().splitlines()
