@@ -197,6 +197,8 @@ def compute_modalites(context, financement):
     plafond_financier = context.get('financement.plafond_financier')
     reste_a_charge = context.get('financement.reste_a_charge', 0)
     plafond_prix_horaire = context.get('financement.plafond_prix_horaire', 0)
+    indemnite_conges_payes = context.get('financement.indemnite_conges_payes',
+                                         0)
     financement['reste_a_charge'] = reste_a_charge
     prise_en_charge = context.get('financement.prise_en_charge', None)
     if not prise_en_charge:
@@ -222,6 +224,7 @@ def compute_modalites(context, financement):
     if plafond_remuneration and plafond_remuneration < remuneration:
         remuneration = plafond_remuneration
     financement['remuneration'] = remuneration
+    financement['indemnite_conges_payes'] = indemnite_conges_payes
 
 
 def populate_financement(context, financement):

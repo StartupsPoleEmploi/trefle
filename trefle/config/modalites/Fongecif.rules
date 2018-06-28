@@ -4,14 +4,14 @@ Si le nom de l'organisme est «Fongecif»
     Et le prix horaire plafond applicable vaut 27.45
 
     Si le financement est de type «sur son temps de travail»
-        Alors la rémunération possible est égale à la rémunération du bénéficiaire
+        Alors la rémunération applicable est égale à la rémunération du bénéficiaire
 
         # TODO Formation partiellement ou totalement prise en charge, sur une durée maximale d'un an, ou de deux ans si la formation est à temps partiel.
         Si la rémunération du bénéficiaire est supérieure à deux fois le SMIC
-            Alors la rémunération possible est égale à 95% de la rémunération du bénéficiaire
+            Alors la rémunération applicable est égale à 95% de la rémunération du bénéficiaire
 
             Si la rémunération du bénéficiaire est supérieure à trois fois le SMIC
-                Alors la rémunération possible est égale à 90% de la rémunération du bénéficiaire
+                Alors la rémunération applicable est égale à 90% de la rémunération du bénéficiaire
 
     Si la région de l'établissement du bénéficiaire est «Guadeloupe»
         Alors le nom de l'agence à contacter est «Fongecif Guadeloupe»

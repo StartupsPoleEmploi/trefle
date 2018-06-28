@@ -483,7 +483,13 @@ financement:
     format: int32
     public: true
     nullable: true
-    label: rémunération possible
+    label: rémunération applicable
+  indemnite_conges_payes:
+    type: integer
+    format: int32
+    public: true
+    nullable: true
+    label: indemnité compensatrice de congés payés
   plafond_remuneration:
     type: integer
     format: int32
@@ -495,7 +501,7 @@ financement:
     format: int32
     public: true
     nullable: true
-    label: montant de prise en charge applicable
+    label: montant de prise en charge
     description: valeur définie seulement si le prix horaire de la formation est défini
   plafond_prise_en_charge:
     type: integer

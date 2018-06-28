@@ -86,28 +86,11 @@ def then_check_organisme(context, name):
         f'{context.result["organisme"]["nom"]} != {name}'
 
 
-@then(r'le montant de prise en charge vaut (?P<value>[\d\.]+)')
-def then_check_prise_en_charge(context, value):
-    assert context.result['prise_en_charge'] == float(value),\
-        f'{context.result["prise_en_charge"]} != {value}'
-
-
-@then(r'le plafond de prise en charge vaut (?P<value>[\d\.]+)')
-def then_check_plafond_prise_en_charge(context, value):
-    assert context.result['plafond_prise_en_charge'] == float(value),\
-        f'{context.result["plafond_prise_en_charge"]} != {value}'
-
-
-@then(r'le reste à charge vaut (?P<value>[\d\.]+)')
-def then_check_reste_a_charge(context, value):
-    assert context.result['reste_a_charge'] == float(value),\
-        f'{context.result["reste_a_charge"]} != {value}'
-
-
-@then(r'la rémunération vaut (?P<value>\d+)')
-def then_check_remuneration(context, value):
-    assert context.result['remuneration'] == int(value),\
-        f'{context.result["remuneration"]} != {value}'
+@then(r"(?:le |la |l')(?P<label>.*) vaut (?P<value>[\d\.]+)")
+def then_check_output(context, label, value):
+    key = LABELS[label][12:]  # Remove "financement." namespace.
+    assert context.result[key] == float(value),\
+        f'{context.result[key]} != {value}'
 
 
 @then("aucun financement n'est proposé")

@@ -14,7 +14,7 @@ Scénario: période de professionnalisation CDI avec IDCC Ameublement et bois
     Quand je sélectionne le financement «Période de professionnalisation sur son temps de travail»
     Alors l'organisme à contacter est «OPCA 3+»
     Et le plafond de prise en charge vaut 1000
-    Et la rémunération vaut 1400
+    Et la rémunération applicable vaut 1400
 
 
 Scénario: période de professionnalisation CDI avec IDCC Ameublement et bois + formation qualifiante
@@ -30,7 +30,7 @@ Scénario: période de professionnalisation CDI avec IDCC Ameublement et bois + 
     Quand je sélectionne le financement «Période de professionnalisation sur son temps de travail»
     Alors l'organisme à contacter est «OPCA 3+»
     Et le plafond de prise en charge vaut 1500
-    Et la rémunération vaut 1400
+    Et la rémunération applicable vaut 1400
 
 
 Scénario: période de professionnalisation CDI avec IDCC "Matériaux pour la Construction et l'Industrie"
@@ -45,7 +45,7 @@ Scénario: période de professionnalisation CDI avec IDCC "Matériaux pour la Co
     Quand je sélectionne le financement «Période de professionnalisation sur son temps de travail»
     Alors l'organisme à contacter est «OPCA 3+»
     Et le plafond de prise en charge vaut 2700
-    Et la rémunération vaut 1400
+    Et la rémunération applicable vaut 1400
 
 
 
@@ -61,7 +61,7 @@ Scénario: période de professionnalisation CDI avec IDCC Papiers Cartons
     Quand je sélectionne le financement «Période de professionnalisation sur son temps de travail»
     Alors l'organisme à contacter est «OPCA 3+»
     Et le plafond de prise en charge vaut 1500
-    Et la rémunération vaut 1400
+    Et la rémunération applicable vaut 1400
 
 
 Scénario: période de professionnalisation CDI avec IDCC Papiers Cartons + formation qualifiante
@@ -77,4 +77,4 @@ Scénario: période de professionnalisation CDI avec IDCC Papiers Cartons + form
     Quand je sélectionne le financement «Période de professionnalisation sur son temps de travail»
     Alors l'organisme à contacter est «OPCA 3+»
     Et le plafond de prise en charge vaut 3500
-    Et la rémunération vaut 1400
+    Et la rémunération applicable vaut 1400

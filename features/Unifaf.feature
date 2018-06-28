@@ -17,11 +17,11 @@ Scénario: cas nominal d'un CIF CDI
     Et je sélectionne le financement «CIF CDI sur son temps de travail»
     Alors l'organisme à contacter est «Unifaf»
     Et le montant de prise en charge vaut 7500
-    Et la rémunération vaut 1400
+    Et la rémunération applicable vaut 1400
     Quand je sélectionne le financement «CIF CDI hors temps de travail»
     Alors l'organisme à contacter est «Unifaf»
     Et le montant de prise en charge vaut 7500
-    Et la rémunération vaut 0
+    Et la rémunération applicable vaut 0
 
 Scénario: CIF CDI avec plafond de rémunération
     Soit un bénéficiaire et une formation
@@ -39,11 +39,11 @@ Scénario: CIF CDI avec plafond de rémunération
     Et je sélectionne le financement «CIF CDI sur son temps de travail»
     Alors l'organisme à contacter est «Unifaf»
     Et le montant de prise en charge vaut 5000
-    Et la rémunération vaut 8000
+    Et la rémunération applicable vaut 8000
     Quand je sélectionne le financement «CIF CDI hors temps de travail»
     Alors l'organisme à contacter est «Unifaf»
     Et le montant de prise en charge vaut 5000
-    Et la rémunération vaut 0
+    Et la rémunération applicable vaut 0
 
 
 Scénario: CIF CDI avec plafond de rémunération et plancher à deux SMIC
@@ -62,11 +62,11 @@ Scénario: CIF CDI avec plafond de rémunération et plancher à deux SMIC
     Et je sélectionne le financement «CIF CDI sur son temps de travail»
     Alors l'organisme à contacter est «Unifaf»
     Et le montant de prise en charge vaut 5000
-    Et la rémunération vaut 2997
+    Et la rémunération applicable vaut 2997
     Quand je sélectionne le financement «CIF CDI hors temps de travail»
     Alors l'organisme à contacter est «Unifaf»
     Et le montant de prise en charge vaut 5000
-    Et la rémunération vaut 0
+    Et la rémunération applicable vaut 0
 
 Scénario: cas nominal d'une formation COPANEF
     Soit un bénéficiaire et une formation
@@ -82,11 +82,11 @@ Scénario: cas nominal d'une formation COPANEF
     Et je sélectionne le financement «CPF sur son temps de travail»
     Alors l'organisme à contacter est «Unifaf»
     Et le montant de prise en charge vaut 1250
-    Et la rémunération vaut 1400
+    Et la rémunération applicable vaut 1400
     Quand je sélectionne le financement «CPF hors temps de travail»
     Alors l'organisme à contacter est «Unifaf»
     Et le montant de prise en charge vaut 1250
-    Et la rémunération vaut 0
+    Et la rémunération applicable vaut 0
 
 Scénario: formation COPANEF avec prix horaire supérieur au plafond
     Soit un bénéficiaire et une formation
@@ -102,8 +102,8 @@ Scénario: formation COPANEF avec prix horaire supérieur au plafond
     Et je sélectionne le financement «CPF sur son temps de travail»
     Alors l'organisme à contacter est «Unifaf»
     Et le montant de prise en charge vaut 2500
-    Et la rémunération vaut 1400
+    Et la rémunération applicable vaut 1400
     Quand je sélectionne le financement «CPF hors temps de travail»
     Alors l'organisme à contacter est «Unifaf»
     Et le montant de prise en charge vaut 2500
-    Et la rémunération vaut 0
+    Et la rémunération applicable vaut 0

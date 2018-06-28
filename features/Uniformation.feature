@@ -17,11 +17,11 @@ Scénario: cas nominal d'un CIF CDI
     Et je sélectionne le financement «CIF CDI sur son temps de travail»
     Alors l'organisme à contacter est «Uniformation»
     Et le montant de prise en charge vaut 7500
-    Et la rémunération vaut 1400
+    Et la rémunération applicable vaut 1400
     Quand je sélectionne le financement «CIF CDI hors temps de travail»
     Alors l'organisme à contacter est «Uniformation»
     Et le montant de prise en charge vaut 7500
-    Et la rémunération vaut 0
+    Et la rémunération applicable vaut 0
 
 Scénario: CIF CDI avec plafond de prix horaire
     Soit un bénéficiaire et une formation
@@ -39,11 +39,11 @@ Scénario: CIF CDI avec plafond de prix horaire
     Et je sélectionne le financement «CIF CDI sur son temps de travail»
     Alors l'organisme à contacter est «Uniformation»
     Et le montant de prise en charge vaut 9000
-    Et la rémunération vaut 1400
+    Et la rémunération applicable vaut 1400
     Quand je sélectionne le financement «CIF CDI hors temps de travail»
     Alors l'organisme à contacter est «Uniformation»
     Et le montant de prise en charge vaut 9000
-    Et la rémunération vaut 0
+    Et la rémunération applicable vaut 0
 
 Scénario: CIF CDI avec plafond de rémunération
     Soit un bénéficiaire et une formation
@@ -61,11 +61,11 @@ Scénario: CIF CDI avec plafond de rémunération
     Et je sélectionne le financement «CIF CDI sur son temps de travail»
     Alors l'organisme à contacter est «Uniformation»
     Et le montant de prise en charge vaut 5000
-    Et la rémunération vaut 7192
+    Et la rémunération applicable vaut 7192
     Quand je sélectionne le financement «CIF CDI hors temps de travail»
     Alors l'organisme à contacter est «Uniformation»
     Et le montant de prise en charge vaut 5000
-    Et la rémunération vaut 0
+    Et la rémunération applicable vaut 0
 
 Scénario: CIF CDI avec plafond de rémunération et formation qualifiante
     Soit un bénéficiaire et une formation
@@ -84,11 +84,11 @@ Scénario: CIF CDI avec plafond de rémunération et formation qualifiante
     Et je sélectionne le financement «CIF CDI sur son temps de travail»
     Alors l'organisme à contacter est «Uniformation»
     Et le montant de prise en charge vaut 5000
-    Et la rémunération vaut 7519
+    Et la rémunération applicable vaut 7519
     Quand je sélectionne le financement «CIF CDI hors temps de travail»
     Alors l'organisme à contacter est «Uniformation»
     Et le montant de prise en charge vaut 5000
-    Et la rémunération vaut 0
+    Et la rémunération applicable vaut 0
 
 Scénario: cas nominal d'une formation COPANEF
     Soit un bénéficiaire et une formation
@@ -104,11 +104,11 @@ Scénario: cas nominal d'une formation COPANEF
     Et je sélectionne le financement «CPF sur son temps de travail»
     Alors l'organisme à contacter est «Uniformation»
     Et le montant de prise en charge vaut 1250
-    Et la rémunération vaut 1400
+    Et la rémunération applicable vaut 1400
     Quand je sélectionne le financement «CPF hors temps de travail»
     Alors l'organisme à contacter est «Uniformation»
     Et le montant de prise en charge vaut 1250
-    Et la rémunération vaut 0
+    Et la rémunération applicable vaut 0
 
 
 Scénario: formation COPANEF avec prix horaire supérieur au plafond
@@ -125,11 +125,11 @@ Scénario: formation COPANEF avec prix horaire supérieur au plafond
     Et je sélectionne le financement «CPF sur son temps de travail»
     Alors l'organisme à contacter est «Uniformation»
     Et le montant de prise en charge vaut 2000
-    Et la rémunération vaut 1400
+    Et la rémunération applicable vaut 1400
     Quand je sélectionne le financement «CPF hors temps de travail»
     Alors l'organisme à contacter est «Uniformation»
     Et le montant de prise en charge vaut 2000
-    Et la rémunération vaut 0
+    Et la rémunération applicable vaut 0
 
 
 Scénario: bilan de compétences COPANEF
@@ -146,11 +146,11 @@ Scénario: bilan de compétences COPANEF
     Et je sélectionne le financement «CPF sur son temps de travail»
     Alors l'organisme à contacter est «Uniformation»
     Et le plafond de prise en charge vaut 2800
-    Et la rémunération vaut 1400
+    Et la rémunération applicable vaut 1400
     Quand je sélectionne le financement «CPF hors temps de travail»
     Alors l'organisme à contacter est «Uniformation»
     Et le plafond de prise en charge vaut 2800
-    Et la rémunération vaut 0
+    Et la rémunération applicable vaut 0
 
 
 Scénario: Cas nominal d'une période de professionnalisation CDI
@@ -165,4 +165,4 @@ Scénario: Cas nominal d'une période de professionnalisation CDI
     Quand je sélectionne le financement «Période de professionnalisation sur son temps de travail»
     Alors l'organisme à contacter est «Uniformation»
     Et le plafond de prise en charge vaut 1200
-    Et la rémunération vaut 1400
+    Et la rémunération applicable vaut 1400

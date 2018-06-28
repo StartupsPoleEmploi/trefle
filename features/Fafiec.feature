@@ -31,11 +31,11 @@ Scénario: cas nominal Fafiec
     Quand je sélectionne le financement «CPF sur son temps de travail»
     Alors l'organisme à contacter est «Fafiec»
     Et le plafond de prise en charge vaut 9600
-    Et la rémunération vaut 1600
+    Et la rémunération applicable vaut 1600
     Quand je sélectionne le financement «CPF hors temps de travail»
     Alors l'organisme à contacter est «Fafiec»
     Et le plafond de prise en charge vaut 9600
-    Et la rémunération vaut 0
+    Et la rémunération applicable vaut 0
 
 
 Scénario: CPF sur CPNE
@@ -56,11 +56,11 @@ Scénario: CPF sur CPNE
     Quand je sélectionne le financement «CPF sur son temps de travail»
     Alors l'organisme à contacter est «Fafiec»
     Et le plafond de prise en charge vaut 8000
-    Et la rémunération vaut 1600
+    Et la rémunération applicable vaut 1600
     Quand je sélectionne le financement «CPF hors temps de travail»
     Alors l'organisme à contacter est «Fafiec»
     Et le plafond de prise en charge vaut 8000
-    Et la rémunération vaut 0
+    Et la rémunération applicable vaut 0
 
 
 Scénario: Cas nominal d'une période de professionnalisation CDI
@@ -75,7 +75,7 @@ Scénario: Cas nominal d'une période de professionnalisation CDI
     Quand je sélectionne le financement «Période de professionnalisation sur son temps de travail»
     Alors l'organisme à contacter est «Fafiec»
     Et le plafond de prise en charge vaut 15000
-    Et la rémunération vaut 1400
+    Et la rémunération applicable vaut 1400
 
 
 Scénario: Période de professionnalisation CDI sur formation en langues
@@ -91,4 +91,4 @@ Scénario: Période de professionnalisation CDI sur formation en langues
     Quand je sélectionne le financement «Période de professionnalisation sur son temps de travail»
     Alors l'organisme à contacter est «Fafiec»
     Et le plafond de prise en charge vaut 10000
-    Et la rémunération vaut 1400
+    Et la rémunération applicable vaut 1400

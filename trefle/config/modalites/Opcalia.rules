@@ -15,7 +15,7 @@ Si le nom de l'organisme est «Opcalia»
             # TODO première/deuxième évaluation => wording in result?
             # Pour les évaluations dans le cadre de CléA (à compter du 1er septembre 2017) : forfait de 500 € pour la 1ère évaluation des acquis et 300 € si deuxième évaluation
             # https://www.opcalia.com/dispositifs-de-formation/periode-de-professionnalisation#rpec-p%C3%A9riode%20de%20pro
-            Alors le montant de prise en charge applicable vaut 500
+            Alors le montant de prise en charge vaut 500
 
     Si la région de l'établissement du bénéficiaire est «Guadeloupe»
         Alors le nom de l'agence à contacter est «Opcalia Guadeloupe»

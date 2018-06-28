@@ -32,7 +32,7 @@ Si le nom de l'organisme est «Uniformation»
             Alors le plafond de rémunération applicable vaut 7519
 
         Si le financement est de type «sur son temps de travail»
-            Alors la rémunération possible est égale à la rémunération du bénéficiaire
+            Alors la rémunération applicable est égale à la rémunération du bénéficiaire
 
     Si le financement est de type «période de professionnalisation»
         Alors le prix horaire plafond applicable vaut 12

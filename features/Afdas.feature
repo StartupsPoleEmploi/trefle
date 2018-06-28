@@ -17,7 +17,7 @@ Scénario: cas nominal d'un intermittent
     Et je sélectionne le financement «CIF intermittents hors temps de travail»
     Alors l'organisme à contacter est «Afdas»
     Et le montant de prise en charge vaut 7500
-    Et la rémunération vaut 1400
+    Et la rémunération applicable vaut 1400
 
 Scénario: plafond prix horaire d'une formation VAE
     Soit un bénéficiaire et une formation
@@ -34,11 +34,11 @@ Scénario: plafond prix horaire d'une formation VAE
     Et je sélectionne le financement «CPF sur son temps de travail»
     Alors l'organisme à contacter est «Afdas»
     Et le montant de prise en charge vaut 7000
-    Et la rémunération vaut 1400
+    Et la rémunération applicable vaut 1400
     Quand je sélectionne le financement «CPF hors temps de travail»
     Alors l'organisme à contacter est «Afdas»
     Et le montant de prise en charge vaut 7000
-    Et la rémunération vaut 0
+    Et la rémunération applicable vaut 0
 
 Scénario: plafond horaire d'une formation VAE
     Soit un bénéficiaire et une formation
@@ -55,8 +55,8 @@ Scénario: plafond horaire d'une formation VAE
     Et je sélectionne le financement «CPF sur son temps de travail»
     Alors l'organisme à contacter est «Afdas»
     Et le montant de prise en charge vaut 3500
-    Et la rémunération vaut 1400
+    Et la rémunération applicable vaut 1400
     Quand je sélectionne le financement «CPF hors temps de travail»
     Alors l'organisme à contacter est «Afdas»
     Et le montant de prise en charge vaut 3500
-    Et la rémunération vaut 0
+    Et la rémunération applicable vaut 0

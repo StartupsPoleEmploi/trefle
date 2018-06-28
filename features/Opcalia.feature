@@ -28,11 +28,11 @@ Scénario: CPF intermittent
     Quand je sélectionne le financement «CPF sur son temps de travail»
     Alors l'organisme à contacter est «Opcalia Auvergne Rhône Alpes»
     Et le plafond de prise en charge vaut 7500
-    Et la rémunération vaut 1400
+    Et la rémunération applicable vaut 1400
     Quand je sélectionne le financement «CPF hors temps de travail»
     Alors l'organisme à contacter est «Opcalia Auvergne Rhône Alpes»
     Et le plafond de prise en charge vaut 7500
-    Et la rémunération vaut 0
+    Et la rémunération applicable vaut 0
 
 
 Scénario: Cas nominal d'une période de professionnalisation CDI
@@ -47,7 +47,7 @@ Scénario: Cas nominal d'une période de professionnalisation CDI
     Quand je sélectionne le financement «Période de professionnalisation sur son temps de travail»
     Alors l'organisme à contacter est «Opcalia»
     Et le plafond de prise en charge vaut 6000
-    Et la rémunération vaut 1400
+    Et la rémunération applicable vaut 1400
 
 
 Scénario: période de professionnalisation CDI en CléA
@@ -63,7 +63,7 @@ Scénario: période de professionnalisation CDI en CléA
     Quand je sélectionne le financement «Période de professionnalisation sur son temps de travail»
     Alors l'organisme à contacter est «Opcalia»
     Et le montant de prise en charge vaut 500
-    Et la rémunération vaut 1400
+    Et la rémunération applicable vaut 1400
 
 
 Scénario: période de professionnalisation CDI VAE
@@ -79,7 +79,7 @@ Scénario: période de professionnalisation CDI VAE
     Quand je sélectionne le financement «Période de professionnalisation sur son temps de travail»
     Alors l'organisme à contacter est «Opcalia»
     Et le plafond de prise en charge vaut 450
-    Et la rémunération vaut 1400
+    Et la rémunération applicable vaut 1400
 
 
 Scénario: Formation trop longue (en mois) pour une période de professionalisation

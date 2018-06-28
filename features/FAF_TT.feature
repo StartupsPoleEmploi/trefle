@@ -16,11 +16,11 @@ Scénario: cas nominal d'une formation COPANEF
     Et je sélectionne le financement «CPF sur son temps de travail»
     Alors l'organisme à contacter est «FAF.TT»
     Et le montant de prise en charge vaut 600
-    Et la rémunération vaut 1400
+    Et la rémunération applicable vaut 1400
     Quand je sélectionne le financement «CPF hors temps de travail»
     Alors l'organisme à contacter est «FAF.TT»
     Et le montant de prise en charge vaut 600
-    Et la rémunération vaut 0
+    Et la rémunération applicable vaut 0
 
 
 Scénario: cas d'une formation TOEIC
@@ -38,11 +38,11 @@ Scénario: cas d'une formation TOEIC
     Et je sélectionne le financement «CPF sur son temps de travail»
     Alors l'organisme à contacter est «FAF.TT»
     Et le montant de prise en charge vaut 1250
-    Et la rémunération vaut 1400
+    Et la rémunération applicable vaut 1400
     Quand je sélectionne le financement «CPF hors temps de travail»
     Alors l'organisme à contacter est «FAF.TT»
     Et le montant de prise en charge vaut 1250
-    Et la rémunération vaut 0
+    Et la rémunération applicable vaut 0
 
 
 Scénario: cas d'une formation BULATS
@@ -60,11 +60,11 @@ Scénario: cas d'une formation BULATS
     Et je sélectionne le financement «CPF sur son temps de travail»
     Alors l'organisme à contacter est «FAF.TT»
     Et le montant de prise en charge vaut 1250
-    Et la rémunération vaut 1400
+    Et la rémunération applicable vaut 1400
     Quand je sélectionne le financement «CPF hors temps de travail»
     Alors l'organisme à contacter est «FAF.TT»
     Et le montant de prise en charge vaut 1250
-    Et la rémunération vaut 0
+    Et la rémunération applicable vaut 0
 
 
 Scénario: cas d'une formation CACES
@@ -82,11 +82,11 @@ Scénario: cas d'une formation CACES
     Et je sélectionne le financement «CPF sur son temps de travail»
     Alors l'organisme à contacter est «FAF.TT»
     Et le montant de prise en charge vaut 500
-    Et la rémunération vaut 1400
+    Et la rémunération applicable vaut 1400
     Quand je sélectionne le financement «CPF hors temps de travail»
     Alors l'organisme à contacter est «FAF.TT»
     Et le montant de prise en charge vaut 500
-    Et la rémunération vaut 0
+    Et la rémunération applicable vaut 0
 
 
 Scénario: cas nominal d'une formation VAE
@@ -104,14 +104,14 @@ Scénario: cas nominal d'une formation VAE
     Et je sélectionne le financement «CPF sur son temps de travail»
     Alors l'organisme à contacter est «FAF.TT»
     Et le montant de prise en charge vaut 250
-    Et la rémunération vaut 1400
+    Et la rémunération applicable vaut 1400
     Quand je sélectionne le financement «CPF hors temps de travail»
     Alors l'organisme à contacter est «FAF.TT»
     Et le montant de prise en charge vaut 250
-    Et la rémunération vaut 0
+    Et la rémunération applicable vaut 0
 
 
-Scénario: palfond de prix horaire sur une formation VAE
+Scénario: plafond de prix horaire sur une formation VAE
     Soit un bénéficiaire et une formation
     Et c'est un bénéficiaire de droit privé
     Et la rémunération du bénéficiaire vaut 1400
@@ -126,11 +126,11 @@ Scénario: palfond de prix horaire sur une formation VAE
     Et je sélectionne le financement «CPF sur son temps de travail»
     Alors l'organisme à contacter est «FAF.TT»
     Et le montant de prise en charge vaut 630
-    Et la rémunération vaut 1400
+    Et la rémunération applicable vaut 1400
     Quand je sélectionne le financement «CPF hors temps de travail»
     Alors l'organisme à contacter est «FAF.TT»
     Et le montant de prise en charge vaut 630
-    Et la rémunération vaut 0
+    Et la rémunération applicable vaut 0
 
 
 Scénario: plafond horaire sur une formation VAE
@@ -148,11 +148,11 @@ Scénario: plafond horaire sur une formation VAE
     Et je sélectionne le financement «CPF sur son temps de travail»
     Alors l'organisme à contacter est «FAF.TT»
     Et le montant de prise en charge vaut 480
-    Et la rémunération vaut 1400
+    Et la rémunération applicable vaut 1400
     Quand je sélectionne le financement «CPF hors temps de travail»
     Alors l'organisme à contacter est «FAF.TT»
     Et le montant de prise en charge vaut 480
-    Et la rémunération vaut 0
+    Et la rémunération applicable vaut 0
 
 
 Scénario: cas nominal d'un CPF CPNE
@@ -171,11 +171,11 @@ Scénario: cas nominal d'un CPF CPNE
     Et je sélectionne le financement «CPF sur son temps de travail»
     Alors l'organisme à contacter est «FAF.TT»
     Et le montant de prise en charge vaut 600
-    Et la rémunération vaut 1400
+    Et la rémunération applicable vaut 1400
     Quand je sélectionne le financement «CPF hors temps de travail»
     Alors l'organisme à contacter est «FAF.TT»
     Et le montant de prise en charge vaut 600
-    Et la rémunération vaut 0
+    Et la rémunération applicable vaut 0
 
 
 Scénario: cas nominal d'un CIF intérim
@@ -196,11 +196,13 @@ Scénario: cas nominal d'un CIF intérim
     Et je sélectionne le financement «CIF intérim sur son temps de travail»
     Alors l'organisme à contacter est «FAF.TT»
     Et le montant de prise en charge vaut 12500
-    Et la rémunération vaut 1400
+    Et la rémunération applicable vaut 1400
+    Et l'indemnité compensatrice de congés payés vaut 140
     Quand je sélectionne le financement «CIF intérim hors temps de travail»
     Alors l'organisme à contacter est «FAF.TT»
     Et le montant de prise en charge vaut 12500
-    Et la rémunération vaut 0
+    Et la rémunération applicable vaut 0
+    Et l'indemnité compensatrice de congés payés vaut 0
 
 
 Scénario: CIF intérim avec salaire supérieur à deux SMIC
@@ -221,8 +223,8 @@ Scénario: CIF intérim avec salaire supérieur à deux SMIC
     Et je sélectionne le financement «CIF intérim sur son temps de travail»
     Alors l'organisme à contacter est «FAF.TT»
     Et le montant de prise en charge vaut 12500
-    Et la rémunération vaut 2700
+    Et la rémunération applicable vaut 2700
     Quand je sélectionne le financement «CIF intérim hors temps de travail»
     Alors l'organisme à contacter est «FAF.TT»
     Et le montant de prise en charge vaut 12500
-    Et la rémunération vaut 0
+    Et la rémunération applicable vaut 0

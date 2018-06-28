@@ -18,11 +18,11 @@ Scénario: cas nominal d'un CIF CDI
     Et je sélectionne le financement «CIF CDI sur son temps de travail»
     Alors l'organisme à contacter est «Fongecif»
     Et le montant de prise en charge vaut 12500
-    Et la rémunération vaut 1400
+    Et la rémunération applicable vaut 1400
     Quand je sélectionne le financement «CIF CDI hors temps de travail»
     Alors l'organisme à contacter est «Fongecif»
     Et le montant de prise en charge vaut 12500
-    Et la rémunération vaut 0
+    Et la rémunération applicable vaut 0
 
 
 Scénario: cas d'un CIF CDI avec moins de 24 mois d'expérience professionnelle
@@ -92,11 +92,11 @@ Scénario: CIF CDI avec plafond financier
     Et je sélectionne le financement «CIF CDI sur son temps de travail»
     Alors l'organisme à contacter est «Fongecif»
     Et le montant de prise en charge vaut 18000
-    Et la rémunération vaut 1400
+    Et la rémunération applicable vaut 1400
     Quand je sélectionne le financement «CIF CDI hors temps de travail»
     Alors l'organisme à contacter est «Fongecif»
     Et le montant de prise en charge vaut 18000
-    Et la rémunération vaut 0
+    Et la rémunération applicable vaut 0
 
 
 Scénario: CIF CDI avec plafond prix horaire
@@ -115,11 +115,11 @@ Scénario: CIF CDI avec plafond prix horaire
     Et je sélectionne le financement «CIF CDI sur son temps de travail»
     Alors l'organisme à contacter est «Fongecif»
     Et le montant de prise en charge vaut 3294
-    Et la rémunération vaut 1400
+    Et la rémunération applicable vaut 1400
     Quand je sélectionne le financement «CIF CDI hors temps de travail»
     Alors l'organisme à contacter est «Fongecif»
     Et le montant de prise en charge vaut 3294
-    Et la rémunération vaut 0
+    Et la rémunération applicable vaut 0
 
 
 Scénario: CIF CDI avec un salaire > 2 SMIC
@@ -139,12 +139,12 @@ Scénario: CIF CDI avec un salaire > 2 SMIC
     Alors l'organisme à contacter est «Fongecif»
     Et le montant de prise en charge vaut 18000
     # Et le reste à charge vaut 900
-    Et la rémunération vaut 2850
+    Et la rémunération applicable vaut 2850
     Quand je sélectionne le financement «CIF CDI hors temps de travail»
     Alors l'organisme à contacter est «Fongecif»
     Et le montant de prise en charge vaut 18000
     # Et le reste à charge vaut 900
-    Et la rémunération vaut 0
+    Et la rémunération applicable vaut 0
 
 
 Scénario: CIF CDI avec un salaire > 3 SMIC
@@ -163,11 +163,11 @@ Scénario: CIF CDI avec un salaire > 3 SMIC
     Et je sélectionne le financement «CIF CDI sur son temps de travail»
     Alors l'organisme à contacter est «Fongecif»
     Et le montant de prise en charge vaut 18000
-    Et la rémunération vaut 5400
+    Et la rémunération applicable vaut 5400
     Quand je sélectionne le financement «CIF CDI hors temps de travail»
     Alors l'organisme à contacter est «Fongecif»
     Et le montant de prise en charge vaut 18000
-    Et la rémunération vaut 0
+    Et la rémunération applicable vaut 0
 
 
 Scénario: cas nominal d'un CIF CDD pour un bénéficiaire âgé de plus de 26 ans
@@ -188,11 +188,11 @@ Scénario: cas nominal d'un CIF CDD pour un bénéficiaire âgé de plus de 26 a
     Et je sélectionne le financement «CIF CDD sur son temps de travail»
     Alors l'organisme à contacter est «Fongecif»
     Et le montant de prise en charge vaut 12500
-    Et la rémunération vaut 1400
+    Et la rémunération applicable vaut 1400
     Quand je sélectionne le financement «CIF CDD hors temps de travail»
     Alors l'organisme à contacter est «Fongecif»
     Et le montant de prise en charge vaut 12500
-    Et la rémunération vaut 0
+    Et la rémunération applicable vaut 0
 
 
 Scénario: cas nominal d'un CIF CDD pour un bénéficiaire âgé de plus de 26 ans n'ayant pas assez travaillé dans les 12 derniers mois
@@ -250,11 +250,11 @@ Scénario: cas nominal d'un CIF CDD pour un bénéficiaire âgé de moins de 26 
     Et je sélectionne le financement «CIF CDD sur son temps de travail»
     Alors l'organisme à contacter est «Fongecif»
     Et le montant de prise en charge vaut 12500
-    Et la rémunération vaut 1400
+    Et la rémunération applicable vaut 1400
     Quand je sélectionne le financement «CIF CDD hors temps de travail»
     Alors l'organisme à contacter est «Fongecif»
     Et le montant de prise en charge vaut 12500
-    Et la rémunération vaut 0
+    Et la rémunération applicable vaut 0
 
 
 Scénario: cas d'un CIF CDI d'un jeune de moins de 26 ans dans l'artisanat
@@ -273,11 +273,11 @@ Scénario: cas d'un CIF CDI d'un jeune de moins de 26 ans dans l'artisanat
     Et je sélectionne le financement «CIF CDI sur son temps de travail»
     Alors l'organisme à contacter est «Fongecif»
     Et le montant de prise en charge vaut 12500
-    Et la rémunération vaut 1400
+    Et la rémunération applicable vaut 1400
     Quand je sélectionne le financement «CIF CDI hors temps de travail»
     Alors l'organisme à contacter est «Fongecif»
     Et le montant de prise en charge vaut 12500
-    Et la rémunération vaut 0
+    Et la rémunération applicable vaut 0
 
 
 Scénario: cas d'un CIF CDI dans l'artisanat d'un jeune manquant d'ancienneté professionnelle
@@ -314,7 +314,7 @@ Scénario: CIF CDI avec moins de 120 heures et IDCC artisanat
     Quand je sélectionne le financement «CIF CDI sur son temps de travail»
     Alors l'organisme à contacter est «Fongecif»
     Et le montant de prise en charge vaut 1500
-    Et la rémunération vaut 1400
+    Et la rémunération applicable vaut 1400
 
 
 Scénario: CIF CDD pour une formation de moins de 120 heures
@@ -336,7 +336,7 @@ Scénario: CIF CDD pour une formation de moins de 120 heures
     Quand je sélectionne le financement «CIF CDD sur son temps de travail»
     Alors l'organisme à contacter est «Fongecif»
     Et le montant de prise en charge vaut 2500
-    Et la rémunération vaut 1400
+    Et la rémunération applicable vaut 1400
 
 
 Scénario: CIF CDD pour une formation de moins de 120 heures et un jeune de moins de 26 ans
@@ -357,7 +357,7 @@ Scénario: CIF CDD pour une formation de moins de 120 heures et un jeune de moin
     Quand je sélectionne le financement «CIF CDD sur son temps de travail»
     Alors l'organisme à contacter est «Fongecif»
     Et le montant de prise en charge vaut 2500
-    Et la rémunération vaut 1400
+    Et la rémunération applicable vaut 1400
 
 
 Scénario: CIF CDI en Corse
@@ -406,11 +406,11 @@ Scénario: Formation de 12 mois
     Quand je sélectionne le financement «CIF CDI sur son temps de travail»
     Alors l'organisme à contacter est «Fongecif Normandie»
     Et le plafond de prise en charge vaut 18000
-    Et la rémunération vaut 1500
+    Et la rémunération applicable vaut 1500
     Quand je sélectionne le financement «CIF CDI hors temps de travail»
     Alors l'organisme à contacter est «Fongecif Normandie»
     Et le plafond de prise en charge vaut 18000
-    Et la rémunération vaut 0
+    Et la rémunération applicable vaut 0
 
 @wip
 Scénario: Sans code financeur
@@ -430,11 +430,11 @@ Scénario: Sans code financeur
     Quand je sélectionne le financement «CIF CDI sur son temps de travail»
     Alors l'organisme à contacter est «Fongecif»
     Et le plafond de prise en charge vaut 18000
-    Et la rémunération vaut 1500
+    Et la rémunération applicable vaut 1500
     Quand je sélectionne le financement «CIF CDI hors temps de travail»
     Alors l'organisme à contacter est «Fongecif»
     Et le plafond de prise en charge vaut 18000
-    Et la rémunération vaut 0
+    Et la rémunération applicable vaut 0
 
 # https://labonneformation-trefle.beta.pole-emploi.fr/engager-les-demarches?a=SdCOL%3DbLGVeKYcg4TkJiTImSLjGssw3CQ4ssllQvsGsst_CCTPs4cEJc7g8Bj8Rv2PuY8I5H4eKRmi32vvviGsss3s33yeHSoOBsUsssMkaX3S69eKn4ObIEG%3DM27_895omh%3Dosrin9VkJCN1ERDpLrno4yuiprGmE%3DJy5HS7vvBdshgIVXxe%3DcB0pKkwivfQ0%3D2_uNGL2ekmG9CKsd2RkY3sR2KYe5hRGlJebF84mZhi2KFTh2vctKVT7yu7qXorGebvgmYTecf4SRVnvo3Gd9QBsPEa3SSWfQGtO6cbWfSLf0djEco7FoIm4ds95Bm15LC94OWY7aRiUButexJvlrxYMM9usFSUESmvsBjW52gMO9lgqHgXgRGGPVFeszz
 Scénario: Avec un code financeur collectif

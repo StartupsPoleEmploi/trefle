@@ -31,8 +31,8 @@ Scénario: Formation CPF
     Quand je sélectionne le financement «CPF sur son temps de travail»
     Alors l'organisme à contacter est «Forco»
     Et le plafond de prise en charge vaut 2250
-    Et la rémunération vaut 1200
+    Et la rémunération applicable vaut 1200
     Quand je sélectionne le financement «CPF hors temps de travail»
     Alors l'organisme à contacter est «Forco»
     Et le plafond de prise en charge vaut 2250
-    Et la rémunération vaut 0
+    Et la rémunération applicable vaut 0

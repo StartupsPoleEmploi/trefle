@@ -25,8 +25,8 @@ Scénario: CPF avec IDCC 1672
     Quand je sélectionne le financement «CPF sur son temps de travail»
     Alors l'organisme à contacter est «OPCABAIA»
     Et le plafond de prise en charge vaut 10000
-    Et la rémunération vaut 1500
+    Et la rémunération applicable vaut 1500
     Quand je sélectionne le financement «CPF hors temps de travail»
     Alors l'organisme à contacter est «OPCABAIA»
     Et le plafond de prise en charge vaut 10000
-    Et la rémunération vaut 0
+    Et la rémunération applicable vaut 0

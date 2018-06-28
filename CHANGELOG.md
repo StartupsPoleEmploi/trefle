@@ -4,12 +4,13 @@
 
 - now keep tree structure when loading rules
 - fixed crash when beneficiaire.remuneration was an empty string
-- Added check "nombre de mois travaillés dans la dernière année" also for people
+- added check "nombre de mois travaillés dans la dernière année" also for people
   older than 26 years old
-- Added simulate logs
-- Added basic CIF rules for intérimaires
-- Moved postprocess logic from code to rules
-- Split eligibilité rules
+- added simulate logs
+- added basic CIF rules for intérimaires
+- moved postprocess logic from code to rules
+- split eligibilité rules
+- added field `indemnite_conges_payes`
 
 
 ## 0.2.0

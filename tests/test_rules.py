@@ -41,11 +41,11 @@ def test_rules_load():
     data = """
 Si c'est un bénéficiaire de droit privé
     Si la région de l'établissement du bénéficiaire fait partie des régions éligibles COPAREF
-        Alors la rémunération possible vaut 2000
+        Alors la rémunération applicable vaut 2000
         Et le prix horaire applicable vaut 80
     Si c'est une formation éligible COPANEF
         Si le solde CPF du bénéficiaire est supérieur à 0
-            Alors la rémunération possible vaut 1000
+            Alors la rémunération applicable vaut 1000
             Et le prix horaire applicable vaut 60
 """
     root = Rule.load(data.splitlines(), name='foo')[0].root
@@ -57,7 +57,7 @@ Si c'est un bénéficiaire de droit privé
         "la région de l'établissement du bénéficiaire fait partie des régions "
         "éligibles COPAREF")
     assert root.children[0].actions[0].raw == (
-        'la rémunération possible vaut 2000')
+        'la rémunération applicable vaut 2000')
     assert root.children[0].actions[1].raw == (
         'le prix horaire applicable vaut 80')
     assert len(root.children[0].children) == 0
@@ -66,7 +66,7 @@ Si c'est un bénéficiaire de droit privé
     assert root.children[1].children[0].raw == (
         "le solde CPF du bénéficiaire est supérieur à 0")
     assert root.children[1].children[0].actions[0].raw == (
-        'la rémunération possible vaut 1000')
+        'la rémunération applicable vaut 1000')
     assert root.children[1].children[0].actions[1].raw == (
         'le prix horaire applicable vaut 60')
 
@@ -172,9 +172,9 @@ def test_with_two_steps_up():
     data = """
 Si le nom de l'organisme est «BLAH»
     Si c'est une formation éligible COPANEF
-        Alors la rémunération possible est égale à 1
+        Alors la rémunération applicable est égale à 1
 Si le nom de l'organisme est «BLOOH»
-    Alors la rémunération possible est égale à 2
+    Alors la rémunération applicable est égale à 2
 """
     rules = list(Rule.load(data.splitlines(), name='foo'))
     print(rules)
@@ -186,12 +186,12 @@ Si le nom de l'organisme est «BLOOH»
     assert root.children[0].raw == "c'est une formation éligible COPANEF"
     assert len(root.children[0].actions) == 1
     assert root.children[0].actions[0].raw == \
-        'la rémunération possible est égale à 1'
+        'la rémunération applicable est égale à 1'
     root = rules[1].root
     assert len(root.children) == 0
     assert len(root.actions) == 1
     assert root.raw == "le nom de l'organisme est «BLOOH»"
-    assert root.actions[0].raw == 'la rémunération possible est égale à 2'
+    assert root.actions[0].raw == 'la rémunération applicable est égale à 2'
 
 
 def test_should_raise_if_no_pattern_match_condition():

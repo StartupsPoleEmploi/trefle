@@ -16,11 +16,11 @@ Scénario: plafond financier Intergros sur formation VAE
     Et je sélectionne le financement «CPF sur son temps de travail»
     Alors l'organisme à contacter est «Intergros»
     Et le montant de prise en charge vaut 2000
-    Et la rémunération vaut 1400
+    Et la rémunération applicable vaut 1400
     Quand je sélectionne le financement «CPF hors temps de travail»
     Alors l'organisme à contacter est «Intergros»
     Et le montant de prise en charge vaut 2000
-    Et la rémunération vaut 0
+    Et la rémunération applicable vaut 0
 
 Scénario: plafond horaire Intergros sur formation VAE
     Soit un bénéficiaire et une formation
@@ -37,8 +37,8 @@ Scénario: plafond horaire Intergros sur formation VAE
     Et je sélectionne le financement «CPF sur son temps de travail»
     Alors l'organisme à contacter est «Intergros»
     Et le montant de prise en charge vaut 1250
-    Et la rémunération vaut 1400
+    Et la rémunération applicable vaut 1400
     Quand je sélectionne le financement «CPF hors temps de travail»
     Alors l'organisme à contacter est «Intergros»
     Et le montant de prise en charge vaut 1250
-    Et la rémunération vaut 0
+    Et la rémunération applicable vaut 0
