@@ -1,0 +1,7 @@
+Si c'est un bénéficiaire de droit privé
+
+    Si la durée en heures de la formation est supérieure ou égale à 70, et la durée en mois de la formation est inférieure ou égale à 12
+    Ou c'est une formation VAE, ou c'est une formation CléA
+        Si le type de contrat du bénéficiaire est «CDI»
+        Ou le type de contrat du bénéficiaire est «CDD», et c'est une entreprise d'insertion par l'activité économique
+            Alors définir le financement «Période de professionnalisation sur son temps de travail» comme éligible

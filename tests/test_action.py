@@ -9,6 +9,10 @@ SCHEMA = {
         'type': 'integer',
         'label': "plafond horaire",
     },
+    'qualifiant': {
+        'type': 'boolean',
+        'label': "formation qualifiante",
+    },
 }
 
 
@@ -51,3 +55,11 @@ def test_unset_missing_key(patch_schema):
     # Should not fail.
     action.act(data)
     assert 'plafond' not in data
+
+
+def test_set_boolean(patch_schema):
+    patch_schema(SCHEMA)
+    action = Action("c'est une formation qualifiante")
+    data = {}
+    action.act(data)
+    assert data['qualifiant'] is True

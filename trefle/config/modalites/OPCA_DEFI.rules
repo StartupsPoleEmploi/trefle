@@ -21,7 +21,7 @@ Si le nom de l'organisme est «OPCA_DEFI»
                 Alors le plafond financier applicable vaut 3000
         Si le code NAF de l'établissement du bénéficiaire fait partie des codes NAF CPNE éligibles
             Alors le prix horaire plafond applicable est égal au prix horaire de la formation
-    Si l'IDCC de l'établissement du bénéficiaire fait partie de [76,1388]
+    Si l'IDCC de l'établissement du bénéficiaire fait partie de [«76»,«1388»]
         Alors le prix horaire plafond applicable est égal au prix horaire de la formation
         Alors le plafond horaire applicable est égal au solde CPF du bénéficiaire
         Si c'est une formation VAE

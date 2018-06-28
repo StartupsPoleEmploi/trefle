@@ -1,12 +1,5 @@
 Si c'est un bénéficiaire de droit privé
 
-    Si la région de l'établissement du bénéficiaire fait partie des régions éligibles COPAREF
-    Ou c'est une formation éligible COPANEF
-    Ou le code NAF de l'établissement du bénéficiaire fait partie des codes NAF CPNE éligibles
-        Si le solde CPF du bénéficiaire est supérieur à 0
-            Alors définir le financement «CPF sur son temps de travail» comme éligible
-            Et définir le financement «CPF hors temps de travail» comme éligible
-
     Si les codes financeur de la formation ne contiennent aucun des codes financeur collectif
     Et la durée en heures de la formation est inférieure ou égale à 1200
     Et la durée en mois de la formation est inférieure ou égale à 12
@@ -48,9 +41,3 @@ Si c'est un bénéficiaire de droit privé
         Et le nombre d'heures travaillées par le bénéficiaire dans les dix-huit derniers mois est supérieur ou égal à 1600
             Alors définir le financement «CIF intérim sur son temps de travail» comme éligible
             Alors définir le financement «CIF intérim hors temps de travail» comme éligible
-
-    Si la durée en heures de la formation est supérieure ou égale à 70, et la durée en mois de la formation est inférieure ou égale à 12
-    Ou c'est une formation VAE, ou c'est une formation CléA
-        Si le type de contrat du bénéficiaire est «CDI»
-        Ou le type de contrat du bénéficiaire est «CDD», et c'est une entreprise d'insertion par l'activité économique
-            Alors définir le financement «Période de professionnalisation sur son temps de travail» comme éligible

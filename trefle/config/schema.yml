@@ -36,7 +36,7 @@ constante:
     items:
       type: integer
     value: [201, 207, 208]
-    label: codes CPF CleA
+    label: codes CPF CléA
   # https://www.service-public.fr/particuliers/vosdroits/F2300
   deux_smic:
     type: integer

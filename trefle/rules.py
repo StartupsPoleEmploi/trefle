@@ -44,19 +44,9 @@ class LazyValue:
         return f'<LazyValue: {self.raw}>'
 
     def compile(self):
-        value = ...
-        if self.raw[0] == '«' and self.raw[-1] == '»':
-            value = self.raw[1:-1]
-            if value in LABELS:
-                # This is an enum.
-                # FIXME: Should we have a dedicated registry instead?
-                value = LABELS[value]
-        elif self.raw[0] == '[' and self.raw[-1] == ']':
-            value = self.raw[1:-1].split(',')  # TODO: type of members/constant
-        elif self.raw.isdigit():
-            value = int(self.raw)
-        elif isfloat(self.raw):
-            value = float(self.raw)
+        value = self.parse_value(self.raw)
+        if value is not ...:
+            self.get = lambda **d: value
         else:
             try:
                 self.key = LABELS[self.raw]
@@ -64,8 +54,23 @@ class LazyValue:
                 raise WrongPointerError(self.raw)
             self.get = lambda **d: self._get(**d)
             self.default = self.compute_default()
-        if value is not ...:
-            self.get = lambda **d: value
+
+    def parse_value(self, value):
+        if value[0] == '«' and value[-1] == '»':
+            value = value[1:-1]
+            if value in LABELS:
+                # This is an enum.
+                # FIXME: Should we have a dedicated registry instead?
+                value = LABELS[value]
+        elif value[0] == '[' and value[-1] == ']':
+            value = [self.parse_value(v) for v in value[1:-1].split(',')]
+        elif value.isdigit():
+            value = int(value)
+        elif isfloat(value):
+            value = float(value)
+        else:
+            value = ...
+        return value
 
     def _get(self, **context):
         try:
@@ -220,6 +225,11 @@ def set_financement_eligible(context, name):
     if name not in context['financements']:
         raise ValueError(f'Unknown financement `{name}`')
     context['financements'][name]['eligible'] = True
+
+
+@action(r"c'est une? (?P<key>.+)")
+def set_true(context, key: Label):
+    context[key] = True
 
 
 @action(r"il n'y a pas de (?P<key>[\w ]+)$")

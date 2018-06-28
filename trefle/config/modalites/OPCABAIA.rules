@@ -2,7 +2,7 @@ Si le nom de l'organisme est «OPCABAIA»
     Alors le plafond horaire applicable est égal au solde CPF du bénéficiaire
     Et le prix horaire plafond applicable est égal au prix horaire de la formation
 
-    Si l'IDCC de l'établissement du bénéficiaire fait partie de [2335,1672,1801]
+    Si l'IDCC de l'établissement du bénéficiaire fait partie de [«2335»,«1672»,«1801»]
         Si le niveau de sortie de la formation vaut 1
             Alors le plafond financier applicable vaut 16000
         Si le niveau de sortie de la formation est supérieur ou égal à 2

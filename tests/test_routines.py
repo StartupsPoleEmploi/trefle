@@ -37,8 +37,6 @@ async def test_populate_formation_from_bytes():
         assert context['formation.qualifiante'] is True
         assert context['formation.codes_cpf'] == {167204, 13352, 1487, 18320,
                                                   130805}
-        assert context['formation.vae'] is False
-        assert context['formation.clea'] is False
         assert context['formation.code_certifinfo'] == 80735
         assert context['formation.code_rncp'] == 320
         assert context['formation.rncp'] is True
@@ -47,6 +45,8 @@ async def test_populate_formation_from_bytes():
 @pytest.mark.parametrize('path,key,value', [
     ('without_certifinfo', 'formation.code_certifinfo', None),
     ('without_rncp', 'formation.rncp', False),
+    ('vae', 'formation.vae', True),
+    ('clea', 'formation.clea', True),
 ])
 @pytest.mark.asyncio
 async def test_populate_formation_from_bytes_edge_cases(path, key, value):

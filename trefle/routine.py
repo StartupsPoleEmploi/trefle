@@ -6,7 +6,7 @@ from lxml import etree
 
 from .config import (CONSTANTS, DEP_TO_REG, ELIGIBILITE, ELIGIBILITE_URL,
                      FINANCEMENTS, IDCC, INTERCARIF_URL, MODALITES, ORGANISMES,
-                     SCHEMA)
+                     PREPROCESS, SCHEMA)
 from .exceptions import UpstreamError
 from .rules import Rule
 from .validators import format_naf, validate_format
@@ -145,32 +145,7 @@ async def populate_formation_from_bytes(context, content):
 
 
 def extrapolate_formation_context(context):
-    # CERTIFINFO matches
-    code_certifinfo = context['formation.code_certifinfo']
-    context['formation.toeic'] = (
-        code_certifinfo in context['constante.codes_toeic'])
-    context['formation.bulats'] = (
-        code_certifinfo in context['constante.codes_bulats'])
-    context['formation.caces'] = (
-        code_certifinfo in context['constante.codes_caces'])
-    context['formation.bec'] = (
-        code_certifinfo in context['constante.codes_bec'])
-    context['formation.bilan_de_competences'] = (
-        code_certifinfo in context['constante.codes_bilan_de_competences'])
-    context['formation.permis_b'] = (
-        code_certifinfo in context['constante.codes_permis_b'])
-
-    # CPF subsets
-    codes_cpf = context['formation.codes_cpf']
-    context['formation.clea'] = bool(
-        set(context['constante.codes_cpf_clea']) & codes_cpf)
-    context['formation.vae'] = bool(
-        set(context['constante.codes_cpf_vae']) & codes_cpf)
-
-    # http://lheo.gouv.fr/langage#dict-AIS
-    context['formation.qualifiante'] = (
-        context['formation.objectif_general_formation'] in [6, 7])
-
+    Rule.process(PREPROCESS, context)
     # Compute durations.
     if 'formation.debut' in context and 'formation.fin' in context:
         mois = diff_month(context['formation.debut'], context['formation.fin'])

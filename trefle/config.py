@@ -12,6 +12,7 @@ from .rules import Rule, SCHEMA, LABELS
 CONSTANTS = {}
 MODALITES = []
 ELIGIBILITE = []
+PREPROCESS = []
 FINANCEMENTS = {}
 ORGANISMES = {}
 ROOT = Path(__file__).parent / 'config'
@@ -120,14 +121,22 @@ def load_naf(data):
     return out
 
 
+def load_dir_rules(root):
+    paths = (root).glob('*.rules')
+    for path in sorted(paths, key=lambda p: p.name.lower()):
+        yield load_rules(path)
+
+
 def init():
     print('Initializing config')
     with (ROOT / 'schema.yml').open() as f:
         SCHEMA.update(load_schema(yaml.safe_load(f.read())))
-    ELIGIBILITE.extend(load_rules(ROOT / 'eligibilite.rules'))
-    paths = (ROOT / 'modalites').glob('*.rules')
-    for path in sorted(paths, key=lambda p: p.name.lower()):
-        MODALITES.extend(load_rules(path))
+    for rules in load_dir_rules(ROOT / 'preprocess'):
+        PREPROCESS.extend(rules)
+    for rules in load_dir_rules(ROOT / 'eligibilite'):
+        ELIGIBILITE.extend(rules)
+    for rules in load_dir_rules(ROOT / 'modalites'):
+        MODALITES.extend(rules)
     with (ROOT / 'financements.yml').open() as f:
         load_financements(yaml.safe_load(f.read()), FINANCEMENTS)
     with (ROOT / 'organismes.yml').open() as f:

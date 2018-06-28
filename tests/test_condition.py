@@ -28,6 +28,10 @@ SCHEMA = {
         'type': 'boolean',
         'label': 'bénéficiaire inscrit',
     },
+    'certifinfo': {
+        'type': 'integer',
+        'label': "code certifinfo",
+    },
 }
 
 
@@ -130,12 +134,22 @@ def test_contains_condition(patch_schema):
     assert condition.assess({'unknown': True}) is False
 
 
-def test_contains_condition_with_list(patch_schema):
+def test_contains_condition_with_list_of_str(patch_schema):
     patch_schema(SCHEMA)
     condition = Condition(["le code naf du bénéficiaire fait partie des "
-                           "[123,45]"])
+                           "[«123»,«45»]"])
     assert condition.assess({'naf': '123'}) is True
+    assert condition.assess({'naf': 123}) is False
     assert condition.assess({'naf': '123,45'}) is False
+
+
+def test_contains_condition_with_list_of_int(patch_schema):
+    patch_schema(SCHEMA)
+    condition = Condition(["le code certifinfo fait partie des "
+                           "[123,45]"])
+    assert condition.assess({'certifinfo': 123}) is True
+    assert condition.assess({'certifinfo': '123'}) is False
+    assert condition.assess({'certifinfo': '123,45'}) is False
 
 
 def test_not_contains_condition(patch_schema):

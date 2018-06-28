@@ -7,6 +7,9 @@
 - Added check "nombre de mois travaillés dans la dernière année" also for people
   older than 26 years old
 - Added simulate logs
+- Added basic CIF rules for intérimaires
+- Moved postprocess logic from code to rules
+- Split eligibilité rules
 
 
 ## 0.2.0
