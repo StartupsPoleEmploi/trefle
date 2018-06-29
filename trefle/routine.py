@@ -117,7 +117,10 @@ async def populate_formation_from_bytes(context, content):
     # Doc for leoh: http://lheo.gouv.fr/langage
     # TODO: deal with action or session optional ids.
     content = content.replace(b' xmlns="http://www.lheo.org/2.2"', b'')
-    tree = etree.fromstring(content)
+    try:
+        tree = etree.fromstring(content)
+    except etree.XMLSyntaxError:
+        raise UpstreamError('UPSTREAM_ERROR: Invalid INTERCARIF XML')
     root = tree.find('offres/formation')
     if root is None:
         raise ValueError('No formation found')
