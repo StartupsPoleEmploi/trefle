@@ -178,4 +178,4 @@ def wrapper(hostname, configpath):
 
 
 if __name__ == '__main__':
-    minicli.run(hostname='root@51.15.221.175', configpath='remote/config.yml')
+    minicli.run(hostname='qa', configpath='remote/config.yml')
