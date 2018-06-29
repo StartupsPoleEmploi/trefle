@@ -3,4 +3,4 @@ ssh_key_urls:
   regisb: http://minutebutterfly.com/id_rsa.pub
 version: master
 trefle:
-  version: 0.2.0
+  version: 0.3.0

@@ -1,6 +1,6 @@
 # Changelog
 
-## dev
+## 0.3.0
 
 - now keep tree structure when loading rules
 - fixed crash when beneficiaire.remuneration was an empty string
@@ -11,6 +11,7 @@
 - moved postprocess logic from code to rules
 - split eligibilité rules
 - added field `indemnite_conges_payes`
+- Explorer: added a menu and anchors to the rules lines
 
 
 ## 0.2.0
