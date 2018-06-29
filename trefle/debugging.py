@@ -74,7 +74,7 @@ def data_from_lbf_url(url):
         b'contrat': 'beneficiaire.contrat',
         b'experience': 'beneficiaire.experience_professionnelle',
         b'moistravailleencdd': 'beneficiaire.mois_travailles_en_cdd',
-        b'ancienneteentrepriseactuelle': 'beneficiaire.anciennete_entreprise_actuelle',
+        b'ancienneteentrepriseactuelle': 'beneficiaire.mois_entreprise',
         b'naf': 'beneficiaire.entreprise.naf',
         b'idcc': 'beneficiaire.entreprise.idcc',
         b'region': 'beneficiaire.entreprise.region',
