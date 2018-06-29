@@ -19,7 +19,7 @@
 <main>
   <schema class=full></schema>
   <glossary class=full></glossary>
-  <rules class=full></rules>
+  <rules class=tools></rules>
   <simulate class=tools></simulate>
   <tools></tools>
 </main>
@@ -27,12 +27,14 @@
 <script>
   riot.mount('navbar')
   route('/schema', () => riot.mount('schema'))
+  route('/rules/(.+)', (id) => riot.mount('rules', {id: id}))
   route('/rules', () => riot.mount('rules'))
   route('/simulate', () => riot.mount('simulate'))
   route('/tools', () => riot.mount('tools'))
   route('/glossary', () => riot.mount('glossary'))
 
   let SCHEMA
+  let RULES
 
   fetch('/explore/schema')
   .then((response) => response.json())

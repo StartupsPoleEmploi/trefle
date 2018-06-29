@@ -1,34 +1,51 @@
 <rules>
-  <div each={ props, name in items }>
-    <h3>{ name } <a href=https://framagit.org/ybon/trefle/tree/master/trefle/config/{ props.path } target=_blank> <i class="icon">edit</i></a></h3>
-    <rule content={ props.data }></rule>
+  <ul>
+    <li each={ props, id in this.rules }><a href="#rules/{ id }" class='{ on: this.opts.id.startsWith(id) }' title={ id }>{ props.name }</a></li>
+  </ul>
+  <div if={ this.rule }>
+    <h3>{ this.rule.path } <a href=https://framagit.org/ybon/trefle/tree/master/trefle/config/{ this.rule.path } target=_blank> <i class="icon">edit</i></a></h3>
+    <rule content={ this.rule.data } class=with-lines></rule>
+  </div>
+  <div if={ !this.rule }>
+    <p>Sélectionner une règle dans le menu.</p>
   </div>
 
   <script>
-    this.items = []
+    this.rules = []
+    this.rule = null
 
     this.on('mount', () => this.load())
 
+    this.load_data = (data) => {
+      RULES = data
+      this.rules = data
+      if (this.opts.id) this.rule = data[this.opts.id.split('~')[0]]
+      this.update()
+      // Force element target after DOM has been rebuilt
+      // (eg. if we have a ~line in the URL, to highlight it).
+      window.location.hash = window.location.hash
+    }
+
     this.load = () => {
+      if (RULES) return this.load_data(RULES)
       fetch('/explore/rules')
       .then((response) => response.json())
-      .then((data) => {
-        this.items = data
-        this.update()
-      })
+      .then(this.load_data)
     }
 
     this.mixin(View)
   </script>
 
   <style scoped>
-    :scope {
-      /* Prevent huge comments to overflow */
-      overflow-x: hidden;
+    :scope.tools {
       min-width: 1200px;
+      grid-template-columns: 1fr 4fr;
     }
     h3 {
       font-variant: small-caps;
+    }
+    .on {
+      font-weight: bold;
     }
   </style>
 

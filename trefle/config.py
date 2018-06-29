@@ -95,11 +95,13 @@ def load_financements(data, output=None, properties=None, namespace=None):
 def load_rules(path):
     with path.open() as rules_file:
         data = rules_file.read()
-        RAW_RULES[path.stem] = {
+        id_ = str(path.relative_to(ROOT))
+        RAW_RULES[id_] = {
             'data': data,
-            'path': str(path.relative_to(ROOT)),
+            'path': id_,
+            'name': path.name,
         }
-        return Rule.load(data.splitlines(), path.stem)
+        return Rule.load(data.splitlines(), id_)
 
 
 # TODO: move in utils?
