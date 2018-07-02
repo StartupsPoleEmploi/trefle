@@ -151,5 +151,6 @@ def make_scenario(data, financements, name='Donne-moi un nom'):
         elif financement.get('plafond_prise_en_charge'):
             steps.append(f"Et le plafond de prise en charge vaut "
                          f"{financement['plafond_prise_en_charge']}")
-        steps.append(f"Et la rémunération vaut {financement['remuneration']}")
+        steps.append(f"Et la rémunération applicable vaut"
+                     f"{financement['remuneration']}")
     return header + '\n    '.join(steps)
