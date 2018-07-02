@@ -1,4 +1,4 @@
-import json
+import ujson as json
 
 from trefle.config import ELIGIBILITE, MODALITES
 from trefle.debugging import green, red, trace_condition, yellow
