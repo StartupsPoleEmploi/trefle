@@ -1,17 +1,20 @@
 Si le nom de l'organisme est «Actalians»
-    Si c'est une formation éligible COPANEF
-        Alors le prix horaire plafond applicable vaut 60
 
-    Si c'est une formation VAE
-        Alors le prix horaire plafond applicable vaut 75
-        Et le plafond horaire applicable vaut 24
+    Si le financement est de type «CPF»
 
-    Si c'est une formation CléA
-        Alors le prix horaire plafond applicable vaut 27
+        Si c'est une formation éligible COPANEF
+            Alors le prix horaire plafond applicable vaut 60
 
-    Si la région de l'établissement du bénéficiaire fait partie des régions éligibles COPAREF
-        Alors le prix horaire plafond applicable est égal au prix horaire de la formation
-        Et le plafond horaire applicable est égal au solde CPF du bénéficiaire
+        Si c'est une formation VAE
+            Alors le prix horaire plafond applicable vaut 75
+            Et le plafond horaire applicable vaut 24
 
-    Si le code NAF de l'établissement du bénéficiaire fait partie des codes NAF CPNE éligibles
-        Alors le prix horaire plafond applicable vaut 60
+        Si c'est une formation CléA
+            Alors le prix horaire plafond applicable vaut 27
+
+        Si la région de l'établissement du bénéficiaire fait partie des régions éligibles COPAREF
+            Alors le prix horaire plafond applicable est égal au prix horaire de la formation
+            Et le plafond horaire applicable est égal au solde CPF du bénéficiaire
+
+        Si le code NAF de l'établissement du bénéficiaire fait partie des codes NAF CPNE éligibles
+            Alors le prix horaire plafond applicable vaut 60
