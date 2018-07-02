@@ -275,7 +275,7 @@ def check_le(context, left: LazyValue, right: LazyValue):
     return left.get(**context) <= right.get(**context)
 
 
-@condition(r"(l'|les? |la )(?P<left>.+) contien(nen)?t au moins (une?) des (?P<right>[ \w«»]+)")
+@condition(r"(l'|les? |la )(?P<left>.+) contien(nen)?t au moins une? ([^ ]+ )?(parmi|des) (?P<right>[ \[\],\w«»]+)")
 def check_share_one(context, left: LazyValue, right: LazyValue):
     return len(set(left.get(**context) or []) & set(right.get(**context) or [])) > 0
 

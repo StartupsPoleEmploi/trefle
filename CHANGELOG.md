@@ -1,5 +1,17 @@
 # Changelog
 
+## dev
+
+- fixed Actalians CPF rules which were also targetting «période de
+  professionnalisation»
+- added Constructys rules for «période de professionnalisation»
+- now also expose `financement.heures` so we know how many hours are financed
+  according to the context and rules
+
+## 0.3.1
+
+- catch Intercarif returning a non XML response content
+
 ## 0.3.0
 
 - now keep tree structure when loading rules
