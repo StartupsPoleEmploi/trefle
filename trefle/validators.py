@@ -78,6 +78,9 @@ def format_domaine_formacode(value):
 @formatter('date')
 def format_date(value):
     # LHEO date is quite a mess, let's try to do our best.
+    if isinstance(value, int):
+        return datetime.fromtimestamp(value)
+
     with suppress(ValueError):
         return datetime.strptime(value[:8], '%Y%m%d')
 
