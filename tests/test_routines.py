@@ -1,16 +1,9 @@
-from datetime import datetime
 from pathlib import Path
 
 import pytest
 
 from trefle import exceptions
 from trefle import routine
-
-
-def test_flatten():
-    data = {'a': {'b': 'value'}}
-    routine.flatten(data)
-    assert data == {'a.b': 'value'}
 
 
 @pytest.mark.asyncio
@@ -102,27 +95,3 @@ async def test_retrieve_codes_naf(mock_get):
     mock_get(content=content)
     assert await routine.retrieve_codes_naf(ids=['139555', '182860']) == {
         '4764Z', '5520Z', '7010Z', '7721Z'}
-
-
-@pytest.mark.parametrize('start,end,months', [
-    ((2018, 1, 1), (2018, 5, 31), 5),
-    ((2018, 1, 1), (2018, 5, 1), 4),
-    ((2018, 1, 31), (2018, 5, 1), 3),
-    ((2018, 1, 1), (2019, 5, 31), 17),
-])
-def test_diff_month(start, end, months):
-    assert routine.diff_month(datetime(*start), datetime(*end)) == months
-
-
-@pytest.mark.parametrize('start,end,weeks', [
-    ((2018, 1, 1), (2018, 1, 3), 1),
-    ((2018, 1, 1), (2018, 1, 7), 1),
-    ((2018, 1, 1), (2018, 1, 8), 2),
-    ((2018, 1, 1), (2018, 5, 31), 22),
-    ((2018, 1, 1), (2018, 5, 1), 18),
-    ((2018, 1, 31), (2018, 5, 1), 13),
-    ((2018, 1, 1), (2019, 5, 31), 74),
-    ((2018, 1, 1), (2019, 1, 1), 53),
-])
-def test_diff_week(start, end, weeks):
-    assert routine.diff_week(datetime(*start), datetime(*end)) == weeks

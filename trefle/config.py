@@ -6,6 +6,7 @@ from pathlib import Path
 from unidecode import unidecode
 import yaml
 
+from .helpers import flatten
 from .rules import Rule, SCHEMA, LABELS
 
 

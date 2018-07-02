@@ -1,7 +1,7 @@
 import pytest
 
 from trefle.exceptions import NoStepError, WrongPointerError
-from trefle.rules import Rule, count_indent, Condition
+from trefle.rules import Rule, Condition
 
 
 SCHEMA = {
@@ -26,15 +26,6 @@ SCHEMA = {
         'label': 'permis B',
     },
 }
-
-
-@pytest.mark.parametrize('input,expected', [
-    ('', 0),
-    ('    ', 4),
-    ('    x', 4),
-])
-def test_count_indent(input, expected):
-    assert count_indent(input) == expected
 
 
 def test_rules_load():

@@ -1,47 +1,12 @@
-import asyncio
-from math import ceil
-
-import requests
 from lxml import etree
 
 from .config import (CONSTANTS, DEP_TO_REG, ELIGIBILITE, ELIGIBILITE_URL,
                      FINANCEMENTS, IDCC, INTERCARIF_URL, MODALITES, ORGANISMES,
                      PREPROCESS, SCHEMA)
 from .exceptions import UpstreamError
+from .helpers import diff_month, diff_week, http_get
 from .rules import Rule
 from .validators import format_naf, validate_format
-
-
-# TODO: move to utils.py?
-def diff_month(start, end):
-    return ((end.year - start.year) * 12
-            + (end.month - start.month)
-            + round((end.day - start.day) / 30))
-
-
-def diff_week(start, end):
-    # Ceil: we count a week even for a day
-    # +1: the end bound is inclusive
-    return ceil(((end - start).days + 1) / 7)
-
-
-def flatten(data, output=None, namespace=None):
-    """Turn {'a': {'b': 'value'}} in {'a.b': 'value'}."""
-    if output is None:
-        output = {}
-    if namespace is None:
-        namespace = []
-    for key, more in data.items():
-        ns = namespace.copy()
-        ns.append(key)
-        if isinstance(more, dict):
-            flatten(more, output, ns)
-            continue
-        name = '.'.join(ns)
-        output[name] = more
-    data.clear()
-    data.update(output)
-    return data
 
 
 def add_constants(context):
@@ -95,14 +60,6 @@ async def populate_formation(context):
         # Give more context.
         err.args = (f'Error with id `{formation_id}`: `{err}`',)
         raise
-
-
-async def http_get(url):
-    loop = asyncio.get_event_loop()
-    response = await loop.run_in_executor(None, requests.get, url)
-    if response.status_code >= 500:
-        raise UpstreamError(f"UPSTREAM_ERROR: {url} {response.status_code}")
-    return response
 
 
 async def retrieve_codes_naf(ids):

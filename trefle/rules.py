@@ -3,6 +3,7 @@ import inspect
 import re
 
 from .exceptions import NoDataError, WrongPointerError, NoStepError
+from .helpers import isfloat, count_indent
 
 SCHEMA = {}
 LABELS = {}
@@ -14,21 +15,6 @@ def Label(v):
         return LABELS[v]
     except KeyError:
         raise WrongPointerError(v)
-
-
-def isfloat(v):
-    try:
-        float(v)
-    except ValueError:
-        return False
-    return True
-
-
-def count_indent(s):
-    for i, c in enumerate(s):
-        if c != ' ':
-            return i
-    return len(s)
 
 
 class LazyValue:
