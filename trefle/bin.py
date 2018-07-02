@@ -42,6 +42,8 @@ async def cli_simulate(*args, context: json.loads={}, url=None, trace=False,
     :output_scenario: Render a Gherkin scenario with given context.
     :show_context: Render a table with used context.
     """
+    if 'context' in context:
+        context = context['context']  # Copy-paste from our logs.
     flatten(context)
     if url:
         context = data_from_lbf_url(url)
