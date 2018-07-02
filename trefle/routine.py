@@ -228,6 +228,7 @@ def compute_modalites(context, financement):
         remuneration = plafond_remuneration
     financement['remuneration'] = remuneration
     financement['indemnite_conges_payes'] = indemnite_conges_payes
+    financement['heures'] = heures
 
 
 def populate_financement(context, financement):

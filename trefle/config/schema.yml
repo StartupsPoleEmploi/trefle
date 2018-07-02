@@ -529,6 +529,11 @@ financement:
     type: integer
     format: int32
     label: prix horaire applicable
+  heures:
+    type: integer
+    format: int32
+    label: heures financées
+    description: nombre d'heures effectivement prises en charge
   reste_a_charge:
     type: number
     format: float
