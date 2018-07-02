@@ -9,7 +9,7 @@ from roll.extensions import simple_server, static, traceback
 from .api import app
 from .config import ELIGIBILITE, MODALITES, SCHEMA
 from .core import simulate
-from .debugging import (data_from_lbf_url, green, make_feature, red,
+from .debugging import (data_from_lbf_url, green, make_scenario, red,
                         trace_condition)
 from .routine import flatten
 
@@ -32,14 +32,14 @@ def parse_args(args):
 
 @cli(name='simulate')
 async def cli_simulate(*args, context: json.loads={}, url=None, trace=False,
-                       output_feature=False, show_context=False):
+                       output_scenario=False, show_context=False):
     """Simulate a call to the API.
 
     Pass context as args in the form key=value.
     :context: context in json form (for example from a request body).
     :url: Optionnal LBF URL to retrieve context from.
     :trace: Display a trace of all checked conditions.
-    :feature: Render a Gherkin Feature with given context.
+    :output_scenario: Render a Gherkin scenario with given context.
     :show_context: Render a table with used context.
     """
     flatten(context)
@@ -90,10 +90,10 @@ async def cli_simulate(*args, context: json.loads={}, url=None, trace=False,
                       financement['plafond_prise_en_charge'], '€')
             print('  Rémunération:', financement['remuneration'], '€')
             print('')
-    if output_feature:
+    if output_scenario:
         if url:
             print(f'# {url}')
-        print(make_feature(context, eligibles))
+        print(make_scenario(context, eligibles))
     if trace:
         for rule in RULES:
             print('\n{:—^105}'.format(rule.name))

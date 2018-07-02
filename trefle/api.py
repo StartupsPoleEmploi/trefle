@@ -6,7 +6,7 @@ from roll.extensions import cors
 from . import VERSION
 from .config import RAW_RULES, SCHEMA, GLOSSARY, NAF
 from .core import simulate
-from .debugging import data_from_lbf_url, make_feature
+from .debugging import data_from_lbf_url, make_scenario
 from .loggers import logger, log_simulate
 from .openapis import OPENAPI
 from .routine import get_formation_xml
@@ -52,7 +52,7 @@ async def simulate_(request, response):
         body['context'] = {k: v for k, v in context.items()
                            if k in SCHEMA and 'label' in SCHEMA[k]}
     if request.query.bool('scenario', False):
-        body['scenario'] = make_feature(context, financements)
+        body['scenario'] = make_scenario(context, financements)
     response.json = body
 
     log_simulate(context, financements=financements)

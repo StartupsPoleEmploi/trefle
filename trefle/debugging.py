@@ -92,7 +92,7 @@ def data_from_lbf_url(url):
     return data
 
 
-def make_feature(data, financements, name='Donne-moi un nom'):
+def make_scenario(data, financements, name='Donne-moi un nom'):
     header = f"Scénario: {name}\n    "
     steps = ["Soit un bénéficiaire et une formation"]
 
