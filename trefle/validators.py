@@ -112,7 +112,7 @@ def validate(data):
         if value is None and 'alias' in schema:
             value = data.get(schema['alias'])
         value = validate_field(name, value, schema, errors)
-        if name in data or value is not None:  # Do not create None values.
+        if value is not None:  # Do not create None values.
             data[name] = value
     if errors:
         raise ValueError(errors)

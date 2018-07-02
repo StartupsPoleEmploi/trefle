@@ -7,6 +7,7 @@
 - added Constructys rules for «période de professionnalisation»
 - now also expose `financement.heures` so we know how many hours are financed
   according to the context and rules
+- consider None values as missing keys also for non required fields
 
 ## 0.3.1
 

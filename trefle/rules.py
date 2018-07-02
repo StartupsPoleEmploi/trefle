@@ -74,11 +74,14 @@ class LazyValue:
 
     def _get(self, **context):
         try:
-            return context[self.key]
+            value = context[self.key]
         except KeyError:
+            value = None
+        if value is None:
             if self.default is not ...:
                 return self.default
             raise NoDataError(self.raw)
+        return value
 
     def compute_default(self):
         schema = SCHEMA[self.key]

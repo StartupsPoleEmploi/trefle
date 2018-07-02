@@ -35,3 +35,17 @@ def test_lazyvalue_with_bool_variable(patch_schema):
 def test_lazyvalue_raises_with_invalid_pointer():
     with pytest.raises(WrongPointerError):
         LazyValue('invalid pointer')
+
+
+def test_lazyvalue_should_return_default_value_for_missing_key(patch_schema):
+    patch_schema({'a_key': {'type': 'integer', 'label': 'a label',
+                            'default': 123}})
+    lv = LazyValue('a label')
+    assert lv.get(wrong=27) == 123
+
+
+def test_lazyvalue_should_return_default_value_for_none_value(patch_schema):
+    patch_schema({'a_key': {'type': 'integer', 'label': 'a label',
+                            'default': 123}})
+    lv = LazyValue('a label')
+    assert lv.get(wrong=None) == 123

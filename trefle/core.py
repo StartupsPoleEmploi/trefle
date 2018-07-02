@@ -4,6 +4,7 @@ from .validators import validate
 
 async def simulate(context):
     # Prepare context
+    # TODO: add constants after validate
     routine.add_constants(context)
     routine.flatten(context)
     validate(context)
