@@ -8,6 +8,7 @@
 - now also expose `financement.heures` so we know how many hours are financed
   according to the context and rules
 - consider None values as missing keys also for non required fields
+- explorer: group schema entries by category
 
 ## 0.3.1
 

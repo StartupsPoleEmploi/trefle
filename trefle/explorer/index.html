@@ -17,7 +17,7 @@
 
 <header data-is=navbar></header>
 <main>
-  <schema class=full></schema>
+  <schema class=tools></schema>
   <glossary class=full></glossary>
   <rules class=tools></rules>
   <simulate class=tools></simulate>
@@ -26,6 +26,7 @@
 
 <script>
   riot.mount('navbar')
+  route('/schema/(.+)', (id) => riot.mount('schema', {id: id}))
   route('/schema', () => riot.mount('schema'))
   route('/rules/(.+)', (id) => riot.mount('rules', {id: id}))
   route('/rules', () => riot.mount('rules'))

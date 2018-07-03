@@ -1,17 +1,69 @@
 <schema>
-  <dl each={ props, name in items }>
-    <dt>{props.label || props.description} <em>({props.type})</em></dt>
-    <dd if={props.value}><strong>Valeur</strong> {props.value}</dd>
-    <dd if={props.description}><strong>Description</strong> {props.description}</dd>
-    <dd if={props.source}><strong>Source</strong> {props.source}</dd>
-    <dd if={props.xpath}><strong>LHEO</strong> {props.xpath}</dd>
-    <dd if={props.url}><strong>Ressource externe</strong> <a href="{ props.url }">{ props.url }</a></dd>
-  </dl>
+  <ul>
+    <li each={ label, id in this.categories }><a href="#schema/{ id }" class={ on: this.opts.id == id } title={ id }>{ label }</a></li>
+  </ul>
+  <schema-entries if={ this.opts.id } items={this.items} name={ this.categories[this.opts.id] }></schema-entries>
+
+  <style scoped>
+    :scope.tools {
+      min-width: 1200px;
+      grid-template-columns: 1fr 4fr;
+    }
+  </style>
 
   <script>
-    this.items = SCHEMA
+    this.items = {}
+    this.categories = {
+      constante: 'Propriétés constantes',
+      beneficiaire: 'Propriétés du bénéficiaire',
+      formation: 'Propriétés de la formation',
+      financement: 'Propriétés du financement',
+      'financement.organisme': "Propriétés de l'organisme",
+    }
+    this.on('mount', () => this.load())
+
+    this.load = () => {
+      if (this.opts.id) {
+        for (let key in SCHEMA) {
+          if (key.startsWith(this.opts.id)) this.items[key] = SCHEMA[key]
+        }
+      }
+      this.update();
+    }
 
     this.mixin(View)
   </script>
 
 </schema>
+
+<schema-entries>
+  <h2>{ this.opts.name }</h2>
+  <dl each={ props, key in this.opts.items }>
+    <dt>{props.label || props.description}</dt>
+    <dd><strong>Clé interne</strong> { key }</dd>
+    <dd><strong>Type</strong> { props.type }</dd>
+    <dd if={ props.value }><strong>Valeur constante</strong> { this.formatValue(props.value) }</dd>
+    <dd if={props.description}><strong>Description</strong> {props.description}</dd>
+    <dd if={props.source}><strong>Source</strong> {props.source}</dd>
+    <dd if={props.xpath}><strong>LHEO</strong> {props.xpath}</dd>
+    <dd if={props.url}><strong>Ressource externe</strong> <a href="{ props.url }">{ props.url }</a></dd>
+  </dl>
+  <hr>
+
+  <style scoped>
+    hr {
+      border: none;
+      border-top: 1px solid #eee;
+    }
+  </style>
+
+  <script>
+
+  this.formatValue = (value) => {
+    if (Array.isArray(value)) return value.join(', ')
+    return value
+  }
+
+  </script>
+
+</schema-entries>

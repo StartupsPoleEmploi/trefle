@@ -113,6 +113,10 @@ pre {
 p {
   margin: 1rem 0;
 }
+.on {
+  font-weight: bold;
+}
+
 
 /*** FORMS ***/
 input[type=text],
@@ -199,7 +203,7 @@ input[type=submit]:hover,
 
 /* Glossary like list */
 dt {
-  font-variant: small-caps;
+  font-weight: bolder;
 }
 dt em {
   font-variant: normal;
@@ -207,5 +211,9 @@ dt em {
 dl {
   margin-top: 10px;
   font-size: 1.1em;
+  padding: 5px;
+}
+dl:nth-child(even) {
+  background: #f3f3f3;
 }
 

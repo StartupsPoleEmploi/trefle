@@ -11,7 +11,7 @@ from .config import ELIGIBILITE, MODALITES, SCHEMA
 from .core import simulate
 from .debugging import (data_from_lbf_url, green, make_scenario, red,
                         trace_condition)
-from .routine import flatten
+from .helpers import flatten
 
 RULES = ELIGIBILITE + MODALITES
 
