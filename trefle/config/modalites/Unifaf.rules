@@ -23,3 +23,22 @@ Si le nom de l'organisme est «Unifaf»
                 Si la rémunération du bénéficiaire est inférieure à 3746:
                     Alors la rémunération applicable est égale à deux fois le SMIC
 
+
+    Si le financement est de type «période de professionnalisation»
+        # FORMATION non prioritaire
+        Alors le prix horaire plafond applicable vaut 11
+
+        # filière éducative, animation, soin, aide et accompagnement à la personne
+        Si la liste des codes FORMACODE de la formation contient 42056
+        Ou la liste des domaines FORMACODE de la formation contient 440
+            Si le niveau de sortie de la formation fait partie de [3,4,5]
+                Alors le prix horaire plafond applicable vaut 14
+
+        Si la liste des codes FORMACODE de la formation contient 44047
+        Ou le code CERTIFINFO de la formation vaut 22332
+            Si le niveau de sortie de la formation fait partie de [1,2]
+                Alors le prix horaire plafond applicable vaut 14
+
+        Si c'est une formation CléA
+            Alors le prix horaire plafond applicable vaut 14
+

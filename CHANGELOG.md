@@ -9,6 +9,7 @@
   according to the context and rules
 - consider None values as missing keys also for non required fields
 - explorer: group schema entries by category
+- added Unifaf rules for "période de professionnalisation"
 
 ## 0.3.1
 
