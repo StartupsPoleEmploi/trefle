@@ -10,6 +10,8 @@
 - consider None values as missing keys also for non required fields
 - explorer: group schema entries by category
 - added Unifaf rules for "période de professionnalisation"
+- added basic rules for "période de professionnalisation" for
+  "OPCA Transports et Services"
 
 ## 0.3.1
 

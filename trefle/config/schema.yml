@@ -454,6 +454,17 @@ formation:
     source: catalogue
     xpath: number(//code-niveau-sortie/child::text())
     gender: masculine
+    url: http://lheo.gouv.fr/langage#dict-niveaux
+    enum:
+      0: inconnu
+      1: aucun
+      2: VI
+      3: V bis
+      4: V
+      5: IV
+      6: III
+      7: II
+      8: I
 financement:
   nom:
     type: string

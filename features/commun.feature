@@ -66,7 +66,7 @@ Scénario: CIF et CPF
     Et ce n'est pas une formation éligible COPANEF
     Et les codes NAF CPNE éligibles vaut [7830Z,8299Z,4633Z,1089Z]
     Et la liste des codes FORMACODE de la formation vaut [44028,42866,42056]
-    Et le niveau de sortie de la formation vaut 1
+    Et le niveau de sortie de la formation vaut «aucun»
     Et la durée en heures de la formation vaut 210
     Et le code CERTIFINFO de la formation vaut 87647
     Et la liste des domaines FORMACODE de la formation vaut [420,440,428]
@@ -106,7 +106,7 @@ Scénario: le bénéficiaire n'a pas défini de rémunération
     Et ce n'est pas une formation éligible COPANEF
     Et les codes NAF CPNE éligibles vaut [7830Z,8299Z,4633Z,1089Z]
     Et la liste des codes FORMACODE de la formation vaut [44028,42866,42056]
-    Et le niveau de sortie de la formation vaut 1
+    Et le niveau de sortie de la formation vaut «aucun»
     Et la durée en heures de la formation vaut 210
     Et le code CERTIFINFO de la formation vaut 87647
     Et la liste des domaines FORMACODE de la formation vaut [420,440,428]

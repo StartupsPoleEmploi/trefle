@@ -15,7 +15,7 @@ Scénario: CPF avec IDCC 1672
     Et la région de l'établissement du bénéficiaire vaut «Île-de-France»
     Et ce n'est pas une formation éligible COPANEF
     Et c'est une formation éligible région «Île-de-France»
-    Et le niveau de sortie de la formation vaut 6.0
+    Et le niveau de sortie de la formation vaut «III»
     Et la durée en heures de la formation vaut 1568.0
     Et c'est une formation qualifiante
     Et la durée en mois de la formation vaut 10

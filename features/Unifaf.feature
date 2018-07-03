@@ -134,7 +134,7 @@ Scénario: période de professionnalisation CDI filière éducative
     Et la durée en heures de la formation vaut 100
     Et la durée en mois de la formation vaut 10
     Et la liste des codes FORMACODE de la formation vaut [42056]
-    Et le niveau de sortie de la formation vaut 3
+    Et le niveau de sortie de la formation vaut «V bis»
     Quand je demande un calcul de financement
     Quand je sélectionne le financement «Période de professionnalisation sur son temps de travail»
     Alors l'organisme à contacter est «Unifaf»

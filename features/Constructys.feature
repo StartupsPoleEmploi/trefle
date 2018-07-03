@@ -13,7 +13,7 @@ Scénario: Formation COPANEF
     Et le code NAF de l'établissement du bénéficiaire vaut «8130Z»
     Et l'IDCC de l'établissement du bénéficiaire vaut 2409
     Et c'est une formation éligible COPANEF
-    Et le niveau de sortie de la formation vaut 5
+    Et le niveau de sortie de la formation vaut «IV»
     Et la durée en heures de la formation vaut 2320
     Et la durée en mois de la formation vaut 22
     Quand je demande un calcul de financement
@@ -46,7 +46,7 @@ Scénario: Période de professionnalisation CléA
     Et la durée en heures de la formation vaut 230
     Et le prix horaire de la formation vaut 0
     Et la code AIS de la formation vaut 5
-    Et le niveau de sortie de la formation vaut 0
+    Et le niveau de sortie de la formation vaut «inconnu»
     Et la durée en semaines de la formation vaut 10
     Et la durée en mois de la formation vaut 2
     Et la durée hebdomadaire de la formation vaut 23
@@ -75,7 +75,7 @@ Scénario: Période de professionnalisation FLE
     Et la durée en heures de la formation vaut 100
     Et le prix horaire de la formation vaut 0
     Et la code AIS de la formation vaut 5
-    Et le niveau de sortie de la formation vaut 0
+    Et le niveau de sortie de la formation vaut «inconnu»
     Et la durée en semaines de la formation vaut 10
     Et la durée en mois de la formation vaut 2
     Et la durée hebdomadaire de la formation vaut 23
@@ -104,7 +104,7 @@ Scénario: Période de professionnalisation chantier
     Et la durée en heures de la formation vaut 100
     Et le prix horaire de la formation vaut 0
     Et la code AIS de la formation vaut 5
-    Et le niveau de sortie de la formation vaut 0
+    Et le niveau de sortie de la formation vaut «inconnu»
     Et la durée en semaines de la formation vaut 10
     Et la durée en mois de la formation vaut 2
     Et la durée hebdomadaire de la formation vaut 23
@@ -133,7 +133,7 @@ Scénario: Période de professionnalisation lutte contre l'illétrisme
     Et la durée en heures de la formation vaut 100
     Et le prix horaire de la formation vaut 0
     Et la code AIS de la formation vaut 5
-    Et le niveau de sortie de la formation vaut 0
+    Et le niveau de sortie de la formation vaut «inconnu»
     Et la durée en semaines de la formation vaut 10
     Et la durée en mois de la formation vaut 2
     Et la durée hebdomadaire de la formation vaut 23
@@ -163,7 +163,7 @@ Scénario: Période de professionnalisation conduit d'engins
     Et la durée en heures de la formation vaut 100
     Et le prix horaire de la formation vaut 0
     Et la code AIS de la formation vaut 5
-    Et le niveau de sortie de la formation vaut 0
+    Et le niveau de sortie de la formation vaut «inconnu»
     Et la durée en semaines de la formation vaut 10
     Et la durée en mois de la formation vaut 2
     Et la durée hebdomadaire de la formation vaut 23

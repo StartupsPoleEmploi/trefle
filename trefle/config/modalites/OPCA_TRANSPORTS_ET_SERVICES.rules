@@ -1,9 +1,22 @@
 Si le nom de l'organisme est «OPCA Transports et Services»
-    Alors le prix horaire plafond applicable est égal à 15
-    Alors le plafond horaire applicable est égal au solde CPF du bénéficiaire
-    Si c'est une formation VAE
-        Alors le prix horaire plafond applicable vaut 57
-        Alors le plafond horaire applicable vaut 21
-        # Alors organisme.plafond_financier_journalier VAUT 400
-    Si le code NAF de l'établissement du bénéficiaire fait partie des codes NAF CPNE éligibles
-        Alors le prix horaire plafond applicable vaut 30
+
+    Si le financement est de type «CPF»
+        Alors le prix horaire plafond applicable est égal à 15
+        Alors le plafond horaire applicable est égal au solde CPF du bénéficiaire
+        Si c'est une formation VAE
+            Alors le prix horaire plafond applicable vaut 57
+            Alors le plafond horaire applicable vaut 21
+            # Alors organisme.plafond_financier_journalier VAUT 400
+        Si le code NAF de l'établissement du bénéficiaire fait partie des codes NAF CPNE éligibles
+            Alors le prix horaire plafond applicable vaut 30
+
+    Si le financement est de type «période de professionnalisation»
+
+        Si la liste des domaines FORMACODE de la formation contient 318
+        Et le niveau de sortie de la formation fait partie de [«I»,«II»,«III»,«IV»,«V»]
+            Alors le prix horaire plafond applicable vaut 10.5
+
+            Si le niveau de sortie de la formation vaut «V»
+            Et la liste des codes FORMACODE de la formation contient au moins un code parmi [31816,31854]
+            # Et contient CAP
+                Alors le prix horaire plafond applicable vaut 13.5

@@ -16,7 +16,7 @@ Scénario: Cas d'un permis B
     Et la région de l'établissement du bénéficiaire vaut «Île-de-France»
     Et la domaine FORMACODE langues vaut 152
     Et c'est une formation éligible COPANEF
-    Et le niveau de sortie de la formation vaut 1.0
+    Et le niveau de sortie de la formation vaut «aucun»
     Et la durée en heures de la formation vaut 31.0
     Et c'est un permis B
     Et la durée en mois de la formation vaut 12
@@ -45,7 +45,7 @@ Scénario: Cas d'un bilan de compétences
     Et la région de l'établissement du bénéficiaire vaut «Île-de-France»
     Et la domaine FORMACODE langues vaut 152
     Et c'est une formation éligible COPANEF
-    Et le niveau de sortie de la formation vaut 1
+    Et le niveau de sortie de la formation vaut «aucun»
     Et la durée en heures de la formation vaut 24
     Et c'est un bilan de compétences
     Quand je demande un calcul de financement

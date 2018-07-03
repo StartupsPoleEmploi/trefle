@@ -17,7 +17,7 @@ Scénario: cas nominal Fafiec
     Et c'est une formation éligible COPANEF
     Et la durée en heures de la formation vaut 1384
     Et la liste des codes FORMACODE de la formation vaut [31094,31067,31084]
-    Et le niveau de sortie de la formation vaut 6.0
+    Et le niveau de sortie de la formation vaut «III»
     Et le code CERTIFINFO de la formation vaut 76575
     Et la liste des domaines FORMACODE de la formation vaut [310]
     Et ce n'est pas une formation ouverte à distance

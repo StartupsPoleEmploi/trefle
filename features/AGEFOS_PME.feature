@@ -79,7 +79,7 @@ Scénario: plafond horaire sur une formation simple
     Et la région de l'établissement du bénéficiaire vaut «Provence-Alpes-Côte d'Azur»
     Et ce n'est pas une formation éligible COPANEF
     Et c'est une formation éligible région «Provence-Alpes-Côte d'Azur»
-    Et le niveau de sortie de la formation vaut 4.0
+    Et le niveau de sortie de la formation vaut «V»
     Et la durée en heures de la formation vaut 805.0
     Et ce n'est pas une formation ouverte à distance
     Et ce n'est pas une formation TOEIC
@@ -155,7 +155,7 @@ Scénario: période de professionnalisation + CPF
     Et la durée en heures de la formation vaut 805
     Et la liste des codes CPF de la formation vaut [18082,161236,157711]
     Et les codes NAF CPNE éligibles vaut [8810A,8559B,8891A,8810B,9609Z,8622A,8622C,8899A,8621Z,7830Z,8899B]
-    Et le niveau de sortie de la formation vaut 4
+    Et le niveau de sortie de la formation vaut «V»
     Et c'est une formation qualifiante
     Et la durée en mois de la formation vaut 6
     Et la durée en semaines de la formation vaut 28
