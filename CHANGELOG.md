@@ -12,6 +12,7 @@
 - added Unifaf rules for "période de professionnalisation"
 - added basic rules for "période de professionnalisation" for
   "OPCA Transports et Services"
+- explorer: display enum in schema
 
 ## 0.3.1
 

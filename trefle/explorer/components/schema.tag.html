@@ -1,6 +1,6 @@
 <schema>
   <ul>
-    <li each={ label, id in this.categories }><a href="#schema/{ id }" class={ on: this.opts.id == id } title={ id }>{ label }</a></li>
+    <li each={ label, id in this.categories }><a href="#schema/{ id }" class='{ on: this.opts.id == id }' title={ id }>{ label }</a></li>
   </ul>
   <schema-entries if={ this.opts.id } items={this.items} name={ this.categories[this.opts.id] }></schema-entries>
 
@@ -8,6 +8,9 @@
     :scope.tools {
       min-width: 1200px;
       grid-template-columns: 1fr 4fr;
+    }
+    dd ul {
+      padding-left: 10px;
     }
   </style>
 
@@ -43,10 +46,16 @@
     <dd><strong>Clé interne</strong> { key }</dd>
     <dd><strong>Type</strong> { props.type }</dd>
     <dd if={ props.value }><strong>Valeur constante</strong> { this.formatValue(props.value) }</dd>
-    <dd if={props.description}><strong>Description</strong> {props.description}</dd>
-    <dd if={props.source}><strong>Source</strong> {props.source}</dd>
-    <dd if={props.xpath}><strong>LHEO</strong> {props.xpath}</dd>
-    <dd if={props.url}><strong>Ressource externe</strong> <a href="{ props.url }">{ props.url }</a></dd>
+    <dd if={ props.description }><strong>Description</strong> {props.description}</dd>
+    <dd if={ props.source }><strong>Source</strong> {props.source}</dd>
+    <dd if={ props.xpath }><strong>LHEO</strong> {props.xpath}</dd>
+    <dd if={ props.url }><strong>Ressource externe</strong> <a href="{ props.url }">{ props.url }</a></dd>
+    <dd if={ props.enum }>
+      <strong>Valeurs possibles</strong>
+      <ul>
+        <li each={ label, key in props.enum }>{ key }: { label }</li>
+      </ul>
+    </dd>
   </dl>
   <hr>
 
