@@ -1,8 +1,8 @@
 <schema>
   <ul>
-    <li each={ label, id in this.categories }><a href="#schema/{ id }" class='{ on: this.opts.id == id }' title={ id }>{ label }</a></li>
+    <li each={ label, id in this.categories }><a href="#schema/{ id }" class='{ on: this.opts.id.startsWith(id) }' title={ id }>{ label }</a></li>
   </ul>
-  <schema-entries if={ this.opts.id } items={this.items} name={ this.categories[this.opts.id] }></schema-entries>
+  <schema-entries if={ this.category } items={this.items} name={ this.categories[this.category] }></schema-entries>
 
   <style scoped>
     :scope.tools {
@@ -16,19 +16,20 @@
 
   <script>
     this.items = {}
+    this.category = null
     this.categories = {
       constante: 'Propriétés constantes',
       beneficiaire: 'Propriétés du bénéficiaire',
       formation: 'Propriétés de la formation',
       financement: 'Propriétés du financement',
-      'financement.organisme': "Propriétés de l'organisme",
     }
     this.on('mount', () => this.load())
 
     this.load = () => {
       if (this.opts.id) {
+        this.category = this.opts.id.split('.')[0]
         for (let key in SCHEMA) {
-          if (key.startsWith(this.opts.id)) this.items[key] = SCHEMA[key]
+          if (key.startsWith(this.category)) this.items[key] = SCHEMA[key]
         }
       }
       this.update();
@@ -41,10 +42,8 @@
 
 <schema-entries>
   <h2>{ this.opts.name }</h2>
-  <dl each={ props, key in this.opts.items }>
-    <dt>{props.label || props.description}</dt>
-    <dd><strong>Clé interne</strong> { key }</dd>
-    <dd><strong>Type</strong> { props.type }</dd>
+  <dl each={ props, key in this.opts.items } id='schema/{ key }'>
+    <dt>{props.label || props.description} <a href="#schema/{ key }" class=anchor>#</a></dt>
     <dd if={ props.value }><strong>Valeur constante</strong> { this.formatValue(props.value) }</dd>
     <dd if={ props.description }><strong>Description</strong> {props.description}</dd>
     <dd if={ props.source }><strong>Source</strong> {props.source}</dd>
@@ -56,6 +55,8 @@
         <li each={ label, key in props.enum }>{ key }: { label }</li>
       </ul>
     </dd>
+    <dd><strong>Clé interne</strong> { key }</dd>
+    <dd><strong>Type interne</strong> { props.type }</dd>
   </dl>
   <hr>
 
@@ -63,6 +64,10 @@
     hr {
       border: none;
       border-top: 1px solid #eee;
+    }
+    .anchor {
+      font-weight: normal;
+      font-style: italic;
     }
   </style>
 

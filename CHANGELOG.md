@@ -13,6 +13,7 @@
 - added basic rules for "période de professionnalisation" for
   "OPCA Transports et Services"
 - explorer: display enum in schema
+- explorer: direct link to schema property
 
 ## 0.3.1
 
