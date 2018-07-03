@@ -33,6 +33,9 @@
         }
       }
       this.update();
+      // Force element target after DOM has been rebuilt
+      // (:target is not active otherwise).
+      window.location.hash = window.location.hash
     }
 
     this.mixin(View)
@@ -68,6 +71,9 @@
     .anchor {
       font-weight: normal;
       font-style: italic;
+    }
+    dl:target {
+      background-color: #ddd;
     }
   </style>
 
