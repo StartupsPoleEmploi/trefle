@@ -14,16 +14,22 @@
   <section class=results if={ Object.keys(this.context).length }>
     <h2>Financements</h2>
     <ul>
-      <li each={ this.financements } class=result>
-        <h3>{nom}</h3>
+      <li each={ this.financements } class={result: 'result', visible: visible}>
+        <h3 class={ passed: eligible, failed: !eligible } onclick={ parent.toggle }>{nom}</h3>
         <p><strong>Description</strong> {description}</p>
         <p><strong>Démarches</strong> {demarches}</p>
-        <p><strong>Prise en charge</strong> {prise_en_charge}</p>
-        <p><strong>Plafond de prise en charge</strong> {plafond_prise_en_charge}</p>
-        <p><strong>Plafond de prix horaire</strong> {plafond_prix_horaire}</p>
-        <p><strong>Nombre d'heures</strong> {heures}</p>
-        <p><strong>Rémunération</strong> {remuneration}</p>
-        <p><strong>Organisme</strong> {organisme.nom}</p>
+        <virtual if={ eligible }>
+          <p><strong>Prise en charge</strong> {prise_en_charge}</p>
+          <p><strong>Plafond de prise en charge</strong> {plafond_prise_en_charge}</p>
+          <p><strong>Plafond de prix horaire</strong> {plafond_prix_horaire}</p>
+          <p><strong>Nombre d'heures</strong> {heures}</p>
+          <p><strong>Rémunération</strong> {remuneration}</p>
+          <p><strong>Organisme</strong> {organisme.nom}</p>
+        </virtual>
+        <p if={ !eligible }>
+          <strong>Critères d'éligibilité</strong>
+          <eligibilite conditions={ eligibilite }></eligibilite>
+        </p>
       </li>
     </ul>
     <p if={ !this.financements.length }>Aucun financement trouvé.</p>
@@ -55,7 +61,7 @@
     }
 
     this.simulate = (data) => {
-      fetch('/financement?eligible=1&context=1&scenario=1', {
+      fetch('/financement?context=1&scenario=1', {
         method: 'post',
         body: JSON.stringify(data)
       })
@@ -77,6 +83,10 @@
       this.decodeLBFURL(url, this.simulate)
     }
 
+    this.toggle = (e) => {
+      var item = e.item
+      item.visible = !item.visible
+    }
   </script>
 
   <style scoped>
@@ -90,6 +100,49 @@
     .result {
       border-bottom: 1px solid #eee;
     }
+    .result p {
+      display: none;
+    }
+    .result.visible p {
+      display: block;
+    }
+    .result h3 {
+      font-weight: normal;
+      cursor: pointer;
+    }
+    .result h3.passed {
+      font-weight: bold;
+    }
+    .failed:before {
+      content: '✗';
+    }
+    .passed:before {
+      content: '✔';
+    }
   </style>
 
 </simulate>
+
+<eligibilite>
+  <ul style={ style }>
+    <li each={ this.opts.conditions } class={ passed: status, failed: !status }>
+      <virtual>{ condition }</virtual>
+      <eligibilite if={ !status && terms } conditions={ terms } level={ this.level + 1 }></eligibilite>
+    </li>
+  </ul>
+
+  <script>
+    this.level = this.opts.level || 0
+    this.style = {
+      display: 'block',
+      'padding-left': (this.level * 10) + 'px'
+    }
+  </script>
+
+  <style scoped>
+    .failed {
+      color: #c0392b;
+    }
+  </style>
+
+</eligibilite>

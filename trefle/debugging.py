@@ -26,9 +26,9 @@ def red(s):
 def trace_condition(condition):
     assess_orig = condition.assess
 
-    def assess_wrapper(context):
-        status = assess_orig(context)
-        condition._return_values.append(status)
+    def assess_wrapper(context, parent=None, overall=True):
+        status = assess_orig(context, parent, overall)
+        condition._return_values.append(bool(status))
 
         params = {}
         for param in condition.params.values():
@@ -138,19 +138,23 @@ def make_scenario(data, financements, name='Donne-moi un nom'):
 
     steps.append("Quand je demande un calcul de financement")
     for financement in financements:
-        # Quand je sélectionne le financement «CPF hors temps de travail»
-        steps.append(f"Quand je sélectionne le financement "
-                     f"«{financement['nom']}»")
-        # Alors l'organisme tutelle est «INTERGROS»
-        steps.append(f"Alors l'organisme à contacter est "
-                     f"«{financement['organisme']['nom']}»")
-        if financement.get('prise_en_charge') is not None:
-            # Et le montant de prise en charge vaut 2000
-            steps.append(f"Et le montant de prise en charge vaut "
-                         f"{financement['prise_en_charge']}")
-        elif financement.get('plafond_prise_en_charge'):
-            steps.append(f"Et le plafond de prise en charge vaut "
-                         f"{financement['plafond_prise_en_charge']}")
-        steps.append(f"Et la rémunération applicable vaut"
-                     f"{financement['remuneration']}")
+        if financement.get('eligible'):
+            # Quand je sélectionne le financement «CPF hors temps de travail»
+            steps.append(f"Quand je sélectionne le financement "
+                         f"«{financement['nom']}»")
+            # Alors l'organisme tutelle est «INTERGROS»
+            steps.append(f"Alors l'organisme à contacter est "
+                         f"«{financement['organisme']['nom']}»")
+            if financement.get('prise_en_charge') is not None:
+                # Et le montant de prise en charge vaut 2000
+                steps.append(f"Et le montant de prise en charge vaut "
+                             f"{financement['prise_en_charge']}")
+            elif financement.get('plafond_prise_en_charge'):
+                steps.append(f"Et le plafond de prise en charge vaut "
+                             f"{financement['plafond_prise_en_charge']}")
+            steps.append(f"Et la rémunération applicable vaut"
+                         f"{financement['remuneration']}")
+        else:
+            steps.append(f"Alors le financement «{financement['nom']}» n'est "
+                         "pas proposé")
     return header + '\n    '.join(steps)

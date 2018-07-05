@@ -563,6 +563,28 @@ financement:
       type: string
       format: url
     description: Liste d'adresses Internet pour en savoir plus sur le sujet.
+  eligibilite:
+    type: array
+    public: true
+    nullable: true
+    items:
+      type: object
+      properties:
+        condition:
+          type: string
+        status:
+          type: boolean
+        connective:
+          type: string
+        terms:
+          # TODO dry me
+          type: array
+          items:
+            type: object
+            # See https://github.com/p1c2u/openapi-core/issues/33#issuecomment-403022629
+            additionalProperties:
+              type: string
+    description: Liste de conditions nécessaires pour rendre ce financement éligible
   organisme:
     nom:
       public: true

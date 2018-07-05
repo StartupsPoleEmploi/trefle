@@ -82,6 +82,7 @@ def action(pattern):
 
     def wrapper(func):
         Action.PATTERNS[re.compile(pattern)] = func
+        func.on_miss = None
         return func
 
     return wrapper
@@ -96,10 +97,46 @@ def condition(pattern):
     return wrapper
 
 
+def on_miss(target):
+
+    def wrapper(func):
+        func.on_miss = target
+        return func
+
+    return wrapper
+
+
+class Status:
+
+    def __init__(self, condition, parent=None):
+        self.condition = condition
+        self.status = None
+        self.terms = []
+        self.children = []
+        self.parent = parent
+
+    def __bool__(self):
+        return self.status
+
+    def __repr__(self):
+        return f'<Status {self.condition} => {self.status}'
+
+    @property
+    def json(self):
+        out = {'condition': str(self.condition), 'status': self.status}
+        if self.terms:
+            out['terms'] = [t.json for t in self.terms]
+            out['connective'] = self.condition.connective
+        return out
+
+
 class Step:
 
     def __repr__(self):
-        return f'<{self.__class__.__name__}: {self.raw}>'
+        return f'<{self.__class__.__name__}: {self}>'
+
+    def __str__(self):
+        return self.raw
 
     def compile(self):
         for pattern, func in self.PATTERNS.items():
@@ -143,6 +180,10 @@ class Action(Step):
         except NoDataError as err:
             raise NoDataError(f'No data for `{err}` in `{self.raw}`')
 
+    def on_miss(self, context, status):
+        if self.func.on_miss:
+            self.func.on_miss(status, context, **self.params)
+
 
 class Condition(Step):
 
@@ -150,8 +191,10 @@ class Condition(Step):
     AND = 'ET'
     OR = 'OU'
 
-    def __init__(self, terms, connective=None, level=0, name=None, line=0):
+    def __init__(self, terms, parent=None, connective=None, level=0,
+                 name=None, line=0):
         assert terms, 'Cannot create a Condition without terms'
+        self.parent = parent
         self.params = {}
         self.children = []
         self.actions = []
@@ -176,31 +219,48 @@ class Condition(Step):
         else:
             self.compile()
 
-    def assess(self, context):
+    def assess(self, context, parent=None, overall=True):
+        status = Status(self, parent)
         if self.terms:
+            status.terms = [c.assess(context) for c in self.terms]
             if self.connective == self.OR:
-                status = any([c.assess(context) for c in self.terms])
+                current = any(status.terms)
             else:
-                status = all(c.assess(context) for c in self.terms)
+                current = all(status.terms)
         else:
             try:
-                status = self.func(context, **self.params)
+                current = self.func(context, **self.params)
             except NoDataError:
-                status = False
+                current = False
             except Exception as err:
                 # Give more context.
                 params = ' AND '.join(f'{value.raw}={value.get(**context)}'
                                       for value in self.params.values())
                 err.args = (f'{err} (in `{self.raw}`, where {params})',)
                 raise
-        if status is True:
-            if self.actions:
-                for action in self.actions:
+        status.status = current
+        overall = overall and current
+        if self.actions:
+            for action in self.actions:
+                if overall:
                     action.act(context)
-            if self.children:
-                for child in self.children:
-                    child.assess(context)
+                else:
+                    action.on_miss(context, status)
+        # Always call children conditions so we have the whole tree for
+        # explaining the situation.
+        if self.children:
+            for child in self.children:
+                child.assess(context, status, overall)
         return status
+
+
+def attach_status(status, context, name):
+    conditions = [status.json]
+    while status.parent is not None:
+        status = status.parent
+        conditions.append(status.json)
+    conditions.reverse()
+    context['financements'][name]['eligibilite'] = conditions
 
 
 @action(r"(l'|les? |la )(?P<key>.+) (vaut|est) (?P<value>[\w«» +\-'\.]+)$")
@@ -214,6 +274,7 @@ def set_percent(context, key: Label, rate: float, value: LazyValue):
     context[key] = value.get(**context) * rate / 100
 
 
+@on_miss(attach_status)
 @action(r"définir le financement «(?P<name>[\w +-]+)» comme éligible")
 def set_financement_eligible(context, name):
     if name not in context['financements']:
@@ -359,9 +420,8 @@ class Rule:
                 raise StopRecursivity(indent=next_.indent)
                 # Move back one step up in recursivity.
             if next_.indent > curr.indent:
-                # inner = tree[:]
                 if next_.keyword in ('si', 'alors') and terms:
-                    current = Condition(terms[:], connective,
+                    current = Condition(terms[:], parent, connective,
                                         level=int(curr.indent/4), name=name,
                                         line=curr.index)
                     if curr.indent == 0:
@@ -377,7 +437,6 @@ class Rule:
                     if err.indent < curr.indent:
                         raise
                     continue  # We are on the right level.
-            #     yield parent
         return rules
 
     @staticmethod
