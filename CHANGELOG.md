@@ -14,6 +14,7 @@
   "OPCA Transports et Services"
 - explorer: display enum in schema
 - explorer: direct link to schema property
+- add OPCALIM période de professionnalisation rules
 
 ## 0.3.1
 
