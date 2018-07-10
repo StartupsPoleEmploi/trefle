@@ -2,7 +2,7 @@
   <section>
     <h2>Depuis une URL LBF</h2>
     <form onsubmit={ this.submit }>
-      <input type="url" ref="url" placeholder="Entrer une URL LBF" name="lbfurl">
+      <input type="url" ref="url" placeholder="Entrer une URL LBF" name="lbfurl" href="#">
       <input type="submit" value="Simuler">
     </form>
   </section>
@@ -105,6 +105,10 @@
     }
     .result.visible p {
       display: block;
+    }
+    .result.visible {
+      border: 1px solid #eee;
+      padding: 5px;
     }
     .result h3 {
       font-weight: normal;
