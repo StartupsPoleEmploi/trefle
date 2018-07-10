@@ -26,8 +26,8 @@ def red(s):
 def trace_condition(condition):
     assess_orig = condition.assess
 
-    def assess_wrapper(context, parent=None, overall=True):
-        status = assess_orig(context, parent, overall)
+    def assess_wrapper(context):
+        status = assess_orig(context)
         condition._return_values.append(bool(status))
 
         params = {}

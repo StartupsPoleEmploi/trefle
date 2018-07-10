@@ -286,8 +286,8 @@ class Condition:
     def get_params(self, context):
         return {n: v.get(**context) for n, v in self.params.items()}
 
-    def assess(self, context, parent=None, overall=True):
-        status = Status(self, parent)
+    def assess(self, context):
+        status = Status(self)
         if self.terms:
             status.terms = [c.assess(context) for c in self.terms]
             if self.connective == self.OR:
@@ -306,18 +306,6 @@ class Condition:
                 err.args = (f'{err} (in `{self.raw}`, where {params})',)
                 raise
         status.status = current
-        overall = overall and current
-        if self.actions:
-            for action in self.actions:
-                if overall:
-                    action.act(context)
-                else:
-                    action.on_miss(context, status)
-        # Always call children conditions so we have the whole tree for
-        # explaining the situation.
-        if self.children:
-            for child in self.children:
-                child.assess(context, status, overall)
         return status
 
 
@@ -400,8 +388,20 @@ class Rule:
         self.root = root
         self.name = name
 
-    def assess(self, context):
-        return self.root.assess(context)
+    def assess(self, context, condition=None, parent=None, overall=True):
+        if condition is None:
+            condition = self.root
+        status = condition.assess(context)
+        status.parent = parent
+        overall = overall and status
+        for action in condition.actions:
+            if overall:
+                action.act(context)
+            else:
+                action.on_miss(context, status)
+        for child in condition.children:
+            self.assess(context, child, status, overall)
+        return status
 
     @staticmethod
     def iter_lines(iterable):
