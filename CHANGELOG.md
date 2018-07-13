@@ -1,5 +1,9 @@
 # Changelog
 
+## dev
+
+- explorer: display label from enum if any
+
 ## 0.4.0
 
 - fixed Actalians CPF rules which were also targetting «période de

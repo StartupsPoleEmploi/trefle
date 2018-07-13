@@ -28,9 +28,7 @@
     </ul>
     <p if={ !this.financements.length }>Aucun financement trouvé.</p>
     <h2>Contexte</h2>
-    <table>
-      <tr each={ value, key in this.context }><th>{ this.renderLabel(key, value) }</th><td>{ this.renderValue(key, value) }</td></tr>
-    </table>
+    <context data={ this.context }></context>
     <h2>Scénario de test</h2>
     <rule if={ this.scenario } content={ this.scenario }></rule>
   </section>
@@ -79,16 +77,6 @@
       this.decodeLBFURL(url, this.simulate)
     }
 
-    this.renderValue = (key, value) => {
-      if (SCHEMA[key]['type'] === 'array') return value.join(', ')
-      if (SCHEMA[key]['format'] === 'date') return (new Date(value * 1000)).toLocaleDateString()
-      return value
-    }
-
-    this.renderLabel = (key, value) => {
-      return SCHEMA[key]['label']
-    }
-
   </script>
 
   <style scoped>
@@ -98,21 +86,6 @@
     .results {
       padding: 10px;
       border-left: 1px solid #ddd;
-    }
-    table {
-      table-layout: fixed;
-      width: 100%;
-      overflow: hidden;
-    }
-    th {
-      text-align: left;
-      width: 40%;
-    }
-    td {
-      width: 50%;
-    }
-    tr:nth-child(even) {
-      background: #f3f3f3;
     }
     .result {
       border-bottom: 1px solid #eee;
