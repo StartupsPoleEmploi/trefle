@@ -32,6 +32,7 @@
   route('/rules/(.+)', (id) => riot.mount('rules', {id: id}))
   route('/rules', () => riot.mount('rules'))
   route('/simulate', () => riot.mount('simulate'))
+  route('/simulate/(.+)', (url) => riot.mount('simulate', {url: url}))
   route('/tools', () => riot.mount('tools'))
   route('/glossary', () => riot.mount('glossary'))
 

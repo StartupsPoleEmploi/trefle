@@ -48,6 +48,10 @@
       display: grid;
       grid-template-columns: 2em auto;
     }
+    .tooltip .tooltip-content:after {
+      /* Why? */
+      bottom: -27px;
+    }
   </style>
   <script>
     this.raw = opts.content.replace(/Si /g, '<strong>Si </strong>')

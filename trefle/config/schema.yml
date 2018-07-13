@@ -576,6 +576,13 @@ financement:
           type: boolean
         connective:
           type: string
+        reason:
+          type: string
+          nullable: true
+        # params:
+        #   type: object
+        #   additionalProperties:
+        #     type: string
         terms:
           # TODO dry me
           type: array
@@ -584,6 +591,7 @@ financement:
             # See https://github.com/p1c2u/openapi-core/issues/33#issuecomment-403022629
             additionalProperties:
               type: string
+              nullable: true
     description: Liste de conditions nécessaires pour rendre ce financement éligible
   organisme:
     nom:

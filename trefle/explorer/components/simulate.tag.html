@@ -2,7 +2,7 @@
   <section>
     <h2>Depuis une URL LBF</h2>
     <form onsubmit={ this.submit }>
-      <input type="url" ref="url" placeholder="Entrer une URL LBF" name="lbfurl" href="#">
+      <input type="url" ref="url" placeholder="Entrer une URL LBF" name="lbfurl" href="#" value={ this.opts.url }>
       <input type="submit" value="Simuler">
     </form>
   </section>
@@ -44,6 +44,12 @@
     this.errors = {}
     this.mixin(View)
 
+    this.on('mount', () => this.load())
+
+    this.load = () => {
+      if (this.opts.url) this.simulate_url(this.opts.url)
+    }
+
     this.dataErrors = (data) => {
         this.errors = data
         this.update()
@@ -80,6 +86,10 @@
       e.preventDefault();
       const url = this.refs.url.value
       if (!url) return
+      route(`simulate/${url}`)
+    }
+
+    this.simulate_url = (url) => {
       this.decodeLBFURL(url, this.simulate)
     }
 
@@ -128,24 +138,24 @@
 </simulate>
 
 <eligibilite>
-  <ul style={ style }>
-    <li each={ this.opts.conditions } class={ passed: status, failed: !status }>
-      <virtual>{ condition }</virtual>
-      <eligibilite if={ !status && terms } conditions={ terms } level={ this.level + 1 }></eligibilite>
+  <ul>
+    <li each={ props, i in this.opts.conditions } class={ passed: props.status, failed: !props.status }>
+      <span if={ i && this.opts.connective }> { this.opts.connective } </span>
+      <span class=tooltip if={ !props.terms && !props.status }><span>{ props.condition }</span><span class=tooltip-content>{ props.reason }</span></span>
+      <span if={ (!props.terms && props.status) || (props.status && props.terms) }>{ props.condition }</span>
+      <eligibilite if={ !props.status && props.terms } conditions={ props.terms } connective={ props.connective }></eligibilite>
     </li>
   </ul>
-
-  <script>
-    this.level = this.opts.level || 0
-    this.style = {
-      display: 'block',
-      'padding-left': (this.level * 10) + 'px'
-    }
-  </script>
 
   <style scoped>
     .failed {
       color: #c0392b;
+    }
+    li .passed:before, li .failed:before {
+      content: '';
+    }
+    li li, li ul {
+      display: inline;
     }
   </style>
 
