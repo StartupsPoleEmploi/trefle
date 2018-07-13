@@ -16,7 +16,7 @@ def is_pkg(line):
 with open('requirements.txt', encoding='utf-8') as reqs:
     install_requires = [l for l in reqs.read().split('\n') if is_pkg(l)]
 
-VERSION = (0, 3, 1)
+VERSION = (0, 4, 0)
 
 __author__ = 'Yohan Boniface'
 __contact__ = "yohan.boniface@data.gouv.fr"

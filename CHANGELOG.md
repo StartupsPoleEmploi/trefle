@@ -1,6 +1,6 @@
 # Changelog
 
-## dev
+## 0.4.0
 
 - fixed Actalians CPF rules which were also targetting «période de
   professionnalisation»
