@@ -3,7 +3,7 @@
 ## dev
 
 - explorer: display label from enum if any
-- add 'UNAGECIF' organisme details
+- add 'UNAGECIF' organisme details and rules
 
 ## 0.4.0
 

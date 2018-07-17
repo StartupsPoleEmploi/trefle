@@ -1,0 +1,16 @@
+Si le nom de l'organisme est «UNAGECIF»
+    Alors le plafond financier applicable vaut 14000
+    Et le prix horaire plafond applicable vaut 24
+
+    Si le financement est de type «sur son temps de travail»
+        Alors la rémunération applicable est égale à la rémunération du bénéficiaire
+
+        Si la rémunération du bénéficiaire est inférieure ou égale à deux fois le SMIC
+            Alors la rémunération du bénéficiaire est égale à 100% du SMIC
+
+        Si la rémunération du bénéficiaire est supérieure à deux fois le SMIC
+            Alors la rémunération applicable est égale à 90% de la rémunération du bénéficiaire
+
+        Si c'est un bilan de compétences
+        Ou c'est une formation VAE
+            Alors la rémunération applicable est égale à 100% de la rémunération du bénéficiaire

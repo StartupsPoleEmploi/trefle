@@ -38,6 +38,11 @@ constante:
     value: [201, 207, 208]
     label: codes CPF CléA
   # https://www.service-public.fr/particuliers/vosdroits/F2300
+  smic:
+    type: integer
+    format: int32
+    value: 1498.47
+    label: SMIC
   deux_smic:
     type: integer
     format: int32
