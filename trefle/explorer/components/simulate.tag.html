@@ -140,8 +140,8 @@
 <eligibilite>
   <ul>
     <li each={ props, i in this.opts.conditions } class={ passed: props.status, failed: !props.status }>
+      <span if={ i && this.opts.connective }> { this.opts.connective } </span>
       <virtual if={ !props.terms }>
-        <span if={ i && this.opts.connective }> { this.opts.connective } </span>
         <span class=tooltip if={ !props.status }><span>{ props.condition }</span><span class=tooltip-content>{ props.reason }</span></span>
         <span class=tooltip if={ props.status }><span>{ props.condition }</span><span class=tooltip-content><span each={ value, key in props.params }>{ renderLabel(key, value) }: { renderValue(key, value) }<br></span></span></span>
       </virtual>

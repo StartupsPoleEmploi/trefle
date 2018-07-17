@@ -169,7 +169,6 @@ input[type=submit]:hover,
 
 /************** Tool Tip Styles ********************************/
 .tooltip {
-  display: inline-block;
   position: relative;
   cursor: help;
 }
