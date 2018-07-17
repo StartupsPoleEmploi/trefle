@@ -169,7 +169,7 @@ beneficiaire:
     gender: masculine
   mois_entreprise:
     description: ancienneté en mois dans l'entreprise actuelle
-    alias: anciennete_entreprise_actuelle
+    alias: beneficiaire.anciennete_entreprise_actuelle
     type: integer
     format: int32
     public: true
