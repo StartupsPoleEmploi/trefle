@@ -579,10 +579,10 @@ financement:
         reason:
           type: string
           nullable: true
-        # params:
-        #   type: object
-        #   additionalProperties:
-        #     type: string
+        params:
+          type: object
+          additionalProperties:
+            type: string
         terms:
           # TODO dry me
           type: array

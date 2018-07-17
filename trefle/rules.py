@@ -78,21 +78,11 @@ class Pointer:
         return ...
 
 
-class Value:
-
-    def __init__(self, pointer, context):
-        self.value = pointer.get(**context)
-        self.pointer = pointer
-
-    def __str__(self):
-        return str(self.value or 'aucun(e)')
-
-
 def action(pattern):
 
     def wrapper(func):
         Action.PATTERNS[re.compile(pattern)] = func
-        func.on_miss = None
+        func.on_act = None
         return func
 
     return wrapper
@@ -117,13 +107,28 @@ def reason(msg):
     return wrapper
 
 
-def on_miss(target):
+def on_act(target):
 
     def wrapper(func):
-        func.on_miss = target
+        func.on_act = target
         return func
 
     return wrapper
+
+
+class Value:
+
+    def __init__(self, pointer, context):
+        self.value = pointer.get(**context)
+        self.pointer = pointer
+
+    def __str__(self):
+        return str(self.value or 'aucun(e)')
+
+    @property
+    def json(self):
+        if self.pointer.key:
+            return {self.pointer.key: self.value}
 
 
 class Status:
@@ -145,7 +150,11 @@ class Status:
 
     @property
     def json(self):
-        out = {'condition': str(self.condition), 'status': self.status}
+        out = {'condition': str(self.condition), 'status': self.status,
+               'params': {}}
+        for param in self.params.values():
+            if param.json:
+                out['params'].update(param.json)
         if self.terms:
             out['terms'] = [t.json for t in self.terms]
             out['connective'] = self.condition.connective
@@ -201,9 +210,9 @@ class Action:
         except NoDataError as err:
             raise NoDataError(f'No data for `{err}` in `{self.raw}`')
 
-    def on_miss(self, context, status):
-        if self.func.on_miss:
-            self.func.on_miss(status, context, **self.params)
+    def on_act(self, context, status):
+        if self.func.on_act:
+            self.func.on_act(status, context, **self.params)
 
 
 @action(r"(l'|les? |la )(?P<key>.+) (vaut|est) (?P<value>[\w«» +\-'\.]+)$")
@@ -226,7 +235,7 @@ def attach_status(status, context, name):
     context['financements'][name]['eligibilite'] = conditions
 
 
-@on_miss(attach_status)
+@on_act(attach_status)
 @action(r"définir le financement «(?P<name>[\w +-]+)» comme éligible")
 def set_financement_eligible(context, name):
     if name not in context['financements']:
@@ -436,8 +445,7 @@ class Rule:
         for action in condition.actions:
             if overall:
                 action.act(context)
-            else:
-                action.on_miss(context, status)
+            action.on_act(context, status)
         for child in condition.children:
             self.assess(context, child, status, overall)
         return status

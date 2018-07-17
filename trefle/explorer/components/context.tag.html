@@ -1,6 +1,6 @@
 <context>
     <table>
-        <tr each={ value, key in this.opts.data }><th>{ this.renderLabel(key, value) }</th><td>{ this.renderValue(key, value) }</td></tr>
+        <tr each={ value, key in this.opts.data }><th>{ renderLabel(key, value) }</th><td>{ renderValue(key, value) }</td></tr>
     </table>
 
     <style scoped>
@@ -20,17 +20,4 @@
           background: #f3f3f3;
         }
     </style>
-
-    <script>
-        this.renderValue = (key, value) => {
-          if (SCHEMA[key]['type'] === 'array') return value.join(', ')
-          if (SCHEMA[key]['format'] === 'date') return (new Date(value * 1000)).toLocaleDateString()
-          if (SCHEMA[key]['enum']) return SCHEMA[key]['enum'][value]
-          return value
-        }
-
-        this.renderLabel = (key, value) => {
-          return SCHEMA[key]['label']
-        }
-    </script>
 </context>
