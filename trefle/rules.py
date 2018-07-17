@@ -120,7 +120,7 @@ class Step:
                     value = param.annotation(value)
                 except Exception as err:
                     # Give more context.
-                    err.args = (f'{err} (from `{self.raw}`)',)
+                    err.args = (f'{err} (from `{self.raw}`, {self.name}:{self.line})',)
                     raise
             self.params[name] = value
 
@@ -129,10 +129,12 @@ class Action(Step):
 
     PATTERNS = {}
 
-    def __init__(self, raw):
+    def __init__(self, raw, name=None, line=0):
         self.raw = raw
         self.func = None
         self.params = {}
+        self.name = name
+        self.line = line
         self.compile()
 
     def act(self, context):
@@ -148,7 +150,7 @@ class Condition(Step):
     AND = 'ET'
     OR = 'OU'
 
-    def __init__(self, terms, connective=None, level=0):
+    def __init__(self, terms, connective=None, level=0, name=None, line=0):
         assert terms, 'Cannot create a Condition without terms'
         self.params = {}
         self.children = []
@@ -157,6 +159,8 @@ class Condition(Step):
         self.negative = False
         self.connective = connective or self.AND
         self.level = level
+        self.name = name
+        self.line = line
         if len(terms) == 1:
             terms = terms[0].split(', et ')
             if len(terms) > 1:
@@ -167,7 +171,8 @@ class Condition(Step):
                     self.connective = self.OR
         self.raw = f' {self.connective} '.join(terms)
         if len(terms) > 1:
-            self.terms = [Condition([t], level=self.level) for t in terms]
+            self.terms = [Condition([t], level=self.level, name=self.name,
+                                    line=self.line) for t in terms]
         else:
             self.compile()
 
@@ -291,7 +296,7 @@ def check_equal(context, left: LazyValue, right: LazyValue):
     return left.get(**context) == right.get(**context)
 
 
-Line = namedtuple('Line', ['indent', 'keyword', 'sentence'])
+Line = namedtuple('Line', ['index', 'indent', 'keyword', 'sentence'])
 
 
 class StopRecursivity(Exception):
@@ -312,21 +317,21 @@ class Rule:
 
     @staticmethod
     def iter_lines(iterable):
-        previous = Line(0, None, None)
+        previous = Line(0, 0, None, None)
         current = None
-        for raw in iterable:
+        for index, raw in enumerate(iterable):
             indent = count_indent(raw)
             line = raw.strip()
             if not line or line.startswith('#'):
                 continue
             keyword, sentence = line.split(maxsplit=1)
             keyword = keyword.lower()
-            next_ = Line(indent, keyword, sentence)
+            next_ = Line(index+1, indent, keyword, sentence)
             if current:
                 yield (previous, current, next_)
             previous = current
             current = next_
-        yield (previous, current, Line(0, None, None))
+        yield (previous, current, Line(0, 0, None, None))
 
     @classmethod
     def load(cls, lines, name, rules=None, parent=None):
@@ -357,7 +362,8 @@ class Rule:
                 # inner = tree[:]
                 if next_.keyword in ('si', 'alors') and terms:
                     current = Condition(terms[:], connective,
-                                        level=int(curr.indent/4))
+                                        level=int(curr.indent/4), name=name,
+                                        line=curr.index)
                     if curr.indent == 0:
                         rules.append(Rule(name, current))
                         parent = current

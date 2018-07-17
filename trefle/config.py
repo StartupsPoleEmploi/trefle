@@ -1,12 +1,13 @@
 import csv
 import re
+import sys
 from collections import defaultdict
 from pathlib import Path
 
 from unidecode import unidecode
 import yaml
 
-from .helpers import flatten
+from .exceptions import NoStepError, WrongPointerError
 from .rules import Rule, SCHEMA, LABELS
 
 
@@ -102,7 +103,10 @@ def load_rules(path):
             'path': id_,
             'name': path.name,
         }
-        return Rule.load(data.splitlines(), id_)
+        try:
+            return Rule.load(data.splitlines(), id_)
+        except (NoStepError, WrongPointerError) as err:
+            sys.exit(f'Project loading failed: {err!r}')
 
 
 # TODO: move in utils?

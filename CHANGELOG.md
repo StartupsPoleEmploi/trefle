@@ -4,6 +4,7 @@
 
 - explorer: display label from enum if any
 - add 'UNAGECIF' organisme details and rules
+- display line number in case of parsing error
 
 ## 0.4.0
 
