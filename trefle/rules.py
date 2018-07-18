@@ -9,6 +9,24 @@ SCHEMA = {}
 LABELS = {}
 
 
+def parse_value(value, default=...):
+    if value[0] == '«' and value[-1] == '»':
+        value = value[1:-1]
+        if value in LABELS:
+            # This is an enum.
+            # FIXME: Should we have a dedicated registry instead?
+            value = LABELS[value]
+    elif value[0] == '[' and value[-1] == ']':
+        value = [parse_value(v) for v in value[1:-1].split(',')]
+    elif value.isdigit():
+        value = int(value)
+    elif isfloat(value):
+        value = float(value)
+    else:
+        value = default
+    return value
+
+
 def Label(v):
     """Used as annotation for casting to variable id from variable label."""
     try:
@@ -17,7 +35,7 @@ def Label(v):
         raise WrongPointerError(v)
 
 
-class LazyValue:
+class Pointer:
 
     def __init__(self, raw):
         self.raw = raw
@@ -27,10 +45,10 @@ class LazyValue:
         self.compile()
 
     def __repr__(self):
-        return f'<LazyValue: {self.raw}>'
+        return f'<Pointer: {self.raw}>'
 
     def compile(self):
-        value = self.parse_value(self.raw)
+        value = parse_value(self.raw)
         if value is not ...:
             self.get = lambda **d: value
         else:
@@ -38,27 +56,10 @@ class LazyValue:
                 self.key = LABELS[self.raw]
             except KeyError:
                 raise WrongPointerError(self.raw)
-            self.get = lambda **d: self._get(**d)
+            self.get = lambda **d: self._get_from_context(**d)
             self.default = self.compute_default()
 
-    def parse_value(self, value):
-        if value[0] == '«' and value[-1] == '»':
-            value = value[1:-1]
-            if value in LABELS:
-                # This is an enum.
-                # FIXME: Should we have a dedicated registry instead?
-                value = LABELS[value]
-        elif value[0] == '[' and value[-1] == ']':
-            value = [self.parse_value(v) for v in value[1:-1].split(',')]
-        elif value.isdigit():
-            value = int(value)
-        elif isfloat(value):
-            value = float(value)
-        else:
-            value = ...
-        return value
-
-    def _get(self, **context):
+    def _get_from_context(self, **context):
         try:
             value = context[self.key]
         except KeyError:
@@ -82,6 +83,7 @@ def action(pattern):
 
     def wrapper(func):
         Action.PATTERNS[re.compile(pattern)] = func
+        func.on_act = None
         return func
 
     return wrapper
@@ -91,50 +93,130 @@ def condition(pattern):
 
     def wrapper(func):
         Condition.PATTERNS[re.compile(pattern)] = func
+        func.reason = None
         return func
 
     return wrapper
 
 
-class Step:
+def reason(msg):
+
+    def wrapper(func):
+        func.reason = msg
+        return func
+
+    return wrapper
+
+
+def on_act(target):
+
+    def wrapper(func):
+        func.on_act = target
+        return func
+
+    return wrapper
+
+
+class Value:
+
+    def __init__(self, pointer, context):
+        self.value = pointer.get(**context)
+        self.pointer = pointer
+
+    def __str__(self):
+        return str(self.value or 'aucun(e)')
+
+    @property
+    def json(self):
+        if self.pointer.key:
+            return {self.pointer.key: self.value}
+
+
+class Status:
+
+    def __init__(self, condition, parent=None):
+        self.condition = condition
+        self.status = None
+        self.terms = []
+        self.children = []
+        self.parent = parent
+        self.params = {}
+        self.reason = None
+
+    def __bool__(self):
+        return self.status
 
     def __repr__(self):
-        return f'<{self.__class__.__name__}: {self.raw}>'
+        return f'<Status {self.condition} => {self.status}'
 
-    def compile(self):
+    @property
+    def json(self):
+        out = {'condition': str(self.condition), 'status': self.status,
+               'params': {}}
+        for param in self.params.values():
+            if param.json:
+                out['params'].update(param.json)
+        if self.terms:
+            out['terms'] = [t.json for t in self.terms]
+            out['connective'] = self.condition.connective
+        elif not self.status:
+            out['reason'] = self.reason
+        return out
+
+
+class Step:
+
+    def __init__(self, path=None, line=0):
+        self.func = None
+        self.params = {}
+        self.path = path
+        self.line = line
+
+    def __repr__(self):
+        return f'<{self.__class__.__name__}: {self} ({self.path}:{self.line})>'
+
+    def __str__(self):
+        return self.raw
+
+    def parse_raw(self):
         for pattern, func in self.PATTERNS.items():
             match = pattern.match(self.raw)
             if match:
                 self.func = func
                 break
         else:
-            raise NoStepError(f'No pattern match step: `{self.raw}`')
-        data = match.groupdict()
+            raise NoStepError(f'No pattern matches step: `{self!r}`')
+        return match.groupdict()
+
+    @property
+    def spec(self):
         spec = inspect.signature(self.func)
-        for name, param in spec.parameters.items():
-            if name == 'context':
-                continue
+        return list(spec.parameters.items())[1:]  # Skip `context`.
+
+    def compile(self):
+        data = self.parse_raw()
+        for name, param in self.spec:
             value = data[name]
-            if param.annotation != inspect._empty:
-                try:
-                    value = param.annotation(value)
-                except Exception as err:
-                    # Give more context.
-                    err.args = (f'{err} (from `{self.raw}`, {self.name}:{self.line})',)
-                    raise
+            type_ = param.annotation
+            if type_ == inspect._empty:
+                type_ = self.DEFAULT_TYPE
+            try:
+                value = type_(value)
+            except Exception as err:
+                # Give more context.
+                err.args = (f'{err} (from `{self!r}`)',)
+                raise
             self.params[name] = value
 
 
 class Action(Step):
 
     PATTERNS = {}
+    DEFAULT_TYPE = str
 
-    def __init__(self, raw, name=None, line=0):
+    def __init__(self, raw, path=None, line=0):
+        super().__init__(path, line)
         self.raw = raw
-        self.func = None
-        self.params = {}
-        self.name = name
-        self.line = line
         self.compile()
 
     def act(self, context):
@@ -143,24 +225,27 @@ class Action(Step):
         except NoDataError as err:
             raise NoDataError(f'No data for `{err}` in `{self.raw}`')
 
+    def on_act(self, context, status):
+        if self.func.on_act:
+            self.func.on_act(status, context, **self.params)
+
 
 class Condition(Step):
 
     PATTERNS = {}
     AND = 'ET'
     OR = 'OU'
+    DEFAULT_TYPE = Pointer
 
-    def __init__(self, terms, connective=None, level=0, name=None, line=0):
+    def __init__(self, terms, connective=None, level=0, path=None, line=0):
         assert terms, 'Cannot create a Condition without terms'
-        self.params = {}
+        super().__init__(path, line)
         self.children = []
         self.actions = []
         self.terms = []
         self.negative = False
         self.connective = connective or self.AND
         self.level = level
-        self.name = name
-        self.line = line
         if len(terms) == 1:
             terms = terms[0].split(', et ')
             if len(terms) > 1:
@@ -169,51 +254,65 @@ class Condition(Step):
                 terms = terms[0].split(', ou ')
                 if len(terms) > 1:
                     self.connective = self.OR
-        self.raw = f' {self.connective} '.join(terms)
         if len(terms) > 1:
-            self.terms = [Condition([t], level=self.level, name=self.name,
+            self.raw = f' {self.connective} '.join(terms)
+            self.terms = [Condition([t], level=self.level, path=self.path,
                                     line=self.line) for t in terms]
         else:
+            self.raw = terms[0]
             self.compile()
 
+    def evaluate(self, context):
+        return {n: Value(v, context) for n, v in self.params.items()}
+
     def assess(self, context):
+        status = Status(self)
         if self.terms:
+            status.terms = [c.assess(context) for c in self.terms]
             if self.connective == self.OR:
-                status = any([c.assess(context) for c in self.terms])
+                status.status = any(status.terms)
             else:
-                status = all(c.assess(context) for c in self.terms)
+                status.status = all(status.terms)
         else:
             try:
-                status = self.func(context, **self.params)
-            except NoDataError:
-                status = False
+                status.params = self.evaluate(context)
+            except NoDataError as err:
+                status.status = False
+                status.reason = f"Donnée manquante pour «{err}»"
             except Exception as err:
                 # Give more context.
-                params = ' AND '.join(f'{value.raw}={value.get(**context)}'
-                                      for value in self.params.values())
+                params = ' AND '.join(f'{key}={value}'
+                                      for key, value in status.params.items())
                 err.args = (f'{err} (in `{self.raw}`, where {params})',)
                 raise
-        if status is True:
-            if self.actions:
-                for action in self.actions:
-                    action.act(context)
-            if self.children:
-                for child in self.children:
-                    child.assess(context)
+            else:
+                status.status = self.func(context, **status.params)
+                if not status and self.func.reason:
+                    status.reason = self.func.reason.format(**status.params)
         return status
 
 
 @action(r"(l'|les? |la )(?P<key>.+) (vaut|est) (?P<value>[\w«» +\-'\.]+)$")
 @action(r"(l'|les? |la )(?P<key>.+) est égale? (à la|à|aux?)? (?P<value>[\w«» +\-\.']+)$")
-def set_value(context, key: Label, value: LazyValue):
+def set_value(context, key: Label, value: Pointer):
     context[key] = value.get(**context)
 
 
 @action(r"(l'|les? |la )(?P<key>.+) est égale? à (?P<rate>[\d\.]+)% (de la|du) (?P<value>[\w«» +\-\.']+)$")
-def set_percent(context, key: Label, rate: float, value: LazyValue):
+def set_percent(context, key: Label, rate: float, value: Pointer):
     context[key] = value.get(**context) * rate / 100
 
 
+def attach_status(status, context, name):
+    conditions = [status.json]
+    while status.parent is not None:
+        status = status.parent
+        conditions.append(status.json)
+    conditions.reverse()
+    context['financements'][name]['eligibilite'] = conditions
+
+
+@on_act(attach_status)
 @action(r"définir le financement «(?P<name>[\w +-]+)» comme éligible")
 def set_financement_eligible(context, name):
     if name not in context['financements']:
@@ -234,66 +333,78 @@ def unset_key(context, key: Label):
         pass
 
 
+@reason("ce n'est pas {key.pointer.raw}")
 @condition(r"c'est une? (?P<key>.+)")
-def check_true(context, key: LazyValue):
-    return key.get(**context) is True
+def check_true(context, key):
+    return key.value is True
 
 
+@reason("c'est {key.pointer.raw}")
 @condition(r"ce n'est pas une? (?P<key>.+)")
-def check_false(context, key: LazyValue):
-    return key.get(**context) is False
+def check_false(context, key):
+    return key.value is False
 
 
+@reason("le financement n'est pas de type «{tag}»")
 @condition(r"le financement est de type (?P<tag>.+)")
-def check_type(context, tag: LazyValue):
-    return tag.get(**context) in context['financement.tags']
+def check_type(context, tag):
+    return tag.value in context['financement.tags']
 
 
+@reason("{left.pointer.raw} vaut {left}, c'est inférieur ou égal au seuil de {right}")
 @condition(r"(l'|les? |la )(?P<left>.+) est supérieure? à (?P<right>[\w ]+)")
-def check_gt(context, left: LazyValue, right: LazyValue):
-    return left.get(**context) > right.get(**context)
+def check_gt(context, left, right):
+    return left.value > right.value
 
 
+@reason("{left.pointer.raw} trop faible: {left}, au lieu de {right} au moins")
 @condition(r"(l'|les? |la )(?P<left>.+) est supérieure? ou égale? à (?P<right>[\w ]+)")
-def check_ge(context, left: LazyValue, right: LazyValue):
-    return left.get(**context) >= right.get(**context)
+def check_ge(context, left, right):
+    return left.value >= right.value
 
 
+@reason("{left.pointer.raw} vaut {left}, c'est supérieur ou égal au seuil ({right})")
 @condition(r"(l'|les? |la )(?P<left>.+) est inférieure? à (?P<right>[\w ]+)")
-def check_lt(context, left: LazyValue, right: LazyValue):
-    return left.get(**context) < right.get(**context)
+def check_lt(context, left, right):
+    return left.value < right.value
 
 
+@reason("{left.pointer.raw} trop grande: {left} (le maximum est {right})")
 @condition(r"(l'|les? |la )(?P<left>.+) est inférieure? ou égale? à (?P<right>[\w ]+)")
-def check_le(context, left: LazyValue, right: LazyValue):
-    return left.get(**context) <= right.get(**context)
+def check_le(context, left, right):
+    return left.value <= right.value
 
 
+@reason("«{left}» ne contient pas {right}")
 @condition(r"(l'|les? |la )(?P<left>.+) contien(nen)?t au moins une? ([^ ]+ )?(parmi|des) (?P<right>[ \[\],\w«»]+)")
-def check_share_one(context, left: LazyValue, right: LazyValue):
-    return len(set(left.get(**context) or []) & set(right.get(**context) or [])) > 0
+def check_share_one(context, left, right):
+    return bool(set(left.value or []) & set(right.value or []))
 
 
+@reason("«{right}» contient {left}")
 @condition(r"(l'|les? |la )(?P<left>.+) ne contien(nen)?t aucun des (?P<right>[ \w«»]+)")
-def check_not_share_one(context, left: LazyValue, right: LazyValue):
-    return len(set(left.get(**context) or []) & set(right.get(**context) or [])) == 0
+def check_not_share_one(context, left, right):
+    return not bool(set(left.value or []) & set(right.value or []))
 
 
+@reason("{left.pointer.raw} ({left}) ne fait pas partie de «{right.pointer.raw}» ({right})")
 @condition(r"(l'|les? |la )(?P<left>.+) fait partie (de l'|de la |des? |du )(?P<right>.+)")
 @condition(r"(l'|les? |la )(?P<right>.+) contient (l'|les? |la )?(?P<left>[ \w«»]+)")
-def check_contain(context, left: LazyValue, right: LazyValue):
-    return left.get(**context) in right.get(**context)
+def check_contain(context, left, right):
+    return left.value in right.value
 
 
+@reason("{left.pointer.raw} («{left}») fait partie de «{right}»")
 @condition(r"(l'|les? |la )(?P<left>.+) ne fait pas partie (de l'|des? |de la |du )(?P<right>.+)")
 @condition(r"(l'|les? |la )(?P<right>.+) ne contient pas (l'|les? |la )?(?P<left>[ \w«»]+)")
-def check_not_contain(context, left: LazyValue, right: LazyValue):
-    return left.get(**context) not in right.get(**context)
+def check_not_contain(context, left, right):
+    return left.value not in right.value
 
 
+@reason("{left.pointer.raw} vaut «{left}» au lieu de «{right}»")
 @condition(r"(l'|les? |la )(?P<left>.+) (est|vaut) (?P<right>[\w«» +\-\.']+)")
-def check_equal(context, left: LazyValue, right: LazyValue):
-    return left.get(**context) == right.get(**context)
+def check_equal(context, left, right):
+    return left.value == right.value
 
 
 Line = namedtuple('Line', ['index', 'indent', 'keyword', 'sentence'])
@@ -312,8 +423,19 @@ class Rule:
         self.root = root
         self.name = name
 
-    def assess(self, context):
-        return self.root.assess(context)
+    def assess(self, context, condition=None, parent=None, overall=True):
+        if condition is None:
+            condition = self.root
+        status = condition.assess(context)
+        status.parent = parent
+        overall = overall and status
+        for action in condition.actions:
+            if overall:
+                action.act(context)
+            action.on_act(context, status)
+        for child in condition.children:
+            self.assess(context, child, status, overall)
+        return status
 
     @staticmethod
     def iter_lines(iterable):
@@ -359,10 +481,9 @@ class Rule:
                 raise StopRecursivity(indent=next_.indent)
                 # Move back one step up in recursivity.
             if next_.indent > curr.indent:
-                # inner = tree[:]
                 if next_.keyword in ('si', 'alors') and terms:
                     current = Condition(terms[:], connective,
-                                        level=int(curr.indent/4), name=name,
+                                        level=int(curr.indent/4), path=name,
                                         line=curr.index)
                     if curr.indent == 0:
                         rules.append(Rule(name, current))
@@ -377,7 +498,6 @@ class Rule:
                     if err.indent < curr.indent:
                         raise
                     continue  # We are on the right level.
-            #     yield parent
         return rules
 
     @staticmethod

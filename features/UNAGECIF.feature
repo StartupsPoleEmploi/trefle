@@ -8,7 +8,7 @@ Scénario: cas nominal d'un CIF CDI
     Et la rémunération du bénéficiaire vaut 1400
     Et l'ancienneté en mois du bénéficiaire dans son entreprise vaut 24
     Et l'expérience professionnelle du bénéficiaire dans les cinq dernières années vaut 36
-    Et le type de contrat du bénéficiaire vaut CDI
+    Et le type de contrat du bénéficiaire vaut «CDI»
     Et le prix horaire de la formation vaut 25
     Et l'IDCC de l'établissement du bénéficiaire vaut 5001
     Et les codes financeur de la formation valent [0]

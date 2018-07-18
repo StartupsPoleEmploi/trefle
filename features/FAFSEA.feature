@@ -7,7 +7,7 @@ Scénario: cas nominal d'un CIF CDI
     Et la rémunération du bénéficiaire vaut 1400
     Et l'ancienneté en mois du bénéficiaire dans son entreprise vaut 24
     Et l'expérience professionnelle du bénéficiaire dans les cinq dernières années vaut 36
-    Et le type de contrat du bénéficiaire vaut CDI
+    Et le type de contrat du bénéficiaire vaut «CDI»
     Et le prix horaire de la formation vaut 15
     Et l'IDCC de l'établissement du bénéficiaire vaut 7010
     Et les codes financeur de la formation valent [0]
@@ -29,7 +29,7 @@ Scénario: CIF CDI avec plafond de prix horaire
     Et la rémunération du bénéficiaire vaut 1400
     Et l'ancienneté en mois du bénéficiaire dans son entreprise vaut 24
     Et l'expérience professionnelle du bénéficiaire dans les cinq dernières années vaut 36
-    Et le type de contrat du bénéficiaire vaut CDI
+    Et le type de contrat du bénéficiaire vaut «CDI»
     Et le prix horaire de la formation vaut 30
     Et l'IDCC de l'établissement du bénéficiaire vaut 7010
     Et les codes financeur de la formation valent [0]
@@ -51,7 +51,7 @@ Scénario: CIF CDI avec plafond financier
     Et la rémunération du bénéficiaire vaut 1400
     Et l'ancienneté en mois du bénéficiaire dans son entreprise vaut 24
     Et l'expérience professionnelle du bénéficiaire dans les cinq dernières années vaut 36
-    Et le type de contrat du bénéficiaire vaut CDI
+    Et le type de contrat du bénéficiaire vaut «CDI»
     Et le prix horaire de la formation vaut 30
     Et l'IDCC de l'établissement du bénéficiaire vaut 7010
     Et les codes financeur de la formation valent [0]
@@ -73,7 +73,7 @@ Scénario: CIF CDI avec plafond de rémunération
     Et la rémunération du bénéficiaire vaut 10000
     Et l'ancienneté en mois du bénéficiaire dans son entreprise vaut 24
     Et l'expérience professionnelle du bénéficiaire dans les cinq dernières années vaut 36
-    Et le type de contrat du bénéficiaire vaut CDI
+    Et le type de contrat du bénéficiaire vaut «CDI»
     Et le prix horaire de la formation vaut 10
     Et l'IDCC de l'établissement du bénéficiaire vaut 7010
     Et les codes financeur de la formation valent [0]
@@ -96,7 +96,7 @@ Scénario: CIF CDI avec plafond de rémunération et plancher à deux SMIC
     Et la rémunération du bénéficiaire vaut 3500
     Et l'ancienneté en mois du bénéficiaire dans son entreprise vaut 24
     Et l'expérience professionnelle du bénéficiaire dans les cinq dernières années vaut 36
-    Et le type de contrat du bénéficiaire vaut CDI
+    Et le type de contrat du bénéficiaire vaut «CDI»
     Et le prix horaire de la formation vaut 10
     Et l'IDCC de l'établissement du bénéficiaire vaut 7010
     Et les codes financeur de la formation valent [0]
@@ -136,7 +136,7 @@ Scénario: cas nominal d'une formation COPANEF
     Soit un bénéficiaire et une formation
     Et c'est un bénéficiaire de droit privé
     Et la rémunération du bénéficiaire vaut 1400
-    Et le type de contrat du bénéficiaire vaut CDI
+    Et le type de contrat du bénéficiaire vaut «CDI»
     Et le solde CPF du bénéficiaire vaut 50
     Et c'est une formation éligible COPANEF
     Et l'IDCC de l'établissement du bénéficiaire vaut 7010

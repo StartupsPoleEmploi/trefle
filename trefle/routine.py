@@ -105,7 +105,6 @@ async def populate_formation_from_bytes(context, content):
 
 
 def extrapolate_formation_context(context):
-    Rule.process(PREPROCESS, context)
     # Compute durations.
     if 'formation.debut' in context and 'formation.fin' in context:
         mois = diff_month(context['formation.debut'], context['formation.fin'])
@@ -124,6 +123,10 @@ def extrapolate_formation_context(context):
     # financeur collectif).
     if context['formation.codes_financeur'] & {0, 5, 10}:
         context['formation.codes_financeur'].discard(16)
+
+
+def preprocess(context):
+    Rule.process(PREPROCESS, context)
 
 
 def financement_to_organisme(context, financement):

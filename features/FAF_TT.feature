@@ -163,10 +163,10 @@ Scénario: cas nominal d'un CPF CPNE
     Et le solde CPF du bénéficiaire vaut 50
     Et ce n'est pas une formation éligible COPANEF
     Et l'IDCC de l'établissement du bénéficiaire vaut 2378
-    Et le code NAF de l'établissement du bénéficiaire vaut 6910Z
+    Et le code NAF de l'établissement du bénéficiaire vaut «6910Z»
     Et le prix horaire de la formation vaut 25
     Et la durée en heures de la formation vaut 100
-    Et les codes NAF CPNE éligibles valent [6910Z]
+    Et les codes NAF CPNE éligibles valent [«6910Z»]
     Quand je demande un calcul de financement
     Et je sélectionne le financement «CPF sur son temps de travail»
     Alors l'organisme à contacter est «FAF.TT»

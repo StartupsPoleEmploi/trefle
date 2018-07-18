@@ -2,6 +2,7 @@ import asyncio
 from math import ceil
 
 import requests
+from unidecode import unidecode
 
 from .exceptions import UpstreamError
 
@@ -58,3 +59,7 @@ def count_indent(s):
         if c != ' ':
             return i
     return len(s)
+
+
+def fold_name(s):
+    return unidecode(s).lower().replace(' ', '')

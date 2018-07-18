@@ -6,7 +6,7 @@ Scénario: le bénéficiaire n'a pas d'heures CPF sur son compte
     Et c'est un bénéficiaire de droit privé
     Et le solde CPF du bénéficiaire vaut 0
     Et la rémunération du bénéficiaire vaut 1400
-    Et le type de contrat du bénéficiaire vaut CDI
+    Et le type de contrat du bénéficiaire vaut «CDI»
     Et c'est une formation éligible COPANEF
     Et l'IDCC de l'établissement du bénéficiaire vaut 2706
     Quand je demande un calcul de financement
@@ -18,7 +18,7 @@ Scénario: le bénéficiaire n'est pas de droit privé
     Et ce n'est pas un bénéficiaire de droit privé
     Et le solde CPF du bénéficiaire vaut 0
     Et la rémunération du bénéficiaire vaut 1400
-    Et le type de contrat du bénéficiaire vaut CDI
+    Et le type de contrat du bénéficiaire vaut «CDI»
     Et c'est une formation éligible COPANEF
     Et l'IDCC de l'établissement du bénéficiaire vaut 2706
     Quand je demande un calcul de financement
@@ -28,7 +28,7 @@ Scénario: cas d'une formation CPF avec solde CPF null
     Soit un bénéficiaire et une formation
     Et c'est un bénéficiaire de droit privé
     Et la rémunération du bénéficiaire vaut 1400
-    Et le type de contrat du bénéficiaire vaut CDI
+    Et le type de contrat du bénéficiaire vaut «CDI»
     Et le solde CPF du bénéficiaire vaut 0
     Et c'est une formation éligible COPANEF
     Et l'IDCC de l'établissement du bénéficiaire vaut 7010
@@ -42,7 +42,7 @@ Scénario: cas d'une formation CPF sans solde CPF
     Soit un bénéficiaire et une formation
     Et c'est un bénéficiaire de droit privé
     Et la rémunération du bénéficiaire vaut 1400
-    Et le type de contrat du bénéficiaire vaut CDI
+    Et le type de contrat du bénéficiaire vaut «CDI»
     Et c'est une formation éligible COPANEF
     Et l'IDCC de l'établissement du bénéficiaire vaut 7010
     Et le prix horaire de la formation vaut 25
@@ -64,7 +64,7 @@ Scénario: CIF et CPF
     Et l'IDCC de l'établissement du bénéficiaire vaut «2397»
     Et la région de l'établissement du bénéficiaire vaut «Auvergne-Rhône-Alpes»
     Et ce n'est pas une formation éligible COPANEF
-    Et les codes NAF CPNE éligibles vaut [7830Z,8299Z,4633Z,1089Z]
+    Et les codes NAF CPNE éligibles vaut [«7830Z»,«8299Z»,«4633Z»,«1089Z»]
     Et la liste des codes FORMACODE de la formation vaut [44028,42866,42056]
     Et le niveau de sortie de la formation vaut «aucun»
     Et la durée en heures de la formation vaut 210
@@ -104,7 +104,7 @@ Scénario: le bénéficiaire n'a pas défini de rémunération
     Et l'IDCC de l'établissement du bénéficiaire vaut «2397»
     Et la région de l'établissement du bénéficiaire vaut «Auvergne-Rhône-Alpes»
     Et ce n'est pas une formation éligible COPANEF
-    Et les codes NAF CPNE éligibles vaut [7830Z,8299Z,4633Z,1089Z]
+    Et les codes NAF CPNE éligibles vaut [«7830Z»,«8299Z»,«4633Z»,«1089Z»]
     Et la liste des codes FORMACODE de la formation vaut [44028,42866,42056]
     Et le niveau de sortie de la formation vaut «aucun»
     Et la durée en heures de la formation vaut 210

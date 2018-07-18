@@ -5,6 +5,7 @@
 <script src="vendor/riot/route%2Btag.min.js"></script>
 <link rel="stylesheet" type="text/css" href="app.css">
 <script type="text/javascript" src="mixin/view.mixin.js"></script>
+<script type="text/javascript" src="app.js"></script>
 <script src="components/navbar.tag.html" type="riot/tag"></script>
 <script src="components/schema.tag.html" type="riot/tag"></script>
 <script src="components/glossary.tag.html" type="riot/tag"></script>
@@ -32,17 +33,9 @@
   route('/rules/(.+)', (id) => riot.mount('rules', {id: id}))
   route('/rules', () => riot.mount('rules'))
   route('/simulate', () => riot.mount('simulate'))
+  route('/simulate/(.+)', (url) => riot.mount('simulate', {url: url}))
   route('/tools', () => riot.mount('tools'))
   route('/glossary', () => riot.mount('glossary'))
 
-  let SCHEMA
-  let RULES
-
-  fetch('/explore/schema')
-  .then((response) => response.json())
-  .then((data) => {
-    SCHEMA = data
-    route.start(true)
-  })
-
+  init();
 </script>

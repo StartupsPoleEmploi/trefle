@@ -1,8 +1,9 @@
 from contextlib import suppress
 from datetime import datetime
 
+from .config import IDCC, ORGANISMES
+from .helpers import fold_name
 from .rules import SCHEMA
-from .config import IDCC, ORGANISMES, fold_name
 
 validators = []
 formatters = {}

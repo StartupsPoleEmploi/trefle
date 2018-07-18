@@ -169,7 +169,6 @@ input[type=submit]:hover,
 
 /************** Tool Tip Styles ********************************/
 .tooltip {
-  display: inline-block;
   position: relative;
   cursor: help;
 }
@@ -184,15 +183,16 @@ input[type=submit]:hover,
   padding: 1em;
   position: absolute;
   left: 0;
-  bottom: calc(100% + 20px);
+  bottom: calc(100% + 10px);
   min-width: 150px;
   z-index: 10;
+  color: #222;
 }
 .tooltip .tooltip-content:after {
   content: "";
   position: absolute;
-  left: 0;
-  bottom: -27px;
+  left: -1px;
+  bottom: -11px;
   border-left: 10px solid transparent;
   border-right: 10px solid transparent;
   border-top: 10px solid #68c3a3;

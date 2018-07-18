@@ -458,3 +458,30 @@ async def test_naf_search(client):
     assert resp.status == HTTPStatus.OK
     assert json.loads(resp.body) == ['6201Z', '6202A', '6202B', '6203Z',
                                      '6209Z']
+
+
+async def test_eligibilite_details(client):
+    resp = await client.post('/financement?eligible=0', body={
+        'beneficiaire.solde_cpf': 10,
+        'beneficiaire.remuneration': 1400,
+        'beneficiaire.droit_prive': False,
+        'beneficiaire.contrat': 'cdi',
+        'formation.eligible_copanef': True,
+        'formation.heures': 100,
+        'beneficiaire.entreprise.commune': '2A004',
+        'beneficiaire.entreprise.idcc': 2706})
+    assert resp.status == HTTPStatus.OK
+    assert 'financements' in json.loads(resp.body)
+    financement = json.loads(resp.body)['financements'][0]
+    assert financement['eligible'] is False
+    assert financement['eligibilite']
+    assert financement['eligibilite'][0]['reason'] == \
+        "ce n'est pas bénéficiaire de droit privé"
+    assert financement['eligibilite'][0]['params'] == {
+        'beneficiaire.droit_prive': False
+    }
+    assert 'CPF' in financement['tags']
+    assert financement['eligibilite'][1]['terms']
+    assert financement['eligibilite'][1]['terms'][0]['reason'] == \
+        ("région de l'établissement du bénéficiaire (94) ne fait pas partie de"
+         " «régions éligibles COPAREF» (aucun(e))")

@@ -2,7 +2,7 @@ from datetime import datetime
 
 import pytest
 from trefle.helpers import (count_indent, diff_month, diff_week, flatten,
-                            isfloat)
+                            isfloat, fold_name)
 
 
 def test_flatten():
@@ -53,3 +53,12 @@ def test_count_indent(input, expected):
 ])
 def test_isfloat(input, expected):
     assert isfloat(input) == expected
+
+
+@pytest.mark.parametrize('input,expected', [
+    ('AGEFOS PME', 'agefospme'),
+    ('Agefos PME', 'agefospme'),
+    ('AgéfosPME', 'agefospme'),
+])
+def test_fold_name(input, expected):
+    assert fold_name(input) == expected

@@ -2,7 +2,7 @@
   <section>
     <h2>Depuis une URL LBF</h2>
     <form onsubmit={ this.submit }>
-      <input type="url" ref="url" placeholder="Entrer une URL LBF" name="lbfurl">
+      <input type="url" ref="url" placeholder="Entrer une URL LBF" name="lbfurl" href="#" value={ this.opts.url }>
       <input type="submit" value="Simuler">
     </form>
   </section>
@@ -14,16 +14,22 @@
   <section class=results if={ Object.keys(this.context).length }>
     <h2>Financements</h2>
     <ul>
-      <li each={ this.financements } class=result>
-        <h3>{nom}</h3>
+      <li each={ this.financements } class={result: 'result', visible: visible}>
+        <h3 class={ passed: eligible, failed: !eligible } onclick={ parent.toggle }>{nom}</h3>
         <p><strong>Description</strong> {description}</p>
         <p><strong>Démarches</strong> {demarches}</p>
-        <p><strong>Prise en charge</strong> {prise_en_charge}</p>
-        <p><strong>Plafond de prise en charge</strong> {plafond_prise_en_charge}</p>
-        <p><strong>Plafond de prix horaire</strong> {plafond_prix_horaire}</p>
-        <p><strong>Nombre d'heures</strong> {heures}</p>
-        <p><strong>Rémunération</strong> {remuneration}</p>
-        <p><strong>Organisme</strong> {organisme.nom}</p>
+        <virtual if={ eligible }>
+          <p><strong>Prise en charge</strong> {prise_en_charge}</p>
+          <p><strong>Plafond de prise en charge</strong> {plafond_prise_en_charge}</p>
+          <p><strong>Plafond de prix horaire</strong> {plafond_prix_horaire}</p>
+          <p><strong>Nombre d'heures</strong> {heures}</p>
+          <p><strong>Rémunération</strong> {remuneration}</p>
+          <p><strong>Organisme</strong> {organisme.nom}</p>
+        </virtual>
+        <p>
+          <strong>Critères d'éligibilité</strong>
+          <eligibilite conditions={ eligibilite }></eligibilite>
+        </p>
       </li>
     </ul>
     <p if={ !this.financements.length }>Aucun financement trouvé.</p>
@@ -37,6 +43,12 @@
     this.context = {}
     this.errors = {}
     this.mixin(View)
+
+    this.on('mount', () => this.load())
+
+    this.load = () => {
+      if (this.opts.url) this.simulate_url(this.opts.url)
+    }
 
     this.dataErrors = (data) => {
         this.errors = data
@@ -55,7 +67,7 @@
     }
 
     this.simulate = (data) => {
-      fetch('/financement?eligible=1&context=1&scenario=1', {
+      fetch('/financement?context=1&scenario=1', {
         method: 'post',
         body: JSON.stringify(data)
       })
@@ -74,9 +86,17 @@
       e.preventDefault();
       const url = this.refs.url.value
       if (!url) return
+      route(`simulate/${url}`)
+    }
+
+    this.simulate_url = (url) => {
       this.decodeLBFURL(url, this.simulate)
     }
 
+    this.toggle = (e) => {
+      var item = e.item
+      item.visible = !item.visible
+    }
   </script>
 
   <style scoped>
@@ -90,6 +110,59 @@
     .result {
       border-bottom: 1px solid #eee;
     }
+    .result p {
+      display: none;
+    }
+    .result.visible p {
+      display: block;
+    }
+    .result.visible {
+      border: 1px solid #eee;
+      padding: 5px;
+    }
+    .result h3 {
+      font-weight: normal;
+      cursor: pointer;
+    }
+    .result h3.passed {
+      font-weight: bold;
+    }
+    .failed:before {
+      content: '✗';
+    }
+    .passed:before {
+      content: '✔';
+    }
   </style>
 
 </simulate>
+
+<eligibilite>
+  <ul>
+    <li each={ props, i in this.opts.conditions } class={ passed: props.status, failed: !props.status }>
+      <span if={ i && this.opts.connective } class="connective"> { this.opts.connective } </span>
+      <virtual if={ !props.terms }>
+        <span class=tooltip if={ !props.status }><span>{ props.condition }</span><span class=tooltip-content>{ props.reason }</span></span>
+        <span class=tooltip if={ props.status }><span>{ props.condition }</span><span class=tooltip-content><span each={ value, key in props.params }>{ renderLabel(key, value) }: { renderValue(key, value) }<br></span></span></span>
+      </virtual>
+      <eligibilite if={ props.terms } conditions={ props.terms } connective={ props.connective }></eligibilite>
+    </li>
+  </ul>
+
+  <style scoped>
+    .failed {
+      color: #c0392b;
+    }
+    li .passed:before, li .failed:before {
+      content: '';
+    }
+    li li, li ul {
+      display: inline;
+    }
+    .connective {
+      color: #222;
+      font-style: italic;
+    }
+  </style>
+
+</eligibilite>

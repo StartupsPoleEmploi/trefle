@@ -11,6 +11,7 @@ async def simulate(context):
     routine.preload_financements(context)
     routine.insee_commune_to_region(context)
     await routine.populate_formation(context)
+    routine.preprocess(context)
     routine.idcc_to_organismes(context)
 
     # Compute financements eligibles

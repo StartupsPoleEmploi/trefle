@@ -8,7 +8,7 @@ Scénario: cas nominal d'un CIF CDI
     Et la rémunération du bénéficiaire vaut 1400
     Et l'ancienneté en mois du bénéficiaire dans son entreprise vaut 24
     Et l'expérience professionnelle du bénéficiaire dans les cinq dernières années vaut 36
-    Et le type de contrat du bénéficiaire vaut CDI
+    Et le type de contrat du bénéficiaire vaut «CDI»
     Et le prix horaire de la formation vaut 25
     Et l'IDCC de l'établissement du bénéficiaire vaut 2706
     Et les codes financeur de la formation valent [0]
@@ -31,7 +31,7 @@ Scénario: cas d'un CIF CDI avec moins de 24 mois d'expérience professionnelle
     Et la rémunération du bénéficiaire vaut 1400
     Et l'ancienneté en mois du bénéficiaire dans son entreprise vaut 20
     Et l'expérience professionnelle du bénéficiaire dans les cinq dernières années vaut 20
-    Et le type de contrat du bénéficiaire vaut CDI
+    Et le type de contrat du bénéficiaire vaut «CDI»
     Et le prix horaire de la formation vaut 25
     Et l'IDCC de l'établissement du bénéficiaire vaut 2706
     Et les codes financeur de la formation valent [0]
@@ -48,7 +48,7 @@ Scénario: cas d'un CIF CDI avec moins de 12 mois d'ancienneté dans l'entrepris
     Et la rémunération du bénéficiaire vaut 1400
     Et l'ancienneté en mois du bénéficiaire dans son entreprise vaut 11
     Et l'expérience professionnelle du bénéficiaire dans les cinq dernières années vaut 36
-    Et le type de contrat du bénéficiaire vaut CDI
+    Et le type de contrat du bénéficiaire vaut «CDI»
     Et le prix horaire de la formation vaut 25
     Et l'IDCC de l'établissement du bénéficiaire vaut 2706
     Et les codes financeur de la formation valent [0]
@@ -65,7 +65,7 @@ Scénario: cas d'un CIF CDI avec 12 mois d'ancienneté dans l'entreprise (moins 
     Et la rémunération du bénéficiaire vaut 1400
     Et l'ancienneté en mois du bénéficiaire dans son entreprise vaut 11
     Et l'expérience professionnelle du bénéficiaire dans les cinq dernières années vaut 36
-    Et le type de contrat du bénéficiaire vaut CDI
+    Et le type de contrat du bénéficiaire vaut «CDI»
     Et le prix horaire de la formation vaut 25
     Et l'IDCC de l'établissement du bénéficiaire vaut 2706
     Et les codes financeur de la formation valent [0]
@@ -82,7 +82,7 @@ Scénario: CIF CDI avec plafond financier
     Et la rémunération du bénéficiaire vaut 1400
     Et l'ancienneté en mois du bénéficiaire dans son entreprise vaut 24
     Et l'expérience professionnelle du bénéficiaire dans les cinq dernières années vaut 36
-    Et le type de contrat du bénéficiaire vaut CDI
+    Et le type de contrat du bénéficiaire vaut «CDI»
     Et le prix horaire de la formation vaut 25
     Et l'IDCC de l'établissement du bénéficiaire vaut 2706
     Et les codes financeur de la formation valent [0]
@@ -105,7 +105,7 @@ Scénario: CIF CDI avec plafond prix horaire
     Et la rémunération du bénéficiaire vaut 1400
     Et l'ancienneté en mois du bénéficiaire dans son entreprise vaut 24
     Et l'expérience professionnelle du bénéficiaire dans les cinq dernières années vaut 36
-    Et le type de contrat du bénéficiaire vaut CDI
+    Et le type de contrat du bénéficiaire vaut «CDI»
     Et le prix horaire de la formation vaut 30
     Et l'IDCC de l'établissement du bénéficiaire vaut 2706
     Et les codes financeur de la formation valent [0]
@@ -128,7 +128,7 @@ Scénario: CIF CDI avec un salaire > 2 SMIC
     Et la rémunération du bénéficiaire vaut 3000
     Et l'ancienneté en mois du bénéficiaire dans son entreprise vaut 24
     Et l'expérience professionnelle du bénéficiaire dans les cinq dernières années vaut 36
-    Et le type de contrat du bénéficiaire vaut CDI
+    Et le type de contrat du bénéficiaire vaut «CDI»
     Et le prix horaire de la formation vaut 25
     Et l'IDCC de l'établissement du bénéficiaire vaut 2706
     Et les codes financeur de la formation valent [0]
@@ -153,7 +153,7 @@ Scénario: CIF CDI avec un salaire > 3 SMIC
     Et la rémunération du bénéficiaire vaut 6000
     Et l'ancienneté en mois du bénéficiaire dans son entreprise vaut 24
     Et l'expérience professionnelle du bénéficiaire dans les cinq dernières années vaut 36
-    Et le type de contrat du bénéficiaire vaut CDI
+    Et le type de contrat du bénéficiaire vaut «CDI»
     Et le prix horaire de la formation vaut 25
     Et l'IDCC de l'établissement du bénéficiaire vaut 2706
     Et les codes financeur de la formation valent [0]
@@ -177,7 +177,7 @@ Scénario: cas nominal d'un CIF CDD pour un bénéficiaire âgé de plus de 26 a
     Et l'ancienneté en mois du bénéficiaire dans son entreprise vaut 24
     Et le nombre de mois travaillés par le bénéficiaire dans la dernière année vaut 8
     Et l'expérience professionnelle du bénéficiaire dans les cinq dernières années vaut 25
-    Et le type de contrat du bénéficiaire vaut CDD
+    Et le type de contrat du bénéficiaire vaut «CDD»
     Et le prix horaire de la formation vaut 25
     Et l'IDCC de l'établissement du bénéficiaire vaut 2706
     Et les codes financeur de la formation valent [0]
@@ -202,7 +202,7 @@ Scénario: cas nominal d'un CIF CDD pour un bénéficiaire âgé de plus de 26 a
     Et l'ancienneté en mois du bénéficiaire dans son entreprise vaut 24
     Et le nombre de mois travaillés par le bénéficiaire dans la dernière année vaut 3
     Et l'expérience professionnelle du bénéficiaire dans les cinq dernières années vaut 25
-    Et le type de contrat du bénéficiaire vaut CDD
+    Et le type de contrat du bénéficiaire vaut «CDD»
     Et le prix horaire de la formation vaut 25
     Et l'IDCC de l'établissement du bénéficiaire vaut 2706
     Et les codes financeur de la formation valent [0]
@@ -220,7 +220,7 @@ Scénario: cas nominal d'un CIF CDD pour un bénéficiaire âgé de plus de 26 a
     Et la rémunération du bénéficiaire vaut 1400
     Et l'ancienneté en mois du bénéficiaire dans son entreprise vaut 24
     Et l'expérience professionnelle du bénéficiaire dans les cinq dernières années vaut 11
-    Et le type de contrat du bénéficiaire vaut CDD
+    Et le type de contrat du bénéficiaire vaut «CDD»
     Et le prix horaire de la formation vaut 25
     Et l'IDCC de l'établissement du bénéficiaire vaut 2706
     Et les codes financeur de la formation valent [0]
@@ -239,7 +239,7 @@ Scénario: cas nominal d'un CIF CDD pour un bénéficiaire âgé de moins de 26 
     Et l'ancienneté en mois du bénéficiaire dans son entreprise vaut 24
     Et l'expérience professionnelle du bénéficiaire dans les cinq dernières années vaut 14
     Et le nombre de mois travaillés par le bénéficiaire dans la dernière année vaut 8
-    Et le type de contrat du bénéficiaire vaut CDD
+    Et le type de contrat du bénéficiaire vaut «CDD»
     Et le prix horaire de la formation vaut 25
     Et l'IDCC de l'établissement du bénéficiaire vaut 2706
     Et les codes financeur de la formation valent [0]
@@ -263,7 +263,7 @@ Scénario: cas d'un CIF CDI d'un jeune de moins de 26 ans dans l'artisanat
     Et la rémunération du bénéficiaire vaut 1400
     Et l'ancienneté en mois du bénéficiaire dans son entreprise vaut 24
     Et l'expérience professionnelle du bénéficiaire dans les cinq dernières années vaut 40
-    Et le type de contrat du bénéficiaire vaut CDI
+    Et le type de contrat du bénéficiaire vaut «CDI»
     Et le prix horaire de la formation vaut 25
     Et l'IDCC de l'établissement du bénéficiaire vaut 1596
     Et les codes financeur de la formation valent [0]
@@ -286,7 +286,7 @@ Scénario: cas d'un CIF CDI dans l'artisanat d'un jeune manquant d'ancienneté p
     Et la rémunération du bénéficiaire vaut 1400
     Et l'ancienneté en mois du bénéficiaire dans son entreprise vaut 24
     Et l'expérience professionnelle du bénéficiaire dans les cinq dernières années vaut 30
-    Et le type de contrat du bénéficiaire vaut CDI
+    Et le type de contrat du bénéficiaire vaut «CDI»
     Et le prix horaire de la formation vaut 25
     Et l'IDCC de l'établissement du bénéficiaire vaut 1596
     Et les codes financeur de la formation valent [0]
@@ -366,7 +366,7 @@ Scénario: CIF CDI en Corse
     Et la rémunération du bénéficiaire vaut 1400
     Et l'ancienneté en mois du bénéficiaire dans son entreprise vaut 24
     Et l'expérience professionnelle du bénéficiaire dans les cinq dernières années vaut 36
-    Et le type de contrat du bénéficiaire vaut CDI
+    Et le type de contrat du bénéficiaire vaut «CDI»
     Et le prix horaire de la formation vaut 25
     Et l'IDCC de l'établissement du bénéficiaire vaut 2706
     Et les codes financeur de la formation valent [0]

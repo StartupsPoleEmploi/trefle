@@ -28,7 +28,7 @@ Scénario: plafond prix horaire d'une formation VAE
     Et le solde CPF du bénéficiaire vaut 100
     Et l'IDCC de l'établissement du bénéficiaire vaut 5567
     Et la rémunération du bénéficiaire vaut 1400
-    Et le type de contrat du bénéficiaire vaut CDI
+    Et le type de contrat du bénéficiaire vaut «CDI»
     Et c'est une formation VAE
     Quand je demande un calcul de financement
     Et je sélectionne le financement «CPF sur son temps de travail»
@@ -49,7 +49,7 @@ Scénario: plafond horaire d'une formation VAE
     Et le solde CPF du bénéficiaire vaut 50
     Et l'IDCC de l'établissement du bénéficiaire vaut 5567
     Et la rémunération du bénéficiaire vaut 1400
-    Et le type de contrat du bénéficiaire vaut CDI
+    Et le type de contrat du bénéficiaire vaut «CDI»
     Et c'est une formation VAE
     Quand je demande un calcul de financement
     Et je sélectionne le financement «CPF sur son temps de travail»
