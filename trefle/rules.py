@@ -346,13 +346,13 @@ class Condition:
         return status
 
 
-@reason("ce n'est pas «{key.pointer.raw}»")
+@reason("ce n'est pas {key.pointer.raw}")
 @condition(r"c'est une? (?P<key>.+)")
 def check_true(context, key):
     return key.value is True
 
 
-@reason("c'est «{key.pointer.raw}»")
+@reason("c'est {key.pointer.raw}")
 @condition(r"ce n'est pas une? (?P<key>.+)")
 def check_false(context, key):
     return key.value is False
