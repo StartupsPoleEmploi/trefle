@@ -10,7 +10,7 @@ Scénario: cas nominal d'une formation COPANEF
     Et le solde CPF du bénéficiaire vaut 50
     Et l'IDCC de l'établissement du bénéficiaire vaut 1412
     Et la rémunération du bénéficiaire vaut 1400
-    Et le type de contrat du bénéficiaire vaut CDI
+    Et le type de contrat du bénéficiaire vaut «CDI»
     Quand je demande un calcul de financement
     Et je sélectionne le financement «CPF sur son temps de travail»
     Alors l'organisme à contacter est «AGEFOS PME»
@@ -30,7 +30,7 @@ Scénario: plafond horaire d'une formation VAE
     Et le solde CPF du bénéficiaire vaut 50
     Et l'IDCC de l'établissement du bénéficiaire vaut 1412
     Et la rémunération du bénéficiaire vaut 1400
-    Et le type de contrat du bénéficiaire vaut CDI
+    Et le type de contrat du bénéficiaire vaut «CDI»
     Et c'est une formation VAE
     Quand je demande un calcul de financement
     Et je sélectionne le financement «CPF sur son temps de travail»
@@ -52,9 +52,9 @@ Scénario: cas nominal d'une formation Région (Conseil régional)
     Et la durée en heures de la formation vaut 910
     Et le solde CPF du bénéficiaire vaut 150
     Et l'IDCC de l'établissement du bénéficiaire vaut 567
-    Et le code NAF de l'établissement du bénéficiaire vaut 3213Z
+    Et le code NAF de l'établissement du bénéficiaire vaut «3213Z»
     Et la rémunération du bénéficiaire vaut 2000
-    Et le type de contrat du bénéficiaire vaut CDI
+    Et le type de contrat du bénéficiaire vaut «CDI»
     Quand je demande un calcul de financement
     Et je sélectionne le financement «CPF sur son temps de travail»
     Alors l'organisme à contacter est «AGEFOS PME Provence Alpes Côte d'Azur»
@@ -108,7 +108,7 @@ Scénario: Agence Agefomat sur IDCC
     Et le solde CPF du bénéficiaire vaut 50
     Et l'IDCC de l'établissement du bénéficiaire vaut 1404
     Et la rémunération du bénéficiaire vaut 1400
-    Et le type de contrat du bénéficiaire vaut CDI
+    Et le type de contrat du bénéficiaire vaut «CDI»
     Quand je demande un calcul de financement
     Et je sélectionne le financement «CPF sur son temps de travail»
     Alors l'organisme à contacter est «AGEFOS PME établissement Agefomat»
@@ -125,7 +125,7 @@ Scénario: Agence Agefomat sur NAF
     Et l'IDCC de l'établissement du bénéficiaire vaut «1404»
     Et le code NAF de l'établissement du bénéficiaire vaut «0162Z»
     Et la rémunération du bénéficiaire vaut 1400
-    Et le type de contrat du bénéficiaire vaut CDI
+    Et le type de contrat du bénéficiaire vaut «CDI»
     Et l'OPCA de l'établissement du bénéficiaire vaut «AGEFOS PME»
     Quand je demande un calcul de financement
     Et je sélectionne le financement «CPF sur son temps de travail»
@@ -154,7 +154,7 @@ Scénario: période de professionnalisation + CPF
     Et le code CERTIFINFO de la formation vaut 30958
     Et la durée en heures de la formation vaut 805
     Et la liste des codes CPF de la formation vaut [18082,161236,157711]
-    Et les codes NAF CPNE éligibles vaut [8810A,8559B,8891A,8810B,9609Z,8622A,8622C,8899A,8621Z,7830Z,8899B]
+    Et les codes NAF CPNE éligibles vaut [«8810A»,«8559B»,«8891A»,«8810B»,«9609Z»,«8622A»,«8622C»,«8899A»,«8621Z»,«7830Z»,«8899B»]
     Et le niveau de sortie de la formation vaut «V»
     Et c'est une formation qualifiante
     Et la durée en mois de la formation vaut 6

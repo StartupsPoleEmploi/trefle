@@ -5,7 +5,7 @@ Scénario: cas nominal d'une formation COPANEF
     Soit un bénéficiaire et une formation
     Et c'est un bénéficiaire de droit privé
     Et la rémunération du bénéficiaire vaut 1400
-    Et le type de contrat du bénéficiaire vaut CDI
+    Et le type de contrat du bénéficiaire vaut «CDI»
     Et le solde CPF du bénéficiaire vaut 50
     Et c'est une formation éligible COPANEF
     Et l'IDCC de l'établissement du bénéficiaire vaut 2706
@@ -33,7 +33,7 @@ Scénario: formation COPAREF IDF
     Et le solde CPF du bénéficiaire vaut 50
     Et l'IDCC de l'établissement du bénéficiaire vaut 2706
     Et la rémunération du bénéficiaire vaut 1600
-    Et le type de contrat du bénéficiaire vaut CDI
+    Et le type de contrat du bénéficiaire vaut «CDI»
     Et la durée en heures de la formation vaut 100
     Quand je demande un calcul de financement
     Et je sélectionne le financement «CPF sur son temps de travail»
@@ -57,7 +57,7 @@ Scénario: formation COPAREF IDF sur code INSEE commune
     Et le solde CPF du bénéficiaire vaut 50
     Et l'IDCC de l'établissement du bénéficiaire vaut 2706
     Et la rémunération du bénéficiaire vaut 1600
-    Et le type de contrat du bénéficiaire vaut CDI
+    Et le type de contrat du bénéficiaire vaut «CDI»
     Et la durée en heures de la formation vaut 100
     Quand je demande un calcul de financement
     Et je sélectionne le financement «CPF sur son temps de travail»
@@ -74,7 +74,7 @@ Scénario: formation VAE avec prix horaire supérieur au plafond
     Soit un bénéficiaire et une formation
     Et c'est un bénéficiaire de droit privé
     Et la rémunération du bénéficiaire vaut 1400
-    Et le type de contrat du bénéficiaire vaut CDI
+    Et le type de contrat du bénéficiaire vaut «CDI»
     Et le solde CPF du bénéficiaire vaut 50
     Et c'est une formation éligible COPANEF
     Et le prix horaire de la formation vaut 25
@@ -96,7 +96,7 @@ Scénario: formation CleA avec prix horaire supérieur au plafond
     Soit un bénéficiaire et une formation
     Et c'est un bénéficiaire de droit privé
     Et la rémunération du bénéficiaire vaut 1400
-    Et le type de contrat du bénéficiaire vaut CDI
+    Et le type de contrat du bénéficiaire vaut «CDI»
     Et le solde CPF du bénéficiaire vaut 50
     Et c'est une formation éligible COPANEF
     Et le prix horaire de la formation vaut 30
@@ -118,14 +118,14 @@ Scénario: cas nominal d'une formation CPNE
     Soit un bénéficiaire et une formation
     Et c'est un bénéficiaire de droit privé
     Et la rémunération du bénéficiaire vaut 1400
-    Et le type de contrat du bénéficiaire vaut CDI
+    Et le type de contrat du bénéficiaire vaut «CDI»
     Et le solde CPF du bénéficiaire vaut 50
     Et ce n'est pas une formation éligible COPANEF
     Et l'IDCC de l'établissement du bénéficiaire vaut 2706
-    Et le code NAF de l'établissement du bénéficiaire vaut 6910Z
+    Et le code NAF de l'établissement du bénéficiaire vaut «6910Z»
     Et le prix horaire de la formation vaut 25
     Et la durée en heures de la formation vaut 100
-    Et les codes NAF CPNE éligibles valent [6910Z]
+    Et les codes NAF CPNE éligibles valent [«6910Z»]
     Quand je demande un calcul de financement
     Et je sélectionne le financement «CPF sur son temps de travail»
     Alors l'organisme à contacter est «Actalians»

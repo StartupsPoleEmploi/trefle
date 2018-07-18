@@ -50,7 +50,7 @@ Scénario: CPF sur CPNE
     Et le code NAF de l'établissement du bénéficiaire vaut «6202A»
     Et l'IDCC de l'établissement du bénéficiaire vaut 1486
     Et ce n'est pas une formation éligible COPANEF
-    Et les codes NAF CPNE éligibles valent [6202A]
+    Et les codes NAF CPNE éligibles valent [«6202A»]
     Et la durée en heures de la formation vaut 100
     Quand je demande un calcul de financement
     Quand je sélectionne le financement «CPF sur son temps de travail»

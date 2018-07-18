@@ -8,7 +8,7 @@ Scénario: plafond financier Intergros sur formation VAE
     Et le solde CPF du bénéficiaire vaut 100
     Et l'IDCC de l'établissement du bénéficiaire vaut 2075
     Et la rémunération du bénéficiaire vaut 1400
-    Et le type de contrat du bénéficiaire vaut CDI
+    Et le type de contrat du bénéficiaire vaut «CDI»
     Et le prix horaire de la formation vaut 25
     Et la durée en heures de la formation vaut 200
     Et c'est une formation VAE
@@ -29,7 +29,7 @@ Scénario: plafond horaire Intergros sur formation VAE
     Et le solde CPF du bénéficiaire vaut 100
     Et l'IDCC de l'établissement du bénéficiaire vaut 2075
     Et la rémunération du bénéficiaire vaut 1400
-    Et le type de contrat du bénéficiaire vaut CDI
+    Et le type de contrat du bénéficiaire vaut «CDI»
     Et le prix horaire de la formation vaut 25
     Et la durée en heures de la formation vaut 50
     Et c'est une formation VAE

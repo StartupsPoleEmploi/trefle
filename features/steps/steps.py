@@ -2,7 +2,7 @@ from behave import given, when, then, use_step_matcher
 from behave.api.async_step import async_run_until_complete
 
 from trefle.core import simulate
-from trefle.rules import LABELS, SCHEMA
+from trefle.rules import LABELS, SCHEMA, Pointer
 
 use_step_matcher('re')
 
@@ -17,19 +17,10 @@ def setup(context):
     context.data = {}
 
 
-@given(r"(?:les? |la |l')(?P<label>.+) (?:est|vaut|valent) «?(?P<value>[^»]+)»?")
+@given(r"(?:les? |la |l')(?P<label>.+) (?:est|vaut|valent) (?P<value>.+)")
 def given_set_value(context, label, value):
     key = LABELS[label]
-    schema = SCHEMA[key]
-    if 'enum' in schema:
-        # Allow to use enum label in scenario description.
-        labels = revert(schema['enum'])
-        value = str(labels[value])
-    if value.startswith('['):
-        value = value[1:-1].split(',')  # TODO: Merge with LazyValue?
-        if (schema['type'] == 'array'
-           and schema['items']['type'] == 'integer'):
-            value = [int(v) for v in value]
+    value = Pointer(value).get()
     context.data[key] = value
 
 
