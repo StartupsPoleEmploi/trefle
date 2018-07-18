@@ -4,10 +4,10 @@ import sys
 from collections import defaultdict
 from pathlib import Path
 
-from unidecode import unidecode
 import yaml
 
 from .exceptions import NoStepError, WrongPointerError
+from .helpers import fold_name
 from .rules import Rule, SCHEMA, LABELS
 
 
@@ -107,11 +107,6 @@ def load_rules(path):
             return Rule.load(data.splitlines(), id_)
         except (NoStepError, WrongPointerError) as err:
             sys.exit(f'Project loading failed: {err!r}')
-
-
-# TODO: move in utils?
-def fold_name(s):
-    return unidecode(s).lower().replace(' ', '')
 
 
 def load_naf(data):
