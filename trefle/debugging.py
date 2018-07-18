@@ -7,8 +7,7 @@ from urllib.parse import parse_qs, urlparse
 
 import phpserialize
 
-from .config import LABELS, SCHEMA
-from .exceptions import NoDataError
+from .config import SCHEMA
 
 
 def yellow(s):
@@ -31,16 +30,11 @@ def trace_condition(condition):
         condition._return_values.append(bool(status))
 
         params = {}
-        for param in condition.params.values():
-            if param.raw not in LABELS:
-                # Do not redisplay raw static values
-                continue
-            try:
-                value = param.get(**context)
-            except NoDataError:  # No data were provided for this value.
-                value = None
-            params[param.raw] = value
-        condition._called_with.append(params)
+        for param in status.params.values():
+            if param.json:
+                params.update(param.json)
+        if params:
+            condition._called_with.append(params)
         return status
 
     condition.assess = assess_wrapper
