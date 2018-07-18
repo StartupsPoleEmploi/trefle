@@ -27,7 +27,7 @@ Si le nom de l'organisme est «ANFA»
         # Titre ESCR
         Ou le code RNCP de la formation vaut 25651, et la durée en heures de la formation est inférieure à 455
         # Certificat Complémentaire de Spécialisation 2 roues
-        Si le code CERTIFINFO de la formation vaut 88675, et la durée en heures de la formation est inférieure à 240
+        Ou le code CERTIFINFO de la formation vaut 88675, et la durée en heures de la formation est inférieure à 240
         # Certificat Complémentaire de Spécialisation PL
-        Si le code RNCP de la formation vaut 1883, et la durée en heures de la formation est inférieure à 200
+        Ou le code RNCP de la formation vaut 1883, et la durée en heures de la formation est inférieure à 200
             Alors le prix horaire plafond applicable vaut 15
