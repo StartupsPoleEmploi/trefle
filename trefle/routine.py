@@ -119,6 +119,11 @@ def extrapolate_formation_context(context):
     context['formation.semaines'] = semaines
     context['formation.mois'] = mois
     context['formation.duree_hebdomadaire'] = duree_hebdo
+    # Weird hack: Intercarif adds the `16` code in some situations and we need
+    # to remove it otherwise the formation is unavailable (`16` is a code
+    # financeur collectif).
+    if context['formation.codes_financeur'] & {0, 5, 10}:
+        context['formation.codes_financeur'].discard(16)
 
 
 def financement_to_organisme(context, financement):

@@ -6,6 +6,7 @@
 - add 'UNAGECIF' organisme details and rules
 - display line number in case of parsing error
 - add 'Fafih' rules for «période de professionnalisation»
+- remove code financeur 16 when one of {0, 5, 10} is also present
 
 ## 0.4.0
 

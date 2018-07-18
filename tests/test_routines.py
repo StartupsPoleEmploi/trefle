@@ -40,6 +40,7 @@ async def test_populate_formation_from_bytes():
     ('without_rncp', 'formation.rncp', False),
     ('vae', 'formation.vae', True),
     ('clea', 'formation.clea', True),
+    ('wrong_code_financeur_16', 'formation.codes_financeur', {0, 5, 10, 17}),
 ])
 @pytest.mark.asyncio
 async def test_populate_formation_from_bytes_edge_cases(path, key, value):
