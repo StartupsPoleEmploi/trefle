@@ -7,13 +7,13 @@ from minicli import cli, run
 from roll.extensions import simple_server, static, traceback
 
 from .api import app
-from .config import ELIGIBILITE, MODALITES, SCHEMA
+from .config import PREPROCESS, ELIGIBILITE, MODALITES, SCHEMA
 from .core import simulate
 from .debugging import (data_from_lbf_url, green, make_scenario, red,
                         trace_condition)
 from .helpers import flatten
 
-RULES = ELIGIBILITE + MODALITES
+RULES = PREPROCESS + ELIGIBILITE + MODALITES
 
 
 def parse_args(args):

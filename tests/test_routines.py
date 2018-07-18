@@ -12,6 +12,7 @@ async def test_populate_formation_from_bytes():
         context = {}
         routine.add_constants(context)
         await routine.populate_formation_from_bytes(context, f.read())
+        routine.preprocess(context)
 
         assert context['formation.eligible_copanef'] is True
         assert context['formation.codes_naf'] == {'0162Z', '0520Z', '2361Z',
@@ -48,6 +49,7 @@ async def test_populate_formation_from_bytes_edge_cases(path, key, value):
         context = {}
         routine.add_constants(context)
         await routine.populate_formation_from_bytes(context, f.read())
+        routine.preprocess(context)
         assert context[key] == value
 
 
