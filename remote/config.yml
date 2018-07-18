@@ -6,6 +6,6 @@ prod:
   username: yboniface
   hostname: 167.114.237.170
 qa:
-  version: export-conditions
+  version: master
   username: root
   hostname: 51.15.221.175
