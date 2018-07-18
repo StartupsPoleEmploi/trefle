@@ -36,3 +36,18 @@ Scénario: Formation CPF
     Alors l'organisme à contacter est «Forco»
     Et le plafond de prise en charge vaut 2250
     Et la rémunération applicable vaut 0
+
+
+Scénario: Cas nominal d'une période de professionnalisation CDI
+    Soit un bénéficiaire et une formation
+    Et c'est un bénéficiaire de droit privé
+    Et la rémunération du bénéficiaire vaut 1400
+    Et le type de contrat du bénéficiaire vaut «CDI»
+    Et l'IDCC de l'établissement du bénéficiaire vaut «1406»
+    Et la durée en heures de la formation vaut 100
+    Et la durée en mois de la formation vaut 10
+    Quand je demande un calcul de financement
+    Quand je sélectionne le financement «Période de professionnalisation sur son temps de travail»
+    Alors l'organisme à contacter est «Forco»
+    Et le plafond de prise en charge vaut 915
+    Et la rémunération applicable vaut 1400

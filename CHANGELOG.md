@@ -9,6 +9,7 @@
 - remove code financeur 16 when one of {0, 5, 10} is also present
 - add experimental eligibilite rules in API output
 - add 'ANFA' basic rules for «période de professionnalisation»
+- add 'Forco' basic rules for «période de professionnalisation»
 
 ## 0.4.0
 
