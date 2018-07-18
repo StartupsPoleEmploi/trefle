@@ -1,11 +1,33 @@
 Si le nom de l'organisme est «ANFA»
-    Alors le prix horaire plafond applicable vaut 40
-    Alors le plafond horaire applicable est égal au solde CPF du bénéficiaire
-    Si c'est une formation VAE
+
+    Si le financement est de type «CPF»
+
         Alors le prix horaire plafond applicable vaut 40
-        Alors le plafond horaire applicable est égal à la durée en heures de la formation
-    Si le code NAF de l'établissement du bénéficiaire fait partie des codes NAF CPNE éligibles
-        Alors le prix horaire plafond applicable vaut 50
-    # 60 si intitulé comprend \\"CQP\\"\n50 pour toute autre certification
-    # Si kkchose CONTIENT «CQP»
-    #     Alors le prix horaire plafond applicable vaut 60
+        Alors le plafond horaire applicable est égal au solde CPF du bénéficiaire
+        Si c'est une formation VAE
+            Alors le prix horaire plafond applicable vaut 40
+            Alors le plafond horaire applicable est égal à la durée en heures de la formation
+        Si le code NAF de l'établissement du bénéficiaire fait partie des codes NAF CPNE éligibles
+            Alors le prix horaire plafond applicable vaut 50
+        # 60 si intitulé comprend \\"CQP\\"\n50 pour toute autre certification
+        # Si kkchose CONTIENT «CQP»
+        #     Alors le prix horaire plafond applicable vaut 60
+
+    Si le financement est de type «période de professionnalisation»
+
+        # CONTRÔLE TECHNIQUE AUTOMOBILE
+        Si la liste des codes FORMACODE de la formation contient 23649
+        Ou c'est une formation CléA
+        Ou c'est une formation ouverte à distance
+        # formation répertoire national des Certifications de la branche
+        # Mention PL ou 2 roues du BEPECASER
+        Ou le code RNCP de la formation vaut 6103, et la durée en heures de la formation est inférieure à 175
+        # BAFM
+        Ou le code CERTIFINFO de la formation vaut 78290, et la durée en heures de la formation est inférieure à 350
+        # Titre ESCR
+        Ou le code RNCP de la formation vaut 25651, et la durée en heures de la formation est inférieure à 455
+        # Certificat Complémentaire de Spécialisation 2 roues
+        Si le code CERTIFINFO de la formation vaut 88675, et la durée en heures de la formation est inférieure à 240
+        # Certificat Complémentaire de Spécialisation PL
+        Si le code RNCP de la formation vaut 1883, et la durée en heures de la formation est inférieure à 200
+            Alors le prix horaire plafond applicable vaut 15
