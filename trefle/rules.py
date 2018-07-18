@@ -164,46 +164,60 @@ class Status:
         return out
 
 
-class Action:
+class Step:
 
-    PATTERNS = {}
-
-    def __init__(self, raw, name=None, line=0):
-        self.raw = raw
+    def __init__(self, path=None, line=0):
         self.func = None
         self.params = {}
-        self.name = name
+        self.path = path
         self.line = line
-        self.compile()
 
     def __repr__(self):
-        return f'<Action: {self}>'
+        return f'<{self.__class__.__name__}: {self} ({self.path}:{self.line})>'
 
     def __str__(self):
         return self.raw
 
-    def compile(self):
+    def parse_raw(self):
         for pattern, func in self.PATTERNS.items():
             match = pattern.match(self.raw)
             if match:
                 self.func = func
                 break
         else:
-            raise NoStepError(f'No pattern match action: `{self.raw}`')
-        data = match.groupdict()
+            raise NoStepError(f'No pattern matches step: `{self!r}`')
+        return match.groupdict()
+
+    @property
+    def spec(self):
         spec = inspect.signature(self.func)
-        for name, param in spec.parameters.items():
-            if name == 'context':
-                continue
+        return list(spec.parameters.items())[1:]  # Skip `context`.
+
+    def compile(self):
+        data = self.parse_raw()
+        for name, param in self.spec:
             value = data[name]
-            if param.annotation != inspect._empty:
-                try:
-                    value = param.annotation(value)
-                except Exception as err:
-                    # Give more context.
-                    err.args = (f'{err} (from `{self.raw}`, {self.name}:{self.line})',)
-                    raise
+            type_ = param.annotation
+            if type_ == inspect._empty:
+                type_ = self.DEFAULT_TYPE
+            try:
+                value = type_(value)
+            except Exception as err:
+                # Give more context.
+                err.args = (f'{err} (from `{self!r}`)',)
+                raise
             self.params[name] = value
+
+
+class Action(Step):
+
+    PATTERNS = {}
+    DEFAULT_TYPE = str
+
+    def __init__(self, raw, path=None, line=0):
+        super().__init__(path, line)
+        self.raw = raw
+        self.compile()
 
     def act(self, context):
         try:
@@ -214,6 +228,68 @@ class Action:
     def on_act(self, context, status):
         if self.func.on_act:
             self.func.on_act(status, context, **self.params)
+
+
+class Condition(Step):
+
+    PATTERNS = {}
+    AND = 'ET'
+    OR = 'OU'
+    DEFAULT_TYPE = Pointer
+
+    def __init__(self, terms, connective=None, level=0, path=None, line=0):
+        assert terms, 'Cannot create a Condition without terms'
+        super().__init__(path, line)
+        self.children = []
+        self.actions = []
+        self.terms = []
+        self.negative = False
+        self.connective = connective or self.AND
+        self.level = level
+        if len(terms) == 1:
+            terms = terms[0].split(', et ')
+            if len(terms) > 1:
+                self.connective = self.AND
+            else:
+                terms = terms[0].split(', ou ')
+                if len(terms) > 1:
+                    self.connective = self.OR
+        if len(terms) > 1:
+            self.raw = f' {self.connective} '.join(terms)
+            self.terms = [Condition([t], level=self.level, path=self.path,
+                                    line=self.line) for t in terms]
+        else:
+            self.raw = terms[0]
+            self.compile()
+
+    def evaluate(self, context):
+        return {n: Value(v, context) for n, v in self.params.items()}
+
+    def assess(self, context):
+        status = Status(self)
+        if self.terms:
+            status.terms = [c.assess(context) for c in self.terms]
+            if self.connective == self.OR:
+                status.status = any(status.terms)
+            else:
+                status.status = all(status.terms)
+        else:
+            try:
+                status.params = self.evaluate(context)
+            except NoDataError as err:
+                status.status = False
+                status.reason = f"Donnée manquante pour «{err}»"
+            except Exception as err:
+                # Give more context.
+                params = ' AND '.join(f'{key}={value}'
+                                      for key, value in status.params.items())
+                err.args = (f'{err} (in `{self.raw}`, where {params})',)
+                raise
+            else:
+                status.status = self.func(context, **status.params)
+                if not status and self.func.reason:
+                    status.reason = self.func.reason.format(**status.params)
+        return status
 
 
 @action(r"(l'|les? |la )(?P<key>.+) (vaut|est) (?P<value>[\w«» +\-'\.]+)$")
@@ -255,96 +331,6 @@ def unset_key(context, key: Label):
         del context[key]
     except KeyError:
         pass
-
-
-class Condition:
-
-    PATTERNS = {}
-    AND = 'ET'
-    OR = 'OU'
-
-    def __init__(self, terms, parent=None, connective=None, level=0,
-                 name=None, line=0):
-        assert terms, 'Cannot create a Condition without terms'
-        self.parent = parent
-        self.params = {}
-        self.children = []
-        self.actions = []
-        self.terms = []
-        self.negative = False
-        self.connective = connective or self.AND
-        self.level = level
-        self.name = name
-        self.line = line
-        if len(terms) == 1:
-            terms = terms[0].split(', et ')
-            if len(terms) > 1:
-                self.connective = self.AND
-            else:
-                terms = terms[0].split(', ou ')
-                if len(terms) > 1:
-                    self.connective = self.OR
-        self.raw = f' {self.connective} '.join(terms)
-        if len(terms) > 1:
-            self.terms = [Condition([t], level=self.level, name=self.name,
-                                    line=self.line) for t in terms]
-        else:
-            self.compile()
-
-    def __repr__(self):
-        return f'<Condition: {self}>'
-
-    def __str__(self):
-        return self.raw
-
-    def compile(self):
-        for pattern, func in self.PATTERNS.items():
-            match = pattern.match(self.raw)
-            if match:
-                self.func = func
-                break
-        else:
-            raise NoStepError(f'No pattern match step: `{self.raw}`')
-        data = match.groupdict()
-        spec = inspect.signature(self.func)
-        for name in list(spec.parameters.keys())[1:]:  # Skip context.
-            value = data[name]
-            try:
-                value = Pointer(value)
-            except Exception as err:
-                # Give more context.
-                err.args = (f'{err} (from `{self.raw}`)',)
-                raise
-            self.params[name] = value
-
-    def get_params(self, context):
-        return {n: Value(v, context) for n, v in self.params.items()}
-
-    def assess(self, context):
-        status = Status(self)
-        if self.terms:
-            status.terms = [c.assess(context) for c in self.terms]
-            if self.connective == self.OR:
-                status.status = any(status.terms)
-            else:
-                status.status = all(status.terms)
-        else:
-            try:
-                status.params = self.get_params(context)
-            except NoDataError as err:
-                status.status = False
-                status.reason = f"Donnée manquante pour «{err}»"
-            except Exception as err:
-                # Give more context.
-                params = ' AND '.join(f'{key}={value}'
-                                      for key, value in status.params.items())
-                err.args = (f'{err} (in `{self.raw}`, where {params})',)
-                raise
-            else:
-                status.status = self.func(context, **status.params)
-                if not status and self.func.reason:
-                    status.reason = self.func.reason.format(**status.params)
-        return status
 
 
 @reason("ce n'est pas {key.pointer.raw}")
@@ -496,8 +482,8 @@ class Rule:
                 # Move back one step up in recursivity.
             if next_.indent > curr.indent:
                 if next_.keyword in ('si', 'alors') and terms:
-                    current = Condition(terms[:], parent, connective,
-                                        level=int(curr.indent/4), name=name,
+                    current = Condition(terms[:], connective,
+                                        level=int(curr.indent/4), path=name,
                                         line=curr.index)
                     if curr.indent == 0:
                         rules.append(Rule(name, current))
