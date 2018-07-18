@@ -7,11 +7,12 @@ from minicli import cli, run
 from roll.extensions import simple_server, static, traceback
 
 from .api import app
-from .config import PREPROCESS, ELIGIBILITE, MODALITES, SCHEMA
+from .config import PREPROCESS, ELIGIBILITE, MODALITES
 from .core import simulate
 from .debugging import (data_from_lbf_url, green, make_scenario, red,
                         trace_condition)
 from .helpers import flatten
+from .rules import parse_value
 
 RULES = PREPROCESS + ELIGIBILITE + MODALITES
 
@@ -20,13 +21,7 @@ def parse_args(args):
     data = {}
     for arg in args:
         key, value = arg.split('=')
-        schema = SCHEMA[key]
-        if value.startswith('['):
-            value = value[1:-1].split(',')  # TODO: Merge with LazyValue?
-            if (schema['type'] == 'array'
-               and schema['items']['type'] == 'integer'):
-                value = [int(v) for v in value]
-        data[key] = value
+        data[key] = parse_value(value, default=value)
     return data
 
 

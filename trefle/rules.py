@@ -9,6 +9,24 @@ SCHEMA = {}
 LABELS = {}
 
 
+def parse_value(value, default=...):
+    if value[0] == '«' and value[-1] == '»':
+        value = value[1:-1]
+        if value in LABELS:
+            # This is an enum.
+            # FIXME: Should we have a dedicated registry instead?
+            value = LABELS[value]
+    elif value[0] == '[' and value[-1] == ']':
+        value = [parse_value(v) for v in value[1:-1].split(',')]
+    elif value.isdigit():
+        value = int(value)
+    elif isfloat(value):
+        value = float(value)
+    else:
+        value = default
+    return value
+
+
 def Label(v):
     """Used as annotation for casting to variable id from variable label."""
     try:
@@ -30,7 +48,7 @@ class Pointer:
         return f'<Pointer: {self.raw}>'
 
     def compile(self):
-        value = self.parse_value(self.raw)
+        value = parse_value(self.raw)
         if value is not ...:
             self.get = lambda **d: value
         else:
@@ -40,23 +58,6 @@ class Pointer:
                 raise WrongPointerError(self.raw)
             self.get = lambda **d: self._get_from_context(**d)
             self.default = self.compute_default()
-
-    def parse_value(self, value):
-        if value[0] == '«' and value[-1] == '»':
-            value = value[1:-1]
-            if value in LABELS:
-                # This is an enum.
-                # FIXME: Should we have a dedicated registry instead?
-                value = LABELS[value]
-        elif value[0] == '[' and value[-1] == ']':
-            value = [self.parse_value(v) for v in value[1:-1].split(',')]
-        elif value.isdigit():
-            value = int(value)
-        elif isfloat(value):
-            value = float(value)
-        else:
-            value = ...
-        return value
 
     def _get_from_context(self, **context):
         try:
