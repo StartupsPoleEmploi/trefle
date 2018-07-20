@@ -2,7 +2,7 @@ ssh_key_urls:
   ybon: http://nuage.yohanboniface.me/id_rsa.pub
   regisb: http://minutebutterfly.com/id_rsa.pub
 prod:
-  version: 0.4.0
+  version: 0.5.0
   username: yboniface
   hostname: 167.114.237.170
 qa:

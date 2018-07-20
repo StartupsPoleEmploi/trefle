@@ -1,6 +1,6 @@
 # Changelog
 
-## dev
+## 0.5.0
 
 - explorer: display label from enum if any
 - add 'UNAGECIF' organisme details and rules
