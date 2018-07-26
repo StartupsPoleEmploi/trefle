@@ -49,18 +49,18 @@ def test_load_financements():
             },
         }
     }
-    assert load_financements(data) == {
-        'CPF sur son temps de travail': {
+    assert load_financements(data) == [
+        {
             'tags': ['CPF', 'temps de travail'],
             'description': 'blah',
             'nom': 'CPF sur son temps de travail',
         },
-        'CPF hors temps de travail': {
+        {
             'tags': ['CPF', 'hors temps de travail'],
             'description': 'bleuh',
             'nom': 'CPF hors temps de travail',
-        },
-    }
+        }
+    ]
 
 
 def test_load_naf():

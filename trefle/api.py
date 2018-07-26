@@ -46,8 +46,9 @@ async def simulate_(request, response):
         financements = [f for f in financements if f['eligible'] == eligible]
     for tag in request.query.list('tags', []):
         financements = [f for f in financements if tag in f['tags']]
+    for financement in financements:
+        financement['status'] = [s.json for s in financement['status']]
     body = {'financements': financements}
-    del context['financements']
     if request.query.bool('context', False):
         body['context'] = {k: v for k, v in context.items()
                            if k in SCHEMA and 'label' in SCHEMA[k]}

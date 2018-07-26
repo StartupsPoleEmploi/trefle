@@ -17,4 +17,6 @@ Si la liste des codes CPF de la formation contient au moins un des codes CPF VAE
 # http://lheo.gouv.fr/langage#dict-AIS
 Si le code AIS de la formation fait partie de [6,7]
     Alors c'est une formation qualifiante
+Si les codes financeur de la formation ne contiennent aucun des codes financeur collectif
+    Alors c'est une formation ouverte aux bénéficiaires individuels
 

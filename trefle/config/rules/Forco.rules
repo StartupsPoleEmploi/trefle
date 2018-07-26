@@ -20,6 +20,5 @@ Si le nom de l'organisme est «Forco»
 
         Si c'est une formation VAE
         # formation commerce et distribution
-        Ou la liste des domaines FORMACODE de la formation contient 345
-        Et c'est une formation qualifiante
+        Ou la liste des domaines FORMACODE de la formation contient 345, et c'est une formation qualifiante
             Alors le prix horaire plafond applicable vaut 9.15

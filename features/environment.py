@@ -1,6 +1,6 @@
 import ujson as json
 
-from trefle.config import ELIGIBILITE, MODALITES
+from trefle.config import RULES
 from trefle.debugging import green, red, trace_condition, yellow
 
 
@@ -38,38 +38,28 @@ def render_condition_coverage(context, condition):
         yield from render_condition_coverage(context, child)
 
 
-def load_rules(context):
-    rules = []
-    wanted = context.config.userdata.get('coverage', 'all')
-    if wanted in ['all', 'eligibilite']:
-        rules.extend(ELIGIBILITE)
-    if wanted in ['all', 'modalites']:
-        rules.extend(MODALITES)
-    return rules
-
-
 def before_all(context):
-    for rule in load_rules(context):
-        trace_condition(rule.root)
+    for rules in RULES.values():
+        for rule in rules:
+            trace_condition(rule.root)
 
 
 def after_all(context):
-    rules = load_rules(context)
     statements = 0
     covered = 0
     userdata = context.config.userdata
     format_ = userdata.get('coverage-format', 'summary')
-    if rules:
-        print('-' * 10, 'Rules coverage report', '-' * 10)
+    print('-' * 10, 'Rules coverage report', '-' * 10)
+    for name, rules in RULES.items():
+        if format_ != 'summary':
+            print('\n{:—^50}'.format(name))
         for rule in rules:
-            if format_ != 'summary':
-                print('\n{:—^50}'.format(rule.name))
             for new_covered in render_condition_coverage(context, rule.root):
                 statements += 2
                 covered += new_covered
-        coverage = round(covered / statements * 100, 2)
-        print(f'Coverage: {covered}/{statements} ({coverage}%)', )
-        print('-' * 10, 'End coverage report', '-' * 10)
+    coverage = round(covered / statements * 100, 2)
+    print(f'Coverage: {covered}/{statements} ({coverage}%)', )
+    print('-' * 10, 'End coverage report', '-' * 10)
 
 
 def after_step(context, step):

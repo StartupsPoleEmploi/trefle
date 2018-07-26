@@ -1,12 +1,13 @@
 Si le nom de l'organisme est «ANFA»
 
     Si le financement est de type «CPF»
-
         Alors le prix horaire plafond applicable vaut 40
-        Alors le plafond horaire applicable est égal au solde CPF du bénéficiaire
+        Et le plafond horaire applicable est égal au solde CPF du bénéficiaire
+
         Si c'est une formation VAE
             Alors le prix horaire plafond applicable vaut 40
-            Alors le plafond horaire applicable est égal à la durée en heures de la formation
+            Et le plafond horaire applicable est égal à la durée en heures de la formation
+
         Si le code NAF de l'établissement du bénéficiaire fait partie des codes NAF CPNE éligibles
             Alors le prix horaire plafond applicable vaut 50
         # 60 si intitulé comprend \\"CQP\\"\n50 pour toute autre certification
@@ -31,3 +32,23 @@ Si le nom de l'organisme est «ANFA»
         # Certificat Complémentaire de Spécialisation PL
         Ou le code RNCP de la formation vaut 1883, et la durée en heures de la formation est inférieure à 200
             Alors le prix horaire plafond applicable vaut 15
+
+    Si le financement est de type «plan de formation»
+        # formation langues et développement personnel / bureautique
+        Si la liste des domaines FORMACODE de la formation contient au moins un code parmi [150,151,324]
+        Et la durée en heures de la formation est inférieure à 35
+            Alors le prix horaire plafond applicable vaut 15
+
+        Si c'est un bilan de compétences
+            Alors le prix horaire plafond applicable vaut 25
+            Et le plafond financier applicable vaut 600
+
+        # Vente de voiture
+        Si la liste des codes FORMACODE de la formation contient 34517
+        # Administration de l’entreprise
+        Ou la liste des codes FORMACODE de la formation contient au moins un code parmi [32654,34054]
+        # monitorat auto-école
+        Ou la liste des codes FORMACODE de la formation contient 31802
+        # Transport, manutention et magasinage
+        Ou la liste des domaines FORMACODE de la formation contient au moins un code parmi [318,317]
+            Alors le prix horaire plafond applicable vaut 25

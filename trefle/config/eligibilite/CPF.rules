@@ -1,8 +1,0 @@
-Si c'est un bénéficiaire de droit privé
-
-    Si la région de l'établissement du bénéficiaire fait partie des régions éligibles COPAREF
-    Ou c'est une formation éligible COPANEF
-    Ou le code NAF de l'établissement du bénéficiaire fait partie des codes NAF CPNE éligibles
-        Si le solde CPF du bénéficiaire est supérieur à 0
-            Alors définir le financement «CPF sur son temps de travail» comme éligible
-            Et définir le financement «CPF hors temps de travail» comme éligible

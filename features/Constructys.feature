@@ -39,7 +39,6 @@ Scénario: Période de professionnalisation CléA
     Et le âge du bénéficiaire vaut 28
     Et c'est une formation CléA
     Et la région de l'établissement du bénéficiaire vaut «Provence-Alpes-Côte d'Azur»
-    Et les codes financeur de la formation vaut [2]
     Et ce n'est pas une formation éligible COPANEF
     Et la liste des codes FORMACODE de la formation vaut [15030,15040,15041]
     Et la liste des domaines FORMACODE de la formation vaut [150]
@@ -57,6 +56,34 @@ Scénario: Période de professionnalisation CléA
     Et la rémunération applicable vaut 1500.0
 
 
+Scénario: Période de professionnalisation réservée par une collectivité territoriale
+    Soit un bénéficiaire et une formation
+    Et la rémunération du bénéficiaire vaut 1500.0
+    Et c'est un bénéficiaire de droit privé
+    Et le type de contrat du bénéficiaire vaut «CDI»
+    Et l'expérience professionnelle du bénéficiaire dans les cinq dernières années vaut 24
+    Et l'ancienneté en mois du bénéficiaire dans son entreprise vaut 2
+    Et le code NAF de l'établissement du bénéficiaire vaut «4120B»
+    Et l'IDCC de l'établissement du bénéficiaire vaut «2420»
+    Et le code INSEE de la commune de l'établissement du bénéficiaire vaut «13055»
+    Et le âge du bénéficiaire vaut 28
+    Et c'est une formation CléA
+    Et la région de l'établissement du bénéficiaire vaut «Provence-Alpes-Côte d'Azur»
+    Et les codes financeur de la formation vaut [2]
+    Et ce n'est pas une formation éligible COPANEF
+    Et la liste des codes FORMACODE de la formation vaut [15030,15040,15041]
+    Et la liste des domaines FORMACODE de la formation vaut [150]
+    Et la durée en heures de la formation vaut 230
+    Et le prix horaire de la formation vaut 0
+    Et la code AIS de la formation vaut 5
+    Et le niveau de sortie de la formation vaut «inconnu»
+    Et la durée en semaines de la formation vaut 10
+    Et la durée en mois de la formation vaut 2
+    Et la durée hebdomadaire de la formation vaut 23
+    Quand je demande un calcul de financement
+    Alors aucun financement n'est proposé
+
+
 Scénario: Période de professionnalisation FLE
     Soit un bénéficiaire et une formation
     Et la rémunération du bénéficiaire vaut 1500.0
@@ -69,7 +96,6 @@ Scénario: Période de professionnalisation FLE
     Et le code INSEE de la commune de l'établissement du bénéficiaire vaut «13055»
     Et le âge du bénéficiaire vaut 28
     Et la région de l'établissement du bénéficiaire vaut «Provence-Alpes-Côte d'Azur»
-    Et les codes financeur de la formation vaut [2]
     Et la liste des codes FORMACODE de la formation vaut [15226]
     Et la liste des domaines FORMACODE de la formation vaut [152]
     Et la durée en heures de la formation vaut 100
@@ -98,7 +124,6 @@ Scénario: Période de professionnalisation chantier
     Et le code INSEE de la commune de l'établissement du bénéficiaire vaut «13055»
     Et le âge du bénéficiaire vaut 28
     Et la région de l'établissement du bénéficiaire vaut «Provence-Alpes-Côte d'Azur»
-    Et les codes financeur de la formation vaut [2]
     Et la liste des codes FORMACODE de la formation vaut [22286]
     Et la liste des domaines FORMACODE de la formation vaut [222]
     Et la durée en heures de la formation vaut 100
@@ -127,7 +152,6 @@ Scénario: Période de professionnalisation lutte contre l'illétrisme
     Et le code INSEE de la commune de l'établissement du bénéficiaire vaut «13055»
     Et le âge du bénéficiaire vaut 28
     Et la région de l'établissement du bénéficiaire vaut «Provence-Alpes-Côte d'Azur»
-    Et les codes financeur de la formation vaut [2]
     Et la liste des codes FORMACODE de la formation vaut [22286]
     Et la liste des domaines FORMACODE de la formation vaut [222]
     Et la durée en heures de la formation vaut 100
@@ -157,7 +181,6 @@ Scénario: Période de professionnalisation conduit d'engins
     Et le code INSEE de la commune de l'établissement du bénéficiaire vaut «13055»
     Et le âge du bénéficiaire vaut 28
     Et la région de l'établissement du bénéficiaire vaut «Provence-Alpes-Côte d'Azur»
-    Et les codes financeur de la formation vaut [2]
     Et la liste des codes FORMACODE de la formation vaut [31729]
     Et la liste des domaines FORMACODE de la formation vaut [317]
     Et la durée en heures de la formation vaut 100

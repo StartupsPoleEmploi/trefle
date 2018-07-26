@@ -7,6 +7,7 @@ from .helpers import isfloat, count_indent
 
 SCHEMA = {}
 LABELS = {}
+RULES = {}
 
 
 def parse_value(value, default=...):
@@ -94,6 +95,7 @@ def condition(pattern):
     def wrapper(func):
         Condition.PATTERNS[re.compile(pattern)] = func
         func.reason = None
+        func.no_status = False
         return func
 
     return wrapper
@@ -115,6 +117,12 @@ def on_act(target):
         return func
 
     return wrapper
+
+
+def no_status(func):
+    # Make this condition not visible for final status output.
+    func.no_status = True
+    return func
 
 
 class Value:
@@ -161,6 +169,7 @@ class Status:
             out['connective'] = self.condition.connective
         elif not self.status:
             out['reason'] = self.reason
+        out['children'] = [c.json for c in self.children]
         return out
 
 
@@ -224,10 +233,11 @@ class Action(Step):
             self.func(context, **self.params)
         except NoDataError as err:
             raise NoDataError(f'No data for `{err}` in `{self.raw}`')
+        self.on_act(context)
 
-    def on_act(self, context, status):
+    def on_act(self, context):
         if self.func.on_act:
-            self.func.on_act(status, context, **self.params)
+            self.func.on_act(context, **self.params)
 
 
 class Condition(Step):
@@ -291,40 +301,45 @@ class Condition(Step):
                     status.reason = self.func.reason.format(**status.params)
         return status
 
+    @property
+    def no_status(self):
+        return self.func and self.func.no_status
 
+
+def set_eligible(context, **params):
+    context['financement.eligible'] = True
+
+
+@on_act(set_eligible)
 @action(r"(l'|les? |la )(?P<key>.+) (vaut|est) (?P<value>[\w«» +\-'\.]+)$")
 @action(r"(l'|les? |la )(?P<key>.+) est égale? (à la|à|aux?)? (?P<value>[\w«» +\-\.']+)$")
 def set_value(context, key: Label, value: Pointer):
     context[key] = value.get(**context)
 
 
+@on_act(set_eligible)
 @action(r"(l'|les? |la )(?P<key>.+) est égale? à (?P<rate>[\d\.]+)% (de la|du) (?P<value>[\w«» +\-\.']+)$")
 def set_percent(context, key: Label, rate: float, value: Pointer):
     context[key] = value.get(**context) * rate / 100
 
 
-def attach_status(status, context, name):
-    conditions = [status.json]
-    while status.parent is not None:
-        status = status.parent
-        conditions.append(status.json)
-    conditions.reverse()
-    context['financements'][name]['eligibilite'] = conditions
-
-
-@on_act(attach_status)
-@action(r"définir le financement «(?P<name>[\w +-]+)» comme éligible")
-def set_financement_eligible(context, name):
-    if name not in context['financements']:
-        raise ValueError(f'Unknown financement `{name}`')
-    context['financements'][name]['eligible'] = True
-
-
+@on_act(set_eligible)
 @action(r"c'est une? (?P<key>.+)")
 def set_true(context, key: Label):
     context[key] = True
 
 
+@action(r"appliquer les règles (de )?(l'|le |la )?(?P<rule>.+)")
+def include(context, rule: Pointer):
+    rule = rule.get(**context)
+    name = f'rules/{rule}.rules'
+    rule = RULES.get(name)
+    status = Rule.process(rule, context)
+    if status is not None:  # If root status is a no_status one.
+        context['status'].append(status)
+
+
+@on_act(set_eligible)
 @action(r"il n'y a pas de (?P<key>[\w ]+)$")
 def unset_key(context, key: Label):
     try:
@@ -345,6 +360,7 @@ def check_false(context, key):
     return key.value is False
 
 
+@no_status
 @reason("le financement n'est pas de type «{tag}»")
 @condition(r"le financement est de type (?P<tag>.+)")
 def check_type(context, tag):
@@ -427,12 +443,20 @@ class Rule:
         if condition is None:
             condition = self.root
         status = condition.assess(context)
-        status.parent = parent
         overall = overall and status
+        if status.condition.no_status:
+            if status:
+                # Skip this status for final output.
+                status = parent
+            else:
+                # Stop recursion.
+                return parent
+        elif parent is not None:
+            status.parent = parent
+            parent.children.append(status)
         for action in condition.actions:
             if overall:
                 action.act(context)
-            action.on_act(context, status)
         for child in condition.children:
             self.assess(context, child, status, overall)
         return status
@@ -473,7 +497,8 @@ class Rule:
                 if not connective and curr.keyword == 'ou':
                     connective = Condition.OR
             elif curr.keyword == 'alors' or (actions and curr.keyword == 'et'):
-                actions.append(Action(curr.sentence))
+                actions.append(
+                    Action(curr.sentence, path=name, line=curr.index))
             if actions and (next_.indent < curr.indent or next_.keyword == 'si'):
                 parent.actions = actions
                 actions = []
@@ -504,11 +529,12 @@ class Rule:
     def process(rules, context):
         for rule in rules:
             try:
-                rule.assess(context)
+                status = rule.assess(context)
             except NoDataError as err:
                 # Give more context.
                 err.args = (f'{err} (from `{rule}`)',)
                 raise
+        return status
 
     def __repr__(self):
         return f'<Rule: {self.name}>'

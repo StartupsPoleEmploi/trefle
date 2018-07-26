@@ -8,14 +8,12 @@ import yaml
 
 from .exceptions import NoStepError, WrongPointerError
 from .helpers import fold_name
-from .rules import Rule, SCHEMA, LABELS
+from .rules import Rule, SCHEMA, LABELS, RULES
 
 
 CONSTANTS = {}
-MODALITES = []
-ELIGIBILITE = []
-PREPROCESS = []
-FINANCEMENTS = {}
+PREPROCESS = {}
+FINANCEMENTS = []
 ORGANISMES = {}
 ROOT = Path(__file__).parent / 'config'
 IDCC = {}
@@ -73,7 +71,7 @@ def load_schema(data, output=None, namespace=None):
 
 def load_financements(data, output=None, properties=None, namespace=None):
     if output is None:
-        output = {}
+        output = []
     if properties is None:
         properties = {}
     if namespace is None:
@@ -86,27 +84,12 @@ def load_financements(data, output=None, properties=None, namespace=None):
         if isinstance(more, dict):
             for subkey, value in more.items():
                 if isinstance(value, dict):
-                    load_financements(more, output, props, ns)
+                    load_financements({subkey: value}, output, props, ns)
                 else:
                     props[subkey] = value
             if 'nom' in more:
-                output[more['nom']] = props
+                output.append(props)
     return output
-
-
-def load_rules(path):
-    with path.open() as rules_file:
-        data = rules_file.read()
-        id_ = str(path.relative_to(ROOT))
-        RAW_RULES[id_] = {
-            'data': data,
-            'path': id_,
-            'name': path.name,
-        }
-        try:
-            return Rule.load(data.splitlines(), id_)
-        except (NoStepError, WrongPointerError) as err:
-            sys.exit(f'Project loading failed: {err!r}')
 
 
 def load_naf(data):
@@ -123,8 +106,23 @@ def load_naf(data):
     return out
 
 
+def load_rules(path):
+    with path.open() as rules_file:
+        data = rules_file.read()
+        id_ = str(path.relative_to(ROOT))
+        RAW_RULES[id_] = {
+            'data': data,
+            'path': id_,
+            'name': path.name,
+        }
+        try:
+            return id_, Rule.load(data.splitlines(), id_)
+        except (NoStepError, WrongPointerError) as err:
+            sys.exit(f'Project loading failed: {err!r}')
+
+
 def load_dir_rules(root):
-    paths = (root).glob('*.rules')
+    paths = (root).glob('**/*.rules')
     for path in sorted(paths, key=lambda p: p.name.lower()):
         yield load_rules(path)
 
@@ -133,12 +131,10 @@ def init():
     print('Initializing config')
     with (ROOT / 'schema.yml').open() as f:
         SCHEMA.update(load_schema(yaml.safe_load(f.read())))
-    for rules in load_dir_rules(ROOT / 'preprocess'):
-        PREPROCESS.extend(rules)
-    for rules in load_dir_rules(ROOT / 'eligibilite'):
-        ELIGIBILITE.extend(rules)
-    for rules in load_dir_rules(ROOT / 'modalites'):
-        MODALITES.extend(rules)
+    for id_, rules in load_dir_rules(ROOT / 'preprocess'):
+        PREPROCESS[id_] = rules
+    for id_, rules in load_dir_rules(ROOT / 'rules'):
+        RULES[id_] = rules
     with (ROOT / 'financements.yml').open() as f:
         load_financements(yaml.safe_load(f.read()), FINANCEMENTS)
     with (ROOT / 'organismes.yml').open() as f:

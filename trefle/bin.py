@@ -7,14 +7,12 @@ from minicli import cli, run
 from roll.extensions import simple_server, static, traceback
 
 from .api import app
-from .config import PREPROCESS, ELIGIBILITE, MODALITES
+from .config import RULES
 from .core import simulate
 from .debugging import (data_from_lbf_url, green, make_scenario, red,
                         trace_condition)
 from .helpers import flatten
 from .rules import parse_value
-
-RULES = PREPROCESS + ELIGIBILITE + MODALITES
 
 
 def parse_args(args):
@@ -35,18 +33,19 @@ def colorize(s, status, prefix='✓✗'):
 
 
 def render_status(status):
-    if status.get('terms'):
-        line = f' {status["connective"]} '.join(render_status(t)
-                                                for t in status['terms'])
-    else:
-        line = colorize(status['condition'], status['status'], prefix=None)
-    return line
+    terms = status.terms or [status]
+    line = f' {status.condition.connective} '.join(
+        colorize(t.condition, t.status, prefix=None) for t in terms)
+    prefix = colorize('', status.status)
+    print(f'    {prefix} {line}')
+    for child in status.children:
+        render_status(child)
 
 
 @cli(name='simulate')
 async def cli_simulate(*args, context: json.loads={}, url=None, trace=False,
                        output_scenario=False, show_context=False,
-                       reason=False, eligibilite=False):
+                       reason=False):
     """Simulate a call to the API.
 
     Pass context as args in the form key=value.
@@ -56,7 +55,6 @@ async def cli_simulate(*args, context: json.loads={}, url=None, trace=False,
     :output_scenario: Render a Gherkin scenario with given context.
     :show_context: Render a table with used context.
     :reason: Output reasons why a financement is not eligible.
-    :eligibilite: Show éligibilité rules for a financement non éligible.
     """
     if 'context' in context:
         context = context['context']  # Copy-paste from our logs.
@@ -65,9 +63,6 @@ async def cli_simulate(*args, context: json.loads={}, url=None, trace=False,
         context = data_from_lbf_url(url)
     if args:
         context.update(parse_args(args))
-    if trace:
-        for rule in RULES:
-            trace_condition(rule.root)
     try:
         start = time.perf_counter()
         financements = await simulate(context)
@@ -109,24 +104,21 @@ async def cli_simulate(*args, context: json.loads={}, url=None, trace=False,
             print('  Plafond financement:',
                   financement['plafond_prise_en_charge'], '€')
         print('  Rémunération:', financement['remuneration'], '€')
+        if trace:
+            for status in financement['trace']:
+                render_status(status)
         print('')
     print('Financements non éligibles')
     non_eligibles = [f for f in financements if not f['eligible']]
     for financement in non_eligibles:
         print('- Nom:', financement['nom'])
-        if eligibilite:
-            print("- Règles d'éligibilité")
-            for status in financement['eligibilite']:
-                line = colorize(render_status(status), status['status'])
-                print(' '*4, line)
+        if trace:
+            for status in financement['trace']:
+                render_status(status)
     if output_scenario:
         if url:
             print(f'# {url}')
         print(make_scenario(context, eligibles))
-    if trace:
-        for rule in RULES:
-            print('\n{:—^105}'.format(rule.name))
-            render_trace_condition(rule.root)
     print(f'Duration: {round(duration, 4)} second')
 
 

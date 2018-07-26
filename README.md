@@ -38,8 +38,3 @@ Get a detailed coverage report:
 Get a more detailed coverage report:
 
     behave --lang fr -D coverage-format=long
-
-Only check one rules step coverage:
-
-    behave --lang fr -D coverage=eligibilite
-    behave --lang fr -D coverage=modalites

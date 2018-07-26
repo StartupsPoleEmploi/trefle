@@ -145,7 +145,6 @@ Scénario: période de professionnalisation + CPF
     Et le code NAF de l'établissement du bénéficiaire vaut «8891A»
     Et l'IDCC de l'établissement du bénéficiaire vaut «2395»
     Et la région de l'établissement du bénéficiaire vaut «Provence-Alpes-Côte d'Azur»
-    Et les codes financeur de la formation vaut [4]
     Et ce n'est pas une formation éligible COPANEF
     Et c'est une formation éligible région «Provence-Alpes-Côte d'Azur»
     Et la régions éligibles COPAREF vaut [93]
@@ -173,3 +172,33 @@ Scénario: période de professionnalisation + CPF
     Alors l'organisme à contacter est «AGEFOS PME Provence Alpes Côte d'Azur»
     Et le plafond de prise en charge vaut 7365.75
     Et la rémunération applicable vaut 1500
+
+
+Scénario: pas de financement pour une formation réservée Pôle Emploi
+    Soit un bénéficiaire et une formation
+    Et la rémunération du bénéficiaire vaut 1500
+    Et c'est un bénéficiaire de droit privé
+    Et le solde CPF du bénéficiaire vaut 150
+    Et le type de contrat du bénéficiaire vaut «CDI»
+    Et l'expérience professionnelle du bénéficiaire dans les cinq dernières années vaut 12
+    Et l'ancienneté en mois du bénéficiaire dans son entreprise vaut 12
+    Et le code NAF de l'établissement du bénéficiaire vaut «8891A»
+    Et l'IDCC de l'établissement du bénéficiaire vaut «2395»
+    Et la région de l'établissement du bénéficiaire vaut «Provence-Alpes-Côte d'Azur»
+    Et les codes financeur de la formation vaut [4]
+    Et ce n'est pas une formation éligible COPANEF
+    Et c'est une formation éligible région «Provence-Alpes-Côte d'Azur»
+    Et la régions éligibles COPAREF vaut [93]
+    Et la liste des codes FORMACODE de la formation vaut [44028]
+    Et la liste des domaines FORMACODE de la formation vaut [440]
+    Et le code CERTIFINFO de la formation vaut 30958
+    Et la durée en heures de la formation vaut 805
+    Et la liste des codes CPF de la formation vaut [18082,161236,157711]
+    Et les codes NAF CPNE éligibles vaut [«8810A»,«8559B»,«8891A»,«8810B»,«9609Z»,«8622A»,«8622C»,«8899A»,«8621Z»,«7830Z»,«8899B»]
+    Et le niveau de sortie de la formation vaut «V»
+    Et c'est une formation qualifiante
+    Et la durée en mois de la formation vaut 6
+    Et la durée en semaines de la formation vaut 28
+    Et la durée hebdomadaire de la formation vaut 29
+    Quand je demande un calcul de financement
+    Alors aucun financement n'est proposé

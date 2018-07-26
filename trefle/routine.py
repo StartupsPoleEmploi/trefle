@@ -1,8 +1,7 @@
 from lxml import etree
 
-from .config import (CONSTANTS, DEP_TO_REG, ELIGIBILITE, ELIGIBILITE_URL,
-                     FINANCEMENTS, IDCC, INTERCARIF_URL, MODALITES, ORGANISMES,
-                     PREPROCESS, SCHEMA)
+from .config import (CONSTANTS, DEP_TO_REG, ELIGIBILITE_URL, IDCC,
+                     INTERCARIF_URL, ORGANISMES, PREPROCESS, RULES, SCHEMA)
 from .exceptions import UpstreamError
 from .helpers import diff_month, diff_week, http_get
 from .rules import Rule
@@ -11,11 +10,6 @@ from .validators import format_naf, validate_format
 
 def add_constants(context):
     context.update(CONSTANTS)
-
-
-def preload_financements(context):
-    # Copy.
-    context['financements'] = {k: dict(v) for k, v in FINANCEMENTS.items()}
 
 
 def idcc_to_organismes(context):
@@ -37,10 +31,6 @@ def insee_commune_to_region(context):
     if dep not in DEP_TO_REG:
         raise ValueError({key: f'Valeur invalide: `{context[key]}`'})
     context['beneficiaire.entreprise.region'] = DEP_TO_REG[dep]
-
-
-def check_eligibilite(context):
-    Rule.process(ELIGIBILITE, context)
 
 
 async def get_formation_xml(formation_id):
@@ -126,13 +116,14 @@ def extrapolate_formation_context(context):
 
 
 def preprocess(context):
-    Rule.process(PREPROCESS, context)
+    for rules in PREPROCESS.values():
+        Rule.process(rules, context)
 
 
 def financement_to_organisme(context, financement):
     tags = financement['tags']
     # TODO: add an "organisme_type" key in financements.yml instead?
-    if 'CPF' in tags or "période de professionnalisation" in tags:
+    if {'CPF', 'période de professionnalisation', 'plan de formation'} & set(tags):
         nom = context['beneficiaire.entreprise.opca']
     elif 'CIF' in tags:
         nom = context['beneficiaire.entreprise.opacif']
@@ -156,7 +147,6 @@ def load_organisme(nom):
 
 
 def compute_modalites(context, financement):
-    Rule.process(MODALITES, context)
     # TODO: HT vs TTC everywhere
     heures = context['formation.heures']
     heures = min(context['formation.heures'],
@@ -196,12 +186,17 @@ def compute_modalites(context, financement):
     financement['heures'] = heures
 
 
-def populate_financement(context, financement):
-    if not financement.get('eligible'):
-        return
+def check_financement(context, financement):
     # TODO: use flatten() instead?
+    context['status'] = []
     context['financement.nom'] = financement['nom']
     context['financement.tags'] = financement['tags']
+    context['financement.eligible'] = False
     financement_to_organisme(context, financement)
-    compute_modalites(context, financement)
-    load_organisme_contact_details(context, financement)
+    id_ = f'rules/{financement["tags"][0]}.rules'
+    status = Rule.process(RULES[id_], context)
+    financement['status'] = [status] + context['status']
+    if context['financement.eligible']:
+        compute_modalites(context, financement)
+        load_organisme_contact_details(context, financement)
+    financement['eligible'] = context['financement.eligible']

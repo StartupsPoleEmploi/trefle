@@ -27,12 +27,12 @@ CIF:
     Attention aux délais pour faire cette demande : trois mois pour une formation de six mois et plus, deux mois pour les autres.
     Pour une formation hors temps de travail, il n'y a pas d'autorisation d'absence à demander. Retirer auprès de l'organisme {nom} un dossier de demande de prise en charge.
     Vérifier les délais pour faire cette demande. Indiquer votre accord pour compléter, si besoin, le financement de la formation avec votre Compte Personnel de Formation.
-  CDI:
+  cdi:
     sur son temps de travail:
       nom: CIF CDI sur son temps de travail
     hors temps de travail:
       nom: CIF CDI hors temps de travail
-  CDD:
+  cdd:
     demarches: |-
       Si la formation se déroule pendant votre temps de travail, il est nécessaire d'avoir une autorisation d'absence de votre employeur.
       Attention aux délais pour faire cette demande : trois mois pour une formation de six mois et plus, deux mois pour les autres.
@@ -78,3 +78,11 @@ période de professionnalisation:
   - https://www.service-public.fr/particuliers/vosdroits/F13516
   sur son temps de travail:
     nom: Période de professionnalisation sur son temps de travail
+plan de formation:
+  eligible: false
+  description: Le financement de cette formation peut être réalisé dans le cadre du plan de formation de votre entreprise.
+  demarches: Contactez votre entreprise pour les modalités de mise en œuvre.
+  ressources:
+  - https://www.service-public.fr/particuliers/vosdroits/F11267
+  sur son temps de travail:
+    nom: Plan de formation sur son temps de travail

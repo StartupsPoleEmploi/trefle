@@ -114,6 +114,7 @@ beneficiaire:
     public: true
     label: solde CPF du bénéficiaire
     gender: masculine
+    default: 0
   remuneration:
     description: Rémunération actuelle en euros
     type: integer
@@ -470,6 +471,9 @@ formation:
       6: III
       7: II
       8: I
+  individuel:
+    type: boolean
+    label: formation ouverte aux bénéficiaires individuels
 financement:
   nom:
     type: string
@@ -563,7 +567,7 @@ financement:
       type: string
       format: url
     description: Liste d'adresses Internet pour en savoir plus sur le sujet.
-  eligibilite:
+  status:
     type: array
     public: true
     nullable: true
@@ -584,6 +588,15 @@ financement:
           additionalProperties:
             type: string
         terms:
+          # TODO dry me
+          type: array
+          items:
+            type: object
+            # See https://github.com/p1c2u/openapi-core/issues/33#issuecomment-403022629
+            additionalProperties:
+              type: string
+              nullable: true
+        children:
           # TODO dry me
           type: array
           items:
@@ -614,4 +627,3 @@ financement:
       public: true
       type: string
       label: site web de l'organisme
-financements: {}

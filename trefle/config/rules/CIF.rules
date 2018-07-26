@@ -1,0 +1,39 @@
+Si c'est un bénéficiaire de droit privé
+Et c'est une formation ouverte aux bénéficiaires individuels
+
+    Si la durée en heures de la formation est inférieure ou égale à 1200
+    Et la durée en mois de la formation est inférieure ou égale à 12
+
+        Si le financement est de type «CDI»
+            Si le type de contrat du bénéficiaire est «CDI»
+            Et l'ancienneté en mois du bénéficiaire dans son entreprise est supérieure ou égale à 12
+                Si l'IDCC de l'établissement du bénéficiaire ne fait pas partie des codes IDCC de l'artisanat, et l'expérience professionnelle du bénéficiaire dans les cinq dernières années est supérieure ou égale à 24
+                Ou l'IDCC de l'établissement du bénéficiaire fait partie des codes IDCC de l'artisanat, et l'expérience professionnelle du bénéficiaire dans les cinq dernières années est supérieure ou égale à 36
+                    Si le financement est de type «sur son temps de travail»
+                        Alors appliquer les règles de l'OPACIF de l'établissement du bénéficiaire
+                    Si le financement est de type «hors temps de travail»
+                        Si la durée en heures de la formation est supérieure ou égale à 120
+                            Alors appliquer les règles de l'OPACIF de l'établissement du bénéficiaire
+
+        Si le financement est de type «CDD»
+            Si le type de contrat du bénéficiaire est «CDD»
+            Et le nombre de mois travaillés par le bénéficiaire dans la dernière année est supérieur ou égal à 4
+                Si l'âge du bénéficiaire est inférieur à 26, et l'expérience professionnelle du bénéficiaire dans les cinq dernières années est supérieure ou égale à 12
+                Ou l'âge du bénéficiaire est supérieur ou égal à 26, et l'expérience professionnelle du bénéficiaire dans les cinq dernières années est supérieure ou égale à 24
+                    Si le financement est de type «sur son temps de travail»
+                        Alors appliquer les règles de l'OPACIF de l'établissement du bénéficiaire
+                    Si le financement est de type «hors temps de travail»
+                        Si la durée en heures de la formation est supérieure ou égale à 120
+                            Alors appliquer les règles de l'OPACIF de l'établissement du bénéficiaire
+
+        Si le financement est de type «intermittent»
+            Si le type de contrat du bénéficiaire est «intermittent»
+            Et l'expérience professionnelle du bénéficiaire dans les cinq dernières années est supérieure ou égale à 24
+            Et la durée en heures de la formation est supérieure ou égale à 105
+                Alors appliquer les règles de l'OPACIF de l'établissement du bénéficiaire
+
+        Si le financement est de type «interim»
+            Si le type de contrat du bénéficiaire est «intérimaire»
+            Et l'ancienneté en heures du bénéficiaire dans son entreprise est supérieure ou égale à 600
+            Et le nombre d'heures travaillées par le bénéficiaire dans les dix-huit derniers mois est supérieur ou égal à 1600
+                Alors appliquer les règles de l'OPACIF de l'établissement du bénéficiaire
