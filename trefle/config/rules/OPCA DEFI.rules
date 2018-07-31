@@ -1,12 +1,14 @@
-Si le nom de l'organisme est «OPCA_DEFI»
+Si le financement est de type «CPF»
     Alors le plafond horaire applicable est égal au solde CPF du bénéficiaire
-    Si l'IDCC de l'établissement du bénéficiaire vaut 292
+
+    Si l'IDCC de l'établissement du bénéficiaire vaut «292»
         Alors le prix horaire plafond applicable vaut 25
         Si c'est une formation VAE
             Alors le plafond horaire applicable est égal à la durée en heures de la formation
         Si le code NAF de l'établissement du bénéficiaire fait partie des codes NAF CPNE éligibles
             Alors le prix horaire plafond applicable est égal au prix horaire de la formation
-    Si l'IDCC de l'établissement du bénéficiaire vaut 0044
+
+    Si l'IDCC de l'établissement du bénéficiaire vaut «44»
         Alors le prix horaire plafond applicable vaut 35
         Si c'est une formation VAE
             Alors le prix horaire plafond applicable est égal au prix horaire de la formation
@@ -21,12 +23,14 @@ Si le nom de l'organisme est «OPCA_DEFI»
                 Alors le plafond financier applicable vaut 3000
         Si le code NAF de l'établissement du bénéficiaire fait partie des codes NAF CPNE éligibles
             Alors le prix horaire plafond applicable est égal au prix horaire de la formation
+
     Si l'IDCC de l'établissement du bénéficiaire fait partie de [«76»,«1388»]
         Alors le prix horaire plafond applicable est égal au prix horaire de la formation
         Alors le plafond horaire applicable est égal au solde CPF du bénéficiaire
         Si c'est une formation VAE
             Alors le plafond horaire applicable est égal à la durée en heures de la formation
-    Si l'IDCC de l'établissement du bénéficiaire vaut 1555
+
+    Si l'IDCC de l'établissement du bénéficiaire vaut «1555»
         Alors le plafond horaire applicable est égal au solde CPF du bénéficiaire
         Si c'est une formation VAE
             Alors le prix horaire plafond applicable est égal au prix horaire de la formation
@@ -35,3 +39,13 @@ Si le nom de l'organisme est «OPCA_DEFI»
             Alors le prix horaire plafond applicable est égal au prix horaire de la formation
         Si le domaine FORMACODE langues fait partie de la liste des domaines FORMACODE de la formation
             Alors le prix horaire plafond applicable vaut 12
+
+Si le financement est de type «période de professionnalisation»
+    # Formation industrielle
+    Si la liste des domaines FORMACODE de la formation contient 316
+    Ou c'est une formation CléA
+        Alors le financement est éligible
+        Et le prix horaire plafond applicable vaut 10
+
+        Si c'est une formation qualifiante
+            Alors le prix horaire plafond applicable vaut 20
