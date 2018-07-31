@@ -6,7 +6,8 @@ Si le financement est de type «CPF»
         Alors le prix horaire plafond applicable vaut 75
 
 Si le financement est de type «période de professionnalisation»
-    Alors le prix horaire plafond applicable vaut 9.15
+    Alors le financement est éligible
+    Et le prix horaire plafond applicable vaut 9.15
 
 Si la région de l'établissement du bénéficiaire est «Guadeloupe»
 Ou la région de l'établissement du bénéficiaire est «Martinique»

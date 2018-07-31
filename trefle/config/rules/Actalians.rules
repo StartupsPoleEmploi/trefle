@@ -18,4 +18,5 @@ Si le financement est de type «CPF»
         Alors le prix horaire plafond applicable vaut 60
 
 Si le financement est de type «période de professionnalisation»
-    Alors le prix horaire plafond applicable vaut 9.15
+    Alors le financement est éligible
+    Et le prix horaire plafond applicable vaut 9.15

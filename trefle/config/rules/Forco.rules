@@ -1,24 +1,23 @@
-Si le nom de l'organisme est «Forco»
-
-    Si le financement est de type «CPF»
-        Alors le prix horaire plafond applicable vaut 45
-        Alors le plafond horaire applicable est égal au solde CPF du bénéficiaire
+Si le financement est de type «CPF»
+    Alors le prix horaire plafond applicable vaut 45
+    Alors le plafond horaire applicable est égal au solde CPF du bénéficiaire
+    Si c'est une formation VAE
+        # idcc = commerce de détail non alimentaire
+        Alors le plafond horaire applicable est égal à la durée en heures de la formation
+    Si c'est un permis B
+        Alors le prix horaire plafond applicable vaut 40
+        Alors le plafond financier applicable vaut 750
+    Si l'IDCC de l'établissement du bénéficiaire fait partie de [«0675»,«0468»,«1431»,«1487»,«2198»,«0043»,«1557»,«2162»]
+        Alors le prix horaire plafond applicable vaut 40
+    Si l'IDCC de l'établissement du bénéficiaire vaut «1517»
+        Alors le prix horaire plafond applicable vaut 50
         Si c'est une formation VAE
-            # idcc = commerce de détail non alimentaire
             Alors le plafond horaire applicable est égal à la durée en heures de la formation
-        Si c'est un permis B
-            Alors le prix horaire plafond applicable vaut 40
-            Alors le plafond financier applicable vaut 750
-        Si l'IDCC de l'établissement du bénéficiaire fait partie de [«0675»,«0468»,«1431»,«1487»,«2198»,«0043»,«1557»,«2162»]
-            Alors le prix horaire plafond applicable vaut 40
-        Si l'IDCC de l'établissement du bénéficiaire vaut «1517»
-            Alors le prix horaire plafond applicable vaut 50
-            Si c'est une formation VAE
-                Alors le plafond horaire applicable est égal à la durée en heures de la formation
 
-    Si le financement est de type «période de professionnalisation»
+Si le financement est de type «période de professionnalisation»
 
-        Si c'est une formation VAE
-        # formation commerce et distribution
-        Ou la liste des domaines FORMACODE de la formation contient 345, et c'est une formation qualifiante
-            Alors le prix horaire plafond applicable vaut 9.15
+    Si c'est une formation VAE
+    # formation commerce et distribution
+    Ou la liste des domaines FORMACODE de la formation contient 345, et c'est une formation qualifiante
+        Alors le financement est éligible
+        Et le prix horaire plafond applicable vaut 9.15

@@ -1,28 +1,26 @@
-Si le nom de l'organisme est «FAF.TT»
+Si le financement est de type «CPF»
+    Alors le prix horaire plafond applicable vaut 12
+    Et le plafond horaire applicable est égal au solde CPF du bénéficiaire
 
-    Si le financement est de type «CPF»
-        Alors le prix horaire plafond applicable vaut 12
-        Et le plafond horaire applicable est égal au solde CPF du bénéficiaire
+    Si c'est une formation TOEIC
+    Ou c'est une formation BULATS
+        Alors le prix horaire plafond applicable vaut 60
 
-        Si c'est une formation TOEIC
-        Ou c'est une formation BULATS
-            Alors le prix horaire plafond applicable vaut 60
+    Si c'est une formation CACES
+        Alors le prix horaire plafond applicable vaut 10
 
-        Si c'est une formation CACES
-            Alors le prix horaire plafond applicable vaut 10
+    Si c'est une formation VAE
+        Alors le prix horaire plafond applicable vaut 63
+        Et le plafond horaire applicable vaut 24
+        Et le plafond financier applicable vaut 1525
 
-        Si c'est une formation VAE
-            Alors le prix horaire plafond applicable vaut 63
-            Et le plafond horaire applicable vaut 24
-            Et le plafond financier applicable vaut 1525
+Si le financement est de type «CIF»
+    Alors le plafond financier applicable vaut 18000
+    Et le prix horaire plafond applicable vaut 27.45
 
-    Si le financement est de type «CIF»
-        Alors le plafond financier applicable vaut 18000
-        Et le prix horaire plafond applicable vaut 27.45
+    Si le financement est de type «sur son temps de travail»
+        Alors la rémunération applicable est égale à la rémunération du bénéficiaire
+        Et l'indemnité compensatrice de congés payés est égale à 10% de la rémunération du bénéficiaire
 
-        Si le financement est de type «sur son temps de travail»
-            Alors la rémunération applicable est égale à la rémunération du bénéficiaire
-            Et l'indemnité compensatrice de congés payés est égale à 10% de la rémunération du bénéficiaire
-
-            Si la rémunération du bénéficiaire est supérieure à deux fois le SMIC
-                Alors la rémunération applicable est égale à 90% de la rémunération du bénéficiaire
+        Si la rémunération du bénéficiaire est supérieure à deux fois le SMIC
+            Alors la rémunération applicable est égale à 90% de la rémunération du bénéficiaire

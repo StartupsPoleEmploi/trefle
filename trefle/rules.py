@@ -84,7 +84,6 @@ def action(pattern):
 
     def wrapper(func):
         Action.PATTERNS[re.compile(pattern)] = func
-        func.on_act = None
         return func
 
     return wrapper
@@ -105,15 +104,6 @@ def reason(msg):
 
     def wrapper(func):
         func.reason = msg
-        return func
-
-    return wrapper
-
-
-def on_act(target):
-
-    def wrapper(func):
-        func.on_act = target
         return func
 
     return wrapper
@@ -233,11 +223,6 @@ class Action(Step):
             self.func(context, **self.params)
         except NoDataError as err:
             raise NoDataError(f'No data for `{err}` in `{self.raw}`')
-        self.on_act(context)
-
-    def on_act(self, context):
-        if self.func.on_act:
-            self.func.on_act(context, **self.params)
 
 
 class Condition(Step):
@@ -306,24 +291,22 @@ class Condition(Step):
         return self.func and self.func.no_status
 
 
-def set_eligible(context, **params):
+@action(r"le financement est éligible")
+def set_eligible(context):
     context['financement.eligible'] = True
 
 
-@on_act(set_eligible)
 @action(r"(l'|les? |la )(?P<key>.+) (vaut|est) (?P<value>[\w«» +\-'\.]+)$")
 @action(r"(l'|les? |la )(?P<key>.+) est égale? (à la|à|aux?)? (?P<value>[\w«» +\-\.']+)$")
 def set_value(context, key: Label, value: Pointer):
     context[key] = value.get(**context)
 
 
-@on_act(set_eligible)
 @action(r"(l'|les? |la )(?P<key>.+) est égale? à (?P<rate>[\d\.]+)% (de la|du) (?P<value>[\w«» +\-\.']+)$")
 def set_percent(context, key: Label, rate: float, value: Pointer):
     context[key] = value.get(**context) * rate / 100
 
 
-@on_act(set_eligible)
 @action(r"c'est une? (?P<key>.+)")
 def set_true(context, key: Label):
     context[key] = True
@@ -339,7 +322,6 @@ def include(context, rule: Pointer):
         context['status'].append(status)
 
 
-@on_act(set_eligible)
 @action(r"il n'y a pas de (?P<key>[\w ]+)$")
 def unset_key(context, key: Label):
     try:

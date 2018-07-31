@@ -24,7 +24,8 @@ Si le financement est de type «CIF»
 
 Si le financement est de type «période de professionnalisation»
     # FORMATION non prioritaire
-    Alors le prix horaire plafond applicable vaut 11
+    Alors le financement est éligible
+    Et le prix horaire plafond applicable vaut 11
 
     # filière éducative, animation, soin, aide et accompagnement à la personne
     Si la liste des codes FORMACODE de la formation contient 42056, ou la liste des domaines FORMACODE de la formation contient 440

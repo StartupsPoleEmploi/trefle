@@ -15,7 +15,8 @@ Si le nom de l'organisme est «OPCA 3+»
         # ('172', 'Bois de pin maritime en forêt de Gascogne'),
         # ('83', 'Menuiseries, charpentes et constructions industrialisées'),
         Si l'IDCC de l'établissement du bénéficiaire fait partie de [«1411»,«2089»,«158»,«172»,«83»]
-            Alors le prix horaire plafond applicable vaut 10
+            Alors le financement est éligible
+            Et le prix horaire plafond applicable vaut 10
             Si c'est une formation qualifiante
                 Alors le prix horaire plafond applicable vaut 15
 
@@ -31,7 +32,8 @@ Si le nom de l'organisme est «OPCA 3+»
         # ('832', 'Ciments (Fabrication) ouvriers'),
         # ('1170', 'Tuiles et briques : industrie')]
         Si l'IDCC de l'établissement du bénéficiaire fait partie de [«211»,«135»,«87»,«489»,«1558»,«3151»,«363»,«833»,«832»,«1170»]
-            Alors le prix horaire plafond applicable vaut 13
+            Alors le financement est éligible
+            Et le prix horaire plafond applicable vaut 13
             # TODO: pour les actions liées aux emplois de production, maintenance, qualité, sécurité, environnement ainsi que pour les actions permettant d'accéder à des fonctions nouvelles de chef d'équipe, d'agent de maitrise ou de cadre,
             # TODO VAE: https://www.opca3plus.fr/Espace_Entreprises/Former_les_salaries/Periode_de_professionnalisation/134-En_resume#onglet
             Si la durée en heures de la formation est supérieure ou égale à 35
@@ -46,7 +48,8 @@ Si le nom de l'organisme est «OPCA 3+»
         # ('1492', 'Papiers, cartons et celluloses (production) OETAM'),
         # ('1495', 'Papiers, cartons et de la pellicule cellulosique (transformation) OETAM'),
         Si l'IDCC de l'établissement du bénéficiaire fait partie de [«925»,«802»,«700»,«707»,«1492»,«1495»]
-            Alors le prix horaire plafond applicable vaut 15
+            Alors le financement est éligible
+            Et le prix horaire plafond applicable vaut 15
             Si c'est une formation qualifiante
                 Alors le prix horaire plafond applicable vaut 35
             # https://www.opca3plus.fr/Espace_Entreprises/Former_les_salaries/Periode_de_professionnalisation/134-En_resume#onglet
