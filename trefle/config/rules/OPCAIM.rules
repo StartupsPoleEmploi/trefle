@@ -1,6 +1,15 @@
-Si le nom de l'organisme est «OPCAIM»
+Si le financement est de type «CPF»
+
     Alors le prix horaire plafond applicable vaut 45
-    Alors le plafond horaire applicable est égal au solde CPF du bénéficiaire
+    Et le plafond horaire applicable est égal au solde CPF du bénéficiaire
+
     Si c'est une formation VAE
         Alors le prix horaire plafond applicable vaut 62
-        Alors le plafond horaire applicable est égal à la durée en heures de la formation
+        Et le plafond horaire applicable est égal à la durée en heures de la formation
+
+Si le financement est de type «période de professionnalisation»
+    # formation industrielle
+    Si la liste des domaines FORMACODE de la formation contient 316
+    Et c'est une formation qualifiante
+        Alors le financement est éligible
+        Et le prix horaire plafond applicable vaut 32
