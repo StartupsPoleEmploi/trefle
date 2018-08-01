@@ -65,6 +65,4 @@ def after_all(context):
 def after_step(context, step):
     if step.status == "failed":
         print('Data was:')
-        if 'financements' in context.data:
-            del context.data['financements']
         print(json.dumps(context.data))
