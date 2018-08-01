@@ -1,4 +1,5 @@
-Si le nom de l'organisme est «Intergros»
+Si le financement est de type «CPF»
+
     Alors le plafond horaire applicable est égal au solde CPF du bénéficiaire
     Et le prix horaire plafond applicable vaut 30
 
@@ -13,3 +14,16 @@ Si le nom de l'organisme est «Intergros»
 
     Si c'est une formation CléA
         Alors le prix horaire plafond applicable vaut 18
+
+Si le financement est de type «période de professionnalisation»
+
+    Si c'est une formation CléA
+        Alors le financement est éligible
+        Et le prix horaire plafond applicable vaut 18
+
+        Si c'est une formation ouverte à distance
+            Alors le prix horaire plafond applicable vaut 10
+
+    Si le code RNCP de la formation est 16457
+        Alors le financement est éligible
+        Et le prix horaire plafond applicable vaut 20
