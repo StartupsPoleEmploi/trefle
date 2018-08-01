@@ -117,7 +117,8 @@ def extrapolate_formation_context(context):
 
 def preprocess(context):
     for rules in PREPROCESS.values():
-        Rule.process(rules, context)
+        for rule in rules:
+            Rule.process(rule, context)
 
 
 def financement_to_organisme(context, financement):
@@ -187,15 +188,19 @@ def compute_modalites(context, financement):
 
 
 def check_financement(context, financement):
-    # TODO: use flatten() instead?
     context['status'] = []
+    financement['status'] = []
+    # TODO: use flatten() instead?
     context['financement.nom'] = financement['nom']
     context['financement.tags'] = financement['tags']
     context['financement.eligible'] = False
     financement_to_organisme(context, financement)
     id_ = f'rules/{financement["tags"][0]}.rules'
-    status = Rule.process(RULES[id_], context)
-    financement['status'] = [status] + context['status']
+    rules = RULES[id_]
+    for rule in rules:
+        status = Rule.process(rule, context)
+        financement['status'].append(status)
+    financement['status'] += context['status']
     if context['financement.eligible']:
         compute_modalites(context, financement)
         load_organisme_contact_details(context, financement)

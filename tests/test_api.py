@@ -117,14 +117,14 @@ async def test_simulate_endpoint_filter_eligible(client):
     resp = await client.post('/financement?eligible=true', body=body)
     assert resp.status == HTTPStatus.OK
     financements = json.loads(resp.body)['financements']
-    assert len(financements) == 3
+    assert len(financements) == 2
     for financement in financements:
         assert financement['eligible'] is True
     # Filter non eligible only
     resp = await client.post('/financement?eligible=false', body=body)
     assert resp.status == HTTPStatus.OK
     financements = json.loads(resp.body)['financements']
-    assert len(financements) == 8
+    assert len(financements) == 9
     for financement in financements:
         assert financement['eligible'] is False
 

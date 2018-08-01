@@ -316,10 +316,11 @@ def set_true(context, key: Label):
 def include(context, rule: Pointer):
     rule = rule.get(**context)
     name = f'rules/{rule}.rules'
-    rule = RULES.get(name)
-    status = Rule.process(rule, context)
-    if status is not None:  # If root status is a no_status one.
-        context['status'].append(status)
+    rules = RULES.get(name)
+    for rule in rules:
+        status = Rule.process(rule, context)
+        if status is not None:  # If root status is a no_status one.
+            context['status'].append(status)
 
 
 @action(r"il n'y a pas de (?P<key>[\w ]+)$")
@@ -426,13 +427,9 @@ class Rule:
             condition = self.root
         status = condition.assess(context)
         overall = overall and status
-        if status.condition.no_status:
-            if status:
-                # Skip this status for final output.
-                status = parent
-            else:
-                # Stop recursion.
-                return parent
+        if not status and status.condition.no_status:
+            # Stop recursion.
+            return parent
         elif parent is not None:
             status.parent = parent
             parent.children.append(status)
@@ -508,15 +505,13 @@ class Rule:
         return rules
 
     @staticmethod
-    def process(rules, context):
-        for rule in rules:
-            try:
-                status = rule.assess(context)
-            except NoDataError as err:
-                # Give more context.
-                err.args = (f'{err} (from `{rule}`)',)
-                raise
-        return status
+    def process(rule, context):
+        try:
+            return rule.assess(context)
+        except NoDataError as err:
+            # Give more context.
+            err.args = (f'{err} (from `{rule}`)',)
+            raise
 
     def __repr__(self):
         return f'<Rule: {self.name}>'

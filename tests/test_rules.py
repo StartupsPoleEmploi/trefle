@@ -227,9 +227,9 @@ def test_process_with_simple_condition(patch_schema):
 Si c'est un bénéficiaire de droit privé
     Alors la rémunération applicable vaut 40
 """
-    trees = Rule.load(data.splitlines(), name='foo')
+    tree = Rule.load(data.splitlines(), name='foo')[0]
     context = {'droit_prive': True}
-    Rule.process(trees, context)
+    Rule.process(tree, context)
     assert context['remuneration'] == 40
 
 
@@ -239,9 +239,9 @@ def test_process_with_false_condition(patch_schema):
 Si c'est un bénéficiaire de droit privé
     Alors la rémunération applicable vaut 40
 """
-    trees = Rule.load(data.splitlines(), name='foo')
+    tree = Rule.load(data.splitlines(), name='foo')[0]
     context = {'droit_prive': False}
-    Rule.process(trees, context)
+    Rule.process(tree, context)
     assert 'remuneration' not in context
 
 
@@ -252,9 +252,9 @@ Si c'est un bénéficiaire de droit privé
     Si c'est une formation éligible COPANEF
         Alors la rémunération applicable vaut 40
 """
-    trees = Rule.load(data.splitlines(), name='foo')
+    tree = Rule.load(data.splitlines(), name='foo')[0]
     context = {'droit_prive': True, 'copanef': True}
-    Rule.process(trees, context)
+    Rule.process(tree, context)
     assert context['remuneration'] == 40
 
 
@@ -265,9 +265,9 @@ Si c'est un bénéficiaire de droit privé
     Si c'est une formation éligible COPANEF
         Alors la rémunération applicable vaut 40
 """
-    trees = Rule.load(data.splitlines(), name='foo')
+    tree = Rule.load(data.splitlines(), name='foo')[0]
     context = {'droit_prive': True, 'copanef': False}
-    Rule.process(trees, context)
+    Rule.process(tree, context)
     assert 'remuneration' not in context
 
 
@@ -280,9 +280,9 @@ Si c'est un bénéficiaire de droit privé
     Si c'est un permis B
         Alors le prix horaire applicable vaut 20
 """
-    trees = Rule.load(data.splitlines(), name='foo')
+    tree = Rule.load(data.splitlines(), name='foo')[0]
     context = {'droit_prive': True, 'copanef': True, 'permis_b': True}
-    Rule.process(trees, context)
+    Rule.process(tree, context)
     assert context['remuneration'] == 40
     assert context['prix'] == 20
 
@@ -296,8 +296,8 @@ Si c'est un bénéficiaire de droit privé
     Si c'est un permis B
         Alors le prix horaire applicable vaut 20
 """
-    trees = Rule.load(data.splitlines(), name='foo')
+    tree = Rule.load(data.splitlines(), name='foo')[0]
     context = {'droit_prive': True, 'copanef': False, 'permis_b': True}
-    Rule.process(trees, context)
+    Rule.process(tree, context)
     assert 'remuneration' not in context
     assert context['prix'] == 20
