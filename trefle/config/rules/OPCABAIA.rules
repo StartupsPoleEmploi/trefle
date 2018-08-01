@@ -1,4 +1,4 @@
-Si le nom de l'organisme est «OPCABAIA»
+Si le financement est de type «CPF»
     Alors le plafond horaire applicable est égal au solde CPF du bénéficiaire
     Et le prix horaire plafond applicable est égal au prix horaire de la formation
 
@@ -39,3 +39,34 @@ Si le nom de l'organisme est «OPCABAIA»
             Et le plafond financier applicable vaut 2500
         Si c'est une formation VAE
             Alors le plafond financier applicable vaut 2500
+
+Si le financement est de type «période de professionnalisation»
+
+    # licence professionnelle assurance banque
+    Si le code RNCP de la formation est 30181
+    # BTS assurance
+    Ou le code RNCP de la formation est 4922
+    # Conseiller en assurance
+    Ou le code RNCP de la formation est 1522
+    # BP : Brevet professionnel Assurances
+    Ou le code RNCP de la formation est 967
+    # manager de l'assurance
+    Ou le code RNCP de la formation est 5475
+    # Licence Professionnelle ASSURANCE
+    Ou le code RNCP de la formation est 6402
+    # DEUST droit des assurances
+    Ou le code RNCP de la formation est 2904
+    # Conseiller de clientèle banque assurance
+    Ou le code RNCP de la formation est 15762
+    # CQP : Certificat de qualification professionnelle Gestionnaire assurances de personnes
+    Ou le code RNCP de la formation est 14544
+        Alors le financement est éligible
+        Et le prix horaire plafond applicable vaut 20
+
+    Si c'est une formation CléA
+        Alors le financement est éligible
+        Et le prix horaire plafond applicable vaut 15
+
+    Si c'est une formation VAE
+        Alors le financement est éligible
+        Et le plafond financier applicable vaut 2500
