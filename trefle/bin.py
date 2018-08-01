@@ -105,7 +105,7 @@ async def cli_simulate(*args, context: json.loads={}, url=None, trace=False,
                   financement['plafond_prise_en_charge'], '€')
         print('  Rémunération:', financement['remuneration'], '€')
         if trace:
-            for status in financement['trace']:
+            for status in financement['status']:
                 render_status(status)
         print('')
     print('Financements non éligibles')
@@ -113,7 +113,7 @@ async def cli_simulate(*args, context: json.loads={}, url=None, trace=False,
     for financement in non_eligibles:
         print('- Nom:', financement['nom'])
         if trace:
-            for status in financement['trace']:
+            for status in financement['status']:
                 render_status(status)
     if output_scenario:
         if url:
