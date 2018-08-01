@@ -117,3 +117,32 @@ Scénario: Pas de plan de formation avec le niveau de sortie III
     Et le niveau de sortie de la formation vaut «III»
     Quand je demande un calcul de financement
     Alors le financement «Plan de formation sur son temps de travail» n'est pas proposé
+
+
+Scénario: Cas d'une période de professionnalisation CDI VAE
+    Soit un bénéficiaire et une formation
+    Et c'est un bénéficiaire de droit privé
+    Et la rémunération du bénéficiaire vaut 1400
+    Et le type de contrat du bénéficiaire vaut «CDI»
+    Et l'IDCC de l'établissement du bénéficiaire vaut «5567»
+    Et la durée en heures de la formation vaut 100
+    Et la durée en mois de la formation vaut 10
+    Et c'est une formation VAE
+    Quand je demande un calcul de financement
+    Quand je sélectionne le financement «Période de professionnalisation sur son temps de travail»
+    Alors l'organisme à contacter est «Afdas»
+    Et le plafond de prise en charge vaut 2500
+    Et la rémunération applicable vaut 1400
+
+
+Scénario: Pas de période de professionnalisation pour un CDD
+    Soit un bénéficiaire et une formation
+    Et c'est un bénéficiaire de droit privé
+    Et la rémunération du bénéficiaire vaut 1400
+    Et le type de contrat du bénéficiaire vaut «CDD»
+    Et l'IDCC de l'établissement du bénéficiaire vaut «5567»
+    Et la durée en heures de la formation vaut 100
+    Et la durée en mois de la formation vaut 10
+    Et c'est une formation VAE
+    Quand je demande un calcul de financement
+    Alors le financement «Période de professionnalisation sur son temps de travail» n'est pas proposé

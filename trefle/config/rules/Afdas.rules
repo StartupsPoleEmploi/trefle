@@ -53,3 +53,42 @@ Si le financement est de type «plan de formation»
         Si c'est un bilan de compétences
             Alors le financement est éligible
             Et le plafond financier applicable vaut 1800
+
+Si le financement est de type «période de professionnalisation»
+
+    Si le type de contrat du bénéficiaire est «CDI»
+
+        Si c'est une formation VAE
+            Alors le financement est éligible
+            Et le plafond financier applicable vaut 2500
+
+        # langues
+        Si le domaine FORMACODE langues fait partie de la liste des domaines FORMACODE de la formation
+        # bureautique
+        Ou la liste des codes FORMACODE de la formation contient au moins un code parmi [70054,31056]
+        Ou c'est une formation ouverte à distance
+        Ou le niveau de sortie de la formation fait partie de [«I»,«II»]
+            Alors le financement est éligible
+            Et le prix horaire plafond applicable vaut 40
+
+        Si c'est un bilan de compétences
+            Alors le financement est éligible
+            Et le plafond financier applicable vaut 1800
+
+        # spectacle
+        # Intitulé CQP : Certificat de qualification professionnelle Accrocheur - rigger
+        Si le code RNCP de la formation est 20613
+        # CQP WEBDESIGNER
+        Ou le code RNCP de la formation est 4725
+        # CQP RESPONSABLE DE PRODUCTION OMNICANAL
+        Ou le code RNCP de la formation est 24854
+        # CQP DEVELOPPEUR DE FORMATS AUDIOVISUELS ET NUMERIQUES
+        Ou le code CERTIFINFO de la formation est 98231
+        # CQP MACHINISTE
+        Ou le code RNCP de la formation est 23706
+        # CQP RESTAURATEUR NUMÉRIQUE OPTION IMAGE
+        Ou le code RNCP de la formation est 23710
+        # CQP ANIMATEUR RADIO
+        Ou le code RNCP de la formation est 12303
+            Alors le financement est éligible
+            Et le plafond financier applicable vaut 1000
