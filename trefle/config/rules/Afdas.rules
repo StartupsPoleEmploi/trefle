@@ -31,3 +31,25 @@ Si le financement est de type «CIF»
         # HT
         Alors le plafond financier applicable vaut 21000
         Et le prix horaire plafond applicable vaut 35
+
+Si le financement est de type «plan de formation»
+
+    Si le type de contrat du bénéficiaire fait partie de [«CDD»,«CDI»]
+        Alors la rémunération applicable est égale à la rémunération du bénéficiaire
+
+        Si c'est une formation VAE
+            Alors le financement est éligible
+            Et le plafond financier applicable vaut 2500
+
+        # langues
+        Si la liste des domaines FORMACODE de la formation contient 152
+        Ou la liste des codes FORMACODE de la formation contient au moins un code parmi [70054,31056]
+        Ou c'est une formation ouverte à distance
+        Ou le niveau de sortie de la formation fait partie de [«I»,«II»]
+            Alors le financement est éligible
+            Et le prix horaire plafond applicable vaut 40
+
+
+        Si c'est un bilan de compétences
+            Alors le financement est éligible
+            Et le plafond financier applicable vaut 1800
