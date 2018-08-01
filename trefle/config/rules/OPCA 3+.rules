@@ -17,8 +17,31 @@ Si le nom de l'organisme est «OPCA 3+»
         Si l'IDCC de l'établissement du bénéficiaire fait partie de [«1411»,«2089»,«158»,«172»,«83»]
             Alors le financement est éligible
             Et le prix horaire plafond applicable vaut 10
+
             Si c'est une formation qualifiante
                 Alors le prix horaire plafond applicable vaut 15
+
+            Si l'IDCC de l'établissement du bénéficiaire vaut «83»
+                Alors le prix horaire plafond applicable vaut 12
+
+            Si l'IDCC de l'établissement du bénéficiaire vaut «1411»
+                # CQP Garnisseur en sièges contemporains
+                Si le code RNCP de la formation est 1814
+                # CQP Vernisseur de l’ameublement
+                Ou le code RNCP de la formation est 1811
+                # CQP Conducteurs de matériels automatisés pour la fabrication de l’ameublement
+                Ou le code CERTIFINFO de la formation est 94775
+                    Alors le prix horaire plafond applicable vaut 15
+
+            Si l'IDCC de l'établissement du bénéficiaire vaut «2089»
+                # CQP Vendeur-interne
+                Si le code RNCP de la formation est 94775
+                # CQP Manager d'équipe
+                Ou le code RNCP de la formation est 16222
+                # CQP Responsable de centre de profit
+                Ou le code CERTIFINFO de la formation est 54162
+                    Alors le prix horaire plafond applicable vaut 25
+
 
         # Matériaux pour la Construction et l'Industrie
         # ('211', 'Carrières et matériaux : industries (cadres)'),
@@ -54,3 +77,18 @@ Si le nom de l'organisme est «OPCA 3+»
                 Alors le prix horaire plafond applicable vaut 35
             # https://www.opca3plus.fr/Espace_Entreprises/Former_les_salaries/Periode_de_professionnalisation/134-En_resume#onglet
             # TODO 25 €/heure, dans la limite du coût réel justifié, pour les périodes conclues en vue de l'obtention d'un diplôme ou d'un titre professionnels inscrits au RNCP ou d'une certification de l'inventaire de la CNCP, si ces derniers sont inscrits sur la liste de la CPNEF de l'IPC,
+
+        # papier cartons idcc 3224
+        Si l'IDCC de l'établissement du bénéficiaire vaut 3224
+
+            # CQP Agent de production papier carton
+            Si le code RNCP de la formation est 20664
+            # CQP Niveau III transformation du papier-carton
+            Ou le code CERTIFINFO de la formation est 54056
+            # CQP Conducteur de machine papier carton
+            Ou le code RNCP de la formation est 20664
+            # CQP Maintenance en papeterie
+            Ou le code CERTIFINFO de la formation est 80840
+            # CQP Conducteur d’équipement de transformation du papier en bobines
+            Ou le code CERTIFINFO de la formation est 80924
+                Alors le prix horaire applicable vaut 35
