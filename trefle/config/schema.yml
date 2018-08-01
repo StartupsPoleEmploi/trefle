@@ -471,8 +471,9 @@ formation:
       6: III
       7: II
       8: I
-  individuel:
+  individuels:
     type: boolean
+    default: false
     label: formation ouverte aux bénéficiaires individuels
 financement:
   nom:
