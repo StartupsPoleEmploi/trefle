@@ -6,15 +6,15 @@ from pathlib import Path
 
 import yaml
 
-from .exceptions import NoStepError, WrongPointerError
-from .helpers import fold_name
-from .rules import Rule, SCHEMA, LABELS, RULES
+from ..exceptions import NoStepError, WrongPointerError
+from ..helpers import fold_name
+from ..rules import Rule, SCHEMA, LABELS, RULES
 
 
 CONSTANTS = {}
 FINANCEMENTS = []
 ORGANISMES = {}
-ROOT = Path(__file__).parent / 'config'
+ROOT = Path(__file__).parent
 IDCC = {}
 RAW_RULES = {}
 GLOSSARY = {}
@@ -93,7 +93,7 @@ def load_financements(data, output=None, properties=None, namespace=None):
 
 def load_naf(data):
     # Data from https://www.insee.fr/fr/information/2406147
-    from .validators import format_naf
+    from ..validators import format_naf
     out = defaultdict(list)
     reader = csv.DictReader(data.split('\n'), delimiter=';')
     for line in reader:
