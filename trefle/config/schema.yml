@@ -588,6 +588,7 @@ financement:
           type: object
           additionalProperties:
             type: string
+            nullable: true
         terms:
           # TODO dry me
           type: array

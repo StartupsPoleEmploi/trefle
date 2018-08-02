@@ -1,0 +1,14 @@
+Si c'est un bénéficiaire de droit privé
+Et c'est une formation ouverte aux bénéficiaires individuels
+
+    Si le financement est de type «CIF»
+        Alors appliquer les règles «CIF»
+
+    Si le financement est de type «CPF»
+        Alors appliquer les règles «CPF»
+
+    Si le financement est de type «période de professionnalisation»
+        Alors appliquer les règles «période de professionnalisation»
+
+    Si le financement est de type «plan de formation»
+        Alors appliquer les règles de l'OPCA de l'établissement du bénéficiaire

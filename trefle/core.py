@@ -14,7 +14,7 @@ async def simulate(context):
     routine.preprocess(context)
     routine.idcc_to_organismes(context)
 
-    financements = [dict(f) for f in FINANCEMENTS]  # Copy.
+    financements = [f.copy() for f in FINANCEMENTS]
     # Compute organisme, prise en charge, rémunération per financement
     for financement in financements:
         routine.check_financement(context.copy(), financement)

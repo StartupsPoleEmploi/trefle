@@ -32,14 +32,14 @@ def colorize(s, status, prefix='✓✗'):
     return func(f'{char}{s}')
 
 
-def render_status(status):
+def render_status(status, level=0):
     terms = status.terms or [status]
     line = f' {status.condition.connective} '.join(
         colorize(t.condition, t.status, prefix=None) for t in terms)
-    prefix = colorize('', status.status)
+    prefix = colorize('  '*level, status.status)
     print(f'    {prefix} {line}')
     for child in status.children:
-        render_status(child)
+        render_status(child, level=level+1)
 
 
 @cli(name='simulate')

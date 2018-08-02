@@ -1,7 +1,7 @@
 from lxml import etree
 
 from .config import (CONSTANTS, DEP_TO_REG, ELIGIBILITE_URL, IDCC,
-                     INTERCARIF_URL, ORGANISMES, PREPROCESS, RULES, SCHEMA)
+                     INTERCARIF_URL, ORGANISMES, RULES, SCHEMA)
 from .exceptions import UpstreamError
 from .helpers import diff_month, diff_week, http_get
 from .rules import Rule
@@ -116,9 +116,8 @@ def extrapolate_formation_context(context):
 
 
 def preprocess(context):
-    for rules in PREPROCESS.values():
-        for rule in rules:
-            Rule.process(rule, context)
+    for rule in RULES['rules/preprocess.rules']:
+        Rule.process(rule, context)
 
 
 def financement_to_organisme(context, financement):
@@ -195,12 +194,11 @@ def check_financement(context, financement):
     context['financement.tags'] = financement['tags']
     context['financement.eligible'] = False
     financement_to_organisme(context, financement)
-    id_ = f'rules/{financement["tags"][0]}.rules'
-    rules = RULES[id_]
-    for rule in rules:
+    for rule in RULES['rules/racine.rules']:
         status = Rule.process(rule, context)
-        financement['status'].append(status)
-    financement['status'] += context['status']
+        if status is not None:  # Root is a no_status condition.
+            context['status'].append(status)
+    financement['status'] = context['status']
     if context['financement.eligible']:
         compute_modalites(context, financement)
         load_organisme_contact_details(context, financement)

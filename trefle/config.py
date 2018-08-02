@@ -12,7 +12,6 @@ from .rules import Rule, SCHEMA, LABELS, RULES
 
 
 CONSTANTS = {}
-PREPROCESS = {}
 FINANCEMENTS = []
 ORGANISMES = {}
 ROOT = Path(__file__).parent / 'config'
@@ -131,8 +130,6 @@ def init():
     print('Initializing config')
     with (ROOT / 'schema.yml').open() as f:
         SCHEMA.update(load_schema(yaml.safe_load(f.read())))
-    for id_, rules in load_dir_rules(ROOT / 'preprocess'):
-        PREPROCESS[id_] = rules
     for id_, rules in load_dir_rules(ROOT / 'rules'):
         RULES[id_] = rules
     with (ROOT / 'financements.yml').open() as f:

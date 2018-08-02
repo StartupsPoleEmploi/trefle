@@ -159,7 +159,8 @@ class Status:
             out['connective'] = self.condition.connective
         elif not self.status:
             out['reason'] = self.reason
-        out['children'] = [c.json for c in self.children]
+        if self.children:
+            out['children'] = [c.json for c in self.children]
         return out
 
 
@@ -318,9 +319,7 @@ def include(context, rule: Pointer):
     name = f'rules/{rule}.rules'
     rules = RULES.get(name)
     for rule in rules:
-        status = Rule.process(rule, context)
-        if status is not None:  # If root status is a no_status one.
-            context['status'].append(status)
+        Rule.process(rule, context, status=context['parent'])
 
 
 @action(r"il n'y a pas de (?P<key>[\w ]+)$")
@@ -427,15 +426,20 @@ class Rule:
             condition = self.root
         status = condition.assess(context)
         overall = overall and status
-        if not status and status.condition.no_status:
-            # Stop recursion.
-            return parent
+        if status.condition.no_status:
+            if status:
+                status = parent  # Hide from output.
+            else:
+                # Stop recursion.
+                return parent
         elif parent is not None:
             status.parent = parent
             parent.children.append(status)
         for action in condition.actions:
             if overall:
+                context['parent'] = status  # FIXME
                 action.act(context)
+                context['parent'] = None  # FIXME
         for child in condition.children:
             self.assess(context, child, status, overall)
         return status
@@ -505,9 +509,9 @@ class Rule:
         return rules
 
     @staticmethod
-    def process(rule, context):
+    def process(rule, context, status=None):
         try:
-            return rule.assess(context)
+            return rule.assess(context, parent=status)
         except NoDataError as err:
             # Give more context.
             err.args = (f'{err} (from `{rule}`)',)
