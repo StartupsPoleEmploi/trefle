@@ -44,8 +44,7 @@ def render_status(status):
 
 @cli(name='simulate')
 async def cli_simulate(*args, context: json.loads={}, url=None, trace=False,
-                       output_scenario=False, show_context=False,
-                       reason=False):
+                       output_scenario=False, show_context=False):
     """Simulate a call to the API.
 
     Pass context as args in the form key=value.
@@ -54,7 +53,6 @@ async def cli_simulate(*args, context: json.loads={}, url=None, trace=False,
     :trace: Display a trace of all checked conditions.
     :output_scenario: Render a Gherkin scenario with given context.
     :show_context: Render a table with used context.
-    :reason: Output reasons why a financement is not eligible.
     """
     if 'context' in context:
         context = context['context']  # Copy-paste from our logs.
