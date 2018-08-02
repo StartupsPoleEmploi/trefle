@@ -1,5 +1,11 @@
 # Changelog
 
+## dev
+
+- refactor rule loading and processing to allow rule inheritance
+- more rules for "période de professionnalisation"
+- first rules for "plan de formation"
+
 ## 0.5.0
 
 - explorer: display label from enum if any
