@@ -71,7 +71,7 @@
       if (schema.label) {
         let replace = `<span class='tooltip'><span class='keyword'>$1</span><span class=tooltip-content>`
         replace += `<strong>Description</strong> ${schema.description || schema.label}<br>`
-        if (schema.value) replace += `<strong>Valeur</strong> ${schema.value}<br>`
+        if (schema.value) replace += `<strong>Valeur</strong> ${renderValue(key, schema.value)}<br>`
         if (schema.source) replace += `<strong>Source</strong> ${schema.source}<br>`
         if (schema.default !== undefined) replace += `<strong>Par défaut</strong> ${schema.default}`
         replace += `</span></span>`
