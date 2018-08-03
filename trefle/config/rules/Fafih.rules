@@ -15,6 +15,7 @@ Si le financement est de type «CPF»
 Si le financement est de type «période de professionnalisation»
     Si la liste des domaines FORMACODE de la formation contient 427
     Ou la liste des codes FORMACODE de la formation contient 42077
+    Ou le code CERTIFINFO de la formation fait partie de [72744,73634,81039,73633,80019]
         Si c'est une formation qualifiante
             Alors le financement est éligible
             Et le prix horaire plafond applicable vaut 30

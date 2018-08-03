@@ -74,3 +74,27 @@ Scénario: Cas nominal d'une période de professionnalisation
     Alors l'organisme à contacter est «Fafih»
     Et le plafond de prise en charge vaut 3000
     Et la rémunération applicable vaut 1400
+
+
+# https://labonneformation.beta.pole-emploi.fr/engager-les-demarches?a=LM5CC32uGVeKYcg4TkJiTALYNwsssH7CQg4QllQysssGtqCCkPs47LoyfyQm32vuopOBKGdIpkefYHeyQsJsssoejyjdiIJyQsssY8ypmhEOBE96FV8UO8uTgjZy%3D_jEZ3e3993LPKRmTiWcMmkhRHcq3MmdOqp9-pyveX--v7bfowJBIQj9eVpA4ryAY8waW8kiYRXDm7DRrTWr1q2hfrVT%3DkEtHGekL1viec5a%3DoaY7Wyc2FVhq49Y1CIf4EnD5FiDyFxvUwVYGMxFogVOyHS8geLZA_IHKMa3IEHn-_ji-Mqy7cX4wFWKrfbNjq43sHnBsV2eaKWJeIXISyG-2lfrZioscGaopx1q0o4fMplxRQDrdak5SuewgV1Ila4QfQhEEU3K9jekVcY7s7EH9MR3abqDvtbDMNIWIH4TxJ4-
+Scénario: Période de professionnalisation CQP hydrotechnicien
+    Soit un bénéficiaire et une formation
+    Et la rémunération du bénéficiaire vaut 1500.0
+    Et c'est un bénéficiaire de droit privé
+    Et le type de contrat du bénéficiaire vaut «CDI»
+    Et l'IDCC de l'établissement du bénéficiaire vaut «1979»
+    Et le code INSEE de la commune de l'établissement du bénéficiaire vaut «21231»
+    Et le âge du bénéficiaire vaut 31
+    Et la région de l'établissement du bénéficiaire vaut «Bourgogne-Franche-Comté»
+    Et la liste des codes FORMACODE de la formation vaut [43418]
+    Et la liste des domaines FORMACODE de la formation vaut [434]
+    Et le code CERTIFINFO de la formation vaut 80019
+    Et la durée en heures de la formation vaut 693
+    Et le prix horaire de la formation vaut 0
+    Et c'est une formation qualifiante
+    Et c'est une formation ouverte aux bénéficiaires individuels
+    Quand je demande un calcul de financement
+    Quand je sélectionne le financement «Période de professionnalisation sur son temps de travail»
+    Alors l'organisme à contacter est «Fafih»
+    Et le plafond de prise en charge vaut 20790
+    Et la rémunération applicable vaut 1500.0
