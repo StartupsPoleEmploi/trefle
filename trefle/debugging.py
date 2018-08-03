@@ -95,7 +95,7 @@ def make_scenario(data, financements, name='Donne-moi un nom'):
             continue
         schema = SCHEMA[key]
         label = schema['label']
-        if 'enum' in schema:
+        if 'enum' in schema and value is not None:
             value = schema['enum'][value]
         if isinstance(value, str):
             value = f'«{value}»'
