@@ -184,7 +184,7 @@ input[type=submit]:hover,
   position: absolute;
   left: 0;
   bottom: calc(100% + 10px);
-  min-width: 150px;
+  min-width: 300px;
   z-index: 10;
   color: #222;
 }
@@ -199,6 +199,10 @@ input[type=submit]:hover,
 }
 .tooltip:hover .tooltip-content {
   display: inline-block;
+}
+/* Workaround bad pattern to insert tooltip in raw rule parsing. */
+.tooltip .tooltip .tooltip-content {
+  display: none;
 }
 
 /* Glossary like list */
