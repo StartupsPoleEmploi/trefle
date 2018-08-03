@@ -477,7 +477,7 @@ formation:
   certifiante:
     type: boolean
     source: catalogue
-    xpath: boolean(number(//certifiante/child::text()))
+    xpath: boolean(//certifiante[text()="1"])
     label: formation certifiante
   vae:
     type: boolean
