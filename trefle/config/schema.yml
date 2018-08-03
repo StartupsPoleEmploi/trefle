@@ -4,6 +4,25 @@ constante:
     type: array
     items:
       type: integer
+      enum: &codes_financeur
+        0: Autre
+        1: Code(s) obsolète(s)
+        2: Collectivité territoriale - Conseil régional
+        3: Fonds européens - FSE
+        4: Pôle emploi
+        5: Entreprise
+        6: ACSÉ (anciennement FASILD)
+        7: AGEFIPH
+        8: Collectivité territoriale - Conseil général
+        9: Collectivité territoriale - Commune
+        10: Bénéficiaire de l'action
+        11: Etat - Ministère chargé de l'emploi
+        12: Etat - Ministère de l'éducation nationale
+        13: Etat - Autre
+        14: Fonds européens - Autre
+        15: Collectivité territoriale - Autre
+        16: OPCA
+        17: OPACIF
     value: [0, 5, 10]
     label: codes financeur individuel
     url: http://lheo.gouv.fr/langage#dict-financeurs
@@ -12,6 +31,7 @@ constante:
     type: array
     items:
       type: integer
+      enum: *codes_financeur
     value: [2, 4, 6, 8, 9, 11, 12, 13, 15, 16]
     label: codes financeur collectif
     url: http://lheo.gouv.fr/langage#dict-financeurs
@@ -210,7 +230,7 @@ beneficiaire:
       description: région de l'entreprise
       type: string
       label: région de l'établissement du bénéficiaire
-      enum:
+      enum: &regions
         '01': Guadeloupe
         '02': Martinique
         '03': Guyane
@@ -261,6 +281,7 @@ formation:
     format: set
     items:
       type: integer
+      enum: *codes_financeur
     source: catalogue
     xpath: //organisme-financeur/code-financeur/child::text()
     label: codes financeur de la formation
@@ -279,6 +300,7 @@ formation:
     format: set
     items:
       type: string
+      enum: *regions
     source: catalogue
     xpath: //extras[@info="eligibilite-cpf"]/extra[@info="region"]/child::text()
     label: régions éligibles COPAREF

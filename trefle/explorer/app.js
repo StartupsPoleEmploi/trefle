@@ -1,11 +1,12 @@
 let SCHEMA
 let RULES
 
-function renderValue (key, value) {
-  if (SCHEMA[key]['type'] === 'array') return value.join(', ')
-  if (SCHEMA[key]['type'] === 'boolean') return value ? 'oui' : 'non'
-  if (SCHEMA[key]['format'] === 'date') return (new Date(value * 1000)).toLocaleDateString()
-  if (SCHEMA[key]['enum']) return SCHEMA[key]['enum'][value]
+function renderValue (key, value, schema) {
+  schema = schema || SCHEMA[key]
+  if (schema['type'] === 'array') return value.map(v => renderValue(key, v, schema['items'])).join(', ')
+  if (schema['type'] === 'boolean') return value ? 'oui' : 'non'
+  if (schema['format'] === 'date') return (new Date(value * 1000)).toLocaleDateString()
+  if (schema['enum']) return `${schema['enum'][value]} (${value})`
   return value
 }
 

@@ -5,6 +5,7 @@
 - refactor rule loading and processing to allow rule inheritance
 - more rules for "période de professionnalisation"
 - first rules for "plan de formation"
+- explorer: display full text "codes financeur"
 
 ## 0.5.0
 
