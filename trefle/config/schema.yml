@@ -119,6 +119,23 @@ constante:
       type: integer
     value: [55673, 55674, 55675, 55676, 55677, 55803, 55804, 55805, 55806,55807, 55808, 55809,55810, 55811, 55812, 55813, 55814, 55815, 55816, 55817, 55818, 55819, 55820, 55822, 55821, 55823, 55824, 55825, 55826, 55827, 84700, 84449, 84700, 84715, 85312, 85338]
     label: codes CERTIFINFO CACES
+  codes_ais_qualifiants:
+    value: [6, 7]
+    label: codes AIS qualifiants
+    type: array
+    gender: masculine
+    number: plural
+    items:
+      type: integer
+      enum: &codes_ais
+        1: Code(s) obsolète(s)
+        2: Perfectionnement, élargissement des compétences
+        4: Création d'entreprise
+        5: Remise à niveau, maîtrise des savoirs de base, initiation
+        6: Certification
+        7: Professionnalisation
+        8: Préparation à la qualification
+        9: (Re)mobilisation, aide à l'élaboration de projet professionnel
 beneficiaire:
   droit_prive:
     description: le bénéficiaire est salarié d'une entreprise de droit privé
@@ -411,6 +428,7 @@ formation:
     source: catalogue
     default: null
     xpath: number(//objectif-general-formation/child::text())
+    enum: *codes_ais
   debut:
     description: date de début de la formation
     label: date de début de la formation
