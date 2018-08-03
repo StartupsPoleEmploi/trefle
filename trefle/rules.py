@@ -83,7 +83,7 @@ class Pointer:
 def action(pattern):
 
     def wrapper(func):
-        Action.PATTERNS[re.compile(pattern)] = func
+        Action.register(pattern, func)
         return func
 
     return wrapper
@@ -92,9 +92,9 @@ def action(pattern):
 def condition(pattern):
 
     def wrapper(func):
-        Condition.PATTERNS[re.compile(pattern)] = func
         func.reason = None
         func.no_status = False
+        Condition.register(pattern, func)
         return func
 
     return wrapper
@@ -207,6 +207,10 @@ class Step:
                 err.args = (f'{err} (from `{self!r}`)',)
                 raise
             self.params[name] = value
+
+    @classmethod
+    def register(cls, pattern, func):
+        cls.PATTERNS[re.compile(pattern)] = func
 
 
 class Action(Step):
