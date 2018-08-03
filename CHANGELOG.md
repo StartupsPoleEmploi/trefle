@@ -6,6 +6,7 @@
 - more rules for "période de professionnalisation"
 - first rules for "plan de formation"
 - explorer: display full text "codes financeur"
+- changed qualifiant in certifiant and changed formation.certifiante computing
 
 ## 0.5.0
 

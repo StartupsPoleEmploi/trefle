@@ -18,7 +18,7 @@ Si le nom de l'organisme est «OPCA 3+»
             Alors le financement est éligible
             Et le prix horaire plafond applicable vaut 10
 
-            Si c'est une formation qualifiante
+            Si c'est une formation certifiante
                 Alors le prix horaire plafond applicable vaut 15
 
             Si l'IDCC de l'établissement du bénéficiaire vaut «83»
@@ -73,7 +73,7 @@ Si le nom de l'organisme est «OPCA 3+»
         Si l'IDCC de l'établissement du bénéficiaire fait partie de [«925»,«802»,«700»,«707»,«1492»,«1495»]
             Alors le financement est éligible
             Et le prix horaire plafond applicable vaut 15
-            Si c'est une formation qualifiante
+            Si c'est une formation certifiante
                 Alors le prix horaire plafond applicable vaut 35
             # https://www.opca3plus.fr/Espace_Entreprises/Former_les_salaries/Periode_de_professionnalisation/134-En_resume#onglet
             # TODO 25 €/heure, dans la limite du coût réel justifié, pour les périodes conclues en vue de l'obtention d'un diplôme ou d'un titre professionnels inscrits au RNCP ou d'une certification de l'inventaire de la CNCP, si ces derniers sont inscrits sur la liste de la CPNEF de l'IPC,

@@ -67,7 +67,7 @@ Scénario: Cas nominal d'une période de professionnalisation
     Et l'IDCC de l'établissement du bénéficiaire vaut «800»
     Et la durée en heures de la formation vaut 100
     Et la durée en mois de la formation vaut 10
-    Et c'est une formation qualifiante
+    Et c'est une formation certifiante
     Et la liste des domaines FORMACODE de la formation vaut [427]
     Quand je demande un calcul de financement
     Quand je sélectionne le financement «Période de professionnalisation sur son temps de travail»
@@ -91,7 +91,7 @@ Scénario: Période de professionnalisation CQP hydrotechnicien
     Et le code CERTIFINFO de la formation vaut 80019
     Et la durée en heures de la formation vaut 693
     Et le prix horaire de la formation vaut 0
-    Et c'est une formation qualifiante
+    Et c'est une formation certifiante
     Et c'est une formation ouverte aux bénéficiaires individuels
     Quand je demande un calcul de financement
     Quand je sélectionne le financement «Période de professionnalisation sur son temps de travail»
@@ -114,7 +114,7 @@ Scénario: Période de professionnalisatoin CQP pizzaïolo
     Et la liste des domaines FORMACODE de la formation vaut [427]
     Et le code CERTIFINFO de la formation vaut 83262
     Et la durée en heures de la formation vaut 380
-    Et c'est une formation qualifiante
+    Et c'est une formation certifiante
     Et c'est une formation ouverte aux bénéficiaires individuels
     Quand je demande un calcul de financement
     Quand je sélectionne le financement «Période de professionnalisation sur son temps de travail»
@@ -139,10 +139,34 @@ Scénario: période de professionnalisation gouvernant en hôtellerie
     Et la durée en heures de la formation vaut 700
     Et c'est une formation RNCP
     Et le niveau de sortie de la formation vaut «IV»
-    Et c'est une formation qualifiante
+    Et c'est une formation certifiante
     Et c'est une formation ouverte aux bénéficiaires individuels
     Quand je demande un calcul de financement
     Quand je sélectionne le financement «Période de professionnalisation sur son temps de travail»
     Alors l'organisme à contacter est «Fafih»
     Et le plafond de prise en charge vaut 21000
     Et la rémunération applicable vaut 1000
+
+
+# https://labonneformation.beta.pole-emploi.fr/engager-les-demarches?a=dM2nb5bMGVeKYcg4TkJiTMU80jossH7CQg4QllQysosGt5CCkPs47mQ3m33oP1iiGcuBho87sVYoi3PiIv0jsaiGs2ysyiiGJc4cio2aCAQBJDbRCUePVDn2tS1MTrF%3DSFZhXOMaWIBlCrRmM9dKAb05rJmpjXgwbKMGHq7RmjnGQV2ej2uAexBNTeV-v9AYtX5%3DSR%3DRm9jyCY1RB1nbMBr_Q9KtY1aj3ix223NvxbBPuG-uY-awPxCyt4F0A8M-1d8ThOLNZyF9wxwe8m8snf4vt9UkxcXd1byZyrwy17gvx49Ief4_6kR3k824kybx96r9482HRTArMKZt9m7Mxs-d5XSDvmQyQMHkeTMGoE786WNYWjU4ZrjYrKhunwb-wBc4QxqVIKJ2HIKlAB-IavFSQXF2ZS3lU%3D1BifGNaU80josz
+Scénario: Période de professionnalisation sur formation certifiante
+    Soit un bénéficiaire et une formation
+    Et la rémunération du bénéficiaire vaut 1000.0
+    Et c'est un bénéficiaire de droit privé
+    Et le type de contrat du bénéficiaire vaut «CDI»
+    Et l'IDCC de l'établissement du bénéficiaire vaut «1979»
+    Et le code INSEE de la commune de l'établissement du bénéficiaire vaut «75056»
+    Et le âge du bénéficiaire vaut 31
+    Et la région de l'établissement du bénéficiaire vaut «Île-de-France»
+    Et la liste des codes FORMACODE de la formation vaut [42797]
+    Et la liste des domaines FORMACODE de la formation vaut [427]
+    Et le code CERTIFINFO de la formation vaut 82782
+    Et la durée en heures de la formation vaut 350
+    Et c'est une formation certifiante
+    Et c'est une formation ouverte aux bénéficiaires individuels
+    Quand je demande un calcul de financement
+    Quand je sélectionne le financement «Période de professionnalisation sur son temps de travail»
+    Alors l'organisme à contacter est «Fafih»
+    Et le plafond de prise en charge vaut 10500
+    Et la rémunération applicable vaut 1000.0
+

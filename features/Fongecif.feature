@@ -398,7 +398,7 @@ Scénario: Formation de 12 mois
     Et la liste des domaines FORMACODE de la formation vaut [317]
     Et c'est une formation CACES
     Et les codes financeur de la formation valent [0,10,5]
-    Et c'est une formation qualifiante
+    Et c'est une formation certifiante
     Et la durée en mois de la formation vaut 12
     Et la durée en semaines de la formation vaut 52
     Et la durée hebdomadaire de la formation vaut 0
@@ -456,7 +456,7 @@ Scénario: Avec un code financeur collectif
     Et la liste des domaines FORMACODE de la formation vaut [317]
     Et c'est une formation CACES
     Et les codes financeur de la formation valent [0,10,5,16]
-    Et c'est une formation qualifiante
+    Et c'est une formation certifiante
     Et la durée en mois de la formation vaut 12
     Et la durée en semaines de la formation vaut 52
     Et la durée hebdomadaire de la formation vaut 0

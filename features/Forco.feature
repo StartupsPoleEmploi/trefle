@@ -22,7 +22,7 @@ Scénario: Formation CPF
     Et la durée en heures de la formation vaut 2236
     Et les codes NAF CPNE éligibles vaut [«9499Z»,«5610B»,«7990Z»,«5040Z»,«5621Z»,«5121Z»,«5520Z»,«9321Z»,«5110Z»,«9200Z»,«9329Z»,«9103Z»,«5629B»]
     Et le niveau de sortie de la formation vaut «aucun»
-    Et c'est une formation qualifiante
+    Et c'est une formation certifiante
     Et la durée en mois de la formation vaut 12
     Et la durée en semaines de la formation vaut 52
     Et la durée hebdomadaire de la formation vaut 43
@@ -59,7 +59,7 @@ Scénario: Formation CPF réservée
     Et la durée en heures de la formation vaut 2236
     Et les codes NAF CPNE éligibles vaut [«9499Z»,«5610B»,«7990Z»,«5040Z»,«5621Z»,«5121Z»,«5520Z»,«9321Z»,«5110Z»,«9200Z»,«9329Z»,«9103Z»,«5629B»]
     Et le niveau de sortie de la formation vaut «aucun»
-    Et c'est une formation qualifiante
+    Et c'est une formation certifiante
     Et la durée en mois de la formation vaut 12
     Et la durée en semaines de la formation vaut 52
     Et la durée hebdomadaire de la formation vaut 43
@@ -75,7 +75,7 @@ Scénario: Cas nominal d'une période de professionnalisation CDI
     Et l'IDCC de l'établissement du bénéficiaire vaut «1406»
     Et la durée en heures de la formation vaut 100
     Et la durée en mois de la formation vaut 10
-    Et c'est une formation qualifiante
+    Et c'est une formation certifiante
     Et la liste des domaines FORMACODE de la formation vaut [345]
     Quand je demande un calcul de financement
     Quand je sélectionne le financement «Période de professionnalisation sur son temps de travail»

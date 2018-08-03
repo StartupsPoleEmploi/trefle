@@ -28,7 +28,7 @@ async def test_populate_formation_from_bytes():
         assert context['formation.semaines'] == 26
         assert context['formation.duree_hebdomadaire'] == 27
         assert context['formation.codes_financeur'] == {10, 5, 2}
-        assert context['formation.qualifiante'] is True
+        assert context['formation.certifiante'] is True
         assert context['formation.codes_cpf'] == {167204, 13352, 1487, 18320,
                                                   130805}
         assert context['formation.code_certifinfo'] == 80735
@@ -41,6 +41,9 @@ async def test_populate_formation_from_bytes():
     ('without_rncp', 'formation.rncp', False),
     ('vae', 'formation.vae', True),
     ('clea', 'formation.clea', True),
+    ('non_certifiante', 'formation.certifiante', False),
+    ('certifiante', 'formation.certifiante', True),
+    ('objectif_general_formation_certifiante', 'formation.certifiante', True),
     ('wrong_code_financeur_16', 'formation.codes_financeur', {0, 5, 10, 17}),
 ])
 @pytest.mark.asyncio

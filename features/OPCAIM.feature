@@ -11,7 +11,7 @@ Scénario: période de professionnalisation CDI
     Et la durée en heures de la formation vaut 100
     Et la durée en mois de la formation vaut 1
     Et la liste des domaines FORMACODE de la formation vaut [316]
-    Et c'est une formation qualifiante
+    Et c'est une formation certifiante
     Quand je demande un calcul de financement
     Quand je sélectionne le financement «Période de professionnalisation sur son temps de travail»
     Alors l'organisme à contacter est «OPCAIM»
@@ -19,7 +19,7 @@ Scénario: période de professionnalisation CDI
     Et la rémunération applicable vaut 1400
 
 
-Scénario: formation non qualifiante
+Scénario: formation non certifiante
     Soit un bénéficiaire et une formation
     Et c'est un bénéficiaire de droit privé
     Et la rémunération du bénéficiaire vaut 1400

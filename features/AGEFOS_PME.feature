@@ -155,7 +155,7 @@ Scénario: période de professionnalisation + CPF
     Et la liste des codes CPF de la formation vaut [18082,161236,157711]
     Et les codes NAF CPNE éligibles vaut [«8810A»,«8559B»,«8891A»,«8810B»,«9609Z»,«8622A»,«8622C»,«8899A»,«8621Z»,«7830Z»,«8899B»]
     Et le niveau de sortie de la formation vaut «V»
-    Et c'est une formation qualifiante
+    Et c'est une formation certifiante
     Et la durée en mois de la formation vaut 6
     Et la durée en semaines de la formation vaut 28
     Et la durée hebdomadaire de la formation vaut 29
@@ -196,7 +196,7 @@ Scénario: pas de financement pour une formation réservée Pôle Emploi
     Et la liste des codes CPF de la formation vaut [18082,161236,157711]
     Et les codes NAF CPNE éligibles vaut [«8810A»,«8559B»,«8891A»,«8810B»,«9609Z»,«8622A»,«8622C»,«8899A»,«8621Z»,«7830Z»,«8899B»]
     Et le niveau de sortie de la formation vaut «V»
-    Et c'est une formation qualifiante
+    Et c'est une formation certifiante
     Et la durée en mois de la formation vaut 6
     Et la durée en semaines de la formation vaut 28
     Et la durée hebdomadaire de la formation vaut 29

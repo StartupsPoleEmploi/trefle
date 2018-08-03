@@ -67,7 +67,7 @@ Scénario: CIF CDI avec plafond de rémunération
     Et le montant de prise en charge vaut 5000
     Et la rémunération applicable vaut 0
 
-Scénario: CIF CDI avec plafond de rémunération et formation qualifiante
+Scénario: CIF CDI avec plafond de rémunération et formation certifiante
     Soit un bénéficiaire et une formation
     Et c'est un bénéficiaire de droit privé
     Et la rémunération du bénéficiaire vaut 8000
@@ -79,7 +79,7 @@ Scénario: CIF CDI avec plafond de rémunération et formation qualifiante
     Et les codes financeur de la formation valent [0]
     Et la durée en heures de la formation vaut 500
     Et la durée en mois de la formation vaut 10
-    Et c'est une formation qualifiante
+    Et c'est une formation certifiante
     Quand je demande un calcul de financement
     Et je sélectionne le financement «CIF CDI sur son temps de travail»
     Alors l'organisme à contacter est «Uniformation»

@@ -119,9 +119,9 @@ constante:
       type: integer
     value: [55673, 55674, 55675, 55676, 55677, 55803, 55804, 55805, 55806,55807, 55808, 55809,55810, 55811, 55812, 55813, 55814, 55815, 55816, 55817, 55818, 55819, 55820, 55822, 55821, 55823, 55824, 55825, 55826, 55827, 84700, 84449, 84700, 84715, 85312, 85338]
     label: codes CERTIFINFO CACES
-  codes_ais_qualifiants:
+  codes_ais_certifiants:
     value: [6, 7]
-    label: codes AIS qualifiants
+    label: codes AIS certifiants
     type: array
     gender: masculine
     number: plural
@@ -474,10 +474,11 @@ formation:
     source: catalogue
     label: permis B
     gender: masculine
-  qualifiante:
+  certifiante:
     type: boolean
     source: catalogue
-    label: formation qualifiante
+    xpath: boolean(number(//certifiante/child::text()))
+    label: formation certifiante
   vae:
     type: boolean
     source: catalogue

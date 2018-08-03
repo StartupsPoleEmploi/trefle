@@ -17,7 +17,7 @@ Scénario: CPF avec IDCC 1672
     Et c'est une formation éligible région «Île-de-France»
     Et le niveau de sortie de la formation vaut «III»
     Et la durée en heures de la formation vaut 1568.0
-    Et c'est une formation qualifiante
+    Et c'est une formation certifiante
     Et la durée en mois de la formation vaut 10
     Et la durée en semaines de la formation vaut 43
     Et la durée hebdomadaire de la formation vaut 36

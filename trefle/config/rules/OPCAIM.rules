@@ -10,6 +10,6 @@ Si le financement est de type «CPF»
 Si le financement est de type «période de professionnalisation»
     # formation industrielle
     Si la liste des domaines FORMACODE de la formation contient 316
-    Et c'est une formation qualifiante
+    Et c'est une formation certifiante
         Alors le financement est éligible
         Et le prix horaire plafond applicable vaut 32

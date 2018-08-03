@@ -18,6 +18,6 @@ Si le financement est de type «période de professionnalisation»
 
     Si c'est une formation VAE
     # formation commerce et distribution
-    Ou la liste des domaines FORMACODE de la formation contient 345, et c'est une formation qualifiante
+    Ou la liste des domaines FORMACODE de la formation contient 345, et c'est une formation certifiante
         Alors le financement est éligible
         Et le prix horaire plafond applicable vaut 9.15

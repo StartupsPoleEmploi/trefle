@@ -17,7 +17,7 @@ Scénario: période de professionnalisation CDI avec IDCC Ameublement et bois
     Et la rémunération applicable vaut 1400
 
 
-Scénario: période de professionnalisation CDI avec IDCC Ameublement et bois + formation qualifiante
+Scénario: période de professionnalisation CDI avec IDCC Ameublement et bois + formation certifiante
     Soit un bénéficiaire et une formation
     Et c'est un bénéficiaire de droit privé
     Et la rémunération du bénéficiaire vaut 1400
@@ -25,7 +25,7 @@ Scénario: période de professionnalisation CDI avec IDCC Ameublement et bois + 
     Et l'IDCC de l'établissement du bénéficiaire vaut «1411»
     Et la durée en heures de la formation vaut 100
     Et la durée en mois de la formation vaut 10
-    Et c'est une formation qualifiante
+    Et c'est une formation certifiante
     Quand je demande un calcul de financement
     Quand je sélectionne le financement «Période de professionnalisation sur son temps de travail»
     Alors l'organisme à contacter est «OPCA 3+»
@@ -64,7 +64,7 @@ Scénario: période de professionnalisation CDI avec IDCC Papiers Cartons
     Et la rémunération applicable vaut 1400
 
 
-Scénario: période de professionnalisation CDI avec IDCC Papiers Cartons + formation qualifiante
+Scénario: période de professionnalisation CDI avec IDCC Papiers Cartons + formation certifiante
     Soit un bénéficiaire et une formation
     Et c'est un bénéficiaire de droit privé
     Et la rémunération du bénéficiaire vaut 1400
@@ -72,7 +72,7 @@ Scénario: période de professionnalisation CDI avec IDCC Papiers Cartons + form
     Et l'IDCC de l'établissement du bénéficiaire vaut «925»
     Et la durée en heures de la formation vaut 100
     Et la durée en mois de la formation vaut 10
-    Et c'est une formation qualifiante
+    Et c'est une formation certifiante
     Quand je demande un calcul de financement
     Quand je sélectionne le financement «Période de professionnalisation sur son temps de travail»
     Alors l'organisme à contacter est «OPCA 3+»
