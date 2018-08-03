@@ -297,15 +297,15 @@ def set_eligible(context):
     context['financement.eligible'] = True
 
 
-@action(r"(l'|les? |la )(?P<key>.+) (vaut|est) (?P<value>[\w«» +\-'\.]+)$")
-@action(r"(l'|les? |la )(?P<key>.+) est égale? (à la|à|aux?)? (?P<value>[\w«» +\-\.']+)$")
-def set_value(context, key: Label, value: Pointer):
-    context[key] = value.get(**context)
-
-
-@action(r"(l'|les? |la )(?P<key>.+) est égale? à (?P<rate>[\d\.]+)% (de la|du) (?P<value>[\w«» +\-\.']+)$")
+@action(r"(l'|les? |la )(?P<key>.+) est égale? à (?P<rate>[\d\.]+)% (de la|du) (?P<value>.+)$")
 def set_percent(context, key: Label, rate: float, value: Pointer):
     context[key] = value.get(**context) * rate / 100
+
+
+@action(r"(l'|les? |la )(?P<key>.+) (vaut|est) (?P<value>.+)$")
+@action(r"(l'|les? |la )(?P<key>.+) est égale? (à la|à|aux?)? (?P<value>.+)$")
+def set_value(context, key: Label, value: Pointer):
+    context[key] = value.get(**context)
 
 
 @action(r"c'est une? (?P<key>.+)")
@@ -322,7 +322,7 @@ def include(context, rule: Pointer):
         Rule.process(rule, context, status=context['parent'])
 
 
-@action(r"il n'y a pas de (?P<key>[\w ]+)$")
+@action(r"il n'y a pas de (?P<key>.+)$")
 def unset_key(context, key: Label):
     try:
         del context[key]
@@ -350,57 +350,57 @@ def check_type(context, tag):
 
 
 @reason("{left.pointer.raw} vaut {left}, c'est inférieur ou égal au seuil de {right}")
-@condition(r"(l'|les? |la )(?P<left>.+) est supérieure? à (?P<right>[\w ]+)")
+@condition(r"(l'|les? |la )(?P<left>.+) est supérieure? à (?P<right>.+)")
 def check_gt(context, left, right):
     return left.value > right.value
 
 
 @reason("{left.pointer.raw} trop faible: {left}, au lieu de {right} au moins")
-@condition(r"(l'|les? |la )(?P<left>.+) est supérieure? ou égale? à (?P<right>[\w ]+)")
+@condition(r"(l'|les? |la )(?P<left>.+) est supérieure? ou égale? à (?P<right>.+)")
 def check_ge(context, left, right):
     return left.value >= right.value
 
 
 @reason("{left.pointer.raw} vaut {left}, c'est supérieur ou égal au seuil ({right})")
-@condition(r"(l'|les? |la )(?P<left>.+) est inférieure? à (?P<right>[\w ]+)")
+@condition(r"(l'|les? |la )(?P<left>.+) est inférieure? à (?P<right>.+)")
 def check_lt(context, left, right):
     return left.value < right.value
 
 
 @reason("{left.pointer.raw} trop grande: {left} (le maximum est {right})")
-@condition(r"(l'|les? |la )(?P<left>.+) est inférieure? ou égale? à (?P<right>[\w ]+)")
+@condition(r"(l'|les? |la )(?P<left>.+) est inférieure? ou égale? à (?P<right>.+)")
 def check_le(context, left, right):
     return left.value <= right.value
 
 
 @reason("«{left}» ne contient pas {right}")
-@condition(r"(l'|les? |la )(?P<left>.+) contien(nen)?t au moins une? ([^ ]+ )?(parmi|des) (?P<right>[ \[\],\w«»]+)")
+@condition(r"(l'|les? |la )(?P<left>.+) contien(nen)?t au moins une? ([^ ]+ )?(parmi|des) (?P<right>.+)")
 def check_share_one(context, left, right):
     return bool(set(left.value or []) & set(right.value or []))
 
 
 @reason("«{right}» contient {left}")
-@condition(r"(l'|les? |la )(?P<left>.+) ne contien(nen)?t aucun des (?P<right>[ \w«»]+)")
+@condition(r"(l'|les? |la )(?P<left>.+) ne contien(nen)?t aucun des (?P<right>.+)")
 def check_not_share_one(context, left, right):
     return not bool(set(left.value or []) & set(right.value or []))
 
 
 @reason("{left.pointer.raw} ({left}) ne fait pas partie de «{right.pointer.raw}» ({right})")
 @condition(r"(l'|les? |la )(?P<left>.+) fait partie (de l'|de la |des? |du )(?P<right>.+)")
-@condition(r"(l'|les? |la )(?P<right>.+) contient (l'|les? |la )?(?P<left>[ \w«»]+)")
+@condition(r"(l'|les? |la )(?P<right>.+) contient (l'|les? |la )?(?P<left>.+)")
 def check_contain(context, left, right):
     return left.value in right.value
 
 
 @reason("{left.pointer.raw} («{left}») fait partie de «{right}»")
 @condition(r"(l'|les? |la )(?P<left>.+) ne fait pas partie (de l'|des? |de la |du )(?P<right>.+)")
-@condition(r"(l'|les? |la )(?P<right>.+) ne contient pas (l'|les? |la )?(?P<left>[ \w«»]+)")
+@condition(r"(l'|les? |la )(?P<right>.+) ne contient pas (l'|les? |la )?(?P<left>.+)")
 def check_not_contain(context, left, right):
     return left.value not in right.value
 
 
 @reason("{left.pointer.raw} vaut «{left}» au lieu de «{right}»")
-@condition(r"(l'|les? |la )(?P<left>.+) (est|vaut) (?P<right>[\w«» +\-\.']+)")
+@condition(r"(l'|les? |la )(?P<left>.+) (est|vaut) (?P<right>.+)")
 def check_equal(context, left, right):
     return left.value == right.value
 

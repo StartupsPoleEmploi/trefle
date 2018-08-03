@@ -14,7 +14,7 @@ Si le financement est de type «CIF»
 
         # TODO: how to properly make this dynamic with SMIC value?
         # 3746 = deux fois le smic / 0.8
-        Si la rémunération du bénéficiaire est inférieure à 3746:
+        Si la rémunération du bénéficiaire est inférieure à 3746
             Alors la rémunération applicable est égale à deux fois le SMIC
 
         # 7492 = quatre fois le smic / 0.8

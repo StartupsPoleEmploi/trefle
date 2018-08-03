@@ -18,7 +18,7 @@ Si le financement est de type «CIF»
             # TODO: how to properly make this dynamic with SMIC value?
             # pour un salaire  > à 2 fois le SMIC : 80 % du salaire antérieur avec un minimum de 2 fois le SMIC.
             # 3746 = deux fois le smix / 0.8
-            Si la rémunération du bénéficiaire est inférieure à 3746:
+            Si la rémunération du bénéficiaire est inférieure à 3746
                 Alors la rémunération applicable est égale à deux fois le SMIC
 
 
