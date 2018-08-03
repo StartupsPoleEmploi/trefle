@@ -204,7 +204,7 @@ class Step:
                 value = type_(value)
             except Exception as err:
                 # Give more context.
-                err.args = (f'{err} (from `{self!r}`)',)
+                err.args = (f'`{err}` (from `{self!r}`)',)
                 raise
             self.params[name] = value
 
@@ -518,7 +518,7 @@ class Rule:
             return rule.assess(context, parent=status)
         except NoDataError as err:
             # Give more context.
-            err.args = (f'{err} (from `{rule}`)',)
+            err.args = (f'`{err}` (from `{rule}`)',)
             raise
 
     def __repr__(self):
