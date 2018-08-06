@@ -20,7 +20,7 @@ def setup(context):
 @given(r"(?:les? |la |l')(?P<label>.+) (?:est|vaut|valent) (?P<value>.+)")
 def given_set_value(context, label, value):
     key = LABELS[label]
-    value = Pointer(value).get()
+    value = Pointer(value).get({})
     context.data[key] = value
 
 

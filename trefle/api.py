@@ -7,6 +7,7 @@ from . import VERSION
 from .config import FINANCEMENTS, GLOSSARY, NAF, RAW_RULES, SCHEMA
 from .core import simulate
 from .debugging import data_from_lbf_url, make_scenario, SCENARIOS
+from .exceptions import DataError
 from .loggers import log_simulate, logger
 from .openapis import OPENAPI
 from .routine import get_formation_xml
@@ -35,11 +36,10 @@ async def simulate_(request, response):
     context = request.json
     try:
         financements = await simulate(context)
-    except ValueError as err:
-        if isinstance(err.args[0], dict):
-            # FIXME this can be improved
-            log_simulate(context, errors=err.args[0])
-        raise HttpError(HTTPStatus.UNPROCESSABLE_ENTITY, err.args[0])
+    except DataError as err:
+        error = {err.key: err.error}
+        log_simulate(context, errors=error)
+        raise HttpError(HTTPStatus.UNPROCESSABLE_ENTITY, error)
 
     eligible = request.query.bool('eligible', None)
     if eligible is not None:

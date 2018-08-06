@@ -1,4 +1,5 @@
 import time
+import sys
 from pathlib import Path
 
 import hupper
@@ -7,10 +8,9 @@ from minicli import cli, run
 from roll.extensions import simple_server, static, traceback
 
 from trefle.api import app
-from trefle.config import RULES
 from trefle.core import simulate
-from trefle.debugging import (data_from_lbf_url, green, make_scenario, red,
-                              trace_condition)
+from trefle.debugging import data_from_lbf_url, green, make_scenario, red
+from trefle.exceptions import DataError
 from trefle.helpers import flatten
 from trefle.rules import parse_value
 
@@ -65,6 +65,8 @@ async def cli_simulate(*args, context: json.loads={}, url=None, trace=False,
         start = time.perf_counter()
         financements = await simulate(context)
         duration = (time.perf_counter() - start)
+    except DataError as err:
+        sys.exit(f'Error in data: {err}')
     except Exception:
         raise
     finally:
@@ -88,9 +90,10 @@ async def cli_simulate(*args, context: json.loads={}, url=None, trace=False,
         print('- Nom:', financement['nom'])
         print('  Description:', financement['description'][:150], '…')
         print('  Démarches:', financement['demarches'][:150], '…')
-        print('  Organisme:')
-        print('      Nom:', financement['organisme']['nom'])
-        print('      Site web:', financement['organisme']['web'])
+        if financement.get('organisme'):
+            print('  Organisme:')
+            print('      Nom:', financement['organisme']['nom'])
+            print('      Site web:', financement['organisme']['web'])
         if financement['prise_en_charge']:
             print('  Financement:', financement['prise_en_charge'], '€')
         if financement['plafond_prix_horaire']:

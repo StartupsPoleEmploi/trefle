@@ -2,6 +2,7 @@ from pathlib import Path
 
 import pytest
 
+from trefle.context import Context
 from trefle import exceptions
 from trefle import routine
 
@@ -9,7 +10,7 @@ from trefle import routine
 @pytest.mark.asyncio
 async def test_populate_formation_from_bytes():
     with Path(__file__).parent.joinpath('data/formation.xml').open('rb') as f:
-        context = {}
+        context = Context({})
         routine.add_constants(context)
         await routine.populate_formation_from_bytes(context, f.read())
         routine.preprocess(context)
@@ -19,7 +20,7 @@ async def test_populate_formation_from_bytes():
                                                   '2362Z', '7820Z', '9604Z',
                                                   '9609Z'}
         assert context['formation.regions_coparef'] == {'24'}
-        assert context['formation.codes_formacode'] == [22403, 22402]
+        assert context['formation.codes_formacode'] == {22403, 22402}
         assert context['formation.domaines_formacode'] == {224}
         assert context['formation.foad'] is False
         assert context['formation.niveau_sortie'] == 4
@@ -36,6 +37,8 @@ async def test_populate_formation_from_bytes():
         assert context['formation.rncp'] is True
         assert context['formation.entrees_sorties'] == 0
         assert context['formation.entrees_sorties_permanentes'] is False
+        assert context['formation.contrat_apprentissage'] is False
+        assert context['formation.contrat_professionnalisation'] is False
 
 
 @pytest.mark.parametrize('path,key,value', [
@@ -50,11 +53,14 @@ async def test_populate_formation_from_bytes():
     ('entrees_sorties_permanentes', 'formation.entrees_sorties', 1),
     ('entrees_sorties_permanentes', 'formation.entrees_sorties_permanentes',
      True),
+    ('contrat_apprentissage', 'formation.contrat_apprentissage', True),
+    ('contrat_professionnalisation', 'formation.contrat_professionnalisation',
+     True),
 ])
 @pytest.mark.asyncio
 async def test_populate_formation_from_bytes_edge_cases(path, key, value):
     with Path(__file__).parent.joinpath(f'data/{path}.xml').open('rb') as f:
-        context = {}
+        context = Context({})
         routine.add_constants(context)
         await routine.populate_formation_from_bytes(context, f.read())
         routine.preprocess(context)
@@ -68,7 +74,7 @@ async def test_populate_formation_from_bytes_with_empty_list():
                   <offres>
                   </offres>
                   </lheo>"""
-    context = {}
+    context = Context({})
     with pytest.raises(ValueError):
         await routine.populate_formation_from_bytes(context, content)
 

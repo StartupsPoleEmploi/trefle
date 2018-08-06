@@ -3,18 +3,27 @@ CPF:
   description: Le compte personnel de formation (CPF) permet au salarié d'acquérir des droits et de les mobiliser pour financer des actions de formation tout au long de sa vie professionnelle.
   sur son temps de travail:
     nom: CPF sur son temps de travail
+    rules: salarié
     demarches: |-
       Pour une formation se déroulant sur le temps de travail, il est nécessaire de demander l'accord de l'employeur.
       Assurez-vous que votre compte personnel de formation est activé sur http://www.moncompteformation.gouv.fr/.
       Contacter votre employeur pour bénéficier gratuitement d’un conseil en évolution professionnelle et valider votre projet de formation et son financement CPF.
   hors temps de travail:
     nom: CPF hors temps de travail
+    rules: salarié
     demarches: |-
       Pour une formation se déroulant en dehors du temps de travail, il n'est pas nécessaire de demander l'accord de l'employeur.
       Assurez-vous que votre compte personnel de formation est activé sur http://www.moncompteformation.gouv.fr/.
       Contactez directement votre organisme {nom} pour bénéficier gratuitement d’un conseil en évolution professionnelle et valider votre projet de formation et son financement CPF.
+  de:
+    nom: CPF demandeur d'emploi
+    rules: de
+    demarches: |-
+      1. Contactez votre conseiller référent emploi pour valider avec lui votre projet de formation.
+      2. Créez votre compte CPF sur le site www.moncompteformation.gouv.fr
 CIF:
   eligible: false
+  rules: salarié
   description: |-
     Le congé individuel de formation (CIF) permet au salarié  de suivre, à son initiative et à titre individuel, une  formation, dans le but de :
       - se reconvertir
@@ -72,6 +81,7 @@ CIF:
         Délai de carence en mois = durée en heures du dernier CIF /12.
 période de professionnalisation:
   eligible: false
+  rules: salarié
   description: Le financement de cette formation peut être réalisé dans le cadre d'une période de professionnalisation intégrée au plan de formation de votre entreprise.
   demarches: Contactez votre entreprise pour les modalités de mise en œuvre.
   ressources:
@@ -80,6 +90,7 @@ période de professionnalisation:
     nom: Période de professionnalisation sur son temps de travail
 plan de formation:
   eligible: false
+  rules: salarié
   description: Le financement de cette formation peut être réalisé dans le cadre du plan de formation de votre entreprise.
   demarches: Contactez votre entreprise pour les modalités de mise en œuvre.
   ressources:

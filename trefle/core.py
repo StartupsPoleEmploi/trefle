@@ -1,13 +1,13 @@
 from . import routine
 from .config import FINANCEMENTS
+from .context import Context
 from .helpers import flatten
-from .validators import validate
 
 
-async def simulate(context):
+async def simulate(data):
     # Prepare context
-    flatten(context)
-    validate(context)
+    flatten(data)
+    context = Context(data)
     routine.add_constants(context)
     routine.insee_commune_to_region(context)
     await routine.populate_formation(context)

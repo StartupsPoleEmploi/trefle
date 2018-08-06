@@ -79,6 +79,7 @@ def data_from_lbf_url(url):
         b'region': 'beneficiaire.entreprise.region',
         b'entrepriselocationinsee': 'beneficiaire.entreprise.commune',
         b'idformintercarif': 'formation.numero',
+        b'inscritDE': 'beneficiaire.inscrit_pe',
     }
 
     data = {keymap[key]: value.decode() for key, value in args.items()
@@ -96,7 +97,7 @@ def make_scenario(data, financements, name='Donne-moi un nom'):
     steps = ["Soit un bénéficiaire et une formation"]
 
     for key, value in data.items():
-        if key.startswith(('constante', 'parent')):
+        if key.startswith(('constante', 'parent', 'status')):
             continue
         schema = SCHEMA[key]
         label = schema['label']
@@ -142,8 +143,9 @@ def make_scenario(data, financements, name='Donne-moi un nom'):
             steps.append(f"Quand je sélectionne le financement "
                          f"«{financement['nom']}»")
             # Alors l'organisme tutelle est «INTERGROS»
-            steps.append(f"Alors l'organisme à contacter est "
-                         f"«{financement['organisme']['nom']}»")
+            if financement.get('organisme'):
+                steps.append(f"Alors l'organisme à contacter est "
+                             f"«{financement['organisme']['nom']}»")
             if financement.get('prise_en_charge') is not None:
                 # Et le montant de prise en charge vaut 2000
                 steps.append(f"Et le montant de prise en charge vaut "

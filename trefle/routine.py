@@ -2,10 +2,10 @@ from lxml import etree
 
 from .config import (CONSTANTS, DEP_TO_REG, ELIGIBILITE_URL, IDCC,
                      INTERCARIF_URL, ORGANISMES, RULES, SCHEMA)
-from .exceptions import UpstreamError
+from .exceptions import UpstreamError, DataError
 from .helpers import diff_month, diff_week, http_get
 from .rules import Rule
-from .validators import format_naf, validate_format
+from .validators import format_naf
 
 
 def add_constants(context):
@@ -13,12 +13,14 @@ def add_constants(context):
 
 
 def idcc_to_organismes(context):
-    idcc = context['beneficiaire.entreprise.idcc']
-    # Allow to force value in input data.
-    if 'beneficiaire.entreprise.opca' not in context:
-        context['beneficiaire.entreprise.opca'] = IDCC[idcc]['OPCA']
-    if 'beneficiaire.entreprise.opacif' not in context:
-        context['beneficiaire.entreprise.opacif'] = IDCC[idcc]['OPACIF']
+    key = 'beneficiaire.entreprise.idcc'
+    if key in context:
+        idcc = context['beneficiaire.entreprise.idcc']
+        # Allow to force value in input data.
+        if 'beneficiaire.entreprise.opca' not in context:
+            context['beneficiaire.entreprise.opca'] = IDCC[idcc]['OPCA']
+        if 'beneficiaire.entreprise.opacif' not in context:
+            context['beneficiaire.entreprise.opacif'] = IDCC[idcc]['OPACIF']
 
 
 def insee_commune_to_region(context):
@@ -29,7 +31,7 @@ def insee_commune_to_region(context):
         return
     dep = context[key][:2]
     if dep not in DEP_TO_REG:
-        raise ValueError({key: f'Valeur invalide: `{context[key]}`'})
+        raise DataError(f'Valeur invalide: `{context[key]}`', key)
     context['beneficiaire.entreprise.region'] = DEP_TO_REG[dep]
 
 
@@ -48,8 +50,7 @@ async def populate_formation(context):
         await populate_formation_from_bytes(context, xml)
     except ValueError as err:
         # Give more context.
-        err.args = (f'Error with id `{formation_id}`: `{err}`',)
-        raise
+        raise DataError(f'Error with id `{formation_id}`: `{err}`')
 
 
 async def retrieve_codes_naf(ids):
@@ -75,15 +76,8 @@ async def populate_formation_from_bytes(context, content):
     for key, schema in SCHEMA.items():
         if schema.get('source') == 'catalogue' and schema.get('xpath'):
             value = root.xpath(schema['xpath'])
-            try:
-                value = validate_format(schema, value)
-            except ValueError:
-                if 'default' in schema:
-                    value = schema['default']
-                else:
-                    continue  # Should we raise/validate required?
-            if schema.get('format') == 'set':
-                value = set(value)
+            if value == []:  # Empty resultset.
+                value = None
             context[key] = value
 
     if not context['formation.codes_naf']:
@@ -193,13 +187,16 @@ def check_financement(context, financement):
     context['financement.nom'] = financement['nom']
     context['financement.tags'] = financement['tags']
     context['financement.eligible'] = False
-    financement_to_organisme(context, financement)
-    for rule in RULES['rules/racine.rules']:
+    if context.get('beneficiaire.droit_prive'):
+        financement_to_organisme(context, financement)
+    for rule in RULES[f'rules/{financement["rules"]}.rules']:
         status = Rule.process(rule, context)
         if status is not None:  # Root is a no_status condition.
             context['status'].append(status)
     financement['status'] = context['status']
     if context['financement.eligible']:
         compute_modalites(context, financement)
-        load_organisme_contact_details(context, financement)
+        if context.get('beneficiaire.droit_prive'):
+            load_organisme_contact_details(context, financement)
     financement['eligible'] = context['financement.eligible']
+    del financement['rules']

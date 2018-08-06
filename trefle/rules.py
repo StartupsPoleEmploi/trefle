@@ -2,7 +2,7 @@ from collections import namedtuple
 import inspect
 import re
 
-from .exceptions import NoDataError, WrongPointerError, NoStepError
+from .exceptions import NoDataError, WrongPointerError, NoStepError, DataError
 from .helpers import isfloat, count_indent
 
 SCHEMA = {}
@@ -51,25 +51,14 @@ class Pointer:
     def compile(self):
         value = parse_value(self.raw)
         if value is not ...:
-            self.get = lambda **d: value
+            self.get = lambda context: value
         else:
             try:
                 self.key = LABELS[self.raw]
             except KeyError:
                 raise WrongPointerError(self.raw)
-            self.get = lambda **d: self._get_from_context(**d)
+            self.get = lambda context: context[self.key]
             self.default = self.compute_default()
-
-    def _get_from_context(self, **context):
-        try:
-            value = context[self.key]
-        except KeyError:
-            value = None
-        if value is None:
-            if self.default is not ...:
-                return self.default
-            raise NoDataError(self.raw)
-        return value
 
     def compute_default(self):
         schema = SCHEMA[self.key]
@@ -118,7 +107,7 @@ def no_status(func):
 class Value:
 
     def __init__(self, pointer, context):
-        self.value = pointer.get(**context)
+        self.value = pointer.get(context)
         self.pointer = pointer
 
     def __str__(self):
@@ -279,6 +268,8 @@ class Condition(Step):
             except NoDataError as err:
                 status.status = False
                 status.reason = f"Donnée manquante pour «{err}»"
+            except DataError:
+                raise
             except Exception as err:
                 # Give more context.
                 params = ' AND '.join(f'{key}={value}'
@@ -303,13 +294,13 @@ def set_eligible(context):
 
 @action(r"(l'|les? |la )(?P<key>.+) est égale? à (?P<rate>[\d\.]+)% (de la|du) (?P<value>.+)$")
 def set_percent(context, key: Label, rate: float, value: Pointer):
-    context[key] = value.get(**context) * rate / 100
+    context[key] = value.get(context) * rate / 100
 
 
 @action(r"(l'|les? |la )(?P<key>.+) (vaut|est) (?P<value>.+)$")
 @action(r"(l'|les? |la )(?P<key>.+) est égale? (à la|à|aux?)? (?P<value>.+)$")
 def set_value(context, key: Label, value: Pointer):
-    context[key] = value.get(**context)
+    context[key] = value.get(context)
 
 
 @action(r"c'est une? (?P<key>.+)")
@@ -319,7 +310,7 @@ def set_true(context, key: Label):
 
 @action(r"appliquer les règles (de )?(l'|le |la )?(?P<rule>.+)")
 def include(context, rule: Pointer):
-    rule = rule.get(**context)
+    rule = rule.get(context)
     name = f'rules/{rule}.rules'
     rules = RULES[name]
     for rule in rules:
@@ -354,25 +345,25 @@ def check_type(context, tag):
 
 
 @reason("{left.pointer.raw} vaut {left}, c'est inférieur ou égal au seuil de {right}")
-@condition(r"(l'|les? |la )(?P<left>.+) est supérieure? à (?P<right>.+)")
+@condition(r"(l'|les? |la )(?P<left>.+) est supérieure? à (l'|les? |la )?(?P<right>.+)")
 def check_gt(context, left, right):
     return left.value > right.value
 
 
 @reason("{left.pointer.raw} trop faible: {left}, au lieu de {right} au moins")
-@condition(r"(l'|les? |la )(?P<left>.+) est supérieure? ou égale? à (?P<right>.+)")
+@condition(r"(l'|les? |la )(?P<left>.+) est supérieure? ou égale? à (l'|les? |la )?(?P<right>.+)")
 def check_ge(context, left, right):
     return left.value >= right.value
 
 
 @reason("{left.pointer.raw} vaut {left}, c'est supérieur ou égal au seuil ({right})")
-@condition(r"(l'|les? |la )(?P<left>.+) est inférieure? à (?P<right>.+)")
+@condition(r"(l'|les? |la )(?P<left>.+) est inférieure? à (l'|les? |la )?(?P<right>.+)")
 def check_lt(context, left, right):
     return left.value < right.value
 
 
 @reason("{left.pointer.raw} trop grande: {left} (le maximum est {right})")
-@condition(r"(l'|les? |la )(?P<left>.+) est inférieure? ou égale? à (?P<right>.+)")
+@condition(r"(l'|les? |la )(?P<left>.+) est inférieure? ou égale? à (l'|les? |la )?(?P<right>.+)")
 def check_le(context, left, right):
     return left.value <= right.value
 
@@ -384,7 +375,7 @@ def check_share_one(context, left, right):
 
 
 @reason("«{right}» contient {left}")
-@condition(r"(l'|les? |la )(?P<left>.+) ne contien(nen)?t aucun des (?P<right>.+)")
+@condition(r"(l'|les? |la )(?P<left>.+) ne contien(nen)?t aucun des ([^ ]+ parmi )?(?P<right>.+)")
 def check_not_share_one(context, left, right):
     return not bool(set(left.value or []) & set(right.value or []))
 

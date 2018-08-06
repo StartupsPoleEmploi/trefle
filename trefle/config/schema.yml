@@ -141,8 +141,16 @@ beneficiaire:
     description: le bénéficiaire est salarié d'une entreprise de droit privé
     type: boolean
     public: true
-    required: true
+    default: false
     label: bénéficiaire de droit privé
+    gender: masculine
+  inscrit_pe:
+    alias: beneficiaire.inscritDE
+    description: le bénéficiaire est inscrit à Pôle emploi commme demandeur d'emploi
+    type: boolean
+    public: true
+    default: false
+    label: demandeur d'emploi
     gender: masculine
   solde_cpf:
     description: solde du compte CPF du bénéficiaire
@@ -197,7 +205,6 @@ beneficiaire:
     description: type de contrat du bénéficiaire
     type: string
     public: true
-    required: true
     enum:
       cdd: CDD
       cdi: CDI
@@ -232,14 +239,12 @@ beneficiaire:
       type: string
       format: idcc
       public: true
-      required: true
       label: IDCC de l'établissement du bénéficiaire
       gender: masculine
     commune:
       description: code INSEE de la commune de l'établissement du bénéficiaire
       type: string
       public: true
-      # required: true  # Make me required when LBF is ready
       pattern: ^(2[AB]|[0-9]{2})[0-9]{3}$
       label: code INSEE de la commune de l'établissement du bénéficiaire
       gender: masculine
@@ -323,6 +328,7 @@ formation:
     label: régions éligibles COPAREF
   codes_formacode:
     type: array
+    format: set
     items:
       type: integer
     source: catalogue
@@ -389,6 +395,7 @@ formation:
     gender: masculine
   prix_total:
     type: integer
+    default: 0
     format: float
     source: catalogue
     xpath: //prix-total-TTC/child::text()
@@ -445,54 +452,79 @@ formation:
     xpath: string((//periode/fin)[1]/child::text())
   foad:
     type: boolean
+    default: false
     source: catalogue
     xpath: boolean(//modalites-enseignement[text()="2"])
     label: formation ouverte à distance
   toeic:
     type: boolean
+    default: false
     source: catalogue
     label: formation TOEIC
   bulats:
     type: boolean
+    default: false
     source: catalogue
     label: formation BULATS
   caces:
     type: boolean
+    default: false
     source: catalogue
     label: formation CACES
   bec:
     type: boolean
+    default: false
     source: catalogue
     label: formation BEC
   bilan_de_competences:
     type: boolean
+    default: false
     source: catalogue
     label: bilan de compétences
     gender: masculine
   permis_b:
     type: boolean
+    default: false
     source: catalogue
     label: permis B
     gender: masculine
   certifiante:
     type: boolean
+    default: false
     source: catalogue
-    xpath: boolean(//certifiante[text()="1"])
+    xpath: boolean(number(//certifiante/text()))
     label: formation certifiante
   vae:
     type: boolean
+    default: false
     source: catalogue
     label: formation VAE
   clea:
     type: boolean
+    default: false
     source: catalogue
     label: formation CléA
   rncp:
     type: boolean
+    default: false
     source: catalogue
     xpath: boolean(//certification/code-RNCP/child::text())
     label: formation RNCP
     description: cette formation est inscrite au RNCP
+  contrat_apprentissage:
+    type: boolean
+    default: false
+    source: catalogue
+    xpath: boolean(//extras[@info="dispositif"]/extra[@info="contrat-apprentissage"][text()="1"])
+    label: contrat d'apprentissage
+    gender: masculine
+  contrat_professionnalisation:
+    type: boolean
+    default: false
+    source: catalogue
+    xpath: boolean(//extras[@info="dispositif"]/extra[@info="contrat-professionnalisation"][text()="1"])
+    label: contrat de professionnalisation
+    gender: masculine
   niveau_sortie:
     description: le niveau du diplôme de sortie (licence, master…)
     type: integer
@@ -598,13 +630,13 @@ financement:
     description: nombre maximal d'heures prises en charge
   plafond_prix_horaire:
     type: integer
-    format: int32
+    format: float
     public: true
     label: prix horaire plafond applicable
     description: prix horaire maximum
   prix_horaire:
     type: integer
-    format: int32
+    format: float
     label: prix horaire applicable
   heures:
     type: integer

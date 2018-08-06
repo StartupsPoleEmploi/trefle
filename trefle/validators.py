@@ -2,10 +2,10 @@ from contextlib import suppress
 from datetime import datetime
 
 from .config import IDCC, ORGANISMES
+from .exceptions import DataError, NoDataError
 from .helpers import fold_name
 from .rules import SCHEMA
 
-validators = []
 formatters = {}
 
 TRUE_VALUES = ('oui', 'yes', 'true', 'on', '1')
@@ -19,11 +19,6 @@ def formatter(*formats):
     return wrapper
 
 
-def validator(func):
-    validators.append(func)
-    return func
-
-
 @formatter('boolean')
 def format_boolean(value):
     value = str(value).lower()
@@ -32,6 +27,14 @@ def format_boolean(value):
     if value in FALSE_VALUES:
         return False
     raise ValueError(f"`{value}` n'est pas de type booléen")
+
+
+@formatter('float')
+def format_float(value):
+    try:
+        return float(value)
+    except ValueError:
+        raise ValueError(f"`{value}` n'est pas un nombre")
 
 
 @formatter('integer')
@@ -104,46 +107,45 @@ def format_remuneration(value):
     return float(value)
 
 
-def validate(data):
-    # Check all fields at once, more user friendly.
-    errors = {}
-    for name, schema in SCHEMA.items():
-        value = data.get(name)
-        # Allow to keep retrocompat names.
-        if value is None and 'alias' in schema:
-            value = data.get(schema['alias'])
-        value = validate_field(name, value, schema, errors)
-        if value is not None:  # Do not create None values.
-            data[name] = value
-    if errors:
-        raise ValueError(errors)
-
-
-def validate_field(name, value, schema, errors):
-    for validator_ in validators:
+def validate_field(name, data):
+    value = data.get(name)
+    try:
+        schema = SCHEMA[name]
+    except KeyError:
+        return value  # FIXME unknown keys (like parent, which is a hack)
+    if value is None and 'alias' in schema:
+        value = data.get(schema['alias'])
+    for validator in [validate_empty, validate_format, validate_enum,
+                      validate_pattern]:
         try:
-            value = validator_(schema, value)
+            value = validator(schema, value)
         except ValueError as err:
-            errors[name] = str(err)
-            # Store only one error per field.
-            break
+            raise DataError(str(err), name)
+        except NoDataError as err:
+            err.key = name
+            raise
     return value
 
 
-@validator
-def validate_required(schema, value):
-    if schema.get('required') and value in (None, ''):
-        raise ValueError('Ce champ est obligatoire')
+def validate_empty(schema, value):
+    if value in (None, ''):
+        if 'default' in schema:
+            return schema['default']
+        if schema.get('format') == 'set':
+            return set()
+        raise NoDataError('Ce champ est obligatoire')
     return value
 
 
-@validator
 def validate_format(schema, value):
     if value is not None:
         type_ = schema['type']
         format_ = schema.get('format')
         if type_ == 'array':
-            return [validate_format(schema['items'], v) for v in value]
+            value = [validate_format(schema['items'], v) for v in value]
+            if format_ == 'set':
+                value = set(value)
+            return value
         # If there is formatter, it has precedence, and should take care of the
         # type too (so it can deal with cleaning the data before).
         func = formatters.get(format_, formatters.get(type_))
@@ -155,7 +157,6 @@ def validate_format(schema, value):
     return value
 
 
-@validator
 def validate_enum(schema, value):
     if value and 'enum' in schema and value not in schema['enum']:
         raise ValueError(
@@ -163,7 +164,6 @@ def validate_enum(schema, value):
     return value
 
 
-@validator
 def validate_pattern(schema, value):
     if value and 'pattern' in schema and not schema['pattern'].match(value):
         raise ValueError(
