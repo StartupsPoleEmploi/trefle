@@ -265,7 +265,8 @@ class Condition(Step):
                 status.params = self.evaluate(context)
             except NoDataError as err:
                 status.status = False
-                status.reason = f"Donnée manquante pour «{err}»"
+                label = SCHEMA.get(err.key, {}).get('label', err.key)
+                status.reason = f"Donnée manquante pour «{label}»"
             except DataError:
                 raise
             except Exception as err:
