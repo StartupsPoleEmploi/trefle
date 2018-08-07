@@ -170,3 +170,107 @@ Scénario: Période de professionnalisation sur formation certifiante
     Et le plafond de prise en charge vaut 10500
     Et la rémunération applicable vaut 1000.0
 
+
+# https://labonneformation.beta.pole-emploi.fr/engager-les-demarches?a=2L%3DO2d5OGVeKYcg4TkJiTMMFgM9ssH7CQg4QllQyssQGt5CCkPs4EoQ2oYR2iyeNsOmdKyGasavvQ1yRyvm3poeKPk2i2P7s3Jss28Tsm9M6T%3D29v5n55nStp7vSr%3Db3%3DI_MP19YPYKmfVEQYDAKW1LY%3DAfVBMARkKWGfxVkm9nXP3%3DU7ogqQAJxNKjxktP2THNUKZDvkUJWEcV0SMOnq1mYYxSoA1K0hV2hEg90SPwjffjp4QW_PWXBCFkdpfIeeikfYIq275mj0pwmb-QU%3DWaktCobIuM9nWkGWpmK%3DpOWCY47uTnmKamodjVoDyd5LLAQ4ETWJqu270cCjiAJKY7T0LouBGoS4COx3uqD45nEOmJxpApQhPC761BMH10KsC1JQ-B9AkfVvVkPb7XRfN5Sxs%3DAjZSxlU%3D1BifGNaMFgM9z
+Scénario: formation non éligible à la période de prof (durée trop courte)
+    Soit un bénéficiaire et une formation
+    Et la rémunération du bénéficiaire vaut 1250.0
+    Et c'est un bénéficiaire de droit privé
+    Et le solde CPF du bénéficiaire vaut 150
+    Et le type de contrat du bénéficiaire vaut «CDI»
+    Et l'expérience professionnelle du bénéficiaire dans les cinq dernières années vaut 58
+    Et l'ancienneté en mois du bénéficiaire dans son entreprise vaut 958
+    Et le code NAF de l'établissement du bénéficiaire vaut «9200Z»
+    Et l'IDCC de l'établissement du bénéficiaire vaut «2257»
+    Et le code INSEE de la commune de l'établissement du bénéficiaire vaut «78597»
+    Et le âge du bénéficiaire vaut 31
+    Et la région de l'établissement du bénéficiaire vaut «Île-de-France»
+    Et ce n'est pas une formation éligible COPANEF
+    Et la liste des codes FORMACODE de la formation vaut [42879, 21547, 42766]
+    Et la liste des domaines FORMACODE de la formation vaut [427, 428, 215]
+    Et la durée en heures de la formation vaut 35
+    Et le prix horaire de la formation vaut 0
+    Et la code AIS de la formation vaut «Certification»
+    Et ce n'est pas une formation ouverte à distance
+    Et c'est une formation certifiante
+    Et ce n'est pas une formation RNCP
+    Et le niveau de sortie de la formation vaut «aucun»
+    Et la durée en semaines de la formation vaut 52
+    Et la durée en mois de la formation vaut 12
+    Et la durée hebdomadaire de la formation vaut 1
+    Et c'est une formation ouverte aux bénéficiaires individuels
+    Quand je demande un calcul de financement
+    Alors le financement «Période de professionnalisation sur son temps de travail» n'est pas proposé
+
+
+# https://labonneformation.beta.pole-emploi.fr/engager-les-demarches?a=65bS%3DSW3GVeKYcg4TkJiTTTJ-oNssHaCQg4QllQyssQGt5CCkPs4EAoyeNUH6HYNvNUyO7wj4SGasavvQ1yRyvm3poeKGA8B6eefyHeeKy48j-fciTblD2Yh7l2AlX9B9kU8quY%3DeSg3kJK0aGQXVX-qV07wKuuaaPM0oQ%3DowcVkJ9nXroXKAXc-rVxJj%3DJ42wfryV%3D5sJfIaPNKJR2HmwoGSxxZ8VMNZN_prVSiqt2N5EDCWy8ecciQyc%3D1CsbGltalV-UqqttdRakn9PPplpgGhGp3DWmIZH138fTxZfG1-9L4J1NHJv7p90Hxg9mg-3wyBgxxig9s7MX4YnGrKZVpaeimcgHY01JkRsoprwW0P2PQX5x1n-xvNAmQhPxjhJITrh6O-c-vpao2krIa9NeVOoFRfN5Jxs2ZIDOVlrnNr0Rfma9xQHmzet
+Scénario: période de prof FAFIH-licence pro
+    Soit un bénéficiaire et une formation
+    Et la rémunération du bénéficiaire vaut 1250.0
+    Et c'est un bénéficiaire de droit privé
+    Et le type de contrat du bénéficiaire vaut «CDI»
+    Et l'expérience professionnelle du bénéficiaire dans les cinq dernières années vaut 58
+    Et l'ancienneté en mois du bénéficiaire dans son entreprise vaut 958
+    Et le code NAF de l'établissement du bénéficiaire vaut «9200Z»
+    Et l'IDCC de l'établissement du bénéficiaire vaut «2257»
+    Et le code INSEE de la commune de l'établissement du bénéficiaire vaut «78597»
+    Et le âge du bénéficiaire vaut 31
+    Et la région de l'établissement du bénéficiaire vaut «Île-de-France»
+    Et ce n'est pas une formation éligible COPANEF
+    Et la liste des codes FORMACODE de la formation vaut [42766]
+    Et la liste des domaines FORMACODE de la formation vaut [427]
+    Et le code CERTIFINFO de la formation vaut 42441
+    Et le code RNCP de la formation vaut 19773
+    Et la durée en heures de la formation vaut 1200
+    Et le prix horaire de la formation vaut 0
+    Et la liste des codes CPF de la formation vaut [12969]
+    Et la code AIS de la formation vaut «Certification»
+    Et ce n'est pas une formation ouverte à distance
+    Et c'est une formation certifiante
+    Et c'est une formation RNCP
+    Et le niveau de sortie de la formation vaut «II»
+    Et la durée en semaines de la formation vaut 53
+    Et la durée en mois de la formation vaut 12
+    Et la durée hebdomadaire de la formation vaut 23
+    Et c'est une formation ouverte aux bénéficiaires individuels
+    Quand je demande un calcul de financement
+    Quand je sélectionne le financement «Période de professionnalisation sur son temps de travail»
+    Alors l'organisme à contacter est «Fafih»
+    Et le plafond de prise en charge vaut 36000
+    Et la rémunération applicable vaut 1250.0
+    Alors le financement «Plan de formation sur son temps de travail» n'est pas proposé
+
+
+Scénario: période de professionnalisation FAFIH - formation partiellement certifiante
+    Soit un bénéficiaire et une formation
+    Et la rémunération du bénéficiaire vaut 1325.0
+    Et c'est un bénéficiaire de droit privé
+    Et le solde CPF du bénéficiaire vaut 150
+    Et le type de contrat du bénéficiaire vaut «CDI»
+    Et l'expérience professionnelle du bénéficiaire dans les cinq dernières années vaut 54
+    Et l'ancienneté en mois du bénéficiaire dans son entreprise vaut 154
+    Et le code NAF de l'établissement du bénéficiaire vaut «9200Z»
+    Et l'IDCC de l'établissement du bénéficiaire vaut «2257»
+    Et le code INSEE de la commune de l'établissement du bénéficiaire vaut «95210»
+    Et le âge du bénéficiaire vaut 31
+    Et la région de l'établissement du bénéficiaire vaut «Île-de-France»
+    Et les codes financeur de la formation vaut [10]
+    Et c'est une formation éligible COPANEF
+    Et la liste des codes FORMACODE de la formation vaut [42797]
+    Et la liste des domaines FORMACODE de la formation vaut [427]
+    Et le code CERTIFINFO de la formation vaut 82782
+    Et le code RNCP de la formation vaut 2561
+    Et la durée en heures de la formation vaut 350
+    Et c'est une formation certifiante
+    Et c'est une formation RNCP
+    Et le niveau de sortie de la formation vaut «IV»
+    Et la durée en semaines de la formation vaut 12
+    Et la durée en mois de la formation vaut 3
+    Et la durée hebdomadaire de la formation vaut 29
+    Et c'est une formation ouverte aux bénéficiaires individuels
+    Quand je demande un calcul de financement
+    Quand je sélectionne le financement «Période de professionnalisation sur son temps de travail»
+    Alors l'organisme à contacter est «Fafih»
+    Et le plafond de prise en charge vaut 10500
+    Et la rémunération applicable vaut 1325.0
+    Alors le financement «Plan de formation sur son temps de travail» n'est pas proposé
