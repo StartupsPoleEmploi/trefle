@@ -2,7 +2,7 @@ from datetime import datetime
 
 import pytest
 from trefle.helpers import (count_indent, diff_month, diff_week, flatten,
-                            isfloat, fold_name)
+                            fold_name, insee_commune_to_region, isfloat)
 
 
 def test_flatten():
@@ -62,3 +62,9 @@ def test_isfloat(input, expected):
 ])
 def test_fold_name(input, expected):
     assert fold_name(input) == expected
+
+
+def test_insee_commune_to_region():
+    context = {'commune': '93031'}
+    insee_commune_to_region(context, 'commune', 'region')
+    assert context['region'] == '11'  # IDF

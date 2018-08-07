@@ -11,7 +11,7 @@ from trefle import routine
 async def test_populate_formation_from_bytes():
     with Path(__file__).parent.joinpath('data/formation.xml').open('rb') as f:
         context = Context({})
-        routine.add_constants(context)
+        routine.extrapolate_context(context)
         await routine.populate_formation_from_bytes(context, f.read())
         routine.preprocess(context)
 
@@ -61,7 +61,7 @@ async def test_populate_formation_from_bytes():
 async def test_populate_formation_from_bytes_edge_cases(path, key, value):
     with Path(__file__).parent.joinpath(f'data/{path}.xml').open('rb') as f:
         context = Context({})
-        routine.add_constants(context)
+        routine.extrapolate_context(context)
         await routine.populate_formation_from_bytes(context, f.read())
         routine.preprocess(context)
         assert context[key] == value
@@ -79,9 +79,9 @@ async def test_populate_formation_from_bytes_with_empty_list():
         await routine.populate_formation_from_bytes(context, content)
 
 
-def test_insee_commune_to_region():
+def test_extrapolate_context_should_set_region():
     context = {'beneficiaire.entreprise.commune': '93031'}
-    routine.insee_commune_to_region(context)
+    routine.extrapolate_context(context)
     assert context['beneficiaire.entreprise.region'] == '11'  # IDF
 
 

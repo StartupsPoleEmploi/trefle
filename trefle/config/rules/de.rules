@@ -1,6 +1,6 @@
 Si c'est un demandeur d'emploi
     Si le financement est de type «CPF»
-        Si la région de l'établissement du bénéficiaire fait partie des régions éligibles COPAREF
+        Si la région du bénéficiaire fait partie des régions éligibles COPAREF
         Ou c'est une formation éligible COPANEF
             Si le solde CPF du bénéficiaire est supérieur à 0
             Et le solde CPF du bénéficiaire est inférieur à la durée en heures de la formation

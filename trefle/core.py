@@ -8,8 +8,7 @@ async def simulate(data):
     # Prepare context
     flatten(data)
     context = Context(data)
-    routine.add_constants(context)
-    routine.insee_commune_to_region(context)
+    routine.extrapolate_context(context)
     await routine.populate_formation(context)
     routine.preprocess(context)
 

@@ -1,27 +1,19 @@
 from lxml import etree
 
-from .config import (CONSTANTS, DEP_TO_REG, ELIGIBILITE_URL, IDCC,
-                     INTERCARIF_URL, ORGANISMES, RULES, SCHEMA)
+from .config import (CONSTANTS, ELIGIBILITE_URL, INTERCARIF_URL, ORGANISMES,
+                     RULES, SCHEMA)
 from .exceptions import UpstreamError, DataError
-from .helpers import diff_month, diff_week, http_get
+from .helpers import diff_month, diff_week, http_get, insee_commune_to_region
 from .rules import Rule
 from .validators import format_naf
 
 
-def add_constants(context):
+def extrapolate_context(context):
     context.update(CONSTANTS)
-
-
-def insee_commune_to_region(context):
-    if 'beneficiaire.entreprise.region' in context:
-        return
-    key = 'beneficiaire.entreprise.commune'
-    if key not in context:
-        return
-    dep = context[key][:2]
-    if dep not in DEP_TO_REG:
-        raise DataError(f'Valeur invalide: `{context[key]}`', key)
-    context['beneficiaire.entreprise.region'] = DEP_TO_REG[dep]
+    insee_commune_to_region(context, 'beneficiaire.entreprise.commune',
+                            'beneficiaire.entreprise.region')
+    insee_commune_to_region(context, 'beneficiaire.commune',
+                            'beneficiaire.region')
 
 
 async def get_formation_xml(formation_id):
