@@ -1,0 +1,41 @@
+<financements>
+  <ul>
+    <li each={ this.financements }>
+      <h3>{ nom }</h3>
+      <p><strong>Catégories</strong>: { _tags }</p>
+      <p><strong>Description</strong>: { description }</p>
+      <p><strong>Démarches</strong>: { demarches }</p>
+  </ul>
+
+  <script>
+    this.financements = []
+
+    this.on('mount', () => this.load())
+
+    this.load = () => {
+      fetch('/explore/financements')
+      .then((response) => response.json())
+      .then(data => {
+        this.financements = data
+        for (var i = 0; i < this.financements.length; i++) {
+          // Riot sucks on `tags`…
+          this.financements[i]['_tags'] = this.financements[i]['tags'].toString()
+        }
+        this.update()
+      })
+    }
+
+    this.mixin(View)
+  </script>
+
+  <style scoped>
+    h3 {
+      font-variant: small-caps;
+    }
+    li {
+      border-bottom: 1px solid #f3f3f3;
+    }
+  </style>
+
+</financements>
+

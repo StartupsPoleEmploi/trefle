@@ -13,6 +13,7 @@
 <script src="components/rules.tag.html" type="riot/tag"></script>
 <script src="components/simulate.tag.html" type="riot/tag"></script>
 <script src="components/tools.tag.html" type="riot/tag"></script>
+<script src="components/financements.tag.html" type="riot/tag"></script>
 <script src="components/idcc-search.tag.html" type="riot/tag"></script>
 <script src="components/catalog.tag.html" type="riot/tag"></script>
 <script src="components/context.tag.html" type="riot/tag"></script>
@@ -23,6 +24,7 @@
   <glossary class=full></glossary>
   <rules class=tools></rules>
   <simulate class=tools></simulate>
+  <financements class=full></financements>
   <tools></tools>
 </main>
 
@@ -35,6 +37,7 @@
   route('/simulate', () => riot.mount('simulate'))
   route('/simulate/(.+)', (url) => riot.mount('simulate', {url: url}))
   route('/tools', () => riot.mount('tools'))
+  route('/financements', () => riot.mount('financements'))
   route('/glossary', () => riot.mount('glossary'))
 
   init();

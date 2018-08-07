@@ -482,3 +482,9 @@ async def test_rules_details(client):
     assert not financement['status'][0]['children'][0]['terms'][1]['status']
     assert financement['status'][0]['children'][0]['terms'][1]['reason'] == \
         "ce n'est pas formation éligible COPANEF"
+
+
+async def test_explore_financements(client):
+    resp = await client.get('/explore/financements')
+    financements = json.loads(resp.body)
+    assert 'nom' in financements[0]

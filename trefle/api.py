@@ -4,10 +4,10 @@ from roll import HttpError, Roll
 from roll.extensions import cors
 
 from . import VERSION
-from .config import RAW_RULES, SCHEMA, GLOSSARY, NAF
+from .config import FINANCEMENTS, GLOSSARY, NAF, RAW_RULES, SCHEMA
 from .core import simulate
 from .debugging import data_from_lbf_url, make_scenario
-from .loggers import logger, log_simulate
+from .loggers import log_simulate, logger
 from .openapis import OPENAPI
 from .routine import get_formation_xml
 
@@ -82,6 +82,11 @@ async def explore_rules(request, response):
 @app.route('/explore/glossary')
 async def explore_glossary(request, response):
     response.json = GLOSSARY
+
+
+@app.route('/explore/financements')
+async def explore_financements(request, response):
+    response.json = FINANCEMENTS
 
 
 @app.route('/explore/catalog')
