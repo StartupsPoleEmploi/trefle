@@ -8,14 +8,13 @@ import yaml
 
 from ..exceptions import NoStepError, WrongPointerError
 from ..helpers import fold_name
-from ..rules import Rule, SCHEMA, LABELS, RULES
+from ..rules import Rule, SCHEMA, LABELS, RULES, IDCC
 
 
 CONSTANTS = {}
 FINANCEMENTS = []
 ORGANISMES = {}
 ROOT = Path(__file__).parent
-IDCC = {}
 RAW_RULES = {}
 GLOSSARY = {}
 NAF = {}

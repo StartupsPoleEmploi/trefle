@@ -8,6 +8,7 @@ from .helpers import isfloat, count_indent
 SCHEMA = {}
 LABELS = {}
 RULES = {}
+IDCC = {}
 
 
 def parse_value(value, default=...):
@@ -213,10 +214,7 @@ class Action(Step):
         self.compile()
 
     def act(self, context):
-        try:
-            self.func(context, **self.params)
-        except NoDataError as err:
-            raise NoDataError(f'No data for `{err}` in `{self.raw}`')
+        self.func(context, **self.params)
 
 
 class Condition(Step):
@@ -325,12 +323,14 @@ def unset_key(context, key: Label):
         pass
 
 
-@action(r"définir l'organisme de contact$")
+@action(r"définir les organismes paritaires")
 def define_organisme(context):
-    try:
-        del context[key]
-    except KeyError:
-        pass
+    idcc = context['beneficiaire.entreprise.idcc']
+    # Allow to force value in input data.
+    if 'beneficiaire.entreprise.opca' not in context:
+        context['beneficiaire.entreprise.opca'] = IDCC[idcc]['OPCA']
+    if 'beneficiaire.entreprise.opacif' not in context:
+        context['beneficiaire.entreprise.opacif'] = IDCC[idcc]['OPACIF']
 
 
 @reason("ce n'est pas {key.pointer.raw}")

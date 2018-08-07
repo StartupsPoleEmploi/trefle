@@ -12,17 +12,6 @@ def add_constants(context):
     context.update(CONSTANTS)
 
 
-def idcc_to_organismes(context):
-    key = 'beneficiaire.entreprise.idcc'
-    if key in context:
-        idcc = context['beneficiaire.entreprise.idcc']
-        # Allow to force value in input data.
-        if 'beneficiaire.entreprise.opca' not in context:
-            context['beneficiaire.entreprise.opca'] = IDCC[idcc]['OPCA']
-        if 'beneficiaire.entreprise.opacif' not in context:
-            context['beneficiaire.entreprise.opacif'] = IDCC[idcc]['OPACIF']
-
-
 def insee_commune_to_region(context):
     if 'beneficiaire.entreprise.region' in context:
         return

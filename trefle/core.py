@@ -12,7 +12,6 @@ async def simulate(data):
     routine.insee_commune_to_region(context)
     await routine.populate_formation(context)
     routine.preprocess(context)
-    routine.idcc_to_organismes(context)
 
     financements = [f.copy() for f in FINANCEMENTS]
     # Compute organisme, prise en charge, rémunération per financement
