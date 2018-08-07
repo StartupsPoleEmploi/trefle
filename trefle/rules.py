@@ -325,6 +325,14 @@ def unset_key(context, key: Label):
         pass
 
 
+@action(r"définir l'organisme de contact$")
+def define_organisme(context):
+    try:
+        del context[key]
+    except KeyError:
+        pass
+
+
 @reason("ce n'est pas {key.pointer.raw}")
 @condition(r"c'est une? (?P<key>.+)")
 def check_true(context, key):

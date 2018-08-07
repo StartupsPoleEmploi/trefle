@@ -116,16 +116,14 @@ def preprocess(context):
 
 def load_organisme_contact_details(context, financement):
     nom = context.get('financement.organisme.agence',
-                      context['financement.organisme.nom'])
-    organisme = load_organisme(nom)
+                      context.get('financement.organisme.nom'))
+    if nom not in ORGANISMES:  # A DE financement?
+        return
+    organisme = ORGANISMES[nom]
     financement['organisme'] = organisme
     # Q&D way to display the organisme details on LBF.
     # TODO clean me.
     financement['demarches'] = financement['demarches'].format(**organisme)
-
-
-def load_organisme(nom):
-    return ORGANISMES[nom]
 
 
 def compute_modalites(context, financement):
@@ -182,7 +180,6 @@ def check_financement(context, financement):
     financement['status'] = context['status']
     if context['financement.eligible']:
         compute_modalites(context, financement)
-        if context.get('beneficiaire.droit_prive'):
-            load_organisme_contact_details(context, financement)
+        load_organisme_contact_details(context, financement)
     financement['eligible'] = context['financement.eligible']
     del financement['rules']
