@@ -321,7 +321,7 @@ def set_true(context, key: Label):
 def include(context, rule: Pointer):
     rule = rule.get(**context)
     name = f'rules/{rule}.rules'
-    rules = RULES.get(name)
+    rules = RULES[name]
     for rule in rules:
         Rule.process(rule, context, status=context['parent'])
 
