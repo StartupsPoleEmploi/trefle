@@ -297,8 +297,8 @@ def set_percent(context, key: Label, rate: float, value: Pointer):
     context[key] = value.get(context) * rate / 100
 
 
-@action(r"(l'|les? |la )(?P<key>.+) (vaut|est) (?P<value>.+)$")
-@action(r"(l'|les? |la )(?P<key>.+) est égale? (à la|à|aux?)? (?P<value>.+)$")
+@action(r"(l'|les? |la )(?P<key>.+) (vaut|est) (l'|les? |la )?(?P<value>.+)$")
+@action(r"(l'|les? |la )(?P<key>.+) est égale? (à la |à l'|à |aux? )?(?P<value>.+)$")
 def set_value(context, key: Label, value: Pointer):
     context[key] = value.get(context)
 

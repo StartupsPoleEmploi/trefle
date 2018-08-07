@@ -114,18 +114,6 @@ def preprocess(context):
         Rule.process(rule, context)
 
 
-def financement_to_organisme(context, financement):
-    tags = financement['tags']
-    # TODO: add an "organisme_type" key in financements.yml instead?
-    if {'CPF', 'période de professionnalisation', 'plan de formation'} & set(tags):
-        nom = context['beneficiaire.entreprise.opca']
-    elif 'CIF' in tags:
-        nom = context['beneficiaire.entreprise.opacif']
-    else:
-        raise NotImplementedError(f'Unknown financement type {tags}')
-    context['financement.organisme.nom'] = nom
-
-
 def load_organisme_contact_details(context, financement):
     nom = context.get('financement.organisme.agence',
                       context['financement.organisme.nom'])
@@ -187,8 +175,6 @@ def check_financement(context, financement):
     context['financement.nom'] = financement['nom']
     context['financement.tags'] = financement['tags']
     context['financement.eligible'] = False
-    if context.get('beneficiaire.droit_prive'):
-        financement_to_organisme(context, financement)
     for rule in RULES[f'rules/{financement["rules"]}.rules']:
         status = Rule.process(rule, context)
         if status is not None:  # Root is a no_status condition.

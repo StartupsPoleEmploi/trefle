@@ -64,7 +64,7 @@ Si c'est un bénéficiaire de droit privé
 
 def test_mixing_SI_and_ALORS_with_same_indent():
     data = """
-Si le nom de l'organisme est «BLAH»
+Si l'organisme paritaire est «BLAH»
     Alors le plafond horaire applicable vaut 150
     Si c'est une formation éligible COPANEF
         Alors le prix horaire applicable vaut 60
@@ -77,7 +77,7 @@ Si le nom de l'organisme est «BLAH»
     print(root)
     assert len(root.children) == 3
     assert len(root.actions) == 1
-    assert root.raw == "le nom de l'organisme est «BLAH»"
+    assert root.raw == "l'organisme paritaire est «BLAH»"
     assert root.actions[0].raw == 'le plafond horaire applicable vaut 150'
     assert len(root.children[0].children) == 0
     assert root.children[0].raw == "c'est une formation éligible COPANEF"
@@ -97,7 +97,7 @@ Si le nom de l'organisme est «BLAH»
 
 def test_mixing_Si_and_Et():
     data = """
-Si le nom de l'organisme est «BLAH»
+Si l'organisme paritaire est «BLAH»
     Alors le plafond horaire applicable vaut 150
     Si c'est une formation éligible COPANEF
     Et c'est un bénéficiaire de droit privé
@@ -107,7 +107,7 @@ Si le nom de l'organisme est «BLAH»
     print(root)
     assert len(root.children) == 1
     assert len(root.actions) == 1
-    assert root.raw == "le nom de l'organisme est «BLAH»"
+    assert root.raw == "l'organisme paritaire est «BLAH»"
     assert root.actions[0].raw == 'le plafond horaire applicable vaut 150'
     assert root.children[0].connective == Condition.AND
     assert root.children[0].raw == ("c'est une formation éligible COPANEF ET "
@@ -118,7 +118,7 @@ Si le nom de l'organisme est «BLAH»
 
 def test_mixing_Si_and_Ou():
     data = """
-Si le nom de l'organisme est «BLAH»
+Si l'organisme paritaire est «BLAH»
     Alors le plafond horaire applicable vaut 150
     Si c'est une formation éligible COPANEF
     Ou c'est un bénéficiaire de droit privé
@@ -128,7 +128,7 @@ Si le nom de l'organisme est «BLAH»
     print(root)
     assert len(root.children) == 1
     assert len(root.actions) == 1
-    assert root.raw == "le nom de l'organisme est «BLAH»"
+    assert root.raw == "l'organisme paritaire est «BLAH»"
     assert root.actions[0].raw == 'le plafond horaire applicable vaut 150'
     assert root.children[0].connective == Condition.OR
     assert root.children[0].raw == ("c'est une formation éligible COPANEF OU "
@@ -139,7 +139,7 @@ Si le nom de l'organisme est «BLAH»
 
 def test_inline_conditions():
     data = """
-Si le nom de l'organisme est «BLAH»
+Si l'organisme paritaire est «BLAH»
     Si c'est une formation éligible COPANEF, et c'est un bénéficiaire de droit privé
         Alors le plafond horaire applicable vaut 99
 """
@@ -147,7 +147,7 @@ Si le nom de l'organisme est «BLAH»
     print(root)
     assert len(root.children) == 1
     assert len(root.actions) == 0
-    assert root.raw == "le nom de l'organisme est «BLAH»"
+    assert root.raw == "l'organisme paritaire est «BLAH»"
     assert root.children[0].connective == Condition.AND
     assert root.children[0].terms[0].raw == \
         "c'est une formation éligible COPANEF"
@@ -161,10 +161,10 @@ Si le nom de l'organisme est «BLAH»
 
 def test_with_two_steps_up():
     data = """
-Si le nom de l'organisme est «BLAH»
+Si l'organisme paritaire est «BLAH»
     Si c'est une formation éligible COPANEF
         Alors la rémunération applicable est égale à 1
-Si le nom de l'organisme est «BLOOH»
+Si l'organisme paritaire est «BLOOH»
     Alors la rémunération applicable est égale à 2
 """
     rules = list(Rule.load(data.splitlines(), name='foo'))
@@ -173,7 +173,7 @@ Si le nom de l'organisme est «BLOOH»
     root = rules[0].root
     assert len(root.children) == 1
     assert len(root.actions) == 0
-    assert root.raw == "le nom de l'organisme est «BLAH»"
+    assert root.raw == "l'organisme paritaire est «BLAH»"
     assert root.children[0].raw == "c'est une formation éligible COPANEF"
     assert len(root.children[0].actions) == 1
     assert root.children[0].actions[0].raw == \
@@ -181,13 +181,13 @@ Si le nom de l'organisme est «BLOOH»
     root = rules[1].root
     assert len(root.children) == 0
     assert len(root.actions) == 1
-    assert root.raw == "le nom de l'organisme est «BLOOH»"
+    assert root.raw == "l'organisme paritaire est «BLOOH»"
     assert root.actions[0].raw == 'la rémunération applicable est égale à 2'
 
 
 def test_should_raise_if_no_pattern_match_condition():
     data = """
-Si le nom de l'organisme pourrait bien être «BLAH»
+Si l'organisme paritaire pourrait bien être «BLAH»
     Alors le plafond horaire applicable vaut 150
 """
     with pytest.raises(NoStepError):
@@ -196,7 +196,7 @@ Si le nom de l'organisme pourrait bien être «BLAH»
 
 def test_should_raise_if_no_pattern_match_action():
     data = """
-Si le nom de l'organisme est «BLAH»
+Si l'organisme paritaire est «BLAH»
     Alors le plafond horaire applicable pourrait bien être 150
 """
     with pytest.raises(NoStepError):
@@ -214,7 +214,7 @@ Si le prénom de l'organisme est «BLAH»
 
 def test_should_raise_with_a_wrong_pointer_in_action():
     data = """
-Si le nom de l'organisme est «BLAH»
+Si l'organisme paritaire est «BLAH»
     Alors le plafond de verre applicable vaut 150
 """
     with pytest.raises(WrongPointerError):

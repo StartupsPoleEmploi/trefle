@@ -700,7 +700,7 @@ financement:
     nom:
       public: true
       type: string
-      label: nom de l'organisme
+      label: organisme paritaire
     agence:
       description: le nom de l'antenne locale à contacter le cas échéant
       type: string

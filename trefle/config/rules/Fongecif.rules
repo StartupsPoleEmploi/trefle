@@ -1,4 +1,4 @@
-Si le nom de l'organisme est «Fongecif»
+Si l'organisme paritaire est «Fongecif»
     # Et le prix horaire plafond applicable est égal au prix horaire de la formation
     Alors le plafond financier applicable vaut 18000
     Et le prix horaire plafond applicable vaut 27.45
