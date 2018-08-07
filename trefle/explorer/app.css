@@ -165,6 +165,12 @@ input[type=submit]:hover,
   /* Support for IE. */
   font-feature-settings: 'liga';
 }
+textarea {
+  width: 100%;
+  border: 1px solid #f3f3f3;
+  padding: 10px;
+  min-height: 200px;
+}
 
 
 /************** Tool Tip Styles ********************************/

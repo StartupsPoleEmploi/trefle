@@ -36,7 +36,7 @@
     <h2>Contexte</h2>
     <context data={ this.context }></context>
     <h2>Scénario de test</h2>
-    <rule if={ this.scenario } content={ this.scenario }></rule>
+    <textarea onfocus={ this.selectScenario }>{ this.scenario }</textarea>
   </section>
   <script>
     this.financements = []
@@ -97,6 +97,10 @@
       var item = e.item
       item.visible = !item.visible
     }
+
+    this.selectScenario = (e) => {
+      e.target.select()
+    }
   </script>
 
   <style scoped>
@@ -132,6 +136,9 @@
     }
     .passed:before {
       content: '✔';
+    }
+    textarea {
+      min-height: 600px;
     }
   </style>
 

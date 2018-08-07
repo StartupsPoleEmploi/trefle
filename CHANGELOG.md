@@ -8,6 +8,7 @@
 - explorer: display full text "codes financeur"
 - changed qualifiant in certifiant and changed formation.certifiante computing
 - explorer: add financements page with financements metadatas
+- explorer: autoselect scenario on focus
 
 ## 0.5.0
 
