@@ -79,7 +79,7 @@ Si le financement est de type «période de professionnalisation»
         # Intitulé CQP : Certificat de qualification professionnelle Accrocheur - rigger
         Si le code RNCP de la formation est 20613
         # CQP WEBDESIGNER
-        Ou le code RNCP de la formation est 4725
+        Ou le code CERTIFINFO de la formation est 95673
         # CQP RESPONSABLE DE PRODUCTION OMNICANAL
         Ou le code RNCP de la formation est 24854
         # CQP DEVELOPPEUR DE FORMATS AUDIOVISUELS ET NUMERIQUES
