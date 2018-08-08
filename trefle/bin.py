@@ -6,13 +6,13 @@ import ujson as json
 from minicli import cli, run
 from roll.extensions import simple_server, static, traceback
 
-from .api import app
-from .config import RULES
-from .core import simulate
-from .debugging import (data_from_lbf_url, green, make_scenario, red,
+from trefle.api import app
+from trefle.config import RULES
+from trefle.core import simulate
+from trefle.debugging import (data_from_lbf_url, green, make_scenario, red,
                         trace_condition)
-from .helpers import flatten
-from .rules import parse_value
+from trefle.helpers import flatten
+from trefle.rules import parse_value
 
 
 def parse_args(args):
