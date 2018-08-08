@@ -3,7 +3,7 @@
 ## Install
 
 - Create a venv
-- Then: `python setup.py develop`
+- Then: `make develop`
 
 ## Run a simulation
 
