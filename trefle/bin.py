@@ -10,7 +10,7 @@ from trefle.api import app
 from trefle.config import RULES
 from trefle.core import simulate
 from trefle.debugging import (data_from_lbf_url, green, make_scenario, red,
-                        trace_condition)
+                              trace_condition)
 from trefle.helpers import flatten
 from trefle.rules import parse_value
 
@@ -152,6 +152,12 @@ def serve(reload=False):
         hupper.start_reloader('trefle.bin.serve')
     traceback(app)
     simple_server(app)
+
+
+@cli
+def test_config():
+    """Just load the config."""
+    print('Project loaded successfully!')
 
 
 def main():
