@@ -512,6 +512,21 @@ formation:
       6: III
       7: II
       8: I
+  entrees_sorties:
+    type: integer
+    format: int32
+    source: catalogue
+    xpath: number(//modalites-entrees-sorties)
+    enum:
+      0: entrées/sorties à dates fixes
+      1: entrées/sorties permanentes
+    label: modalités d'entrées-sorties
+  entrees_sorties_permanentes:
+    type: boolean
+    default: false
+    source: catalogue
+    xpath: boolean(//modalites-entrees-sorties[text()="1"])
+    label: formation à entrées-sorties permanentes
   individuels:
     type: boolean
     default: false

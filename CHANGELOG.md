@@ -9,6 +9,7 @@
 - changed qualifiant in certifiant and changed formation.certifiante computing
 - explorer: add financements page with financements metadatas
 - explorer: autoselect scenario on focus
+- deal with entrées-sorties permanentes in période de professionnalisation
 
 ## 0.5.0
 

@@ -285,7 +285,7 @@
                         </web>
                     </coordonnees>
                 </lieu-de-formation>
-                <modalites-entrees-sorties>1</modalites-entrees-sorties>
+                <modalites-entrees-sorties>0</modalites-entrees-sorties>
                 <url-action>
                     <urlweb>http://www.etoile.regioncentre.fr/GIP/accueiletoile/seformer/formation/detailformation/engineName/carifengine?screen=fiche_formation&amp;idFormation=10</urlweb>
                 </url-action>

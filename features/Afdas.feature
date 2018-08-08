@@ -146,3 +146,27 @@ Scénario: Pas de période de professionnalisation pour un CDD
     Et c'est une formation VAE
     Quand je demande un calcul de financement
     Alors le financement «Période de professionnalisation sur son temps de travail» n'est pas proposé
+
+Scénario: Période de professionnalisation avec entrées-sorties permantentes
+    Soit un bénéficiaire et une formation
+    Et c'est un bénéficiaire de droit privé
+    Et la rémunération du bénéficiaire vaut 1600
+    Et le solde CPF du bénéficiaire vaut 150
+    Et le type de contrat du bénéficiaire vaut «CDI»
+    Et l'IDCC de l'établissement du bénéficiaire vaut «716»
+    Et le code INSEE de la commune de l'établissement du bénéficiaire vaut «75056»
+    Et le âge du bénéficiaire vaut 40
+    Et la région de l'établissement du bénéficiaire vaut «Île-de-France»
+    Et la durée en heures de la formation vaut 241
+    Et c'est une formation ouverte à distance
+    Et c'est une formation certifiante
+    Et c'est une formation à entrées-sorties permanentes
+    Et la durée en semaines de la formation vaut 101
+    Et la durée en mois de la formation vaut 23
+    Et la durée hebdomadaire de la formation vaut 2
+    Et c'est une formation ouverte aux bénéficiaires individuels
+    Quand je demande un calcul de financement
+    Quand je sélectionne le financement «Période de professionnalisation sur son temps de travail»
+    Alors l'organisme à contacter est «Afdas»
+    Et le plafond de prise en charge vaut 9640
+    Et la rémunération applicable vaut 1600.0
