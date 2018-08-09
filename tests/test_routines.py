@@ -25,9 +25,11 @@ async def test_populate_formation_from_bytes():
         assert context['formation.foad'] is False
         assert context['formation.niveau_sortie'] == 4
         assert context['formation.heures'] == 697
+        assert context['formation.heures_entreprise'] == 112
+        assert context['formation.heures_centre'] == 585
         assert context['formation.mois'] == 6
         assert context['formation.semaines'] == 26
-        assert context['formation.duree_hebdomadaire'] == 27
+        assert context['formation.duree_hebdo'] == 35
         assert context['formation.codes_financeur'] == {10, 5, 2}
         assert context['formation.certifiante'] is True
         assert context['formation.codes_cpf'] == {167204, 13352, 1487, 18320,
@@ -39,10 +41,10 @@ async def test_populate_formation_from_bytes():
         assert context['formation.entrees_sorties_permanentes'] is False
         assert context['formation.contrat_apprentissage'] is False
         assert context['formation.contrat_professionnalisation'] is False
+        assert context['formation.poec'] is False
 
 
 @pytest.mark.parametrize('path,key,value', [
-    ('without_certifinfo', 'formation.code_certifinfo', None),
     ('without_rncp', 'formation.rncp', False),
     ('vae', 'formation.vae', True),
     ('clea', 'formation.clea', True),
@@ -56,6 +58,7 @@ async def test_populate_formation_from_bytes():
     ('contrat_apprentissage', 'formation.contrat_apprentissage', True),
     ('contrat_professionnalisation', 'formation.contrat_professionnalisation',
      True),
+    ('poec', 'formation.poec', True),
 ])
 @pytest.mark.asyncio
 async def test_populate_formation_from_bytes_edge_cases(path, key, value):

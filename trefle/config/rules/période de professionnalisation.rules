@@ -6,5 +6,5 @@ Ou le type de contrat du bénéficiaire est «CDD», et c'est une entreprise d'i
         Alors appliquer les règles de l'OPCA de l'établissement du bénéficiaire
 
     Si la durée en heures de la formation est supérieure ou égale à 70
-    Et la durée en mois de la formation est inférieure ou égale à 12, ou c'est une formation à entrées-sorties permanentes
+    Et la durée en mois de la formation n'est pas supérieure à 12, ou c'est une formation à entrées-sorties permanentes
         Alors appliquer les règles de l'OPCA de l'établissement du bénéficiaire

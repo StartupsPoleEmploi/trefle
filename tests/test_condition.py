@@ -49,7 +49,7 @@ def test_negative_boolean_condition(patch_schema):
     condition = Condition(["ce n'est pas un bénéficiaire inscrit"])
     assert condition.assess(Context({'inscrit': False}))
     assert not condition.assess(Context({'inscrit': True}))
-    assert not condition.assess(Context({'unknown': 'X'}))
+    assert condition.assess(Context({'unknown': 'X'}))
 
 
 def test_gt_int_condition(patch_schema):
@@ -160,7 +160,7 @@ def test_not_contains_condition(patch_schema):
     assert not condition.assess(Context({'naf': '123',
                                          'nafs': ['123', '456']}))
     assert condition.assess(Context({'naf': '123', 'nafs': ['456']}))
-    assert not condition.assess(Context({'unknown': True}))
+    assert condition.assess(Context({'unknown': True}))
 
 
 def test_share_one(patch_schema):

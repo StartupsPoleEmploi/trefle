@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lheo xmlns="http://www.lheo.org/2.2">
+   <offres>
+      <formation numero="24_162227" ref="26766" datecrea="20180601" datemaj="20180601" href="">
+         <domaine-formation>
+            <code-FORMACODE ref="V12" tag="principal">32688</code-FORMACODE>
+            <code-NSF>314</code-NSF>
+            <code-ROME>M1203</code-ROME>
+         </domaine-formation>
+         <intitule-formation>Gestionnaire de paie (POEC)</intitule-formation>
+         <objectif-formation>-</objectif-formation>
+         <resultats-attendus>Attestation</resultats-attendus>
+         <contenu-formation>-</contenu-formation>
+         <certifiante>0</certifiante>
+         <contact-formation>
+            <coordonnees>
+               <civilite>Monsieur</civilite>
+               <nom>DUBUC</nom>
+               <prenom>Pierre</prenom>
+               <adresse>
+                  <ligne>7 cité Paradis</ligne>
+                  <codepostal>75010</codepostal>
+                  <ville>Paris 10e</ville>
+                  <departement>75</departement>
+                  <code-INSEE-commune>75110</code-INSEE-commune>
+                  <region>11</region>
+                  <pays>FR</pays>
+                  <geolocalisation>
+                     <latitude>48.8815994262695</latitude>
+                     <longitude>2.36229991912842</longitude>
+                  </geolocalisation>
+               </adresse>
+               <telfixe>
+                  <numtel>01 80 88 30 30</numtel>
+               </telfixe>
+               <fax>
+                  <numtel>01 80 88 30 31</numtel>
+               </fax>
+               <courriel>hello@openclassrooms.com</courriel>
+            </coordonnees>
+         </contact-formation>
+         <parcours-de-formation>4</parcours-de-formation>
+         <code-niveau-entree>0</code-niveau-entree>
+         <objectif-general-formation>2</objectif-general-formation>
+         <code-niveau-sortie>1</code-niveau-sortie>
+         <action numero="24_1390142" ref="41673">
+            <rythme-formation>FOAD</rythme-formation>
+            <code-public-vise ref="V12">80006</code-public-vise>
+            <niveau-entree-obligatoire>0</niveau-entree-obligatoire>
+            <modalites-alternance>-</modalites-alternance>
+            <modalites-enseignement>2</modalites-enseignement>
+            <conditions-specifiques>-</conditions-specifiques>
+            <prise-en-charge-frais-possible>1</prise-en-charge-frais-possible>
+            <lieu-de-formation>
+               <coordonnees>
+                  <adresse>
+                     <ligne>-</ligne>
+                     <codepostal>06130</codepostal>
+                     <ville>Grasse</ville>
+                     <departement>06</departement>
+                     <code-INSEE-commune>06069</code-INSEE-commune>
+                     <region>93</region>
+                     <pays>FR</pays>
+                     <geolocalisation>
+                        <latitude>43.6819</latitude>
+                        <longitude>6.95862</longitude>
+                     </geolocalisation>
+                  </adresse>
+                  <telfixe>
+                     <numtel>01 80 88 30 30</numtel>
+                  </telfixe>
+                  <fax>
+                     <numtel>01 80 88 30 31</numtel>
+                  </fax>
+                  <courriel>hello@openclassrooms.com</courriel>
+               </coordonnees>
+            </lieu-de-formation>
+            <modalites-entrees-sorties>0</modalites-entrees-sorties>
+            <url-action>
+               <urlweb>http://www.espace-competences.org/Formation/Action/1390142</urlweb>
+            </url-action>
+            <session numero="197649" ref="66202">
+               <periode>
+                  <debut>20180910</debut>
+                  <fin>20181210</fin>
+               </periode>
+               <adresse-inscription>
+                  <adresse>
+                     <ligne>-</ligne>
+                     <codepostal>06130</codepostal>
+                     <ville>Grasse</ville>
+                     <departement>06</departement>
+                     <code-INSEE-commune>06069</code-INSEE-commune>
+                     <region>93</region>
+                     <pays>FR</pays>
+                     <geolocalisation>
+                        <latitude>43.6819</latitude>
+                        <longitude>6.95862</longitude>
+                     </geolocalisation>
+                  </adresse>
+               </adresse-inscription>
+            </session>
+            <adresse-information>
+               <adresse>
+                  <ligne>-</ligne>
+                  <codepostal>06130</codepostal>
+                  <ville>Grasse</ville>
+                  <departement>06</departement>
+                  <code-INSEE-commune>06069</code-INSEE-commune>
+                  <region>93</region>
+                  <pays>FR</pays>
+                  <geolocalisation>
+                     <latitude>43.6819</latitude>
+                     <longitude>6.95862</longitude>
+                  </geolocalisation>
+               </adresse>
+            </adresse-information>
+            <langue-formation>FR</langue-formation>
+            <code-perimetre-recrutement>0</code-perimetre-recrutement>
+            <nombre-heures-centre>400</nombre-heures-centre>
+            <nombre-heures-total>400</nombre-heures-total>
+            <conventionnement>1</conventionnement>
+            <duree-conventionnee>400</duree-conventionnee>
+            <organisme-formateur numero="24_1124299">
+               <SIRET-formateur>
+                  <SIRET>49386136300064</SIRET>
+               </SIRET-formateur>
+               <raison-sociale-formateur>Openclassrooms</raison-sociale-formateur>
+               <contact-formateur>
+                  <coordonnees numero="97965">
+                     <civilite>Monsieur</civilite>
+                     <nom>DUBUC</nom>
+                     <prenom>Pierre</prenom>
+                     <adresse>
+                        <ligne>7 cité Paradis</ligne>
+                        <codepostal>75010</codepostal>
+                        <ville>Paris 10e</ville>
+                        <departement>75</departement>
+                        <code-INSEE-commune>75110</code-INSEE-commune>
+                        <region>11</region>
+                        <pays>FR</pays>
+                        <geolocalisation>
+                           <latitude>48.8815994262695</latitude>
+                           <longitude>2.36229991912842</longitude>
+                        </geolocalisation>
+                     </adresse>
+                     <telfixe>
+                        <numtel>01 80 88 30 30</numtel>
+                     </telfixe>
+                     <fax>
+                        <numtel>01 80 88 30 31</numtel>
+                     </fax>
+                     <courriel>hello@openclassrooms.com</courriel>
+                  </coordonnees>
+               </contact-formateur>
+            </organisme-formateur>
+            <organisme-financeur>
+               <code-financeur>16</code-financeur>
+               <nb-places-financees>20</nb-places-financees>
+               <extras info="specificites">
+                  <extra info="code-public-vise" ref="V12">80006</extra>
+                  <extra info="programme-financeur">POEC</extra>
+               </extras>
+            </organisme-financeur>
+            <extras info="type-action">
+               <extra info="formation-initiale">0</extra>
+            </extras>
+            <extras info="type-formation">
+               <extra info="formation-initiale">0</extra>
+               <extra info="action-perimee">0</extra>
+            </extras>
+            <extras info="dispositif">
+               <extra info="contrat-apprentissage">0</extra>
+               <extra info="contrat-professionnalisation">0</extra>
+            </extras>
+         </action>
+         <organisme-formation-responsable numero="14_OF_0000010238" ref="26766">
+            <numero-activite>11755205675</numero-activite>
+            <SIRET-organisme-formation>
+               <SIRET>49386136300064</SIRET>
+            </SIRET-organisme-formation>
+            <nom-organisme>Openclassrooms - OC</nom-organisme>
+            <raison-sociale>Openclassrooms - OC</raison-sociale>
+            <coordonnees-organisme>
+               <coordonnees>
+                  <civilite>Monsieur</civilite>
+                  <nom>DUBUC</nom>
+                  <prenom>Pierre</prenom>
+                  <adresse>
+                     <ligne>7 cité Paradis</ligne>
+                     <codepostal>75010</codepostal>
+                     <ville>Paris 10e</ville>
+                     <departement>75</departement>
+                     <code-INSEE-commune>75110</code-INSEE-commune>
+                     <region>11</region>
+                     <pays>FR</pays>
+                     <geolocalisation>
+                        <latitude>48.8815994262695</latitude>
+                        <longitude>2.36229991912842</longitude>
+                     </geolocalisation>
+                  </adresse>
+                  <telfixe>
+                     <numtel>01 80 88 30 30</numtel>
+                  </telfixe>
+                  <fax>
+                     <numtel>01 80 88 30 31</numtel>
+                  </fax>
+                  <courriel>hello@openclassrooms.com</courriel>
+               </coordonnees>
+            </coordonnees-organisme>
+            <contact-organisme>
+               <coordonnees>
+                  <civilite>Monsieur</civilite>
+                  <nom>DUBUC</nom>
+                  <prenom>Pierre</prenom>
+                  <adresse>
+                     <ligne>7 cité Paradis</ligne>
+                     <codepostal>75010</codepostal>
+                     <ville>Paris 10e</ville>
+                     <departement>75</departement>
+                     <code-INSEE-commune>75110</code-INSEE-commune>
+                     <region>11</region>
+                     <pays>FR</pays>
+                     <geolocalisation>
+                        <latitude>48.8815994262695</latitude>
+                        <longitude>2.36229991912842</longitude>
+                     </geolocalisation>
+                  </adresse>
+                  <telfixe>
+                     <numtel>01 80 88 30 30</numtel>
+                  </telfixe>
+                  <fax>
+                     <numtel>01 80 88 30 31</numtel>
+                  </fax>
+                  <courriel>hello@openclassrooms.com</courriel>
+               </coordonnees>
+            </contact-organisme>
+            <renseignements-specifiques>-</renseignements-specifiques>
+         </organisme-formation-responsable>
+         <extras info="FLUX-CARIF">
+            <extra info="numero-CARIF">24</extra>
+         </extras>
+      </formation>
+   </offres>
+</lheo>
+

@@ -161,6 +161,7 @@ class Step:
         self.params = {}
         self.path = path
         self.line = line
+        self.pattern = None
 
     def __repr__(self):
         return f'<{self.__class__.__name__}: {self} ({self.path}:{self.line})>'
@@ -173,6 +174,7 @@ class Step:
             match = pattern.match(self.raw)
             if match:
                 self.func = func
+                self.pattern = pattern.pattern
                 break
         else:
             raise NoStepError(f'No pattern matches step: `{self!r}`')
@@ -248,6 +250,7 @@ class Condition(Step):
         else:
             self.raw = terms[0]
             self.compile()
+            self.negative = ' pas ' in self.pattern
 
     def evaluate(self, context):
         return {n: Value(v, context) for n, v in self.params.items()}
@@ -264,7 +267,8 @@ class Condition(Step):
             try:
                 status.params = self.evaluate(context)
             except NoDataError as err:
-                status.status = False
+                # Negative conditions are True by default, positive are False.
+                status.status = self.negative
                 label = SCHEMA.get(err.key, {}).get('label', err.key)
                 status.reason = f"Donnée manquante pour «{label}»"
             except DataError:
@@ -291,13 +295,13 @@ def set_eligible(context):
     context['financement.eligible'] = True
 
 
-@action(r"(l'|les? |la )(?P<key>.+) est égale? à (?P<rate>[\d\.]+)% (de la|du) (?P<value>.+)$")
+@action(r"(l'|les? |la )(?P<key>.+?) est égale? à (?P<rate>[\d\.]+)% (de la|du) (?P<value>.+)$")
 def set_percent(context, key: Label, rate: float, value: Pointer):
     context[key] = value.get(context) * rate / 100
 
 
-@action(r"(l'|les? |la )(?P<key>.+) (vaut|est) (l'|les? |la )?(?P<value>.+)$")
-@action(r"(l'|les? |la )(?P<key>.+) est égale? (à la |à l'|à |aux? )?(?P<value>.+)$")
+@action(r"(l'|les? |la )(?P<key>.+?) (vaut|est) (l'|les? |la )?(?P<value>.+)$")
+@action(r"(l'|les? |la )(?P<key>.+?) est égale? (à la |à l'|à |aux? )?(?P<value>.+)$")
 def set_value(context, key: Label, value: Pointer):
     context[key] = value.get(context)
 
@@ -353,6 +357,13 @@ def check_type(context, tag):
     return tag.value in context['financement.tags']
 
 
+@no_status
+@reason("le financement est de type «{tag}»")
+@condition(r"le financement n'est pas de type (?P<tag>.+)")
+def check_type(context, tag):
+    return tag.value not in context['financement.tags']
+
+
 @reason("{left.pointer.raw} vaut {left}, c'est inférieur ou égal au seuil de {right}")
 @condition(r"(l'|les? |la )(?P<left>.+) est supérieure? à (l'|les? |la )?(?P<right>.+)")
 def check_gt(context, left, right):
@@ -361,6 +372,7 @@ def check_gt(context, left, right):
 
 @reason("{left.pointer.raw} trop faible: {left}, au lieu de {right} au moins")
 @condition(r"(l'|les? |la )(?P<left>.+) est supérieure? ou égale? à (l'|les? |la )?(?P<right>.+)")
+@condition(r"(l'|les? |la )(?P<left>.+) (n'est|ne sont) pas inférieure?s? à (l'|les? |la )?(?P<right>.+)")
 def check_ge(context, left, right):
     return left.value >= right.value
 
@@ -372,7 +384,15 @@ def check_lt(context, left, right):
 
 
 @reason("{left.pointer.raw} trop grande: {left} (le maximum est {right})")
+@condition(r"(l'|les? |la )(?P<left>.+?) est inférieure? ou égale? à (?P<rate>[\d\.]+)% (de l'|du |de la |des )?(?P<right>.+)")
+@condition(r"(l'|les? |la )(?P<left>.+?) (n'est|ne sont) pas supérieure?s? à (?P<rate>[\d\.]+)% (de l'|du |de la |des )?(?P<right>.+)")
+def check_percent_le(context, left, rate, right):
+    return left.value <= (right.value * rate.value / 100)
+
+
+@reason("{left.pointer.raw} trop grande: {left} (le maximum est {right})")
 @condition(r"(l'|les? |la )(?P<left>.+) est inférieure? ou égale? à (l'|les? |la )?(?P<right>.+)")
+@condition(r"(l'|les? |la )(?P<left>.+) (n'est|ne sont) pas supérieure?s? à (l'|les? |la )?(?P<right>.+)")
 def check_le(context, left, right):
     return left.value <= right.value
 
@@ -404,9 +424,15 @@ def check_not_contain(context, left, right):
 
 
 @reason("{left.pointer.raw} vaut «{left}» au lieu de «{right}»")
-@condition(r"(l'|les? |la )(?P<left>.+) (est|vaut) (?P<right>.+)")
+@condition(r"(l'|les? |la )(?P<left>.+?) (est|vaut) (?P<right>.+)")
 def check_equal(context, left, right):
     return left.value == right.value
+
+
+@reason("{left.pointer.raw} vaut «{left}» au lieu de «{right}»")
+@condition(r"(l'|les? |la )(?P<left>.+?) (n'est|ne vaut) pas (?P<right>.+)")
+def check_not_equal(context, left, right):
+    return left.value != right.value
 
 
 Line = namedtuple('Line', ['index', 'indent', 'keyword', 'sentence'])

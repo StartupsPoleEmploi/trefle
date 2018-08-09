@@ -32,7 +32,7 @@ constante:
     items:
       type: integer
       enum: *codes_financeur
-    value: [2, 4, 6, 8, 9, 11, 12, 13, 15, 16]
+    value: [2, 4, 6, 7, 8, 9, 11, 12, 13, 15, 16]
     label: codes financeur collectif
     url: http://lheo.gouv.fr/langage#dict-financeurs
   idcc_artisanat:
@@ -141,7 +141,6 @@ beneficiaire:
     description: le bénéficiaire est salarié d'une entreprise de droit privé
     type: boolean
     public: true
-    default: false
     label: bénéficiaire de droit privé
     gender: masculine
   inscrit_pe:
@@ -149,7 +148,6 @@ beneficiaire:
     description: le bénéficiaire est inscrit à Pôle emploi commme demandeur d'emploi
     type: boolean
     public: true
-    default: false
     label: demandeur d'emploi
     gender: masculine
   solde_cpf:
@@ -159,7 +157,6 @@ beneficiaire:
     public: true
     label: solde CPF du bénéficiaire
     gender: masculine
-    default: 0
   remuneration:
     description: Rémunération actuelle en euros
     type: integer
@@ -360,7 +357,6 @@ formation:
     format: int32
     source: catalogue
     xpath: number(//certification/code-CERTIFINFO/child::text())
-    default: null
     label: code CERTIFINFO de la formation
     gender: masculine
   code_rncp:
@@ -373,27 +369,39 @@ formation:
   heures:
     type: integer
     format: int32
-    default: 0
     source: catalogue
     xpath: number(//nombre-heures-total/child::text())
     label: durée en heures de la formation
+  heures_entreprise:
+    type: integer
+    format: int32
+    source: catalogue
+    xpath: number(//nombre-heures-entreprise/child::text())
+    label: nombre d'heures en entreprise
+    gender: masculine
+  heures_centre:
+    type: integer
+    format: int32
+    source: catalogue
+    xpath: number(//nombre-heures-centre/child::text())
+    label: nombre d'heures en centre
+    gender: masculine
   mois:
     type: integer
     format: int32
     # Sane default to prevent division by zero.
     # TODO: should we raise instead and log?
-    default: 1
     label: durée en mois de la formation
   semaines:
     type: integer
     format: int32
     # Sane default to prevent division by zero.
-    default: 1
     label: durée en semaines de la formation
-  duree_hebdomadaire:
+  duree_hebdo:
     type: integer
     format: int32
-    default: 0
+    source: catalogue
+    xpath: number(//extras[@info="duree-hebdo"]/extra[@info="duree-hebdo"]/child::text())
     label: durée hebdomadaire de la formation
   prix_horaire:
     type: integer
@@ -406,7 +414,6 @@ formation:
     gender: masculine
   prix_total:
     type: integer
-    default: 0
     format: float
     source: catalogue
     xpath: //prix-total-TTC/child::text()
@@ -444,7 +451,6 @@ formation:
     type: integer
     formation: int32
     source: catalogue
-    default: null
     xpath: number(//objectif-general-formation/child::text())
     enum: *codes_ais
   debut:
@@ -463,75 +469,67 @@ formation:
     xpath: string((//periode/fin)[1]/child::text())
   foad:
     type: boolean
-    default: false
     source: catalogue
     xpath: boolean(//modalites-enseignement[text()="2"])
     label: formation ouverte à distance
   toeic:
     type: boolean
-    default: false
     source: catalogue
     label: formation TOEIC
   bulats:
     type: boolean
-    default: false
     source: catalogue
     label: formation BULATS
   caces:
     type: boolean
-    default: false
     source: catalogue
     label: formation CACES
   bec:
     type: boolean
-    default: false
     source: catalogue
     label: formation BEC
   bilan_de_competences:
     type: boolean
-    default: false
     source: catalogue
     label: bilan de compétences
     gender: masculine
   permis_b:
     type: boolean
-    default: false
     source: catalogue
     label: permis B
     gender: masculine
   certifiante:
     type: boolean
-    default: false
     source: catalogue
     xpath: boolean(number(//certifiante/text()))
     label: formation certifiante
   vae:
     type: boolean
-    default: false
     source: catalogue
     label: formation VAE
   clea:
     type: boolean
-    default: false
     source: catalogue
     label: formation CléA
+  poec:
+    type: boolean
+    source: catalogue
+    xpath: boolean(//organisme-financeur/extras/extra[@info="programme-financeur"][text()="POEC"])
+    label: préparation opérationnelle à l'emploi collective
   rncp:
     type: boolean
-    default: false
     source: catalogue
     xpath: boolean(//certification/code-RNCP/child::text())
     label: formation RNCP
     description: cette formation est inscrite au RNCP
   contrat_apprentissage:
     type: boolean
-    default: false
     source: catalogue
     xpath: boolean(//extras[@info="dispositif"]/extra[@info="contrat-apprentissage"][text()="1"])
     label: contrat d'apprentissage
     gender: masculine
   contrat_professionnalisation:
     type: boolean
-    default: false
     source: catalogue
     xpath: boolean(//extras[@info="dispositif"]/extra[@info="contrat-professionnalisation"][text()="1"])
     label: contrat de professionnalisation
@@ -566,13 +564,11 @@ formation:
     label: modalités d'entrées-sorties
   entrees_sorties_permanentes:
     type: boolean
-    default: false
     source: catalogue
     xpath: boolean(//modalites-entrees-sorties[text()="1"])
     label: formation à entrées-sorties permanentes
   individuels:
     type: boolean
-    default: false
     label: formation ouverte aux bénéficiaires individuels
 financement:
   nom:
@@ -598,12 +594,18 @@ financement:
     description: démarches à accomplir pour obtenir le financement
     type: string
     public: true
+    label: texte des démarches
   remuneration:
     type: integer
     format: int32
     public: true
     nullable: true
     label: rémunération applicable
+  remuneration_texte:
+    type: string
+    public: true
+    nullable: true
+    label: texte de la rémunération
   indemnite_conges_payes:
     type: integer
     format: int32
@@ -623,6 +625,11 @@ financement:
     nullable: true
     label: montant de prise en charge
     description: valeur définie seulement si le prix horaire de la formation est défini
+  prise_en_charge_texte:
+    type: string
+    public: true
+    nullable: true
+    label: texte de la prise en charge
   plafond_prise_en_charge:
     type: integer
     format: int32

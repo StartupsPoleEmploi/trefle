@@ -1,6 +1,6 @@
 CPF:
   eligible: false
-  description: Le compte personnel de formation (CPF) permet au salarié d'acquérir des droits et de les mobiliser pour financer des actions de formation tout au long de sa vie professionnelle.
+  description: Le compte personnel de formation (CPF) permet à toute personne active d’acquérir des droits pour financer totalement ou partiellement une formation qualifiante.
   sur son temps de travail:
     nom: CPF sur son temps de travail
     rules: salarié
@@ -18,6 +18,7 @@ CPF:
   de:
     nom: CPF demandeur d'emploi
     rules: de
+    description: "Le compte personnel de formation (CPF) permet à toute personne active d’acquérir des droits pour financer totalement ou partiellement une formation qualifiante. NB : dans le cas d'une formation financée par PE ou la Région, il pourra vous être demandé de contribuer à son financement avec votre CPF."
     demarches: |-
       1. Contactez votre conseiller référent emploi pour valider avec lui votre projet de formation.
       2. Créez votre compte CPF sur le site www.moncompteformation.gouv.fr
@@ -25,12 +26,12 @@ CIF:
   eligible: false
   rules: salarié
   description: |-
-    Le congé individuel de formation (CIF) permet au salarié  de suivre, à son initiative et à titre individuel, une  formation, dans le but de :
+    Le congé individuel de formation (CIF) permet au salarié de suivre, à son initiative et à titre individuel, une formation, dans le but de :
       - se reconvertir
       - ou acquérir un niveau supérieur de qualification ou une 1re qualification
       - ou se perfectionner
       - ou s'ouvrir plus largement à la culture et à la vie sociale.
-    Attention, un delai de franchise s'applique aux salariés ayant déjà bénéficié d'un CIF. Il est au minimum  de 6 mois et  au maximum de 6 ans
+    Attention, un delai de franchise s'applique aux salariés ayant déjà bénéficié d'un CIF. Il est au minimum de 6 mois et au maximum de 6 ans
   demarches: |-
     Pour une formation se déroulant sur le temps de travail, il est nécessaire de demander l'accord de l'employeur.
     Attention aux délais pour faire cette demande : trois mois pour une formation de six mois et plus, deux mois pour les autres.
@@ -97,3 +98,22 @@ plan de formation:
   - https://www.service-public.fr/particuliers/vosdroits/F11267
   sur son temps de travail:
     nom: Plan de formation sur son temps de travail
+AIF:
+  eligible: false
+  rules: de
+  nom: Aide individuelle à la formation
+  description: |-
+    L’Aide Individuelle à la Formation est réservée à des projets de formation dont la pertinence est validée par votre conseiller référent emploi, en fonction de votre projet professionnel et du marché du travail.
+    Les formations financées par Pôle emploi doivent permettre un retour rapide à l'emploi.
+  demarches: |-
+    1- Contactez un conseiller Pôle emploi pour connaître les conditions de la mobilisation éventuelle d'une aide individuelle de Pole emploi dans votre région.
+    2- Votre projet de formation et son financement doivent être présentés bien en amont du début de la formation (au plus tard 15 jours avant).
+    3- Ne démarrez pas votre formation tant que vous n'avez pas eu la confirmation de l'accord de la part de votre conseiller.
+  artisan:
+    nom: Aide individuelle à la formation artisan
+    demarches: |-
+      Assurez-vous auprès de la Chambre des métiers et de l'Artisanat (http://www.artisanat.fr/portals/0/annuaire/annuaire.html) que la formation est bien obligatoire et préalable à l'installation comme artisan.
+      Le financement par le biais de cette aide individuelle à la formation - Artisan (AIF Artisan) n'est possible que si le devis présenté à Pôle emploi du Stage préparatoire à l'installation d'une entreprise artisanale correspond précisément au montant exact de l'aide (195,18 € pour 2018).
+    description: |-
+      L'aide individuelle à la formation "artisan" permet de couvrir le coût du stage de préparation à l'installation (le SPI)
+      Le SPI est obligatoire pour toute personne sollicitant une immatriculation auprès d'une Chambre de métiers et de l'artisanat dans le cadre d'un projet de création ou de reprise d'entreprise.

@@ -19,3 +19,6 @@ Si le code AIS de la formation fait partie des codes AIS certifiants
     Alors c'est une formation certifiante
 Si les codes financeur de la formation ne contiennent aucun des codes financeur collectif
     Alors c'est une formation ouverte aux bénéficiaires individuels
+Si les codes financeur de la formation contiennent au moins un code parmi [«OPCA»]
+Et la durée en heures de la formation est inférieure ou égale à 400
+    Alors c'est une préparation opérationnelle à l'emploi collective

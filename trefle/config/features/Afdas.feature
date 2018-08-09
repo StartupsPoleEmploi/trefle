@@ -147,7 +147,7 @@ Scénario: Pas de période de professionnalisation pour un CDD
     Quand je demande un calcul de financement
     Alors le financement «Période de professionnalisation sur son temps de travail» n'est pas proposé
 
-Scénario: Période de professionnalisation avec entrées-sorties permantentes
+Scénario: Période de professionnalisation avec entrées-sorties permanentes
     Soit un bénéficiaire et une formation
     Et c'est un bénéficiaire de droit privé
     Et la rémunération du bénéficiaire vaut 1600
@@ -170,7 +170,6 @@ Scénario: Période de professionnalisation avec entrées-sorties permantentes
     Alors l'organisme à contacter est «Afdas»
     Et le plafond de prise en charge vaut 9640
     Et la rémunération applicable vaut 1600
-
 
 Scénario: VAE-Plan de professionnalisation AFDAS
     Soit un bénéficiaire et une formation

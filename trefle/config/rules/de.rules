@@ -1,13 +1,44 @@
 Si c'est un demandeur d'emploi
+
     Si le financement est de type «CPF»
         Si la région du bénéficiaire fait partie des régions éligibles COPAREF
         Ou c'est une formation éligible COPANEF
             Si le solde CPF du bénéficiaire est supérieur à 0
-            Et le solde CPF du bénéficiaire est inférieur à la durée en heures de la formation
             Et ce n'est pas un contrat de professionnalisation
             Et ce n'est pas un contrat d'apprentissage
             Et la liste des codes FORMACODE de la formation ne contient aucun des codes parmi [15064,44591]
                 Alors le financement est éligible
                 Et le plafond horaire applicable est égale au solde CPF du bénéficiaire
                 Et le prix horaire plafond applicable vaut 9
+                Et le texte de la prise en charge vaut «Formation totalement ou partiellement financée sur la base de 9 € multipliée par vos heures CPF acquises. Dans le cas d'un financement partiel, vous pouvez prendre en charge vous-même le reste à charge ou faire appel à des cofinancements.»
 
+                Si le solde CPF du bénéficiaire est supérieur ou égal à la durée en heures de la formation
+                    Alors le texte des démarches vaut «1- Vous pouvez directement faire la demande de financement sur https://www.moncompteactivite.gouv.fr/ et prendre contact avec l'organisme de formation pour vous inscrire à la formation.⏎2- Si le montant couvert par le CPF est insuffisant, il peut être complété par vous-même ou, sous conditions, par d'autres dispositifs de financement disponibles.»
+
+    Si le financement est de type «AIF»
+
+        # Par défaut.
+        Alors le texte de la prise en charge vaut «Formation totalement financée si validée par Pôle emploi.»
+
+        Si le financement n'est pas de type «artisan»
+
+            Si c'est une formation ouverte aux bénéficiaires individuels
+            Et ce n'est pas une préparation opérationnelle à l'emploi collective
+            Et la liste des codes FORMACODE de la formation ne contient aucun des codes parmi [15064,13250,44091]
+            Et le code CERTIFINFO de la formation ne fait pas partie de [54664,84385]
+            Et ce n'est pas un contrat d'apprentissage
+            Et ce n'est pas un contrat de professionnalisation
+            Et le nombre d'heures en entreprise n'est pas supérieur à 30% du nombre d'heures en centre
+
+                Si la région du bénéficiaire n'est pas «Corse»
+                    Alors le financement est éligible
+
+                Si la région du bénéficiaire est «Corse»
+                    Alors appliquer les règles «DE Corse»
+
+
+        Si le financement est de type «artisan»
+            Si le code CERTIFINFO de la formation vaut 84385
+                Alors le financement est éligible
+            # Si ce n'est pas un bilan de compétences
+                # Alors la rémunération applicable est égale à la rémunération du bénéficiaire

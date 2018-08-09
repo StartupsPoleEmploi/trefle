@@ -83,7 +83,7 @@ async def cli_simulate(*args, context: json.loads={}, url=None, trace=False,
     print('*' * 105)
     eligibles = [f for f in financements if f['eligible']]
     if eligibles:
-        print('Financements éligibles')
+        print('Financements éligibles\n')
     else:
         print('Aucun financement éligible')
     for financement in eligibles:
@@ -96,6 +96,9 @@ async def cli_simulate(*args, context: json.loads={}, url=None, trace=False,
             print('      Site web:', financement['organisme']['web'])
         if financement['prise_en_charge']:
             print('  Financement:', financement['prise_en_charge'], '€')
+        if financement.get('prise_en_charge_texte'):
+            print('  Financement:',
+                  financement['prise_en_charge_texte'])
         if financement['plafond_prix_horaire']:
             print('  Plafond horaire:',
                   financement['plafond_prix_horaire'], '€')
@@ -104,12 +107,16 @@ async def cli_simulate(*args, context: json.loads={}, url=None, trace=False,
         if financement['plafond_prise_en_charge']:
             print('  Plafond financement:',
                   financement['plafond_prise_en_charge'], '€')
-        print('  Rémunération:', financement['remuneration'], '€')
+        if financement['remuneration']:
+            print('  Rémunération:', financement['remuneration'], '€')
+        if financement.get('remuneration_texte'):
+            print('  Rémunération:',
+                  financement['remuneration_texte'])
         if trace:
             for status in financement['status']:
                 render_status(status)
-        print('')
-    print('Financements non éligibles')
+        print('-'*80)
+    print('\nFinancements non éligibles\n')
     non_eligibles = [f for f in financements if not f['eligible']]
     for financement in non_eligibles:
         print('- Nom:', financement['nom'])
