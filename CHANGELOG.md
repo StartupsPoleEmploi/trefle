@@ -1,5 +1,9 @@
 # Changelog
 
+## dev
+
+- explorer: only display bénéficiaire and formation context in simulate
+
 ## 0.6.0
 
 - refactor rule loading and processing to allow rule inheritance
