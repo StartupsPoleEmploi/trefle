@@ -1,6 +1,6 @@
 # Changelog
 
-## dev
+## 0.6.0
 
 - refactor rule loading and processing to allow rule inheritance
 - more rules for "période de professionnalisation"

@@ -169,4 +169,31 @@ Scénario: Période de professionnalisation avec entrées-sorties permantentes
     Quand je sélectionne le financement «Période de professionnalisation sur son temps de travail»
     Alors l'organisme à contacter est «Afdas»
     Et le plafond de prise en charge vaut 9640
-    Et la rémunération applicable vaut 1600.0
+    Et la rémunération applicable vaut 1600
+
+
+Scénario: VAE-Plan de professionnalisation AFDAS
+    Soit un bénéficiaire et une formation
+    Et c'est un bénéficiaire de droit privé
+    Et la rémunération du bénéficiaire vaut 1000
+    Et le type de contrat du bénéficiaire vaut «CDI»
+    Et l'IDCC de l'établissement du bénéficiaire vaut «2642»
+    Et le code INSEE de la commune de l'établissement du bénéficiaire vaut «92064»
+    Et le âge du bénéficiaire vaut 31
+    Et la région de l'établissement du bénéficiaire vaut «Île-de-France»
+    Et la liste des codes FORMACODE de la formation vaut [15064,44591]
+    Et la liste des domaines FORMACODE de la formation vaut [445,150]
+    Et le code CERTIFINFO de la formation vaut 83899
+    Et la durée en heures de la formation vaut 24
+    Et c'est une formation certifiante
+    Et c'est une formation à entrées-sorties permanentes
+    Et la durée en semaines de la formation vaut 105
+    Et la durée en mois de la formation vaut 24
+    Et la durée hebdomadaire de la formation vaut 0
+    Et c'est une formation VAE
+    Et c'est une formation ouverte aux bénéficiaires individuels
+    Quand je demande un calcul de financement
+    Quand je sélectionne le financement «Période de professionnalisation sur son temps de travail»
+    Alors l'organisme à contacter est «Afdas»
+    Et le plafond de prise en charge vaut 2500
+    Et la rémunération applicable vaut 1000
