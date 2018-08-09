@@ -47,7 +47,7 @@
   <h2>{ this.opts.name }</h2>
   <dl each={ props, key in this.opts.items } id='schema/{ key }'>
     <dt>{props.label || props.description} <a href="#schema/{ key }" class=anchor>#</a></dt>
-    <dd if={ props.value }><strong>Valeur constante</strong> { this.formatValue(props.value) }</dd>
+    <dd if={ props.value }><strong>Valeur constante</strong> { renderValue(key, props.value) }</dd>
     <dd if={ props.description }><strong>Description</strong> {props.description}</dd>
     <dd if={ props.source }><strong>Source</strong> {props.source}</dd>
     <dd if={ props.xpath }><strong>LHEO</strong> {props.xpath}</dd>
@@ -76,14 +76,5 @@
       background-color: #ddd;
     }
   </style>
-
-  <script>
-
-  this.formatValue = (value) => {
-    if (Array.isArray(value)) return value.join(', ')
-    return value
-  }
-
-  </script>
 
 </schema-entries>
