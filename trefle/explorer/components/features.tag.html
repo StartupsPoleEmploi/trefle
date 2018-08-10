@@ -1,0 +1,52 @@
+<features>
+  <ul>
+    <li each={ props, id in this.features }><a href="#features/{ id }" class='{ on: this.active && this.active.startsWith(id) }' title={ id }>{ props.name }</a></li>
+  </ul>
+  <div if={ this.feature }>
+    <h3>{ this.feature.path } <a href=https://framagit.org/ybon/trefle/tree/master/trefle/config/{ this.feature.path } target=_blank> <i class="icon">edit</i></a></h3>
+    <rule content={ this.feature.raw } class=with-lines></rule>
+  </div>
+  <div if={ !this.feature }>
+    <p>Sélectionner un fichier dans le menu.</p>
+  </div>
+
+  <script>
+    this.features = []
+    this.feature = null
+    this.active = null
+
+    this.on('mount', () => this.load())
+
+    this.load_data = (data) => {
+      this.features = data
+      if (this.opts.id) {
+        this.active = decodeURIComponent(this.opts.id)
+        this.feature = data[this.active.split('~')[0]]
+      }
+      this.update()
+      // Force element target after DOM has been rebuilt
+      // (eg. if we have a ~line in the URL, to highlight it).
+      window.location.hash = window.location.hash
+    }
+
+    this.load = () => {
+      fetch('/explore/features')
+      .then((response) => response.json())
+      .then(this.load_data)
+    }
+
+    this.mixin(View)
+  </script>
+
+  <style scoped>
+    :scope.tools {
+      min-width: 1200px;
+      grid-template-columns: 1fr 4fr;
+    }
+    h3 {
+      font-variant: small-caps;
+    }
+  </style>
+
+</features>
+

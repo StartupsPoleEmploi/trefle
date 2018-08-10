@@ -3,6 +3,7 @@
 ## dev
 
 - explorer: only display bénéficiaire and formation context in simulate
+- explorer: add Features tab
 
 ## 0.6.0
 

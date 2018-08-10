@@ -29,12 +29,12 @@
 
 ## Run integration tests
 
-    behave --lang fr
+    behave
 
 Get a detailed coverage report:
 
-    behave --lang fr -D coverage-format=short
+    behave -D coverage-format=short
 
 Get a more detailed coverage report:
 
-    behave --lang fr -D coverage-format=long
+    behave -D coverage-format=long

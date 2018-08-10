@@ -19,6 +19,7 @@ IDCC = {}
 RAW_RULES = {}
 GLOSSARY = {}
 NAF = {}
+FEATURES = {}
 
 INTERCARIF_URL = 'https://labonneformation.pole-emploi.fr/ws_intercarif'
 ELIGIBILITE_URL = 'http://www.intercariforef.org/serviceweb2/eligibilite/?filtre=branche&'
@@ -126,6 +127,18 @@ def load_dir_rules(root):
         yield load_rules(path)
 
 
+def load_features():
+    paths = (ROOT / 'features').glob('*.feature')
+    for path in sorted(paths, key=lambda p: p.name.lower()):
+        raw = path.read_text()
+        id_ = str(path.relative_to(ROOT))
+        FEATURES[id_] = {
+            'raw': raw,
+            'path': id_,
+            'name': path.stem,
+        }
+
+
 def init():
     print('Initializing config')
     with (ROOT / 'schema.yml').open() as f:
@@ -147,4 +160,5 @@ def init():
         GLOSSARY.update(yaml.safe_load(f.read()))
     with (ROOT / 'naf.csv').open() as f:
         NAF.update(load_naf(f.read()))
+    load_features()
     print('Done initializing config')

@@ -4,7 +4,7 @@ from roll import HttpError, Roll
 from roll.extensions import cors
 
 from . import VERSION
-from .config import FINANCEMENTS, GLOSSARY, NAF, RAW_RULES, SCHEMA
+from .config import FEATURES, FINANCEMENTS, GLOSSARY, NAF, RAW_RULES, SCHEMA
 from .core import simulate
 from .debugging import data_from_lbf_url, make_scenario
 from .loggers import log_simulate, logger
@@ -87,6 +87,11 @@ async def explore_glossary(request, response):
 @app.route('/explore/financements')
 async def explore_financements(request, response):
     response.json = FINANCEMENTS
+
+
+@app.route('/explore/features')
+async def explore_features(request, response):
+    response.json = FEATURES
 
 
 @app.route('/explore/catalog')

@@ -11,6 +11,7 @@
 <script src="components/glossary.tag.html" type="riot/tag"></script>
 <script src="components/rule.tag.html" type="riot/tag"></script>
 <script src="components/rules.tag.html" type="riot/tag"></script>
+<script src="components/features.tag.html" type="riot/tag"></script>
 <script src="components/simulate.tag.html" type="riot/tag"></script>
 <script src="components/tools.tag.html" type="riot/tag"></script>
 <script src="components/financements.tag.html" type="riot/tag"></script>
@@ -25,6 +26,7 @@
   <rules class=tools></rules>
   <simulate class=tools></simulate>
   <financements class=full></financements>
+  <features class=tools></features>
   <tools></tools>
 </main>
 
@@ -34,6 +36,8 @@
   route('/schema', () => riot.mount('schema'))
   route('/rules/(.+)', (id) => riot.mount('rules', {id: id}))
   route('/rules', () => riot.mount('rules'))
+  route('/features/(.+)', (id) => riot.mount('features', {id: id}))
+  route('/features', () => riot.mount('features'))
   route('/simulate', () => riot.mount('simulate'))
   route('/simulate/(.+)', (url) => riot.mount('simulate', {url: url}))
   route('/tools', () => riot.mount('tools'))
