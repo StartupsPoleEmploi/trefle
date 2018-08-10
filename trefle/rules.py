@@ -196,7 +196,8 @@ class Step:
                 value = type_(value)
             except Exception as err:
                 # Give more context.
-                err.args = (f'`{err}` (from `{self!r}`)',)
+                err.args = (f'`{err}` (in `{self!r}`, '
+                            f'pattern: {self.pattern})',)
                 raise
             self.params[name] = value
 
@@ -366,6 +367,7 @@ def check_type(context, tag):
 
 @reason("{left.pointer.raw} vaut {left}, c'est inférieur ou égal au seuil de {right}")
 @condition(r"(l'|les? |la )(?P<left>.+) est supérieure? à (l'|les? |la )?(?P<right>.+)")
+@condition(r"(l'|les? |la )(?P<left>.+) (n'est|ne sont) pas inférieure?s? ou éga(le?s?|aux)? à (l'|les? |la )?(?P<right>.+)")
 def check_gt(context, left, right):
     return left.value > right.value
 
@@ -409,18 +411,18 @@ def check_not_share_one(context, left, right):
     return not bool(set(left.value or []) & set(right.value or []))
 
 
-@reason("{left.pointer.raw} ({left}) ne fait pas partie de «{right.pointer.raw}» ({right})")
-@condition(r"(l'|les? |la )(?P<left>.+) fait partie (de l'|de la |des? |du )(?P<right>.+)")
-@condition(r"(l'|les? |la )(?P<right>.+) contient (l'|les? |la )?(?P<left>.+)")
-def check_contain(context, left, right):
-    return left.value in right.value
-
-
 @reason("{left.pointer.raw} («{left}») fait partie de «{right}»")
 @condition(r"(l'|les? |la )(?P<left>.+) ne fait pas partie (de l'|des? |de la |du )(?P<right>.+)")
 @condition(r"(l'|les? |la )(?P<right>.+) ne contient pas (l'|les? |la )?(?P<left>.+)")
 def check_not_contain(context, left, right):
     return left.value not in right.value
+
+
+@reason("{left.pointer.raw} ({left}) ne fait pas partie de «{right.pointer.raw}» ({right})")
+@condition(r"(l'|les? |la )(?P<left>.+) fait partie (de l'|de la |des? |du )(?P<right>.+)")
+@condition(r"(l'|les? |la )(?P<right>.+?) contient (l'|les? |la )?(?P<left>.+)")
+def check_contain(context, left, right):
+    return left.value in right.value
 
 
 @reason("{left.pointer.raw} vaut «{left}» au lieu de «{right}»")

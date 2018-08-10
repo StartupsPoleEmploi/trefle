@@ -77,11 +77,11 @@ def then_check_organisme(context, name):
         f'{context.result["organisme"]["nom"]} != {name}'
 
 
-@then(r"(?:le |la |l')(?P<label>.*) vaut (?P<value>[\d\.]+)")
+@then(r"(?:le |la |l')(?P<label>.*) vaut (?P<value>.+)")
 def then_check_output(context, label, value):
+    value = Pointer(value).get({})
     key = LABELS[label][12:]  # Remove "financement." namespace.
-    assert context.result[key] == float(value),\
-        f'{context.result[key]} != {value}'
+    assert context.result[key] == value, f'{context.result[key]} != {value}'
 
 
 @then("aucun financement n'est proposé")
