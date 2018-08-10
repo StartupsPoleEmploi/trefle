@@ -17,7 +17,7 @@ CPF:
       Contactez directement votre organisme {nom} pour bénéficier gratuitement d’un conseil en évolution professionnelle et valider votre projet de formation et son financement CPF.
   de:
     nom: CPF demandeur d'emploi
-    rules: de
+    rules: DE national
     description: "Le compte personnel de formation (CPF) permet à toute personne active d’acquérir des droits pour financer totalement ou partiellement une formation qualifiante. NB : dans le cas d'une formation financée par PE ou la Région, il pourra vous être demandé de contribuer à son financement avec votre CPF."
     demarches: |-
       1. Contactez votre conseiller référent emploi pour valider avec lui votre projet de formation.
@@ -100,7 +100,7 @@ plan de formation:
     nom: Plan de formation sur son temps de travail
 AIF:
   eligible: false
-  rules: de
+  rules: DE national
   nom: Aide individuelle à la formation
   description: |-
     L’Aide Individuelle à la Formation est réservée à des projets de formation dont la pertinence est validée par votre conseiller référent emploi, en fonction de votre projet professionnel et du marché du travail.
