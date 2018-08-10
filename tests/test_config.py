@@ -1,4 +1,4 @@
-from trefle.config import load_schema, load_financements, load_naf
+from trefle.config import load_schema, load_naf
 
 
 def test_load_schema():
@@ -34,33 +34,6 @@ def test_load_schema():
             'description': 'booh'
         },
     }
-
-
-def test_load_financements():
-    data = {
-        'CPF': {
-            'temps de travail': {
-                'nom': 'CPF sur son temps de travail',
-                'description': 'blah'
-            },
-            'hors temps de travail': {
-                'nom': 'CPF hors temps de travail',
-                'description': 'bleuh'
-            },
-        }
-    }
-    assert load_financements(data) == [
-        {
-            'tags': ['CPF', 'temps de travail'],
-            'description': 'blah',
-            'nom': 'CPF sur son temps de travail',
-        },
-        {
-            'tags': ['CPF', 'hors temps de travail'],
-            'description': 'bleuh',
-            'nom': 'CPF hors temps de travail',
-        }
-    ]
 
 
 def test_load_naf():

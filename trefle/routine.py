@@ -150,6 +150,8 @@ def compute_modalites(context, financement):
     if 'financement.demarches' in context:
         financement['demarches'] = context['financement.demarches']
     financement['demarches'] = financement['demarches'].replace('⏎', '\n')
+    if 'financement.description' in context:
+        financement['description'] = context['financement.description']
 
 
 def check_financement(context, financement):

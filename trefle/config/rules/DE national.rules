@@ -11,14 +11,19 @@ Si c'est un demandeur d'emploi
                 Et le plafond horaire applicable est égale au solde CPF du bénéficiaire
                 Et le prix horaire plafond applicable vaut 9
                 Et le texte de la prise en charge vaut «Formation totalement ou partiellement financée sur la base de 9 € multipliée par vos heures CPF acquises. Dans le cas d'un financement partiel, vous pouvez prendre en charge vous-même le reste à charge ou faire appel à des cofinancements.»
+                Et le texte de description vaut «Le compte personnel de formation (CPF) permet à toute personne active d’acquérir des droits pour financer totalement ou partiellement une formation qualifiante. NB : dans le cas d'une formation financée par PE ou la Région, il pourra vous être demandé de contribuer à son financement avec votre CPF.»
+                Et le texte des démarches vaut «1. Contactez votre conseiller référent emploi pour valider avec lui votre projet de formation.⏎2. Créez votre compte CPF sur le site https://www.moncompteactivite.gouv.fr»
+
 
                 Si le solde CPF du bénéficiaire est supérieur ou égal à la durée en heures de la formation
-                    Alors le texte des démarches vaut «1- Vous pouvez directement faire la demande de financement sur https://www.moncompteactivite.gouv.fr/ et prendre contact avec l'organisme de formation pour vous inscrire à la formation.⏎2- Si le montant couvert par le CPF est insuffisant, il peut être complété par vous-même ou, sous conditions, par d'autres dispositifs de financement disponibles.»
+                    Alors le texte des démarches vaut «1. Vous pouvez directement faire la demande de financement sur https://www.moncompteactivite.gouv.fr et prendre contact avec l'organisme de formation pour vous inscrire à la formation.⏎2. Si le montant couvert par le CPF est insuffisant, il peut être complété par vous-même ou, sous conditions, par d'autres dispositifs de financement disponibles.»
 
     Si le financement est de type «AIF»
 
         # Par défaut.
         Alors le texte de la prise en charge vaut «Formation totalement financée si validée par Pôle emploi.»
+        Et le texte de description vaut «L’Aide individuelle à la formation est réservée à des projets de formation dont la pertinence est validée par votre conseiller référent emploi, en fonction de votre projet professionnel et du marché du travail.⏎Les formations financées par Pôle emploi doivent permettre un retour rapide à l'emploi.»
+        Et le texte des démarches vaut «1. Contactez un conseiller Pôle emploi pour connaître les conditions de la mobilisation éventuelle d'une aide individuelle de Pole emploi dans votre région.⏎2. Votre projet de formation et son financement doivent être présentés bien en amont du début de la formation (au plus tard 15 jours avant).⏎3. Ne démarrez pas votre formation tant que vous n'avez pas eu la confirmation de l'accord de la part de votre conseiller.»
 
         Si le financement n'est pas de type «artisan»
 
@@ -43,5 +48,7 @@ Si c'est un demandeur d'emploi
         Si le financement est de type «artisan»
             Si le code CERTIFINFO de la formation vaut 84385
                 Alors le financement est éligible
+                Et le texte de description vaut «L'aide individuelle à la formation "artisan" permet de couvrir le coût du stage de préparation à l'installation (le SPI).⏎Le SPI est obligatoire pour toute personne sollicitant une immatriculation auprès d'une chambre de métiers et de l'artisanat dans le cadre d'un projet de création ou de reprise d'entreprise.»
+                Et le texte des démarches vaut «Assurez-vous auprès de la chambre des métiers et de l'artisanat (http://www.artisanat.fr/portals/0/annuaire/annuaire.html) que la formation est bien obligatoire et préalable à l'installation comme artisan.⏎Le financement par le biais de cette aide individuelle à la formation - Artisan (AIF Artisan) n'est possible que si le devis présenté à Pôle emploi du Stage préparatoire à l'installation d'une entreprise artisanale correspond précisément au montant exact de l'aide (195,18 € pour 2018).»
             # Si ce n'est pas un bilan de compétences
                 # Alors la rémunération applicable est égale à la rémunération du bénéficiaire

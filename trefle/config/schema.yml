@@ -595,6 +595,7 @@ financement:
     description: description du financement
     type: string
     public: true
+    label: texte de description
   demarches:
     description: démarches à accomplir pour obtenir le financement
     type: string

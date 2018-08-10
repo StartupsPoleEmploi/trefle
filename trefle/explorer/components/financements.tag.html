@@ -1,11 +1,14 @@
 <financements>
-  <ul>
-    <li each={ this.financements }>
-      <h3>{ nom }</h3>
-      <p><strong>Catégories</strong>: { _tags }</p>
-      <p><strong>Description</strong>: { description }</p>
-      <p><strong>Démarches</strong>: { demarches }</p>
-  </ul>
+  <dl each={ this.financements }>
+    <dt>{ nom }</dt>
+    <dd><strong>Règles</strong>: <a href="#/rules/rules/{ rules}.rules">{ rules } <i class="icon">arrow_forward</i></a></dd>
+    <dd><strong>Catégories</strong>: { _tags }</dd>
+    <dd if={ ressources }><strong>Ressources</strong>:
+      <ul>
+        <li each={ ressource in ressources }><a href="{ ressource }">{ ressource }</a></li>
+      </ul>
+    </dd>
+  </dl>
 
   <script>
     this.financements = []
@@ -29,11 +32,8 @@
   </script>
 
   <style scoped>
-    h3 {
+    dt {
       font-variant: small-caps;
-    }
-    li {
-      border-bottom: 1px solid #f3f3f3;
     }
   </style>
 

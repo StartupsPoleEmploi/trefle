@@ -49,27 +49,13 @@ def load_schema(data, output=None, namespace=None):
     return output
 
 
-def load_financements(data, output=None, properties=None, namespace=None):
-    if output is None:
-        output = []
-    if properties is None:
-        properties = {}
-    if namespace is None:
-        namespace = []
-    for key, more in data.items():
-        props = properties.copy()
-        ns = namespace.copy()
-        ns.append(key)
-        props['tags'] = ns
-        if isinstance(more, dict):
-            for subkey, value in more.items():
-                if isinstance(value, dict):
-                    load_financements({subkey: value}, output, props, ns)
-                else:
-                    props[subkey] = value
-            if 'nom' in more:
-                output.append(props)
-    return output
+def load_financements():
+    with (ROOT / 'financements.yml').open() as f:
+        data = yaml.safe_load(f.read())
+    for name, props in data.items():
+        props['nom'] = name
+        props['eligible'] = False
+        FINANCEMENTS.append(props)
 
 
 def load_naf(data):
@@ -125,8 +111,7 @@ def init():
         SCHEMA.update(load_schema(yaml.safe_load(f.read())))
     for id_, rules in load_dir_rules(ROOT / 'rules'):
         RULES[id_] = rules
-    with (ROOT / 'financements.yml').open() as f:
-        load_financements(yaml.safe_load(f.read()), FINANCEMENTS)
+    load_financements()
     with (ROOT / 'organismes.yml').open() as f:
         for name, data in yaml.safe_load(f.read()).items():
             organisme = data
