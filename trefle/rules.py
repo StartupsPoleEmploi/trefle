@@ -351,6 +351,12 @@ def check_false(context, key):
     return key.value is False
 
 
+@reason("{key.pointer.raw} est définie: {key}")
+@condition(r"(l'|les? |la )(?P<key>.+) (n'est|ne sont) pas définie?s?")
+def check_none(context, key):
+    return key.value in (None, '')
+
+
 @no_status
 @reason("le financement n'est pas de type «{tag}»")
 @condition(r"le financement est de type (?P<tag>.+)")
@@ -379,12 +385,6 @@ def check_ge(context, left, right):
     return left.value >= right.value
 
 
-@reason("{left.pointer.raw} vaut {left}, c'est supérieur ou égal au seuil ({right})")
-@condition(r"(l'|les? |la )(?P<left>.+) est inférieure? à (l'|les? |la )?(?P<right>.+)")
-def check_lt(context, left, right):
-    return left.value < right.value
-
-
 @reason("{left.pointer.raw} trop grande: {left} (le maximum est {right})")
 @condition(r"(l'|les? |la )(?P<left>.+?) est inférieure? ou égale? à (?P<rate>[\d\.]+)% (de l'|du |de la |des )?(?P<right>.+)")
 @condition(r"(l'|les? |la )(?P<left>.+?) (n'est|ne sont) pas supérieure?s? à (?P<rate>[\d\.]+)% (de l'|du |de la |des )?(?P<right>.+)")
@@ -397,6 +397,12 @@ def check_percent_le(context, left, rate, right):
 @condition(r"(l'|les? |la )(?P<left>.+) (n'est|ne sont) pas supérieure?s? à (l'|les? |la )?(?P<right>.+)")
 def check_le(context, left, right):
     return left.value <= right.value
+
+
+@reason("{left.pointer.raw} vaut {left}, c'est supérieur ou égal au seuil ({right})")
+@condition(r"(l'|les? |la )(?P<left>.+) est inférieure? (à l'|aux? |à la |à )?(?P<right>.+)")
+def check_lt(context, left, right):
+    return left.value < right.value
 
 
 @reason("«{left}» ne contient pas {right}")

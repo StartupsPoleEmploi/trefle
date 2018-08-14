@@ -176,3 +176,14 @@ def test_share_one(patch_schema):
     assert not condition.assess(Context({'nafs': ['123', '124'],
                                          'nafs_artisanat': ['125', '456']}))
     assert not condition.assess(Context({'nafs_artisanat': ['125', '456']}))
+
+
+def test_check_none(patch_schema):
+    patch_schema(SCHEMA)
+    condition = Condition(["le type de contrat du bénéficiaire n'est pas "
+                           "défini"])
+    assert condition.assess(Context({'contrat': None}))
+    assert condition.assess(Context({'contrat': ''}))
+    assert condition.assess(Context({'somethingelse': True}))
+    assert not condition.assess(Context({'contrat': False}))
+    assert not condition.assess(Context({'contrat': True}))

@@ -3,6 +3,14 @@ APE:
   ressources:
     - https://www.insee.fr/fr/metadonnees/definition/c1507
     - http://site2.fpspp.org/FPSPP9/
+ARE:
+  description: Allocation chômage d'aide au retour à l'emploi
+  ressources:
+    - https://www.service-public.fr/particuliers/vosdroits/N178
+AREF:
+  description: Allocation d'aide au retour à l'emploi formation
+  ressources:
+    - https://www.service-public.fr/particuliers/vosdroits/F291
 BEC: Business English Certificates, aussi appelé Cambridge English Business Certificates
 BULATS: Business Language Testing Service
 CACES: Certificat d'aptitude à la conduite en sécurité
@@ -40,6 +48,10 @@ OPCA:
     - http://site2.fpspp.org/FPSPP9/
     - https://www.arftlv.org/TELECHARGEMENT/2553/_liste_opca__pdf_.pdf
     - https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000024909327&categorieLien=id
+RFPE:
+  description: Régime public de rémunération des demandeurs d'emploi en formation
+  ressources:
+    - https://www.service-public.fr/particuliers/vosdroits/F760
 TOEIC: Test of English for International Communication
 VAE:
   description: validation des acquis de l'expérience

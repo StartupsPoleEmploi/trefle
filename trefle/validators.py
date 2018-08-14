@@ -97,7 +97,7 @@ def format_date(value):
     return datetime.strptime(value[:4], '%Y')
 
 
-@formatter('remuneration')
+@formatter('money')
 def format_remuneration(value):
     value = str(value).replace(',', '.')  # French uses "," as delimiter.
     value = value.replace('€', '')

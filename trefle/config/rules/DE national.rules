@@ -33,6 +33,7 @@ Si c'est un demandeur d'emploi
             Et le code CERTIFINFO de la formation ne fait pas partie de [54664,84385]
             Et ce n'est pas un contrat d'apprentissage
             Et ce n'est pas un contrat de professionnalisation
+            # => TODO heures totales
             Et le nombre d'heures en entreprise n'est pas supérieur à 30% du nombre d'heures en centre
 
                 Si la région du bénéficiaire ne fait pas partie de [«Corse»,«Nouvelle-Aquitaine»]
@@ -43,6 +44,21 @@ Si c'est un demandeur d'emploi
 
                 Si la région du bénéficiaire est «Nouvelle-Aquitaine»
                     Alors appliquer les règles «DE Nouvelle-Aquitaine»
+
+                Si l'allocation du bénéficiaire est «allocation d'aide au retour à l'emploi»
+                    # TODO replace by rémunération de formation applicable
+                    Alors la rémunération applicable est égale au montant de l'allocation du bénéficiaire
+
+                    Si la rémunération applicable est inférieure au minimum AREF
+                        Alors la rémunération applicable est égale au minimum AREF
+
+                    Si la fin de l'allocation du bénéficiaire est inférieure à la date de fin de la formation
+                    # TODO Voir tableau condRff dans remu.php
+                    Et c'est une formation éligible à la RFF
+                        Alors c'est un bénéficiaire éligible à la RFF
+
+                Si l'allocation du bénéficiaire n'est pas «allocation d'aide au retour à l'emploi»
+                    Alors appliquer les règles «RFPE»
 
 
         Si le financement est de type «artisan»

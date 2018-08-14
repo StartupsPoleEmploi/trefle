@@ -78,7 +78,7 @@ def extrapolate_formation_context(context):
         context['formation.semaines'] = semaines
         context['formation.mois'] = mois
         if not context.get('formation.duree_hebdo'):
-            context['formation.duree_hebdomadaire'] = round(
+            context['formation.duree_hebdo'] = round(
                 context['formation.heures'] / semaines)
 
     # Weird hack: Intercarif adds the `16` code in some situations and we need
