@@ -26,10 +26,10 @@
           <p><strong>Nombre d'heures prises en charge</strong> {heures}</p>
           <p><strong>Rémunération</strong> {remuneration}</p>
           <p if={ remuneration_texte }><strong>Rémunération</strong> { remuneration_texte }</p>
-          <p if={ fin_remuneration}><strong>Fin de la rémunération</strong> { fin_remuneration}</p>
+          <p if={ fin_remuneration}><strong>Fin de la rémunération</strong> { renderValue('financement.fin_remuneration', fin_remuneration) }</p>
           <p if={ rff }><strong>RFF</strong> { rff }</p>
-          <p if={ debut_rff }><strong>Début de la RFF</strong> { debut_rff }</p>
-          <p if={ fin_rff }><strong>Fin de la RFF</strong> { fin_rff }</p>
+          <p if={ debut_rff }><strong>Début de la RFF</strong> { renderValue('financement.debut_rff', debut_rff) }</p>
+          <p if={ fin_rff }><strong>Fin de la RFF</strong> { renderValue('financement.fin_rff', fin_rff) }</p>
           <p if={ organisme }><strong>Organisme</strong> {organisme.nom}</p>
         </virtual>
         <p>
