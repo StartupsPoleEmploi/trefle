@@ -1,5 +1,3 @@
-# TODO => non vs None
-# if(in_array($allocation_type,array('ass','ata','rsa','non')))
 Si l'allocation du bénéficiaire n'est pas définie
 Ou l'allocation du bénéficiaire fait partie de [«allocation de solidarité spécifique»,«allocation temporaire d'attente»,«revenu de solidarité active»,«non»]
 

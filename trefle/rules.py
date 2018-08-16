@@ -10,7 +10,7 @@ SCHEMA = {}
 LABELS = {}
 RULES = {}
 IDCC = {}
-DATE_PATTERN = re.compile(r'\d{4}-\d{2}-\d{2}')
+DATE_PATTERN = re.compile(r'\d{2}/\d{2}/\d{4}')
 
 
 def parse_value(value, default=...):
@@ -21,7 +21,7 @@ def parse_value(value, default=...):
             # FIXME: Should we have a dedicated registry instead?
             value = LABELS[value]
         elif DATE_PATTERN.match(value):
-            value = datetime.strptime(value, '%Y-%m-%d')
+            value = datetime.strptime(value, '%d/%m/%Y')
     elif value[0] == '[' and value[-1] == ']':
         value = [parse_value(v) for v in value[1:-1].split(',')]
     elif value.isdigit():

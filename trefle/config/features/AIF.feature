@@ -176,8 +176,8 @@ Scénario: AIF avec ARE finissant avant la fin de la formation
     Et c'est un travailleur handicapé
     Et l'allocation du bénéficiaire vaut «allocation d'aide au retour à l'emploi»
     Et le montant de l'allocation du bénéficiaire vaut 758
-    Et la date de fin de la formation vaut «2018-05-04»
-    Et la date de fin de l'allocation du bénéficiaire vaut «2018-04-04»
+    Et la date de fin de la formation vaut «04/05/2018»
+    Et la date de fin de l'allocation du bénéficiaire vaut «04/04/2018»
     Et la région du bénéficiaire vaut «Île-de-France»
     Et la liste des codes ROME de la formation vaut [«A1101»]
     Quand je demande un calcul de financement
@@ -185,6 +185,6 @@ Scénario: AIF avec ARE finissant avant la fin de la formation
     Quand je sélectionne le financement «Aide individuelle à la formation»
     Alors la rémunération applicable vaut 758
     Et la RFF applicable vaut 652.02
-    Et la date de fin de la RFF applicable vaut «2018-05-04»
-    Et la date de début de la RFF applicable vaut «2018-04-04»
-    Et la date de fin de la rémunération applicable vaut «2018-04-04»
+    Et la date de fin de la RFF applicable vaut «04/05/2018»
+    Et la date de début de la RFF applicable vaut «04/04/2018»
+    Et la date de fin de la rémunération applicable vaut «04/04/2018»

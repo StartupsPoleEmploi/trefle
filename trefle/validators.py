@@ -84,23 +84,24 @@ def format_date(value):
     if isinstance(value, datetime):
         return value
 
-    # LHEO date is quite a mess, let's try to do our best.
     if isinstance(value, int):
         return datetime.fromtimestamp(value)
 
-    with suppress(ValueError):
-        return datetime.strptime(value[:8], '%Y%m%d')
+    # LHEO date is quite a mess, let's try to do our best.
+    tries = [
+        (8, '%Y%m%d'),
+        (10, '%d/%m/%Y'),  # From LBF.
+        # Consider the day was invalid, try with month only.
+        (6, '%Y%m'),
+        # Consider even the month was invalid, try with year only.
+        # But let's raise this time, row will be logged and skipped.
+        (4, '%Y'),
+    ]
+    for chars, format_ in tries:
+        with suppress(ValueError):
+            return datetime.strptime(value[:chars], format_)
 
-    with suppress(ValueError):
-        return datetime.strptime(value[:10], '%Y-%m-%d')
-
-    # Consider the day was invalid, try with month only.
-    with suppress(ValueError):
-        return datetime.strptime(value[:6], '%Y%m')
-
-    # Consider even the month was invalid, try with year only.
-    # But let's raise this time, row will be logged and skipped.
-    return datetime.strptime(value[:4], '%Y')
+    raise ValueError(f"`{value}` n'est pas un format de date connu")
 
 
 @formatter('money')
