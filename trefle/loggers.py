@@ -24,6 +24,16 @@ request_logger.addHandler(logging.handlers.TimedRotatingFileHandler(
 def log_simulate(context, financements=None, errors=None):
     financements = financements or []
     errors = errors or []
+    try:
+        # FIXME This key should not be there.
+        del context['status']
+    except KeyError:
+        pass
+    try:
+        # FIXME This key should not be there.
+        del context['parent']
+    except KeyError:
+        pass
     message = {
         'date': datetime.utcnow().isoformat(),
         'context': context,
