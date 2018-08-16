@@ -1,6 +1,7 @@
-from collections import namedtuple
 import inspect
 import re
+from collections import namedtuple
+from datetime import datetime
 
 from .exceptions import NoDataError, WrongPointerError, NoStepError, DataError
 from .helpers import isfloat, count_indent
@@ -9,6 +10,7 @@ SCHEMA = {}
 LABELS = {}
 RULES = {}
 IDCC = {}
+DATE_PATTERN = re.compile(r'\d{4}-\d{2}-\d{2}')
 
 
 def parse_value(value, default=...):
@@ -18,6 +20,8 @@ def parse_value(value, default=...):
             # This is an enum.
             # FIXME: Should we have a dedicated registry instead?
             value = LABELS[value]
+        elif DATE_PATTERN.match(value):
+            value = datetime.strptime(value, '%Y-%m-%d')
     elif value[0] == '[' and value[-1] == ']':
         value = [parse_value(v) for v in value[1:-1].split(',')]
     elif value.isdigit():

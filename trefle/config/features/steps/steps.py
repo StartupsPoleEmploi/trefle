@@ -81,7 +81,9 @@ def then_check_organisme(context, name):
 def then_check_output(context, label, value):
     value = Pointer(value).get({})
     key = LABELS[label][12:]  # Remove "financement." namespace.
-    assert context.result[key] == value, f'{context.result[key]} != {value}'
+    assert context.result[key] == value, (f'{context.result[key]} '
+                                          f'({type(context.result[key])}) != '
+                                          f'{value} ({type(value)})')
 
 
 @then("aucun financement n'est proposé")

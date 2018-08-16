@@ -19,11 +19,17 @@
         <p><strong>Description</strong> {description}</p>
         <p><strong>Démarches</strong> {demarches}</p>
         <virtual if={ eligible }>
-          <p><strong>Prise en charge</strong> {prise_en_charge}</p>
+          <p><strong>Prise en charge</strong> { prise_en_charge }</p>
+          <p if={ prise_en_charge_texte }><strong>Prise en charge</strong> { prise_en_charge_texte }</p>
           <p><strong>Plafond de prise en charge</strong> {plafond_prise_en_charge}</p>
           <p><strong>Plafond de prix horaire</strong> {plafond_prix_horaire}</p>
-          <p><strong>Nombre d'heures</strong> {heures}</p>
+          <p><strong>Nombre d'heures prises en charge</strong> {heures}</p>
           <p><strong>Rémunération</strong> {remuneration}</p>
+          <p if={ remuneration_texte }><strong>Rémunération</strong> { remuneration_texte }</p>
+          <p if={ fin_remuneration}><strong>Fin de la rémunération</strong> { fin_remuneration}</p>
+          <p if={ rff }><strong>RFF</strong> { rff }</p>
+          <p if={ debut_rff }><strong>Début de la RFF</strong> { debut_rff }</p>
+          <p if={ fin_rff }><strong>Fin de la RFF</strong> { fin_rff }</p>
           <p if={ organisme }><strong>Organisme</strong> {organisme.nom}</p>
         </virtual>
         <p>

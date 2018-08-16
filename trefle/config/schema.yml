@@ -4,6 +4,12 @@ constante:
     format: float
     value: 616.2
     label: minimum AREF
+  rff:
+    type: integer
+    format: float
+    value: 652.02
+    label: montant de la RFF en vigueur
+    description: montant de la RFF (net)
   codes_financeur_individuel:
     description: ensemble des codes financeur individuel
     type: array
@@ -195,7 +201,7 @@ beneficiaire:
     type: string
     format: date
     public: true
-    label: fin de l'allocation du bénéficiaire
+    label: date de fin de l'allocation du bénéficiaire
   age:
     description: âge du beneficiaire
     type: integer
@@ -394,6 +400,14 @@ formation:
     source: catalogue
     xpath: //extras[@info="eligibilite-cpf"]/extra[@info="region"]/child::text()
     label: régions éligibles COPAREF
+  codes_rome:
+    type: array
+    format: set
+    items:
+      type: string
+    source: catalogue
+    xpath: //domaine-formation/code-ROME/child::text()
+    label: liste des codes ROME de la formation
   codes_formacode:
     type: array
     format: set
@@ -735,13 +749,27 @@ financement:
     type: number
     format: float
     public: true
+    nullable: true
     label: RFF applicable
     description: montant de la RFF si applicable
-  eligible_rff:
-    type: boolean
+  debut_rff:
+    type: string
+    format: date
     public: true
-    label: bénéficiaire éligible à la RFF
-    description: vrai si le bénéficiaire recevra une allocation RFF dans le cadre de la formation
+    nullable: true
+    label: date de début de la RFF applicable
+  fin_rff:
+    type: string
+    format: date
+    public: true
+    nullable: true
+    label: date de fin de la RFF applicable
+  fin_remuneration:
+    type: string
+    format: date
+    nullable: true
+    public: true
+    label: date de fin de la rémunération applicable
   ressources:
     type: array
     public: true

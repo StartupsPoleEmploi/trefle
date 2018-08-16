@@ -12,7 +12,7 @@ from trefle.core import simulate
 from trefle.debugging import data_from_lbf_url, green, make_scenario, red
 from trefle.exceptions import DataError
 from trefle.helpers import flatten
-from trefle.rules import parse_value
+from trefle.rules import parse_value, SCHEMA
 
 
 def parse_args(args):
@@ -87,31 +87,17 @@ async def cli_simulate(*args, context: json.loads={}, url=None, trace=False,
     else:
         print('Aucun financement éligible')
     for financement in eligibles:
-        print('- Nom:', financement['nom'])
-        print('  Description:', financement['description'][:150], '…')
-        print('  Démarches:', financement['demarches'][:150], '…')
+        print(financement['nom'])
+        for key, value in financement.items():
+            if not value or key in ('nom', 'organisme', 'status', 'tags',
+                                    'eligible', 'ressources'):
+                continue
+            schema = SCHEMA["financement." + key]
+            if isinstance(value, str) and len(value) > 100:
+                value = f'{value[:100]}…'
+            print(f'  {schema["label"]}: {value}')
         if financement.get('organisme'):
-            print('  Organisme:')
-            print('      Nom:', financement['organisme']['nom'])
-            print('      Site web:', financement['organisme']['web'])
-        if financement['prise_en_charge']:
-            print('  Financement:', financement['prise_en_charge'], '€')
-        if financement.get('prise_en_charge_texte'):
-            print('  Financement:',
-                  financement['prise_en_charge_texte'])
-        if financement['plafond_prix_horaire']:
-            print('  Plafond horaire:',
-                  financement['plafond_prix_horaire'], '€')
-        if financement['heures']:
-            print('  Heures prises en charge:', financement['heures'])
-        if financement['plafond_prise_en_charge']:
-            print('  Plafond financement:',
-                  financement['plafond_prise_en_charge'], '€')
-        if financement['remuneration']:
-            print('  Rémunération:', financement['remuneration'], '€')
-        if financement.get('remuneration_texte'):
-            print('  Rémunération:',
-                  financement['remuneration_texte'])
+            print('  organisme:', financement['organisme']['nom'])
         if trace:
             for status in financement['status']:
                 render_status(status)
@@ -119,7 +105,7 @@ async def cli_simulate(*args, context: json.loads={}, url=None, trace=False,
     print('\nFinancements non éligibles\n')
     non_eligibles = [f for f in financements if not f['eligible']]
     for financement in non_eligibles:
-        print('- Nom:', financement['nom'])
+        print('-', financement['nom'])
         if trace:
             for status in financement['status']:
                 render_status(status)
