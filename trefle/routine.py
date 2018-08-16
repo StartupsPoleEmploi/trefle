@@ -14,6 +14,8 @@ def extrapolate_context(context):
                             'beneficiaire.entreprise.region')
     insee_commune_to_region(context, 'beneficiaire.commune',
                             'beneficiaire.region')
+    if context.get('beneficiaire.allocation_type') == 'non':
+        del context['beneficiaire.allocation_type']
 
 
 async def get_formation_xml(formation_id):
