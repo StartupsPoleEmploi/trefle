@@ -84,7 +84,7 @@ def data_from_lbf_url(url):
     data = {}
     for key, value in args.items():
         key = keymap.get(key, f'beneficiaire.{key.decode()}')
-        data[key] = value
+        data[key] = value.decode()
 
     if b'birthdate' in args:
         # Poor man age computation.

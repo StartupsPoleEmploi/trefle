@@ -176,6 +176,7 @@ beneficiaire:
     public: true
     label: rémunération du bénéficiaire
   allocation:
+    alias: beneficiaire.allocation_cost
     description: montant de l'allocation en euros
     type: integer
     format: money
