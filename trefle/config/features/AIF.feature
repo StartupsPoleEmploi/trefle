@@ -4,7 +4,7 @@ Fonctionnalité: Aide individuelle à la formation
 Scénario: Cas nominal national d'un financement AIF
     Soit un bénéficiaire et une formation
     Et c'est un demandeur d'emploi
-    Et la durée en heures de la formation vaut 120
+    Et la durée en heures de la formation vaut 130
     Et le nombre d'heures en centre vaut 100
     Et le nombre d'heures en entreprise vaut 30
     Et c'est une formation ouverte aux bénéficiaires individuels
@@ -22,8 +22,8 @@ Scénario: Cas nominal national d'un financement AIF
 Scénario: pas d'AIF parce qu'il y a trop d'heures en entreprise
     Soit un bénéficiaire et une formation
     Et c'est un demandeur d'emploi
-    Et la durée en heures de la formation vaut 120
-    Et le nombre d'heures en centre vaut 100
+    Et la durée en heures de la formation vaut 101
+    Et le nombre d'heures en centre vaut 70
     Et le nombre d'heures en entreprise vaut 31
     Et c'est une formation ouverte aux bénéficiaires individuels
     Et ce n'est pas un bénéficiaire de droit privé

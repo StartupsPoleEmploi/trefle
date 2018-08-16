@@ -33,8 +33,7 @@ Si c'est un demandeur d'emploi
             Et le code CERTIFINFO de la formation ne fait pas partie de [54664,84385]
             Et ce n'est pas un contrat d'apprentissage
             Et ce n'est pas un contrat de professionnalisation
-            # => TODO heures totales
-            Et le nombre d'heures en entreprise n'est pas supérieur à 30% du nombre d'heures en centre
+            Et le nombre d'heures en entreprise n'est pas supérieur à 30% de la durée en heures de la formation
 
                 Si la région du bénéficiaire ne fait pas partie de [«Corse»,«Nouvelle-Aquitaine»]
                     Alors le financement est éligible
@@ -56,7 +55,7 @@ Si c'est un demandeur d'emploi
                     Et c'est une formation éligible à la RFF
                         Alors la RFF applicable est égale au montant de la RFF en vigueur
                         Et la date de fin de la rémunération applicable est égale à la date de fin de l'allocation du bénéficiaire
-                        # lendemain
+                        # TODO lendemain
                         Et la date de début de la RFF applicable est égale à la date de fin de l'allocation du bénéficiaire
                         Et la date de fin de la RFF applicable est égale à la date de fin de la formation
 
