@@ -1,4 +1,4 @@
-Fonctionnalité: Demandeur d'emploi
+Fonctionnalité: CPF demandeur d'emploi
 
 Scénario: Cas nominal CPF COPANEF demandeur d'emploi
     Soit un bénéficiaire et une formation
