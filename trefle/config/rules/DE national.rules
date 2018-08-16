@@ -56,6 +56,7 @@ Si c'est un demandeur d'emploi
                     Et c'est une formation éligible à la RFF
                         Alors la RFF applicable est égale au montant de la RFF en vigueur
                         Et la date de fin de la rémunération applicable est égale à la date de fin de l'allocation du bénéficiaire
+                        # lendemain
                         Et la date de début de la RFF applicable est égale à la date de fin de l'allocation du bénéficiaire
                         Et la date de fin de la RFF applicable est égale à la date de fin de la formation
 

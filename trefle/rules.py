@@ -371,7 +371,7 @@ def check_type(context, tag):
 @no_status
 @reason("le financement est de type «{tag}»")
 @condition(r"le financement n'est pas de type (?P<tag>.+)")
-def check_type(context, tag):
+def check_not_type(context, tag):
     return tag.value not in context['financement.tags']
 
 

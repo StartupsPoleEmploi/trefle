@@ -81,9 +81,11 @@ def data_from_lbf_url(url):
         b'idformintercarif': 'formation.numero',
         b'inscritDE': 'beneficiaire.inscrit_pe',
     }
+    data = {}
+    for key, value in args.items():
+        key = keymap.get(key, f'beneficiaire.{key.decode()}')
+        data[key] = value
 
-    data = {keymap[key]: value.decode() for key, value in args.items()
-            if key in keymap}
     if b'birthdate' in args:
         # Poor man age computation.
         # TODO: use dateutil or delorean here and in routine.py
