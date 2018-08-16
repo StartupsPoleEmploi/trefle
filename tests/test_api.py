@@ -369,11 +369,11 @@ async def test_simulate_endpoint_with_unknown_departement(client):
         'beneficiaire.contrat': 'cdi',
         'formation.eligible_copanef': True,
         'formation.heures': 100,
-        'beneficiaire.entreprise.commune': '20001',
+        'beneficiaire.entreprise.commune': '99001',
         'beneficiaire.entreprise.idcc': 2706})
     assert resp.status == HTTPStatus.UNPROCESSABLE_ENTITY
     assert json.loads(resp.body) == {
-        'beneficiaire.entreprise.commune': "Valeur invalide: `20001`"}
+        'beneficiaire.entreprise.commune': "Valeur invalide: `99001`"}
 
 
 async def test_simulate_endpoint_with_invalid_data(client):

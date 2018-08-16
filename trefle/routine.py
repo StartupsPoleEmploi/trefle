@@ -14,6 +14,10 @@ def extrapolate_context(context):
                             'beneficiaire.entreprise.region')
     insee_commune_to_region(context, 'beneficiaire.commune',
                             'beneficiaire.region')
+    # FIXME remove me when LBF sends INSEE code even for DE.
+    # (this is a postcode).
+    insee_commune_to_region(context, 'beneficiaire.location',
+                            'beneficiaire.region')
     if context.get('beneficiaire.allocation_type') == 'non':
         del context['beneficiaire.allocation_type']
 
