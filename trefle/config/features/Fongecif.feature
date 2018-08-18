@@ -412,7 +412,6 @@ Scénario: Formation de 12 mois
     Et le plafond de prise en charge vaut 18000
     Et la rémunération applicable vaut 0
 
-@wip
 Scénario: Sans code financeur
     Soit un bénéficiaire et une formation
     Et la rémunération du bénéficiaire vaut 1500

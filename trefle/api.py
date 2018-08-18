@@ -4,9 +4,9 @@ from roll import HttpError, Roll
 from roll.extensions import cors
 
 from . import VERSION
-from .config import FEATURES, FINANCEMENTS, GLOSSARY, NAF, RAW_RULES, SCHEMA
+from .config import FINANCEMENTS, GLOSSARY, NAF, RAW_RULES, SCHEMA
 from .core import simulate
-from .debugging import data_from_lbf_url, make_scenario
+from .debugging import data_from_lbf_url, make_scenario, SCENARIOS
 from .loggers import log_simulate, logger
 from .openapis import OPENAPI
 from .routine import get_formation_xml
@@ -89,9 +89,9 @@ async def explore_financements(request, response):
     response.json = FINANCEMENTS
 
 
-@app.route('/explore/features')
-async def explore_features(request, response):
-    response.json = FEATURES
+@app.route('/explore/scenarios')
+async def explore_scenarios(request, response):
+    response.json = SCENARIOS
 
 
 @app.route('/explore/catalog')

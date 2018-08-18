@@ -3,11 +3,16 @@ import bz2
 import os
 import sys
 from datetime import datetime
+from pathlib import Path
 from urllib.parse import parse_qs, urlparse
 
 import phpserialize
+from behave.runner_util import parse_features
 
-from .config import SCHEMA
+from .config import SCHEMA, FINANCEMENTS
+
+
+SCENARIOS = []
 
 
 def yellow(s):
@@ -152,3 +157,59 @@ def make_scenario(data, financements, name='Donne-moi un nom'):
             steps.append(f"Alors le financement «{financement['nom']}» n'est "
                          "pas proposé")
     return header + '\n    '.join(steps)
+
+
+def load_scenarios():
+    paths = (Path(__file__).parent / 'config/features/').glob('*.feature')
+    features = parse_features([str(p) for p in paths], language='fr')
+    scenarios = []
+    tags = set([])
+    for feature in features:
+        for scenario in feature.scenarios:
+            scenarios.append(load_scenario(feature, scenario))
+            tags.update(set(scenario.tags))
+    return scenarios
+
+
+def load_scenario(feature, scenario):
+    scenario.tags.append(feature.name.lower())
+    steps = [load_step(scenario, step) for step in scenario.steps]
+    return {
+        'name': scenario.name,
+        'raw': '\n'.join('{keyword} {name}'.format(**step) for step in steps),
+        'tags': set(scenario.tags),
+    }
+
+
+def load_step(scenario, step):
+    scenario_tag_from_step(scenario, step)
+    return {
+        'keyword': step.keyword,
+        'name': step.name,
+    }
+
+
+def scenario_tag_from_step(scenario, step):
+    if step.step_type == 'given':
+        if step.name == "c'est un bénéficiaire de droit privé":
+            scenario.tags.append('salarié')
+        prefixes = [
+            "c'est une formation éligible région",
+            "la région de l'établissement du bénéficiaire vaut",
+            "la région du bénéficiaire vaut",
+            "le type de contrat du bénéficiaire vaut",
+        ]
+        for prefix in prefixes:
+            if step.name.startswith(prefix):
+                scenario.tags.append(step.name[len(prefix)+2:-1].lower())
+    elif step.step_type == 'when':
+        prefix = "je sélectionne le financement"
+        if step.name.startswith(prefix):
+            name = step.name[len(prefix)+2:-1]
+            for financement in FINANCEMENTS:
+                if financement['nom'] == name:
+                    scenario.tags.extend(
+                        [t.lower() for t in financement['tags']])
+
+
+SCENARIOS = load_scenarios()
