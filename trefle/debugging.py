@@ -167,11 +167,9 @@ def load_scenarios():
     paths = (Path(__file__).parent / 'config/features/').glob('*.feature')
     features = parse_features([str(p) for p in paths], language='fr')
     scenarios = []
-    tags = set([])
     for feature in features:
         for scenario in feature.scenarios:
             scenarios.append(load_scenario(feature, scenario))
-            tags.update(set(scenario.tags))
     return scenarios
 
 
@@ -197,6 +195,10 @@ def scenario_tag_from_step(scenario, step):
     if step.step_type == 'given':
         if step.name == "c'est un bénéficiaire de droit privé":
             scenario.tags.append('salarié')
+        elif step.name == "c'est un travailleur handicapé":
+            scenario.tags.append('travailleur handicapé')
+        elif step.name == "c'est un demandeur d'emploi":
+            scenario.tags.append('DE')
         prefixes = [
             "c'est une formation éligible région",
             "la région de l'établissement du bénéficiaire vaut",
@@ -206,6 +208,13 @@ def scenario_tag_from_step(scenario, step):
         for prefix in prefixes:
             if step.name.startswith(prefix):
                 scenario.tags.append(step.name[len(prefix)+2:-1].lower())
+        prefix = "l'âge du bénéficiaire vaut"
+        if step.name.startswith(prefix):
+            age = int(step.name[len(prefix)+1:])
+            if age < 26:
+                scenario.tags.append('moins de 26')
+            if age < 18:
+                scenario.tags.append('moins de 18')
     elif step.step_type == 'when':
         prefix = "je sélectionne le financement"
         if step.name.startswith(prefix):
