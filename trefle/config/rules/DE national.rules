@@ -35,7 +35,7 @@ Si c'est un demandeur d'emploi
             Et ce n'est pas un contrat de professionnalisation
             Et le nombre d'heures en entreprise n'est pas supérieur à 30% de la durée en heures de la formation
 
-                Si la région du bénéficiaire ne fait pas partie de [«Corse»,«Nouvelle-Aquitaine»,«Provence-Alpes-Côte d'Azur»,«Occitanie»,«Hauts-de-France»,«Normandie»,«Guadeloupe»]
+                Si la région du bénéficiaire ne fait pas partie de [«Corse»,«Nouvelle-Aquitaine»,«Provence-Alpes-Côte d'Azur»,«Occitanie»,«Hauts-de-France»,«Normandie»,«Guadeloupe»,«Auvergne-Rhône-Alpes»]
                     Alors le financement est éligible
 
                 Si la région du bénéficiaire est «Corse»
@@ -58,6 +58,9 @@ Si c'est un demandeur d'emploi
 
                 Si la région du bénéficiaire est «Guadeloupe»
                     Alors appliquer les règles «DE Guadeloupe»
+
+                Si la région du bénéficiaire est «Auvergne-Rhône-Alpes»
+                    Alors appliquer les règles «DE Auvergne-Rhône-Alpes»
 
         Si le financement est de type «artisan»
             Si le code CERTIFINFO de la formation vaut 84385
