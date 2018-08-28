@@ -6,7 +6,7 @@ from pathlib import Path
 import pytest
 from openapi_core import create_spec
 from openapi_core.wrappers.mock import MockRequest, MockResponse
-from openapi_core.validators import ResponseValidator
+from openapi_core.shortcuts import ResponseValidator
 from openapi_spec_validator import validate_spec
 from roll.extensions import traceback
 
