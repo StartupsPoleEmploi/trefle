@@ -1,0 +1,7 @@
+Si le financement est de type «AIF»
+
+    Si la liste des codes FORMACODE de la formation ne contient aucun des codes parmi [43448,43436,31815,43441,44041,31815,43454,44054,43409,44041,31802,31854,31805,31827,31833,31815,43454,44054,43409,31734,32050,43438,43438,43438,42003,42030,42050,42060,46061,43445,43425,14449,42020,42093]
+    Et le code CERTIFINFO de la formation ne fait pas partie de [49616,23710,55676,83419,96173,83899]
+    Et la liste des domaines FORMACODE de la formation ne contient pas 150, ou la liste des codes FORMACODE de la formation contient au moins un code parmi [15009,15015]
+        Alors le financement est éligible
+        Et le texte de la prise en charge vaut «Formation totalement ou partiellement financée (avec mobilisation possible de vos heures CPF)»

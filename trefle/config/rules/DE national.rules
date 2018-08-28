@@ -35,7 +35,7 @@ Si c'est un demandeur d'emploi
             Et ce n'est pas un contrat de professionnalisation
             Et le nombre d'heures en entreprise n'est pas supérieur à 30% de la durée en heures de la formation
 
-                Si la région du bénéficiaire ne fait pas partie de [«Corse»,«Nouvelle-Aquitaine»,«Provence-Alpes-Côte d'Azur»,«Occitanie»,«Hauts-de-France»]
+                Si la région du bénéficiaire ne fait pas partie de [«Corse»,«Nouvelle-Aquitaine»,«Provence-Alpes-Côte d'Azur»,«Occitanie»,«Hauts-de-France»,«Normandie»]
                     Alors le financement est éligible
 
                 Si la région du bénéficiaire est «Corse»
@@ -52,6 +52,9 @@ Si c'est un demandeur d'emploi
 
                 Si la région du bénéficiaire est «Hauts-de-France»
                     Alors appliquer les règles «DE Hauts-de-France»
+
+                Si la région du bénéficiaire est «Normandie»
+                    Alors appliquer les règles «DE Normandie»
 
                 Si l'allocation du bénéficiaire est «allocation d'aide au retour à l'emploi»
                     # TODO replace by rémunération de formation applicable
