@@ -35,7 +35,7 @@ Si c'est un demandeur d'emploi
             Et ce n'est pas un contrat de professionnalisation
             Et le nombre d'heures en entreprise n'est pas supérieur à 30% de la durée en heures de la formation
 
-                Si la région du bénéficiaire ne fait pas partie de [«Corse»,«Nouvelle-Aquitaine»,«Provence-Alpes-Côte d'Azur»,«Occitanie»,«Hauts-de-France»,«Normandie»,«Guadeloupe»,«Auvergne-Rhône-Alpes»,«La Réunion»,«Mayotte»,«Centre-Val de Loire»,«Île-de-France»]
+                Si la région du bénéficiaire ne fait pas partie de [«Corse»,«Nouvelle-Aquitaine»,«Provence-Alpes-Côte d'Azur»,«Occitanie»,«Hauts-de-France»,«Normandie»,«Guadeloupe»,«Auvergne-Rhône-Alpes»,«La Réunion»,«Mayotte»,«Centre-Val de Loire»,«Île-de-France»,«Bourgogne-Franche-Comté»]
                     Alors le financement est éligible
 
                 Si la région du bénéficiaire est «Corse»
@@ -67,6 +67,9 @@ Si c'est un demandeur d'emploi
 
                 Si la région du bénéficiaire est «Île-de-France»
                     Alors appliquer les règles «DE Île-de-France»
+
+                Si la région du bénéficiaire est «Bourgogne-Franche-Comté»
+                    Alors appliquer les règles «DE Bourgogne-Franche-Comté»
 
                 Si la région du bénéficiaire est «La Réunion»
                 Ou la région du bénéficiaire est «Mayotte»
