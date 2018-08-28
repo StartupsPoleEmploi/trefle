@@ -35,7 +35,7 @@ Si c'est un demandeur d'emploi
             Et ce n'est pas un contrat de professionnalisation
             Et le nombre d'heures en entreprise n'est pas supérieur à 30% de la durée en heures de la formation
 
-                Si la région du bénéficiaire ne fait pas partie de [«Corse»,«Nouvelle-Aquitaine»,«Provence-Alpes-Côte d'Azur»,«Occitanie»,«Hauts-de-France»,«Normandie»]
+                Si la région du bénéficiaire ne fait pas partie de [«Corse»,«Nouvelle-Aquitaine»,«Provence-Alpes-Côte d'Azur»,«Occitanie»,«Hauts-de-France»,«Normandie»,«Guadeloupe»]
                     Alors le financement est éligible
 
                 Si la région du bénéficiaire est «Corse»
@@ -56,24 +56,8 @@ Si c'est un demandeur d'emploi
                 Si la région du bénéficiaire est «Normandie»
                     Alors appliquer les règles «DE Normandie»
 
-                Si l'allocation du bénéficiaire est «allocation d'aide au retour à l'emploi»
-                    # TODO replace by rémunération de formation applicable
-                    Alors la rémunération applicable est égale au montant de l'allocation du bénéficiaire
-
-                    Si la rémunération applicable est inférieure au minimum AREF
-                        Alors la rémunération applicable est égale au minimum AREF
-
-                    Si la date de fin de l'allocation du bénéficiaire est inférieure à la date de fin de la formation
-                    Et c'est une formation éligible à la RFF
-                        Alors la RFF applicable est égale au montant de la RFF en vigueur
-                        Et la date de fin de la rémunération applicable est égale à la date de fin de l'allocation du bénéficiaire
-                        # TODO lendemain
-                        Et la date de début de la RFF applicable est égale à la date de fin de l'allocation du bénéficiaire
-                        Et la date de fin de la RFF applicable est égale à la date de fin de la formation
-
-                Si l'allocation du bénéficiaire n'est pas «allocation d'aide au retour à l'emploi»
-                    Alors appliquer les règles «RFPE»
-
+                Si la région du bénéficiaire est «Guadeloupe»
+                    Alors appliquer les règles «DE Guadeloupe»
 
         Si le financement est de type «artisan»
             Si le code CERTIFINFO de la formation vaut 84385
@@ -82,3 +66,21 @@ Si c'est un demandeur d'emploi
                 Et le texte des démarches vaut «Assurez-vous auprès de la chambre des métiers et de l'artisanat (http://www.artisanat.fr/portals/0/annuaire/annuaire.html) que la formation est bien obligatoire et préalable à l'installation comme artisan.⏎Le financement par le biais de cette aide individuelle à la formation - Artisan (AIF Artisan) n'est possible que si le devis présenté à Pôle emploi du Stage préparatoire à l'installation d'une entreprise artisanale correspond précisément au montant exact de l'aide (195,18 € pour 2018).»
             # Si ce n'est pas un bilan de compétences
                 # Alors la rémunération applicable est égale à la rémunération du bénéficiaire
+
+        Si l'allocation du bénéficiaire est «allocation d'aide au retour à l'emploi»
+            # TODO replace by rémunération de formation applicable
+            Alors la rémunération applicable est égale au montant de l'allocation du bénéficiaire
+
+            Si la rémunération applicable est inférieure au minimum AREF
+                Alors la rémunération applicable est égale au minimum AREF
+
+            Si la date de fin de l'allocation du bénéficiaire est inférieure à la date de fin de la formation
+            Et c'est une formation éligible à la RFF
+                Alors la RFF applicable est égale au montant de la RFF en vigueur
+                Et la date de fin de la rémunération applicable est égale à la date de fin de l'allocation du bénéficiaire
+                # TODO lendemain
+                Et la date de début de la RFF applicable est égale à la date de fin de l'allocation du bénéficiaire
+                Et la date de fin de la RFF applicable est égale à la date de fin de la formation
+
+        Si l'allocation du bénéficiaire n'est pas «allocation d'aide au retour à l'emploi»
+            Alors appliquer les règles «RFPE»
