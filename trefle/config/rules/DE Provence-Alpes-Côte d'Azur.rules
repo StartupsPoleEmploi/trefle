@@ -1,0 +1,5 @@
+Si le financement est de type «AIF»
+    Si la durée en mois de la formation n'est pas supérieure à 12
+    Et la liste des codes FORMACODE de la formation ne contient aucun des codes parmi [15041,43448,43457]
+    Et le code CERTIFINFO de la formation ne fait pas partie de [54912,54913,54917,87189,87185,87187]
+        Alors le financement est éligible
