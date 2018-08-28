@@ -303,6 +303,21 @@ beneficiaire:
       '84': Auvergne-Rhône-Alpes
       '93': Provence-Alpes-Côte d'Azur
       '94': Corse
+  niveau_scolaire:
+    alias: beneficiaire.niveauscolaire
+    type: integer
+    public: true
+    label: niveau scolaire du bénéficiaire
+    enum: &niveau_scolaire
+      0: inconnu
+      1: aucun
+      2: VI
+      3: V bis
+      4: V
+      5: IV
+      6: III
+      7: II
+      8: I
   th:
     alias: beneficiaire.situation_th
     type: boolean
@@ -621,16 +636,7 @@ formation:
     xpath: number(//code-niveau-sortie/child::text())
     gender: masculine
     url: http://lheo.gouv.fr/langage#dict-niveaux
-    enum:
-      0: inconnu
-      1: aucun
-      2: VI
-      3: V bis
-      4: V
-      5: IV
-      6: III
-      7: II
-      8: I
+    enum: *niveau_scolaire
   entrees_sorties:
     type: integer
     format: int32
