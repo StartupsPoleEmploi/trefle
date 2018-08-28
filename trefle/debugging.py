@@ -99,7 +99,7 @@ def make_scenario(data, financements, name='Donne-moi un nom'):
     steps = ["Soit un bénéficiaire et une formation"]
 
     for key, value in data.items():
-        if key not in SCHEMA:
+        if key not in SCHEMA or key.startswith('constante'):
             continue
         schema = SCHEMA[key]
         label = schema['label']

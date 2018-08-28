@@ -112,7 +112,7 @@ async def cli_simulate(*args, context: json.loads={}, url=None, trace=False,
     if output_scenario:
         if url:
             print(f'# {url}')
-        print(make_scenario(context, eligibles))
+        print(make_scenario(context, eligibles + non_eligibles))
     print(f'Duration: {round(duration, 4)} second')
 
 
