@@ -1,7 +1,7 @@
 from behave import given, when, then, use_step_matcher
 from behave.api.async_step import async_run_until_complete
 
-from trefle.core import simulate
+from trefle import simulate
 from trefle.rules import LABELS, SCHEMA, Pointer
 
 use_step_matcher('re')

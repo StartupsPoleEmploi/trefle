@@ -7,8 +7,8 @@ import ujson as json
 from minicli import cli, run
 from roll.extensions import simple_server, static, traceback
 
+from trefle import simulate
 from trefle.api import app
-from trefle.core import simulate
 from trefle.debugging import data_from_lbf_url, green, make_scenario, red
 from trefle.exceptions import DataError
 from trefle.helpers import flatten

@@ -3,9 +3,8 @@ from http import HTTPStatus
 from roll import HttpError, Roll
 from roll.extensions import cors
 
-from . import VERSION
+from . import VERSION, simulate
 from .config import FINANCEMENTS, GLOSSARY, NAF, RAW_RULES, SCHEMA
-from .core import simulate
 from .debugging import data_from_lbf_url, make_scenario, SCENARIOS
 from .exceptions import DataError
 from .loggers import log_simulate, logger
