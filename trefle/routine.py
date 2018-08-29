@@ -163,6 +163,10 @@ def compute_modalites(context, financement):
     financement['fin_rff'] = context.get('financement.fin_rff')
     financement['fin_remuneration'] = context.get(
         'financement.fin_remuneration')
+    financement['remuneration_annee_2'] = context.get(
+        'financement.remuneration_annee_2')
+    financement['remuneration_annee_3'] = context.get(
+        'financement.remuneration_annee_3')
 
 
 def check_financement(context, financement):

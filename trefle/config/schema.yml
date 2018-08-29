@@ -71,17 +71,18 @@ constante:
   # https://www.service-public.fr/particuliers/vosdroits/F2300
   smic:
     type: integer
-    format: int32
+    format: float
     value: 1498.47
     label: SMIC
+  # TODO: move to preprocess
   deux_smic:
     type: integer
-    format: int32
+    format: float
     value: 2997
     label: deux fois le SMIC
   trois_smic:
     type: integer
-    format: int32
+    format: float
     value: 4495
     label: trois fois le SMIC
   quatre_smic:
@@ -223,6 +224,11 @@ beneficiaire:
     type: boolean
     public: true
     label: femme divorcée, veuve ou séparée judiciairement depuis moins de trois ans
+  creation_entreprise:
+    alias: beneficiaire.situation_projetcreationentreprise
+    type: boolean
+    public: true
+    label: bénéficiaire en situation de création d'entreprise nécessitant cette formation
   experience_professionnelle:
     description: nombre de mois travaillés sur les 5 dernières années
     type: integer
@@ -686,6 +692,18 @@ financement:
     public: true
     nullable: true
     label: rémunération applicable
+  remuneration_annee_2:
+    type: integer
+    format: float
+    public: true
+    nullable: true
+    label: rémunération applicable la deuxième année
+  remuneration_annee_3:
+    type: integer
+    format: float
+    public: true
+    nullable: true
+    label: rémunération applicable la troisième année
   remuneration_texte:
     type: string
     public: true

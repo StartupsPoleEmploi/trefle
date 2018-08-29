@@ -45,3 +45,6 @@ Aide individuelle à la formation:
 Aide individuelle à la formation artisan:
   tags: [AIF, artisan]
   rules: DE national
+"Formation en alternance : contrat d'apprentissage":
+  tags: [contrat apprentissage, alternance]
+  rules: DE national

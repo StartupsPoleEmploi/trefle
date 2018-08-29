@@ -302,7 +302,7 @@ def set_eligible(context):
 
 @action(r"(l'|les? |la )(?P<key>.+?) est égale? à (?P<rate>[\d\.]+)% (de la|du) (?P<value>.+)$")
 def set_percent(context, key: Label, rate: float, value: Pointer):
-    context[key] = value.get(context) * rate / 100
+    context[key] = round(value.get(context) * rate / 100, 2)
 
 
 @action(r"(l'|les? |la )(?P<key>.+?) (vaut|est) (l'|les? |la )?(?P<value>.+)$")
