@@ -198,7 +198,7 @@ def scenario_tag_from_step(scenario, step):
         elif step.name == "c'est un travailleur handicapé":
             scenario.tags.append('travailleur handicapé')
         elif step.name == "c'est un demandeur d'emploi":
-            scenario.tags.append('DE')
+            scenario.tags.append('de')
         prefixes = [
             "c'est une formation éligible région",
             "la région de l'établissement du bénéficiaire vaut",

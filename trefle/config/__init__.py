@@ -80,6 +80,7 @@ def load_rules(path):
             'data': data,
             'path': id_,
             'name': path.name,
+            'modified_at': path.stat().st_mtime
         }
         try:
             return id_, Rule.load(data.splitlines(), id_)
