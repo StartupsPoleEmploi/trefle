@@ -3,7 +3,7 @@ from http import HTTPStatus
 from roll import HttpError, Roll
 from roll.extensions import cors
 
-from . import VERSION, simulate
+from . import VERSION, simulate, get_financements
 from .config import FINANCEMENTS, GLOSSARY, NAF, RAW_RULES, SCHEMA
 from .debugging import data_from_lbf_url, make_scenario, SCENARIOS
 from .exceptions import DataError
@@ -33,8 +33,9 @@ async def json_error_response(request, response, error):
 @app.route('/financement', methods=['POST'])
 async def simulate_(request, response):
     context = request.json
+    financements = get_financements(tags=request.query.list('tags', []))
     try:
-        financements = await simulate(context)
+        await simulate(context, financements)
     except DataError as err:
         error = {err.key: err.error}
         log_simulate(context, errors=error)
@@ -43,8 +44,6 @@ async def simulate_(request, response):
     eligible = request.query.bool('eligible', None)
     if eligible is not None:
         financements = [f for f in financements if f['eligible'] == eligible]
-    for tag in request.query.list('tags', []):
-        financements = [f for f in financements if tag in f['tags']]
     for financement in financements:
         financement['status'] = [s.json for s in financement['status']]
     body = {'financements': financements}

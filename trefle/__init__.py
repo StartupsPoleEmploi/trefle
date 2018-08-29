@@ -10,7 +10,7 @@ config.init()
 VERSION = pkg_resources.get_distribution(__package__).version
 
 
-async def simulate(data):
+async def simulate(data, financements):
     # Prepare context
     flatten(data)
     context = Context(data.copy())
@@ -18,7 +18,6 @@ async def simulate(data):
     await routine.populate_formation(context)
     routine.preprocess(context)
 
-    financements = [f.copy() for f in config.FINANCEMENTS]
     # Compute organisme, prise en charge, rémunération per financement
     for financement in financements:
         copy = context.copy()
@@ -32,4 +31,9 @@ async def simulate(data):
         if key.startswith(('status', 'parent', 'financement')):
             del data[key]
 
+
+def get_financements(tags=None):
+    financements = [f.copy() for f in config.FINANCEMENTS]
+    for tag in (tags or []):
+        financements = [f for f in financements if tag in f['tags']]
     return financements

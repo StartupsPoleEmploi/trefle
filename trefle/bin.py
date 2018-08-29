@@ -7,7 +7,7 @@ import ujson as json
 from minicli import cli, run
 from roll.extensions import simple_server, static, traceback
 
-from trefle import simulate
+from trefle import simulate, get_financements
 from trefle.api import app
 from trefle.debugging import data_from_lbf_url, green, make_scenario, red
 from trefle.exceptions import DataError
@@ -62,9 +62,10 @@ async def cli_simulate(*args, context: json.loads={}, url=None, trace=False,
         context = data_from_lbf_url(url)
     if args:
         context.update(parse_args(args))
+    financements = get_financements(tags=tags)
     try:
         start = time.perf_counter()
-        financements = await simulate(context)
+        await simulate(context, financements)
         duration = (time.perf_counter() - start)
     except DataError as err:
         sys.exit(f'Error in data: {err}')
@@ -82,8 +83,6 @@ async def cli_simulate(*args, context: json.loads={}, url=None, trace=False,
                 print(tpl.format(key, str(value)))
             print('-' * 105)
     print('*' * 105)
-    for tag in tags:
-        financements = [f for f in financements if tag in f['tags']]
     eligibles = [f for f in financements if f['eligible']]
     if eligibles:
         print('Financements éligibles\n')

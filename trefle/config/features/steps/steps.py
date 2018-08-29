@@ -1,7 +1,7 @@
 from behave import given, when, then, use_step_matcher
 from behave.api.async_step import async_run_until_complete
 
-from trefle import simulate
+from trefle import simulate, get_financements
 from trefle.rules import LABELS, SCHEMA, Pointer
 
 use_step_matcher('re')
@@ -44,7 +44,9 @@ def given_set_false(context, key):
 @when('je demande un calcul de financement')
 @async_run_until_complete
 async def when_simulate(context):
-    context.passed = [f for f in await simulate(context.data) if f['eligible']]
+    financements = get_financements()
+    await simulate(context.data, financements)
+    context.passed = [f for f in financements if f['eligible']]
 
 
 @then(r"il y a (?P<expected>\d+) financements? proposés?")
