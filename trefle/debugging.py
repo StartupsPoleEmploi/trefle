@@ -144,9 +144,11 @@ def make_scenario(data, financements, name='Donne-moi un nom'):
             # Quand je sélectionne le financement «CPF hors temps de travail»
             steps.append(f"Quand je sélectionne le financement "
                          f"«{financement['nom']}»")
+            steps.append(f"Alors la rémunération applicable vaut "
+                         f"{financement['remuneration']}")
             # Alors l'organisme tutelle est «INTERGROS»
             if financement.get('organisme'):
-                steps.append(f"Alors l'organisme à contacter est "
+                steps.append(f"Et l'organisme à contacter est "
                              f"«{financement['organisme']['nom']}»")
             if financement.get('prise_en_charge') is not None:
                 # Et le montant de prise en charge vaut 2000
@@ -155,8 +157,6 @@ def make_scenario(data, financements, name='Donne-moi un nom'):
             elif financement.get('plafond_prise_en_charge'):
                 steps.append(f"Et le plafond de prise en charge vaut "
                              f"{financement['plafond_prise_en_charge']}")
-            steps.append(f"Et la rémunération applicable vaut "
-                         f"{financement['remuneration']}")
         else:
             steps.append(f"Alors le financement «{financement['nom']}» n'est "
                          "pas proposé")

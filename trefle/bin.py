@@ -44,7 +44,7 @@ def render_status(status, level=0):
 
 @cli(name='simulate')
 async def cli_simulate(*args, context: json.loads={}, url=None, trace=False,
-                       output_scenario=False, show_context=False):
+                       output_scenario=False, show_context=False, tags=[]):
     """Simulate a call to the API.
 
     Pass context as args in the form key=value.
@@ -53,6 +53,7 @@ async def cli_simulate(*args, context: json.loads={}, url=None, trace=False,
     :trace: Display a trace of all checked conditions.
     :output_scenario: Render a Gherkin scenario with given context.
     :show_context: Render a table with used context.
+    :tags: Only return financements matching tags.
     """
     if 'context' in context:
         context = context['context']  # Copy-paste from our logs.
@@ -81,6 +82,8 @@ async def cli_simulate(*args, context: json.loads={}, url=None, trace=False,
                 print(tpl.format(key, str(value)))
             print('-' * 105)
     print('*' * 105)
+    for tag in tags:
+        financements = [f for f in financements if tag in f['tags']]
     eligibles = [f for f in financements if f['eligible']]
     if eligibles:
         print('Financements éligibles\n')
@@ -102,8 +105,9 @@ async def cli_simulate(*args, context: json.loads={}, url=None, trace=False,
             for status in financement['status']:
                 render_status(status)
         print('-'*80)
-    print('\nFinancements non éligibles\n')
     non_eligibles = [f for f in financements if not f['eligible']]
+    if non_eligibles:
+        print('\nFinancements non éligibles\n')
     for financement in non_eligibles:
         print('-', financement['nom'])
         if trace:
