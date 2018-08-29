@@ -405,6 +405,7 @@ def check_le(context, left, right):
 
 @reason("{left.pointer.raw} vaut {left}, c'est supérieur ou égal au seuil ({right})")
 @condition(r"(l'|les? |la )(?P<left>.+) est inférieure? (à l'|aux? |à la |à )?(?P<right>.+)")
+@condition(r"(l'|les? |la )(?P<left>.+) (n'est|ne sont) pas supérieure? ou éga(le?s?|aux) (à l'|aux? |à la |à )?(?P<right>.+)")
 def check_lt(context, left, right):
     return left.value < right.value
 

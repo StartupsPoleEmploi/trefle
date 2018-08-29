@@ -229,6 +229,16 @@ beneficiaire:
     type: boolean
     public: true
     label: bénéficiaire en situation de création d'entreprise nécessitant cette formation
+  contrat_aide_actuel:
+    alias: beneficiaire.situation_personneencourscontrataide
+    type: boolean
+    public: true
+    label: bénéficiaire ayant un contrat aidé en cours
+  contrat_aide_passe:
+    alias: beneficiaire.situation_personnesortantcontrataide
+    type: boolean
+    public: true
+    label: bénéficiaire ayant achevé un contrat aidé
   experience_professionnelle:
     description: nombre de mois travaillés sur les 5 dernières années
     type: integer

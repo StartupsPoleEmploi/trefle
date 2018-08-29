@@ -48,3 +48,6 @@ Aide individuelle à la formation artisan:
 "Formation en alternance : contrat d'apprentissage":
   tags: [contrat apprentissage, alternance]
   rules: DE national
+"Formation en alternance : contrat de professionnalisation":
+  tags: [contrat professionnalisation, alternance]
+  rules: contrat de professionnalisation
