@@ -1,4 +1,4 @@
-Fonctionnalité: Nouvelle-Aquitaine
+Fonctionnalité: Cas d'usage de Nouvelle-Aquitaine
 
 Scénario: cas nominal AIF
     Soit un bénéficiaire et une formation
