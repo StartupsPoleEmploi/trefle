@@ -11,6 +11,7 @@ Scénario: cas nominal AIF
     Quand je demande un calcul de financement
     Quand je sélectionne le financement «Aide individuelle à la formation»
     Alors la rémunération applicable vaut 401.09
+    Et le plafond de prise en charge vaut 3000
 
 
 Scénario: AIF avec ARE
@@ -24,6 +25,7 @@ Scénario: AIF avec ARE
     Quand je demande un calcul de financement
     Quand je sélectionne le financement «Aide individuelle à la formation»
     Alors la rémunération applicable vaut 616.2
+    Et le plafond de prise en charge vaut 3000
 
 
 Scénario: formation trop longue pour l'AIF
