@@ -1,50 +1,68 @@
-Si la durée en heures de la formation est inférieure ou égale à 1200
-Et la durée en mois de la formation est inférieure ou égale à 12
+Si c'est un bénéficiaire de droit privé
+Ou c'est un demandeur d'emploi, et le type de contrat du bénéficiaire fait partie de [«CDD»,«intérimaire»]
 
-    Alors le texte de description vaut «Le congé individuel de formation (CIF) permet au salarié de suivre, à son initiative et à titre individuel, une formation, dans le but de :⏎- se reconvertir⏎- ou acquérir un niveau supérieur de qualification ou une 1re qualification⏎- ou se perfectionner⏎- ou s'ouvrir plus largement à la culture et à la vie sociale.⏎Attention, un delai de franchise s'applique aux salariés ayant déjà bénéficié d'un CIF. Il est au minimum de 6 mois et au maximum de 6 ans.»
+    Si la durée en heures de la formation n'est pas supérieure à 1200
+    Et la durée en mois de la formation n'est pas supérieure à 12
+    Et c'est une formation ouverte aux bénéficiaires individuels
+    Et ce n'est pas un contrat d'apprentissage
+    Et ce n'est pas un contrat de professionnalisation
 
-    Si le financement est de type «CDI»
-        Si le type de contrat du bénéficiaire est «CDI»
-        Et l'ancienneté en mois du bénéficiaire dans son entreprise est supérieure ou égale à 12
-            Si l'IDCC de l'établissement du bénéficiaire ne fait pas partie des codes IDCC de l'artisanat, et l'expérience professionnelle du bénéficiaire dans les cinq dernières années est supérieure ou égale à 24
-            Ou l'IDCC de l'établissement du bénéficiaire fait partie des codes IDCC de l'artisanat, et l'expérience professionnelle du bénéficiaire dans les cinq dernières années est supérieure ou égale à 36
-                Alors le texte des démarches vaut «Pour une formation se déroulant sur le temps de travail, il est nécessaire de demander l'accord de l'employeur.⏎Attention aux délais pour faire cette demande : trois mois pour une formation de six mois et plus, deux mois pour les autres.⏎Pour une formation hors temps de travail, il n'y a pas d'autorisation d'absence à demander. Retirer auprès de l'organisme {nom} un dossier de demande de prise en charge.⏎Vérifier les délais pour faire cette demande. Indiquer votre accord pour compléter, si besoin, le financement de la formation avec votre Compte Personnel de Formation.»
+        Alors définir les organismes paritaires
+        Et l'organisme paritaire est l'OPACIF de l'établissement du bénéficiaire
+        Et le texte de description vaut «Le congé individuel de formation (CIF) permet au salarié de suivre, à son initiative et à titre individuel, une formation, dans le but de :⏎- se reconvertir⏎- ou acquérir un niveau supérieur de qualification ou une 1re qualification⏎- ou se perfectionner⏎- ou s'ouvrir plus largement à la culture et à la vie sociale.⏎Attention, un delai de franchise s'applique aux salariés ayant déjà bénéficié d'un CIF. Il est au minimum de 6 mois et au maximum de 6 ans.»
 
-                Si le financement est de type «sur son temps de travail»
-                    Alors le financement est éligible
-                    Et appliquer les règles de l'OPACIF de l'établissement du bénéficiaire
-                Si le financement est de type «hors temps de travail»
-                    Si la durée en heures de la formation est supérieure ou égale à 120
+        Si le financement est de type «CDI»
+            Si le type de contrat du bénéficiaire est «CDI»
+            Et l'ancienneté en mois du bénéficiaire dans son entreprise est supérieure ou égale à 12
+                Si l'IDCC de l'établissement du bénéficiaire ne fait pas partie des codes IDCC de l'artisanat, et l'expérience professionnelle du bénéficiaire dans les cinq dernières années est supérieure ou égale à 24
+                Ou l'IDCC de l'établissement du bénéficiaire fait partie des codes IDCC de l'artisanat, et l'expérience professionnelle du bénéficiaire dans les cinq dernières années est supérieure ou égale à 36
+                    Alors le texte des démarches vaut «Pour une formation se déroulant sur le temps de travail, il est nécessaire de demander l'accord de l'employeur.⏎Attention aux délais pour faire cette demande : trois mois pour une formation de six mois et plus, deux mois pour les autres.⏎Pour une formation hors temps de travail, il n'y a pas d'autorisation d'absence à demander. Retirer auprès de l'organisme {nom} un dossier de demande de prise en charge.⏎Vérifier les délais pour faire cette demande. Indiquer votre accord pour compléter, si besoin, le financement de la formation avec votre Compte Personnel de Formation.»
+
+                    Si le financement est de type «sur son temps de travail»
                         Alors le financement est éligible
                         Et appliquer les règles de l'OPACIF de l'établissement du bénéficiaire
+                    Si le financement est de type «hors temps de travail»
+                        Si la durée en heures de la formation est supérieure ou égale à 120
+                            Alors le financement est éligible
+                            Et appliquer les règles de l'OPACIF de l'établissement du bénéficiaire
 
-    Si le financement est de type «CDD»
-        Si le type de contrat du bénéficiaire est «CDD»
-        Et le nombre de mois travaillés par le bénéficiaire dans la dernière année est supérieur ou égal à 4
-            Si l'âge du bénéficiaire est inférieur à 26, et l'expérience professionnelle du bénéficiaire dans les cinq dernières années est supérieure ou égale à 12
-            Ou l'âge du bénéficiaire est supérieur ou égal à 26, et l'expérience professionnelle du bénéficiaire dans les cinq dernières années est supérieure ou égale à 24
-                Alors le texte des démarches vaut «Si la formation se déroule pendant votre temps de travail, il est nécessaire d'avoir une autorisation d'absence de votre employeur.⏎Attention aux délais pour faire cette demande : trois mois pour une formation de six mois et plus, deux mois pour les autres.⏎Retirer auprès de l'organisme {nom} un dossier de demande de prise en charge.⏎Vérifier les délais pour faire cette demande.⏎Indiquer votre accord pour compléter, si besoin, le financement de la formation avec votre Compte Personnel de Formation.⏎Démarrer la formation au plus tard 12 mois après la fin de votre CDD.»
+        Si le financement est de type «CDD»
+            Si c'est un bénéficiaire de droit privé
+            Ou la durée en mois entre la date de fin de contrat du bénéficiaire et la date de début de la formation est inférieure ou égale à 12
+                Si le type de contrat du bénéficiaire est «CDD»
+                Et le nombre de mois travaillés par le bénéficiaire dans la dernière année est supérieur ou égal à 4
+                    Si l'âge du bénéficiaire est inférieur à 26, et l'expérience professionnelle du bénéficiaire dans les cinq dernières années est supérieure ou égale à 12
+                    Ou l'âge du bénéficiaire est supérieur ou égal à 26, et l'expérience professionnelle du bénéficiaire dans les cinq dernières années est supérieure ou égale à 24
+                        Alors le texte des démarches vaut «Si la formation se déroule pendant votre temps de travail, il est nécessaire d'avoir une autorisation d'absence de votre employeur.⏎Attention aux délais pour faire cette demande : trois mois pour une formation de six mois et plus, deux mois pour les autres.⏎Retirer auprès de l'organisme {nom} un dossier de demande de prise en charge.⏎Vérifier les délais pour faire cette demande.⏎Indiquer votre accord pour compléter, si besoin, le financement de la formation avec votre Compte Personnel de Formation.⏎Démarrer la formation au plus tard 12 mois après la fin de votre CDD.»
+
+                        Si le financement est de type «sur son temps de travail»
+                        Et c'est un bénéficiaire de droit privé
+                            Alors le financement est éligible
+                            Et appliquer les règles de l'OPACIF de l'établissement du bénéficiaire
+                        Si le financement est de type «hors temps de travail»
+                            Si la durée en heures de la formation est supérieure ou égale à 120
+                                Alors le financement est éligible
+                                Et appliquer les règles de l'OPACIF de l'établissement du bénéficiaire
+
+        Si le financement est de type «intermittent»
+            Si le type de contrat du bénéficiaire est «intermittent»
+            Et l'expérience professionnelle du bénéficiaire dans les cinq dernières années est supérieure ou égale à 24
+            Et la durée en heures de la formation est supérieure ou égale à 105
+                Alors le financement est éligible
+                Et appliquer les règles de l'OPACIF de l'établissement du bénéficiaire
+                Et le texte des démarches vaut «Contactez les conseillers Afdas pour vous informer sur les différents dispositifs de formation et vous accompagner dans l’élaboration de votre dossier :⏎Si vous résidez en région Île-de-France ou Centre, appelez le 01 44 78 38 39.⏎Pour les autres régions, contactez votre délégation régionale Afdas.⏎L’Afdas étudie les demandes de prise en charge des frais de déplacement et d’hébergement sous réserve que les frais annexes soient dûment justifiés, la demande de prise en charge soit complétée et retournée à l’Afdas en même temps⏎que votre dossier CIF.⏎Si votre demande est acceptée, il vous appartiendra d’informer votre conseiller Pôle Emploi de votre entrée en stage.⏎Attention aux critères d'accès⏎Sur les 220 jours de travail ou cachets requis pour demander un CIF, vous devez justifier de :⏎- Pour les artistes interprètes et musiciens : 60 jours ou cachets répartis sur les 24 derniers mois ou 30 jours ou cachets répartis sur les 12 derniers mois⏎- Pour les techniciens du spectacle vivant ou réalisateurs : 88 jours de travail ou cachets répartis sur les 24 derniers mois ou 44 jours ou cachets répartis sur les 12 derniers mois⏎- Pour les techniciens de l’audiovisuel : 130 jours de travail ou cachets répartis sur les 24 derniers mois ou 65 jours de travail ou cachets répartis sur les 12 derniers mois.⏎Délai de carence en mois = durée en heures du dernier CIF /12.»
+
+        Si le financement est de type «interim»
+            Si le type de contrat du bénéficiaire est «intérimaire»
+            Et l'ancienneté en heures du bénéficiaire dans son entreprise est supérieure ou égale à 600
+            Et le nombre d'heures travaillées par le bénéficiaire dans les dix-huit derniers mois est supérieur ou égal à 1600
+                Alors le texte des démarches vaut «Faite une demande d’autorisation d’absence auprès de l'agence d'intérim avec laquelle vous avez conclu votre CDI intérimaire, en cours de contrat ou dans un délai de trois maximum après la fin de votre contrat.⏎Prenez contact avec l'organisme {nom} pour monter le dossier de financement.⏎La formation doit démarrer au plus tard 12 mois après le dépôt de la demande d'absence.⏎Dans certains cas, l'organisme peut participer aux frais de transport et/ou d’hébergement. Faire la demande dans le dossier CIF ou au plus tard un mois après la fin de la formation. Les frais de repas ne sont pas pris en charge par l'organisme.»
 
                 Si le financement est de type «sur son temps de travail»
+                Et c'est un bénéficiaire de droit privé
                     Alors le financement est éligible
                     Et appliquer les règles de l'OPACIF de l'établissement du bénéficiaire
+
                 Si le financement est de type «hors temps de travail»
-                    Si la durée en heures de la formation est supérieure ou égale à 120
-                        Alors le financement est éligible
-                        Et appliquer les règles de l'OPACIF de l'établissement du bénéficiaire
-
-    Si le financement est de type «intermittent»
-        Si le type de contrat du bénéficiaire est «intermittent»
-        Et l'expérience professionnelle du bénéficiaire dans les cinq dernières années est supérieure ou égale à 24
-        Et la durée en heures de la formation est supérieure ou égale à 105
-            Alors le financement est éligible
-            Et appliquer les règles de l'OPACIF de l'établissement du bénéficiaire
-            Et le texte des démarches vaut «Contactez les conseillers Afdas pour vous informer sur les différents dispositifs de formation et vous accompagner dans l’élaboration de votre dossier :⏎Si vous résidez en région Île-de-France ou Centre, appelez le 01 44 78 38 39.⏎Pour les autres régions, contactez votre délégation régionale Afdas.⏎L’Afdas étudie les demandes de prise en charge des frais de déplacement et d’hébergement sous réserve que les frais annexes soient dûment justifiés, la demande de prise en charge soit complétée et retournée à l’Afdas en même temps⏎que votre dossier CIF.⏎Si votre demande est acceptée, il vous appartiendra d’informer votre conseiller Pôle Emploi de votre entrée en stage.⏎Attention aux critères d'accès⏎Sur les 220 jours de travail ou cachets requis pour demander un CIF, vous devez justifier de :⏎- Pour les artistes interprètes et musiciens : 60 jours ou cachets répartis sur les 24 derniers mois ou 30 jours ou cachets répartis sur les 12 derniers mois⏎- Pour les techniciens du spectacle vivant ou réalisateurs : 88 jours de travail ou cachets répartis sur les 24 derniers mois ou 44 jours ou cachets répartis sur les 12 derniers mois⏎- Pour les techniciens de l’audiovisuel : 130 jours de travail ou cachets répartis sur les 24 derniers mois ou 65 jours de travail ou cachets répartis sur les 12 derniers mois.⏎Délai de carence en mois = durée en heures du dernier CIF /12.»
-
-    Si le financement est de type «interim»
-        Si le type de contrat du bénéficiaire est «intérimaire»
-        Et l'ancienneté en heures du bénéficiaire dans son entreprise est supérieure ou égale à 600
-        Et le nombre d'heures travaillées par le bénéficiaire dans les dix-huit derniers mois est supérieur ou égal à 1600
-            Alors le financement est éligible
-            Et appliquer les règles de l'OPACIF de l'établissement du bénéficiaire
-            Et le texte des démarches vaut «Faite une demande d’autorisation d’absence auprès de l'agence d'intérim avec laquelle vous avez conclu votre CDI intérimaire, en cours de contrat ou dans un délai de trois maximum après la fin de votre contrat.⏎Prenez contact avec l'organisme {nom} pour monter le dossier de financement.⏎La formation doit démarrer au plus tard 12 mois après le dépôt de la demande d'absence.⏎Dans certains cas, l'organisme peut participer aux frais de transport et/ou d’hébergement. Faire la demande dans le dossier CIF ou au plus tard un mois après la fin de la formation. Les frais de repas ne sont pas pris en charge par l'organisme.»
+                    Alors le financement est éligible
+                    Et appliquer les règles de l'OPACIF de l'établissement du bénéficiaire

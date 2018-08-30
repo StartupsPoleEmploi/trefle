@@ -6,29 +6,29 @@ CPF hors temps de travail:
   tags: [CPF, hors temps de travail]
   rules: salarié
 CPF demandeur d'emploi:
-  tags: [CPF, de]
+  tags: [CPF, DE]
   rules: DE national
 CIF CDI sur son temps de travail:
   tags: [CIF, cdi, sur son temps de travail]
-  rules: salarié
+  rules: CIF
 CIF CDI hors temps de travail:
   tags: [CIF, cdi, hors temps de travail]
-  rules: salarié
+  rules: CIF
 CIF CDD sur son temps de travail:
   tags: [CIF, cdd, sur son temps de travail]
-  rules: salarié
+  rules: CIF
 CIF CDD hors temps de travail:
-  tags: [CIF, cdd, hors temps de travail]
-  rules: salarié
+  tags: [CIF, cdd, hors temps de travail, DE]
+  rules: CIF
 CIF intérim sur son temps de travail:
   tags: [CIF, interim, sur son temps de travail]
-  rules: salarié
+  rules: CIF
 CIF intérim hors temps de travail:
-  tags: [CIF, interim, hors temps de travail]
-  rules: salarié
+  tags: [CIF, interim, hors temps de travail, DE]
+  rules: CIF
 CIF intermittents hors temps de travail:
   tags: [CIF, intermittent, hors temps de travail]
-  rules: salarié
+  rules: CIF
 Période de professionnalisation sur son temps de travail:
   tags: [période de professionnalisation, sur son temps de travail]
   rules: salarié
@@ -40,17 +40,17 @@ Plan de formation sur son temps de travail:
   ressources:
   - https://www.service-public.fr/particuliers/vosdroits/F11267
 Aide individuelle à la formation:
-  tags: [AIF]
+  tags: [AIF, DE]
   rules: DE national
 Aide individuelle à la formation artisan:
-  tags: [AIF, artisan]
+  tags: [AIF, artisan, DE]
   rules: DE national
 "Formation en alternance : contrat d'apprentissage":
-  tags: [contrat apprentissage, alternance]
+  tags: [contrat apprentissage, alternance, DE]
   rules: DE national
 "Formation en alternance : contrat de professionnalisation":
-  tags: [contrat professionnalisation, alternance]
+  tags: [contrat professionnalisation, alternance, DE]
   rules: contrat de professionnalisation
 Formations avant embauche (AFPR, POEI):
-  tags: [AFPR, POEI]
+  tags: [AFPR, POEI, DE]
   rules: DE national

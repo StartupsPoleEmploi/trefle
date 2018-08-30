@@ -4,6 +4,7 @@ Si l'organisme paritaire est «Fongecif»
     Et le prix horaire plafond applicable vaut 27.45
 
     Si le financement est de type «sur son temps de travail»
+    Ou c'est un demandeur d'emploi
         Alors la rémunération applicable est égale à la rémunération du bénéficiaire
 
         # TODO Formation partiellement ou totalement prise en charge, sur une durée maximale d'un an, ou de deux ans si la formation est à temps partiel.

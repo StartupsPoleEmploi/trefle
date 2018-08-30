@@ -277,6 +277,12 @@ beneficiaire:
       interim: intérimaire
     label: type de contrat du bénéficiaire
     gender: masculine
+  fin_contrat:
+    type: string
+    format: date
+    public: true
+    nullable: true
+    label: date de fin de contrat du bénéficiaire
   mois_entreprise:
     description: ancienneté en mois dans l'entreprise actuelle
     alias: beneficiaire.anciennete_entreprise_actuelle

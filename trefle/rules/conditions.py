@@ -1,4 +1,5 @@
 from .core import condition, no_status, reason
+from ..helpers import diff_month
 
 
 @reason("ce n'est pas {key.pointer.raw}")
@@ -31,6 +32,13 @@ def check_type(context, tag):
 @condition(r"le financement n'est pas de type (?P<tag>.+)")
 def check_not_type(context, tag):
     return tag.value not in context['financement.tags']
+
+
+@reason("{start.pointer.raw} trop ancien par rapport à {end.pointer.raw}")
+@condition(r"la durée en mois entre (l'|les? |la )(?P<start>.+?) et (l'|les? |la )(?P<end>.+?) est inférieure ou égale à (?P<amount>.+)")
+@condition(r"la durée en mois entre (l'|les? |la )(?P<start>.+?) et (l'|les? |la )(?P<end>.+?) n'est pas supérieure à (?P<amount>.+)")
+def check_diff_dates(context, start, end, amount):
+    return diff_month(start.value, end.value) <= amount.value
 
 
 @reason("{left.pointer.raw} vaut {left}, c'est inférieur ou égal au seuil de {right}")

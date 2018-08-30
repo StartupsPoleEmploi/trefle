@@ -3,10 +3,6 @@ Et c'est une formation ouverte aux bénéficiaires individuels
 
     Alors définir les organismes paritaires
 
-    Si le financement est de type «CIF»
-        Alors l'organisme paritaire est l'OPACIF de l'établissement du bénéficiaire
-        Alors appliquer les règles «CIF»
-
     Si le financement est de type «CPF»
         Alors l'organisme paritaire est l'OPCA de l'établissement du bénéficiaire
         Alors appliquer les règles «CPF»
