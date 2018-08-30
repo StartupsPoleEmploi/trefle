@@ -46,7 +46,6 @@ class Pointer:
     def __init__(self, raw):
         self.raw = raw
         self.get = None
-        self.default = None
         self.key = None
         self.compile()
 
@@ -63,15 +62,6 @@ class Pointer:
             except KeyError:
                 raise WrongPointerError(self.raw)
             self.get = lambda context: context[self.key]
-            self.default = self.compute_default()
-
-    def compute_default(self):
-        schema = SCHEMA[self.key]
-        if 'default' in schema:
-            return schema['default']
-        elif schema['type'] == 'array':
-            return []
-        return ...
 
 
 def action(pattern):
