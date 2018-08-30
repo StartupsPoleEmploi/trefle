@@ -51,3 +51,6 @@ Aide individuelle à la formation artisan:
 "Formation en alternance : contrat de professionnalisation":
   tags: [contrat professionnalisation, alternance]
   rules: contrat de professionnalisation
+Formations avant embauche (AFPR, POEI):
+  tags: [AFPR, POEI]
+  rules: DE national

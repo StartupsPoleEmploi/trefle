@@ -22,5 +22,9 @@ Si les codes financeur de la formation ne contiennent aucun des codes financeur 
 Si les codes financeur de la formation contiennent au moins un code parmi [«OPCA»]
 Et la durée en heures de la formation est inférieure ou égale à 400
     Alors c'est une préparation opérationnelle à l'emploi collective
+Si l'intitulé de la formation contient «POEI»
+    Alors c'est une préparation opérationnelle à l'emploi individuelle
+Si le niveau de sortie de la formation fait partie de [«I»,«II»,«III»,«IV»,«V»]
+    Alors c'est une formation diplômante
 Si c'est un demandeur d'emploi
     Alors appliquer les règles «éligibilité RFF»
