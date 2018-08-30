@@ -201,7 +201,7 @@ def test_validate_date(patch_schema, input, output):
     ['blah', False],
     ['', 0],
 ])
-def test_format_monery(patch_schema, input, expected):
+def test_format_money(patch_schema, input, expected):
     patch_schema({
         'remuneration': {'type': 'string', 'format': 'money', 'default': 0}})
     data = {'remuneration': input}
