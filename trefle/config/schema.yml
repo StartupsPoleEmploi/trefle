@@ -495,13 +495,10 @@ formation:
   mois:
     type: integer
     format: int32
-    # Sane default to prevent division by zero.
-    # TODO: should we raise instead and log?
     label: durée en mois de la formation
   semaines:
     type: integer
     format: int32
-    # Sane default to prevent division by zero.
     label: durée en semaines de la formation
   duree_hebdo:
     type: integer

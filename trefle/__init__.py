@@ -26,9 +26,9 @@ async def simulate(data, financements):
         data.update(copy.cleaned_data)
 
     # FIXME (limits of the single-store-all context object)
-    # Clean keys not meant to be exposed (some should not be in context)
+    # Clean keys not meant to be exposed
     for key in list(data.keys()):
-        if key.startswith(('status', 'parent', 'financement')):
+        if key.startswith('financement'):
             del data[key]
 
 

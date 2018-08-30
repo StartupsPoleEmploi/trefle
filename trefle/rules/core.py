@@ -187,11 +187,13 @@ class Step:
     @property
     def spec(self):
         spec = inspect.signature(self.func)
-        return list(spec.parameters.items())[1:]  # Skip `context`.
+        return list(spec.parameters.items())
 
     def compile(self):
         data = self.parse_raw()
         for name, param in self.spec:
+            if name in ['context', 'status']:
+                continue
             value = data[name]
             type_ = param.annotation
             if type_ == inspect._empty:
@@ -220,8 +222,8 @@ class Action(Step):
         self.raw = raw
         self.compile()
 
-    def act(self, context):
-        self.func(context, **self.params)
+    def act(self, context, status):
+        self.func(context, status, **self.params)
 
 
 class Condition(Step):
@@ -327,9 +329,7 @@ class Rule:
             parent.children.append(status)
         for action in condition.actions:
             if overall:
-                context['parent'] = status  # FIXME
-                action.act(context)
-                context['parent'] = None  # FIXME
+                action.act(context, status)
         for child in condition.children:
             self.assess(context, child, status, overall)
         return status

@@ -170,7 +170,7 @@ def compute_modalites(context, financement):
 
 
 def check_financement(context, financement):
-    context['status'] = []
+    statuses = []
     financement['status'] = []
     # TODO: use flatten() instead?
     context['financement.nom'] = financement['nom']
@@ -179,8 +179,8 @@ def check_financement(context, financement):
     for rule in RULES[f'rules/{financement["rules"]}.rules']:
         status = Rule.process(rule, context)
         if status is not None:  # Root is a no_status condition.
-            context['status'].append(status)
-    financement['status'] = context['status']
+            statuses.append(status)
+    financement['status'] = statuses
     if context['financement.eligible']:
         compute_modalites(context, financement)
         load_organisme_contact_details(context, financement)
