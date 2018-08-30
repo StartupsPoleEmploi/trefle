@@ -7,7 +7,7 @@ CPF hors temps de travail:
   rules: salarié
 CPF demandeur d'emploi:
   tags: [CPF, DE]
-  rules: DE national
+  rules: CPF DE
 CIF CDI sur son temps de travail:
   tags: [CIF, cdi, sur son temps de travail]
   rules: CIF
@@ -41,16 +41,16 @@ Plan de formation sur son temps de travail:
   - https://www.service-public.fr/particuliers/vosdroits/F11267
 Aide individuelle à la formation:
   tags: [AIF, DE]
-  rules: DE national
+  rules: AIF
 Aide individuelle à la formation artisan:
   tags: [AIF, artisan, DE]
-  rules: DE national
+  rules: AIF artisan
 "Formation en alternance : contrat d'apprentissage":
   tags: [contrat apprentissage, alternance, DE]
-  rules: DE national
+  rules: contrat d'apprentissage
 "Formation en alternance : contrat de professionnalisation":
   tags: [contrat professionnalisation, alternance, DE]
   rules: contrat de professionnalisation
 Formations avant embauche (AFPR, POEI):
   tags: [AFPR, POEI, DE]
-  rules: DE national
+  rules: POEI

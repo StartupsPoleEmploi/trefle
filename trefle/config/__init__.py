@@ -85,6 +85,8 @@ def load_rules(path):
             return id_, Rule.load(data.splitlines(), id_)
         except (NoStepError, WrongPointerError) as err:
             sys.exit(f'Project loading failed: {err!r}')
+        except Exception as err:
+            sys.exit(f'Project loading failed on rule {path}: {err!r}')
 
 
 def load_dir_rules(root):
