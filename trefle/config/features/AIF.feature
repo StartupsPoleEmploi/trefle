@@ -188,3 +188,27 @@ Scénario: AIF avec ARE finissant avant la fin de la formation
     Et la date de fin de la RFF applicable vaut «04/05/2018»
     Et la date de début de la RFF applicable vaut «04/04/2018»
     Et la date de fin de la rémunération applicable vaut «04/04/2018»
+
+Scénario: AIF permis B
+    Soit un bénéficiaire et une formation
+    Et c'est un demandeur d'emploi
+    Et le âge du bénéficiaire vaut 18
+    Et la durée en heures de la formation vaut 20
+    Et c'est un permis B
+    Et c'est une formation ouverte aux bénéficiaires individuels
+    Quand je demande un calcul de financement
+    Quand je sélectionne le financement «Aide individuelle à la formation»
+    Alors la rémunération applicable vaut 310.39
+    Et le texte de description vaut «Vous pouvez utiliser votre CPF pour financer tout ou partie de votre permis de conduire catégorie B.⏎Pôle emploi peut éventuellement vous apporter un complément de financement.⏎Votre auto-école doit impérativement vous présenter à l'examen de conduite au plus tard six mois après votre inscription.»
+
+Scénario: AIF bilan de compétences
+    Soit un bénéficiaire et une formation
+    Et c'est un demandeur d'emploi
+    Et le âge du bénéficiaire vaut 18
+    Et la durée en heures de la formation vaut 20
+    Et c'est un bilan de compétences
+    Et c'est une formation ouverte aux bénéficiaires individuels
+    Quand je demande un calcul de financement
+    Quand je sélectionne le financement «Aide individuelle à la formation»
+    Alors la rémunération applicable vaut 310.39
+    Et le texte de description vaut «L’aide individuelle à la formation professionnelle (AIF) est une aide de Pôle emploi qui vise à financer certains besoins individuels de formation auxquels les achats d’action de formation collectives ne peuvent répondre.⏎L’AIF bilan de compétences finance des préparations de bilan ou d'évaluation des acquis professionnels.»

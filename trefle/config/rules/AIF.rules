@@ -52,3 +52,13 @@ Et le nombre d'heures en entreprise n'est pas supérieur à 30% de la durée en 
     Si la région du bénéficiaire est «La Réunion»
     Ou la région du bénéficiaire est «Mayotte»
         Alors appliquer les règles «DE La Réunion»
+
+    Si c'est un permis B
+        Alors le texte des démarches vaut «Contactez votre conseiller référent emploi (Pôle emploi, Mission Locale ou Cap emploi).⏎Votre projet de formation et son financement doivent être présentés au plus tard 2 semaines avant le début de la formation.»
+        Et le texte de description vaut «Vous pouvez utiliser votre CPF pour financer tout ou partie de votre permis de conduire catégorie B.⏎Pôle emploi peut éventuellement vous apporter un complément de financement.⏎Votre auto-école doit impérativement vous présenter à l'examen de conduite au plus tard six mois après votre inscription.»
+        Et le texte de la prise en charge vaut «Formation partiellement ou totalement financée.»
+
+    Si c'est un bilan de compétences
+        Alors le texte des démarches vaut «Contactez votre conseiller référent emploi (Pôle emploi, Mission Locale ou Cap emploi).⏎Votre projet de formation et son financement doivent être présentés au plus tard 2 semaines avant le début de la formation.»
+        Et le texte de description vaut «L’aide individuelle à la formation professionnelle (AIF) est une aide de Pôle emploi qui vise à financer certains besoins individuels de formation auxquels les achats d’action de formation collectives ne peuvent répondre.⏎L’AIF bilan de compétences finance des préparations de bilan ou d'évaluation des acquis professionnels.»
+        Et le texte de la prise en charge vaut «Formation totalement financée.»
