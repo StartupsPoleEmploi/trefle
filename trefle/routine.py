@@ -1,3 +1,4 @@
+from datetime import timedelta
 from lxml import etree
 
 from .config import (CONSTANTS, ELIGIBILITE_URL, INTERCARIF_URL, ORGANISMES,
@@ -159,10 +160,12 @@ def compute_modalites(context, financement):
     if 'financement.description' in context:
         financement['description'] = context['financement.description']
     financement['rff'] = context.get('financement.rff')
-    financement['debut_rff'] = context.get('financement.debut_rff')
-    financement['fin_rff'] = context.get('financement.fin_rff')
-    financement['fin_remuneration'] = context.get(
-        'financement.fin_remuneration')
+    if financement['rff']:
+        financement['fin_remuneration'] = context.get(
+            'beneficiaire.fin_allocation')
+        financement['debut_rff'] = (financement['fin_remuneration']
+                                    + timedelta(days=1))
+        financement['fin_rff'] = context.get('formation.fin')
     financement['remuneration_annee_2'] = context.get(
         'financement.remuneration_annee_2')
     financement['remuneration_annee_3'] = context.get(

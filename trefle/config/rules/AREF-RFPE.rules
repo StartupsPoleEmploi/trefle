@@ -8,10 +8,6 @@ Si l'allocation du bénéficiaire est «allocation d'aide au retour à l'emploi�
     Si la date de fin de l'allocation du bénéficiaire est inférieure à la date de fin de la formation
     Et c'est une formation éligible à la RFF
         Alors la RFF applicable est égale au montant de la RFF en vigueur
-        Et la date de fin de la rémunération applicable est égale à la date de fin de l'allocation du bénéficiaire
-        # TODO lendemain
-        Et la date de début de la RFF applicable est égale à la date de fin de l'allocation du bénéficiaire
-        Et la date de fin de la RFF applicable est égale à la date de fin de la formation
 
 Si l'allocation du bénéficiaire n'est pas «allocation d'aide au retour à l'emploi»
     Alors appliquer les règles «RFPE»

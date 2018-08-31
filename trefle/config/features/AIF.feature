@@ -185,9 +185,9 @@ Scénario: AIF avec ARE finissant avant la fin de la formation
     Quand je sélectionne le financement «Aide individuelle à la formation»
     Alors la rémunération applicable vaut 758
     Et la RFF applicable vaut 652.02
-    Et la date de fin de la RFF applicable vaut «04/05/2018»
-    Et la date de début de la RFF applicable vaut «04/04/2018»
     Et la date de fin de la rémunération applicable vaut «04/04/2018»
+    Et la date de début de la RFF applicable vaut «05/04/2018»
+    Et la date de fin de la RFF applicable vaut «04/05/2018»
 
 Scénario: AIF permis B
     Soit un bénéficiaire et une formation
