@@ -28,3 +28,6 @@ Si le niveau de sortie de la formation fait partie de [«I»,«II»,«III»,«IV
     Alors c'est une formation diplômante
 Si c'est un demandeur d'emploi
     Alors appliquer les règles «éligibilité RFF»
+Si c'est une préparation opérationnelle à l'emploi collective
+Ou c'est une préparation opérationnelle à l'emploi individuelle
+    Alors c'est une préparation opérationnelle à l'emploi

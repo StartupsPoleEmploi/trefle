@@ -643,6 +643,10 @@ formation:
     source: catalogue
     xpath: boolean(//organisme-financeur/extras/extra[@info="programme-financeur"][text()="POEI"])
     label: préparation opérationnelle à l'emploi individuelle
+  poe:
+    type: boolean
+    source: catalogue
+    label: préparation opérationnelle à l'emploi
   rncp:
     type: boolean
     source: catalogue
