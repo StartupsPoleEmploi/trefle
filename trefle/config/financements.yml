@@ -57,3 +57,6 @@ Formations avant embauche (AFPR, POEI):
 Préparation opérationnelle à l'emploi collective:
   tags: [POEC, DE]
   rules: POEC
+Financement individuel Agefiph:
+  tags: [Agefiph, DE]
+  rules: Agefiph
