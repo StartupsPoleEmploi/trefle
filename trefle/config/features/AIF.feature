@@ -211,4 +211,4 @@ Scénario: AIF bilan de compétences
     Quand je demande un calcul de financement
     Quand je sélectionne le financement «Aide individuelle à la formation»
     Alors la rémunération applicable vaut 310.39
-    Et le texte de description vaut «L’aide individuelle à la formation professionnelle (AIF) est une aide de Pôle emploi qui vise à financer certains besoins individuels de formation auxquels les achats d’action de formation collectives ne peuvent répondre.⏎L’AIF bilan de compétences finance des préparations de bilan ou d'évaluation des acquis professionnels.»
+    Et le texte de description vaut «L’aide individuelle à la formation professionnelle (AIF) est une aide de Pôle emploi qui vise à financer certains besoins individuels de formation.⏎L’AIF bilan de compétences finance des préparations de bilan ou d'évaluation des acquis professionnels.»
