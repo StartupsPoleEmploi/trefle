@@ -15,5 +15,6 @@ Si c'est une demandeur d'emploi
     Et la liste des domaines FORMACODE de la formation ne contient aucun des codes parmi [430,434,440,150], ou la liste des codes FORMACODE de la formation contient 44067
     Et ce n'est pas une formation VAE
     Et ce n'est pas une formation diplômante
+    Et ce n'est pas une préparation opérationnelle à l'emploi collective
         Alors le financement est éligible
         Et appliquer les règles «AREF-RFPE»

@@ -54,3 +54,6 @@ Aide individuelle à la formation artisan:
 Formations avant embauche (AFPR, POEI):
   tags: [AFPR, POEI, DE]
   rules: POEI
+Préparation opérationnelle à l'emploi collective:
+  tags: [POEC, DE]
+  rules: POEC
