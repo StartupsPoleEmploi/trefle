@@ -462,3 +462,40 @@ Scénario: Avec un code financeur collectif
     Quand je demande un calcul de financement
     Alors le financement «CIF CDI sur son temps de travail» n'est pas proposé
     Et le financement «CIF CDI hors temps de travail» n'est pas proposé
+
+
+Scénario: CIF CDD DE
+    Soit un bénéficiaire et une formation
+    Et c'est un demandeur d'emploi
+    Et le âge du bénéficiaire vaut 38
+    Et la durée en heures de la formation vaut 120
+    Et le type de contrat du bénéficiaire vaut «CDD»
+    Et l'IDCC de l'établissement du bénéficiaire vaut «2706»
+    Et le nombre de mois travaillés par le bénéficiaire dans la dernière année vaut 12
+    Et l'expérience professionnelle du bénéficiaire dans les cinq dernières années vaut 30
+    Et la date de fin de contrat du bénéficiaire vaut «01/08/2018»
+    Et la date de début de la formation vaut «01/10/2018»
+    Et la rémunération du bénéficiaire vaut 1200
+    Et c'est une formation ouverte aux bénéficiaires individuels
+    Quand je demande un calcul de financement
+    Quand je sélectionne le financement «CIF CDD hors temps de travail»
+    Alors la rémunération applicable vaut 1200.0
+    Et l'organisme à contacter est «Fongecif»
+    Et le plafond de prise en charge vaut 3294.0
+
+
+Scénario: CIF CDD DE pas possible parce que le contrat est trop ancien
+    Soit un bénéficiaire et une formation
+    Et c'est un demandeur d'emploi
+    Et le âge du bénéficiaire vaut 38
+    Et la durée en heures de la formation vaut 120
+    Et le type de contrat du bénéficiaire vaut «CDD»
+    Et l'IDCC de l'établissement du bénéficiaire vaut «2706»
+    Et le nombre de mois travaillés par le bénéficiaire dans la dernière année vaut 12
+    Et l'expérience professionnelle du bénéficiaire dans les cinq dernières années vaut 30
+    Et la date de fin de contrat du bénéficiaire vaut «01/08/2017»
+    Et la date de début de la formation vaut «01/10/2018»
+    Et la rémunération du bénéficiaire vaut 1200
+    Et c'est une formation ouverte aux bénéficiaires individuels
+    Quand je demande un calcul de financement
+    Alors le financement «CIF CDD hors temps de travail» n'est pas proposé

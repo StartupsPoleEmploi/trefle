@@ -19,12 +19,18 @@
         <p><strong>Description</strong> {description}</p>
         <p><strong>Démarches</strong> {demarches}</p>
         <virtual if={ eligible }>
-          <p><strong>Prise en charge</strong> {prise_en_charge}</p>
+          <p><strong>Prise en charge</strong> { prise_en_charge }</p>
+          <p if={ prise_en_charge_texte }><strong>Prise en charge</strong> { prise_en_charge_texte }</p>
           <p><strong>Plafond de prise en charge</strong> {plafond_prise_en_charge}</p>
           <p><strong>Plafond de prix horaire</strong> {plafond_prix_horaire}</p>
-          <p><strong>Nombre d'heures</strong> {heures}</p>
+          <p><strong>Nombre d'heures prises en charge</strong> {heures}</p>
           <p><strong>Rémunération</strong> {remuneration}</p>
-          <p><strong>Organisme</strong> {organisme.nom}</p>
+          <p if={ remuneration_texte }><strong>Rémunération</strong> { remuneration_texte }</p>
+          <p if={ fin_remuneration}><strong>Fin de la rémunération</strong> { renderValue('financement.fin_remuneration', fin_remuneration) }</p>
+          <p if={ rff }><strong>RFF</strong> { rff }</p>
+          <p if={ debut_rff }><strong>Début de la RFF</strong> { renderValue('financement.debut_rff', debut_rff) }</p>
+          <p if={ fin_rff }><strong>Fin de la RFF</strong> { renderValue('financement.fin_rff', fin_rff) }</p>
+          <p if={ organisme }><strong>Organisme</strong> {organisme.nom}</p>
         </virtual>
         <p>
           <strong>Règles de gestion</strong>
@@ -150,7 +156,7 @@
       <span if={ i && this.opts.connective } class="connective"> { this.opts.connective } </span>
       <virtual if={ !props.terms }>
         <span class=tooltip if={ !props.status }><span>{ props.condition }</span><span class=tooltip-content>{ props.reason }</span></span>
-        <span class=tooltip if={ props.status }><span>{ props.condition }</span><span class=tooltip-content><span each={ value, key in props.params }>{ renderLabel(key, value) }: { renderValue(key, value) }<br></span></span></span>
+        <span class=tooltip if={ props.status }><span>{ props.condition }</span><span class=tooltip-content><span if={ !Object.keys(props.params).length }>Donnée non communiquée</span><span each={ value, key in props.params }>{ renderLabel(key, value) }: { renderValue(key, value) }<br></span></span></span>
       </virtual>
       <eligibilite if={ props.terms } conditions={ props.terms } connective={ props.connective }></eligibilite>
       <eligibilite if={ props.children } conditions={ props.children }></eligibilite>

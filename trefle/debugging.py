@@ -79,10 +79,15 @@ def data_from_lbf_url(url):
         b'region': 'beneficiaire.entreprise.region',
         b'entrepriselocationinsee': 'beneficiaire.entreprise.commune',
         b'idformintercarif': 'formation.numero',
+        b'inscritDE': 'beneficiaire.inscrit_pe',
     }
+    data = {}
+    for key, value in args.items():
+        if key == b'commune':
+            continue  # FIXME Bad value send from LBF.
+        key = keymap.get(key, f'beneficiaire.{key.decode()}')
+        data[key] = value.decode()
 
-    data = {keymap[key]: value.decode() for key, value in args.items()
-            if key in keymap}
     if b'birthdate' in args:
         # Poor man age computation.
         # TODO: use dateutil or delorean here and in routine.py
@@ -96,7 +101,7 @@ def make_scenario(data, financements, name='Donne-moi un nom'):
     steps = ["Soit un bénéficiaire et une formation"]
 
     for key, value in data.items():
-        if key.startswith(('constante', 'parent')):
+        if key not in SCHEMA or key.startswith('constante'):
             continue
         schema = SCHEMA[key]
         label = schema['label']
@@ -141,9 +146,12 @@ def make_scenario(data, financements, name='Donne-moi un nom'):
             # Quand je sélectionne le financement «CPF hors temps de travail»
             steps.append(f"Quand je sélectionne le financement "
                          f"«{financement['nom']}»")
+            steps.append(f"Alors la rémunération applicable vaut "
+                         f"{financement['remuneration']}")
             # Alors l'organisme tutelle est «INTERGROS»
-            steps.append(f"Alors l'organisme à contacter est "
-                         f"«{financement['organisme']['nom']}»")
+            if financement.get('organisme'):
+                steps.append(f"Et l'organisme à contacter est "
+                             f"«{financement['organisme']['nom']}»")
             if financement.get('prise_en_charge') is not None:
                 # Et le montant de prise en charge vaut 2000
                 steps.append(f"Et le montant de prise en charge vaut "
@@ -151,8 +159,6 @@ def make_scenario(data, financements, name='Donne-moi un nom'):
             elif financement.get('plafond_prise_en_charge'):
                 steps.append(f"Et le plafond de prise en charge vaut "
                              f"{financement['plafond_prise_en_charge']}")
-            steps.append(f"Et la rémunération applicable vaut "
-                         f"{financement['remuneration']}")
         else:
             steps.append(f"Alors le financement «{financement['nom']}» n'est "
                          "pas proposé")
@@ -163,11 +169,9 @@ def load_scenarios():
     paths = (Path(__file__).parent / 'config/features/').glob('*.feature')
     features = parse_features([str(p) for p in paths], language='fr')
     scenarios = []
-    tags = set([])
     for feature in features:
         for scenario in feature.scenarios:
             scenarios.append(load_scenario(feature, scenario))
-            tags.update(set(scenario.tags))
     return scenarios
 
 
@@ -193,6 +197,10 @@ def scenario_tag_from_step(scenario, step):
     if step.step_type == 'given':
         if step.name == "c'est un bénéficiaire de droit privé":
             scenario.tags.append('salarié')
+        elif step.name == "c'est un travailleur handicapé":
+            scenario.tags.append('travailleur handicapé')
+        elif step.name == "c'est un demandeur d'emploi":
+            scenario.tags.append('DE')
         prefixes = [
             "c'est une formation éligible région",
             "la région de l'établissement du bénéficiaire vaut",
@@ -202,6 +210,13 @@ def scenario_tag_from_step(scenario, step):
         for prefix in prefixes:
             if step.name.startswith(prefix):
                 scenario.tags.append(step.name[len(prefix)+2:-1].lower())
+        prefix = "l'âge du bénéficiaire vaut"
+        if step.name.startswith(prefix):
+            age = int(step.name[len(prefix)+1:])
+            if age < 26:
+                scenario.tags.append('moins de 26')
+            if age < 18:
+                scenario.tags.append('moins de 18')
     elif step.step_type == 'when':
         prefix = "je sélectionne le financement"
         if step.name.startswith(prefix):

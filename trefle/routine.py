@@ -1,36 +1,25 @@
 from lxml import etree
 
-from .config import (CONSTANTS, DEP_TO_REG, ELIGIBILITE_URL, IDCC,
-                     INTERCARIF_URL, ORGANISMES, RULES, SCHEMA)
-from .exceptions import UpstreamError
-from .helpers import diff_month, diff_week, http_get
+from .config import (CONSTANTS, ELIGIBILITE_URL, INTERCARIF_URL, ORGANISMES,
+                     RULES, SCHEMA)
+from .exceptions import UpstreamError, DataError
+from .helpers import diff_month, diff_week, http_get, insee_commune_to_region
 from .rules import Rule
-from .validators import format_naf, validate_format
+from .validators import format_naf
 
 
-def add_constants(context):
+def extrapolate_context(context):
     context.update(CONSTANTS)
-
-
-def idcc_to_organismes(context):
-    idcc = context['beneficiaire.entreprise.idcc']
-    # Allow to force value in input data.
-    if 'beneficiaire.entreprise.opca' not in context:
-        context['beneficiaire.entreprise.opca'] = IDCC[idcc]['OPCA']
-    if 'beneficiaire.entreprise.opacif' not in context:
-        context['beneficiaire.entreprise.opacif'] = IDCC[idcc]['OPACIF']
-
-
-def insee_commune_to_region(context):
-    if 'beneficiaire.entreprise.region' in context:
-        return
-    key = 'beneficiaire.entreprise.commune'
-    if key not in context:
-        return
-    dep = context[key][:2]
-    if dep not in DEP_TO_REG:
-        raise ValueError({key: f'Valeur invalide: `{context[key]}`'})
-    context['beneficiaire.entreprise.region'] = DEP_TO_REG[dep]
+    insee_commune_to_region(context, 'beneficiaire.entreprise.commune',
+                            'beneficiaire.entreprise.region')
+    insee_commune_to_region(context, 'beneficiaire.commune',
+                            'beneficiaire.region')
+    # FIXME remove me when LBF sends INSEE code even for DE.
+    # (this is a postcode).
+    insee_commune_to_region(context, 'beneficiaire.location',
+                            'beneficiaire.region')
+    if context.get('beneficiaire.allocation_type') == 'non':
+        del context['beneficiaire.allocation_type']
 
 
 async def get_formation_xml(formation_id):
@@ -48,8 +37,7 @@ async def populate_formation(context):
         await populate_formation_from_bytes(context, xml)
     except ValueError as err:
         # Give more context.
-        err.args = (f'Error with id `{formation_id}`: `{err}`',)
-        raise
+        raise DataError(f'Error with id `{formation_id}`: `{err}`')
 
 
 async def retrieve_codes_naf(ids):
@@ -75,15 +63,8 @@ async def populate_formation_from_bytes(context, content):
     for key, schema in SCHEMA.items():
         if schema.get('source') == 'catalogue' and schema.get('xpath'):
             value = root.xpath(schema['xpath'])
-            try:
-                value = validate_format(schema, value)
-            except ValueError:
-                if 'default' in schema:
-                    value = schema['default']
-                else:
-                    continue  # Should we raise/validate required?
-            if schema.get('format') == 'set':
-                value = set(value)
+            if value == []:  # Empty resultset.
+                value = None
             context[key] = value
 
     if not context['formation.codes_naf']:
@@ -100,14 +81,12 @@ def extrapolate_formation_context(context):
         mois = diff_month(context['formation.debut'], context['formation.fin'])
         semaines = diff_week(context['formation.debut'],
                              context['formation.fin'])
-        duree_hebdo = round(context['formation.heures'] / semaines)
-    else:
-        mois = SCHEMA['formation.mois']['default']
-        semaines = SCHEMA['formation.semaines']['default']
-        duree_hebdo = SCHEMA['formation.duree_hebdomadaire']['default']
-    context['formation.semaines'] = semaines
-    context['formation.mois'] = mois
-    context['formation.duree_hebdomadaire'] = duree_hebdo
+        context['formation.semaines'] = semaines
+        context['formation.mois'] = mois
+        if not context.get('formation.duree_hebdo'):
+            context['formation.duree_hebdo'] = round(
+                context['formation.heures'] / semaines)
+
     # Weird hack: Intercarif adds the `16` code in some situations and we need
     # to remove it otherwise the formation is unavailable (`16` is a code
     # financeur collectif).
@@ -120,30 +99,16 @@ def preprocess(context):
         Rule.process(rule, context)
 
 
-def financement_to_organisme(context, financement):
-    tags = financement['tags']
-    # TODO: add an "organisme_type" key in financements.yml instead?
-    if {'CPF', 'période de professionnalisation', 'plan de formation'} & set(tags):
-        nom = context['beneficiaire.entreprise.opca']
-    elif 'CIF' in tags:
-        nom = context['beneficiaire.entreprise.opacif']
-    else:
-        raise NotImplementedError(f'Unknown financement type {tags}')
-    context['financement.organisme.nom'] = nom
-
-
 def load_organisme_contact_details(context, financement):
     nom = context.get('financement.organisme.agence',
-                      context['financement.organisme.nom'])
-    organisme = load_organisme(nom)
-    financement['organisme'] = organisme
+                      context.get('financement.organisme.nom'))
+    if nom not in ORGANISMES:  # A DE financement?
+        return
+    financement['organisme'] = ORGANISMES[nom]
     # Q&D way to display the organisme details on LBF.
     # TODO clean me.
-    financement['demarches'] = financement['demarches'].format(**organisme)
-
-
-def load_organisme(nom):
-    return ORGANISMES[nom]
+    financement['demarches'] = financement['demarches'].format(
+        **financement['organisme'])
 
 
 def compute_modalites(context, financement):
@@ -184,22 +149,40 @@ def compute_modalites(context, financement):
     financement['remuneration'] = remuneration
     financement['indemnite_conges_payes'] = indemnite_conges_payes
     financement['heures'] = heures
+    financement['remuneration_texte'] = context.get(
+        'financement.remuneration_texte')
+    financement['prise_en_charge_texte'] = context.get(
+        'financement.prise_en_charge_texte')
+    if 'financement.demarches' in context:
+        financement['demarches'] = context['financement.demarches']
+    financement['demarches'] = financement['demarches'].replace('⏎', '\n')
+    if 'financement.description' in context:
+        financement['description'] = context['financement.description']
+    financement['rff'] = context.get('financement.rff')
+    financement['debut_rff'] = context.get('financement.debut_rff')
+    financement['fin_rff'] = context.get('financement.fin_rff')
+    financement['fin_remuneration'] = context.get(
+        'financement.fin_remuneration')
+    financement['remuneration_annee_2'] = context.get(
+        'financement.remuneration_annee_2')
+    financement['remuneration_annee_3'] = context.get(
+        'financement.remuneration_annee_3')
 
 
 def check_financement(context, financement):
-    context['status'] = []
+    statuses = []
     financement['status'] = []
     # TODO: use flatten() instead?
     context['financement.nom'] = financement['nom']
     context['financement.tags'] = financement['tags']
     context['financement.eligible'] = False
-    financement_to_organisme(context, financement)
-    for rule in RULES['rules/racine.rules']:
+    for rule in RULES[f'rules/{financement["rules"]}.rules']:
         status = Rule.process(rule, context)
         if status is not None:  # Root is a no_status condition.
-            context['status'].append(status)
-    financement['status'] = context['status']
+            statuses.append(status)
+    financement['status'] = statuses
     if context['financement.eligible']:
         compute_modalites(context, financement)
         load_organisme_contact_details(context, financement)
     financement['eligible'] = context['financement.eligible']
+    del financement['rules']

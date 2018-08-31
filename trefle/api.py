@@ -3,10 +3,10 @@ from http import HTTPStatus
 from roll import HttpError, Roll
 from roll.extensions import cors
 
-from . import VERSION
+from . import VERSION, simulate, get_financements
 from .config import FINANCEMENTS, GLOSSARY, NAF, RAW_RULES, SCHEMA
-from .core import simulate
 from .debugging import data_from_lbf_url, make_scenario, SCENARIOS
+from .exceptions import DataError
 from .loggers import log_simulate, logger
 from .openapis import OPENAPI
 from .routine import get_formation_xml
@@ -33,19 +33,17 @@ async def json_error_response(request, response, error):
 @app.route('/financement', methods=['POST'])
 async def simulate_(request, response):
     context = request.json
+    financements = get_financements(tags=request.query.list('tags', []))
     try:
-        financements = await simulate(context)
-    except ValueError as err:
-        if isinstance(err.args[0], dict):
-            # FIXME this can be improved
-            log_simulate(context, errors=err.args[0])
-        raise HttpError(HTTPStatus.UNPROCESSABLE_ENTITY, err.args[0])
+        await simulate(context, financements)
+    except DataError as err:
+        error = {err.key: err.error}
+        log_simulate(context, errors=error)
+        raise HttpError(HTTPStatus.UNPROCESSABLE_ENTITY, error)
 
     eligible = request.query.bool('eligible', None)
     if eligible is not None:
         financements = [f for f in financements if f['eligible'] == eligible]
-    for tag in request.query.list('tags', []):
-        financements = [f for f in financements if tag in f['tags']]
     for financement in financements:
         financement['status'] = [s.json for s in financement['status']]
     body = {'financements': financements}

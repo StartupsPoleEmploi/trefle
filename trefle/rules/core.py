@@ -1,13 +1,16 @@
-from collections import namedtuple
 import inspect
 import re
+from collections import namedtuple
+from datetime import datetime
 
-from .exceptions import NoDataError, WrongPointerError, NoStepError
-from .helpers import isfloat, count_indent
+from ..exceptions import NoDataError, WrongPointerError, NoStepError, DataError
+from ..helpers import isfloat, count_indent
 
 SCHEMA = {}
 LABELS = {}
 RULES = {}
+IDCC = {}
+DATE_PATTERN = re.compile(r'\d{2}/\d{2}/\d{4}')
 
 
 def parse_value(value, default=...):
@@ -17,6 +20,8 @@ def parse_value(value, default=...):
             # This is an enum.
             # FIXME: Should we have a dedicated registry instead?
             value = LABELS[value]
+        elif DATE_PATTERN.match(value):
+            value = datetime.strptime(value, '%d/%m/%Y')
     elif value[0] == '[' and value[-1] == ']':
         value = [parse_value(v) for v in value[1:-1].split(',')]
     elif value.isdigit():
@@ -41,7 +46,6 @@ class Pointer:
     def __init__(self, raw):
         self.raw = raw
         self.get = None
-        self.default = None
         self.key = None
         self.compile()
 
@@ -51,33 +55,13 @@ class Pointer:
     def compile(self):
         value = parse_value(self.raw)
         if value is not ...:
-            self.get = lambda **d: value
+            self.get = lambda context: value
         else:
             try:
                 self.key = LABELS[self.raw]
             except KeyError:
                 raise WrongPointerError(self.raw)
-            self.get = lambda **d: self._get_from_context(**d)
-            self.default = self.compute_default()
-
-    def _get_from_context(self, **context):
-        try:
-            value = context[self.key]
-        except KeyError:
-            value = None
-        if value is None:
-            if self.default is not ...:
-                return self.default
-            raise NoDataError(self.raw)
-        return value
-
-    def compute_default(self):
-        schema = SCHEMA[self.key]
-        if 'default' in schema:
-            return schema['default']
-        elif schema['type'] == 'array':
-            return []
-        return ...
+            self.get = lambda context: context[self.key]
 
 
 def action(pattern):
@@ -118,7 +102,7 @@ def no_status(func):
 class Value:
 
     def __init__(self, pointer, context):
-        self.value = pointer.get(**context)
+        self.value = pointer.get(context)
         self.pointer = pointer
 
     def __str__(self):
@@ -171,6 +155,7 @@ class Step:
         self.params = {}
         self.path = path
         self.line = line
+        self.pattern = None
 
     def __repr__(self):
         return f'<{self.__class__.__name__}: {self} ({self.path}:{self.line})>'
@@ -183,6 +168,7 @@ class Step:
             match = pattern.match(self.raw)
             if match:
                 self.func = func
+                self.pattern = pattern.pattern
                 break
         else:
             raise NoStepError(f'No pattern matches step: `{self!r}`')
@@ -191,11 +177,13 @@ class Step:
     @property
     def spec(self):
         spec = inspect.signature(self.func)
-        return list(spec.parameters.items())[1:]  # Skip `context`.
+        return list(spec.parameters.items())
 
     def compile(self):
         data = self.parse_raw()
         for name, param in self.spec:
+            if name in ['context', 'status']:
+                continue
             value = data[name]
             type_ = param.annotation
             if type_ == inspect._empty:
@@ -204,7 +192,8 @@ class Step:
                 value = type_(value)
             except Exception as err:
                 # Give more context.
-                err.args = (f'`{err}` (from `{self!r}`)',)
+                err.args = (f'`{err}` (in `{self!r}`, '
+                            f'pattern: {self.pattern})',)
                 raise
             self.params[name] = value
 
@@ -223,11 +212,8 @@ class Action(Step):
         self.raw = raw
         self.compile()
 
-    def act(self, context):
-        try:
-            self.func(context, **self.params)
-        except NoDataError as err:
-            raise NoDataError(f'No data for `{err}` in `{self.raw}`')
+    def act(self, context, status):
+        self.func(context, status, **self.params)
 
 
 class Condition(Step):
@@ -261,6 +247,7 @@ class Condition(Step):
         else:
             self.raw = terms[0]
             self.compile()
+            self.negative = ' pas ' in self.pattern
 
     def evaluate(self, context):
         return {n: Value(v, context) for n, v in self.params.items()}
@@ -277,8 +264,12 @@ class Condition(Step):
             try:
                 status.params = self.evaluate(context)
             except NoDataError as err:
-                status.status = False
-                status.reason = f"Donnée manquante pour «{err}»"
+                # Negative conditions are True by default, positive are False.
+                status.status = self.negative
+                label = SCHEMA.get(err.key, {}).get('label', err.key)
+                status.reason = f"Donnée manquante pour «{label}»"
+            except DataError:
+                raise
             except Exception as err:
                 # Give more context.
                 params = ' AND '.join(f'{key}={value}'
@@ -294,119 +285,6 @@ class Condition(Step):
     @property
     def no_status(self):
         return self.func and self.func.no_status
-
-
-@action(r"le financement est éligible")
-def set_eligible(context):
-    context['financement.eligible'] = True
-
-
-@action(r"(l'|les? |la )(?P<key>.+) est égale? à (?P<rate>[\d\.]+)% (de la|du) (?P<value>.+)$")
-def set_percent(context, key: Label, rate: float, value: Pointer):
-    context[key] = value.get(**context) * rate / 100
-
-
-@action(r"(l'|les? |la )(?P<key>.+) (vaut|est) (?P<value>.+)$")
-@action(r"(l'|les? |la )(?P<key>.+) est égale? (à la|à|aux?)? (?P<value>.+)$")
-def set_value(context, key: Label, value: Pointer):
-    context[key] = value.get(**context)
-
-
-@action(r"c'est une? (?P<key>.+)")
-def set_true(context, key: Label):
-    context[key] = True
-
-
-@action(r"appliquer les règles (de )?(l'|le |la )?(?P<rule>.+)")
-def include(context, rule: Pointer):
-    rule = rule.get(**context)
-    name = f'rules/{rule}.rules'
-    rules = RULES[name]
-    for rule in rules:
-        Rule.process(rule, context, status=context['parent'])
-
-
-@action(r"il n'y a pas de (?P<key>.+)$")
-def unset_key(context, key: Label):
-    try:
-        del context[key]
-    except KeyError:
-        pass
-
-
-@reason("ce n'est pas {key.pointer.raw}")
-@condition(r"c'est une? (?P<key>.+)")
-def check_true(context, key):
-    return key.value is True
-
-
-@reason("c'est {key.pointer.raw}")
-@condition(r"ce n'est pas une? (?P<key>.+)")
-def check_false(context, key):
-    return key.value is False
-
-
-@no_status
-@reason("le financement n'est pas de type «{tag}»")
-@condition(r"le financement est de type (?P<tag>.+)")
-def check_type(context, tag):
-    return tag.value in context['financement.tags']
-
-
-@reason("{left.pointer.raw} vaut {left}, c'est inférieur ou égal au seuil de {right}")
-@condition(r"(l'|les? |la )(?P<left>.+) est supérieure? à (?P<right>.+)")
-def check_gt(context, left, right):
-    return left.value > right.value
-
-
-@reason("{left.pointer.raw} trop faible: {left}, au lieu de {right} au moins")
-@condition(r"(l'|les? |la )(?P<left>.+) est supérieure? ou égale? à (?P<right>.+)")
-def check_ge(context, left, right):
-    return left.value >= right.value
-
-
-@reason("{left.pointer.raw} vaut {left}, c'est supérieur ou égal au seuil ({right})")
-@condition(r"(l'|les? |la )(?P<left>.+) est inférieure? à (?P<right>.+)")
-def check_lt(context, left, right):
-    return left.value < right.value
-
-
-@reason("{left.pointer.raw} trop grande: {left} (le maximum est {right})")
-@condition(r"(l'|les? |la )(?P<left>.+) est inférieure? ou égale? à (?P<right>.+)")
-def check_le(context, left, right):
-    return left.value <= right.value
-
-
-@reason("«{left}» ne contient pas {right}")
-@condition(r"(l'|les? |la )(?P<left>.+) contien(nen)?t au moins une? ([^ ]+ )?(parmi|des) (?P<right>.+)")
-def check_share_one(context, left, right):
-    return bool(set(left.value or []) & set(right.value or []))
-
-
-@reason("«{right}» contient {left}")
-@condition(r"(l'|les? |la )(?P<left>.+) ne contien(nen)?t aucun des (?P<right>.+)")
-def check_not_share_one(context, left, right):
-    return not bool(set(left.value or []) & set(right.value or []))
-
-
-@reason("{left.pointer.raw} ({left}) ne fait pas partie de «{right.pointer.raw}» ({right})")
-@condition(r"(l'|les? |la )(?P<left>.+) fait partie (de l'|de la |des? |du )(?P<right>.+)")
-@condition(r"(l'|les? |la )(?P<right>.+) contient (l'|les? |la )?(?P<left>.+)")
-def check_contain(context, left, right):
-    return left.value in right.value
-
-
-@reason("{left.pointer.raw} («{left}») fait partie de «{right}»")
-@condition(r"(l'|les? |la )(?P<left>.+) ne fait pas partie (de l'|des? |de la |du )(?P<right>.+)")
-@condition(r"(l'|les? |la )(?P<right>.+) ne contient pas (l'|les? |la )?(?P<left>.+)")
-def check_not_contain(context, left, right):
-    return left.value not in right.value
-
-
-@reason("{left.pointer.raw} vaut «{left}» au lieu de «{right}»")
-@condition(r"(l'|les? |la )(?P<left>.+) (est|vaut) (?P<right>.+)")
-def check_equal(context, left, right):
-    return left.value == right.value
 
 
 Line = namedtuple('Line', ['index', 'indent', 'keyword', 'sentence'])
@@ -441,9 +319,7 @@ class Rule:
             parent.children.append(status)
         for action in condition.actions:
             if overall:
-                context['parent'] = status  # FIXME
-                action.act(context)
-                context['parent'] = None  # FIXME
+                action.act(context, status)
         for child in condition.children:
             self.assess(context, child, status, overall)
         return status

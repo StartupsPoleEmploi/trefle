@@ -1,0 +1,26 @@
+Si c'est un contrat de professionnalisation
+    Alors le texte des démarches vaut «Il vous faut trouver un employeur pour pouvoir effectuer cette formation en alternance avec un emploi.⏎Prenez contact avec l'organisme de formation et⏎contactez les employeurs susceptibles de vous embaucher en contrat de professionnalisation»
+    Et le texte de description vaut «Le contrat de professionnalisation en un contrat qui permet de se former pour acquérir une qualification professionnelle reconnue par l’État et/ou la branche professionnelle dans un objectif de retour à l’emploi.⏎Il repose sur le principe de l’alternance entre enseignement théorique en centre de formation et mise en pratique chez l’employeur.»
+    Et le texte de la prise en charge vaut «Formation totalement financée»
+
+
+    Si l'âge du bénéficiaire est inférieur à 26
+    Ou c'est un demandeur d'emploi
+    Ou l'allocation du bénéficiaire fait partie de [«revenu de solidarité active»,«allocation de solidarité spécifique»]
+    Ou c'est un travailleur handicapé
+    Ou c'est un bénéficiaire ayant achevé un contrat aidé
+        Alors le financement est éligible
+        Et la rémunération applicable est égale au SMIC
+
+        Si l'âge du bénéficiaire est inférieur à 21
+            Si le niveau scolaire du bénéficiaire n'est pas supérieur ou égal à «IV»
+                Alors la rémunération applicable est égale à 55% du SMIC
+            Si le niveau scolaire du bénéficiaire est supérieur ou égal à «IV»
+                Alors la rémunération applicable est égale à 65% du SMIC
+
+        Si l'âge du bénéficiaire est supérieur ou égal à 21
+        Et l'âge du bénéficiaire est inférieur à 26
+            Si le niveau scolaire du bénéficiaire n'est pas supérieur ou égal à «IV»
+                Alors la rémunération applicable est égale à 70% du SMIC
+            Si le niveau scolaire du bénéficiaire est supérieur ou égal à «IV»
+                Alors la rémunération applicable est égale à 80% du SMIC

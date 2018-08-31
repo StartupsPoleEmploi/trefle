@@ -1,4 +1,5 @@
 import time
+import sys
 from pathlib import Path
 
 import hupper
@@ -6,13 +7,12 @@ import ujson as json
 from minicli import cli, run
 from roll.extensions import simple_server, static, traceback
 
+from trefle import simulate, get_financements
 from trefle.api import app
-from trefle.config import RULES
-from trefle.core import simulate
-from trefle.debugging import (data_from_lbf_url, green, make_scenario, red,
-                              trace_condition)
+from trefle.debugging import data_from_lbf_url, green, make_scenario, red
+from trefle.exceptions import DataError
 from trefle.helpers import flatten
-from trefle.rules import parse_value
+from trefle.rules import parse_value, SCHEMA
 
 
 def parse_args(args):
@@ -44,7 +44,7 @@ def render_status(status, level=0):
 
 @cli(name='simulate')
 async def cli_simulate(*args, context: json.loads={}, url=None, trace=False,
-                       output_scenario=False, show_context=False):
+                       output_scenario=False, show_context=False, tags=[]):
     """Simulate a call to the API.
 
     Pass context as args in the form key=value.
@@ -53,6 +53,7 @@ async def cli_simulate(*args, context: json.loads={}, url=None, trace=False,
     :trace: Display a trace of all checked conditions.
     :output_scenario: Render a Gherkin scenario with given context.
     :show_context: Render a table with used context.
+    :tags: Only return financements matching tags.
     """
     if 'context' in context:
         context = context['context']  # Copy-paste from our logs.
@@ -61,10 +62,13 @@ async def cli_simulate(*args, context: json.loads={}, url=None, trace=False,
         context = data_from_lbf_url(url)
     if args:
         context.update(parse_args(args))
+    financements = get_financements(tags=tags)
     try:
         start = time.perf_counter()
-        financements = await simulate(context)
+        await simulate(context, financements)
         duration = (time.perf_counter() - start)
+    except DataError as err:
+        sys.exit(f'Error in data: {err}')
     except Exception:
         raise
     finally:
@@ -81,42 +85,37 @@ async def cli_simulate(*args, context: json.loads={}, url=None, trace=False,
     print('*' * 105)
     eligibles = [f for f in financements if f['eligible']]
     if eligibles:
-        print('Financements éligibles')
+        print('Financements éligibles\n')
     else:
         print('Aucun financement éligible')
     for financement in eligibles:
-        print('- Nom:', financement['nom'])
-        print('  Description:', financement['description'][:150], '…')
-        print('  Démarches:', financement['demarches'][:150], '…')
-        print('  Organisme:')
-        print('      Nom:', financement['organisme']['nom'])
-        print('      Site web:', financement['organisme']['web'])
-        if financement['prise_en_charge']:
-            print('  Financement:', financement['prise_en_charge'], '€')
-        if financement['plafond_prix_horaire']:
-            print('  Plafond horaire:',
-                  financement['plafond_prix_horaire'], '€')
-        if financement['heures']:
-            print('  Heures prises en charge:', financement['heures'])
-        if financement['plafond_prise_en_charge']:
-            print('  Plafond financement:',
-                  financement['plafond_prise_en_charge'], '€')
-        print('  Rémunération:', financement['remuneration'], '€')
+        print(financement['nom'])
+        for key, value in financement.items():
+            if not value or key in ('nom', 'organisme', 'status', 'tags',
+                                    'eligible', 'ressources'):
+                continue
+            schema = SCHEMA["financement." + key]
+            if isinstance(value, str) and len(value) > 100:
+                value = f'{value[:100]}…'
+            print(f'  {schema["label"]}: {value}')
+        if financement.get('organisme'):
+            print('  organisme:', financement['organisme']['nom'])
         if trace:
             for status in financement['status']:
                 render_status(status)
-        print('')
-    print('Financements non éligibles')
+        print('-'*80)
     non_eligibles = [f for f in financements if not f['eligible']]
+    if non_eligibles:
+        print('\nFinancements non éligibles\n')
     for financement in non_eligibles:
-        print('- Nom:', financement['nom'])
+        print('-', financement['nom'])
         if trace:
             for status in financement['status']:
                 render_status(status)
     if output_scenario:
         if url:
             print(f'# {url}')
-        print(make_scenario(context, eligibles))
+        print(make_scenario(context, eligibles + non_eligibles))
     print(f'Duration: {round(duration, 4)} second')
 
 

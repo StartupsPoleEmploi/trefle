@@ -1,0 +1,15 @@
+Si le financement est de type «AIF»
+    Alors le texte de la prise en charge vaut «Formation totalement ou partiellement financée dans la limite de 1000 € (possibilité de cofinancement à étudier avec votre conseiller référent mais sans autofinancement)»
+
+    Si le niveau scolaire du bénéficiaire ne fait pas partie de [«I»,«II»,«III»,«IV»]
+    Et la liste des domaines FORMACODE de la formation ne contient pas 150, ou la liste des codes CPF de la formation contient 201
+    Et la liste des domaines FORMACODE de la formation ne contient pas 434, ou la liste des codes FORMACODE de la formation contient au moins un code parmi [43421,43429,43485,43401,43424,43415,43407,43426,43417,43486]
+    Et la liste des codes FORMACODE de la formation ne contient aucun des codes parmi [31802,31811,31812,44028]
+    Et le code CERTIFINFO de la formation ne fait pas partie de [49616,56306,87185,87187,87189,52411,63669,63670,88309]
+    # TODO - si intitulé comprend licence, master, ingénieur
+    # TODO si certifinfo Ambulancier (DEA) 59412 + siret 77567227207806
+        Alors le financement est éligible
+        Et le plafond financier applicable vaut 1000
+
+        Si c'est un permis B
+            Alors le texte de la prise en charge vaut «Vous pouvez utiliser votre CPF pour financer totalement ou partiellement votre permis de conduire catégorie B. Pôle emploi peut éventuellement vous apporter un complément de financement. Votre auto-école doit impérativement vous présenter à l'examen de conduite au plus tard six mois après votre inscription.»

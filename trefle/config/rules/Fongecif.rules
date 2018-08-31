@@ -1,9 +1,10 @@
-Si le nom de l'organisme est «Fongecif»
+Si l'organisme paritaire est «Fongecif»
     # Et le prix horaire plafond applicable est égal au prix horaire de la formation
     Alors le plafond financier applicable vaut 18000
     Et le prix horaire plafond applicable vaut 27.45
 
     Si le financement est de type «sur son temps de travail»
+    Ou c'est un demandeur d'emploi
         Alors la rémunération applicable est égale à la rémunération du bénéficiaire
 
         # TODO Formation partiellement ou totalement prise en charge, sur une durée maximale d'un an, ou de deux ans si la formation est à temps partiel.
@@ -33,15 +34,15 @@ Si le nom de l'organisme est «Fongecif»
         Alors le nom de l'agence à contacter est «Fongecif Bourgogne Franche Comté»
     Si la région de l'établissement du bénéficiaire est «Normandie»
         Alors le nom de l'agence à contacter est «Fongecif Normandie»
-    Si la région de l'établissement du bénéficiaire est «Nord-Pas-de-Calais-Picardie»
+    Si la région de l'établissement du bénéficiaire est «Hauts-de-France»
         Alors le nom de l'agence à contacter est «Fongecif Hauts de France»
-    Si la région de l'établissement du bénéficiaire est «Alsace-Champagne-Ardenne-Lorraine»
+    Si la région de l'établissement du bénéficiaire est «Grand-Est»
         Alors le nom de l'agence à contacter est «Fongecif Grand Est»
     Si la région de l'établissement du bénéficiaire est «Bretagne»
         Alors le nom de l'agence à contacter est «Fongecif Bretagne»
-    Si la région de l'établissement du bénéficiaire est «Aquitaine-Limousin-Poitou-Charentes»
+    Si la région de l'établissement du bénéficiaire est «Nouvelle-Aquitaine»
         Alors le nom de l'agence à contacter est «Fongecif Nouvelle Aquitaine»
-    Si la région de l'établissement du bénéficiaire est «Languedoc-Roussillon-Midi-Pyrénées»
+    Si la région de l'établissement du bénéficiaire est «Occitanie»
         Alors le nom de l'agence à contacter est «Fongecif Occitanie»
     Si la région de l'établissement du bénéficiaire est «Auvergne-Rhône-Alpes»
         Alors le nom de l'agence à contacter est «Fongecif Auvergne Rhône Alpes»

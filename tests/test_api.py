@@ -6,7 +6,7 @@ from pathlib import Path
 import pytest
 from openapi_core import create_spec
 from openapi_core.wrappers.mock import MockRequest, MockResponse
-from openapi_core.validators import ResponseValidator
+from openapi_core.shortcuts import ResponseValidator
 from openapi_spec_validator import validate_spec
 from roll.extensions import traceback
 
@@ -112,7 +112,7 @@ async def test_simulate_endpoint_filter_eligible(client):
     resp = await client.post('/financement', body=body)
     assert resp.status == HTTPStatus.OK
     financements = json.loads(resp.body)['financements']
-    assert len(financements) == 11
+    assert len(financements) == 20
     # Filter eligible only
     resp = await client.post('/financement?eligible=true', body=body)
     assert resp.status == HTTPStatus.OK
@@ -124,7 +124,7 @@ async def test_simulate_endpoint_filter_eligible(client):
     resp = await client.post('/financement?eligible=false', body=body)
     assert resp.status == HTTPStatus.OK
     financements = json.loads(resp.body)['financements']
-    assert len(financements) == 9
+    assert len(financements) == 18
     for financement in financements:
         assert financement['eligible'] is False
 
@@ -144,12 +144,12 @@ async def test_simulate_endpoint_filter_tags(client):
     resp = await client.post('/financement', body=body)
     assert resp.status == HTTPStatus.OK
     financements = json.loads(resp.body)['financements']
-    assert len(financements) == 11
+    assert len(financements) == 20
     # Filter CPF only
     resp = await client.post('/financement?tags=CPF', body=body)
     assert resp.status == HTTPStatus.OK
     financements = json.loads(resp.body)['financements']
-    assert len(financements) == 2
+    assert len(financements) == 3
     for financement in financements:
         assert 'CPF' in financement['tags']
 
@@ -169,7 +169,7 @@ async def test_simulate_endpoint_mix_filters(client):
     resp = await client.post('/financement', body=body)
     assert resp.status == HTTPStatus.OK
     financements = json.loads(resp.body)['financements']
-    assert len(financements) == 11
+    assert len(financements) == 20
     # Filter CPF only
     resp = await client.post('/financement?tags=hors%20temps%20de%20travail'
                              '&eligible=1', body=body)
@@ -193,7 +193,7 @@ async def test_simulate_hors_temps_de_travail(client):
     resp = await client.post('/financement', body=body)
     assert resp.status == HTTPStatus.OK
     financements = json.loads(resp.body)['financements']
-    assert len(financements) == 11
+    assert len(financements) == 20
     # Filter eligible only
     resp = await client.post('/financement?tags=hors%20temps%20de%20travail'
                              '&eligible=1', body=body)
@@ -230,11 +230,11 @@ async def test_simulate_error_triggers_log(client):
     body = {
         'beneficiaire.solde_cpf': 10,
         'beneficiaire.remuneration': 1400,
-        # 'beneficiaire.droit_prive': True,
+        'beneficiaire.droit_prive': True,
         'beneficiaire.contrat': 'cdi',
         'formation.eligible_copanef': True,
         'formation.heures': 100,
-        'beneficiaire.entreprise.commune': '2A004',
+        'beneficiaire.entreprise.commune': 'invalide',
         'beneficiaire.entreprise.idcc': 2706
     }
 
@@ -247,7 +247,7 @@ async def test_simulate_error_triggers_log(client):
     assert not log_data['financements']
     assert 'version' in log_data
     assert 'date' in log_data
-    assert 'beneficiaire.droit_prive' in log_data['errors']
+    assert 'beneficiaire.entreprise.commune' in log_data['errors']
 
 
 async def test_simulate_endpoint_with_wrong_method(client):
@@ -369,11 +369,11 @@ async def test_simulate_endpoint_with_unknown_departement(client):
         'beneficiaire.contrat': 'cdi',
         'formation.eligible_copanef': True,
         'formation.heures': 100,
-        'beneficiaire.entreprise.commune': '20001',
+        'beneficiaire.entreprise.commune': '99001',
         'beneficiaire.entreprise.idcc': 2706})
     assert resp.status == HTTPStatus.UNPROCESSABLE_ENTITY
     assert json.loads(resp.body) == {
-        'beneficiaire.entreprise.commune': "Valeur invalide: `20001`"}
+        'beneficiaire.entreprise.commune': "Valeur invalide: `99001`"}
 
 
 async def test_simulate_endpoint_with_invalid_data(client):
@@ -381,8 +381,8 @@ async def test_simulate_endpoint_with_invalid_data(client):
     spec = create_spec(json.loads(resp.body))
 
     resp = await client.post('/financement', body={
-        'beneficiaire.remuneration': 1400,
-        'beneficiaire.droit_prive': True,
+        'beneficiaire.remuneration': '1400',
+        'beneficiaire.droit_prive': 'invalide',
         'beneficiaire.entreprise.idcc': 2706})
     assert resp.status == HTTPStatus.UNPROCESSABLE_ENTITY
     assert 'application/json' in resp.headers['Content-Type']

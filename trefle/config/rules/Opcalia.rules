@@ -36,15 +36,15 @@ Si la région de l'établissement du bénéficiaire est «Bourgogne-Franche-Comt
     Alors le nom de l'agence à contacter est «Opcalia Bourgogne Franche Comté»
 Si la région de l'établissement du bénéficiaire est «Normandie»
     Alors le nom de l'agence à contacter est «Opcalia Normandie»
-Si la région de l'établissement du bénéficiaire est «Nord-Pas-de-Calais-Picardie»
+Si la région de l'établissement du bénéficiaire est «Hauts-de-France»
     Alors le nom de l'agence à contacter est «Opcalia Hauts de France»
-Si la région de l'établissement du bénéficiaire est «Alsace-Champagne-Ardenne-Lorraine»
+Si la région de l'établissement du bénéficiaire est «Grand-Est»
     Alors le nom de l'agence à contacter est «Opcalia Grand Est»
 Si la région de l'établissement du bénéficiaire est «Bretagne»
     Alors le nom de l'agence à contacter est «Opcalia Bretagne»
-Si la région de l'établissement du bénéficiaire est «Aquitaine-Limousin-Poitou-Charentes»
+Si la région de l'établissement du bénéficiaire est «Nouvelle-Aquitaine»
     Alors le nom de l'agence à contacter est «Opcalia Nouvelle Aquitaine»
-Si la région de l'établissement du bénéficiaire est «Languedoc-Roussillon-Midi-Pyrénées»
+Si la région de l'établissement du bénéficiaire est «Occitanie»
     Alors le nom de l'agence à contacter est «Opcalia Occitanie»
 Si la région de l'établissement du bénéficiaire est «Auvergne-Rhône-Alpes»
     Alors le nom de l'agence à contacter est «Opcalia Auvergne Rhône Alpes»

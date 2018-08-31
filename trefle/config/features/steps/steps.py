@@ -1,7 +1,7 @@
 from behave import given, when, then, use_step_matcher
 from behave.api.async_step import async_run_until_complete
 
-from trefle.core import simulate
+from trefle import simulate, get_financements
 from trefle.rules import LABELS, SCHEMA, Pointer
 
 use_step_matcher('re')
@@ -20,7 +20,7 @@ def setup(context):
 @given(r"(?:les? |la |l')(?P<label>.+) (?:est|vaut|valent) (?P<value>.+)")
 def given_set_value(context, label, value):
     key = LABELS[label]
-    value = Pointer(value).get()
+    value = Pointer(value).get({})
     context.data[key] = value
 
 
@@ -44,7 +44,9 @@ def given_set_false(context, key):
 @when('je demande un calcul de financement')
 @async_run_until_complete
 async def when_simulate(context):
-    context.passed = [f for f in await simulate(context.data) if f['eligible']]
+    financements = get_financements()
+    await simulate(context.data, financements)
+    context.passed = [f for f in financements if f['eligible']]
 
 
 @then(r"il y a (?P<expected>\d+) financements? proposés?")
@@ -77,11 +79,13 @@ def then_check_organisme(context, name):
         f'{context.result["organisme"]["nom"]} != {name}'
 
 
-@then(r"(?:le |la |l')(?P<label>.*) vaut (?P<value>[\d\.]+)")
+@then(r"(?:le |la |l')(?P<label>.*) vaut (?P<value>.+)")
 def then_check_output(context, label, value):
+    value = Pointer(value).get({})
     key = LABELS[label][12:]  # Remove "financement." namespace.
-    assert context.result[key] == float(value),\
-        f'{context.result[key]} != {value}'
+    assert context.result[key] == value, (f'{context.result[key]} '
+                                          f'({type(context.result[key])}) != '
+                                          f'{value} ({type(value)})')
 
 
 @then("aucun financement n'est proposé")

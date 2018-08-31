@@ -49,6 +49,7 @@
             <objectif-general-formation>6</objectif-general-formation>
             <certification>
                 <code-RNCP>320</code-RNCP>
+                <code-CERTIFINFO>80735</code-CERTIFINFO>
             </certification>
             <code-niveau-sortie>4</code-niveau-sortie>
             <url-formation>
@@ -242,8 +243,8 @@
                     <extra info="action-perimee">0</extra>
                 </extras>
                 <extras info="dispositif">
-                    <extra info="contrat-apprentissage">0</extra>
-                    <extra info="contrat-professionnalisation">0</extra>
+                    <extra info="contrat-apprentissage">1</extra>
+                    <extra info="contrat-professionnalisation">1</extra>
                 </extras>
                 <extras info="validation">
                     <extra info="code-type-validation">5</extra>

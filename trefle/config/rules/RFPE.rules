@@ -1,0 +1,31 @@
+Si l'allocation du bénéficiaire n'est pas définie
+Ou l'allocation du bénéficiaire fait partie de [«allocation de solidarité spécifique»,«allocation temporaire d'attente»,«revenu de solidarité active»,«non»]
+
+    # Par défaut
+    Si l'âge du bénéficiaire est inférieur à 18
+        Alors la rémunération applicable vaut 130.34
+    Si l'âge du bénéficiaire est supérieur ou égal à 18
+        Alors la rémunération applicable vaut 310.39
+    Si l'âge du bénéficiaire est supérieur ou égal à 21
+        Alors la rémunération applicable vaut 339.35
+    Si l'âge du bénéficiaire est supérieur ou égal à 26
+        Alors la rémunération applicable vaut 401.09
+
+
+    # Règles spécifiques
+    Si c'est un parent isolé
+    Ou c'est une mère de famille ayant au moins trois enfants
+    Ou c'est une femme divorcée, veuve ou séparée judiciairement depuis moins de trois ans
+    Ou c'est un travailleur handicapé
+    Ou c'est un bénéficiaire qui a déjà travaillé six mois sur une période de douze mois
+        Alors la rémunération applicable vaut 652.02
+    Si c'est un travailleur handicapé
+    Et c'est un bénéficiaire qui a déjà travaillé six mois sur une période de douze mois
+        Alors la rémunération applicable est égale au montant de l'allocation du bénéficiaire
+        # Set plafond/plancher instead so we can output it for more readability?
+        Si la rémunération applicable est supérieure à 1932.52
+            Alors la rémunération applicable vaut 1932.52
+        Si la rémunération applicable est inférieure à 644.17
+            Alors la rémunération applicable vaut 644.17
+    Si c'est un bénéficiaire non salarié qui a travaillé pendant douze mois dont au moins six mois consécutifs dans les trois ans qui précèdent l'entrée en formation
+        Alors la rémunération applicable vaut 708.59

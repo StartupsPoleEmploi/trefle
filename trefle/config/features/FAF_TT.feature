@@ -228,3 +228,21 @@ Scénario: CIF intérim avec salaire supérieur à deux SMIC
     Alors l'organisme à contacter est «FAF.TT»
     Et le montant de prise en charge vaut 12500
     Et la rémunération applicable vaut 0
+
+
+Scénario: CIF intérim DE
+    Soit un bénéficiaire et une formation
+    Et c'est un demandeur d'emploi
+    Et le âge du bénéficiaire vaut 38
+    Et la durée en heures de la formation vaut 120
+    Et le type de contrat du bénéficiaire vaut «intérimaire»
+    Et l'IDCC de l'établissement du bénéficiaire vaut «2378»
+    Et la rémunération du bénéficiaire vaut 1200
+    Et l'ancienneté en heures du bénéficiaire dans son entreprise vaut 1000
+    Et le nombre d'heures travaillées par le bénéficiaire dans les dix-huit derniers mois vaut 1800
+    Et c'est une formation ouverte aux bénéficiaires individuels
+    Quand je demande un calcul de financement
+    Quand je sélectionne le financement «CIF intérim hors temps de travail»
+    Alors la rémunération applicable vaut 1200
+    Et l'organisme à contacter est «FAF.TT»
+    Et le plafond de prise en charge vaut 3294

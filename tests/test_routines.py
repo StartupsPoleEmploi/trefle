@@ -2,6 +2,7 @@ from pathlib import Path
 
 import pytest
 
+from trefle.context import Context
 from trefle import exceptions
 from trefle import routine
 
@@ -9,8 +10,8 @@ from trefle import routine
 @pytest.mark.asyncio
 async def test_populate_formation_from_bytes():
     with Path(__file__).parent.joinpath('data/formation.xml').open('rb') as f:
-        context = {}
-        routine.add_constants(context)
+        context = Context({})
+        routine.extrapolate_context(context)
         await routine.populate_formation_from_bytes(context, f.read())
         routine.preprocess(context)
 
@@ -19,14 +20,16 @@ async def test_populate_formation_from_bytes():
                                                   '2362Z', '7820Z', '9604Z',
                                                   '9609Z'}
         assert context['formation.regions_coparef'] == {'24'}
-        assert context['formation.codes_formacode'] == [22403, 22402]
+        assert context['formation.codes_formacode'] == {22403, 22402}
         assert context['formation.domaines_formacode'] == {224}
         assert context['formation.foad'] is False
         assert context['formation.niveau_sortie'] == 4
         assert context['formation.heures'] == 697
+        assert context['formation.heures_entreprise'] == 112
+        assert context['formation.heures_centre'] == 585
         assert context['formation.mois'] == 6
         assert context['formation.semaines'] == 26
-        assert context['formation.duree_hebdomadaire'] == 27
+        assert context['formation.duree_hebdo'] == 35
         assert context['formation.codes_financeur'] == {10, 5, 2}
         assert context['formation.certifiante'] is True
         assert context['formation.codes_cpf'] == {167204, 13352, 1487, 18320,
@@ -36,10 +39,12 @@ async def test_populate_formation_from_bytes():
         assert context['formation.rncp'] is True
         assert context['formation.entrees_sorties'] == 0
         assert context['formation.entrees_sorties_permanentes'] is False
+        assert context['formation.contrat_apprentissage'] is False
+        assert context['formation.contrat_professionnalisation'] is False
+        assert context['formation.poec'] is False
 
 
 @pytest.mark.parametrize('path,key,value', [
-    ('without_certifinfo', 'formation.code_certifinfo', None),
     ('without_rncp', 'formation.rncp', False),
     ('vae', 'formation.vae', True),
     ('clea', 'formation.clea', True),
@@ -50,12 +55,16 @@ async def test_populate_formation_from_bytes():
     ('entrees_sorties_permanentes', 'formation.entrees_sorties', 1),
     ('entrees_sorties_permanentes', 'formation.entrees_sorties_permanentes',
      True),
+    ('contrat_apprentissage', 'formation.contrat_apprentissage', True),
+    ('contrat_professionnalisation', 'formation.contrat_professionnalisation',
+     True),
+    ('poec', 'formation.poec', True),
 ])
 @pytest.mark.asyncio
 async def test_populate_formation_from_bytes_edge_cases(path, key, value):
     with Path(__file__).parent.joinpath(f'data/{path}.xml').open('rb') as f:
-        context = {}
-        routine.add_constants(context)
+        context = Context({})
+        routine.extrapolate_context(context)
         await routine.populate_formation_from_bytes(context, f.read())
         routine.preprocess(context)
         assert context[key] == value
@@ -68,14 +77,14 @@ async def test_populate_formation_from_bytes_with_empty_list():
                   <offres>
                   </offres>
                   </lheo>"""
-    context = {}
+    context = Context({})
     with pytest.raises(ValueError):
         await routine.populate_formation_from_bytes(context, content)
 
 
-def test_insee_commune_to_region():
+def test_extrapolate_context_should_set_region():
     context = {'beneficiaire.entreprise.commune': '93031'}
-    routine.insee_commune_to_region(context)
+    routine.extrapolate_context(context)
     assert context['beneficiaire.entreprise.region'] == '11'  # IDF
 
 

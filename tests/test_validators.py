@@ -3,7 +3,8 @@ import re
 
 import pytest
 
-from trefle.validators import validate
+from trefle.exceptions import DataError
+from trefle.validators import validate_field
 
 
 def test_validate_integer(patch_schema):
@@ -15,22 +16,23 @@ def test_validate_integer(patch_schema):
         'beneficiaire.age': '22',
         'beneficiaire.solde_cpf': '89.0',
     }
-    validate(data)
-    assert data['beneficiaire.age'] == 22
-    assert data['beneficiaire.solde_cpf'] == 89
+    assert validate_field('beneficiaire.age', data) == 22
+    assert validate_field('beneficiaire.solde_cpf', data) == 89
 
 
-def test_validate_missing_required(patch_schema):
+def test_validate_missing_without_default(patch_schema):
     patch_schema({
-        'beneficiaire.age': {'type': 'integer', 'required': True},
-        'beneficiaire.droit_prive': {'type': 'boolean', 'required': True},
+        'beneficiaire.age': {'type': 'integer'},
+        'beneficiaire.droit_prive': {'type': 'boolean'},
     })
-    with pytest.raises(ValueError) as err:
-        validate({'beneficiaire.birth': 22})
-    assert err.value.args[0] == {
-        'beneficiaire.age': 'Ce champ est obligatoire',
-        'beneficiaire.droit_prive': 'Ce champ est obligatoire',
-    }
+    with pytest.raises(DataError) as err:
+        validate_field('beneficiaire.age', {'beneficiaire.birth': 22})
+    assert err.value.key == 'beneficiaire.age'
+    assert err.value.error == 'Ce champ est obligatoire'
+    with pytest.raises(DataError) as err:
+        validate_field('beneficiaire.droit_prive', {'beneficiaire.birth': 22})
+    assert err.value.key == 'beneficiaire.droit_prive'
+    assert err.value.error == 'Ce champ est obligatoire'
 
 
 def test_validate_bad_integer(patch_schema):
@@ -42,12 +44,14 @@ def test_validate_bad_integer(patch_schema):
         'beneficiaire.age': 'foo',
         'beneficiaire.solde_cpf': 'blah'
     }
-    with pytest.raises(ValueError) as err:
-        validate(data)
-    assert err.value.args[0] == {
-        'beneficiaire.age': "`foo` n'est pas un nombre",
-        'beneficiaire.solde_cpf': "`blah` n'est pas un nombre"
-    }
+    with pytest.raises(DataError) as err:
+        validate_field('beneficiaire.age', data)
+    assert err.value.key == 'beneficiaire.age'
+    assert err.value.error == "`foo` n'est pas un nombre"
+    with pytest.raises(DataError) as err:
+        validate_field('beneficiaire.solde_cpf', data)
+    assert err.value.key == 'beneficiaire.solde_cpf'
+    assert err.value.error == "`blah` n'est pas un nombre"
 
 
 @pytest.mark.parametrize('input,expected', [
@@ -67,8 +71,7 @@ def test_validate_bool(input, expected, patch_schema):
     data = {
         'beneficiaire.droit_prive': input,
     }
-    validate(data)
-    assert data['beneficiaire.droit_prive'] == expected
+    assert validate_field('beneficiaire.droit_prive', data) == expected
 
 
 def test_validate_bad_bool(patch_schema):
@@ -76,11 +79,10 @@ def test_validate_bad_bool(patch_schema):
         'beneficiaire.droit_prive': {'type': 'boolean', 'required': True}
     })
     data = {'beneficiaire.droit_prive': 'yep'}
-    with pytest.raises(ValueError) as err:
-        validate(data)
-    assert err.value.args[0] == {
-        'beneficiaire.droit_prive': "`yep` n'est pas de type booléen"
-    }
+    with pytest.raises(DataError) as err:
+        validate_field('beneficiaire.droit_prive', data)
+    assert err.value.key == 'beneficiaire.droit_prive'
+    assert err.value.error == "`yep` n'est pas de type booléen"
 
 
 def test_validate_enum(patch_schema):
@@ -89,8 +91,7 @@ def test_validate_enum(patch_schema):
                                  'enum': {'cdd': 'CDD', 'cdi': 'CDI'}}
     })
     data = {'beneficiaire.contrat': 'cdd'}
-    validate(data)
-    assert data['beneficiaire.contrat'] == 'cdd'
+    assert validate_field('beneficiaire.contrat', data) == 'cdd'
 
 
 def test_validate_bad_enum(patch_schema):
@@ -99,11 +100,10 @@ def test_validate_bad_enum(patch_schema):
                                  'enum': {'cdd': 'CDD', 'cdi': 'CDI'}}
     })
     data = {'beneficiaire.contrat': 'cdg'}
-    with pytest.raises(ValueError) as err:
-        validate(data)
-    assert err.value.args[0] == {
-        'beneficiaire.contrat': "`cdg` ne fait pas partie de ['cdd', 'cdi']"
-    }
+    with pytest.raises(DataError) as err:
+        validate_field('beneficiaire.contrat', data)
+    assert err.value.key == 'beneficiaire.contrat'
+    assert err.value.error == "`cdg` ne fait pas partie de ['cdd', 'cdi']"
 
 
 @pytest.mark.parametrize('input,valid', [
@@ -119,10 +119,10 @@ def test_validate_pattern(patch_schema, input, valid):
             'pattern': re.compile('(2[AB]|[0-9]{2})[0-9]{3}')}})
     data = {'beneficiaire.insee': input}
     if not valid:
-        with pytest.raises(ValueError):
-            validate(data)
+        with pytest.raises(DataError):
+            validate_field('beneficiaire.insee', data)
     else:
-        validate(data)
+        validate_field('beneficiaire.insee', data)
 
 
 @pytest.mark.parametrize('input,output', [
@@ -136,11 +136,10 @@ def test_validate_idcc(patch_schema, input, output):
         'idcc': {'type': 'string', 'format': 'idcc'}})
     data = {'idcc': input}
     if not output:
-        with pytest.raises(ValueError):
-            validate(data)
+        with pytest.raises(DataError):
+            validate_field('idcc', data)
     else:
-        validate(data)
-        assert data['idcc'] == output
+        assert validate_field('idcc', data) == output
 
 
 @pytest.mark.parametrize('input,output', [
@@ -155,8 +154,7 @@ def test_validate_naf(patch_schema, input, output):
     patch_schema({
         'naf': {'type': 'string', 'format': 'naf'}})
     data = {'naf': input}
-    validate(data)
-    assert data['naf'] == output
+    assert validate_field('naf', data) == output
 
 
 @pytest.mark.parametrize('input,output', [
@@ -170,11 +168,10 @@ def test_validate_organisme(patch_schema, input, output):
         'opca': {'type': 'string', 'format': 'opca'}})
     data = {'opca': input}
     if not output:
-        with pytest.raises(ValueError):
-            validate(data)
+        with pytest.raises(DataError):
+            validate_field('opca', data)
     else:
-        validate(data)
-        assert data['opca'] == output
+        assert validate_field('opca', data) == output
 
 
 @pytest.mark.parametrize('input,output', [
@@ -189,11 +186,10 @@ def test_validate_date(patch_schema, input, output):
         'debut': {'type': 'string', 'format': 'date'}})
     data = {'debut': input}
     if not output:
-        with pytest.raises(ValueError):
-            validate(data)
+        with pytest.raises(DataError):
+            validate_field('debut', data)
     else:
-        validate(data)
-        assert data['debut'] == output
+        assert validate_field('debut', data) == output
 
 
 @pytest.mark.parametrize('input,expected', [
@@ -205,37 +201,33 @@ def test_validate_date(patch_schema, input, output):
     ['blah', False],
     ['', 0],
 ])
-def test_format_remuneration(patch_schema, input, expected):
+def test_format_money(patch_schema, input, expected):
     patch_schema({
-        'remuneration': {'type': 'string', 'format': 'remuneration'}})
+        'remuneration': {'type': 'string', 'format': 'money', 'default': 0}})
     data = {'remuneration': input}
     if expected is False:
-        with pytest.raises(ValueError):
-            validate(data)
+        with pytest.raises(DataError):
+            validate_field('remuneration', data)
     else:
-        validate(data)
-        assert data['remuneration'] == expected
+        assert validate_field('remuneration', data) == expected
 
 
 def test_should_resolve_alias_if_value_is_none(patch_schema):
     patch_schema({
         'remuneration': {'type': 'string', 'alias': 'salaire'}})
     data = {'salaire': 1000}
-    validate(data)
-    assert data['remuneration'] == 1000
+    assert validate_field('salaire', data) == 1000
 
 
 def test_should_not_resolve_alias_if_original_key_is_set(patch_schema):
     patch_schema({
         'remuneration': {'type': 'string', 'alias': 'salaire'}})
     data = {'salaire': 1000, 'remuneration': 1100}
-    validate(data)
-    assert data['remuneration'] == 1100
+    assert validate_field('remuneration', data) == 1100
 
 
 def test_should_fail_if_alias_is_not_present(patch_schema):
     patch_schema({
-        'remuneration': {'type': 'string', 'alias': 'salaire'}})
+        'remuneration': {'type': 'string', 'alias': 'salaire', 'default': 0}})
     data = {}
-    validate(data)
-    assert not data
+    assert validate_field('remuneration', data) == 0

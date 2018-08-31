@@ -1,0 +1,20 @@
+Si c'est une demandeur d'emploi
+    Alors le texte des démarches vaut «Postulez sur une offre d'emploi déposée auprès de Pôle emploi pour un CDI ou un CDD d'au moins 6 mois. Si vous n'avez pas l'ensemble des compétences demandées, vous pouvez proposer à l'employeur de suivre une formation adaptée d'une durée maximale de 400h.⏎En cas de réponse positive de l'employeur, contactez votre conseiller Pôle emploi qui finalisera avec ce dernier le plan de formation.»
+    Et le texte de description vaut «L'Action de Formation Préalable au Recrutement (AFPR) et la Préparation Opérationnelle à l’Emploi Individuelle (POEI) sont des aides au financement de formations (de 400 heures maximum) préalable à un recrutement.⏎L'objectif est d'acquérir des compétences professionnelles requises pour occuper l'emploi correspondant à une offre déposée auprès de Pôle emploi, pour un CDD d'au moins 6 mois ou un CDI.⏎Cette aide est également mobilisable en préalable à un contrat en alternance d'au moins 12 mois (contrat de professionnaliisation ou contrat d'apprentissage)»
+
+    Si c'est une préparation opérationnelle à l'emploi individuelle
+        Alors le financement est éligible
+        Et appliquer les règles «AREF-RFPE»
+
+    Si c'est une formation ouverte aux bénéficiaires individuels
+    Et ce n'est pas un contrat d'apprentissage
+    Et ce n'est pas un contrat de professionnalisation
+    Et ce n'est pas un bénéficiaire en situation de création d'entreprise nécessitant cette formation
+    Et la liste des codes FORMACODE de la formation ne contient aucun des codes parmi [13030,50245,50445,50145,50349,50249,13250,31802,44591]
+    Et le code CERTIFINFO de la formation ne fait pas partie de [83899,84385,54664]
+    Et la liste des domaines FORMACODE de la formation ne contient aucun des codes parmi [430,434,440,150], ou la liste des codes FORMACODE de la formation contient 44067
+    Et ce n'est pas une formation VAE
+    Et ce n'est pas une formation diplômante
+    Et ce n'est pas une préparation opérationnelle à l'emploi collective
+        Alors le financement est éligible
+        Et appliquer les règles «AREF-RFPE»
