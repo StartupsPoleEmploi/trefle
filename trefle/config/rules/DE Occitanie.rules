@@ -4,7 +4,7 @@ Si le financement est de type «AIF»
     Si le niveau scolaire du bénéficiaire ne fait pas partie de [«I»,«II»,«III»,«IV»]
     Et la liste des domaines FORMACODE de la formation ne contient pas 150, ou la liste des codes CPF de la formation contient 201
     Et la liste des domaines FORMACODE de la formation ne contient pas 434, ou la liste des codes FORMACODE de la formation contient au moins un code parmi [43421,43429,43485,43401,43424,43415,43407,43426,43417,43486]
-    Et la liste des codes FORMACODE de la formation ne contient aucun des codes parmi [31802,31811,31812,44028]
+    Et la liste des codes FORMACODE de la formation ne contient aucun code parmi [31802,31811,31812,44028]
     Et le code CERTIFINFO de la formation ne fait pas partie de [49616,56306,87185,87187,87189,52411,63669,63670,88309]
     # TODO - si intitulé comprend licence, master, ingénieur
     # TODO si certifinfo Ambulancier (DEA) 59412 + siret 77567227207806

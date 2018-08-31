@@ -1,6 +1,6 @@
 Si le financement est de type «AIF»
 
-    Si la liste des codes FORMACODE de la formation ne contient aucun des codes parmi [31802,31805,31847,31827,31833,43409,43436,43339,43441,43448,43454,44004,44028,44054,15064,44591]
+    Si la liste des codes FORMACODE de la formation ne contient aucun code parmi [31802,31805,31847,31827,31833,43409,43436,43339,43441,43448,43454,44004,44028,44054,15064,44591]
     Et le code CERTIFINFO de la formation ne fait pas partie de [54912,84385,87185,87187,87189,83899]
     Et la liste des domaines FORMACODE de la formation ne contient pas 150
     Et la durée en mois de la formation n'est pas supérieure à 12

@@ -1,7 +1,7 @@
 Si le financement est de type «AIF»
     Alors le texte de la prise en charge vaut «L'AIF permet une prise en charge des frais pédagogiques mais ne couvre pas les frais annexes (droits d'inscription, acquisition de matériels, frais de passage d'examen…).⏎L’AIF peut être attribuée quelle que soit la modalité pédagogique de la formation, y compris pour une formation à distance (FOAD) ou pour une formation en cours du soir.»
 
-    Si la liste des codes FORMACODE de la formation ne contient aucun des codes parmi [43441]
+    Si la liste des codes FORMACODE de la formation ne contient aucun code parmi [43441]
     Et le code CERTIFINFO de la formation ne fait pas partie de [54913,54912]
         Alors le financement est éligible
         Et le plafond financier applicable vaut 2500

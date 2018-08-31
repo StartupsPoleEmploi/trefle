@@ -1,0 +1,59 @@
+Si c'est un demandeur d'emploi
+Et ce n'est pas une préparation opérationnelle à l'emploi
+Et ce n'est pas un contrat d'apprentissage
+
+    Si le financement est de type «région»
+
+        Si les codes financeur de la formation contiennent «Conseil régional»
+
+            Si le niveau de sortie de la formation n'est pas supérieur ou égal à «IV»
+            Ou le niveau de sortie de la formation est supérieur ou égal à «IV», et ce n'est pas un contrat de professionnalisation
+                Alors le financement est éligible
+                Et appliquer les règles «AREF-RFPE-RPS»
+                Et le texte des démarches vaut «Vérifiez auprès de votre conseiller et/ou de l'organisme de formation que vous remplissez les conditions pour effectuer cette formation.»
+                Et le texte de description vaut «Cette action de formation est financée par votre région — gratuite pour les demandeurs d'emploi.»
+                Et le texte de la prise en charge vaut «Formation totalement financée»
+
+                Si le niveau de sortie de la formation est supérieur ou égal à «IV»
+                    Alors le texte de description vaut «Cette action de formation est financée, totalement ou partiellement, par votre Région.⏎Vérifiez les critères d'admissibilité auprès de votre conseiller ou de l'organisme de formation.»
+                    Et le texte de la prise en charge vaut «Formation totalement ou partiellement financée»
+
+    Si le financement est de type «PE»
+
+        Si les codes financeur de la formation contiennent «Pôle emploi»
+        Et les codes financeur de la formation ne contiennent aucun code parmi [«Autre»,«Entreprise»,«Bénéficiaire de l'action»,«OPACIF»]
+            Alors le financement est éligible
+            Et appliquer les règles «AREF-RFPE-RPS»
+            Et le texte des démarches vaut «Contactez votre conseiller emploi pour être sélectionné sur une des places financées par Pôle emploi.»
+            Et le texte de description vaut «Il s'agit d'une formation collective, délivrée en centre de formation pouvant comprendre une période de stage en entreprise, gratuite et réservée aux demandeurs d'emploi»
+            Et le texte de la prise en charge vaut «Formation totalement financée»
+
+    Si le financement est de type «TH»
+
+        Si les codes financeur de la formation contiennent «Agefiph»
+        Et c'est un travailleur handicapé
+            Alors le financement est éligible
+            Et appliquer les règles «AREF-RFPE-RPS»
+            Et le texte des démarches vaut «Pour effectuer cette formation, contactez tout d'abord l'organisme de formation pour être sélectionné sur une des places financées par l'Agefiph.»
+            Et le texte de description vaut «Cette action de formation est financée par l'Agefiph. Cet organisme finance des actions de formation pour des personnes reconnues travailleurs handicapées pour accéder ou conserver leur emploi.»
+            Et le texte de la prise en charge vaut «Formation totalement ou partiellement financée.»
+
+    Si le financement est de type «département»
+
+        Si les codes financeur de la formation contiennent «Conseil départemental»
+        Et le département du bénéficiaire est le département de la formation
+        # assistante maternelle
+        Et la liste des codes FORMACODE de la formation ne contient pas 44030
+            Alors le financement est éligible
+            Et appliquer les règles «AREF-RFPE-RPS»
+            Et le texte des démarches vaut «Pour effectuer cette formation, contactez l'organisme de formation ou votre conseiller référent emploipour être sélectionné sur une des places financées par le Conseil Départemental»
+            Et le texte de description vaut «Cette action de formation qui vous permet de devenir assistante maternelle est financée par le Conseil Départemental.»
+            Et le texte de la prise en charge vaut «Formation totalement ou partiellement financée.»
+
+    Si le financement est de type «État»
+        Si les codes financeur de la formation contiennent au moins un code parmi [«Etat - Ministère chargé de l'emploi»,«Etat - Ministère de l'éducation nationale»,«Etat - Autre»]
+            Alors le financement est éligible
+            Et appliquer les règles «AREF-RFPE-RPS»
+            Et le texte des démarches vaut «Pour effectuer cette formation, contactez tout d'abord l'organisme de formation pour être sélectionné sur une des places financées par l'Etat.»
+            Et le texte de description vaut «Cette action de formation est financée par l'Etat qui finance des actions de formation pour permettre à des demandeurs d'emploi d'accéder à un emploi.»
+            Et le texte de la prise en charge vaut «Formation totalement ou partiellement financée.»

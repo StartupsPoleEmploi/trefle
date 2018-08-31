@@ -1,8 +1,11 @@
 from datetime import datetime
 
 import pytest
+from trefle.context import Context
+from trefle.exceptions import DataError
 from trefle.helpers import (count_indent, diff_month, diff_week, flatten,
-                            fold_name, insee_commune_to_region, isfloat)
+                            fold_name, insee_commune_to_departement,
+                            insee_commune_to_region, isfloat)
 
 
 def test_flatten():
@@ -64,7 +67,33 @@ def test_fold_name(input, expected):
     assert fold_name(input) == expected
 
 
-def test_insee_commune_to_region():
-    context = {'commune': '93031'}
-    insee_commune_to_region(context, 'commune', 'region')
-    assert context['region'] == '11'  # IDF
+@pytest.mark.parametrize('input,expected', [
+    ('93031', '11'),  # idf
+    ('20000', '94'),  # When consuming postode
+    ('blah', False)
+])
+def test_insee_commune_to_region(input, expected):
+    context = Context({'commune': input})
+    if expected:
+        insee_commune_to_region(context, 'commune', 'region')
+        assert context['region'] == expected
+    else:
+        with pytest.raises(DataError):
+            insee_commune_to_region(context, 'commune', 'region')
+
+
+@pytest.mark.parametrize('input,expected', [
+    ('93031', '93'),  # idf
+    ('2A000', '2A'),
+    ('97131', '971'),
+    ('99999', False),
+])
+def test_insee_commune_to_departement(input, expected):
+    context = Context({'commune': input})
+    insee_commune_to_departement(context, 'commune',
+                                 'beneficiaire.departement')
+    if expected:
+        assert context['beneficiaire.departement'] == expected
+    else:
+        # Invalid enum value prevent to be added in context
+        assert 'beneficiaire.departement' not in context

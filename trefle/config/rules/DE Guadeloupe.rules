@@ -1,6 +1,6 @@
 Si le financement est de type «AIF»
     Alors le plafond financier applicable vaut 1500
 
-    Si la liste des codes FORMACODE de la formation ne contient aucun des codes parmi [44591,15081]
+    Si la liste des codes FORMACODE de la formation ne contient aucun code parmi [44591,15081]
         Alors le financement est éligible
         Et le texte de la prise en charge vaut «Formation financée jusqu'à 1500 € maximum»

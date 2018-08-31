@@ -42,6 +42,9 @@ def load_schema(data, output=None, namespace=None):
             if 'enum' in more:
                 for key, label in more['enum'].items():
                     LABELS[label] = key
+            if more['type'] == 'array' and 'enum' in more['items']:
+                for key, label in more['items']['enum'].items():
+                    LABELS[label] = key
             if 'pattern' in more:
                 more['pattern'] = re.compile(more['pattern'])
         else:

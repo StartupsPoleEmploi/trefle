@@ -1,7 +1,7 @@
 Si le financement est de type «AIF»
 
     # TODO libellé contient "permis"
-    Si la liste des codes FORMACODE de la formation ne contient aucun des codes parmi [43448,43436,43441,43454,44004,44028,44054]
+    Si la liste des codes FORMACODE de la formation ne contient aucun code parmi [43448,43436,43441,43454,44004,44028,44054]
     Et le code CERTIFINFO de la formation ne fait pas partie de [54912,54913,54917,87185,87187,25467]
         Alors le financement est éligible
         Et le texte de la prise en charge vaut «Formation totalement prise en charge, sous réserve d'acceptation par Pôle emploi»

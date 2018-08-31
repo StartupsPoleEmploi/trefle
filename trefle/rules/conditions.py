@@ -83,7 +83,7 @@ def check_share_one(context, left, right):
 
 
 @reason("«{right}» contient {left}")
-@condition(r"(l'|les? |la )(?P<left>.+) ne contien(nen)?t aucun des ([^ ]+ parmi )?(?P<right>.+)")
+@condition(r"(l'|les? |la )(?P<left>.+) ne contien(nen)?t aucun (des? |[^ ]+ parmi )?(?P<right>.+)")
 def check_not_share_one(context, left, right):
     return not bool(set(left.value or []) & set(right.value or []))
 
@@ -97,18 +97,18 @@ def check_not_contain(context, left, right):
 
 @reason("{left.pointer.raw} ({left}) ne fait pas partie de «{right.pointer.raw}» ({right})")
 @condition(r"(l'|les? |la )(?P<left>.+) fait partie (de l'|de la |des? |du )(?P<right>.+)")
-@condition(r"(l'|les? |la )(?P<right>.+?) contient (l'|les? |la )?(?P<left>.+)")
+@condition(r"(l'|les? |la )(?P<right>.+?) contien(nen)?t (l'|les? |la )?(?P<left>.+)")
 def check_contain(context, left, right):
     return left.value in right.value
 
 
 @reason("{left.pointer.raw} vaut «{left}» au lieu de «{right}»")
-@condition(r"(l'|les? |la )(?P<left>.+?) (est|vaut) (?P<right>.+)")
+@condition(r"(l'|les? |la )(?P<left>.+?) (est|vaut) (l'|les? |la )?(?P<right>.+)")
 def check_equal(context, left, right):
     return left.value == right.value
 
 
 @reason("{left.pointer.raw} vaut «{left}» au lieu de «{right}»")
-@condition(r"(l'|les? |la )(?P<left>.+?) (n'est|ne vaut) pas (?P<right>.+)")
+@condition(r"(l'|les? |la )(?P<left>.+?) (n'est|ne vaut) pas (l'|les? |la )?(?P<right>.+)")
 def check_not_equal(context, left, right):
     return left.value != right.value

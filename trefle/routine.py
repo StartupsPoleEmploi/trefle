@@ -1,10 +1,12 @@
 from datetime import timedelta
+
 from lxml import etree
 
 from .config import (CONSTANTS, ELIGIBILITE_URL, INTERCARIF_URL, ORGANISMES,
                      RULES, SCHEMA)
-from .exceptions import UpstreamError, DataError
-from .helpers import diff_month, diff_week, http_get, insee_commune_to_region
+from .exceptions import DataError, UpstreamError
+from .helpers import (diff_month, diff_week, http_get,
+                      insee_commune_to_departement, insee_commune_to_region)
 from .rules import Rule
 from .validators import format_naf
 
@@ -15,6 +17,8 @@ def extrapolate_context(context):
                             'beneficiaire.entreprise.region')
     insee_commune_to_region(context, 'beneficiaire.commune',
                             'beneficiaire.region')
+    insee_commune_to_departement(context, 'beneficiaire.commune',
+                                 'beneficiaire.departement')
     # FIXME remove me when LBF sends INSEE code even for DE.
     # (this is a postcode).
     insee_commune_to_region(context, 'beneficiaire.location',
@@ -156,7 +160,8 @@ def compute_modalites(context, financement):
         'financement.prise_en_charge_texte')
     if 'financement.demarches' in context:
         financement['demarches'] = context['financement.demarches']
-    financement['demarches'] = financement['demarches'].replace('⏎', '\n')
+    financement['demarches'] = financement.get(
+        'demarches', '').replace('⏎', '\n')
     if 'financement.description' in context:
         financement['description'] = context['financement.description']
     financement['rff'] = context.get('financement.rff')

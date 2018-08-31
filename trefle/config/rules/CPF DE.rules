@@ -3,7 +3,7 @@ Et le solde CPF du bénéficiaire est supérieur à 0
 Et ce n'est pas un contrat de professionnalisation
 Et ce n'est pas un contrat d'apprentissage
 # TODO use formation VAE instead?
-Et la liste des codes FORMACODE de la formation ne contient aucun des codes parmi [15064,44591]
+Et la liste des codes FORMACODE de la formation ne contient aucun code parmi [15064,44591]
     Si la région du bénéficiaire fait partie des régions éligibles COPAREF
     Ou c'est une formation éligible COPANEF
         Alors le financement est éligible

@@ -10,4 +10,4 @@ Si l'allocation du bénéficiaire est «allocation d'aide au retour à l'emploi�
         Alors la RFF applicable est égale au montant de la RFF en vigueur
 
 Si l'allocation du bénéficiaire n'est pas «allocation d'aide au retour à l'emploi»
-    Alors appliquer les règles «RFPE»
+    Alors appliquer les règles «RFPE-RPS»

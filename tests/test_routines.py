@@ -42,6 +42,7 @@ async def test_populate_formation_from_bytes():
         assert context['formation.contrat_apprentissage'] is False
         assert context['formation.contrat_professionnalisation'] is False
         assert context['formation.poec'] is False
+        assert context['formation.departement'] == '37'
 
 
 @pytest.mark.parametrize('path,key,value', [

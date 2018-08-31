@@ -63,3 +63,18 @@ Financement individuel Agefiph:
 Fonds d'aide aux jeunes:
   tags: [FAJ, DE]
   rules: FAJ
+Action de formation collective financée par la région:
+  tags: [DE, région, collectif]
+  rules: action collective
+Action de formation collective financée par Pôle emploi:
+  tags: [DE, PE, collectif]
+  rules: action collective
+Action de formation collective financée par l'Agefiph:
+  tags: [DE, TH, collectif]
+  rules: action collective
+Action de formation collective financée par le conseil départemental:
+  tags: [DE, département, collectif]
+  rules: action collective
+Action de formation collective financée par l'État:
+  tags: [DE, État, collectif]
+  rules: action collective
