@@ -191,4 +191,6 @@ def check_financement(context, financement):
         compute_modalites(context, financement)
         load_organisme_contact_details(context, financement)
     financement['eligible'] = context['financement.eligible']
+    # TODO remove non public keys
+    # do not expose this private key
     del financement['rules']

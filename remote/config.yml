@@ -1,6 +1,7 @@
 ssh_key_urls:
   ybon: http://nuage.yohanboniface.me/id_rsa.pub
   regisb: http://minutebutterfly.com/id_rsa.pub
+  davidf: https://gist.githubusercontent.com/tyjak/5c2c8f13ed5ad1a0a402041f4480e224/raw/f0a73e4ac151fdf3a325ed1e201157c4ec762977/id_rsa.pub
 prod:
   version: 0.6.0
   username: yboniface
