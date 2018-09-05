@@ -63,7 +63,6 @@ def data_from_lbf_url(url):
     serialized = base64.b64decode(encrypted)
     serialized = bz2.decompress(serialized)
     args = phpserialize.loads(serialized)
-    print(args)
 
     keymap = {
         # TODO deal with age
