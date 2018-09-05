@@ -101,7 +101,8 @@ def make_scenario(data, financements, name='Donne-moi un nom'):
     steps = ["Soit un bénéficiaire et une formation"]
 
     for key, value in data.items():
-        if key not in SCHEMA or key.startswith('constante'):
+        if (key not in SCHEMA
+           or key.startswith(('constante', 'formation.numero'))):
             continue
         schema = SCHEMA[key]
         label = schema['label']
@@ -109,6 +110,8 @@ def make_scenario(data, financements, name='Donne-moi un nom'):
             value = schema['enum'][value]
         if isinstance(value, str):
             value = f'«{value}»'
+        if isinstance(value, datetime):
+            value = f"«{value.strftime('%d/%m/%Y')}»"
         if value != 0 and not value:
             continue
         if key == 'formation.regions_coparef':
@@ -146,19 +149,23 @@ def make_scenario(data, financements, name='Donne-moi un nom'):
             # Quand je sélectionne le financement «CPF hors temps de travail»
             steps.append(f"Quand je sélectionne le financement "
                          f"«{financement['nom']}»")
-            steps.append(f"Alors la rémunération applicable vaut "
-                         f"{financement['remuneration']}")
-            # Alors l'organisme tutelle est «INTERGROS»
+            keys = ['remuneration', 'prise_en_charge',
+                    'plafond_prise_en_charge', 'rff', 'debut_rff', 'fin_rff',
+                    'fin_remuneration']
+            keyword = 'Alors'
+            for key in keys:
+                if financement.get(key) is not None:
+                    label = SCHEMA[f'financement.{key}']['label']
+                    value = financement[key]
+                    if isinstance(value, str):
+                        value = f'«{value}»'
+                    if isinstance(value, datetime):
+                        value = f"«{value.strftime('%d/%m/%Y')}»"
+                    steps.append(f"{keyword} la {label} vaut {value}")
+                    keyword = 'Et'
             if financement.get('organisme'):
                 steps.append(f"Et l'organisme à contacter est "
                              f"«{financement['organisme']['nom']}»")
-            if financement.get('prise_en_charge') is not None:
-                # Et le montant de prise en charge vaut 2000
-                steps.append(f"Et le montant de prise en charge vaut "
-                             f"{financement['prise_en_charge']}")
-            elif financement.get('plafond_prise_en_charge'):
-                steps.append(f"Et le plafond de prise en charge vaut "
-                             f"{financement['plafond_prise_en_charge']}")
         else:
             steps.append(f"Alors le financement «{financement['nom']}» n'est "
                          "pas proposé")
