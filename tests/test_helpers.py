@@ -70,6 +70,8 @@ def test_fold_name(input, expected):
 @pytest.mark.parametrize('input,expected', [
     ('93031', '11'),  # idf
     ('20000', '94'),  # When consuming postode
+    ('97131', '01'),  # Guadeloupe
+    ('97231', '02'),  # Martinique
     ('blah', False)
 ])
 def test_insee_commune_to_region(input, expected):
@@ -85,7 +87,8 @@ def test_insee_commune_to_region(input, expected):
 @pytest.mark.parametrize('input,expected', [
     ('93031', '93'),  # idf
     ('2A000', '2A'),
-    ('97131', '971'),
+    ('97131', '971'),  # Guadeloupe
+    ('97631', '976'),  # Mayotte
     ('99999', False),
 ])
 def test_insee_commune_to_departement(input, expected):

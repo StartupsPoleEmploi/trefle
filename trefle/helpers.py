@@ -24,7 +24,7 @@ DEP_TO_REG = {
     '78': '11', '79': '75', '80': '32', '81': '76', '82': '76', '83': '93',
     '84': '93', '85': '52', '86': '75', '87': '75', '88': '44', '89': '27',
     '90': '27', '91': '11', '92': '11', '93': '11', '94': '11', '95': '11',
-    '97': '06',
+    '971': '01', '972': '02', '973': '03', '974': '04', '976': '06',
     '20': '94',  # When consuming postcode.
 }
 
@@ -90,7 +90,11 @@ def fold_name(s):
 def insee_commune_to_region(context, from_key, to_key):
     if to_key in context or from_key not in context:
         return
-    dep = context[from_key][:2]
+    chars = 2
+    from_string = context[from_key]
+    if from_string.startswith('97'):  # DROM
+        chars = 3
+    dep = from_string[:chars]
     if dep not in DEP_TO_REG:
         raise DataError(f'Valeur invalide: `{context[from_key]}`', from_key)
     context[to_key] = DEP_TO_REG[dep]
@@ -101,6 +105,6 @@ def insee_commune_to_departement(context, from_key, to_key):
         return
     chars = 2
     from_string = context[from_key]
-    if from_string.startswith('97'):
+    if from_string.startswith('97'):  # DROM
         chars = 3
     context[to_key] = from_string[:chars]
