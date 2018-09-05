@@ -1,7 +1,7 @@
 Si le financement est de type «AIF»
 
     Si la liste des codes FORMACODE de la formation ne contient aucun code parmi [13030,15073,43409,44002,42793]
-    Et le code CERTIFINFO de la formation ne fait pas partie de [54912,84385,87185,87187,87189,83899]
+    Et le code CERTIFINFO de la formation ne fait pas partie de [54912,87185,87187,87189,83899]
     Et la liste des domaines FORMACODE de la formation ne contient pas 150
     Et la durée en mois de la formation n'est pas supérieure à 12, ou ce n'est pas une formation ouverte à distance
     Et ce n'est pas un permis B

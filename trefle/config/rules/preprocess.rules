@@ -6,6 +6,8 @@ Si le code CERTIFINFO de la formation fait partie des codes CERTIFINFO CACES
     Alors c'est une formation CACES
 Si le code CERTIFINFO de la formation fait partie des codes CERTIFINFO BEC
     Alors c'est une formation BEC
+Si le code CERTIFINFO de la formation fait partie des codes CERTIFINFO pour un SPI
+    Alors c'est un stage de préparation à l'installation
 Si le code CERTIFINFO de la formation fait partie des codes CERTIFINFO pour un permis B
     Alors c'est un permis B
 Si le code CERTIFINFO de la formation fait partie des codes CERTIFINFO pour un bilan de compétences

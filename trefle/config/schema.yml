@@ -101,6 +101,12 @@ constante:
       type: integer
     value: [54664]
     label: codes CERTIFINFO pour un permis B
+  codes_spi:
+    type: array
+    items:
+      type: integer
+    value: [84385]
+    label: codes CERTIFINFO pour un SPI
   codes_bilan_de_competences:
     type: array
     items:
@@ -732,6 +738,11 @@ formation:
     type: boolean
     source: catalogue
     label: permis B
+    gender: masculine
+  spi:
+    type: boolean
+    source: catalogue
+    label: stage de préparation à l'installation
     gender: masculine
   certifiante:
     type: boolean

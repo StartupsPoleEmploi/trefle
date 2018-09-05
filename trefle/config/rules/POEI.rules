@@ -11,7 +11,9 @@ Si c'est une demandeur d'emploi
     Et ce n'est pas un contrat de professionnalisation
     Et ce n'est pas un bénéficiaire en situation de création d'entreprise nécessitant cette formation
     Et la liste des codes FORMACODE de la formation ne contient aucun code parmi [13030,50245,50445,50145,50349,50249,13250,31802,44591]
-    Et le code CERTIFINFO de la formation ne fait pas partie de [83899,84385,54664]
+    Et le code CERTIFINFO de la formation ne fait pas partie de [83899]
+    Et ce n'est pas un stage de préparation à l'installation
+    Et ce n'est pas un permis B
     Et la liste des domaines FORMACODE de la formation ne contient aucun code parmi [430,434,440,150], ou la liste des codes FORMACODE de la formation contient 44067
     Et ce n'est pas une formation VAE
     Et ce n'est pas une formation diplômante

@@ -1,5 +1,5 @@
 Si c'est un demandeur d'emploi
-Et le code CERTIFINFO de la formation vaut 84385
+Et c'est un stage de préparation à l'installation
     Alors le financement est éligible
     Et appliquer les règles «AREF-RFPE-RPS»
     Et le texte de la prise en charge vaut «Formation totalement financée si validée par Pôle emploi.»

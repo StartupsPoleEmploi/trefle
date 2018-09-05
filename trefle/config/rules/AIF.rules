@@ -2,7 +2,7 @@ Si c'est un demandeur d'emploi
 Et c'est une formation ouverte aux bénéficiaires individuels
 Et ce n'est pas une préparation opérationnelle à l'emploi collective
 Et la liste des codes FORMACODE de la formation ne contient aucun code parmi [15064,13250,44091]
-Et le code CERTIFINFO de la formation ne fait pas partie de [54664,84385]
+Et ce n'est pas un stage de préparation à l'installation
 Et ce n'est pas un contrat d'apprentissage
 Et ce n'est pas un contrat de professionnalisation
 Et le nombre d'heures en entreprise n'est pas supérieur à 30% de la durée en heures de la formation
