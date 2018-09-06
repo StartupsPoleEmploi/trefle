@@ -44,3 +44,20 @@ Et la région de l'établissement du bénéficiaire fait partie des régions él
 Si c'est une préparation opérationnelle à l'emploi collective
 Ou c'est une préparation opérationnelle à l'emploi individuelle
     Alors c'est une préparation opérationnelle à l'emploi
+Si l'intitulé normé de la formation contient «E2C»
+Ou l'intitulé normé de la formation contient «DEUXIEMECHANCE»
+Ou l'intitulé normé de la formation contient «2ECHANCE»
+Ou l'intitulé normé de la formation contient «2EMECHANCE»
+    Alors c'est une formation E2C
+Si l'intitulé normé de la formation contient «DAEU»
+Ou l'intitulé normé de la formation contient «DIPLOMEDACCESAUXETUDESUNIVERSITAIRES»
+    Alors c'est un diplôme d'accès aux études universitaires
+Si l'intitulé normé de la formation contient «CARED»
+    Alors c'est une formation CARED
+Si l'intitulé normé de la formation contient «PCP»
+Ou l'intitulé normé de la formation contient «SEGMENT»
+Ou l'intitulé normé de la formation contient «ETAPE»
+Ou l'intitulé normé de la formation contient «EXPLORATIONDUPROJETPROFESSIONNEL»
+Ou l'intitulé normé de la formation contient «ELABORATIONDUPROJETPROFESSIONNEL»
+Ou l'intitulé normé de la formation contient «STABILISATIONDUPROJETPROFESSIONNEL»
+    Alors c'est une formation PCP

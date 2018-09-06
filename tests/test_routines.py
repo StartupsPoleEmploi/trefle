@@ -44,6 +44,7 @@ async def test_populate_formation_from_bytes():
         assert context['formation.poec'] is False
         assert context['formation.departement'] == '37'
         assert context['formation.region'] == '24'
+        assert context['formation.siret_organisme'] == 82422814200660
 
 
 @pytest.mark.parametrize('path,key,value', [

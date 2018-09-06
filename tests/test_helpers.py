@@ -59,9 +59,11 @@ def test_isfloat(input, expected):
 
 
 @pytest.mark.parametrize('input,expected', [
-    ('AGEFOS PME', 'agefospme'),
-    ('Agefos PME', 'agefospme'),
-    ('AgéfosPME', 'agefospme'),
+    ('AGEFOS PME', 'AGEFOSPME'),
+    ('Agefos PME', 'AGEFOSPME'),
+    ('AgéfosPME', 'AGEFOSPME'),
+    ('Agéfos-PME', 'AGEFOSPME'),
+    ('Agéfos_PME', 'AGEFOSPME'),
 ])
 def test_fold_name(input, expected):
     assert fold_name(input) == expected

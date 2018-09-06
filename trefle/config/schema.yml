@@ -538,11 +538,14 @@ beneficiaire:
       label: entreprise d'insertion par l'activité économique
 formation:
   intitule:
-    description: title de la la formation
     type: string
     public: true
     label: intitulé de la formation
     xpath: //intitule-formation
+  intitule_norme:
+    description: intitulé de la formation sans accent ni signes diacritiques et tout en minuscules
+    type: string
+    label: intitulé normé de la formation
   numero:
     description: identifiant INTERCARIF de la formation
     type: string
@@ -564,6 +567,14 @@ formation:
     source: catalogue
     label: région de la formation
     enum: *regions
+  siret_organisme:
+    type: integer
+    format: int32
+    public: true
+    source: catalogue
+    xpath: string(//organisme-formation-responsable/SIRET-organisme-formation/SIRET/child::text())
+    label: SIRET de l'organisme de formation
+    gender: masculine
   codes_financeur:
     description: codes des organismes financeurs de la formation
     type: array
@@ -768,6 +779,18 @@ formation:
     type: boolean
     source: catalogue
     label: formation CACES
+  pcp:
+    type: boolean
+    source: catalogue
+    label: formation PCP
+  cared:
+    type: boolean
+    source: catalogue
+    label: formation CARED
+  e2c:
+    type: boolean
+    source: catalogue
+    label: formation E2C
   bec:
     type: boolean
     source: catalogue
@@ -818,6 +841,11 @@ formation:
     type: boolean
     source: catalogue
     label: préparation opérationnelle à l'emploi
+  daeu:
+    type: boolean
+    source: catalogue
+    label: diplôme d'accès aux études universitaires
+    gender: masculine
   rncp:
     type: boolean
     source: catalogue

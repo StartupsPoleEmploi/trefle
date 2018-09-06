@@ -71,3 +71,29 @@ Scénario: POEI avec ARE
     Quand je demande un calcul de financement
     Quand je sélectionne le financement «Formations avant embauche (AFPR, POEI)»
     Alors la rémunération applicable vaut 800
+
+Scénario: Financement exclu pour cause de FORMACODE
+    Soit un bénéficiaire et une formation
+    Et c'est un demandeur d'emploi
+    Et le âge du bénéficiaire vaut 38
+    Et la durée en heures de la formation vaut 120
+    Et l'allocation du bénéficiaire vaut «allocation d'aide au retour à l'emploi»
+    Et la montant de l'allocation du bénéficiaire vaut 800
+    Et la liste des codes FORMACODE de la formation vaut [13030]
+    Et c'est une formation ouverte aux bénéficiaires individuels
+    Quand je demande un calcul de financement
+    Alors le financement «Formations avant embauche (AFPR, POEI)» n'est pas proposé
+
+Scénario: Financement OK avec FORMACODE exclu si bénficiaire en ARA
+    Soit un bénéficiaire et une formation
+    Et c'est un demandeur d'emploi
+    Et le âge du bénéficiaire vaut 38
+    Et la durée en heures de la formation vaut 120
+    Et l'allocation du bénéficiaire vaut «allocation d'aide au retour à l'emploi»
+    Et la montant de l'allocation du bénéficiaire vaut 800.0
+    Et la région du bénéficiaire vaut «Auvergne-Rhône-Alpes»
+    Et la liste des codes FORMACODE de la formation vaut [13030]
+    Et c'est une formation ouverte aux bénéficiaires individuels
+    Quand je demande un calcul de financement
+    Et je sélectionne le financement «Formations avant embauche (AFPR, POEI)»
+    Alors la rémunération applicable vaut 800.0

@@ -1,4 +1,5 @@
 import asyncio
+import re
 from math import ceil
 
 import requests
@@ -27,6 +28,7 @@ DEP_TO_REG = {
     '971': '01', '972': '02', '973': '03', '974': '04', '976': '06',
     '20': '94',  # When consuming postcode.
 }
+NON_ALPHA = re.compile(r"[^0-9a-zA-Z]+")
 
 
 def diff_month(start, end):
@@ -84,7 +86,7 @@ def count_indent(s):
 
 
 def fold_name(s):
-    return unidecode(s).lower().replace(' ', '')
+    return NON_ALPHA.sub('', unidecode(s).upper())
 
 
 def insee_commune_to_region(context, from_key, to_key):

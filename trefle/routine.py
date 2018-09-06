@@ -5,7 +5,7 @@ from lxml import etree
 from .config import (CONSTANTS, ELIGIBILITE_URL, INTERCARIF_URL, ORGANISMES,
                      RULES, SCHEMA)
 from .exceptions import DataError, UpstreamError
-from .helpers import (diff_month, diff_week, http_get,
+from .helpers import (diff_month, diff_week, fold_name, http_get,
                       insee_commune_to_departement, insee_commune_to_region)
 from .rules import Rule
 from .validators import format_naf
@@ -97,6 +97,12 @@ def extrapolate_formation_context(context):
     # financeur collectif).
     if context['formation.codes_financeur'] & {0, 5, 10}:
         context['formation.codes_financeur'].discard(16)
+
+    context['formation.intitule_norme'] = fold_name(
+        context.get('formation.intitule', ''))
+
+    # TODO compute heures-centre from heures-total - heures-entreprise
+    # if missing
 
 
 def preprocess(context):

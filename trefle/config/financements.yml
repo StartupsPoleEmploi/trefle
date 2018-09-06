@@ -99,3 +99,36 @@ Accès aux premiers savoirs - ETAPS:
 ETAQ (Espaces territoriaux à la qualification):
   tags: [DE, région, collectif]
   rules: DE Provence-Alpes-Côte d'Azur
+École de la deuxième chance (E2C):
+  tags: [DE, jeune, E2C]
+  rules: DE Auvergne-Rhône-Alpes
+Action projets individuels (API):
+  tags: [DE, API]
+  rules: DE Auvergne-Rhône-Alpes
+Programme Enseignement supérieur (ESUP):
+  tags: [DE, ESUP]
+  rules: DE Auvergne-Rhône-Alpes
+Contrat d'aide et retour à l'emploi durable (CARED):
+  tags: [DE, CARED]
+  rules: DE Auvergne-Rhône-Alpes
+Contrat d'aide et retour à l'emploi durable collectif:
+  tags: [DE, CARED]
+  rules: DE Auvergne-Rhône-Alpes
+Programmation compétences premières (PCP):
+  tags: [DE, PCP]
+  rules: DE Auvergne-Rhône-Alpes
+Programme régional qualifiant:
+  tags: [DE]
+  rules: DE Auvergne-Rhône-Alpes
+Projets collectifs régionaux:
+  tags: [DE]
+  rules: DE Auvergne-Rhône-Alpes
+Programme régional sanitaire et social:
+  tags: [DE]
+  rules: DE Auvergne-Rhône-Alpes
+Programme régional sanitaire et social - ambulancier:
+  tags: [DE]
+  rules: DE Auvergne-Rhône-Alpes
+Aide à la VAE:
+  tags: [DE, VAE]
+  rules: DE Auvergne-Rhône-Alpes
