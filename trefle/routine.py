@@ -154,27 +154,20 @@ def compute_modalites(context, financement):
     financement['remuneration'] = remuneration
     financement['indemnite_conges_payes'] = indemnite_conges_payes
     financement['heures'] = heures
-    financement['remuneration_texte'] = context.get(
-        'financement.remuneration_texte')
-    financement['prise_en_charge_texte'] = context.get(
-        'financement.prise_en_charge_texte')
-    if 'financement.demarches' in context:
-        financement['demarches'] = context['financement.demarches']
-    financement['demarches'] = financement.get(
-        'demarches', '').replace('⏎', '\n')
-    if 'financement.description' in context:
-        financement['description'] = context['financement.description']
-    financement['rff'] = context.get('financement.rff')
-    if financement['rff']:
+    keys = ['remuneration_texte', 'prise_en_charge_texte', 'demarches', 'rff',
+            'description', 'remuneration_annee_2', 'remuneration_annee_3']
+    for key in keys:
+        name = f'financement.{key}'
+        if name in context:
+            financement[key] = context[name]
+    if financement.get('demarches'):
+        financement['demarches'] = financement['demarches'].replace('⏎', '\n')
+    if financement.get('rff'):
         financement['fin_remuneration'] = context.get(
             'beneficiaire.fin_allocation')
         financement['debut_rff'] = (financement['fin_remuneration']
                                     + timedelta(days=1))
         financement['fin_rff'] = context.get('formation.fin')
-    financement['remuneration_annee_2'] = context.get(
-        'financement.remuneration_annee_2')
-    financement['remuneration_annee_3'] = context.get(
-        'financement.remuneration_annee_3')
 
 
 def check_financement(context, financement):
@@ -191,6 +184,9 @@ def check_financement(context, financement):
         compute_modalites(context, financement)
         load_organisme_contact_details(context, financement)
     financement['eligible'] = context['financement.eligible']
-    # TODO remove non public keys
-    # do not expose this private key
-    del financement['rules']
+    for key in list(financement.keys()):
+        if key == 'organisme':
+            continue  # reference
+        name = f'financement.{key}'
+        if name not in SCHEMA or not SCHEMA[name].get('public'):
+            del financement[key]
