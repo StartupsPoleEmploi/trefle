@@ -131,6 +131,24 @@ constante:
       type: integer
     value: [84168]
     label: codes CERTIFINFO TOEIC
+  codes_toefl:
+    type: array
+    items:
+      type: integer
+    value: [84167]
+    label: codes CERTIFINFO TOEFL
+  codes_fimo:
+    type: array
+    items:
+      type: integer
+    value: [31826]
+    label: codes FORMACODE FIMO
+  codes_tosa:
+    type: array
+    items:
+      type: integer
+    value: [84517]
+    label: codes CERTIFINFO TOSA
   codes_caces:
     type: array
     items:
@@ -538,6 +556,14 @@ formation:
     source: catalogue
     label: département de la formation
     enum: *departements
+  region:
+    description: code INSEE du département où se passe la formation
+    type: string
+    public: true
+    xpath: string((//lieu-de-formation[1]/coordonnees/adresse/region)[1])
+    source: catalogue
+    label: région de la formation
+    enum: *regions
   codes_financeur:
     description: codes des organismes financeurs de la formation
     type: array
@@ -717,6 +743,18 @@ formation:
     type: boolean
     source: catalogue
     label: formation TOEIC
+  toefl:
+    type: boolean
+    source: catalogue
+    label: formation TOEFL
+  tosa:
+    type: boolean
+    source: catalogue
+    label: formation TOSA
+  fimo:
+    type: boolean
+    source: catalogue
+    label: formation FIMO
   bulats:
     type: boolean
     source: catalogue

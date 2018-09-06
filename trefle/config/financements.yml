@@ -61,7 +61,7 @@ Financement individuel Agefiph:
   tags: [Agefiph, DE]
   rules: Agefiph
 Fonds d'aide aux jeunes:
-  tags: [FAJ, DE]
+  tags: [FAJ, DE, jeune]
   rules: FAJ
 Action de formation collective financée par la région:
   tags: [DE, région, collectif]
@@ -78,3 +78,8 @@ Action de formation collective financée par le conseil départemental:
 Action de formation collective financée par l'État:
   tags: [DE, État, collectif]
   rules: action collective
+Chèque formation:
+  tags: [DE, région, individuel]
+  rules: DE Bretagne
+  ressources:
+  - https://www.seformerenbretagne.fr

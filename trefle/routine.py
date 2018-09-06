@@ -173,6 +173,7 @@ def compute_modalites(context, financement):
 def check_financement(context, financement):
     statuses = []
     financement['status'] = []
+    context['financement.nom'] = financement['nom']
     context['financement.tags'] = financement['tags']
     context['financement.eligible'] = False
     for rule in RULES[f'rules/{financement["rules"]}.rules']:

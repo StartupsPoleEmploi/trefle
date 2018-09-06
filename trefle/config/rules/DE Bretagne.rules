@@ -1,0 +1,25 @@
+Si le nom du financement est «Chèque formation»
+
+    Si la région du bénéficiaire est «Bretagne»
+    Et la région de la formation est «Bretagne»
+    Et ce n'est pas une formation CACES
+    Et ce n'est pas une formation BULATS
+    Et ce n'est pas une formation TOEIC
+    Et ce n'est pas une formation TOEFL
+    Et ce n'est pas une formation TOSA
+    Et ce n'est pas une formation FIMO
+    Et la liste des codes FORMACODE de la formation ne contient aucun code parmi [24049,13250,31815,43448,43092,43439,43436,43441,43497,44038,44092,44008,44028,44084,44050]
+    Et ce n'est pas un contrat d'apprentissage
+    Et ce n'est pas un contrat de professionnalisation
+    Et c'est une formation ouverte aux bénéficiaires individuels
+    Et le code CERTIFINFO de la formation ne fait pas partie de [87185,87187,87189]
+    Et c'est un demandeur d'emploi
+        Alors le financement est éligible
+        Et le plafond financier applicable vaut 3050
+        Et le texte des démarches vaut «Contactez votre conseiller emploi. Votre projet de formation doit être validé par une prestation de bilan ou de validation de projet. Si votre conseiller estime que le projet est cohérent, cette prestation n'est pas nécessaire.⏎Pour les formations éligibles au compte personnel de formation (CPF), son utilisation sera demandée en déduction ou en complément du Chèque Formation.⏎Vous devez justifier d'une résidence en Bretagne depuis au moins 6 mois à la date d'entrée en formation.»
+        Et le texte de description vaut «Cette aide vous permet d'accéder à des formations dès lors qu'elle est sanctionnée par un diplôme ou un titre inscrit au RNCP et/ou éligible au CPF.⏎Les formations longues, jusqu'à trois ans, peuvent être financées. L'engagement de la Région est alors subordonné à la production d'une attestation de passage en année supérieure, accompagnée d'un dossier de demande et d'un devis actualisé.⏎Les formations peuvent se dérouler à distance, avec des périodes de regroupement auprès de l'établissement.⏎Les formations doivent se dérouler en Bretagne, sauf si la formation envisagée n'y existe pas.»
+        Et le texte de la prise en charge vaut «Formation totalement financée dans la limite de 3050 €.⏎Pour les formations éligibles au CPF dont le coût est inférieur à 3050 €, le montant de votre CPF est inclus dans l'aide du Conseil régional. Si le coût est supérieur à 3050 €, le montant de votre CPF s'ajoute à l'aide du Conseil régional.»
+
+        Si c'est un travailleur handicapé
+            Alors le plafond financier applicable vaut 9150
+            Et le texte de la prise en charge vaut «Formation totalement financée dans la limite de 9150 €»

@@ -1,3 +1,9 @@
+Si la liste des codes FORMACODE de la formation contient au moins un des codes FORMACODE FIMO
+    Alors c'est une formation FIMO
+Si le code CERTIFINFO de la formation fait partie des codes CERTIFINFO TOSA
+    Alors c'est une formation TOSA
+Si le code CERTIFINFO de la formation fait partie des codes CERTIFINFO TOEFL
+    Alors c'est une formation TOEFL
 Si le code CERTIFINFO de la formation fait partie des codes CERTIFINFO TOEIC
     Alors c'est une formation TOEIC
 Si le code CERTIFINFO de la formation fait partie des codes CERTIFINFO BULATS
