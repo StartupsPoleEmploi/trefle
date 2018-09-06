@@ -583,6 +583,11 @@ formation:
     source: catalogue
     xpath: boolean(//extras[@info="eligibilite-cpf"]/extra[@info="france-entiere"][text()="1"]/../extra[@info="inter-branche"][text()="1"])
     label: formation éligible COPANEF
+  eligible_coparef:
+    description: cette formation est au catalogue COPAREF
+    type: boolean
+    source: catalogue
+    label: formation éligible COPAREF de la région du bénéficiaire
   regions_coparef:
     description: régions d'éligibilité si COPAREF dans les listes_eligibilite_cpf
     type: array

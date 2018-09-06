@@ -36,6 +36,11 @@ Si le niveau de sortie de la formation fait partie de [«I»,«II»,«III»,«IV
     Alors c'est une formation diplômante
 Si c'est un demandeur d'emploi
     Alors appliquer les règles «éligibilité RFF»
+    Si la région du bénéficiaire fait partie des régions éligibles COPAREF
+        Alors c'est une formation éligible COPAREF de la région du bénéficiaire
+Si c'est un bénéficiaire de droit privé
+Et la région de l'établissement du bénéficiaire fait partie des régions éligibles COPAREF
+    Alors c'est une formation éligible COPAREF de la région du bénéficiaire
 Si c'est une préparation opérationnelle à l'emploi collective
 Ou c'est une préparation opérationnelle à l'emploi individuelle
     Alors c'est une préparation opérationnelle à l'emploi
