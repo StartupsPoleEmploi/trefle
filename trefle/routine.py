@@ -178,7 +178,7 @@ def check_financement(context, financement):
     context['financement.eligible'] = False
     for rule in RULES[f'rules/{financement["rules"]}.rules']:
         status = Rule.process(rule, context)
-        if status is not None:  # Root is a no_status condition.
+        if status is not None:  # Root is a private condition.
             statuses.append(status)
     financement['status'] = statuses
     if context['financement.eligible']:

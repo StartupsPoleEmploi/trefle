@@ -77,7 +77,7 @@ def condition(pattern):
 
     def wrapper(func):
         func.reason = None
-        func.no_status = False
+        func.private = False
         Condition.register(pattern, func)
         return func
 
@@ -93,9 +93,9 @@ def reason(msg):
     return wrapper
 
 
-def no_status(func):
+def private(func):
     # Make this condition not visible for final status output.
-    func.no_status = True
+    func.private = True
     return func
 
 
@@ -283,8 +283,8 @@ class Condition(Step):
         return status
 
     @property
-    def no_status(self):
-        return self.func and self.func.no_status
+    def private(self):
+        return self.func and self.func.private
 
 
 Line = namedtuple('Line', ['index', 'indent', 'keyword', 'sentence'])
@@ -308,7 +308,7 @@ class Rule:
             condition = self.root
         status = condition.assess(context)
         overall = overall and status
-        if status.condition.no_status:
+        if status.condition.private:
             if status:
                 status = parent  # Hide from output.
             else:
@@ -321,7 +321,10 @@ class Rule:
             if overall:
                 action.act(context, status)
         for child in condition.children:
-            self.assess(context, child, status, overall)
+            child_status = self.assess(context, child, status, overall)
+            # We have skipped a private parent, let's elect child as new root.
+            if status is None:
+                status = child_status
         return status
 
     @staticmethod

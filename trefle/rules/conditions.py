@@ -1,4 +1,4 @@
-from .core import condition, no_status, reason
+from .core import condition, private, reason
 from ..helpers import diff_month
 
 
@@ -20,18 +20,22 @@ def check_none(context, key):
     return key.value in (None, '')
 
 
-@no_status
-@reason("le financement n'est pas de type «{tag}»")
+@private
 @condition(r"le financement est de type (?P<tag>.+)")
-def check_type(context, tag):
+def check_financement_type(context, tag):
     return tag.value in context['financement.tags']
 
 
-@no_status
-@reason("le financement est de type «{tag}»")
+@private
 @condition(r"le financement n'est pas de type (?P<tag>.+)")
-def check_not_type(context, tag):
+def check_financement_not_type(context, tag):
     return tag.value not in context['financement.tags']
+
+
+@private
+@condition(r"le nom du financement est (?P<name>.+)")
+def check_financement_name(context, name):
+    return context['financement.nom'] == name.value
 
 
 @reason("{start.pointer.raw} trop ancien par rapport à {end.pointer.raw}")
