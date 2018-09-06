@@ -16,6 +16,7 @@ Si le financement est de type «CPF»
         Alors le prix horaire plafond applicable vaut 18
 
 Si le financement est de type «période de professionnalisation»
+Ou le financement est de type «plan de formation»
 
     Si c'est une formation CléA
         Alors le financement est éligible
