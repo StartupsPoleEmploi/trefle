@@ -42,3 +42,15 @@ Et c'est un demandeur d'emploi
             Et le texte des démarches vaut «Contacter l'organisme de formation qui vous fournira les codes d'accès au site de demande de bourse ainsi que les dates d'ouverture des inscriptions selon la formation choisie.»
             Et le texte de description vaut «Ces formations sont du ressort exclusif du Conseil Régional de Bretagne. Celui-ci détermine les quotas de place, délivre les agréments au centre de formation.⏎L'entrée dans ces formations est conditionnée par la réussite à des concours spécifiques ou à des examens de sélection»
             Et le texte de la prise en charge vaut «Prise en charge des frais pédagogiques par la Région dans la limite des places agréées par la Région.»
+
+    Si le nom du financement est «Programme Bretagne Formation»
+
+        Si les codes financeur de la formation contiennent «Conseil régional»
+        Et le niveau de sortie de la formation ne fait pas partie de [«I»,«II»,«V bis»,«VI»]
+        Et la liste des codes FORMACODE de la formation ne contient aucun code parmi [31815,43448,43092,43439,43436,43441,43497,44038,44092,44008,44028,44084,44050]
+        Et le code CERTIFINFO de la formation ne fait pas partie de [87185,87187,87189]
+            Alors le financement est éligible
+            Et appliquer les règles «AREF-RFPE-RPS»
+            Et le texte des démarches vaut «Vous devez être inscrit à Pôle emploi et conctacter votre conseiller référent Pôle emploi car c'est lui qui validera votre projet. En effet, votre besoin de formation doit avoir été identifié dans un plan de sécurisation et être en cohérence avec votre projet professionnel. Votre conseiller peut vous inviter à assister à une information collective. Vous pouvez également contacter directement les organismes de formation.»
+            Et le texte de description vaut «La région finance des formations certifiantes (diplômantes) correspondant à des qualifications professionnelles de niveau V à III, recherchées sur l'ensemble du territoire breton (BP, BPJEPS, Titre Professionnel, CAP, BAC Pro, Bepecaser, Brevet, Brevet Professionnel, BTS, Diplôme Universitaire, CQP).»
+            Et le texte de la prise en charge vaut «Formation totalement financée (pour les formations de niveau III une participation maximum de 200 € peut être demandée).»
