@@ -20,7 +20,7 @@ Et c'est un demandeur d'emploi
             Et le plafond financier applicable vaut 3050
             Et le texte des démarches vaut «Contactez votre conseiller emploi. Votre projet de formation doit être validé par une prestation de bilan ou de validation de projet. Si votre conseiller estime que le projet est cohérent, cette prestation n'est pas nécessaire.⏎Pour les formations éligibles au compte personnel de formation (CPF), son utilisation sera demandée en déduction ou en complément du Chèque Formation.⏎Vous devez justifier d'une résidence en Bretagne depuis au moins 6 mois à la date d'entrée en formation.»
             Et le texte de description vaut «Cette aide vous permet d'accéder à des formations dès lors qu'elle est sanctionnée par un diplôme ou un titre inscrit au RNCP et/ou éligible au CPF.⏎Les formations longues, jusqu'à trois ans, peuvent être financées. L'engagement de la Région est alors subordonné à la production d'une attestation de passage en année supérieure, accompagnée d'un dossier de demande et d'un devis actualisé.⏎Les formations peuvent se dérouler à distance, avec des périodes de regroupement auprès de l'établissement.⏎Les formations doivent se dérouler en Bretagne, sauf si la formation envisagée n'y existe pas.»
-            Et le texte de la prise en charge vaut «Formation totalement financée dans la limite de 3050 €.⏎Pour les formations éligibles au CPF dont le coût est inférieur à 3050 €, le montant de votre CPF est inclus dans l'aide du Conseil régional. Si le coût est supérieur à 3050 €, le montant de votre CPF s'ajoute à l'aide du Conseil régional.»
+            Et le texte de la prise en charge vaut «Formation totalement financée dans la limite de 3050 €.⏎Pour les formations éligibles au CPF dont le coût est inférieur à 3050 €, le montant de votre CPF est inclus dans l'aide du Conseil Régional. Si le coût est supérieur à 3050 €, le montant de votre CPF s'ajoute à l'aide du Conseil Régional.»
 
             Si le niveau scolaire du bénéficiaire fait partie de [«IV»,«V»,«V bis»,«VI»]
                 Alors le plafond financier applicable vaut 4500
@@ -30,7 +30,7 @@ Et c'est un demandeur d'emploi
                 Et le texte de la prise en charge vaut «Formation totalement financée dans la limite de 9150 €»
 
             Si le niveau de sortie de la formation ne fait pas partie de [«IV»,«V»,«V bis»,«VI»]
-                Et le texte des démarches vaut «Attention, pour obtenir une aide pour les formations de niveau supérieur à bac + 2, vous devrez justifier de 2 ans d’activité professionnelle.⏎Contactez votre conseiller emploi. Votre projet de formation doit être validé par une prestation de bilan ou de validation de projet. Si votre conseiller estime que le projet est cohérent, cette prestation n'est pas nécessaire.⏎Pour les formations éligibles au compte personnel de formation (CPF), son utilisation sera demandée en déduction ou en complément du Chèque Formation.⏎Vous devez justifier d'une résidence en Bretagne depuis au moins 6 mois à la date d'entrée en formation.»
+                Alors le texte des démarches vaut «Attention, pour obtenir une aide pour les formations de niveau supérieur à bac + 2, vous devrez justifier de 2 ans d’activité professionnelle.⏎Contactez votre conseiller emploi. Votre projet de formation doit être validé par une prestation de bilan ou de validation de projet. Si votre conseiller estime que le projet est cohérent, cette prestation n'est pas nécessaire.⏎Pour les formations éligibles au compte personnel de formation (CPF), son utilisation sera demandée en déduction ou en complément du Chèque Formation.⏎Vous devez justifier d'une résidence en Bretagne depuis au moins 6 mois à la date d'entrée en formation.»
 
 
     Si le nom du financement est «Formations du domaine sanitaire et social»
@@ -40,6 +40,5 @@ Et c'est un demandeur d'emploi
             Alors le financement est éligible
             Et appliquer les règles «AREF»
             Et le texte des démarches vaut «Contacter l'organisme de formation qui vous fournira les codes d'accès au site de demande de bourse ainsi que les dates d'ouverture des inscriptions selon la formation choisie.»
-            Et le texte de description vaut «Ces formations sont du ressort exclusif du Conseil Régional de Bretagne. Celui-ci détermine les quotas de place, délivre les agréments au centre de formation.⏎L'entrée dans ces formations est conditionnée par la réussite à des concours spécifiques ou à des examents de sélection»
+            Et le texte de description vaut «Ces formations sont du ressort exclusif du Conseil Régional de Bretagne. Celui-ci détermine les quotas de place, délivre les agréments au centre de formation.⏎L'entrée dans ces formations est conditionnée par la réussite à des concours spécifiques ou à des examens de sélection»
             Et le texte de la prise en charge vaut «Prise en charge des frais pédagogiques par la Région dans la limite des places agréées par la Région.»
-
