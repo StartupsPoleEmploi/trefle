@@ -865,6 +865,9 @@ formation:
     xpath: boolean(//extras[@info="dispositif"]/extra[@info="contrat-professionnalisation"][text()="1"])
     label: contrat de professionnalisation
     gender: masculine
+  developpement_professionnel:
+    type: boolean
+    label: formation en développement professionnel
   niveau_sortie:
     description: le niveau du diplôme de sortie (licence, master…)
     type: integer

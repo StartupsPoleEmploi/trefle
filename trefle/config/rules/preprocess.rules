@@ -23,6 +23,8 @@ Si la liste des codes CPF de la formation contient au moins un des codes CPF Cl√
 Si la liste des codes CPF de la formation contient au moins un des codes CPF VAE
 Ou le code CERTIFINFO de la formation vaut 83899
     Alors c'est une formation VAE
+Si la liste des domaines FORMACODE de la formation contient 150
+    Alors c'est une formation en d√©veloppement professionnel
 # http://lheo.gouv.fr/langage#dict-AIS
 Si le code AIS de la formation fait partie des codes AIS certifiants
     Alors c'est une formation certifiante

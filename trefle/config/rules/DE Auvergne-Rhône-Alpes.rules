@@ -3,8 +3,7 @@ Si le financement est de type «AIF»
     Si la liste des codes FORMACODE de la formation ne contient aucun code parmi [31802,31805,31847,31827,31833,43409,43436,43339,43441,43448,43454,44004,44028,44054,15064,44591]
     Et le code CERTIFINFO de la formation ne fait pas partie de [54912,87185,87187,87189]
     Et ce n'est pas une formation VAE
-    # TODO Add an enum for domaines FORMACODE
-    Et la liste des domaines FORMACODE de la formation ne contient pas 150
+    Et ce n'est pas une formation en développement professionnel
     Et la durée en mois de la formation n'est pas supérieure à 12
     Et la liste des codes CPF de la formation ne contient pas 201
         Alors le financement est éligible
@@ -151,7 +150,7 @@ Et la région de la formation est «Auvergne-Rhône-Alpes»
         Et le nombre d'heures en centre n'est pas supérieur à 800
         Et c'est une formation certifiante
         Et la liste des codes FORMACODE de la formation ne contient aucun code parmi [13250,31802,31805,31847,31827,31833,43409,43436,43339,43441,43448,43454,44004,44028,44054,44591,44591,43448,43436,43441,31815,43454,44004,44028,44054]
-        Et la liste des domaines FORMACODE de la formation ne contient pas 150
+        Et ce n'est pas une formation en développement professionnel
         Et le code CERTIFINFO de la formation ne fait pas partie de [54912,84385,87185,87187,87189]
         Et ce n'est pas une formation VAE
             Alors le financement est éligible
