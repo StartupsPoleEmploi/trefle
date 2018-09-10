@@ -46,7 +46,7 @@ Scénario: est salarié OPCAIM période de professionnalisation FORMACODE 316 ce
     Et le âge du bénéficiaire vaut 28
     Et la région de l'établissement du bénéficiaire vaut «Île-de-France»
     Et la département de la formation vaut «Isère»
-    Et les codes financeur de la formation vaut [10]
+    Et les codes financeur de la formation valent [10]
     Et c'est une formation éligible COPANEF
     Et la liste des codes ROME de la formation vaut [I1302,I1304]
     Et la liste des codes FORMACODE de la formation vaut [31624]

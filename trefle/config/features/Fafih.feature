@@ -254,7 +254,7 @@ Scénario: période de professionnalisation FAFIH - formation partiellement cert
     Et le code INSEE de la commune de l'établissement du bénéficiaire vaut «95210»
     Et le âge du bénéficiaire vaut 31
     Et la région de l'établissement du bénéficiaire vaut «Île-de-France»
-    Et les codes financeur de la formation vaut [10]
+    Et les codes financeur de la formation valent [10]
     Et c'est une formation éligible COPANEF
     Et la liste des codes FORMACODE de la formation vaut [42797]
     Et la liste des domaines FORMACODE de la formation vaut [427]

@@ -135,7 +135,6 @@ Scénario: cas nominal financement CARED
     Et le âge du bénéficiaire vaut 22
     Et la durée en heures de la formation vaut 120
     Et la région du bénéficiaire vaut «Auvergne-Rhône-Alpes»
-    Et la formation éligible COPAREF de la région du bénéficiaire vaut «True»
     Et la région de la formation vaut «Auvergne-Rhône-Alpes»
     Et c'est une formation certifiante
     Et c'est une bénéficiaire ayant un contrat aidé en cours
@@ -150,7 +149,6 @@ Scénario: Mauvais FORMACODE pour CARED
     Et le âge du bénéficiaire vaut 22
     Et la durée en heures de la formation vaut 120
     Et la région du bénéficiaire vaut «Auvergne-Rhône-Alpes»
-    Et la formation éligible COPAREF de la région du bénéficiaire vaut «True»
     Et la région de la formation vaut «Auvergne-Rhône-Alpes»
     Et c'est une formation certifiante
     Et c'est une bénéficiaire ayant un contrat aidé en cours
@@ -165,7 +163,6 @@ Scénario: Durée en centre trop longue pour CARED
     Et le âge du bénéficiaire vaut 22
     Et la durée en heures de la formation vaut 120
     Et la région du bénéficiaire vaut «Auvergne-Rhône-Alpes»
-    Et la formation éligible COPAREF de la région du bénéficiaire vaut «True»
     Et la région de la formation vaut «Auvergne-Rhône-Alpes»
     Et c'est une formation certifiante
     Et c'est une bénéficiaire ayant un contrat aidé en cours
@@ -197,7 +194,7 @@ Scénario: cas nominal finacement PCP
     Et la département du bénéficiaire vaut «Drôme»
     Et la département de la formation vaut «Drôme»
     Et c'est une formation PCP
-    Et les codes financeur de la formation vaut [«Conseil régional»]
+    Et les codes financeur de la formation valent [«Conseil régional»]
     Quand je demande un calcul de financement
     Quand je sélectionne le financement «Programmation compétences premières (PCP)»
     Alors la rémunération applicable vaut 401.09
@@ -213,7 +210,7 @@ Scénario: financement PCP sur FORMACODE
     Et la département du bénéficiaire vaut «Drôme»
     Et la département de la formation vaut «Drôme»
     Et la liste des codes FORMACODE de la formation vaut [15061]
-    Et les codes financeur de la formation vaut [«Conseil régional»]
+    Et les codes financeur de la formation valent [«Conseil régional»]
     Quand je demande un calcul de financement
     Quand je sélectionne le financement «Programmation compétences premières (PCP)»
     Alors la rémunération applicable vaut 401.09
@@ -228,7 +225,7 @@ Scénario: PCP impossible pour département hors ex Rhône-Alpes
     Et la département du bénéficiaire vaut «Cantal»
     Et la département de la formation vaut «Drôme»
     Et la liste des codes FORMACODE de la formation vaut [15061]
-    Et les codes financeur de la formation vaut [«Conseil régional»]
+    Et les codes financeur de la formation valent [«Conseil régional»]
     Quand je demande un calcul de financement
     Alors le financement «Programmation compétences premières (PCP)» n'est pas proposé
 
@@ -242,7 +239,7 @@ Scénario: financement PCP avec intitulé PCP
     Et la département du bénéficiaire vaut «Drôme»
     Et la département de la formation vaut «Drôme»
     Et l'intitulé normé de la formation vaut «PCP»
-    Et les codes financeur de la formation vaut [«Conseil régional»]
+    Et les codes financeur de la formation valent [«Conseil régional»]
     Quand je demande un calcul de financement
     Quand je sélectionne le financement «Programmation compétences premières (PCP)»
     Alors la rémunération applicable vaut 401.09
@@ -257,7 +254,7 @@ Scénario: Mauvais label pour financement PCP
     Et la département du bénéficiaire vaut «Drôme»
     Et la département de la formation vaut «Drôme»
     Et l'intitulé normé de la formation vaut «PCD»
-    Et les codes financeur de la formation vaut [«Conseil régional»]
+    Et les codes financeur de la formation valent [«Conseil régional»]
     Quand je demande un calcul de financement
     Alors le financement «Programmation compétences premières (PCP)» n'est pas proposé
 
@@ -268,7 +265,7 @@ Scénario: cas nominal "programme régional qualifiant"
     Et la durée en heures de la formation vaut 120
     Et la région de la formation vaut «Auvergne-Rhône-Alpes»
     Et la région du bénéficiaire vaut «Auvergne-Rhône-Alpes»
-    Et les codes financeur de la formation vaut [«Conseil régional»]
+    Et les codes financeur de la formation valent [«Conseil régional»]
     Quand je demande un calcul de financement
     Et je sélectionne le financement «Programme régional qualifiant»
     Alors la rémunération applicable vaut 401.09
@@ -291,7 +288,7 @@ Scénario: Pas de financement "programme régional qualifiant" pour une formatio
     Et la durée en heures de la formation vaut 120
     Et la région de la formation vaut «Auvergne-Rhône-Alpes»
     Et la région du bénéficiaire vaut «Auvergne-Rhône-Alpes»
-    Et les codes financeur de la formation vaut [2]
+    Et les codes financeur de la formation valent [«Conseil régional»]
     Et c'est une formation CARED
     Et le prix horaire de la formation vaut 0.0
     Quand je demande un calcul de financement
@@ -304,7 +301,7 @@ Scénario: cas nominal financement «projets collectifs régionaux»
     Et la durée en heures de la formation vaut 120
     Et la région de la formation vaut «Auvergne-Rhône-Alpes»
     Et la région du bénéficiaire vaut «Auvergne-Rhône-Alpes»
-    Et les codes financeur de la formation vaut [2]
+    Et les codes financeur de la formation valent [«Conseil régional»]
     Et la département de la formation vaut «Allier»
     Et la liste des codes FORMACODE de la formation vaut [15031]
     Quand je demande un calcul de financement
@@ -318,7 +315,7 @@ Scénario: financement «projets collectifs régionaux» pas possible si la form
     Et la durée en heures de la formation vaut 120
     Et la région de la formation vaut «Auvergne-Rhône-Alpes»
     Et la région du bénéficiaire vaut «Auvergne-Rhône-Alpes»
-    Et les codes financeur de la formation vaut [2]
+    Et les codes financeur de la formation valent [«Conseil régional»]
     Et la département de la formation vaut «Rhône»
     Et la liste des codes FORMACODE de la formation vaut [15031]
     Quand je demande un calcul de financement
@@ -332,7 +329,7 @@ Scénario: financement «projets collectifs régionaux» pas possible si le bén
     Et la durée en heures de la formation vaut 120
     Et la région de la formation vaut «Auvergne-Rhône-Alpes»
     Et la région du bénéficiaire vaut «Auvergne-Rhône-Alpes»
-    Et les codes financeur de la formation vaut [2]
+    Et les codes financeur de la formation valent [«Conseil régional»]
     Et la département de la formation vaut «Allier»
     Et la liste des codes FORMACODE de la formation vaut [15031]
     Et le niveau scolaire du bénéficiaire vaut «II»
@@ -346,7 +343,7 @@ Scénario: "programme sanitaire et social" dans le Cantal
     Et la durée en heures de la formation vaut 120
     Et la région de la formation vaut «Auvergne-Rhône-Alpes»
     Et la région du bénéficiaire vaut «Auvergne-Rhône-Alpes»
-    Et les codes financeur de la formation vaut [2]
+    Et les codes financeur de la formation valent [«Conseil régional»]
     Et la département de la formation vaut «Cantal»
     Et la liste des codes FORMACODE de la formation vaut [43092]
     Quand je demande un calcul de financement
@@ -360,7 +357,7 @@ Scénario: "programme sanitaire et social" sur SIRET
     Et le âge du bénéficiaire vaut 38
     Et la durée en heures de la formation vaut 120
     Et la région de la formation vaut «Auvergne-Rhône-Alpes»
-    Et les codes financeur de la formation vaut [2]
+    Et les codes financeur de la formation valent [«Conseil régional»]
     Et la liste des codes FORMACODE de la formation vaut [44028]
     Et le SIRET de l'organisme de formation vaut 19730016300049
     Quand je demande un calcul de financement
@@ -375,7 +372,7 @@ Scénario: "Programme régional sanitaire et social - ambulancier" dans la Drôm
     Et la durée en heures de la formation vaut 120
     Et la région de la formation vaut «Auvergne-Rhône-Alpes»
     Et la région du bénéficiaire vaut «Auvergne-Rhône-Alpes»
-    Et les codes financeur de la formation vaut [2]
+    Et les codes financeur de la formation valent [«Conseil régional»]
     Et la département de la formation vaut «Drôme»
     Et la liste des codes FORMACODE de la formation vaut [31815]
     Et le prix horaire de la formation vaut 0.0
@@ -391,7 +388,7 @@ Scénario: "Programme régional sanitaire et social - ambulancier" dans la Drôm
     Et la durée en heures de la formation vaut 120
     Et la région de la formation vaut «Auvergne-Rhône-Alpes»
     Et la région du bénéficiaire vaut «Auvergne-Rhône-Alpes»
-    Et les codes financeur de la formation vaut [2]
+    Et les codes financeur de la formation valent [«Conseil régional»]
     Et la département de la formation vaut «Cantal»
     Et la liste des codes FORMACODE de la formation vaut [31815]
     Et le prix horaire de la formation vaut 0.0

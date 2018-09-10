@@ -56,7 +56,7 @@ Scénario: Financement POEC
     Et le âge du bénéficiaire vaut 45
     Et la région du bénéficiaire vaut «Normandie»
     Et la département de la formation vaut «Manche»
-    Et les codes financeur de la formation vaut [16]
+    Et les codes financeur de la formation valent [16]
     Et c'est une formation éligible COPANEF
     Et la régions éligibles COPAREF vaut [25]
     Et la liste des codes ROME de la formation vaut [H3404]

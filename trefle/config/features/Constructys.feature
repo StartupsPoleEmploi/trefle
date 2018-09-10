@@ -69,7 +69,7 @@ Scénario: Période de professionnalisation réservée par une collectivité ter
     Et le âge du bénéficiaire vaut 28
     Et c'est une formation CléA
     Et la région de l'établissement du bénéficiaire vaut «Provence-Alpes-Côte d'Azur»
-    Et les codes financeur de la formation vaut [2]
+    Et les codes financeur de la formation valent [«Conseil régional»]
     Et ce n'est pas une formation éligible COPANEF
     Et la liste des codes FORMACODE de la formation vaut [15030,15040,15041]
     Et la liste des domaines FORMACODE de la formation vaut [150]

@@ -49,7 +49,7 @@ Scénario: Formation CPF réservée
     Et le code NAF de l'établissement du bénéficiaire vaut «9499Z»
     Et l'IDCC de l'établissement du bénéficiaire vaut «1406»
     Et la région de l'établissement du bénéficiaire vaut «Centre-Val de Loire»
-    Et les codes financeur de la formation vaut [4,5,10,16,17]
+    Et les codes financeur de la formation valent [4,5,10,16,17]
     Et c'est une formation éligible COPANEF
     Et c'est une formation éligible région «Pays de la Loire»
     Et la régions éligibles COPAREF vaut [52]

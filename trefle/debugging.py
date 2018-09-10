@@ -134,14 +134,18 @@ def make_scenario(data, financements, name='Donne-moi un nom'):
                 steps.append(f"Et ce n'est pas {article} {label}")
         else:
             if isinstance(value, (list, tuple, set)):
+                enum = schema.get('items', {}).get('enum')
+                if enum:
+                    value = [f'«{enum[v]}»' for v in value]
                 value = '[' + ','.join(str(v) for v in value) + ']'
             article = 'le ' if schema.get('gender') == 'masculine' else 'la '
             if schema.get('number') == 'plural':
                 article = 'les '
             elif label[0].lower() in 'aeiouy':
                 article = "l'"
+            verb = 'valent' if schema.get('number') == 'plural' else 'vaut'
             # Et le code CPF de la formation vaut 200
-            steps.append(f"Et {article}{label} vaut {value}")
+            steps.append(f"Et {article}{label} {verb} {value}")
 
     steps.append("Quand je demande un calcul de financement")
     for financement in financements:

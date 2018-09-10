@@ -185,7 +185,7 @@ Scénario: pas de financement pour une formation réservée Pôle Emploi
     Et le code NAF de l'établissement du bénéficiaire vaut «8891A»
     Et l'IDCC de l'établissement du bénéficiaire vaut «2395»
     Et la région de l'établissement du bénéficiaire vaut «Provence-Alpes-Côte d'Azur»
-    Et les codes financeur de la formation vaut [4]
+    Et les codes financeur de la formation valent [«Pôle emploi»]
     Et ce n'est pas une formation éligible COPANEF
     Et c'est une formation éligible région «Provence-Alpes-Côte d'Azur»
     Et la régions éligibles COPAREF vaut [93]
