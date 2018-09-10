@@ -66,6 +66,6 @@ def after_step(context, step):
     if step.status == "failed":
         print('Data was:')
         print(json.dumps(context.data))
-        if context.result:
+        if getattr(context, 'result', None):
             print('Result was:')
             print(context.result)
