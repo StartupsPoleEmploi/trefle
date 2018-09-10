@@ -7,6 +7,7 @@ Scénario: financement région pour un bénéficiaire sans allocation ayant plus
     Et le âge du bénéficiaire vaut 30
     Et la durée en heures de la formation vaut 120
     Et les codes financeur de la formation valent [«Conseil régional»]
+    Et la région de la formation vaut «Guyane»
     Quand je demande un calcul de financement
     Quand je sélectionne le financement «Action de formation collective financée par la région»
     # FIXME: d'après Armelle, 652.02
@@ -21,9 +22,21 @@ Scénario: financement région pour bénéficiaire avec ARE
     Et les codes financeur de la formation valent [«Conseil régional»]
     Et le montant de l'allocation du bénéficiaire vaut 800
     Et l'allocation du bénéficiaire vaut «allocation d'aide au retour à l'emploi»
+    Et la région de la formation vaut «Guyane»
     Quand je demande un calcul de financement
     Et je sélectionne le financement «Action de formation collective financée par la région»
     Alors la rémunération applicable vaut 800
+
+
+Scénario: financement région pour un bénéficiaire exclu pour mauvaise région
+    Soit un bénéficiaire et une formation
+    Et c'est un demandeur d'emploi
+    Et le âge du bénéficiaire vaut 30
+    Et la durée en heures de la formation vaut 120
+    Et les codes financeur de la formation valent [«Conseil régional»]
+    Et la région du bénéficiaire vaut «Bretagne»
+    Quand je demande un calcul de financement
+    Alors le financement «Action de formation collective financée par la région» n'est pas proposé
 
 
 Scénario: financement PE pour un bénéficiaire de 18 ans sans allocation

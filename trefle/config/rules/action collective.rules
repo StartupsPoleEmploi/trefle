@@ -5,7 +5,7 @@ Et ce n'est pas un contrat d'apprentissage
     Si le financement est de type «région»
 
         Si les codes financeur de la formation contiennent «Conseil régional»
-        # TODO Et la région de la formation fait partie de [«Guyane»,«Martinique»]
+        Et la région de la formation fait partie de [«Guyane»,«Martinique»]
 
             Si le niveau de sortie de la formation n'est pas supérieur ou égal à «IV»
             Ou le niveau de sortie de la formation est supérieur ou égal à «IV», et ce n'est pas un contrat de professionnalisation
