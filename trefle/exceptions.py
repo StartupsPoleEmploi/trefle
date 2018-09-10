@@ -22,3 +22,9 @@ class UpstreamError(Exception):
 
 class NoStepError(Exception):
     ...
+
+
+class ParsingError(Exception):
+
+    def __init__(self, msg, rule, line):
+        super().__init__(f'{rule}:{line.index}: {msg} in `{line.sentence}`')

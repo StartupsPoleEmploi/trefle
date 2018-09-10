@@ -3,8 +3,9 @@ import re
 from collections import namedtuple
 from datetime import datetime
 
-from ..exceptions import NoDataError, WrongPointerError, NoStepError, DataError
-from ..helpers import isfloat, count_indent
+from ..exceptions import (DataError, NoDataError, NoStepError, ParsingError,
+                          WrongPointerError)
+from ..helpers import count_indent, isfloat
 
 SCHEMA = {}
 LABELS = {}
@@ -341,7 +342,7 @@ class Rule:
             next_ = Line(index+1, indent, keyword, sentence)
             if current:
                 yield (previous, current, next_)
-            previous = current
+                previous = current
             current = next_
         yield (previous, current, Line(0, 0, None, None))
 
@@ -357,7 +358,10 @@ class Rule:
         terms = []  # One or more terms of a condition.
         connective = None
         for (prev, curr, next_) in lines:
-            assert curr.indent % 4 == 0, f'Wrong indentation: {curr.sentence}'
+            if curr.indent % 4 != 0:
+                raise ParsingError('Wrong indentation', name, curr)
+            if curr.indent != prev.indent and curr.keyword not in ['si', 'alors']:
+                raise ParsingError('Wrong keyword', name, curr)
             if curr.keyword == 'si' or (terms and curr.keyword in ('et', 'ou')):
                 terms.append(curr.sentence)
                 if not connective and curr.keyword == 'ou':

@@ -208,6 +208,7 @@ beneficiaire:
     default: 0
     public: true
     label: montant de l'allocation du bénéficiaire
+    gender: masculine
   type_allocation:
     alias: beneficiaire.allocation_type
     type: string

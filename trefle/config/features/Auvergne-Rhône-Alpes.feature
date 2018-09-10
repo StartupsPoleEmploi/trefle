@@ -184,7 +184,7 @@ Scénario: financement CARED collectif
     Quand je sélectionne le financement «Contrat d'aide et retour à l'emploi durable collectif»
     Alors la rémunération applicable vaut 401.09
 
-Scénario: cas nominal finacement PCP
+Scénario: cas nominal financement PCP
     Soit un bénéficiaire et une formation
     Et c'est un demandeur d'emploi
     Et le âge du bénéficiaire vaut 38
@@ -200,7 +200,21 @@ Scénario: cas nominal finacement PCP
     Quand je demande un calcul de financement
     Quand je sélectionne le financement «Programmation compétences premières (PCP)»
     Alors la rémunération applicable vaut 800
-    # TODO Et le texte de la rémunération vaut «Renseignez-vous auprès de votre conseiller sur les conditions de rémunération par la Région.»
+
+Scénario: financement PCP non ARE
+    Soit un bénéficiaire et une formation
+    Et c'est un demandeur d'emploi
+    Et le âge du bénéficiaire vaut 38
+    Et la durée en heures de la formation vaut 120
+    Et la région de la formation vaut «Auvergne-Rhône-Alpes»
+    Et la région du bénéficiaire vaut «Auvergne-Rhône-Alpes»
+    Et la département du bénéficiaire vaut «Drôme»
+    Et la département de la formation vaut «Drôme»
+    Et c'est une formation PCP
+    Et les codes financeur de la formation valent [«Conseil régional»]
+    Quand je demande un calcul de financement
+    Quand je sélectionne le financement «Programmation compétences premières (PCP)»
+    Alors le texte de la rémunération vaut «Renseignez-vous auprès de votre conseiller sur les conditions de rémunération par la Région.»
 
 Scénario: financement PCP sur FORMACODE
     Soit un bénéficiaire et une formation

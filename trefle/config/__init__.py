@@ -6,7 +6,7 @@ from pathlib import Path
 
 import yaml
 
-from ..exceptions import NoStepError, WrongPointerError
+from ..exceptions import NoStepError, ParsingError, WrongPointerError
 from ..helpers import fold_name
 from ..rules import Rule, SCHEMA, LABELS, RULES, IDCC
 
@@ -86,7 +86,7 @@ def load_rules(path):
         }
         try:
             return id_, Rule.load(data.splitlines(), id_)
-        except (NoStepError, WrongPointerError) as err:
+        except (NoStepError, ParsingError, WrongPointerError) as err:
             sys.exit(f'Project loading failed: {err!r}')
         except Exception as err:
             sys.exit(f'Project loading failed on rule {path}: {err!r}')
