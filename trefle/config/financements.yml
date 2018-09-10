@@ -93,3 +93,9 @@ Programme Bretagne Formation:
   rules: DE Bretagne
   ressources:
   - https://www.seformerenbretagne.fr
+Accès aux premiers savoirs - ETAPS:
+  tags: [DE, région, collectif]
+  rules: DE Provence-Alpes-Côte d'Azur
+ETAQ (Espaces territoriaux à la qualification):
+  tags: [DE, région, collectif]
+  rules: DE Provence-Alpes-Côte d'Azur

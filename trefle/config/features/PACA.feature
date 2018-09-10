@@ -37,3 +37,73 @@ Scénario: formation trop longue pour l'AIF
     Et c'est une formation ouverte aux bénéficiaires individuels
     Quand je demande un calcul de financement
     Alors le financement «Aide individuelle à la formation» n'est pas proposé
+
+Scénario: Cas nominal Action de formation collective financée par la région
+    Soit un bénéficiaire et une formation
+    Et c'est un demandeur d'emploi
+    Et la montant de l'allocation du bénéficiaire vaut 1200.0
+    Et l'allocation du bénéficiaire vaut «allocation d'aide au retour à l'emploi»
+    Et la région du bénéficiaire vaut «Provence-Alpes-Côte d'Azur»
+    Et la région de la formation vaut «Provence-Alpes-Côte d'Azur»
+    Et les codes financeur de la formation vaut [2]
+    Et la durée en heures de la formation vaut 100
+    Et le prix horaire de la formation vaut 0.0
+    Quand je demande un calcul de financement
+    Quand je sélectionne le financement «Action de formation collective financée par la région»
+    Alors la rémunération applicable vaut 1200.0
+    Et la plafond de prise en charge vaut 0
+
+Scénario:  Action de formation collective financée par la région avec mauvais code financeur
+    Soit un bénéficiaire et une formation
+    Et c'est un demandeur d'emploi
+    Et la montant de l'allocation du bénéficiaire vaut 1200.0
+    Et l'allocation du bénéficiaire vaut «allocation d'aide au retour à l'emploi»
+    Et la région de la formation vaut «Provence-Alpes-Côte d'Azur»
+    Et les codes financeur de la formation vaut [4]
+    Et la durée en heures de la formation vaut 100
+    Et le prix horaire de la formation vaut 0.0
+    Quand je demande un calcul de financement
+    Alors le financement «Action de formation collective financée par la région» n'est pas proposé
+
+Scénario: Cas nominal Accès aux premiers savoirs - ETAPS
+    Soit un bénéficiaire et une formation
+    Et c'est un demandeur d'emploi
+    Et la montant de l'allocation du bénéficiaire vaut 1200.0
+    Et l'allocation du bénéficiaire vaut «allocation d'aide au retour à l'emploi»
+    Et la région du bénéficiaire vaut «Provence-Alpes-Côte d'Azur»
+    Et la région de la formation vaut «Provence-Alpes-Côte d'Azur»
+    Et les codes financeur de la formation vaut [2]
+    Et la liste des codes FORMACODE de la formation vaut [15041]
+    Et la durée en heures de la formation vaut 100
+    Et le prix horaire de la formation vaut 0.0
+    Quand je demande un calcul de financement
+    Quand je sélectionne le financement «Accès aux premiers savoirs - ETAPS»
+    Alors la rémunération applicable vaut 1200.0
+    Et la plafond de prise en charge vaut 0
+
+Scénario: Accès aux premiers savoirs - ETAPS avec une formation non éligible
+    Soit un bénéficiaire et une formation
+    Et c'est un demandeur d'emploi
+    Et la montant de l'allocation du bénéficiaire vaut 1200.0
+    Et l'allocation du bénéficiaire vaut «allocation d'aide au retour à l'emploi»
+    Et la région du bénéficiaire vaut «Provence-Alpes-Côte d'Azur»
+    Et la région de la formation vaut «Provence-Alpes-Côte d'Azur»
+    Et les codes financeur de la formation vaut [2]
+    Et la durée en heures de la formation vaut 100
+    Et le prix horaire de la formation vaut 0.0
+    Quand je demande un calcul de financement
+    Alors le financement «Accès aux premiers savoirs - ETAPS» n'est pas proposé
+
+Scénario: Cas nominal ETAQ (Espaces territoriaux à la qualification)
+    Soit un bénéficiaire et une formation
+    Et c'est un demandeur d'emploi
+    Et la montant de l'allocation du bénéficiaire vaut 1200.0
+    Et l'allocation du bénéficiaire vaut «allocation d'aide au retour à l'emploi»
+    Et la région de la formation vaut «Provence-Alpes-Côte d'Azur»
+    Et les codes financeur de la formation vaut [2]
+    Et la durée en heures de la formation vaut 100
+    Et le prix horaire de la formation vaut 0.0
+    Quand je demande un calcul de financement
+    Quand je sélectionne le financement «ETAQ (Espaces territoriaux à la qualification)»
+    Alors la rémunération applicable vaut 1200.0
+    Et la plafond de prise en charge vaut 0
