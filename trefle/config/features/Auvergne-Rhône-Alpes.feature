@@ -98,7 +98,7 @@ Scénario: Financement ESUP avec bon SIRET et FORMACODE
     Et c'est une formation ouverte aux bénéficiaires individuels
     Quand je demande un calcul de financement
     Quand je sélectionne le financement «Programme Enseignement supérieur (ESUP)»
-    Alors la rémunération applicable vaut 339.35
+    Alors la rémunération applicable vaut 0
 
 Scénario: Financement ESUP avec bon SIRET et FORMACODE (2)
     Soit un bénéficiaire et une formation
@@ -113,7 +113,7 @@ Scénario: Financement ESUP avec bon SIRET et FORMACODE (2)
     Et c'est une formation ouverte aux bénéficiaires individuels
     Quand je demande un calcul de financement
     Quand je sélectionne le financement «Programme Enseignement supérieur (ESUP)»
-    Alors la rémunération applicable vaut 339.35
+    Alors la rémunération applicable vaut 0
 
 Scénario: Mauvais SIRET pour financement ESUP
     Soit un bénéficiaire et une formation
@@ -195,9 +195,11 @@ Scénario: cas nominal finacement PCP
     Et la département de la formation vaut «Drôme»
     Et c'est une formation PCP
     Et les codes financeur de la formation valent [«Conseil régional»]
+    Et l'allocation du bénéficiaire vaut «allocation d'aide au retour à l'emploi»
+    Et le montant de l'allocation du bénéficiaire vaut 800
     Quand je demande un calcul de financement
     Quand je sélectionne le financement «Programmation compétences premières (PCP)»
-    Alors la rémunération applicable vaut 401.09
+    Alors la rémunération applicable vaut 800
     # TODO Et le texte de la rémunération vaut «Renseignez-vous auprès de votre conseiller sur les conditions de rémunération par la Région.»
 
 Scénario: financement PCP sur FORMACODE
@@ -213,7 +215,7 @@ Scénario: financement PCP sur FORMACODE
     Et les codes financeur de la formation valent [«Conseil régional»]
     Quand je demande un calcul de financement
     Quand je sélectionne le financement «Programmation compétences premières (PCP)»
-    Alors la rémunération applicable vaut 401.09
+    Alors la rémunération applicable vaut 0
 
 Scénario: PCP impossible pour département hors ex Rhône-Alpes
     Soit un bénéficiaire et une formation
@@ -242,7 +244,7 @@ Scénario: financement PCP avec intitulé PCP
     Et les codes financeur de la formation valent [«Conseil régional»]
     Quand je demande un calcul de financement
     Quand je sélectionne le financement «Programmation compétences premières (PCP)»
-    Alors la rémunération applicable vaut 401.09
+    Alors la rémunération applicable vaut 0
 
 Scénario: Mauvais label pour financement PCP
     Soit un bénéficiaire et une formation
@@ -348,7 +350,7 @@ Scénario: "programme sanitaire et social" dans le Cantal
     Et la liste des codes FORMACODE de la formation vaut [43092]
     Quand je demande un calcul de financement
     Quand je sélectionne le financement «Programme régional sanitaire et social»
-    Alors la rémunération applicable vaut 401.09
+    Alors la rémunération applicable vaut 0
 
 
 Scénario: "programme sanitaire et social" sur SIRET
@@ -360,9 +362,11 @@ Scénario: "programme sanitaire et social" sur SIRET
     Et les codes financeur de la formation valent [«Conseil régional»]
     Et la liste des codes FORMACODE de la formation vaut [44028]
     Et le SIRET de l'organisme de formation vaut 19730016300049
+    Et l'allocation du bénéficiaire vaut «allocation d'aide au retour à l'emploi»
+    Et le montant de l'allocation du bénéficiaire vaut 800
     Quand je demande un calcul de financement
     Quand je sélectionne le financement «Programme régional sanitaire et social»
-    Alors la rémunération applicable vaut 401.09
+    Alors la rémunération applicable vaut 800
 
 
 Scénario: "Programme régional sanitaire et social - ambulancier" dans la Drôme
@@ -405,8 +409,8 @@ Scénario: Aide à la VAE
     Et c'est une formation ouverte aux bénéficiaires individuels
     Quand je demande un calcul de financement
     Quand je sélectionne le financement «Aide à la VAE»
-    Alors la rémunération applicable vaut 401.09
-    Et la plafond de prise en charge vaut 1400
+    Alors la rémunération applicable vaut 0
+    Et le plafond de prise en charge vaut 1400
 
 Scénario: Aide à la VAE impossible si la formation n'est pas VAE
     Soit un bénéficiaire et une formation
