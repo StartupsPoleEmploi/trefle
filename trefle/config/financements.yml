@@ -83,3 +83,13 @@ Chèque formation:
   rules: DE Bretagne
   ressources:
   - https://www.seformerenbretagne.fr
+Formations du domaine sanitaire et social:
+  tags: [DE, région, individuel, branche]
+  rules: DE Bretagne
+  ressources:
+  - https://www.bretagne.bzh/jcms/c_15456/fr/les-formations-sanitaires-et-sociales
+Programme Bretagne Formation:
+  tags: [DE, région, collectif]
+  rules: DE Bretagne
+  ressources:
+  - https://www.seformerenbretagne.fr

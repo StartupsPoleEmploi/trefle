@@ -1,13 +1,5 @@
 Si l'allocation du bénéficiaire est «allocation d'aide au retour à l'emploi»
-    # TODO replace by rémunération de formation applicable
-    Alors la rémunération applicable est égale au montant de l'allocation du bénéficiaire
-
-    Si la rémunération applicable est inférieure au minimum AREF
-        Alors la rémunération applicable est égale au minimum AREF
-
-    Si la date de fin de l'allocation du bénéficiaire est inférieure à la date de fin de la formation
-    Et c'est une formation éligible à la RFF
-        Alors la RFF applicable est égale au montant de la RFF en vigueur
+    Alors appliquer les règles «AREF»
 
 Si l'allocation du bénéficiaire n'est pas «allocation d'aide au retour à l'emploi»
     Alors appliquer les règles «RFPE-RPS»
