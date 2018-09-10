@@ -102,8 +102,19 @@ Scénario: Cas nominal ETAQ (Espaces territoriaux à la qualification)
     Et la région de la formation vaut «Provence-Alpes-Côte d'Azur»
     Et les codes financeur de la formation vaut [2]
     Et la durée en heures de la formation vaut 100
-    Et le prix horaire de la formation vaut 0.0
     Quand je demande un calcul de financement
     Quand je sélectionne le financement «ETAQ (Espaces territoriaux à la qualification)»
     Alors la rémunération applicable vaut 1200.0
     Et la plafond de prise en charge vaut 0
+
+Scénario: ETAQ (Espaces territoriaux à la qualification) exclu formacode 15041
+    Soit un bénéficiaire et une formation
+    Et c'est un demandeur d'emploi
+    Et la montant de l'allocation du bénéficiaire vaut 1200.0
+    Et l'allocation du bénéficiaire vaut «allocation d'aide au retour à l'emploi»
+    Et la région de la formation vaut «Provence-Alpes-Côte d'Azur»
+    Et les codes financeur de la formation vaut [2]
+    Et la liste des codes FORMACODE de la formation vaut [15041]
+    Et la durée en heures de la formation vaut 100
+    Quand je demande un calcul de financement
+    Alors le financement «ETAQ (Espaces territoriaux à la qualification)» n'est pas proposé
