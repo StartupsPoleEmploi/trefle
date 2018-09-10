@@ -14,7 +14,6 @@ Si c'est une demandeur d'emploi
     Et ce n'est pas un contrat d'apprentissage
     Et ce n'est pas un contrat de professionnalisation
     Et ce n'est pas un bénéficiaire en situation de création d'entreprise nécessitant cette formation
-    Et le code CERTIFINFO de la formation ne fait pas partie de [83899]
     Et ce n'est pas un stage de préparation à l'installation
     Et ce n'est pas un permis B
     Et la liste des domaines FORMACODE de la formation ne contient aucun code parmi [430,434,440,150], ou la liste des codes FORMACODE de la formation contient 44067

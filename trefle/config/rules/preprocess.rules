@@ -21,6 +21,7 @@ Si le code CERTIFINFO de la formation fait partie des codes CERTIFINFO pour un b
 Si la liste des codes CPF de la formation contient au moins un des codes CPF CléA
     Alors c'est une formation CléA
 Si la liste des codes CPF de la formation contient au moins un des codes CPF VAE
+Ou le code CERTIFINFO de la formation vaut 83899
     Alors c'est une formation VAE
 # http://lheo.gouv.fr/langage#dict-AIS
 Si le code AIS de la formation fait partie des codes AIS certifiants

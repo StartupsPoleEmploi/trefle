@@ -1,7 +1,8 @@
 Si le financement est de type «AIF»
 
     Si la liste des codes FORMACODE de la formation ne contient aucun code parmi [31802,31805,31847,31827,31833,43409,43436,43339,43441,43448,43454,44004,44028,44054,15064,44591]
-    Et le code CERTIFINFO de la formation ne fait pas partie de [54912,87185,87187,87189,83899]
+    Et le code CERTIFINFO de la formation ne fait pas partie de [54912,87185,87187,87189]
+    Et ce n'est pas une formation VAE
     # TODO Add an enum for domaines FORMACODE
     Et la liste des domaines FORMACODE de la formation ne contient pas 150
     Et la durée en mois de la formation n'est pas supérieure à 12
@@ -16,8 +17,6 @@ Si le nom du financement est «Programme régional qualifiant»
     Et c'est un demandeur d'emploi
     Et ce n'est pas une formation VAE
     Et la liste des codes FORMACODE de la formation ne contient aucun code parmi [12520,13017,15031,15041,15061,15062,15093,31815,32036,43436,43441,43448,43454,44004,44028,44054,15084,15235]
-    # TODO add to VAE
-    Et le code CERTIFINFO de la formation n'est pas 83899
     Et ce n'est pas une formation CARED
     Et ce n'est pas une formation E2C
     Et ce n'est pas une formation PCP
@@ -153,7 +152,8 @@ Et la région de la formation est «Auvergne-Rhône-Alpes»
         Et c'est une formation certifiante
         Et la liste des codes FORMACODE de la formation ne contient aucun code parmi [13250,31802,31805,31847,31827,31833,43409,43436,43339,43441,43448,43454,44004,44028,44054,44591,44591,43448,43436,43441,31815,43454,44004,44028,44054]
         Et la liste des domaines FORMACODE de la formation ne contient pas 150
-        Et le code CERTIFINFO de la formation ne fait pas partie de [54912,84385,87185,87187,87189,83899]
+        Et le code CERTIFINFO de la formation ne fait pas partie de [54912,84385,87185,87187,87189]
+        Et ce n'est pas une formation VAE
             Alors le financement est éligible
             Et appliquer les règles «AREF-RFPE-RPS»
             Et le texte des démarches vaut «Vous devez trouver un employeur, hors collectivités locales, administration ou association à but non lucratif, prêt à vous embaucher pour un contrat d'au moins 6 mois, à la suite de votre formation. Prenez contact avec votre conseiller Pôle emploi pour vérifier la validité de votre projet, la possibilité de financement de la formation et le montage du dossier.⏎Attention : le dossier complet doit être envoyé au plus tard 3 semaines avant le démarrage de la formation.»

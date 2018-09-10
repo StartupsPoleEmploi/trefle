@@ -287,13 +287,25 @@ Scénario: cas nominal "programme régional qualifiant"
     Alors la rémunération applicable vaut 401.09
 
 
-Scénario: cas nominal "programme régional qualifiant" exclu si pas le bon code financeur
+Scénario: "programme régional qualifiant" exclu si pas le bon code financeur
     Soit un bénéficiaire et une formation
     Et c'est un demandeur d'emploi
     Et le âge du bénéficiaire vaut 38
     Et la durée en heures de la formation vaut 120
     Et la région de la formation vaut «Auvergne-Rhône-Alpes»
     Et la région du bénéficiaire vaut «Auvergne-Rhône-Alpes»
+    Quand je demande un calcul de financement
+    Alors le financement «Programme régional qualifiant» n'est pas proposé
+
+Scénario: "programme régional qualifiant" exclu si VAE
+    Soit un bénéficiaire et une formation
+    Et c'est un demandeur d'emploi
+    Et le âge du bénéficiaire vaut 38
+    Et la durée en heures de la formation vaut 120
+    Et la région de la formation vaut «Auvergne-Rhône-Alpes»
+    Et la région du bénéficiaire vaut «Auvergne-Rhône-Alpes»
+    Et les codes financeur de la formation valent [«Conseil régional»]
+    Et le code CERTIFINFO de la formation vaut 83899
     Quand je demande un calcul de financement
     Alors le financement «Programme régional qualifiant» n'est pas proposé
 
