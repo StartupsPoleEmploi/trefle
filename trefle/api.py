@@ -44,8 +44,10 @@ async def simulate_(request, response):
     eligible = request.query.bool('eligible', None)
     if eligible is not None:
         financements = [f for f in financements if f['eligible'] == eligible]
+    explain = request.query.bool('explain', False)
     for financement in financements:
-        financement['status'] = [s.json for s in financement['status']]
+        financement['explain'] = ([s.json for s in financement['explain']]
+                                  if explain else None)
     body = {'financements': financements}
     if request.query.bool('context', False):
         body['context'] = {k: v for k, v in context.items()

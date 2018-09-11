@@ -462,7 +462,7 @@ async def test_naf_search(client):
 
 
 async def test_rules_details(client):
-    resp = await client.post('/financement?eligible=0', body={
+    resp = await client.post('/financement?eligible=0&explain=1', body={
         'beneficiaire.solde_cpf': 10,
         'beneficiaire.remuneration': 1400,
         'beneficiaire.droit_prive': True,
@@ -475,13 +475,13 @@ async def test_rules_details(client):
     assert 'financements' in json.loads(resp.body)
     financement = json.loads(resp.body)['financements'][0]
     assert financement['eligible'] is False
-    assert financement['status']
-    assert financement['status'][0]['terms'][0]['params'] == {
+    assert financement['explain']
+    assert financement['explain'][0]['terms'][0]['params'] == {
         'beneficiaire.droit_prive': True
     }
     assert 'CPF' in financement['tags']
-    assert not financement['status'][0]['children'][0]['terms'][1]['status']
-    assert financement['status'][0]['children'][0]['terms'][1]['reason'] == \
+    assert not financement['explain'][0]['children'][0]['terms'][1]['status']
+    assert financement['explain'][0]['children'][0]['terms'][1]['reason'] == \
         "ce n'est pas formation éligible COPANEF"
 
 
@@ -504,7 +504,6 @@ async def test_simulate_financement_properties(client):
     assert financements[0].get('sigle')
     assert financements[0].get('nom')
     assert financements[0].get('tags')
-
 
 
 async def test_explore_financements(client):

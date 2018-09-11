@@ -34,7 +34,7 @@
         </virtual>
         <p>
           <strong>Règles de gestion</strong>
-          <eligibilite conditions={ status }></eligibilite>
+          <eligibilite conditions={ explain }></eligibilite>
         </p>
       </li>
     </ul>
@@ -73,7 +73,7 @@
     }
 
     this.simulate = (data) => {
-      fetch('/financement?context=1&scenario=1', {
+      fetch('/financement?context=1&scenario=1&explain=1', {
         method: 'post',
         body: JSON.stringify(data)
       })

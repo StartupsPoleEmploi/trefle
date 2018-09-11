@@ -1041,7 +1041,7 @@ financement:
       type: string
       format: url
     description: Liste d'adresses Internet pour en savoir plus sur le sujet.
-  status:
+  explain:
     type: array
     public: true
     nullable: true
