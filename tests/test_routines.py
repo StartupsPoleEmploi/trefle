@@ -62,6 +62,7 @@ async def test_populate_formation_from_bytes():
     ('contrat_professionnalisation', 'formation.contrat_professionnalisation',
      True),
     ('poec', 'formation.poec', True),
+    ('heures_centre_empty', 'formation.heures_centre', 585),
 ])
 @pytest.mark.asyncio
 async def test_populate_formation_from_bytes_edge_cases(path, key, value):

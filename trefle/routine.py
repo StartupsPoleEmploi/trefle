@@ -101,8 +101,11 @@ def extrapolate_formation_context(context):
     context['formation.intitule_norme'] = fold_name(
         context.get('formation.intitule', ''))
 
-    # TODO compute heures-centre from heures-total - heures-entreprise
-    # if missing
+    if context.get('formation.heures_centre') is None:
+        total = context.get('formation.heures')
+        entreprise = context.get('formation.heures_entreprise')
+        if total and entreprise:
+            context['formation.heures_centre'] = total - entreprise
 
 
 def preprocess(context):
