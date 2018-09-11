@@ -906,6 +906,10 @@ financement:
       type: string
     public: true
     label: catégories du financement
+  sigle:
+    type: string
+    public: true
+    label: sigle du financement
   eligible:
     description: définit si le financement est éligible
     type: boolean

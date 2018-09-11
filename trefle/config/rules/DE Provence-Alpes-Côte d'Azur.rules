@@ -5,7 +5,7 @@ Si le financement est de type «AIF»
         Alors le financement est éligible
         Et le plafond financier applicable vaut 3000
 
-Si le nom du financement est «Accès aux premiers savoirs - ETAPS»
+Si le nom du financement est «Accès aux premiers savoirs»
 
     Si la région du bénéficiaire vaut «Provence-Alpes-Côte d'Azur»
     Et la région de la formation vaut «Provence-Alpes-Côte d'Azur»
@@ -18,7 +18,7 @@ Si le nom du financement est «Accès aux premiers savoirs - ETAPS»
         Et le texte de description vaut «Les ETAPS visent l’acquisition et la reconnaissance de savoirs, de connaissances et de compétences permettant aux personnes d’accéder à une formation qualifiante et/ou un emploi.⏎Ils permettent le développement de compétences mobilisables dans les différents contextes de la vie de tout individu : vie quotidienne, vie professionnelle, vie sociale et citoyenne, vie familiale...⏎La durée et le rythme du parcours de formation sont définis en fonction des besoins de chaque personne.⏎Le stagiaire bénéficie d’une couverture en matière d’accident du travail et de maladie professionnelle.»
         Et le texte de la prise en charge vaut «Formation totalement financée»
 
-Si le nom du financement est «ETAQ (Espaces territoriaux à la qualification)»
+Si le nom du financement est «Espaces territoriaux à la qualification»
 
     Si la région de la formation vaut «Provence-Alpes-Côte d'Azur»
     Et c'est un demandeur d'emploi

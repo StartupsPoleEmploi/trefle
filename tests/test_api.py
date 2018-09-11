@@ -485,6 +485,28 @@ async def test_rules_details(client):
         "ce n'est pas formation éligible COPANEF"
 
 
+async def test_simulate_financement_properties(client):
+    resp = await client.get('/schema')
+
+    resp = await client.post('/financement?tags=API', body={
+        'beneficiaire.solde_cpf': 10,
+        'beneficiaire.remuneration': 1400,
+        'beneficiaire.droit_prive': True,
+        'beneficiaire.contrat': 'cdi',
+        'formation.eligible_copanef': True,
+        'formation.heures': 100,
+        'beneficiaire.entreprise.commune': '2A004',
+        'beneficiaire.entreprise.idcc': 2706})
+    assert resp.status == HTTPStatus.OK
+    assert 'financements' in json.loads(resp.body)
+    financements = json.loads(resp.body)['financements']
+    assert financements
+    assert financements[0].get('sigle')
+    assert financements[0].get('nom')
+    assert financements[0].get('tags')
+
+
+
 async def test_explore_financements(client):
     resp = await client.get('/explore/financements')
     financements = json.loads(resp.body)

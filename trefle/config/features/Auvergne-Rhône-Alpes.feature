@@ -43,7 +43,7 @@ Scénario: cas nominal E2C
     Et c'est une formation E2C
     Et c'est une formation ouverte aux bénéficiaires individuels
     Quand je demande un calcul de financement
-    Quand je sélectionne le financement «École de la deuxième chance (E2C)»
+    Quand je sélectionne le financement «École de la deuxième chance»
     Alors la rémunération applicable vaut 339.35
 
 Scénario: pas de financement E2C pour un bénéficiaire de plus de 25 ans
@@ -56,7 +56,7 @@ Scénario: pas de financement E2C pour un bénéficiaire de plus de 25 ans
     Et c'est une formation E2C
     Et c'est une formation ouverte aux bénéficiaires individuels
     Quand je demande un calcul de financement
-    Alors le financement «École de la deuxième chance (E2C)» n'est pas proposé
+    Alors le financement «École de la deuxième chance» n'est pas proposé
 
 Scénario: Pas de financement E2C pour un bénéficiaire avec un niveau scolaire supérieur à V
     Soit un bénéficiaire et une formation
@@ -69,7 +69,7 @@ Scénario: Pas de financement E2C pour un bénéficiaire avec un niveau scolaire
     Et la niveau scolaire du bénéficiaire vaut «IV»
     Et c'est une formation ouverte aux bénéficiaires individuels
     Quand je demande un calcul de financement
-    Alors le financement «École de la deuxième chance (E2C)» n'est pas proposé
+    Alors le financement «École de la deuxième chance» n'est pas proposé
 
 Scénario: cas nominal API
     Soit un bénéficiaire et une formation
@@ -82,7 +82,7 @@ Scénario: cas nominal API
     Et la liste des codes FORMACODE de la formation vaut [23007]
     Et c'est une formation ouverte aux bénéficiaires individuels
     Quand je demande un calcul de financement
-    Quand je sélectionne le financement «Action projets individuels (API)»
+    Quand je sélectionne le financement «Action projets individuels»
     Alors la rémunération applicable vaut 339.35
 
 Scénario: Financement ESUP avec bon SIRET et FORMACODE
@@ -97,7 +97,7 @@ Scénario: Financement ESUP avec bon SIRET et FORMACODE
     Et la liste des codes FORMACODE de la formation vaut [15093]
     Et c'est une formation ouverte aux bénéficiaires individuels
     Quand je demande un calcul de financement
-    Quand je sélectionne le financement «Programme Enseignement supérieur (ESUP)»
+    Quand je sélectionne le financement «Programme Enseignement supérieur»
     Alors la rémunération applicable vaut 0
 
 Scénario: Financement ESUP avec bon SIRET et FORMACODE (2)
@@ -112,7 +112,7 @@ Scénario: Financement ESUP avec bon SIRET et FORMACODE (2)
     Et la liste des codes FORMACODE de la formation vaut [13017]
     Et c'est une formation ouverte aux bénéficiaires individuels
     Quand je demande un calcul de financement
-    Quand je sélectionne le financement «Programme Enseignement supérieur (ESUP)»
+    Quand je sélectionne le financement «Programme Enseignement supérieur»
     Alors la rémunération applicable vaut 0
 
 Scénario: Mauvais SIRET pour financement ESUP
@@ -127,7 +127,7 @@ Scénario: Mauvais SIRET pour financement ESUP
     Et la liste des codes FORMACODE de la formation vaut [13017]
     Et c'est une formation ouverte aux bénéficiaires individuels
     Quand je demande un calcul de financement
-    Alors le financement «Programme Enseignement supérieur (ESUP)» n'est pas proposé
+    Alors le financement «Programme Enseignement supérieur» n'est pas proposé
 
 Scénario: cas nominal financement CARED
     Soit un bénéficiaire et une formation
@@ -140,7 +140,7 @@ Scénario: cas nominal financement CARED
     Et c'est une bénéficiaire ayant un contrat aidé en cours
     Et c'est une formation ouverte aux bénéficiaires individuels
     Quand je demande un calcul de financement
-    Quand je sélectionne le financement «Contrat d'aide et retour à l'emploi durable (CARED)»
+    Quand je sélectionne le financement «Contrat d'aide et retour à l'emploi durable»
     Alors la rémunération applicable vaut 339.35
 
 Scénario: Mauvais FORMACODE pour CARED
@@ -155,7 +155,7 @@ Scénario: Mauvais FORMACODE pour CARED
     Et la liste des codes FORMACODE de la formation vaut [43339]
     Et c'est une formation ouverte aux bénéficiaires individuels
     Quand je demande un calcul de financement
-    Alors le financement «Contrat d'aide et retour à l'emploi durable (CARED)» n'est pas proposé
+    Alors le financement «Contrat d'aide et retour à l'emploi durable» n'est pas proposé
 
 Scénario: Durée en centre trop longue pour CARED
     Soit un bénéficiaire et une formation
@@ -169,7 +169,7 @@ Scénario: Durée en centre trop longue pour CARED
     Et le nombre d'heures en centre vaut 810
     Et c'est une formation ouverte aux bénéficiaires individuels
     Quand je demande un calcul de financement
-    Alors le financement «Contrat d'aide et retour à l'emploi durable (CARED)» n'est pas proposé
+    Alors le financement «Contrat d'aide et retour à l'emploi durable» n'est pas proposé
 
 Scénario: financement CARED collectif
     Soit un bénéficiaire et une formation
@@ -198,7 +198,7 @@ Scénario: cas nominal financement PCP
     Et l'allocation du bénéficiaire vaut «allocation d'aide au retour à l'emploi»
     Et le montant de l'allocation du bénéficiaire vaut 800
     Quand je demande un calcul de financement
-    Quand je sélectionne le financement «Programmation compétences premières (PCP)»
+    Quand je sélectionne le financement «Programmation compétences premières»
     Alors la rémunération applicable vaut 800
 
 Scénario: financement PCP non ARE
@@ -213,7 +213,7 @@ Scénario: financement PCP non ARE
     Et c'est une formation PCP
     Et les codes financeur de la formation valent [«Conseil régional»]
     Quand je demande un calcul de financement
-    Quand je sélectionne le financement «Programmation compétences premières (PCP)»
+    Quand je sélectionne le financement «Programmation compétences premières»
     Alors le texte de la rémunération vaut «Renseignez-vous auprès de votre conseiller sur les conditions de rémunération par la Région.»
 
 Scénario: financement PCP sur FORMACODE
@@ -228,7 +228,7 @@ Scénario: financement PCP sur FORMACODE
     Et la liste des codes FORMACODE de la formation vaut [15061]
     Et les codes financeur de la formation valent [«Conseil régional»]
     Quand je demande un calcul de financement
-    Quand je sélectionne le financement «Programmation compétences premières (PCP)»
+    Quand je sélectionne le financement «Programmation compétences premières»
     Alors la rémunération applicable vaut 0
 
 Scénario: PCP impossible pour département hors ex Rhône-Alpes
@@ -243,7 +243,7 @@ Scénario: PCP impossible pour département hors ex Rhône-Alpes
     Et la liste des codes FORMACODE de la formation vaut [15061]
     Et les codes financeur de la formation valent [«Conseil régional»]
     Quand je demande un calcul de financement
-    Alors le financement «Programmation compétences premières (PCP)» n'est pas proposé
+    Alors le financement «Programmation compétences premières» n'est pas proposé
 
 Scénario: financement PCP avec intitulé PCP
     Soit un bénéficiaire et une formation
@@ -257,7 +257,7 @@ Scénario: financement PCP avec intitulé PCP
     Et l'intitulé normé de la formation vaut «PCP»
     Et les codes financeur de la formation valent [«Conseil régional»]
     Quand je demande un calcul de financement
-    Quand je sélectionne le financement «Programmation compétences premières (PCP)»
+    Quand je sélectionne le financement «Programmation compétences premières»
     Alors la rémunération applicable vaut 0
 
 Scénario: Mauvais label pour financement PCP
@@ -272,7 +272,7 @@ Scénario: Mauvais label pour financement PCP
     Et l'intitulé normé de la formation vaut «PCD»
     Et les codes financeur de la formation valent [«Conseil régional»]
     Quand je demande un calcul de financement
-    Alors le financement «Programmation compétences premières (PCP)» n'est pas proposé
+    Alors le financement «Programmation compétences premières» n'est pas proposé
 
 Scénario: cas nominal "programme régional qualifiant"
     Soit un bénéficiaire et une formation

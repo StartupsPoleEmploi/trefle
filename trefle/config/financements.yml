@@ -93,28 +93,35 @@ Programme Bretagne Formation:
   rules: DE Bretagne
   ressources:
   - https://www.seformerenbretagne.fr
-Accès aux premiers savoirs - ETAPS:
+Accès aux premiers savoirs:
+  sigle: ETAPS
   tags: [DE, région, collectif]
   rules: DE Provence-Alpes-Côte d'Azur
-ETAQ (Espaces territoriaux à la qualification):
-  tags: [DE, région, collectif]
+Espaces territoriaux à la qualification:
+  tags: [DE, région, collectif, ETAQ]
+  sigle: ETAQ
   rules: DE Provence-Alpes-Côte d'Azur
-École de la deuxième chance (E2C):
+École de la deuxième chance:
+  sigle: E2C
   tags: [DE, jeune, E2C]
   rules: DE Auvergne-Rhône-Alpes
-Action projets individuels (API):
+Action projets individuels:
+  sigle: API
   tags: [DE, API]
   rules: DE Auvergne-Rhône-Alpes
-Programme Enseignement supérieur (ESUP):
+Programme Enseignement supérieur:
+  sigle: ESUP
   tags: [DE, ESUP]
   rules: DE Auvergne-Rhône-Alpes
-Contrat d'aide et retour à l'emploi durable (CARED):
+Contrat d'aide et retour à l'emploi durable:
+  sigle: CARED
   tags: [DE, CARED]
   rules: DE Auvergne-Rhône-Alpes
 Contrat d'aide et retour à l'emploi durable collectif:
   tags: [DE, CARED]
   rules: DE Auvergne-Rhône-Alpes
-Programmation compétences premières (PCP):
+Programmation compétences premières:
+  sigle: PCP
   tags: [DE, PCP]
   rules: DE Auvergne-Rhône-Alpes
 Programme régional qualifiant:

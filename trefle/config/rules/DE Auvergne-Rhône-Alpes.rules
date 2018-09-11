@@ -103,7 +103,7 @@ Et la région de la formation est «Auvergne-Rhône-Alpes»
             Et le texte de description vaut «Ce programme est conçu pour permettre à des jeunes (18-25 ans) en difficulté de préparer un projet professionnel et intégrer un parcours de formation ou d'insertion.⏎— Maîtriser les compétences de base (français, mathématiques, informatique) et la détermination d’un projet professionnel.⏎— Donner une place importante à l’alternance : 40 à 50% du parcours est consacré aux stages en entreprise pour découvrir le monde du travail, ses contraintes et ses possibilités.⏎— Parcours de 7 mois en moyenne.»
             Et le texte des démarches vaut «Formation totalement financée par la Région»
 
-    Si le nom du financement est «Action projets individuels (API)»
+    Si le nom du financement est «Action projets individuels»
 
         Si c'est une formation ouverte aux bénéficiaires individuels
         Et c'est un demandeur d'emploi
@@ -121,7 +121,7 @@ Et la région de la formation est «Auvergne-Rhône-Alpes»
                 Et le texte de description vaut «La Région apporte un financement total ou partiel d'une action de formation si celle-ci permet un retour immédiat à l'emploi.⏎Possibilité d'avoir une aide aux frais d'hébergement ou de repas avec l'AFPA, dans le cadre d'une convention avec le Conseil régional.⏎Attention, vérifiez auprès de votre conseiller emploi si la prise en charge par la Région sera totale ou partielle. Il est possible de rechercher un cofinancement.»
                 Et le texte de la prise en charge vaut «Formation partiellement ou totalement prise en charge par la Région. Des cofinancements sont possibles.»
 
-    Si le nom du financement est «Programme Enseignement supérieur (ESUP)»
+    Si le nom du financement est «Programme Enseignement supérieur»
 
         Alors le texte des démarches vaut «Prenez contact avec votre conseiller emploi (Mission locale, Cap emploi, Pôle emploi, CIDFF…) pour faire valider votre projet. Vous devrez ensuite effectuer votre inscription administrative auprès de l'université.»
         Et le texte de description vaut «Les actions concernées sont subventionnées par la Région pour une durée de 1 an.⏎Le coût pédagogique est gratuit pour le stagiaire, hors frais annexes à sa charge (droit d'inscription, frais de validation, transport, hébergement, restauration et matériels).⏎Un accompagnement du stagiaire est assuré par l'école.»
@@ -140,7 +140,7 @@ Et la région de la formation est «Auvergne-Rhône-Alpes»
                 Et appliquer les règles «AREF»
 
 
-    Si le nom du financement est «Contrat d'aide et retour à l'emploi durable (CARED)»
+    Si le nom du financement est «Contrat d'aide et retour à l'emploi durable»
 
         Si c'est un bénéficiaire ayant un contrat aidé en cours, ou c'est un demandeur d'emploi
         Et ce n'est pas un contrat d'apprentissage
@@ -169,7 +169,7 @@ Et la région de la formation est «Auvergne-Rhône-Alpes»
             Et le texte de description vaut «Financement par le Conseil régional d'une formation proposée pour répondre à un projet de recrutement d'au moins 6 mois. Le besoin de recrutement et de formation a été préalablement exprimé par un employeur spécifique ou une branche professionnelle dans la région. L'organisme de formation vous accompagne dans le cadre de ce projet de recrutement.⏎Possibilité de bénéficier d'une aide aux frais d'hébergement ou de repas par la Région.»
             Et le texte de la prise en charge vaut «Formation totalement prise en charge par la Région.»
 
-    Si le nom du financement est «Programmation compétences premières (PCP)»
+    Si le nom du financement est «Programmation compétences premières»
 
         # Ex Rhône-Alpes
         Si le département du bénéficiaire fait partie de [«Rhône»,«Ain»,«Ardèche»,«Loire»,«Savoie»,«Haute-Savoie»,«Isère»,«Drôme»]
