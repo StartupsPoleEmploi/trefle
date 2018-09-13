@@ -178,13 +178,11 @@ class Step:
     @property
     def spec(self):
         spec = inspect.signature(self.func)
-        return list(spec.parameters.items())
+        return list(spec.parameters.items())[1:]  # Skip context.
 
     def compile(self):
         data = self.parse_raw()
         for name, param in self.spec:
-            if name in ['context', 'status']:
-                continue
             value = data[name]
             type_ = param.annotation
             if type_ == inspect._empty:
@@ -214,7 +212,7 @@ class Action(Step):
         self.compile()
 
     def act(self, context, status):
-        self.func(context, status, **self.params)
+        return self.func(context, **self.params)
 
 
 class Condition(Step):
@@ -308,25 +306,36 @@ class Rule:
         if condition is None:
             condition = self.root
         status = condition.assess(context)
+        statuses = []
+
+        def graft(substatuses):
+            if status is not None:
+                status.children.extend(substatuses)
+                for substatus in substatuses:
+                    substatus.parent = status
+            else:
+                statuses.extend(substatuses)
+
         overall = overall and status
         if status.condition.private:
             if status:
-                status = parent  # Hide from output.
+                status = parent  # Skip from explain tree.
             else:
                 # Stop recursion.
-                return parent
-        elif parent is not None:
-            status.parent = parent
-            parent.children.append(status)
+                return statuses
+        else:
+            statuses.append(status)
+
         for action in condition.actions:
             if overall:
-                action.act(context, status)
+                substatuses = action.act(context, status)
+                if substatuses:
+                    graft(substatuses)
         for child in condition.children:
-            child_status = self.assess(context, child, status, overall)
-            # We have skipped a private parent, let's elect child as new root.
-            if status is None:
-                status = child_status
-        return status
+            substatuses = self.assess(context, child, status, overall)
+            if substatuses:
+                graft(substatuses)
+        return statuses
 
     @staticmethod
     def iter_lines(iterable):

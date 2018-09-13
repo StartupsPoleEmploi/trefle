@@ -8,6 +8,7 @@ Scénario: financement région pour un bénéficiaire sans allocation ayant plus
     Et la durée en heures de la formation vaut 120
     Et les codes financeur de la formation valent [«Conseil régional»]
     Et la région de la formation vaut «Guyane»
+    Et la région du bénéficiaire vaut «Bretagne»
     Quand je demande un calcul de financement
     Quand je sélectionne le financement «Action de formation collective financée par la région»
     # FIXME: d'après Armelle, 652.02
@@ -23,6 +24,7 @@ Scénario: financement région pour bénéficiaire avec ARE
     Et le montant de l'allocation du bénéficiaire vaut 800
     Et l'allocation du bénéficiaire vaut «allocation d'aide au retour à l'emploi»
     Et la région de la formation vaut «Guyane»
+    Et la région du bénéficiaire vaut «Bretagne»
     Quand je demande un calcul de financement
     Et je sélectionne le financement «Action de formation collective financée par la région»
     Alors la rémunération applicable vaut 800
@@ -34,6 +36,7 @@ Scénario: financement région pour un bénéficiaire exclu pour mauvaise régio
     Et le âge du bénéficiaire vaut 30
     Et la durée en heures de la formation vaut 120
     Et les codes financeur de la formation valent [«Conseil régional»]
+    Et la région de la formation vaut «Bretagne»
     Et la région du bénéficiaire vaut «Bretagne»
     Quand je demande un calcul de financement
     Alors le financement «Action de formation collective financée par la région» n'est pas proposé
@@ -45,6 +48,7 @@ Scénario: financement PE pour un bénéficiaire de 18 ans sans allocation
     Et le âge du bénéficiaire vaut 18
     Et la durée en heures de la formation vaut 120
     Et les codes financeur de la formation valent [«Pôle emploi»]
+    Et la région du bénéficiaire vaut «Bretagne»
     Quand je demande un calcul de financement
     Quand je sélectionne le financement «Action de formation collective financée par Pôle emploi»
     Alors la rémunération applicable vaut 310.39
@@ -56,6 +60,7 @@ Scénario: pas de financement PE si le code financeur entreprise est présent
     Et le âge du bénéficiaire vaut 18
     Et la durée en heures de la formation vaut 120
     Et les codes financeur de la formation valent [4,5]
+    Et la région du bénéficiaire vaut «Bretagne»
     Quand je demande un calcul de financement
     Alors le financement «Action de formation collective financée par Pôle emploi» n'est pas proposé
 
@@ -67,6 +72,7 @@ Scénario: financement Agefiph pour un travailleur handicapé
     Et la durée en heures de la formation vaut 120
     Et les codes financeur de la formation valent [7]
     Et c'est une travailleur handicapé
+    Et la région du bénéficiaire vaut «Bretagne»
     Quand je demande un calcul de financement
     Quand je sélectionne le financement «Action de formation collective financée par l'Agefiph»
     Alors la rémunération applicable vaut 652.02
@@ -80,6 +86,7 @@ Scénario: financement département
     Et les codes financeur de la formation valent [8]
     Et la département de la formation vaut «Ariège»
     Et la département du bénéficiaire vaut «Ariège»
+    Et la région du bénéficiaire vaut «Bretagne»
     Quand je demande un calcul de financement
     Quand je sélectionne le financement «Action de formation collective financée par le conseil départemental»
     Alors la rémunération applicable vaut 401.09
@@ -93,6 +100,7 @@ Scénario: pas de financement département si les départements ne sont pas les 
     Et les codes financeur de la formation valent [8]
     Et la département de la formation vaut «Ariège»
     Et la département du bénéficiaire vaut «Aude»
+    Et la région du bénéficiaire vaut «Bretagne»
     Quand je demande un calcul de financement
     Alors le financement «Action de formation collective financée par le conseil départemental» n'est pas proposé
 
@@ -103,6 +111,7 @@ Scénario: financement par l'État
     Et le âge du bénéficiaire vaut 28
     Et la durée en heures de la formation vaut 120
     Et les codes financeur de la formation valent [11]
+    Et la région du bénéficiaire vaut «Bretagne»
     Quand je demande un calcul de financement
     Quand je sélectionne le financement «Action de formation collective financée par l'État»
     Alors la rémunération applicable vaut 401.09

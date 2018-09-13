@@ -7,55 +7,12 @@ Et ce n'est pas un contrat d'apprentissage
 Et ce n'est pas un contrat de professionnalisation
 Et le nombre d'heures en entreprise n'est pas supérieur à 30% de la durée en heures de la formation
 
-    # Par défaut.
-    Alors le texte de la prise en charge vaut «Formation totalement financée si validée par Pôle emploi.»
+    Alors le financement est éligible
+    # Par défaut, peut être surchargé dans les règles région.
+    Et le texte de la prise en charge vaut «Formation totalement financée si validée par Pôle emploi.»
     Et le texte de description vaut «L’Aide individuelle à la formation est réservée à des projets de formation dont la pertinence est validée par votre conseiller référent emploi, en fonction de votre projet professionnel et du marché du travail.⏎Les formations financées par Pôle emploi doivent permettre un retour rapide à l'emploi.»
     Et le texte des démarches vaut «1. Contactez un conseiller Pôle emploi pour connaître les conditions de la mobilisation éventuelle d'une aide individuelle de Pôle emploi dans votre région.⏎2. Votre projet de formation et son financement doivent être présentés bien en amont du début de la formation (au plus tard 15 jours avant).⏎3. Ne démarrez pas votre formation tant que vous n'avez pas eu la confirmation de l'accord de la part de votre conseiller.»
     Et appliquer les règles «AREF-RFPE-RPS»
-
-    Si la région du bénéficiaire ne fait pas partie de [«Corse»,«Nouvelle-Aquitaine»,«Provence-Alpes-Côte d'Azur»,«Occitanie»,«Hauts-de-France»,«Normandie»,«Guadeloupe»,«Auvergne-Rhône-Alpes»,«La Réunion»,«Mayotte»,«Centre-Val de Loire»,«Île-de-France»,«Bourgogne-Franche-Comté»,«Martinique»,«Guyane»]
-        Alors le financement est éligible
-
-    Si la région du bénéficiaire est «Corse»
-        Alors appliquer les règles «DE Corse»
-
-    Si la région du bénéficiaire est «Nouvelle-Aquitaine»
-        Alors appliquer les règles «DE Nouvelle-Aquitaine»
-
-    Si la région du bénéficiaire est «Provence-Alpes-Côte d'Azur»
-        Alors appliquer les règles «DE Provence-Alpes-Côte d'Azur»
-
-    Si la région du bénéficiaire est «Occitanie»
-        Alors appliquer les règles «DE Occitanie»
-
-    Si la région du bénéficiaire est «Hauts-de-France»
-        Alors appliquer les règles «DE Hauts-de-France»
-
-    Si la région du bénéficiaire est «Normandie»
-        Alors appliquer les règles «DE Normandie»
-
-    Si la région du bénéficiaire est «Guadeloupe»
-        Alors appliquer les règles «DE Guadeloupe»
-
-    Si la région du bénéficiaire est «Auvergne-Rhône-Alpes»
-        Alors appliquer les règles «DE Auvergne-Rhône-Alpes»
-
-    Si la région du bénéficiaire est «Centre-Val de Loire»
-        Alors appliquer les règles «DE Centre-Val de Loire»
-
-    Si la région du bénéficiaire est «Île-de-France»
-        Alors appliquer les règles «DE Île-de-France»
-
-    Si la région du bénéficiaire est «Bourgogne-Franche-Comté»
-        Alors appliquer les règles «DE Bourgogne-Franche-Comté»
-
-    Si la région du bénéficiaire est «La Réunion»
-    Ou la région du bénéficiaire est «Mayotte»
-        Alors appliquer les règles «DE La Réunion»
-
-    Si la région du bénéficiaire est «Martinique»
-    Ou la région du bénéficiaire est «Guyane»
-        Alors appliquer les règles «DE Martinique»
 
     Si c'est un permis B
         Alors le texte des démarches vaut «Contactez votre conseiller référent emploi (Pôle emploi, Mission Locale ou Cap emploi).⏎Votre projet de formation et son financement doivent être présentés au plus tard 2 semaines avant le début de la formation.»

@@ -1,6 +1,0 @@
-Si le financement est de type «AIF»
-
-    Si la liste des codes FORMACODE de la formation ne contient aucun code parmi [43441,44041,44083,44084,44050,44092,44072,44008,43491,43448,43497,43490,43439,43493,43470,43092,43476,44004,44026,43436,43441]
-    Et le code CERTIFINFO de la formation ne fait pas partie de [54912,54913,54917,87189,87185,87187]
-        Alors le financement est éligible
-        Et le texte de la prise en charge vaut «Formation totalement prise en charge, sous réserve d'acceptation par Pôle emploi»

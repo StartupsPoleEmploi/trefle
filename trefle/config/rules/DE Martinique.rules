@@ -1,5 +1,0 @@
-Si le code RNCP de la formation n'est pas 28414
-Et la liste des codes FORMACODE de la formation ne contient aucun code parmi [13030,15073,43409,44002,42837,43445,43425,43454,14449,42020]
-Et ce n'est pas une formation en développement professionnel
-    Alors le financement est éligible
-    Et le plafond financier applicable vaut 2800

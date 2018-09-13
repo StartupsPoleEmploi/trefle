@@ -110,3 +110,7 @@ def insee_commune_to_departement(context, from_key, to_key):
     if from_string.startswith('97'):  # DROM
         chars = 3
     context[to_key] = from_string[:chars]
+
+
+def revert_dict(d):
+    return {v: k for k, v in d.items()}

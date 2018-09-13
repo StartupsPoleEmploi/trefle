@@ -2,11 +2,12 @@ from datetime import timedelta
 
 from lxml import etree
 
-from .config import (CONSTANTS, ELIGIBILITE_URL, INTERCARIF_URL, ORGANISMES,
-                     RULES, SCHEMA)
+from .config import (CONSTANTS, ELIGIBILITE_URL, INTERCARIF_URL, LABELS,
+                     ORGANISMES, RULES, SCHEMA)
 from .exceptions import DataError, UpstreamError
 from .helpers import (diff_month, diff_week, fold_name, http_get,
-                      insee_commune_to_departement, insee_commune_to_region)
+                      insee_commune_to_departement, insee_commune_to_region,
+                      revert_dict)
 from .rules import Rule
 from .validators import format_naf
 
@@ -179,16 +180,33 @@ def compute_modalites(context, financement):
         financement['fin_rff'] = context.get('formation.fin')
 
 
+def get_root_rule(context, financement):
+    name = financement['racine']
+    if name.endswith('.rules'):
+        return name
+    name = LABELS.get(name, name)
+    if name in SCHEMA:
+        schema = SCHEMA[name]
+        name = context.get(name)
+        # Rules have human friendly names, so revert the enum logic here
+        enum = schema.get('enum') or schema.get('items', {}).get('enum')
+        if enum:
+            name = enum.get(name, name)
+    if name:
+        return f'{name}.rules'
+
+
 def check_financement(context, financement):
     statuses = []
     financement['explain'] = []
     context['financement.nom'] = financement['nom']
     context['financement.tags'] = financement['tags']
     context['financement.eligible'] = False
-    for rule in RULES[f'rules/{financement["rules"]}.rules']:
-        status = Rule.process(rule, context)
-        if status is not None:  # Root is a private condition.
-            statuses.append(status)
+    rule_name = get_root_rule(context, financement)
+    if not rule_name:
+        return
+    for rule in RULES[f'rules/{rule_name}']:
+        statuses.extend(Rule.process(rule, context))
     financement['explain'] = statuses
     if context['financement.eligible']:
         compute_modalites(context, financement)

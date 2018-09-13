@@ -1,6 +1,0 @@
-Si le financement est de type «AIF»
-    Si la liste des codes FORMACODE de la formation ne contient aucun code parmi [42030,42034,31812,31811,43445,43448,43433,43438,43409,44002,14456,15084,15093]
-    Et le code CERTIFINFO de la formation ne fait pas partie de [87185,87187,87189]
-    Et la durée hebdomadaire de la formation n'est pas inférieure à 30
-        Alors le financement est éligible
-        Et le texte de la prise en charge vaut «Formation totalement ou partiellement financée si validée par Pôle emploi.»

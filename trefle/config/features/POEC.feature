@@ -8,6 +8,7 @@ Scénario: Cas nominal POEC
     Et la durée en heures de la formation vaut 120
     Et c'est une préparation opérationnelle à l'emploi collective
     Et c'est une formation ouverte aux bénéficiaires individuels
+    Et la région du bénéficiaire vaut «Normandie»
     Quand je demande un calcul de financement
     Quand je sélectionne le financement «Préparation opérationnelle à l'emploi collective»
     Alors la rémunération applicable vaut 401.09
@@ -22,6 +23,7 @@ Scénario: POEC avec une VAE
     Et l'allocation du bénéficiaire vaut «allocation d'aide au retour à l'emploi»
     Et la montant de l'allocation du bénéficiaire vaut 800
     Et c'est une formation ouverte aux bénéficiaires individuels
+    Et la région du bénéficiaire vaut «Normandie»
     Quand je demande un calcul de financement
     Quand je sélectionne le financement «Préparation opérationnelle à l'emploi collective»
     Alors la rémunération applicable vaut 800
@@ -35,6 +37,7 @@ Scénario: Pas de POEC pour une VAE
     Et c'est une préparation opérationnelle à l'emploi collective
     Et c'est une formation VAE
     Et c'est une formation ouverte aux bénéficiaires individuels
+    Et la région du bénéficiaire vaut «Normandie»
     Quand je demande un calcul de financement
     Alors le financement «Préparation opérationnelle à l'emploi collective» n'est pas proposé
 
@@ -46,6 +49,7 @@ Scénario: Formation trop longue pour POEC
     Et la durée en heures de la formation vaut 500
     Et c'est une préparation opérationnelle à l'emploi collective
     Et c'est une formation ouverte aux bénéficiaires individuels
+    Et la région du bénéficiaire vaut «Normandie»
     Quand je demande un calcul de financement
     Alors le financement «Préparation opérationnelle à l'emploi collective» n'est pas proposé
 
@@ -90,6 +94,7 @@ Scénario: Financement POEC
     Et la niveau scolaire du bénéficiaire vaut «V»
     Et la montant de l'allocation du bénéficiaire vaut 4000.0
     Et la date de fin de l'allocation du bénéficiaire vaut «15/12/2018»
+    Et la région du bénéficiaire vaut «Normandie»
     Quand je demande un calcul de financement
     Quand je sélectionne le financement «Préparation opérationnelle à l'emploi collective»
     Alors la rémunération applicable vaut 4000.0

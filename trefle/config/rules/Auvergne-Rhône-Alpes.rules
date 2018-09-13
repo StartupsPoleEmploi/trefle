@@ -1,4 +1,28 @@
-Si le financement est de type «AIF»
+Si le financement est de type «AFC»
+    Alors appliquer les règles «action collective»
+
+Si le financement est de type «FAJ»
+    Alors appliquer les règles «FAJ»
+
+Si le financement est de type «POEC»
+    Alors appliquer les règles «POEC.rules»
+
+Si le financement est de type «POEI»
+    Alors appliquer les règles «POEI.rules»
+
+Si le nom du financement est «Financement individuel Agefiph»
+    Alors appliquer les règles «Agefiph.rules»
+
+Si le nom du financement est «Formation en alternance : contrat de professionnalisation»
+    Alors appliquer les règles «contrat de professionnalisation.rules»
+
+Si le nom du financement est «Formation en alternance : contrat d'apprentissage»
+    Alors appliquer les règles «contrat d'apprentissage.rules»
+
+Si le nom du financement est «Aide individuelle à la formation artisan»
+    Alors appliquer les règles «AIF artisan»
+
+Si le nom du financement est «Aide individuelle à la formation»
 
     Si la liste des codes FORMACODE de la formation ne contient aucun code parmi [31802,31805,31847,31827,31833,43409,43436,43339,43441,43448,43454,44004,44028,44054,15064,44591]
     Et le code CERTIFINFO de la formation ne fait pas partie de [54912,87185,87187,87189]
@@ -6,7 +30,7 @@ Si le financement est de type «AIF»
     Et ce n'est pas une formation en développement professionnel
     Et la durée en mois de la formation n'est pas supérieure à 12
     Et la liste des codes CPF de la formation ne contient pas 201
-        Alors le financement est éligible
+        Alors appliquer les règles «AIF»
 
 
 Si le nom du financement est «Programme régional qualifiant»

@@ -1,4 +1,28 @@
-Si le financement est de type «AIF»
+Si le financement est de type «AFC»
+    Alors appliquer les règles «action collective»
+
+Si le financement est de type «FAJ»
+    Alors appliquer les règles «FAJ»
+
+Si le financement est de type «POEC»
+    Alors appliquer les règles «POEC.rules»
+
+Si le financement est de type «POEI»
+    Alors appliquer les règles «POEI.rules»
+
+Si le nom du financement est «Financement individuel Agefiph»
+    Alors appliquer les règles «Agefiph.rules»
+
+Si le nom du financement est «Formation en alternance : contrat de professionnalisation»
+    Alors appliquer les règles «contrat de professionnalisation.rules»
+
+Si le nom du financement est «Formation en alternance : contrat d'apprentissage»
+    Alors appliquer les règles «contrat d'apprentissage.rules»
+
+Si le nom du financement est «Aide individuelle à la formation artisan»
+    Alors appliquer les règles «AIF artisan»
+
+Si le nom du financement est «Aide individuelle à la formation»
     Alors le texte de la prise en charge vaut «Formation totalement ou partiellement financée dans la limite de 1000 € (possibilité de cofinancement à étudier avec votre conseiller référent mais sans autofinancement)»
 
     Si le niveau scolaire du bénéficiaire ne fait pas partie de [«I»,«II»,«III»,«IV»]
@@ -8,7 +32,7 @@ Si le financement est de type «AIF»
     Et le code CERTIFINFO de la formation ne fait pas partie de [49616,56306,87185,87187,87189,52411,63669,63670,88309]
     # TODO - si intitulé comprend licence, master, ingénieur
     # TODO si certifinfo Ambulancier (DEA) 59412 + siret 77567227207806
-        Alors le financement est éligible
+        Alors appliquer les règles «AIF»
         Et le plafond financier applicable vaut 1000
 
         Si c'est un permis B

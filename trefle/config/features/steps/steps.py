@@ -2,14 +2,10 @@ from behave import given, when, then, use_step_matcher
 from behave.api.async_step import async_run_until_complete
 
 from trefle import simulate, get_financements
+from trefle.helpers import revert_dict
 from trefle.rules import LABELS, SCHEMA, Pointer
 
 use_step_matcher('re')
-
-
-def revert(d):
-    """Revert a dict."""
-    return {v: k for k, v in d.items()}
 
 
 @given('un bénéficiaire et une formation')
@@ -26,7 +22,7 @@ def given_set_value(context, label, value):
 
 @given(r"c'est une formation éligible région «(?P<label>.+)»")
 def given_set_coparef(context, label):
-    regions = revert(SCHEMA['beneficiaire.entreprise.region']['enum'])
+    regions = revert_dict(SCHEMA['beneficiaire.entreprise.region']['enum'])
     ref = regions[label]
     context.data['formation.regions_coparef'] = [ref]
 
