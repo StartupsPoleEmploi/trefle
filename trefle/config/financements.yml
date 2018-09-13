@@ -145,3 +145,13 @@ Action collective financée par la Collectivité territoriale de Corse:
 Programme sanitaire et social:
   tags: [DE, collectif, région]
   racine: Corse.rules
+Action collective financée par la région:
+  tags: [DE, collectif, région]
+  racine: Pays de la Loire.rules
+  ressources:
+    - http://www.paysdelaloire.fr/politiques-regionales/formation-professionnelle
+Action collective sanitaire et social financée par la région et Pôle emploi:
+  tags: [DE, collectif, région]
+  racine: Pays de la Loire.rules
+  ressources:
+    - http://www.paysdelaloire.fr/politiques-regionales/formation-professionnelle

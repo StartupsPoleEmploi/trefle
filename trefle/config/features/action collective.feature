@@ -36,8 +36,8 @@ Scénario: financement région pour un bénéficiaire exclu pour mauvaise régio
     Et le âge du bénéficiaire vaut 30
     Et la durée en heures de la formation vaut 120
     Et les codes financeur de la formation valent [«Conseil régional»]
-    Et la région de la formation vaut «Bretagne»
-    Et la région du bénéficiaire vaut «Bretagne»
+    Et la région de la formation vaut «Normandie»
+    Et la région du bénéficiaire vaut «Normandie»
     Quand je demande un calcul de financement
     Alors le financement «Action de formation collective financée par la région» n'est pas proposé
 

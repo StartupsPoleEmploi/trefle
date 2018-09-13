@@ -1,0 +1,34 @@
+Si la région de la formation est «Pays de la Loire»
+Et c'est un demandeur d'emploi
+
+    Si le nom du financement est «Action collective financée par la région»
+
+        Si les codes financeur de la formation contiennent «Conseil régional»
+        Et la liste des codes FORMACODE de la formation ne contient aucun code parmi [43436,43441,31815]
+            Alors le financement est éligible
+            Et appliquer les règles «AREF-RFPE-RPS»
+            Et le texte des démarches vaut «Vérifiez auprès de votre conseiller et/ou de l'organisme de formation que vous remplissez les conditions pour effectuer cette formation.»
+
+            Si le niveau de sortie de la formation ne fait pas partie de [«I»,«II»,«III»]
+                Alors le texte de description vaut «Cette action de formation est financée par votre région - gratuite pour les demandeurs d'emploi.»
+                Et le texte de la prise en charge vaut «Formation totalement financée.»
+
+            Si le niveau de sortie de la formation ne fait pas partie de [«IV»,«V»,«V bis»,«VI»]
+                Alors le texte de description vaut «Cette action de formation est partiellement financée par votre région.»
+                Et le texte de la prise en charge vaut «Formation partiellement financée.»
+
+    Si le nom du financement est «Action collective sanitaire et social financée par la région et Pôle emploi»
+
+        Si la liste des codes FORMACODE de la formation contient au moins un code parmi [43436,43441,31815]
+        Et les codes financeur de la formation contiennent «Conseil régional»
+            Alors le financement est éligible
+            Et le texte des démarches vaut «Pour effectuer cette formation, il vous faut tout d'abord réussir le concours d'entrée. Contactez l'organisme de formation.»
+            Et le texte de description vaut «Cette action de formation est financée par la région et Pôle emploi.»
+            Et le texte de la prise en charge vaut «Formation totalement financée.»
+
+            Si l'allocation du bénéficiaire est «allocation d'aide au retour à l'emploi»
+                Alors appliquer les règles «AREF»
+
+            Si l'allocation du bénéficiaire n'est pas «allocation d'aide au retour à l'emploi»
+                Alors le texte de la rémunération est «Demande de bourse régionale à effectuer sur http://www.paysdelaloire.fr/services-en-ligne/aides-regionales/aides-regionales-themes/formation/actu-detaillee/n/formations-sanitaires-et-sociales-demande-de-bourses-en-ligne-2/»
+
