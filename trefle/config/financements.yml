@@ -303,3 +303,13 @@ Formations sanitaire et sociale subventionnées par le Conseil régional Centre-
   tags: [DE, région, collectif]
   ressource: http://www.etoile.regioncentre.fr/GIP/accueiletoile/seformer/formation/articles-formation/Financer-une-formation-sanitaire-et-sociale#A125823
   racine: Centre-Val de Loire.rules
+Action collective financée par la région:
+  tags: [DE, collectif, région]
+  racine: Pays de la Loire.rules
+  ressources:
+    - http://www.paysdelaloire.fr/politiques-regionales/formation-professionnelle
+Action collective sanitaire et social financée par la région et Pôle Emploi:
+  tags: [DE, collectif, région]
+  racine: Pays de la Loire.rules
+  ressources:
+    - http://www.paysdelaloire.fr/politiques-regionales/formation-professionnelle

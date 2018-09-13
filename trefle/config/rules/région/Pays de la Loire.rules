@@ -1,6 +1,3 @@
-Si l'intitulé du financement est «Accès des demandeurs d’emploi aux métiers agricoles»
-    Alors appliquer les règles «ADEMA»
-
 Si la région de la formation est «Pays de la Loire»
 Et c'est un demandeur d'emploi
 
@@ -13,21 +10,21 @@ Et c'est un demandeur d'emploi
             Et le texte des démarches vaut «Vérifiez auprès de votre conseiller et/ou de l'organisme de formation que vous remplissez les conditions pour effectuer cette formation.»
 
             Si le niveau de sortie de la formation ne fait pas partie de [«I»,«II»,«III»]
-                Alors le texte de description vaut «Vérifiez auprès de votre conseiller et/ou de l'organisme de formation que vous remplissez les conditions pour effectuer cette formation..»
-                Et le texte de la prise en charge vaut «Formation totalement financée.»
+                Alors le texte de description vaut «Cette action de formation est financée par votre Région - gratuite pour les demandeurs d'emploi»
+                Et le texte de la prise en charge vaut «Formation totalement financée»
 
             Si le niveau de sortie de la formation ne fait pas partie de [«IV»,«V»,«V bis»,«VI»]
-                Alors le texte de description vaut «Vérifiez auprès de votre conseiller et/ou de l'organisme de formation que vous remplissez les conditions pour effectuer cette formation.»
-                Et le texte de la prise en charge vaut «Formation partiellement financée.»
+                Alors le texte de description vaut «Cette action de formation est partiellement financée par votre Région»
+                Et le texte de la prise en charge vaut «Formation partiellement financée»
 
-    Si l'intitulé du financement est «Action collective sanitaire et social financée par la région et Pôle emploi»
+    Si l'intitulé du financement est «Action collective sanitaire et social financée par la région et Pôle Emploi»
 
         Si la liste des codes FORMACODE de la formation contient au moins un code parmi [43436,43441,31815]
         Et les codes financeur de la formation contiennent «Conseil régional»
             Alors le financement est éligible
             Et le texte des démarches vaut «Pour effectuer cette formation, il vous faut tout d'abord réussir le concours d'entrée. Contactez l'organisme de formation.»
-            Et le texte de description vaut «Vérifiez auprès de votre conseiller et/ou de l'organisme de formation que vous remplissez les conditions pour effectuer cette formation.»
-            Et le texte de la prise en charge vaut «Formation totalement financée.»
+            Et le texte de description vaut «Cette action de formation est financée par la Région et Pôle emploi»
+            Et le texte de la prise en charge vaut «Formation totalement financée»
 
             Si l'allocation du bénéficiaire est «allocation d'aide au retour à l'emploi»
                 Alors appliquer les règles «AREF»
