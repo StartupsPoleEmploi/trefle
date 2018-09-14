@@ -66,7 +66,7 @@ Scénario: est salarié OPCAIM période de professionnalisation FORMACODE 316 ce
     Et la durée en mois de la formation vaut 8
     Et la durée hebdomadaire de la formation vaut 38
     Et c'est une formation ouverte aux bénéficiaires individuels
-    Et c'est une formation diplômante
+    Et c'est une formation de l'enseignement supérieur
     Quand je demande un calcul de financement
     Quand je sélectionne le financement «Période de professionnalisation sur son temps de travail»
     Alors la rémunération applicable vaut 1800.0

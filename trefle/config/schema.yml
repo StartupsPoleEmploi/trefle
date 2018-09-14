@@ -796,6 +796,10 @@ formation:
     type: boolean
     source: catalogue
     label: formation BEC
+  pfb:
+    type: boolean
+    source: catalogue
+    label: formation PFB
   bilan_de_competences:
     type: boolean
     source: catalogue
@@ -816,10 +820,10 @@ formation:
     source: catalogue
     xpath: boolean(number(//certifiante/text()))
     label: formation certifiante
-  diplomante:
+  enseignement_superieur:
     type: boolean
     source: catalogue
-    label: formation diplômante
+    label: formation de l'enseignement supérieur
   vae:
     type: boolean
     source: catalogue

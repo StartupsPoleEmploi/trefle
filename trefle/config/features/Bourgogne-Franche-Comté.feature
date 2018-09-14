@@ -55,7 +55,7 @@ Scénario: AIF avec RFF
     Et la durée en mois de la formation vaut 37
     Et la durée hebdomadaire de la formation vaut 3
     Et c'est une formation ouverte aux bénéficiaires individuels
-    Et c'est une formation diplômante
+    Et c'est une formation de l'enseignement supérieur
     Et c'est une formation éligible à la RFF
     Et l'allocation du bénéficiaire vaut «allocation d'aide au retour à l'emploi»
     Et la montant de l'allocation du bénéficiaire vaut 4000.0

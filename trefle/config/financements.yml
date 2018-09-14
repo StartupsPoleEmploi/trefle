@@ -170,3 +170,22 @@ Chéquier unique VAE Région Ile-de-France:
 Paris formation pour l'emploi:
   tags: [DE, département, collectif]
   racine: Île-de-France.rules
+Accès des demandeurs d’emploi aux métiers agricoles:
+  sigle: ADEMA
+  tags: [DE, collectif, ADEMA]
+  racine: région du bénéficiaire
+Programme de formations collectives financées par le Conseil régional de Normandie:
+  tags: [DE, région, collectif]
+  racine: Normandie.rules
+Une formation, un emploi - individuel:
+  tags: [DE, région, individuel]
+  racine: Normandie.rules
+Une formation, un emploi - collectif:
+  tags: [DE, région, collectif]
+  racine: Normandie.rules
+Qualif individuel:
+  tags: [DE, région, individuel]
+  racine: Normandie.rules
+VAE Normandie:
+  tags: [DE, VAE]
+  racine: Normandie.rules

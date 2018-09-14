@@ -165,7 +165,8 @@ def compute_modalites(context, financement):
     financement['indemnite_conges_payes'] = indemnite_conges_payes
     financement['heures'] = heures
     keys = ['remuneration_texte', 'prise_en_charge_texte', 'demarches', 'rff',
-            'description', 'remuneration_annee_2', 'remuneration_annee_3']
+            'description', 'remuneration_annee_2', 'remuneration_annee_3',
+            'nom']
     for key in keys:
         name = f'financement.{key}'
         if name in context:

@@ -13,13 +13,13 @@ Scénario: Cas nominal POEI
     Alors la rémunération applicable vaut 401.09
 
 
-Scénario: Pas de POEI pour formation diplômante
+Scénario: Pas de POEI pour formation de l'ensignement supérieur
     Soit un bénéficiaire et une formation
     Et c'est un demandeur d'emploi
     Et le âge du bénéficiaire vaut 38
     Et la durée en heures de la formation vaut 120
     Et c'est une formation ouverte aux bénéficiaires individuels
-    Et c'est une formation diplômante
+    Et c'est une formation de l'enseignement supérieur
     Et la région du bénéficiaire vaut «Grand-Est»
     Quand je demande un calcul de financement
     Alors le financement «Formations avant embauche (AFPR, POEI)» n'est pas proposé

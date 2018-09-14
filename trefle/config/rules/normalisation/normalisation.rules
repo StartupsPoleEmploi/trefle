@@ -21,6 +21,7 @@ Si le code CERTIFINFO de la formation fait partie des codes CERTIFINFO pour un b
 Si la liste des codes CPF de la formation contient au moins un des codes CPF CléA
     Alors c'est une formation CléA
 Si la liste des codes CPF de la formation contient au moins un des codes CPF VAE
+Ou la liste des codes FORMACODE de la formation contient au moins un code parmi [15064,44591]
 Ou le code CERTIFINFO de la formation vaut 83899
     Alors c'est une formation VAE
 Si la liste des domaines FORMACODE de la formation contient 150
@@ -30,13 +31,22 @@ Si le code AIS de la formation fait partie des codes AIS certifiants
     Alors c'est une formation certifiante
 Si les codes financeur de la formation ne contiennent aucun des codes financeur collectif
     Alors c'est une formation ouverte aux bénéficiaires individuels
-Si les codes financeur de la formation contiennent au moins un code parmi [«OPCA»]
-Et la durée en heures de la formation est inférieure ou égale à 400
+Si la durée en heures de la formation est inférieure ou égale à 400
+Et les codes financeur de la formation contiennent au moins un code parmi [«OPCA»], ou l'intitulé normé de la formation contient «POEC»
     Alors c'est une préparation opérationnelle à l'emploi collective
 Si l'intitulé de la formation contient «POEI»
     Alors c'est une préparation opérationnelle à l'emploi individuelle
-Si le niveau de sortie de la formation fait partie de [«I»,«II»,«III»,«IV»,«V»]
-    Alors c'est une formation diplômante
+Si l'intitulé normé de la formation contient «BTS»
+Ou l'intitulé normé de la formation contient «BACHELOR»
+Ou l'intitulé normé de la formation contient «CAPACITE»
+Ou l'intitulé normé de la formation contient «DAEU»
+Ou l'intitulé normé de la formation contient «DEUST»
+Ou l'intitulé normé de la formation contient «DIPLOMEDACCESAUXETUDESUNIVERSITAIRES»
+Ou l'intitulé normé de la formation contient «INGENIEUR»
+Ou l'intitulé normé de la formation contient «LICENCE»
+Ou l'intitulé normé de la formation contient «MASTER»
+Ou l'intitulé normé de la formation contient «MASTERE»
+    Alors c'est une formation de l'enseignement supérieur
 Si c'est un demandeur d'emploi
     Alors appliquer les règles «éligibilité RFF»
     Si la région du bénéficiaire fait partie des régions éligibles COPAREF
