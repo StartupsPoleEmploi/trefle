@@ -98,7 +98,7 @@ def load_rules(path):
 
 def load_dir_rules(root):
     paths = (root).glob('**/*.rules')
-    for path in sorted(paths, key=lambda p: p):
+    for path in sorted(paths, key=lambda p: fold_name(str(p))):
         yield load_rules(path)
 
 
