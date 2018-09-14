@@ -1,6 +1,7 @@
 Si le financement est de type «CPF»
 
-    Alors le plafond horaire applicable est égal au solde CPF du bénéficiaire
+    Alors appliquer les règles «CPF»
+    Et le plafond horaire applicable est égal au solde CPF du bénéficiaire
     Et le prix horaire plafond applicable vaut 30
 
     Si le domaine FORMACODE langues fait partie de la liste des domaines FORMACODE de la formation
@@ -16,15 +17,27 @@ Si le financement est de type «CPF»
         Alors le prix horaire plafond applicable vaut 18
 
 Si le financement est de type «période de professionnalisation»
-Ou le financement est de type «plan de formation»
 
     Si c'est une formation CléA
-        Alors le financement est éligible
+        Alors appliquer les règles «période de professionnalisation»
         Et le prix horaire plafond applicable vaut 18
 
         Si c'est une formation ouverte à distance
             Alors le prix horaire plafond applicable vaut 10
 
     Si le code RNCP de la formation est 16457
-        Alors le financement est éligible
+        Alors appliquer les règles «période de professionnalisation»
+        Et le prix horaire plafond applicable vaut 20
+
+Si le financement est de type «plan de formation»
+
+    Si c'est une formation CléA
+        Alors appliquer les règles «plan de formation»
+        Et le prix horaire plafond applicable vaut 18
+
+        Si c'est une formation ouverte à distance
+            Alors le prix horaire plafond applicable vaut 10
+
+    Si le code RNCP de la formation est 16457
+        Alors appliquer les règles «plan de formation»
         Et le prix horaire plafond applicable vaut 20

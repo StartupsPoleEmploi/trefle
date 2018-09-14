@@ -1,12 +1,14 @@
 Si le financement est de type «CPF»
-    Alors le prix horaire plafond applicable vaut 50
+    Alors appliquer les règles «CPF»
+    Et le prix horaire plafond applicable vaut 50
+
     Si c'est un permis B
         Alors le prix horaire plafond applicable vaut 40
     Si c'est un bilan de compétences
         Alors le prix horaire plafond applicable vaut 75
 
 Si le financement est de type «période de professionnalisation»
-    Alors le financement est éligible
+    Alors appliquer les règles «période de professionnalisation»
     Et le prix horaire plafond applicable vaut 9.15
 
 Si la région de l'établissement du bénéficiaire est «Guadeloupe»

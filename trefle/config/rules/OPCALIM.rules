@@ -1,7 +1,8 @@
 Si le financement est de type «CPF»
-    Alors le prix horaire plafond applicable vaut 50
-    Alors le plafond horaire applicable est égal au solde CPF du bénéficiaire
-    Alors le plafond financier applicable vaut 8000
+    Alors appliquer les règles «CPF»
+    Et le prix horaire plafond applicable vaut 50
+    Et le plafond horaire applicable est égal au solde CPF du bénéficiaire
+    Et le plafond financier applicable vaut 8000
 
     Si c'est une formation VAE
         Alors le plafond horaire applicable est égal à la durée en heures de la formation
@@ -13,12 +14,12 @@ Si le financement est de type «période de professionnalisation»
     Si c'est une formation VAE
     Et la liste des domaines FORMACODE de la formation contient 215
         Si l'IDCC de l'établissement du bénéficiaire fait partie de [«112»,«200»,«1396»,«1513»,«1534»,«1586»,«1747»,«1930»,«1987»,«2075»,«2728»,«3109»,«7001»,«7002»,«7003»,«7004»,«7005»,«7006»,«7007»,«7008»,«7020»,«7021»,«7503»,«8215»,«8435»]
-            Alors le financement est éligible
+            Alors appliquer les règles «période de professionnalisation»
             Et le prix horaire plafond applicable vaut 25
         Si l'IDCC de l'établissement du bénéficiaire fait partie de [«1267»,«1986»,«953»,«1504»]
-            Alors le financement est éligible
+            Alors appliquer les règles «période de professionnalisation»
             Et le prix horaire plafond applicable vaut 9.15
         Si l'IDCC de l'établissement du bénéficiaire vaut «843»
-            Alors le financement est éligible
+            Alors appliquer les règles «période de professionnalisation»
             Et le prix horaire plafond applicable vaut 15
 

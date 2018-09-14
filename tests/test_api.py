@@ -476,13 +476,13 @@ async def test_rules_details(client):
     financement = json.loads(resp.body)['financements'][0]
     assert financement['eligible'] is False
     assert financement['explain']
-    assert financement['explain'][0]['terms'][0]['params'] == {
-        'beneficiaire.droit_prive': True
+    assert financement['explain'][0]['params'] == {
+        'formation.individuels': True
     }
     assert 'CPF' in financement['tags']
     assert not financement['explain'][0]['children'][0]['terms'][1]['status']
     assert financement['explain'][0]['children'][0]['terms'][1]['reason'] == \
-        "ce n'est pas formation éligible COPANEF"
+        "type de contrat du bénéficiaire vaut «cdi» au lieu de «cdd»"
 
 
 async def test_simulate_financement_properties(client):

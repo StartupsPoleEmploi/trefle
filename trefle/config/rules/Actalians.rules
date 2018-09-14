@@ -1,4 +1,5 @@
 Si le financement est de type «CPF»
+    Alors appliquer les règles «CPF»
 
     Si c'est une formation éligible COPANEF
         Alors le prix horaire plafond applicable vaut 60
@@ -17,6 +18,7 @@ Si le financement est de type «CPF»
     Si le code NAF de l'établissement du bénéficiaire fait partie des codes NAF CPNE éligibles
         Alors le prix horaire plafond applicable vaut 60
 
+
 Si le financement est de type «période de professionnalisation»
 
     # Cabinets d'économistes
@@ -32,12 +34,12 @@ Si le financement est de type «période de professionnalisation»
 
         # Secrétaire technique
         Si le code RNCP de la formation vaut 19175
-            Alors le financement est éligible
+            Alors appliquer les règles «période de professionnalisation»
             Et le prix horaire plafond applicable vaut 9.15
 
         # CQP Techniques foncières et topographiques
         Si le code RNCP de la formation vaut 81016
-            Alors le financement est éligible
+            Alors appliquer les règles «période de professionnalisation»
             Et le prix horaire plafond applicable vaut 30
 
     # Cabinets dentaires
@@ -47,15 +49,15 @@ Si le financement est de type «période de professionnalisation»
         Si le code RNCP de la formation vaut 15745
         # CQP : Certificat de qualification professionnelle Aide dentaire
         Ou le code RNCP de la formation vaut 23708
-            Alors le financement est éligible
+            Alors appliquer les règles «période de professionnalisation»
             Et le prix horaire plafond applicable vaut 12.80
 
-            Alors le financement est éligible
+            Alors appliquer les règles «période de professionnalisation»
             Et le prix horaire plafond applicable vaut 12.80
 
         # Secrétaire technique
         Si le code RNCP de la formation vaut 19175
-            Alors le financement est éligible
+            Alors appliquer les règles «période de professionnalisation»
             Et le prix horaire plafond applicable vaut 9.15
 
 
@@ -66,7 +68,7 @@ Si le financement est de type «période de professionnalisation»
 
         # Secrétaire technique
         Si le code RNCP de la formation vaut 19175
-            Alors le financement est éligible
+            Alors appliquer les règles «période de professionnalisation»
             Et le prix horaire plafond applicable vaut 12
 
     # Cabinets et cliniques vétérinaires
@@ -74,7 +76,7 @@ Si le financement est de type «période de professionnalisation»
 
         # CQP d’Auxiliaire vétérinaire qualifié(e)
         Si le code RNCP de la formation vaut 2130
-            Alors le financement est éligible
+            Alors appliquer les règles «période de professionnalisation»
             Et le prix horaire plafond applicable vaut 12
 
     # Entreprises d'architecte
@@ -82,12 +84,12 @@ Si le financement est de type «période de professionnalisation»
 
         # Secrétaire technique
         Si le code RNCP de la formation vaut 19175
-            Alors le financement est éligible
+            Alors appliquer les règles «période de professionnalisation»
             Et le prix horaire plafond applicable vaut 12
 
         # CQP : Certificat de qualification professionnelle Architecte technique
         Si le code RNCP de la formation vaut 12054
-            Alors le financement est éligible
+            Alors appliquer les règles «période de professionnalisation»
             Et le prix horaire plafond applicable vaut 9.15
 
     # Etudes d'huissier de justice
@@ -97,32 +99,32 @@ Si le financement est de type «période de professionnalisation»
 
         # juriste secrétaire juridique
         Si le code RNCP de la formation vaut 19315
-            Alors le financement est éligible
+            Alors appliquer les règles «période de professionnalisation»
             Et le prix horaire plafond applicable vaut 40
 
         # juriste
         # CQP de Juriste
         Si le code RNCP de la formation vaut 20251
-            Alors le financement est éligible
+            Alors appliquer les règles «période de professionnalisation»
             Et le prix horaire plafond applicable vaut 60
 
         # CQP de Clerc significateur
         Si le code CERTIFINFO de la formation vaut 74878
         # Clerc expert
         Ou le code RNCP de la formation vaut 27841
-            Alors le financement est éligible
+            Alors appliquer les règles «période de professionnalisation»
             Et le prix horaire plafond applicable vaut 9.15
 
         # Clerc aux procédures
         Si le code RNCP de la formation vaut 19316
-            Alors le financement est éligible
+            Alors appliquer les règles «période de professionnalisation»
             Et le prix horaire plafond applicable vaut 20
 
         # CQP de Formaliste
         Si le code CERTIFINFO de la formation vaut 74774
         # CQP de Comptable-taxateur
         Ou le code RNCP de la formation vaut 26160
-            Alors le financement est éligible
+            Alors appliquer les règles «période de professionnalisation»
             Et le prix horaire plafond applicable vaut 35
 
     # Pharmacie d'officine
@@ -132,9 +134,9 @@ Si le financement est de type «période de professionnalisation»
         Si le code RNCP de la formation vaut 1306
         # CQP Vente Conseil de produits cosmétiques et Hygiène pharmaceutique
         Ou le code RNCP de la formation vaut 12987
-            Alors le financement est éligible
+            Alors appliquer les règles «période de professionnalisation»
             Et le prix horaire plafond applicable vaut 13
 
     Si c'est une formation CléA
-        Alors le financement est éligible
+        Alors appliquer les règles «période de professionnalisation»
         Et le prix horaire plafond applicable vaut 27

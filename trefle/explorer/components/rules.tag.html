@@ -1,6 +1,6 @@
 <rules>
   <ul>
-    <li each={ props, id in this.rules }><a href="#rules/{ id }" class='{ on: this.active && this.active.startsWith(id) }' title={ id }>{ props.name }</a></li>
+    <li each={ props, id in this.rules }><a href="#rules/{ id }" class='{ on: this.active && this.active.startsWith(id) }' title={ id }>{ id }</a></li>
   </ul>
   <div if={ this.rule }>
     <h3>{ this.rule.path } <a href=https://framagit.org/ybon/trefle/tree/master/trefle/config/{ this.rule.path } target=_blank> <i class="icon">edit</i></a></h3>

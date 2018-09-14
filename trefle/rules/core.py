@@ -212,7 +212,15 @@ class Action(Step):
         self.compile()
 
     def act(self, context, status):
-        return self.func(context, **self.params)
+        try:
+            return self.func(context, **self.params)
+        except NoDataError:
+            # This allows to have "generic action" in region/OPCA files that
+            # can be written without checking explicitly if the financement is
+            # éligible, and we want to make the data required only when this is
+            # the case.
+            if context.get('financement.eligible'):
+                raise
 
 
 class Condition(Step):

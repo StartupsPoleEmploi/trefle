@@ -1,11 +1,12 @@
 Si le financement est de type «CPF»
-    Alors le prix horaire plafond applicable vaut 50
-    Alors le plafond horaire applicable est égal au solde CPF du bénéficiaire
+    Alors appliquer les règles «CPF»
+    Et le prix horaire plafond applicable vaut 50
+    Et le plafond horaire applicable est égal au solde CPF du bénéficiaire
     Si c'est une formation VAE
         Alors le plafond horaire applicable est égal à la durée en heures de la formation
 
 Si le financement est de type «période de professionnalisation»
-    Alors le financement est éligible
+    Alors appliquer les règles «période de professionnalisation»
     Et le prix horaire plafond applicable vaut 12
     Si c'est une formation VAE
         Alors le prix horaire plafond applicable vaut 45

@@ -5,8 +5,8 @@ Ou le type de contrat du bénéficiaire est «CDD», et c'est une entreprise d'i
     Et le texte des démarches vaut «Contactez votre entreprise pour les modalités de mise en œuvre.»
 
     Si c'est une formation VAE, ou c'est une formation CléA, ou c'est un bilan de compétences
-        Alors appliquer les règles de l'OPCA de l'établissement du bénéficiaire
+        Alors le financement est éligible
 
     Si la durée en heures de la formation est supérieure ou égale à 70
     Et la durée en mois de la formation n'est pas supérieure à 12, ou c'est une formation à entrées-sorties permanentes
-        Alors appliquer les règles de l'OPCA de l'établissement du bénéficiaire
+        Alors le financement est éligible

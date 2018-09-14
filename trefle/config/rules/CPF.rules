@@ -7,11 +7,8 @@ Ou le code NAF de l'établissement du bénéficiaire fait partie des codes NAF C
         Et le texte de description vaut «Le compte personnel de formation (CPF) permet à toute personne active d’acquérir des droits pour financer totalement ou partiellement une formation qualifiante.»
 
         Si le financement est de type «hors temps de travail»
-            Alors appliquer les règles de l'OPCA de l'établissement du bénéficiaire
-            Et le texte des démarches vaut «Pour une formation se déroulant en dehors du temps de travail, il n'est pas nécessaire de demander l'accord de l'employeur.⏎Assurez-vous que votre compte personnel de formation est activé sur http://www.moncompteformation.gouv.fr/.⏎Contactez directement votre organisme {nom} pour bénéficier gratuitement d’un conseil en évolution professionnelle et valider votre projet de formation et son financement CPF.»
+            Alors le texte des démarches vaut «Pour une formation se déroulant en dehors du temps de travail, il n'est pas nécessaire de demander l'accord de l'employeur.⏎Assurez-vous que votre compte personnel de formation est activé sur http://www.moncompteformation.gouv.fr/.⏎Contactez directement votre organisme {nom} pour bénéficier gratuitement d’un conseil en évolution professionnelle et valider votre projet de formation et son financement CPF.»
 
         Si le financement est de type «sur son temps de travail»
-            # Par défaut.
             Alors la rémunération applicable est égale à la rémunération du bénéficiaire
             Et le texte des démarches vaut «Pour une formation se déroulant sur le temps de travail, il est nécessaire de demander l'accord de l'employeur.⏎Assurez-vous que votre compte personnel de formation est activé sur http://www.moncompteformation.gouv.fr/.⏎Contactez votre employeur pour bénéficier gratuitement d’un conseil en évolution professionnelle et valider votre projet de formation et son financement CPF.»
-            Et appliquer les règles de l'OPCA de l'établissement du bénéficiaire

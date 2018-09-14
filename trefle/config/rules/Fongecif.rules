@@ -1,6 +1,7 @@
-Si l'organisme paritaire est «Fongecif»
+Si le financement est de type «CIF»
     # Et le prix horaire plafond applicable est égal au prix horaire de la formation
-    Alors le plafond financier applicable vaut 18000
+    Alors appliquer les règles «CIF»
+    Et le plafond financier applicable vaut 18000
     Et le prix horaire plafond applicable vaut 27.45
 
     Si le financement est de type «sur son temps de travail»

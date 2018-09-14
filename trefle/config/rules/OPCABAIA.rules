@@ -1,5 +1,6 @@
 Si le financement est de type «CPF»
-    Alors le plafond horaire applicable est égal au solde CPF du bénéficiaire
+    Alors appliquer les règles «CPF»
+    Et le plafond horaire applicable est égal au solde CPF du bénéficiaire
     Et le prix horaire plafond applicable est égal au prix horaire de la formation
 
     Si l'IDCC de l'établissement du bénéficiaire fait partie de [«2335»,«1672»,«1801»]
@@ -60,13 +61,13 @@ Si le financement est de type «période de professionnalisation»
     Ou le code RNCP de la formation est 15762
     # CQP : Certificat de qualification professionnelle Gestionnaire assurances de personnes
     Ou le code RNCP de la formation est 14544
-        Alors le financement est éligible
+        Alors appliquer les règles «période de professionnalisation»
         Et le prix horaire plafond applicable vaut 20
 
     Si c'est une formation CléA
-        Alors le financement est éligible
+        Alors appliquer les règles «période de professionnalisation»
         Et le prix horaire plafond applicable vaut 15
 
     Si c'est une formation VAE
-        Alors le financement est éligible
+        Alors appliquer les règles «période de professionnalisation»
         Et le plafond financier applicable vaut 2500

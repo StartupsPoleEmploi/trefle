@@ -1,5 +1,6 @@
 Si le financement est de type «CPF»
-    Alors le plafond horaire applicable est égal au solde CPF du bénéficiaire
+    Alors appliquer les règles «CPF»
+    Et le plafond horaire applicable est égal au solde CPF du bénéficiaire
 
     Si l'IDCC de l'établissement du bénéficiaire vaut «292»
         Alors le prix horaire plafond applicable vaut 25
@@ -44,7 +45,7 @@ Si le financement est de type «période de professionnalisation»
     # Formation industrielle
     Si la liste des domaines FORMACODE de la formation contient 316
     Ou c'est une formation CléA
-        Alors le financement est éligible
+        Alors appliquer les règles «période de professionnalisation»
         Et le prix horaire plafond applicable vaut 10
 
         Si c'est une formation certifiante

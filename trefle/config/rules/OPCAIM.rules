@@ -1,6 +1,7 @@
 Si le financement est de type «CPF»
 
-    Alors le prix horaire plafond applicable vaut 45
+    Alors appliquer les règles «CPF»
+    Et le prix horaire plafond applicable vaut 45
     Et le plafond horaire applicable est égal au solde CPF du bénéficiaire
 
     Si c'est une formation VAE
@@ -11,5 +12,5 @@ Si le financement est de type «période de professionnalisation»
     # formation industrielle
     Si la liste des domaines FORMACODE de la formation contient 316
     Et c'est une formation certifiante
-        Alors le financement est éligible
+        Alors appliquer les règles «période de professionnalisation»
         Et le prix horaire plafond applicable vaut 32

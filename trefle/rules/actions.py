@@ -1,3 +1,5 @@
+from ..exceptions import DataError, NoDataError
+
 from .core import (IDCC, RULES, Label, Pointer, Rule, action)
 
 
@@ -45,7 +47,12 @@ def unset_key(context, key: Label):
 
 @action(r"définir les organismes paritaires")
 def define_organisme(context):
-    idcc = context['beneficiaire.entreprise.idcc']
+    try:
+        idcc = context['beneficiaire.entreprise.idcc']
+    except NoDataError as err:
+        # Raise even if the financement is not eligible (which is always the
+        # case when this action is called)
+        raise DataError(err.error, err.key)
     # Allow to force value in input data.
     if 'beneficiaire.entreprise.opca' not in context:
         context['beneficiaire.entreprise.opca'] = IDCC[idcc]['OPCA']
