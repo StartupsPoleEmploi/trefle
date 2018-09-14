@@ -78,11 +78,15 @@ def load_naf(data):
 def load_rules(path):
     with path.open() as rules_file:
         data = rules_file.read()
-        id_ = str(path.relative_to(ROOT))
+        # Don't use local path in rule id, so we can call it from a Pointer
+        # value.
+        id_ = path.name
+        if path.name in RAW_RULES:
+            raise ValueError(f'Rule {path.name} already exists!')
         RAW_RULES[id_] = {
             'data': data,
-            'path': id_,
-            'name': path.name,
+            'path': str(path.relative_to(ROOT / 'rules')),
+            'name': path.stem,
         }
         try:
             return id_, Rule.load(data.splitlines(), id_)
@@ -94,7 +98,7 @@ def load_rules(path):
 
 def load_dir_rules(root):
     paths = (root).glob('**/*.rules')
-    for path in sorted(paths, key=lambda p: p.name.lower()):
+    for path in sorted(paths, key=lambda p: p):
         yield load_rules(path)
 
 

@@ -110,7 +110,7 @@ def extrapolate_formation_context(context):
 
 
 def preprocess(context):
-    for rule in RULES['rules/preprocess.rules']:
+    for rule in RULES['normalisation.rules']:
         Rule.process(rule, context)
 
 
@@ -205,7 +205,7 @@ def check_financement(context, financement):
     rule_name = get_root_rule(context, financement)
     if not rule_name:
         return
-    for rule in RULES[f'rules/{rule_name}']:
+    for rule in RULES[rule_name]:
         statuses.extend(Rule.process(rule, context))
     financement['explain'] = statuses
     if context['financement.eligible']:

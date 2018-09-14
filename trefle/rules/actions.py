@@ -26,8 +26,7 @@ def set_true(context, key: Label):
 
 @action(r"appliquer les règles (de )?(l'|le |la )?(?P<rule>.+)")
 def include(context, rule: Pointer):
-    rule = rule.get(context)
-    name = f'rules/{rule}'
+    name = rule.get(context)
     if not name.endswith('.rules'):
         name = name + '.rules'
     rules = RULES[name]
