@@ -28,3 +28,29 @@ Si le nom du financement est «Aide individuelle à la formation»
     Et la durée hebdomadaire de la formation n'est pas inférieure à 30
         Alors appliquer les règles «AIF»
         Et le texte de la prise en charge vaut «Formation totalement ou partiellement financée si validée par Pôle emploi.»
+
+
+Si le nom du financement est «Action collective financée par la Collectivité territoriale de Corse»
+
+    Si c'est un demandeur d'emploi
+    Et la région de la formation est «Corse»
+    Et les codes financeur de la formation contiennent «Conseil régional»
+        Alors le financement est éligible
+        Et appliquer les règles «AREF-RFPE-RPS»
+        Et le texte de description vaut «La Collectivité territoriale de Corse finance des actions de formation qualifiantes, permettant d'obtenir un titre ou un diplôme et des actions de pré-qualification et d'insertion.»
+        Et le texte des démarches vaut «Contactez votre conseiller référent emploi (Pôle emploi, mission locale ou Cap emploi) pour partager avec vous la pertinence de ce projet de formation en lien avec le marché du travail.»
+        Et le texte de la prise en charge vaut «Formation totalement financée.»
+
+
+Si le nom du financement est «Programme sanitaire et social»
+
+    Si c'est un demandeur d'emploi
+    Et la région du bénéficiaire vaut «Corse»
+    Et la région de la formation est «Corse»
+    Et le code CERTIFINFO de la formation fait partie de [87185,87187,87189]
+    Et les codes financeur de la formation contiennent «Conseil régional»
+        Alors le financement est éligible
+        Et appliquer les règles «AREF-RFPE-RPS»
+        Et le texte de description vaut «La Collectivité territoriale de Corse finance des actions de formation qualifiantes dans le domaine sanitaire et social. Les formations menant au diplôme d'État d'accompagnant éducatif et social (DEAES) sont progressivement intégrées au programme régional. Renseignez-vous auprès de votre conseiller.»
+        Et le texte des démarches vaut «Prenez contact avec votre conseiller emploi (Pôle emploi, mission locale, Cap emploi).»
+        Et le texte de la prise en charge vaut «Renseignez-vous auprès de votre conseiller.»

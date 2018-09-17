@@ -139,3 +139,9 @@ Programme régional sanitaire et social - ambulancier:
 Aide à la VAE:
   tags: [DE, VAE]
   racine: Auvergne-Rhône-Alpes.rules
+Action collective financée par la Collectivité territoriale de Corse:
+  tags: [DE, collectif, région]
+  racine: Corse.rules
+Programme sanitaire et social:
+  tags: [DE, collectif, région]
+  racine: Corse.rules
