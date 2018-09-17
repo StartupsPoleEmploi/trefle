@@ -155,3 +155,18 @@ Action collective sanitaire et social financée par la région et Pôle emploi:
   racine: Pays de la Loire.rules
   ressources:
     - http://www.paysdelaloire.fr/politiques-regionales/formation-professionnelle
+Formations sanitaire et social d'aide-soignant ou d'auxiliaire de puériculture région Île-de-France:
+  tags: [DE, région, collectif]
+  racine: Île-de-France.rules
+Formations sanitaire et social post-bac région Île-de-France:
+  tags: [DE, région, collectif]
+  racine: Île-de-France.rules
+Programme régional qualifiant compétences:
+  tags: [DE, région, collectif]
+  racine: Île-de-France.rules
+Chéquier unique VAE Région Ile-de-France:
+  tags: [DE, région, individuel]
+  racine: Île-de-France.rules
+Paris formation pour l'emploi:
+  tags: [DE, département, collectif]
+  racine: Île-de-France.rules
