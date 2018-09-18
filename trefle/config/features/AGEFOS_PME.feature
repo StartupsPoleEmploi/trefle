@@ -202,3 +202,36 @@ Scénario: pas de financement pour une formation réservée Pôle Emploi
     Et la durée hebdomadaire de la formation vaut 29
     Quand je demande un calcul de financement
     Alors aucun financement n'est proposé
+
+Scénario: période de professionnalisation avec entrées-sorties permanentes
+    Soit un bénéficiaire et une formation
+    Et c'est un bénéficiaire de droit privé
+    Et la rémunération du bénéficiaire vaut 1500
+    Et le type de contrat du bénéficiaire vaut «CDI»
+    Et l'expérience professionnelle du bénéficiaire dans les cinq dernières années vaut 36
+    Et l'ancienneté en mois du bénéficiaire dans son entreprise vaut 12
+    Et le code NAF de l'établissement du bénéficiaire vaut «5510Z»
+    Et l'IDCC de l'établissement du bénéficiaire vaut «1631»
+    Et le âge du bénéficiaire vaut 28
+    Et la région de l'établissement du bénéficiaire vaut «Île-de-France»
+    Et la département de la formation vaut «Var»
+    Et la région de la formation vaut «Provence-Alpes-Côte d'Azur»
+    Et la liste des codes ROME de la formation vaut [I1402,I1401]
+    Et la liste des codes FORMACODE de la formation vaut [31073,31003,31005,31006,31007]
+    Et la liste des domaines FORMACODE de la formation vaut [310]
+    Et la durée en heures de la formation vaut 241
+    Et le nombre d'heures en centre vaut 241
+    Et la durée hebdomadaire de la formation vaut 25
+    Et la date de début de la formation vaut «24/01/2018»
+    Et la date de fin de la formation vaut «31/12/2019»
+    Et c'est une formation ouverte à distance
+    Et la modalités d'entrées-sorties vaut «entrées/sorties permanentes»
+    Et c'est une formation à entrées-sorties permanentes
+    Et la durée en semaines de la formation vaut 101
+    Et la durée en mois de la formation vaut 23
+    Et c'est une formation ouverte aux bénéficiaires individuels
+    Quand je demande un calcul de financement
+    Et je sélectionne le financement «Période de professionnalisation sur son temps de travail»
+    Alors la rémunération applicable vaut 1500
+    Et la plafond de prise en charge vaut 2205.15
+    Et l'organisme à contacter est «AGEFOS PME Ile de France»
