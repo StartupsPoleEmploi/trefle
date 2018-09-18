@@ -1,7 +1,8 @@
 <financements>
   <dl each={ this.financements }>
     <dt>{ nom }</dt>
-    <dd><strong>Règles</strong>: <a href="#/rules/rules/{ rules}.rules">{ rules } <i class="icon">arrow_forward</i></a></dd>
+    <dd if={ racine.endsWith('.rules') }><strong>Règles racine</strong>: <a href="#/rules/{ racine }">{ racine } <i class="icon">arrow_forward</i></a></dd>
+    <dd if={ !racine.endsWith('.rules') }><strong>Règles racine</strong>: { racine }</dd>
     <dd><strong>Catégories</strong>: { _tags }</dd>
     <dd if={ ressources }><strong>Ressources</strong>:
       <ul>
