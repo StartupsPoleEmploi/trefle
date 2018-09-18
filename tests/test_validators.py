@@ -109,6 +109,7 @@ def test_validate_bad_enum(patch_schema):
 @pytest.mark.parametrize('input,valid', [
     ('01111', True),
     ('2A004', True),
+    (75056, True),
     ('A2004', False),
     ('unvalid', False),
 ])
@@ -214,20 +215,20 @@ def test_format_money(patch_schema, input, expected):
 
 def test_should_resolve_alias_if_value_is_none(patch_schema):
     patch_schema({
-        'remuneration': {'type': 'string', 'alias': 'salaire'}})
+        'remuneration': {'type': 'integer', 'alias': 'salaire'}})
     data = {'salaire': 1000}
     assert validate_field('salaire', data) == 1000
 
 
 def test_should_not_resolve_alias_if_original_key_is_set(patch_schema):
     patch_schema({
-        'remuneration': {'type': 'string', 'alias': 'salaire'}})
+        'remuneration': {'type': 'integer', 'alias': 'salaire'}})
     data = {'salaire': 1000, 'remuneration': 1100}
     assert validate_field('remuneration', data) == 1100
 
 
 def test_should_fail_if_alias_is_not_present(patch_schema):
     patch_schema({
-        'remuneration': {'type': 'string', 'alias': 'salaire', 'default': 0}})
+        'remuneration': {'type': 'integer', 'alias': 'salaire', 'default': 0}})
     data = {}
     assert validate_field('remuneration', data) == 0

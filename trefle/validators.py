@@ -114,6 +114,11 @@ def format_remuneration(value):
     return float(value)
 
 
+@formatter('string')
+def format_string(value):
+    return str(value)
+
+
 def validate_field(name, data):
     value = data.get(name)
     try:
