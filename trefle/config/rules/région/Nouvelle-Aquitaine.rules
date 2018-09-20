@@ -36,9 +36,60 @@ Si le nom du financement est «Aide individuelle à la formation»
         Ou la liste des codes CPF de la formation contient 201
             Alors appliquer les règles «AIF»
             Et le plafond financier applicable vaut 3000
-            Et le texte de la prise en charge vaut «Formation partiellement ou totalement financée dans la limite de 3000 euros.»
+            Et le texte de la prise en charge vaut «Formation partiellement ou totalement financée dans la limite de 3000 euros, et du montant correspondant à vos droits CPF si la formation est éligible.»
             Et le texte des démarches vaut «Contactez votre conseiller référent emploi (Pôle emploi, Mission Locale ou Opérateur Placement Spécialisé, ex-CAP Emploi) pour valider votre projet de formation.⏎Le projet doit être validé et le dossier complet, au plus tard 15 jours avant l'entrée en formation.⏎Si la formation est éligible au Compte Personnnel de Formation (CPF), votre conseiller recueillera votre consentement à mobiliser vos heures acquises afin de financer tout ou partie de la formation.»
 
             Si c'est un travailleur handicapé
                 Alors le plafond financier applicable vaut 6000
                 Et le texte de la prise en charge vaut «Formation partiellement ou totalement financée dans la limite de 6000 euros, financés pour moitié par Pôle emploi et pour moitié par l'Agefiph, et du montant correspondant à vos heures CPF si la formation est éligible.»
+
+
+Si le nom du financement est «Programme régional de formation»
+
+    Si les codes financeur de la formation contiennent «Conseil régional»
+    Et c'est un demandeur d'emploi
+        Alors le texte des démarches vaut «Contactez votre conseiller référent emploi (Pôle emploi, mission locale ou Opérateur placement spécialisé, ex-Cap emploi) qui étudiera avec vous votre projet de formation. Si votre projet est validé, il procédera à une pré-inscription auprès de l'organisme de formation.⏎Ensuite l'organisme de formation auprès duquel vous candidatez vous recevra pour passer un entretien et/ou des tests de sélection. Si la formation est éligible au Compte personnnel de formation (CPF), votre conseiller recueillera votre consentement à mobiliser vos heures acquises.»
+        Et le texte de description vaut «Le Programme régional de formation regroupe toutes les formations financées par la Région et Pôle emploi en Nouvelle-Aquitaine. Elles répondent aux besoins des entreprises du territoire.»
+        Et le texte de la prise en charge vaut «Formation totalement financée.»
+
+        Si le département de la formation fait partie de [«Dordogne»,«Gironde»,«Pyrénées-Atlantique»,«Lot-et-Garonne»,«Landes»]
+            Alors le financement est éligible
+
+            Si la liste des codes FORMACODE de la formation contient au moins un code parmi [43448,43457,43456,43439,43449,43490,43491,43493,43092,43497,43436,43441,31815,43006,44092,44008,44084,44083,44050,44092,44092]
+                Alors le nom du financement vaut «Formations sanitaires et sociales»
+
+        # Ex-Poitou-Charente
+        Si le département de la formation fait partie de [«Charente»,«Charente-Maritime»,«Deux-Sèvres»,«Vienne»]
+            Alors le financement est éligible
+
+            Si la liste des codes FORMACODE de la formation contient au moins un code parmi [44083,44050,44008], et le SIRET de l'organisme de formation est 77571615200019
+            Ou la liste des codes FORMACODE de la formation contient 43092, et le SIRET de l'organisme de formation est 19860856400706
+            Ou la liste des codes FORMACODE de la formation contient 43436, et le SIRET de l'organisme de formation fait partie de [20004783500018,26170002500230,26170033000176,20005535800150,26160034000000,526790001700059,26790121300046,19860039700014,78156439800035,19860037100043]
+            Ou la liste des codes FORMACODE de la formation contient 43441, et le SIRET de l'organisme de formation est 26790001700000
+            Ou la liste des codes FORMACODE de la formation contient 43448, et le SIRET de l'organisme de formation fait partie de [20004783500018,77567227229743,26170002500230,26170033000176,26790001700059,26790121300012,20005535800150]
+            Ou la liste des codes FORMACODE de la formation contient au moins un code parmi [43490,43497,43491], et le SIRET de l'organisme de formation est 20005535800150
+            Ou le code CERTIFINFO de la formation fait partie de [20120,23715,53277,87185,87187,87189,53865], et le SIRET de l'organisme de formation est 77571615200019
+            Ou le code CERTIFINFO de la formation vaut 54912, et le SIRET de l'organisme de formation fait partie de [20005535800150,26160034000010]
+                # TODO change to intitulé
+                Alors le nom du financement vaut «Programme régional de formation sanitaire et social»
+
+        # Ex-Limousin
+        Si le département de la formation fait partie de [«Haute-Vienne»,«Creuse»,«Corrèze»]
+            Alors le financement est éligible
+
+            Si la liste des codes FORMACODE de la formation contient au moins un code parmi [43441,43480], et le SIRET de l'organisme de formation est 77567227230717
+            Ou la liste des codes FORMACODE de la formation contient au moins un code parmi [43436,43448], et le SIRET de l'organisme de formation fait partie de [26190310800015,26192720600027,26192750300019,26870851800272]
+            Ou la liste des codes FORMACODE de la formation contient 43436, et le SIRET de l'organisme de formation fait partie de [26871540600040,26871870700014,26230960200072]
+            Ou la liste des codes FORMACODE de la formation contient 43448, et le SIRET de l'organisme de formation est 26870851800306
+            Ou la liste des codes FORMACODE de la formation contient au moins un code parmi [31815,43449], et le SIRET de l'organisme de formation vaut 26870851800280, et le code CERTIFINFO de la formation vaut 78851
+            Ou la liste des codes FORMACODE de la formation contient au moins un code parmi [43448,43480,44083], et le SIRET de l'organisme de formation vaut 77567227230717
+            Ou la liste des codes FORMACODE de la formation contient au moins un code parmi [43092,43491,43480], et le SIRET de l'organisme de formation vaut 19870669900420
+            Ou la liste des codes FORMACODE de la formation contient 44050, et le SIRET de l'organisme de formation vaut 77807079700049, et le code CERTIFINFO de la formation fait partie de [87185,87187,87189,20120,53277,53865]
+            Ou la liste des codes FORMACODE de la formation contient 44008, et le SIRET de l'organisme de formation vaut 77807079700015
+            Ou le code CERTIFINFO de la formation vaut 73378, et le SIRET de l'organisme de formation vaut 77807079700015
+            Ou le code CERTIFINFO de la formation vaut 49332, et le SIRET de l'organisme de formation vaut 26870851800272
+                Alors le nom du financement vaut «Programme régional de formation sanitaire et social»
+
+        Si l'allocation du bénéficiaire vaut «aide au retour à l'emploi»
+        Ou la durée en heures de la formation n'est pas inférieure à 150
+            Alors appliquer les règles «AREF-RFPE-RPS»

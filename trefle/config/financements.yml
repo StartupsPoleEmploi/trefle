@@ -189,3 +189,7 @@ Qualif individuel:
 VAE Normandie:
   tags: [DE, VAE]
   racine: Normandie.rules
+Programme régional de formation:
+  sigle: PRF
+  tags: [DE, collectif, PRF]
+  racine: Nouvelle-Aquitaine.rules

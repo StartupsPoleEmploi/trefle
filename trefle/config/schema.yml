@@ -924,6 +924,11 @@ financement:
     type: string
     public: true
     label: texte de description
+  en_savoir_plus:
+    description: description du financement
+    type: string
+    public: true
+    label: texte pour en savoir plus
   demarches:
     description: démarches à accomplir pour obtenir le financement
     type: string

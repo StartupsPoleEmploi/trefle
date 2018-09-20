@@ -12,7 +12,7 @@ Scénario: cas nominal AIF
     Quand je demande un calcul de financement
     Quand je sélectionne le financement «Aide individuelle à la formation»
     Alors le plafond de prise en charge vaut 3000
-    Et le texte de la prise en charge vaut «Formation partiellement ou totalement financée dans la limite de 3000 euros.»
+    Et le texte de la prise en charge vaut «Formation partiellement ou totalement financée dans la limite de 3000 euros, et du montant correspondant à vos droits CPF si la formation est éligible.»
 
 
 Scénario: Formation trop longue pour l'AIF
@@ -98,3 +98,78 @@ Scénario: AIF avec ARE finissant avant la fin de la formation
     Quand je sélectionne le financement «Aide individuelle à la formation»
     Alors la rémunération applicable vaut 758
     Et la RFF applicable vaut 652.02
+
+
+Scénario: Cas nominal «Programme régional formation»
+    Soit un bénéficiaire et une formation
+    Et c'est un demandeur d'emploi
+    Et le âge du bénéficiaire vaut 38
+    Et la durée en heures de la formation vaut 150
+    Et la région du bénéficiaire vaut «Nouvelle-Aquitaine»
+    Et la département du bénéficiaire vaut «Landes»
+    Et la département de la formation vaut «Landes»
+    Et les codes financeur de la formation valent [«Conseil régional»]
+    Quand je demande un calcul de financement
+    Quand je sélectionne le financement «Programme régional de formation»
+    Alors la rémunération applicable vaut 401.09
+
+Scénario: Cas nominal «Formations sanitaires et sociales» ex-Aquitaine
+    Soit un bénéficiaire et une formation
+    Et c'est un demandeur d'emploi
+    Et le âge du bénéficiaire vaut 38
+    Et la durée en heures de la formation vaut 150
+    Et la région du bénéficiaire vaut «Nouvelle-Aquitaine»
+    Et la département du bénéficiaire vaut «Landes»
+    Et la département de la formation vaut «Landes»
+    Et les codes financeur de la formation valent [«Conseil régional»]
+    Et la liste des codes FORMACODE de la formation vaut [43006]
+    Quand je demande un calcul de financement
+    Quand je demande un calcul de financement
+    Quand je sélectionne le financement «Formations sanitaires et sociales»
+    Alors la rémunération applicable vaut 401.09
+
+
+Scénario: Pas de rémunération pour «Programme régional formation» si la durée est trop courte
+    Soit un bénéficiaire et une formation
+    Et c'est un demandeur d'emploi
+    Et le âge du bénéficiaire vaut 38
+    Et la durée en heures de la formation vaut 120
+    Et la région du bénéficiaire vaut «Nouvelle-Aquitaine»
+    Et la département du bénéficiaire vaut «Landes»
+    Et la département de la formation vaut «Landes»
+    Et les codes financeur de la formation valent [«Conseil régional»]
+    Quand je demande un calcul de financement
+    Quand je sélectionne le financement «Programme régional de formation»
+    Alors la rémunération applicable vaut 0
+
+
+Scénario: Cas nominal «Programme régional formation sanitaire et social» en Charente
+    Soit un bénéficiaire et une formation
+    Et c'est un demandeur d'emploi
+    Et le âge du bénéficiaire vaut 38
+    Et la durée en heures de la formation vaut 150
+    Et la région du bénéficiaire vaut «Nouvelle-Aquitaine»
+    Et la département du bénéficiaire vaut «Charente»
+    Et la département de la formation vaut «Charente»
+    Et la liste des codes FORMACODE de la formation vaut [44083]
+    Et le SIRET de l'organisme de formation vaut 77571615200019
+    Et les codes financeur de la formation valent [«Conseil régional»]
+    Quand je demande un calcul de financement
+    Quand je sélectionne le financement «Programme régional de formation sanitaire et social»
+    Alors la rémunération applicable vaut 401.09
+
+
+Scénario: Cas nominal «Programme régional formation sanitaire et social» dans la Creuse
+    Soit un bénéficiaire et une formation
+    Et c'est un demandeur d'emploi
+    Et le âge du bénéficiaire vaut 38
+    Et la durée en heures de la formation vaut 150
+    Et la région du bénéficiaire vaut «Nouvelle-Aquitaine»
+    Et la département du bénéficiaire vaut «Creuse»
+    Et la département de la formation vaut «Creuse»
+    Et les codes financeur de la formation valent [«Conseil régional»]
+    Et la liste des codes FORMACODE de la formation vaut [43441]
+    Et le SIRET de l'organisme de formation vaut 77567227230717
+    Quand je demande un calcul de financement
+    Quand je sélectionne le financement «Programme régional de formation sanitaire et social»
+    Alors la rémunération applicable vaut 401.09

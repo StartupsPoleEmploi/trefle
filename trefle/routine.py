@@ -166,7 +166,7 @@ def compute_modalites(context, financement):
     financement['heures'] = heures
     keys = ['remuneration_texte', 'prise_en_charge_texte', 'demarches', 'rff',
             'description', 'remuneration_annee_2', 'remuneration_annee_3',
-            'nom']
+            'nom', 'en_savoir_plus']
     for key in keys:
         name = f'financement.{key}'
         if name in context:
