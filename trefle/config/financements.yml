@@ -202,3 +202,8 @@ Aide individuelle Conseil régional:
   racine: Nouvelle-Aquitaine.rules
   ressources:
   - https://les-aides.nouvelle-aquitaine.fr/fiche/remuneration-des-stagiaires-de-la-formation-professionnelle/
+Parcours Orientation Insertion:
+  tags: [DE, collectif]
+  racine: Occitanie.rules
+  ressources:
+  - http://www.laregion.fr

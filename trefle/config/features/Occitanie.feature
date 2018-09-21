@@ -44,3 +44,48 @@ Scénario: Domaine FORMACODE 150 mais code CPF 201 OK pour AIF
     Quand je demande un calcul de financement
     Quand je sélectionne le financement «Aide individuelle à la formation»
     Alors le plafond de prise en charge vaut 1000
+
+
+Scénario: Cas nominal «Parcours orientation insertion»
+    Soit un bénéficiaire et une formation
+    Et c'est un demandeur d'emploi
+    Et le âge du bénéficiaire vaut 28
+    Et la durée en heures de la formation vaut 150
+    Et la région du bénéficiaire vaut «Occitanie»
+    Et la région de la formation vaut «Occitanie»
+    Et les codes financeur de la formation valent [«Conseil régional»]
+    Et la département de la formation vaut «Lot»
+    Et l'intitulé normé de la formation vaut «PARCOURSORIENTATIONINSERTION»
+    Et la liste des codes FORMACODE de la formation vaut [15061]
+    Quand je demande un calcul de financement
+    Quand je sélectionne le financement «Parcours Orientation Insertion»
+    Alors la rémunération applicable vaut 401.09
+
+
+Scénario: Mauvais département pour «Parcours orientation insertion»
+    Soit un bénéficiaire et une formation
+    Et c'est un demandeur d'emploi
+    Et le âge du bénéficiaire vaut 28
+    Et la durée en heures de la formation vaut 150
+    Et la région du bénéficiaire vaut «Occitanie»
+    Et la région de la formation vaut «Occitanie»
+    Et les codes financeur de la formation valent [«Conseil régional»]
+    Et la département de la formation vaut «Gard»
+    Et l'intitulé normé de la formation vaut «PARCOURSORIENTATIONINSERTION»
+    Et la liste des codes FORMACODE de la formation vaut [15061]
+    Quand je demande un calcul de financement
+    Alors le financement «Parcours Orientation Insertion» n'est pas proposé
+
+
+Scénario: Mauvais formacode pour «Parcours orientation insertion»
+    Soit un bénéficiaire et une formation
+    Et c'est un demandeur d'emploi
+    Et le âge du bénéficiaire vaut 28
+    Et la durée en heures de la formation vaut 150
+    Et la région du bénéficiaire vaut «Occitanie»
+    Et la région de la formation vaut «Occitanie»
+    Et les codes financeur de la formation valent [«Conseil régional»]
+    Et la département de la formation vaut «Gard»
+    Et l'intitulé normé de la formation vaut «PARCOURSORIENTATIONINSERTION»
+    Quand je demande un calcul de financement
+    Alors le financement «Parcours Orientation Insertion» n'est pas proposé

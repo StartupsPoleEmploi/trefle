@@ -40,3 +40,15 @@ Si le nom du financement est «Aide individuelle à la formation»
 
         Si c'est un permis B
             Alors le texte de la prise en charge vaut «Vous pouvez utiliser votre CPF pour financer totalement ou partiellement votre permis de conduire catégorie B. Pôle emploi peut éventuellement vous apporter un complément de financement. Votre auto-école doit impérativement vous présenter à l'examen de conduite au plus tard six mois après votre inscription.»
+
+Si le nom du financement est «Parcours Orientation Insertion»
+
+    Si le département de la formation fait partie de [«Ariège»,«Aveyron»,«Haute-Garonne»,«Gers»,«Lot»,«Hautes-Pyrénées»,«Tarn»,«Tarn-et-Garonne»]
+    Et les codes financeur de la formation contiennent «Conseil régional»
+    Et la liste des codes FORMACODE de la formation contient 15061
+    Et l'intitulé normé de la formation contient «PARCOURSORIENTATIONINSERTION»
+        Alors le financement est éligible
+        Et appliquer les règles «AREF-RFPE-RPS»
+        Et le texte des démarches vaut «Contactez votre conseiller référent emploi (Pôle emploi, mission locale ou Cap emploi).⏎Pour entrer en formation, votre projet doit être validé avant le début de la formation.»
+        Et le texte de description vaut «Cette formation est financée par le Conseil régional Occitanie.⏎Parcours Orientation Insertion : ces formations d'orientation permettent de choisir un métier ; de confirmer un projet et d'effectuer une remise à niveau avec un objectif emploi ou formation qualifiante.⏎Plus d'infos sur le site du conseil régional.»
+        Et le texte de la prise en charge vaut «Formation totalement financée par la Région.»
