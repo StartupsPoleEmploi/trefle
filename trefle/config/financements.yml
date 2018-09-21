@@ -207,3 +207,6 @@ Parcours Orientation Insertion:
   racine: Occitanie.rules
   ressources:
   - http://www.laregion.fr
+Parcours diplômants et actions préparatoires:
+  tags: [DE, collectif]
+  racine: Occitanie.rules
