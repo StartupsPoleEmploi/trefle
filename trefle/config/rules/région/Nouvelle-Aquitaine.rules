@@ -56,7 +56,7 @@ Si le nom du financement est «Programme régional de formation»
             Alors le financement est éligible
 
             Si la liste des codes FORMACODE de la formation contient au moins un code parmi [43448,43457,43456,43439,43449,43490,43491,43493,43092,43497,43436,43441,31815,43006,44092,44008,44084,44083,44050,44092,44092]
-                Alors le nom du financement vaut «Formations sanitaires et sociales»
+                Alors le nom du financement vaut «Formations sanitaire et social»
 
         # Ex-Poitou-Charente
         Si le département de la formation fait partie de [«Charente»,«Charente-Maritime»,«Deux-Sèvres»,«Vienne»]
@@ -93,3 +93,21 @@ Si le nom du financement est «Programme régional de formation»
         Si l'allocation du bénéficiaire vaut «aide au retour à l'emploi»
         Ou la durée en heures de la formation n'est pas inférieure à 150
             Alors appliquer les règles «AREF-RFPE-RPS»
+
+
+Si le nom du financement est «Parcours régional de préparation à l'apprentissage»
+
+    Si la région de la formation est «Nouvelle-Aquitaine»
+    Et la région du bénéficiaire est «Nouvelle-Aquitaine»
+    Et c'est un demandeur d'emploi
+    Et l'âge du bénéficiaire n'est pas supérieur ou égal à 26, ou c'est un travailleur handicapé
+    Et l'intitulé normé de la formation contient «PREPAMETIERS»
+        Alors le financement est éligible
+        Et le texte des démarches vaut «Contactez votre mission locale ou Opérateur placement spécialisé, ex-Cap Emploi pour valider votre projet.»
+        Et le texte de description vaut «Dispositif financé par le Conseil régional permettant un accompagnement individualisé d'un projet de formation en apprentissage et la recherche d'un employeur. Réservé aux jeunes de moins de 26 ans ou aux personnes reconnues travailleur handicapé»
+        Et le texte de la prise en charge vaut «Formation totalement financée.»
+
+        Si l'allocation du bénéficiaire vaut «allocation d'aide au retour à l'emploi»
+            Alors appliquer les règles «AREF»
+        Si l'allocation du bénéficiaire n'est pas «allocation d'aide au retour à l'emploi»
+            Alors le texte de la rémunération vaut «Pas de rémunération spécifique.»

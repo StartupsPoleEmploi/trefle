@@ -125,7 +125,7 @@ Scénario: Cas nominal «Formations sanitaires et sociales» ex-Aquitaine
     Et la liste des codes FORMACODE de la formation vaut [43006]
     Quand je demande un calcul de financement
     Quand je demande un calcul de financement
-    Quand je sélectionne le financement «Formations sanitaires et sociales»
+    Quand je sélectionne le financement «Formations sanitaire et social»
     Alors la rémunération applicable vaut 401.09
 
 
@@ -173,3 +173,62 @@ Scénario: Cas nominal «Programme régional formation sanitaire et social» dan
     Quand je demande un calcul de financement
     Quand je sélectionne le financement «Programme régional de formation sanitaire et social»
     Alors la rémunération applicable vaut 401.09
+
+
+Scénario: Cas nominal «PREPA Métiers»
+    Soit un bénéficiaire et une formation
+    Et c'est un demandeur d'emploi
+    Et le âge du bénéficiaire vaut 18
+    Et la durée en heures de la formation vaut 150
+    Et la région du bénéficiaire vaut «Nouvelle-Aquitaine»
+    Et la région de la formation vaut «Nouvelle-Aquitaine»
+    Et l'intitulé normé de la formation vaut «PREPAMETIERS»
+    Et c'est une formation ouverte aux bénéficiaires individuels
+    Quand je demande un calcul de financement
+    Quand je sélectionne le financement «Parcours régional de préparation à l'apprentissage»
+    Alors le texte de la rémunération vaut «Pas de rémunération spécifique.»
+
+
+Scénario: «PREPA Métiers» avec ARE
+    Soit un bénéficiaire et une formation
+    Et c'est un demandeur d'emploi
+    Et le âge du bénéficiaire vaut 18
+    Et la durée en heures de la formation vaut 150
+    Et la région du bénéficiaire vaut «Nouvelle-Aquitaine»
+    Et la région de la formation vaut «Nouvelle-Aquitaine»
+    Et l'intitulé normé de la formation vaut «PREPAMETIERS»
+    Et l'allocation du bénéficiaire vaut «allocation d'aide au retour à l'emploi»
+    Et le montant de l'allocation du bénéficiaire vaut 800.0
+    Et c'est une formation ouverte aux bénéficiaires individuels
+    Quand je demande un calcul de financement
+    Quand je sélectionne le financement «Parcours régional de préparation à l'apprentissage»
+    Alors la rémunération applicable vaut 800.0
+
+
+Scénario: Pas de «PREPA Métiers» si > 25 ans
+    Soit un bénéficiaire et une formation
+    Et c'est un demandeur d'emploi
+    Et le âge du bénéficiaire vaut 26
+    Et la durée en heures de la formation vaut 150
+    Et la région du bénéficiaire vaut «Nouvelle-Aquitaine»
+    Et la région de la formation vaut «Nouvelle-Aquitaine»
+    Et l'intitulé normé de la formation vaut «PREPAMETIERS»
+    Et c'est une formation ouverte aux bénéficiaires individuels
+    Quand je demande un calcul de financement
+    Alors le financement «Parcours régional de préparation à l'apprentissage» n'est pas proposé
+
+
+
+Scénario: «PREPA Métiers» pour un travailleur handicapé
+    Soit un bénéficiaire et une formation
+    Et c'est un demandeur d'emploi
+    Et le âge du bénéficiaire vaut 28
+    Et la durée en heures de la formation vaut 150
+    Et la région du bénéficiaire vaut «Nouvelle-Aquitaine»
+    Et la région de la formation vaut «Nouvelle-Aquitaine»
+    Et l'intitulé normé de la formation vaut «PREPAMETIERS»
+    Et c'est une formation ouverte aux bénéficiaires individuels
+    Et c'est un travailleur handicapé
+    Quand je demande un calcul de financement
+    Quand je sélectionne le financement «Parcours régional de préparation à l'apprentissage»
+    Alors le texte de la rémunération vaut «Pas de rémunération spécifique.»

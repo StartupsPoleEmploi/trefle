@@ -193,3 +193,7 @@ Programme régional de formation:
   sigle: PRF
   tags: [DE, collectif, PRF]
   racine: Nouvelle-Aquitaine.rules
+Parcours régional de préparation à l'apprentissage:
+  sigle: PREPA
+  tags: [DE, collectif, PREPA]
+  racine: Nouvelle-Aquitaine.rules
