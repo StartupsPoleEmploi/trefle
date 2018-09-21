@@ -197,3 +197,8 @@ Parcours régional de préparation à l'apprentissage:
   sigle: PREPA
   tags: [DE, collectif, PREPA]
   racine: Nouvelle-Aquitaine.rules
+Aide individuelle Conseil régional:
+  tags: [DE, individuel]
+  racine: Nouvelle-Aquitaine.rules
+  ressources:
+  - https://les-aides.nouvelle-aquitaine.fr/fiche/remuneration-des-stagiaires-de-la-formation-professionnelle/

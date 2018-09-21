@@ -218,7 +218,6 @@ Scénario: Pas de «PREPA Métiers» si > 25 ans
     Alors le financement «Parcours régional de préparation à l'apprentissage» n'est pas proposé
 
 
-
 Scénario: «PREPA Métiers» pour un travailleur handicapé
     Soit un bénéficiaire et une formation
     Et c'est un demandeur d'emploi
@@ -232,3 +231,71 @@ Scénario: «PREPA Métiers» pour un travailleur handicapé
     Quand je demande un calcul de financement
     Quand je sélectionne le financement «Parcours régional de préparation à l'apprentissage»
     Alors le texte de la rémunération vaut «Pas de rémunération spécifique.»
+
+
+Scénario: Cas nominal "Aide individuelle Conseil régional"
+    Soit un bénéficiaire et une formation
+    Et c'est un demandeur d'emploi
+    Et le âge du bénéficiaire vaut 18
+    Et la durée en heures de la formation vaut 450
+    Et la région du bénéficiaire vaut «Nouvelle-Aquitaine»
+    Et la région de la formation vaut «Nouvelle-Aquitaine»
+    Et c'est une formation ouverte aux bénéficiaires individuels
+    Quand je demande un calcul de financement
+    Quand je sélectionne le financement «Aide individuelle Conseil régional»
+    Alors la rémunération applicable vaut 310.39
+    Et le plafond de prise en charge vaut 3000
+
+
+Scénario: Formation trop courte pour "Aide individuelle Conseil régional"
+    Soit un bénéficiaire et une formation
+    Et c'est un demandeur d'emploi
+    Et le âge du bénéficiaire vaut 18
+    Et la durée en heures de la formation vaut 350
+    Et la région du bénéficiaire vaut «Nouvelle-Aquitaine»
+    Et la région de la formation vaut «Nouvelle-Aquitaine»
+    Et c'est une formation ouverte aux bénéficiaires individuels
+    Quand je demande un calcul de financement
+    Alors le financement «Aide individuelle Conseil régional» n'est pas proposé
+
+
+Scénario: Formation trop longue (en mois) pour "Aide individuelle Conseil régional"
+    Soit un bénéficiaire et une formation
+    Et c'est un demandeur d'emploi
+    Et le âge du bénéficiaire vaut 18
+    Et la durée en heures de la formation vaut 450
+    Et la durée en mois de la formation vaut 13
+    Et la région du bénéficiaire vaut «Nouvelle-Aquitaine»
+    Et la région de la formation vaut «Nouvelle-Aquitaine»
+    Et c'est une formation ouverte aux bénéficiaires individuels
+    Quand je demande un calcul de financement
+    Alors le financement «Aide individuelle Conseil régional» n'est pas proposé
+
+
+Scénario: Durée hebdomadaire trop courte pour "Aide individuelle Conseil régional"
+    Soit un bénéficiaire et une formation
+    Et c'est un demandeur d'emploi
+    Et le âge du bénéficiaire vaut 18
+    Et la durée en heures de la formation vaut 450
+    Et la durée en mois de la formation vaut 12
+    Et la durée hebdomadaire de la formation vaut 17
+    Et la région du bénéficiaire vaut «Nouvelle-Aquitaine»
+    Et la région de la formation vaut «Nouvelle-Aquitaine»
+    Et c'est une formation ouverte aux bénéficiaires individuels
+    Quand je demande un calcul de financement
+    Alors le financement «Aide individuelle Conseil régional» n'est pas proposé
+
+
+Scénario: "Aide individuelle Conseil régional" pour travailleur handicapé
+    Soit un bénéficiaire et une formation
+    Et c'est un demandeur d'emploi
+    Et le âge du bénéficiaire vaut 18
+    Et la durée en heures de la formation vaut 450
+    Et la région du bénéficiaire vaut «Nouvelle-Aquitaine»
+    Et la région de la formation vaut «Nouvelle-Aquitaine»
+    Et c'est une formation ouverte aux bénéficiaires individuels
+    Et c'est un travailleur handicapé
+    Quand je demande un calcul de financement
+    Quand je sélectionne le financement «Aide individuelle Conseil régional»
+    Alors la rémunération applicable vaut 652.02
+    Et le plafond de prise en charge vaut 6000
