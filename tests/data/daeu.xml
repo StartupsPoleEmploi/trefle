@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="utf-8"?>
+<lheo xmlns="http://www.lheo.org/2.2">
+<offres>
+<formation numero="15_464888" ref="159047" datecrea="20180605" datemaj="20180911" href="http://www.meformerenregion.fr/trouver-une-formation/fiche-formation/?formation=464888&amp;session=927411">
+<domaine-formation>
+<code-FORMACODE ref="V12" tag="principal">15093</code-FORMACODE>
+<code-NSF>410</code-NSF>
+</domaine-formation>
+<intitule-formation>Diplôme d'accès aux études universitaires, option a, cours en présentiel</intitule-formation>
+<objectif-formation>* être titulaire d'un diplôme national équivalent au Baccalauréat&lt;br /&gt;- accéder à l'enseignement supérieur&lt;br /&gt;- présenter des concours de la fonction publique de catégorie B&lt;br /&gt;- faire une remise à niveau des connaissances</objectif-formation>
+<resultats-attendus>DAEU A</resultats-attendus>
+<contenu-formation>-</contenu-formation>
+<certifiante>1</certifiante>
+<contact-formation>
+<coordonnees>
+<courriel>daeu@univ-tlse2.fr</courriel>
+</coordonnees>
+</contact-formation>
+<parcours-de-formation>4</parcours-de-formation>
+<code-niveau-entree>4</code-niveau-entree>
+<objectif-general-formation>6</objectif-general-formation>
+<certification>
+<code-RNCP>28217</code-RNCP>
+<code-CERTIFINFO>21072</code-CERTIFINFO>
+</certification>
+<code-niveau-sortie>5</code-niveau-sortie>
+<url-formation>
+<urlweb>http://www.meformerenregion.fr/trouver-une-formation/fiche-formation/?formation=464888&amp;session=927411</urlweb>
+</url-formation>
+<action  numero="15_927411" ref="264909">
+<rythme-formation>-</rythme-formation>
+<code-public-vise ref="V12">80001</code-public-vise>
+<niveau-entree-obligatoire>1</niveau-entree-obligatoire>
+<modalites-alternance>-</modalites-alternance>
+<modalites-enseignement>0</modalites-enseignement>
+<conditions-specifiques>Inscription entre avril et juin : dossier à constituer&lt;br /&gt;&lt;br /&gt;avoir interrompu ses études initiales depuis deux ans au moins  et satisfaire à une des conditions suivantes : &lt;br /&gt;- avoir vingt ans au moins au 1er octobre de l'année de délivrance du diplôme et just</conditions-specifiques>
+<prise-en-charge-frais-possible>0</prise-en-charge-frais-possible>
+<lieu-de-formation>
+<coordonnees>
+<adresse>
+<ligne>UT2J
+Campus du Mirail
+5 allées Antonio Machado</ligne>
+<codepostal>31000</codepostal>
+<ville>Toulouse</ville>
+<departement>31</departement>
+<code-INSEE-commune>31555</code-INSEE-commune>
+<region>73</region>
+<pays>FR</pays>
+<geolocalisation>
+<latitude>43.6</latitude>
+<longitude>1.433333</longitude>
+</geolocalisation>
+</adresse>
+<telfixe>
+<numtel>0561504718</numtel>
+</telfixe>
+<courriel>sfcutm@univ-tlse2.fr</courriel>
+</coordonnees>
+</lieu-de-formation>
+<modalites-entrees-sorties>0</modalites-entrees-sorties>
+<url-action>
+<urlweb>http://www.meformerenregion.fr/trouver-une-formation/fiche-formation/?formation=464888&amp;session=927411</urlweb>
+</url-action>
+<session  numero="927411" ref="302127">
+<periode>
+<debut>20181001</debut>
+<fin>20190524</fin>
+</periode>
+<adresse-inscription>
+<adresse>
+<ligne>5 allées Antonio Machado</ligne>
+<codepostal>31500</codepostal>
+<ville>Toulouse</ville>
+<departement>31</departement>
+<code-INSEE-commune>31555</code-INSEE-commune>
+<region>73</region>
+<pays>FR</pays>
+<geolocalisation>
+<latitude>43.6049003601074</latitude>
+<longitude>1.44324994087219</longitude>
+</geolocalisation>
+</adresse>
+</adresse-inscription>
+</session>
+<adresse-information>
+<adresse>
+<ligne>-</ligne>
+<codepostal>31000</codepostal>
+<ville>Toulouse</ville>
+<departement>31</departement>
+<code-INSEE-commune>31555</code-INSEE-commune>
+<region>73</region>
+<pays>FR</pays>
+<geolocalisation>
+<latitude>43.6</latitude>
+<longitude>1.433333</longitude>
+</geolocalisation>
+</adresse>
+</adresse-information>
+<restauration>Non</restauration>
+<transport>Non</transport>
+<acces-handicapes>Non</acces-handicapes>
+<langue-formation>fr</langue-formation>
+<code-modalite-pedagogique ref="V12">96311</code-modalite-pedagogique>
+<nombre-heures-centre>250</nombre-heures-centre>
+<nombre-heures-total>250</nombre-heures-total>
+<conventionnement>1</conventionnement>
+<duree-conventionnee>0</duree-conventionnee>
+<organisme-formateur numero="15_13903">
+<SIRET-formateur>
+<SIRET>19311383400389</SIRET>
+</SIRET-formateur>
+<raison-sociale-formateur>Université de Toulouse Jean Jaurès Service de la Formation Continue</raison-sociale-formateur>
+<contact-formateur>
+<coordonnees numero="">
+<adresse>
+<ligne>5 allées Antonio Machado</ligne>
+<codepostal>31500</codepostal>
+<ville>Toulouse</ville>
+<departement>31</departement>
+<code-INSEE-commune>31555</code-INSEE-commune>
+<region>73</region>
+<pays>FR</pays>
+<geolocalisation>
+<latitude>43.579523</latitude>
+<longitude>1.403225</longitude>
+</geolocalisation>
+</adresse>
+<telfixe>
+<numtel>0561504718</numtel>
+</telfixe>
+<courriel>sfcutm@univ-tlse2.fr</courriel>
+</coordonnees>
+</contact-formateur>
+<potentiel>
+<code-FORMACODE ref="V12">11052</code-FORMACODE>
+<code-FORMACODE ref="V12">12205</code-FORMACODE>
+<code-FORMACODE ref="V12">12288</code-FORMACODE>
+<code-FORMACODE ref="V12">12512</code-FORMACODE>
+<code-FORMACODE ref="V12">12513</code-FORMACODE>
+<code-FORMACODE ref="V12">12514</code-FORMACODE>
+<code-FORMACODE ref="V12">12523</code-FORMACODE>
+<code-FORMACODE ref="V12">12534</code-FORMACODE>
+<code-FORMACODE ref="V12">12598</code-FORMACODE>
+<code-FORMACODE ref="V12">13016</code-FORMACODE>
+<code-FORMACODE ref="V12">13021</code-FORMACODE>
+<code-FORMACODE ref="V12">13030</code-FORMACODE>
+<code-FORMACODE ref="V12">13061</code-FORMACODE>
+<code-FORMACODE ref="V12">13096</code-FORMACODE>
+<code-FORMACODE ref="V12">13154</code-FORMACODE>
+<code-FORMACODE ref="V12">13175</code-FORMACODE>
+<code-FORMACODE ref="V12">13183</code-FORMACODE>
+<code-FORMACODE ref="V12">13229</code-FORMACODE>
+<code-FORMACODE ref="V12">14201</code-FORMACODE>
+<code-FORMACODE ref="V12">14207</code-FORMACODE>
+<code-FORMACODE ref="V12">14215</code-FORMACODE>
+<code-FORMACODE ref="V12">14216</code-FORMACODE>
+<code-FORMACODE ref="V12">14223</code-FORMACODE>
+<code-FORMACODE ref="V12">14224</code-FORMACODE>
+<code-FORMACODE ref="V12">14227</code-FORMACODE>
+</potentiel>
+</organisme-formateur>
+<organisme-financeur>
+<code-financeur>2</code-financeur>
+<extras info="specificites">
+<extra info="code-public-vise" ref="V12">80001</extra>
+</extras>
+</organisme-financeur>
+<extras info="type-action">
+<extra info="formation-initiale">0</extra>
+</extras>
+<extras info="type-formation">
+<extra info="formation-initiale">0</extra>
+<extra info="action-perimee">0</extra>
+</extras>
+<extras info="dispositif">
+<extra info="contrat-apprentissage">0</extra>
+<extra info="contrat-professionnalisation">0</extra>
+</extras>
+</action>
+<organisme-formation-responsable numero="19_7300144" ref="159047">
+<numero-activite>7331P001531</numero-activite>
+<SIRET-organisme-formation>
+<SIRET>19311383400389</SIRET>
+</SIRET-organisme-formation>
+<nom-organisme>UT2J FC</nom-organisme>
+<raison-sociale>Université de Toulouse Jean Jaurès Service de la Formation Continue</raison-sociale>
+<coordonnees-organisme>
+<coordonnees>
+<adresse>
+<ligne>5 allées Antonio Machado</ligne>
+<codepostal>31500</codepostal>
+<ville>Toulouse</ville>
+<departement>31</departement>
+<code-INSEE-commune>31555</code-INSEE-commune>
+<region>73</region>
+<pays>FR</pays>
+<geolocalisation>
+<latitude>43.579523</latitude>
+<longitude>1.403225</longitude>
+</geolocalisation>
+</adresse>
+</coordonnees>
+</coordonnees-organisme>
+<contact-organisme>
+<coordonnees>
+<adresse>
+<ligne>-</ligne>
+<codepostal>00000</codepostal>
+<ville>-</ville>
+<code-INSEE-commune>00000</code-INSEE-commune>
+<pays>FR</pays>
+</adresse>
+<telfixe>
+<numtel>0561504718</numtel>
+</telfixe>
+<courriel>sfcutm@univ-tlse2.fr</courriel>
+<web>
+<urlweb>http://www.univ-tlse2.fr/</urlweb>
+</web>
+</coordonnees>
+</contact-organisme>
+<renseignements-specifiques>-</renseignements-specifiques>
+<potentiel>
+<code-FORMACODE ref="V12">12513</code-FORMACODE>
+<code-FORMACODE ref="V12">12514</code-FORMACODE>
+<code-FORMACODE ref="V12">12205</code-FORMACODE>
+<code-FORMACODE ref="V12">13229</code-FORMACODE>
+<code-FORMACODE ref="V12">12288</code-FORMACODE>
+</potentiel>
+</organisme-formation-responsable>
+<extras info="FLUX-CARIF">
+<extra info="numero-CARIF">15</extra>
+</extras>
+</formation>
+</offres>
+</lheo>
