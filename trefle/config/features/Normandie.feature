@@ -136,7 +136,7 @@ Scénario: Cas nominal Une formation, un emploi - collectif
     Et la région de la formation vaut «Normandie»
     Et la durée en heures de la formation vaut 500
     Et les codes financeur de la formation valent [«Conseil régional»]
-    Et l'intitulé normé de la formation vaut «UNEFORMATIONUNEMPLOI»
+    Et l'intitulé de la formation vaut «CQPM tuyauteur(euse) industriel(le) (Une formation - Un emploi)»
     Et le prix horaire de la formation vaut 0.0
     Quand je demande un calcul de financement
     Quand je sélectionne le financement «Une formation, un emploi - collectif»
@@ -151,7 +151,7 @@ Scénario: Une formation, un emploi - collectif avec mauvais code financeur
     Et la région de la formation vaut «Normandie»
     Et la durée en heures de la formation vaut 500
     Et les codes financeur de la formation valent [«Pôle emploi»]
-    Et l'intitulé normé de la formation vaut «UNEFORMATIONUNEMPLOI»
+    Et l'intitulé de la formation vaut «CQPM tuyauteur(euse) industriel(le) (Une formation - Un emploi)»
     Et le prix horaire de la formation vaut 0.0
     Quand je demande un calcul de financement
     Alors le financement «Une formation, un emploi - collectif» n'est pas proposé

@@ -182,7 +182,7 @@ Scénario: Cas nominal «PREPA Métiers»
     Et la durée en heures de la formation vaut 150
     Et la région du bénéficiaire vaut «Nouvelle-Aquitaine»
     Et la région de la formation vaut «Nouvelle-Aquitaine»
-    Et l'intitulé normé de la formation vaut «PREPAMETIERS»
+    Et l'intitulé de la formation vaut «PREPA Métiers de la forêt et du bois»
     Et c'est une formation ouverte aux bénéficiaires individuels
     Quand je demande un calcul de financement
     Quand je sélectionne le financement «Parcours régional de préparation à l'apprentissage»
@@ -196,7 +196,7 @@ Scénario: «PREPA Métiers» avec ARE
     Et la durée en heures de la formation vaut 150
     Et la région du bénéficiaire vaut «Nouvelle-Aquitaine»
     Et la région de la formation vaut «Nouvelle-Aquitaine»
-    Et l'intitulé normé de la formation vaut «PREPAMETIERS»
+    Et l'intitulé de la formation vaut «PREPA Métiers de la forêt et du bois»
     Et l'allocation du bénéficiaire vaut «allocation d'aide au retour à l'emploi»
     Et le montant de l'allocation du bénéficiaire vaut 800.0
     Et c'est une formation ouverte aux bénéficiaires individuels
@@ -212,7 +212,7 @@ Scénario: Pas de «PREPA Métiers» si > 25 ans
     Et la durée en heures de la formation vaut 150
     Et la région du bénéficiaire vaut «Nouvelle-Aquitaine»
     Et la région de la formation vaut «Nouvelle-Aquitaine»
-    Et l'intitulé normé de la formation vaut «PREPAMETIERS»
+    Et l'intitulé de la formation vaut «PREPA Métiers de la forêt et du bois»
     Et c'est une formation ouverte aux bénéficiaires individuels
     Quand je demande un calcul de financement
     Alors le financement «Parcours régional de préparation à l'apprentissage» n'est pas proposé
@@ -225,7 +225,7 @@ Scénario: «PREPA Métiers» pour un travailleur handicapé
     Et la durée en heures de la formation vaut 150
     Et la région du bénéficiaire vaut «Nouvelle-Aquitaine»
     Et la région de la formation vaut «Nouvelle-Aquitaine»
-    Et l'intitulé normé de la formation vaut «PREPAMETIERS»
+    Et l'intitulé de la formation vaut «PREPA Métiers de la forêt et du bois»
     Et c'est une formation ouverte aux bénéficiaires individuels
     Et c'est un travailleur handicapé
     Quand je demande un calcul de financement

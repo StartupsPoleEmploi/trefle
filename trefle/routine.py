@@ -78,8 +78,6 @@ async def populate_formation_from_bytes(context, content):
         if ids:
             context['formation.codes_naf'] = await retrieve_codes_naf(ids)
 
-    extrapolate_formation_context(context)
-
 
 def extrapolate_formation_context(context):
     # Compute durations.

@@ -13,6 +13,7 @@ async def test_populate_formation_from_bytes():
         context = Context({})
         routine.extrapolate_context(context)
         await routine.populate_formation_from_bytes(context, f.read())
+        routine.extrapolate_formation_context(context)
         routine.preprocess(context)
 
         assert context['formation.eligible_copanef'] is True
@@ -73,6 +74,7 @@ async def test_populate_formation_from_bytes_edge_cases(path, key, value):
         context = Context({})
         routine.extrapolate_context(context)
         await routine.populate_formation_from_bytes(context, f.read())
+        routine.extrapolate_formation_context(context)
         routine.preprocess(context)
         assert context[key] == value
 
@@ -87,6 +89,7 @@ async def test_populate_formation_from_bytes_with_empty_list():
     context = Context({})
     with pytest.raises(ValueError):
         await routine.populate_formation_from_bytes(context, content)
+        routine.extrapolate_formation_context(context)
 
 
 def test_extrapolate_context_should_set_region():

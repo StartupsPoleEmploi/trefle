@@ -7,7 +7,7 @@ Scénario: Cas nominal ADEMA
     Et le montant de l'allocation du bénéficiaire vaut 1200
     Et la durée en heures de la formation vaut 500
     Et la région du bénéficiaire vaut «Normandie»
-    Et l'intitulé normé de la formation vaut «ADEMA»
+    Et l'intitulé de la formation vaut «Accès des Demandeurs d'Emploi aux Métiers Agricoles - ADEMA»
     Et c'est une formation ouverte aux bénéficiaires individuels
     Et le prix horaire de la formation vaut 0.0
     Quand je demande un calcul de financement
@@ -24,5 +24,6 @@ Scénario: ADEMA non trouvé dans l'intitulé
     Et la région du bénéficiaire vaut «Normandie»
     Et c'est une formation ouverte aux bénéficiaires individuels
     Et le prix horaire de la formation vaut 0.0
+    Et l'intitulé de la formation vaut «Accès des Demandeurs d'Emploi aux Métiers de l'Industrie»
     Quand je demande un calcul de financement
     Alors le financement «Accès des demandeurs d’emploi aux métiers agricoles» n'est pas proposé

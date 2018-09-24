@@ -55,7 +55,7 @@ Scénario: Cas nominal «Parcours orientation insertion»
     Et la région de la formation vaut «Occitanie»
     Et les codes financeur de la formation valent [«Conseil régional»]
     Et la département de la formation vaut «Lot»
-    Et l'intitulé normé de la formation vaut «PARCOURSORIENTATIONINSERTION»
+    Et l'intitulé de la formation vaut «Parcours orientation insertion lot»
     Et la liste des codes FORMACODE de la formation vaut [15061]
     Quand je demande un calcul de financement
     Quand je sélectionne le financement «Parcours Orientation Insertion»
@@ -71,7 +71,7 @@ Scénario: Mauvais département pour «Parcours orientation insertion»
     Et la région de la formation vaut «Occitanie»
     Et les codes financeur de la formation valent [«Conseil régional»]
     Et la département de la formation vaut «Gard»
-    Et l'intitulé normé de la formation vaut «PARCOURSORIENTATIONINSERTION»
+    Et l'intitulé de la formation vaut «Parcours orientation insertion lot»
     Et la liste des codes FORMACODE de la formation vaut [15061]
     Quand je demande un calcul de financement
     Alors le financement «Parcours Orientation Insertion» n'est pas proposé
@@ -86,7 +86,7 @@ Scénario: Mauvais formacode pour «Parcours orientation insertion»
     Et la région de la formation vaut «Occitanie»
     Et les codes financeur de la formation valent [«Conseil régional»]
     Et la département de la formation vaut «Gard»
-    Et l'intitulé normé de la formation vaut «PARCOURSORIENTATIONINSERTION»
+    Et l'intitulé de la formation vaut «Parcours orientation insertion lot»
     Quand je demande un calcul de financement
     Alors le financement «Parcours Orientation Insertion» n'est pas proposé
 

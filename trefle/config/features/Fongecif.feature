@@ -454,7 +454,7 @@ Scénario: Avec un code financeur collectif
     Et le code CERTIFINFO de la formation vaut 55824
     Et la liste des domaines FORMACODE de la formation vaut [317]
     Et c'est une formation CACES
-    Et les codes financeur de la formation valent [0,10,5,16]
+    Et les codes financeur de la formation valent [0,10,5,2]
     Et c'est une formation certifiante
     Et la durée en mois de la formation vaut 12
     Et la durée en semaines de la formation vaut 52

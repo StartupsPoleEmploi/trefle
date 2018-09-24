@@ -254,7 +254,7 @@ Scénario: financement PCP avec intitulé PCP
     Et la région du bénéficiaire vaut «Auvergne-Rhône-Alpes»
     Et la département du bénéficiaire vaut «Drôme»
     Et la département de la formation vaut «Drôme»
-    Et l'intitulé normé de la formation vaut «PCP»
+    Et l'intitulé de la formation vaut «PCP»
     Et les codes financeur de la formation valent [«Conseil régional»]
     Quand je demande un calcul de financement
     Quand je sélectionne le financement «Programmation compétences premières»
@@ -269,7 +269,7 @@ Scénario: Mauvais label pour financement PCP
     Et la région du bénéficiaire vaut «Auvergne-Rhône-Alpes»
     Et la département du bénéficiaire vaut «Drôme»
     Et la département de la formation vaut «Drôme»
-    Et l'intitulé normé de la formation vaut «PCD»
+    Et l'intitulé de la formation vaut «PCD»
     Et les codes financeur de la formation valent [«Conseil régional»]
     Quand je demande un calcul de financement
     Alors le financement «Programmation compétences premières» n'est pas proposé
