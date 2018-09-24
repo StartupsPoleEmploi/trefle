@@ -379,6 +379,8 @@ class Rule:
                 raise ParsingError('Wrong indentation', name, curr)
             if curr.indent != prev.indent and curr.keyword not in ['si', 'alors']:
                 raise ParsingError('Wrong keyword', name, curr)
+            if curr.indent != prev.indent and not parent:
+                raise ParsingError('Wrong indentation', name, curr)
             if curr.keyword == 'si' or (terms and curr.keyword in ('et', 'ou')):
                 terms.append(curr.sentence)
                 if not connective and curr.keyword == 'ou':

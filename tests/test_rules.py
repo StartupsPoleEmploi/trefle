@@ -1,6 +1,6 @@
 import pytest
 
-from trefle.exceptions import NoStepError, WrongPointerError
+from trefle.exceptions import NoStepError, WrongPointerError, ParsingError
 from trefle.rules import Rule, Condition
 
 
@@ -245,7 +245,7 @@ Si c'est un bénéficiaire de droit privé
     assert 'remuneration' not in context
 
 
-def test_process_with_indentend_condition(patch_schema):
+def test_process_with_indented_condition(patch_schema):
     patch_schema(SCHEMA)
     data = """
 Si c'est un bénéficiaire de droit privé
@@ -258,7 +258,7 @@ Si c'est un bénéficiaire de droit privé
     assert context['remuneration'] == 40
 
 
-def test_process_with_indentend_false_condition(patch_schema):
+def test_process_with_indented_false_condition(patch_schema):
     patch_schema(SCHEMA)
     data = """
 Si c'est un bénéficiaire de droit privé
@@ -301,3 +301,32 @@ Si c'est un bénéficiaire de droit privé
     Rule.process(tree, context)
     assert 'remuneration' not in context
     assert context['prix'] == 20
+
+
+def test_should_raise_with_a_wrong_keyword():
+    data = """
+Si l'organisme paritaire est «BLAH»
+    Et la rémunération applicable vaut 40
+"""
+    with pytest.raises(ParsingError):
+        Rule.load(data.splitlines(), name='foo')
+
+
+def test_should_raise_with_a_wrong_indent():
+    data = """
+Si l'organisme paritaire est «BLAH»
+  Alors la rémunération applicable vaut 40
+"""
+    with pytest.raises(ParsingError):
+        Rule.load(data.splitlines(), name='foo')
+
+
+def test_should_raise_with_a_condition_without_parent():
+    data = """
+Si l'organisme paritaire est «BLAH»
+    Alors la rémunération applicable vaut 40
+        Si l'organisme paritaire est «FOO»
+            Alors la rémunération applicable vaut 40
+"""
+    with pytest.raises(ParsingError):
+        Rule.load(data.splitlines(), name='foo')
