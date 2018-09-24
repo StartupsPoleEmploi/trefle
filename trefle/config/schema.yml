@@ -542,7 +542,8 @@ formation:
     type: string
     public: true
     label: intitulé de la formation
-    xpath: //intitule-formation
+    xpath: string(//intitule-formation)
+    source: catalogue
   intitule_norme:
     description: intitulé de la formation sans accent ni signes diacritiques et tout en minuscules
     type: string

@@ -45,6 +45,7 @@ async def test_populate_formation_from_bytes():
         assert context['formation.departement'] == '37'
         assert context['formation.region'] == '24'
         assert context['formation.siret_organisme'] == 82422814200660
+        assert context['formation.intitule'] == "Titre professionnel plaquiste"
 
 
 @pytest.mark.parametrize('path,key,value', [
@@ -63,6 +64,8 @@ async def test_populate_formation_from_bytes():
      True),
     ('poec', 'formation.poec', True),
     ('heures_centre_empty', 'formation.heures_centre', 585),
+    ('daeu', 'formation.daeu', True),
+    ('daeu', 'formation.enseignement_superieur', True),
 ])
 @pytest.mark.asyncio
 async def test_populate_formation_from_bytes_edge_cases(path, key, value):
