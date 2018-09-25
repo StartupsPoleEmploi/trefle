@@ -44,7 +44,8 @@ def render_status(status, level=0):
 
 @cli(name='simulate')
 async def cli_simulate(*args, context: json.loads={}, url=None, trace=False,
-                       output_scenario=False, show_context=False, tags=[]):
+                       output_scenario=False, show_context=False, tags=[],
+                       show_non_eligible=False):
     """Simulate a call to the API.
 
     Pass context as args in the form key=value.
@@ -105,13 +106,13 @@ async def cli_simulate(*args, context: json.loads={}, url=None, trace=False,
                 render_status(status)
         print('-'*80)
     non_eligibles = [f for f in financements if not f['eligible']]
-    if non_eligibles:
+    if non_eligibles and (show_non_eligible or trace):
         print('\nFinancements non éligibles\n')
-    for financement in non_eligibles:
-        print('-', financement['nom'])
-        if trace:
-            for status in financement['explain']:
-                render_status(status)
+        for financement in non_eligibles:
+            print('-', financement['nom'])
+            if trace:
+                for status in financement['explain']:
+                    render_status(status)
     if output_scenario:
         if url:
             print(f'# {url}')
