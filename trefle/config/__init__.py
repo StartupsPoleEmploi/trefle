@@ -55,8 +55,8 @@ def load_schema(data, output=None, namespace=None):
 def load_financements():
     with (ROOT / 'financements.yml').open() as f:
         data = yaml.safe_load(f.read())
-    for name, props in data.items():
-        props['nom'] = name
+    for id_, props in data.items():
+        props.setdefault('nom', id_)
         props['eligible'] = False
         FINANCEMENTS.append(props)
 
