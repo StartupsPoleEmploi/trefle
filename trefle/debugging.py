@@ -8,6 +8,7 @@ from urllib.parse import parse_qs, urlparse
 
 import phpserialize
 from behave.runner_util import parse_features
+from unidecode import unidecode
 
 from .config import SCHEMA, FINANCEMENTS
 
@@ -141,7 +142,7 @@ def make_scenario(data, financements, name='Donne-moi un nom'):
             article = 'le ' if schema.get('gender') == 'masculine' else 'la '
             if schema.get('number') == 'plural':
                 article = 'les '
-            elif label[0].lower() in 'aeiouy':
+            elif unidecode(label[0].lower()) in 'aeiouy':
                 article = "l'"
             verb = 'valent' if schema.get('number') == 'plural' else 'vaut'
             # Et le code CPF de la formation vaut 200
