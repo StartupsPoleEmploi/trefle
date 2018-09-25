@@ -333,6 +333,7 @@ beneficiaire:
     public: true
     pattern: ^(2[AB]|[0-9]{2,3})$
     label: département du bénéficiaire
+    gender: masculine
     enum: &departements
       '01': Ain
       '02': Aisne
@@ -561,6 +562,7 @@ formation:
     source: catalogue
     label: département de la formation
     enum: *departements
+    gender: masculine
   region:
     description: code INSEE du département où se passe la formation
     type: string
