@@ -124,14 +124,15 @@ Programmation compétences premières:
   sigle: PCP
   tags: [DE, PCP]
   racine: Auvergne-Rhône-Alpes.rules
-Programme régional qualifiant:
-  tags: [DE]
+Programme régional qualifiant ARA:
+  nom: Programme régional qualifiant
+  tags: [DE, région, ARA]
   racine: Auvergne-Rhône-Alpes.rules
 Projets collectifs régionaux:
-  tags: [DE]
+  tags: [DE, région, ARA]
   racine: Auvergne-Rhône-Alpes.rules
 Programme régional sanitaire et social:
-  tags: [DE]
+  tags: [DE, région, ARA]
   racine: Auvergne-Rhône-Alpes.rules
 Programme régional sanitaire et social - ambulancier:
   tags: [DE]
@@ -198,15 +199,47 @@ Parcours régional de préparation à l'apprentissage:
   tags: [DE, collectif, PREPA]
   racine: Nouvelle-Aquitaine.rules
 Aide individuelle Conseil régional:
-  tags: [DE, individuel]
+  tags: [DE, individuel, région, Nouvelle-Aquitaine]
   racine: Nouvelle-Aquitaine.rules
   ressources:
   - https://les-aides.nouvelle-aquitaine.fr/fiche/remuneration-des-stagiaires-de-la-formation-professionnelle/
 Parcours Orientation Insertion:
-  tags: [DE, collectif]
+  tags: [DE, collectif, région, Occitanie]
   racine: Occitanie.rules
   ressources:
   - http://www.laregion.fr
 Parcours diplômants et actions préparatoires:
-  tags: [DE, collectif]
+  tags: [DE, collectif, région, Occitanie]
+  racine: Occitanie.rules
+Dispositif « chèque »:
+  tags: [DE, collectif, région, Occitanie]
+  racine: Occitanie.rules
+Cap métiers:
+  tags: [DE, collectif, région, Occitanie]
+  racine: Occitanie.rules
+Cap avenir:
+  tags: [DE, collectif, région, Occitanie]
+  racine: Occitanie.rules
+Cap compétences clés:
+  tags: [DE, collectif, région, Occitanie]
+  racine: Occitanie.rules
+Programme régional qualifiant Occitanie:
+  nom: Programme régional qualifiant
+  tags: [DE, collectif, région, Occitanie]
+  racine: Occitanie.rules
+Écoles régionales de la deuxième chance:
+  sigle: ER2C
+  tags: [DE, région, Occitanie, ER2C]
+  racine: Occitanie.rules
+Formations des établissements d'enseignement supérieur:
+  tags: [DE, région, Occitanie]
+  racine: Occitanie.rules
+École de l'apprentissage:
+  tags: [DE, région, Occitanie]
+  racine: Occitanie.rules
+Prise en charge permis de conduire B:
+  tags: [DE]
+  racine: Occitanie.rules
+Formation sanitaire et social:
+  tags: [DE, collectif, région, Occitanie]
   racine: Occitanie.rules
