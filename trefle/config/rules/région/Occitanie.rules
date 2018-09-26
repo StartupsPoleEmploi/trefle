@@ -71,11 +71,12 @@ Si le nom du financement est «Parcours diplômants et actions préparatoires»
 
 Si le nom du financement est «Dispositif « chèque »»
 
-    Si la région du bénéficiaire vaut «Occitanie»
-    Et c'est un demandeur d'emploi
+    Si la région de la formation vaut «Occitanie»
     Et les codes financeur de la formation contiennent «Conseil régional»
     Et l'intitulé normé de la formation contient «CHEQUES»
     Et la liste des codes FORMACODE de la formation contient au moins un code parmi [70332,15234,32663,46052]
+    Et c'est un demandeur d'emploi
+    Et la région du bénéficiaire vaut «Occitanie»
         Alors le financement est éligible
         Et le texte des démarches vaut «Contactez votre conseiller référent emploi (Pôle emploi, mission locale ou Cap emploi).⏎Pour entrer en formation, votre projet doit être validé avant le début de la formation.»
         Et le texte de description vaut «Ces formations ont pour objectif l'initiation ou l'actualisation des connaissances sur de courtes durées. Elles peuvent se réaliser à distance.»
@@ -124,7 +125,8 @@ Si le nom du financement est «Cap compétences clés»
     Et c'est un demandeur d'emploi
     Et la région du bénéficiaire vaut «Occitanie»
     Et les codes financeur de la formation contiennent «Conseil régional»
-    Et l'intitulé normé de la formation contient «CAPCOMPETENCESCLES», ou l'intitulé normé de la formation contient «CAPCOMPETENCECLE»
+    # TODO formation compétences clés
+    Et la liste des codes FORMACODE de la formation contient au moins un code parmi [15040,15041]
         Alors le financement est éligible
         Et le texte des démarches vaut «Contactez votre référent emploi (Pôle emploi, mission locale, Cap emploi, services d’insertion du conseil départemental, CIDFF, ou APEC) pour valider votre projet de formation et son financement et obtenir la fiche de prescription nécessaire pour participer aux sélections de l'organisme de formation.»
         Et le texte de description vaut «Ce programme vise à lutter efficacement pour la maîtrise des savoirs de base en Région. Des modules de français langue étrangère (FLE) y sont également disponibles. Il s’adresse donc aussi bien aux personnes en situation d’illettrisme qu’aux personnes en difficulté avec la langue française.⏎Il doit permettre aux stagiaires d’acquérir une aisance certaine dans les savoirs fondamentaux (écrit et oral) afin de poursuivre ensuite leur parcours en formation préqualifiante ou qualifiante, ou d’accéder à un emploi.»
@@ -139,7 +141,6 @@ Si le nom du financement est «Programme régional qualifiant»
 
     Si le département de la formation fait partie de [«Aude»,«Gard»,«Héraut»,«Lozère»,«Pyrénées-Orientales»]
     Et les codes financeur de la formation contiennent «Conseil régional»
-    # TODO: name this FORMACODE list?
     Et la liste des codes FORMACODE de la formation ne contient aucun code parmi [43436,31815,43441,43458,43491,43448,43457,43497,43449,43497,43490,43006,43439,43092,44083,44028,44047,44084,44050,44092,44092,44092,44008]
     Et l'intitulé normé de la formation ne contient pas «ACTIONCAPAVENIR»
     Et l'intitulé normé de la formation ne contient pas «ACTIONCAPMETIERS»
@@ -156,7 +157,7 @@ Si le nom du financement est «Écoles régionales de la deuxième chance»
 
     Si le département de la formation fait partie de [«Aude»,«Gard»,«Héraut»,«Lozère»,«Pyrénées-Orientales»]
     Et les codes financeur de la formation contiennent «Conseil régional»
-    Et l'intitulé normé de la formation contient «ER2C»
+    Et c'est une formation E2C
     Et c'est un demandeur d'emploi
     Et la région du bénéficiaire vaut «Occitanie»
     Et l'âge du bénéficiaire n'est pas supérieur ou égal à 26
@@ -164,7 +165,7 @@ Si le nom du financement est «Écoles régionales de la deuxième chance»
         Alors le financement est éligible
         Et appliquer les règles «AREF-RFPE-RPS»
         Et le texte des démarches vaut «Contactez votre référent emploi (Pôle emploi, mission locale, Cap emploi, services d’insertion du conseil départemental, CIDFF ou APEC) pour valider votre projet de formation et son financement et obtenir la fiche de prescription nécessaire pour participer aux sélections de l'organisme de formation.»
-        Et le texte de description vaut «Il s’agit de permettre aux jeunes de 18 à 25 ans sortis du système scolaire depuis plus de 6 mois ou relevant de mesures d’insertion socio-professionnelles, de parvenir à la maîtrise des savoirs de base : lire, écrire, compter, notions d’informatique, notions d’une langue étrangère.⏎Pendant cette période, les jeunes sont amenés à faire deux ou trois stages dans des entreprises de la région pour découvrir le monde du travail, ses contraintes, ses possibilités.⏎La formation est très personnalisée, c’est-à-dire que chaque jeune est suivi à l’intérieur de l’école par un « référent » avec qui il peut s’entretenir de ses problèmes tant pédagogiques que personnels. Dans l’entreprise, il est suivi par un tuteur.»
+        Et le texte de description vaut «Il s’agit de permettre aux jeunes de 18 à 25 ans sortis du système scolaire depuis plus de 6 mois ou relevant de mesures d’insertion socio-professionnelles de parvenir à la maîtrise des savoirs de base : lire, écrire, compter, notions d’informatique, notions d’une langue étrangère.⏎Pendant cette période, les jeunes sont amenés à faire deux ou trois stages dans des entreprises de la région pour découvrir le monde du travail, ses contraintes, ses possibilités.⏎La formation est très personnalisée, c’est-à-dire que chaque jeune est suivi à l’intérieur de l’école par un « référent » avec qui il peut s’entretenir de ses problèmes tant pédagogiques que personnels. Dans l’entreprise, il est suivi par un tuteur.»
         Et le texte de la prise en charge vaut «Formation totalement financée par la région Occitanie.»
 
 
@@ -200,22 +201,6 @@ Si le nom du financement est «École de l'apprentissage»
             Et le texte de la prise en charge vaut «Formation totalement financée par la région Occitanie.»
 
 
-Si le nom du financement est «Prise en charge permis de conduire B»
-
-    Si c'est un demandeur d'emploi
-    Et le niveau scolaire du bénéficiaire n'est pas supérieur ou égal à «IV»
-    Et c'est un permis B
-        Alors le financement est éligible
-        Et le texte des démarches vaut «Contactez votre conseiller référent emploi (Pôle emploi, mission locale ou Cap emploi).⏎Votre projet de formation et son financement doivent être présentés au plus tard 2 semaines avant le début de la formation.»
-        Et le texte de description vaut «Vous pouvez utiliser votre CPF pour financer tout ou partie de votre permis de conduire catégorie B.⏎Pôle emploi peut éventuellement vous apporter un complément de financement.⏎Votre auto-école doit impérativement vous présenter à l'examen de conduite au plus tard six mois après votre inscription.»
-        Et le texte de la prise en charge vaut «Formation partiellement ou totalement financée. Pôle emploi peut vous apporter un complément de financement jusqu'à 1000 €.»
-
-        Si l'allocation du bénéficiaire vaut «allocation d'aide au retour à l'emploi»
-            Alors appliquer les règles «AREF»
-        Si l'allocation du bénéficiaire n'est pas «allocation d'aide au retour à l'emploi»
-            # TODO should we remove this and let the client define the wording when no rémunération is given?
-            Alors le texte de la rémunération vaut «Pas de rémunération spécifique.»
-
 Si le nom du financement est «Formation sanitaire et social»
 
     Si c'est un demandeur d'emploi
@@ -240,6 +225,10 @@ Si le nom du financement est «Formation sanitaire et social»
                 Et le texte de description vaut «Le domaine sanitaire et social se caractérise par la mise en œuvre de savoirs professionnels autour de la personne.⏎Les professionnels interviennent dans les métiers de:⏎- l'enfance⏎- la famille⏎- les personnes handicapées⏎- les personnes âgées en structure ou à domicile⏎- la lutte contre l'exclusion⏎- la santé.⏎Ces emplois nécessitent des savoirs et des aptitudes spécifiques d'où la nécessité de détenir un diplôme d'État pour accéder à la plupart de ces professions règlementées.⏎La Région Occitanie finance les formations des secteurs sanitaire et social.⏎Sont exclues du dispositif :⏎- Les personnes non salariées en congé parental qui perçoivent l'allocation de libre choix d'activité.⏎- Les personnes inscrites sur des parcours passerelles ou de revalidation.⏎- Les personnes sorties de formation initiale ou de formation qualifiante financée sur fonds publics depuis un an.»
                 Et le texte de la prise en charge vaut «Formation totalement financée par la région Occitanie.»
 
+                Si l'allocation du bénéficiaire vaut «allocation d'aide au retour à l'emploi»
+                Ou le niveau de sortie de la formation vaut «V»
+                    Alors appliquer les règles «AREF-RFPE-RPS»
+
         # Ex Languedoc-Roussillon
         Si le département de la formation fait partie de [«Aude»,«Gard»,«Héraut»,«Lozère»,«Pyrénées-Orientales»]
         Et les codes financeur de la formation contiennent «Conseil régional»
@@ -247,11 +236,11 @@ Si le nom du financement est «Formation sanitaire et social»
             Alors le financement est éligible
             Et le texte des démarches vaut «Vous devez au préalable prendre contact avec l'école et avoir réussi les épreuves de sélection pour intégrer une formation du programme régional sanitaire et social.»
             Et le texte de description vaut «La Région Occitanie assure le fonctionnement des centres de formation du paramédical et du travail social et accorde des bourses aux étudiants de ces filières.»
-            # TODO ergothérapeute => formacode pour changer le wording?
-            Et le texte de la prise en charge vaut «Formation totalement financée ou partiellement (ergothérapeute) par la région Occitanie.»
+            Et le texte de la prise en charge vaut «Formation totalement financée ou partiellement par la région Occitanie.»
 
-        Si l'allocation du bénéficiaire vaut «allocation d'aide au retour à l'emploi»
-        Ou le niveau de sortie de la formation vaut «V»
-            Alors appliquer les règles «AREF-RFPE-RPS»
+            Si l'allocation du bénéficiaire vaut «allocation d'aide au retour à l'emploi»
+            Ou le niveau de sortie de la formation est inférieur ou égal à «V»
+                Alors appliquer les règles «AREF-RFPE-RPS»
+
         Si la rémunération applicable n'est pas supérieure à 0
             Alors le texte de la rémunération vaut «Possibilité de demande de bourse régionale.»

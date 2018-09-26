@@ -237,9 +237,6 @@ Formations des établissements d'enseignement supérieur:
 École de l'apprentissage:
   tags: [DE, région, Occitanie]
   racine: Occitanie.rules
-Prise en charge permis de conduire B:
-  tags: [DE]
-  racine: Occitanie.rules
 Formation sanitaire et social:
   tags: [DE, collectif, région, Occitanie]
   racine: Occitanie.rules

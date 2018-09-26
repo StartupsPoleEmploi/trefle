@@ -332,7 +332,7 @@ Scénario: Cas nominal «Cap compétences clés»
     Et la région de la formation vaut «Occitanie»
     Et le département de la formation vaut «Gard»
     Et les codes financeur de la formation valent [«Conseil régional»]
-    Et l'intitulé de la formation vaut «CAP COMPETENCE CLE NIMES VAUVERT BEAUCAIRE SOMMIERES UZES»
+    Et la liste des codes FORMACODE de la formation vaut [15040]
     Quand je demande un calcul de financement
     Et je sélectionne le financement «Cap compétences clés»
     Alors la texte de la rémunération vaut «Pas de rémunération spécifique.»
@@ -347,7 +347,7 @@ Scénario: «Cap compétences clés» avec ARE
     Et la région de la formation vaut «Occitanie»
     Et le département de la formation vaut «Gard»
     Et les codes financeur de la formation valent [«Conseil régional»]
-    Et l'intitulé de la formation vaut «CAP COMPETENCE CLE NIMES VAUVERT BEAUCAIRE SOMMIERES UZES»
+    Et la liste des codes FORMACODE de la formation vaut [15040]
     Et l'allocation du bénéficiaire vaut «allocation d'aide au retour à l'emploi»
     Et le montant de l'allocation du bénéficiaire vaut 600
     Quand je demande un calcul de financement
@@ -552,19 +552,8 @@ Scénario: Financement permis B
     Et c'est un permis B
     Et c'est une formation ouverte aux bénéficiaires individuels
     Quand je demande un calcul de financement
-    Quand je sélectionne le financement «Prise en charge permis de conduire B»
-    Alors le texte de la rémunération vaut «Pas de rémunération spécifique.»
-
-
-Scénario: Pas un permis B
-    Soit un bénéficiaire et une formation
-    Et c'est un demandeur d'emploi
-    Et l'âge du bénéficiaire vaut 24
-    Et la durée en heures de la formation vaut 250
-    Et la région du bénéficiaire vaut «Occitanie»
-    Et c'est une formation ouverte aux bénéficiaires individuels
-    Quand je demande un calcul de financement
-    Alors le financement «Prise en charge permis de conduire B» n'est pas proposé
+    Quand je sélectionne le financement «Aide individuelle à la formation»
+    Alors la rémunération applicable vaut 339.35
 
 
 Scénario: Formation sanitaire et social ex-Midi-Pyrénées
