@@ -2,6 +2,7 @@ from behave import given, when, then, use_step_matcher
 from behave.api.async_step import async_run_until_complete
 
 from trefle import simulate, get_financements
+from trefle.config import FINANCEMENTS
 from trefle.helpers import revert_dict
 from trefle.rules import LABELS, SCHEMA, Pointer
 
@@ -53,6 +54,8 @@ def then_check_count(context, expected):
 
 @then(r"le financement «(?P<nom>.+)» n'est pas proposé")
 def then_check_missing(context, nom):
+    if nom not in [f['nom'] for f in FINANCEMENTS]:
+        raise ValueError(f'{nom} is not a valid financement')
     for financement in context.passed:
         if financement['nom'] == nom:
             raise AssertionError(f'{nom} was found')

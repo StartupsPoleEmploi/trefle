@@ -10,8 +10,8 @@ Scénario: le bénéficiaire n'a pas d'heures CPF sur son compte
     Et c'est une formation éligible COPANEF
     Et l'IDCC de l'établissement du bénéficiaire vaut 2706
     Quand je demande un calcul de financement
-    Alors le financement «CPF CDI sur son temps de travail» n'est pas proposé
-    Et le financement «CPF CDI hors temps de travail» n'est pas proposé
+    Alors le financement «CPF sur son temps de travail» n'est pas proposé
+    Et le financement «CPF hors temps de travail» n'est pas proposé
 
 Scénario: le bénéficiaire n'est pas de droit privé
     Soit un bénéficiaire et une formation
@@ -35,8 +35,8 @@ Scénario: cas d'une formation CPF avec solde CPF null
     Et le prix horaire de la formation vaut 25
     Et la durée en heures de la formation vaut 100
     Quand je demande un calcul de financement
-    Alors le financement «CPF CDI sur son temps de travail» n'est pas proposé
-    Et le financement «CPF CDI hors temps de travail» n'est pas proposé
+    Alors le financement «CPF sur son temps de travail» n'est pas proposé
+    Et le financement «CPF hors temps de travail» n'est pas proposé
 
 Scénario: cas d'une formation CPF sans solde CPF
     Soit un bénéficiaire et une formation
@@ -48,8 +48,8 @@ Scénario: cas d'une formation CPF sans solde CPF
     Et le prix horaire de la formation vaut 25
     Et la durée en heures de la formation vaut 100
     Quand je demande un calcul de financement
-    Alors le financement «CPF CDI sur son temps de travail» n'est pas proposé
-    Et le financement «CPF CDI hors temps de travail» n'est pas proposé
+    Alors le financement «CPF sur son temps de travail» n'est pas proposé
+    Et le financement «CPF hors temps de travail» n'est pas proposé
 
 
 Scénario: le solde CPF n'est pas plafonné
