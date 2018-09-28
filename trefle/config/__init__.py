@@ -93,7 +93,8 @@ def load_rules(path):
         except (NoStepError, ParsingError, WrongPointerError) as err:
             sys.exit(f'Project loading failed: {err!r}')
         except Exception as err:
-            sys.exit(f'Project loading failed on rule {path}: {err!r}')
+            print(f'Project loading failed on rule {path}: {err!r}')
+            raise
 
 
 def load_dir_rules(root):
