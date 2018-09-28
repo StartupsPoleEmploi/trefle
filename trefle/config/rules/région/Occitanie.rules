@@ -65,5 +65,5 @@ Si le nom du financement est «Parcours diplômants et actions préparatoires»
             Alors le financement est éligible
             Et appliquer les règles «AREF-RFPE-RPS»
             Et le texte des démarches vaut «Contactez votre conseiller référent emploi (Pôle emploi, mission locale ou Cap emploi).⏎Pour entrer en formation, votre projet doit être validé avant le début de la formation.»
-            Et le texte de description vaut «Cette formation est financée par le Conseil régional Occitanie.⏎Actions de qualification : ces formations permettent l'acquisition d'une qualification sanctionnée ou non par un diplôme.⏎Actions préparatoires : ces formations ont pour objectif de donner aux demandeurs d'emploi sans qualification les connaissances théoriques et techniques nécessaires à l'accès à la qualification ou à l'emploi direct.⏎Cette formation est accessible pour tout personne titulaire d'un diplôme du système scolaire ou universitaire initial depuis 1 à 2 ans selon la formation envisagée (dérogations possibles).»
+            Et le texte de description vaut «Le Conseil régional d'Occitanie finance des actions de formation qualifiantes, permettant d'obtenir un titre ou un diplôme et des actions de pré-qualification.»
             Et le texte de la prise en charge vaut «Formation totalement financée par la région Occitanie.»
