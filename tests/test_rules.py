@@ -137,6 +137,35 @@ Si l'organisme paritaire est «BLAH»
         'le prix horaire applicable vaut 60'
 
 
+def test_mixing_Si_and_Ou_and_Et():
+    data = """
+Si l'organisme paritaire est «BLAH»
+    Alors le plafond horaire applicable vaut 150
+    Si c'est une formation éligible COPANEF
+    Et c'est un permis B
+    Ou c'est un bénéficiaire de droit privé
+    Et c'est un parent isolé
+        Alors le prix horaire applicable vaut 60
+"""
+    root = Rule.load(data.splitlines(), name='foo')[0].root
+    assert len(root.children) == 1
+    assert len(root.actions) == 1
+    assert root.raw == "l'organisme paritaire est «BLAH»"
+    assert root.actions[0].raw == 'le plafond horaire applicable vaut 150'
+    assert root.children[0].connective == Condition.OR
+    assert root.children[0].raw == ("c'est une formation éligible COPANEF "
+                                    "ET c'est un permis B OU "
+                                    "c'est un bénéficiaire de droit privé "
+                                    "ET c'est un parent isolé")
+    assert root.children[0].actions[0].raw == \
+        'le prix horaire applicable vaut 60'
+    assert len(root.children[0].terms) == 2
+    assert root.children[0].terms[0].raw == ("c'est une formation éligible "
+                                             "COPANEF ET c'est un permis B")
+    assert root.children[0].terms[1].raw == ("c'est un bénéficiaire de droit "
+                                             "privé ET c'est un parent isolé")
+
+
 def test_inline_conditions():
     data = """
 Si l'organisme paritaire est «BLAH»
@@ -144,7 +173,6 @@ Si l'organisme paritaire est «BLAH»
         Alors le plafond horaire applicable vaut 99
 """
     root = Rule.load(data.splitlines(), name='foo')[0].root
-    print(root)
     assert len(root.children) == 1
     assert len(root.actions) == 0
     assert root.raw == "l'organisme paritaire est «BLAH»"
@@ -330,3 +358,4 @@ Si l'organisme paritaire est «BLAH»
 """
     with pytest.raises(ParsingError):
         Rule.load(data.splitlines(), name='foo')
+

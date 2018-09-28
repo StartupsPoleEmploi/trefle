@@ -239,22 +239,41 @@ class Condition(Step):
         self.negative = False
         self.connective = connective or self.AND
         self.level = level
-        if len(terms) == 1:
-            terms = terms[0].split(', et ')
-            if len(terms) > 1:
-                self.connective = self.AND
-            else:
-                terms = terms[0].split(', ou ')
-                if len(terms) > 1:
-                    self.connective = self.OR
-        if len(terms) > 1:
-            self.raw = f' {self.connective} '.join(terms)
-            self.terms = [Condition([t], level=self.level, path=self.path,
-                                    line=self.line) for t in terms]
+        if isinstance(terms[0], str):
+            terms = [terms]
+        if len(terms) == 1 and len(terms[0]) == 1:
+            terms = self.split_inline_conditions(terms)
+        # no inline condition detected
+        if len(terms) == 1 and len(terms[0]) == 1:
+            self.load_single(terms[0][0])
+        elif len(terms) == 1:
+            self.load_and_terms(terms[0])
         else:
-            self.raw = terms[0]
-            self.compile()
-            self.negative = ' pas ' in self.pattern
+            self.load_or_terms(terms)
+
+    def split_inline_conditions(self, terms):
+        term = terms[0][0]
+        if ', ou ' in term:
+            return [[t] for t in term.split(', ou ')]
+        if ', et ' in term:
+            return [term.split(', et ')]
+        return terms
+
+    def load_or_terms(self, terms):
+        self.connective = self.OR
+        self.terms = [Condition([t], level=self.level, path=self.path,
+                                line=self.line) for t in terms]
+        self.raw = f' {self.connective} '.join(str(t) for t in self.terms)
+
+    def load_and_terms(self, terms):
+        self.terms = [Condition([[t]], level=self.level, path=self.path,
+                                line=self.line) for t in terms]
+        self.raw = f' {self.connective} '.join(str(t) for t in self.terms)
+
+    def load_single(self, term):
+        self.raw = term
+        self.compile()
+        self.negative = ' pas ' in self.pattern
 
     def evaluate(self, context):
         return {n: Value(v, context) for n, v in self.params.items()}
@@ -372,7 +391,8 @@ class Rule:
         # conditions from lower indentations).
         current = None
         actions = []  # One or more actions of a rule.
-        terms = []  # One or more terms of a condition.
+        or_terms = []  # One or more terms of a condition.
+        and_terms = []  # One or more terms of a condition.
         connective = None
         for (prev, curr, next_) in lines:
             if curr.indent % 4 != 0:
@@ -381,10 +401,15 @@ class Rule:
                 raise ParsingError('Wrong keyword', name, curr)
             if curr.indent != prev.indent and not parent:
                 raise ParsingError('Wrong indentation', name, curr)
-            if curr.keyword == 'si' or (terms and curr.keyword in ('et', 'ou')):
-                terms.append(curr.sentence)
-                if not connective and curr.keyword == 'ou':
-                    connective = Condition.OR
+            if curr.keyword == 'si' or (and_terms and curr.keyword in ('et', 'ou')):
+                if curr.keyword == 'ou':
+                    or_terms.append(and_terms[:])
+                    and_terms = []
+                    and_terms.append(curr.sentence)
+                else:
+                    and_terms.append(curr.sentence)
+                if not connective:
+                    connective = Condition.OR if curr.keyword == 'ou' else Condition.AND
             elif curr.keyword == 'alors' or (actions and curr.keyword == 'et'):
                 actions.append(
                     Action(curr.sentence, path=name, line=curr.index))
@@ -395,8 +420,9 @@ class Rule:
                 raise StopRecursivity(indent=next_.indent)
                 # Move back one step up in recursivity.
             if next_.indent > curr.indent:
-                if next_.keyword in ('si', 'alors') and terms:
-                    current = Condition(terms[:], connective,
+                if next_.keyword in ('si', 'alors') and and_terms:
+                    or_terms.append(and_terms[:])
+                    current = Condition(or_terms[:], connective,
                                         level=int(curr.indent/4), path=name,
                                         line=curr.index)
                     if curr.indent == 0:
@@ -404,7 +430,8 @@ class Rule:
                         parent = current
                     else:
                         parent.children.append(current)
-                    terms = []
+                    or_terms = []
+                    and_terms = []
                     connective = None
                 try:
                     Rule.load(lines, name, rules, current)
