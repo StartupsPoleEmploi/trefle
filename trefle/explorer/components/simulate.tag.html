@@ -68,7 +68,7 @@
     }
 
     this.decodeLBFURL = (url, callback) => {
-      fetch(`/explore/decode-lbf-url?url=${encodeURIComponent(url)}`)
+      fetch(`../explore/decode-lbf-url?url=${encodeURIComponent(url)}`)
       .then((response) => this.handleResponse(response, callback))
     }
 

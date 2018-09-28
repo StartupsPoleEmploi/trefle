@@ -12,7 +12,7 @@
 
   <script>
     this.items = []
-    fetch('/explore/glossary')
+    fetch('../explore/glossary')
     .then((response) => response.json())
     .then((data) => {
       this.items = data

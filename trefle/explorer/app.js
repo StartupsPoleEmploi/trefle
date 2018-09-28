@@ -16,7 +16,7 @@ function renderLabel (key, value) {
 
 
 function init () {
-  fetch('/explore/schema')
+  fetch('../explore/schema')
   .then((response) => response.json())
   .then((data) => {
     SCHEMA = data

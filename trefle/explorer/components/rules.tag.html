@@ -35,7 +35,7 @@
 
     this.load = () => {
       if (RULES) return this.load_data(RULES)
-      fetch('/explore/rules')
+      fetch('../explore/rules')
       .then((response) => response.json())
       .then(this.load_data)
     }
