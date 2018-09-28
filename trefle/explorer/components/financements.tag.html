@@ -13,7 +13,7 @@
     this.on('mount', () => this.load())
 
     this.load = () => {
-      fetch('/explore/financements')
+      fetch('../explore/financements')
       .then((response) => response.json())
       .then(data => {
         this.financements = data

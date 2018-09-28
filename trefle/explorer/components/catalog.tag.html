@@ -16,7 +16,7 @@
     this.results = []
 
     this.get = (id) => {
-      fetch(`/explore/catalog?id=${id}`)
+      fetch(`../explore/catalog?id=${id}`)
       .then((response) => response.text())
       .then((data) => {
         this.xml = data
