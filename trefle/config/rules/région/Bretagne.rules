@@ -5,10 +5,10 @@ Si le financement est de type «FAJ»
     Alors appliquer les règles «FAJ»
 
 Si le financement est de type «POEC»
-    Alors appliquer les règles «POEC.rules»
+    Alors appliquer les règles «POEC»
 
 Si le financement est de type «POEI»
-    Alors appliquer les règles «POEI.rules»
+    Alors appliquer les règles «POEI»
 
 Si l'intitulé du financement est «Financement individuel Agefiph»
     Alors appliquer les règles «Agefiph.rules»

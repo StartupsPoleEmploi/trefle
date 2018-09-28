@@ -8,19 +8,19 @@ Si le financement est de type «FAJ»
     Alors appliquer les règles «FAJ»
 
 Si le financement est de type «POEC»
-    Alors appliquer les règles «POEC.rules»
+    Alors appliquer les règles «POEC»
 
 Si le financement est de type «POEI»
-    Alors appliquer les règles «POEI.rules»
+    Alors appliquer les règles «POEI»
 
 Si l'intitulé du financement est «Financement individuel Agefiph»
-    Alors appliquer les règles «Agefiph.rules»
+    Alors appliquer les règles «Agefiph»
 
 Si l'intitulé du financement est «Formation en alternance : contrat de professionnalisation»
-    Alors appliquer les règles «contrat de professionnalisation.rules»
+    Alors appliquer les règles «contrat de professionnalisation»
 
 Si l'intitulé du financement est «Formation en alternance : contrat d'apprentissage»
-    Alors appliquer les règles «contrat d'apprentissage.rules»
+    Alors appliquer les règles «contrat d'apprentissage»
 
 Si l'intitulé du financement est «Aide individuelle à la formation artisan»
     Alors appliquer les règles «AIF artisan»
@@ -52,7 +52,7 @@ Si l'intitulé du financement est «Programme régional de formation»
         Et le texte de description vaut «Le Programme régional de formation regroupe toutes les formations financées par la Région et Pôle emploi en Nouvelle-Aquitaine. Elles répondent aux besoins des entreprises du territoire.»
         Et le texte de la prise en charge vaut «Formation totalement financée.»
 
-        Si le département de la formation fait partie de [«Dordogne»,«Gironde»,«Pyrénées-Atlantique»,«Lot-et-Garonne»,«Landes»]
+        Si le département de la formation fait partie de [«Dordogne»,«Gironde»,«Pyrénées-Atlantiques»,«Lot-et-Garonne»,«Landes»]
             Alors le financement est éligible
 
             Si la liste des codes FORMACODE de la formation contient au moins un code parmi [43448,43457,43456,43439,43449,43490,43491,43493,43092,43497,43436,43441,31815,43006,44092,44008,44084,44083,44050,44092,44092]
@@ -89,7 +89,7 @@ Si l'intitulé du financement est «Programme régional de formation»
             Ou le code CERTIFINFO de la formation vaut 49332, et le SIRET de l'organisme de formation vaut 26870851800272
                 Alors l'intitulé du financement vaut «Programme régional de formation sanitaire et social»
 
-        Si l'allocation du bénéficiaire vaut «aide au retour à l'emploi»
+        Si l'allocation du bénéficiaire vaut «allocation d'aide au retour à l'emploi»
         Ou la durée en heures de la formation n'est pas inférieure à 150
             Alors appliquer les règles «AREF-RFPE-RPS»
 

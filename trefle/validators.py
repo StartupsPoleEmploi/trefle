@@ -119,6 +119,20 @@ def format_string(value):
     return str(value)
 
 
+def with_array(func):
+
+    def wrapper(schema, value):
+        if value is not None:
+            if schema['type'] == 'array':
+                value = [func(schema['items'], v) for v in value]
+                if schema.get('format') == 'set':
+                    value = set(value)
+                return value
+        return func(schema, value)
+
+    return wrapper
+
+
 def validate_field(name, data):
     value = data.get(name)
     try:
@@ -149,15 +163,11 @@ def validate_empty(schema, value):
     return value
 
 
+@with_array
 def validate_format(schema, value):
     if value is not None:
         type_ = schema['type']
         format_ = schema.get('format')
-        if type_ == 'array':
-            value = [validate_format(schema['items'], v) for v in value]
-            if format_ == 'set':
-                value = set(value)
-            return value
         # If there is formatter, it has precedence, and should take care of the
         # type too (so it can deal with cleaning the data before).
         func = formatters.get(format_, formatters.get(type_))
@@ -169,6 +179,7 @@ def validate_format(schema, value):
     return value
 
 
+@with_array
 def validate_enum(schema, value):
     if value and 'enum' in schema and value not in schema['enum']:
         raise ValueError(
@@ -176,6 +187,7 @@ def validate_enum(schema, value):
     return value
 
 
+@with_array
 def validate_pattern(schema, value):
     if value and 'pattern' in schema and not schema['pattern'].match(value):
         raise ValueError(

@@ -1,7 +1,7 @@
 Si c'est une formation ouverte aux bénéficiaires individuels
     Si c'est un bénéficiaire de droit privé
     Ou le type de contrat du bénéficiaire vaut «CDD»
-    Ou le type de contrat du bénéficiaire vaut «interim»
+    Ou le type de contrat du bénéficiaire vaut «intérimaire»
 
         Alors définir les organismes paritaires
 

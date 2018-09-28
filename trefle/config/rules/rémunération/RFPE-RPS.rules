@@ -1,6 +1,6 @@
 # S'applique pour RFPE ou RPS
 Si l'allocation du bénéficiaire n'est pas définie
-Ou l'allocation du bénéficiaire fait partie de [«allocation de solidarité spécifique»,«allocation temporaire d'attente»,«revenu de solidarité active»,«non»]
+Ou l'allocation du bénéficiaire fait partie de [«allocation de solidarité spécifique»,«allocation temporaire d'attente»,«revenu de solidarité active»]
 
     # Par défaut
     Si l'âge du bénéficiaire est inférieur à 18

@@ -188,7 +188,7 @@ def get_root_rule(context, financement):
         schema = SCHEMA[name]
         name = context.get(name)
         # Rules have human friendly names, so revert the enum logic here
-        enum = schema.get('enum') or schema.get('items', {}).get('enum')
+        enum = schema.get('enum')
         if enum:
             name = enum.get(name, name)
     if name:

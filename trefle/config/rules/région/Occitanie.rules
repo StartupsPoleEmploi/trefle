@@ -8,19 +8,19 @@ Si le financement est de type «FAJ»
     Alors appliquer les règles «FAJ»
 
 Si le financement est de type «POEC»
-    Alors appliquer les règles «POEC.rules»
+    Alors appliquer les règles «POEC»
 
 Si le financement est de type «POEI»
-    Alors appliquer les règles «POEI.rules»
+    Alors appliquer les règles «POEI»
 
 Si l'intitulé du financement est «Financement individuel Agefiph»
-    Alors appliquer les règles «Agefiph.rules»
+    Alors appliquer les règles «Agefiph»
 
 Si l'intitulé du financement est «Formation en alternance : contrat de professionnalisation»
-    Alors appliquer les règles «contrat de professionnalisation.rules»
+    Alors appliquer les règles «contrat de professionnalisation»
 
 Si l'intitulé du financement est «Formation en alternance : contrat d'apprentissage»
-    Alors appliquer les règles «contrat d'apprentissage.rules»
+    Alors appliquer les règles «contrat d'apprentissage»
 
 Si l'intitulé du financement est «Aide individuelle à la formation artisan»
     Alors appliquer les règles «AIF artisan»
@@ -89,7 +89,7 @@ Si l'intitulé du financement est «Dispositif « chèque »»
 
 Si l'intitulé du financement est «Cap métiers»
 
-    Si le département de la formation fait partie de [«Aude»,«Gard»,«Héraut»,«Lozère»,«Pyrénées-Orientales»]
+    Si le département de la formation fait partie de [«Aude»,«Gard»,«Hérault»,«Lozère»,«Pyrénées-Orientales»]
     Et les codes financeur de la formation contiennent «Conseil régional»
     Et l'intitulé normé de la formation contient «ACTIONCAPMETIERS»
     Et la région du bénéficiaire est «Occitanie»
@@ -105,7 +105,7 @@ Si l'intitulé du financement est «Cap métiers»
 
 Si l'intitulé du financement est «Cap avenir»
 
-    Si le département de la formation fait partie de [«Aude»,«Gard»,«Héraut»,«Lozère»,«Pyrénées-Orientales»]
+    Si le département de la formation fait partie de [«Aude»,«Gard»,«Hérault»,«Lozère»,«Pyrénées-Orientales»]
     Et les codes financeur de la formation contiennent «Conseil régional»
     Et l'intitulé normé de la formation contient «ACTIONCAPAVENIR»
     Et la région du bénéficiaire est «Occitanie»
@@ -121,7 +121,7 @@ Si l'intitulé du financement est «Cap avenir»
 
 Si l'intitulé du financement est «Cap compétences clés»
 
-    Si le département de la formation fait partie de [«Aude»,«Gard»,«Héraut»,«Lozère»,«Pyrénées-Orientales»]
+    Si le département de la formation fait partie de [«Aude»,«Gard»,«Hérault»,«Lozère»,«Pyrénées-Orientales»]
     Et c'est un demandeur d'emploi
     Et la région du bénéficiaire vaut «Occitanie»
     Et les codes financeur de la formation contiennent «Conseil régional»
@@ -139,7 +139,7 @@ Si l'intitulé du financement est «Cap compétences clés»
 
 Si l'intitulé du financement est «Programme régional qualifiant»
 
-    Si le département de la formation fait partie de [«Aude»,«Gard»,«Héraut»,«Lozère»,«Pyrénées-Orientales»]
+    Si le département de la formation fait partie de [«Aude»,«Gard»,«Hérault»,«Lozère»,«Pyrénées-Orientales»]
     Et les codes financeur de la formation contiennent «Conseil régional»
     Et la liste des codes FORMACODE de la formation ne contient aucun code parmi [43436,31815,43441,43458,43491,43448,43457,43497,43449,43497,43490,43006,43439,43092,44083,44028,44047,44084,44050,44092,44092,44092,44008]
     Et l'intitulé normé de la formation ne contient pas «ACTIONCAPAVENIR»
@@ -155,7 +155,7 @@ Si l'intitulé du financement est «Programme régional qualifiant»
 
 Si l'intitulé du financement est «Écoles régionales de la deuxième chance»
 
-    Si le département de la formation fait partie de [«Aude»,«Gard»,«Héraut»,«Lozère»,«Pyrénées-Orientales»]
+    Si le département de la formation fait partie de [«Aude»,«Gard»,«Hérault»,«Lozère»,«Pyrénées-Orientales»]
     Et les codes financeur de la formation contiennent «Conseil régional»
     Et c'est une formation E2C
     Et c'est un demandeur d'emploi
@@ -230,7 +230,7 @@ Si l'intitulé du financement est «Formation sanitaire et social»
                     Alors appliquer les règles «AREF-RFPE-RPS»
 
         # Ex Languedoc-Roussillon
-        Si le département de la formation fait partie de [«Aude»,«Gard»,«Héraut»,«Lozère»,«Pyrénées-Orientales»]
+        Si le département de la formation fait partie de [«Aude»,«Gard»,«Hérault»,«Lozère»,«Pyrénées-Orientales»]
         Et les codes financeur de la formation contiennent «Conseil régional»
         Et la liste des codes FORMACODE de la formation contiennent au moins un code parmi [43436,31815,43441,43458,43491,43448,43457,43497,43449,43497,43490,43006,43439,43092,44083,44028,44047,44084,44050,44092,44092,44092,44008]
             Alors le financement est éligible

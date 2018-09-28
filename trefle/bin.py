@@ -12,14 +12,16 @@ from trefle.api import app
 from trefle.debugging import data_from_lbf_url, green, make_scenario, red
 from trefle.exceptions import DataError
 from trefle.helpers import flatten
-from trefle.rules import parse_value, SCHEMA
+from trefle.rules import SCHEMA, Pointer
 
 
 def parse_args(args):
     data = {}
     for arg in args:
         key, value = arg.split('=')
-        data[key] = parse_value(value, default=value)
+        pointer = Pointer(value)
+        pointer.resolve_labels(key)
+        data[key] = pointer.get({})
     return data
 
 

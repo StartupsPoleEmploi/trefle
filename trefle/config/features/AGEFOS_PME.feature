@@ -147,7 +147,7 @@ Scénario: période de professionnalisation + CPF
     Et la région de l'établissement du bénéficiaire vaut «Provence-Alpes-Côte d'Azur»
     Et ce n'est pas une formation éligible COPANEF
     Et c'est une formation éligible région «Provence-Alpes-Côte d'Azur»
-    Et la régions éligibles COPAREF vaut [93]
+    Et la régions éligibles COPAREF vaut [«Provence-Alpes-Côte d'Azur»]
     Et la liste des codes FORMACODE de la formation vaut [44028]
     Et la liste des domaines FORMACODE de la formation vaut [440]
     Et le code CERTIFINFO de la formation vaut 30958
@@ -188,7 +188,7 @@ Scénario: pas de financement pour une formation réservée Pôle Emploi
     Et les codes financeur de la formation valent [«Pôle emploi»]
     Et ce n'est pas une formation éligible COPANEF
     Et c'est une formation éligible région «Provence-Alpes-Côte d'Azur»
-    Et la régions éligibles COPAREF vaut [93]
+    Et la régions éligibles COPAREF vaut [«Provence-Alpes-Côte d'Azur»]
     Et la liste des codes FORMACODE de la formation vaut [44028]
     Et la liste des domaines FORMACODE de la formation vaut [440]
     Et le code CERTIFINFO de la formation vaut 30958

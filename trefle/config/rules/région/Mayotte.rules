@@ -2,4 +2,4 @@ Si l'intitulé du financement est «Accès des demandeurs d’emploi aux métier
     Alors appliquer les règles «ADEMA»
 
 Si la région du bénéficiaire est «Mayotte»
-    Alors appliquer les règles «La Réunion.rules»
+    Alors appliquer les règles «La Réunion»

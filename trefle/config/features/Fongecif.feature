@@ -390,7 +390,6 @@ Scénario: Formation de 12 mois
     Et l'IDCC de l'établissement du bénéficiaire vaut «1412»
     Et la région de l'établissement du bénéficiaire vaut «Normandie»
     Et ce n'est pas une formation éligible COPANEF
-    Et la régions éligibles COPAREF vaut [25]
     Et la liste des codes FORMACODE de la formation vaut [31715,31715,31795]
     Et le niveau de sortie de la formation vaut «aucun»
     Et la durée en heures de la formation vaut 1000
@@ -447,7 +446,6 @@ Scénario: Avec un code financeur collectif
     Et l'IDCC de l'établissement du bénéficiaire vaut «1412»
     Et la région de l'établissement du bénéficiaire vaut «Normandie»
     Et ce n'est pas une formation éligible COPANEF
-    Et la régions éligibles COPAREF vaut [25]
     Et la liste des codes FORMACODE de la formation vaut [31715,31715,31795]
     Et le niveau de sortie de la formation vaut «aucun»
     Et la durée en heures de la formation vaut 1000

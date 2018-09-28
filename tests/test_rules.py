@@ -240,6 +240,24 @@ Si le prénom de l'organisme est «BLAH»
         Rule.load(data.splitlines(), name='foo')
 
 
+def test_should_raise_with_a_wrong_label_in_condition():
+    data = """
+Si la région du bénéficiaire est «BLAH»
+    Alors le plafond horaire applicable vaut 150
+"""
+    with pytest.raises(WrongPointerError):
+        Rule.load(data.splitlines(), name='foo')
+
+
+def test_can_use_raw_value_instead_of_label():
+    data = """
+# Guadeloupe
+Si la région du bénéficiaire est «01»
+    Alors le plafond horaire applicable vaut 150
+"""
+    Rule.load(data.splitlines(), name='foo')
+
+
 def test_should_raise_with_a_wrong_pointer_in_action():
     data = """
 Si l'organisme paritaire est «BLAH»

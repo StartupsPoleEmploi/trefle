@@ -17,11 +17,7 @@ DATE_PATTERN = re.compile(r'\d{2}/\d{2}/\d{4}')
 def parse_value(value, default=...):
     if value[0] == '«' and value[-1] == '»':
         value = value[1:-1]
-        if value in LABELS:
-            # This is an enum.
-            # FIXME: Should we have a dedicated registry instead?
-            value = LABELS[value]
-        elif DATE_PATTERN.match(value):
+        if DATE_PATTERN.match(value):
             value = datetime.strptime(value, '%d/%m/%Y')
     elif value[0] == '[' and value[-1] == ']':
         value = [parse_value(v) for v in value[1:-1].split(',')]
@@ -46,7 +42,6 @@ class Pointer:
 
     def __init__(self, raw):
         self.raw = raw
-        self.get = None
         self.key = None
         self.compile()
 
@@ -54,15 +49,36 @@ class Pointer:
         return f'<Pointer: {self.raw}>'
 
     def compile(self):
-        value = parse_value(self.raw)
-        if value is not ...:
-            self.get = lambda context: value
-        else:
+        self.value = parse_value(self.raw)
+        if self.value is ...:  # This is an actual schema pointer.
             try:
                 self.key = LABELS[self.raw]
             except KeyError:
                 raise WrongPointerError(self.raw)
-            self.get = lambda context: context[self.key]
+
+    def get(self, context):
+        if self.key:
+            return context[self.key]
+        return self.value
+
+    def resolve_label(self, value, labels):
+        try:
+            value = labels[value]
+        except KeyError:
+            if value not in labels.values():
+                raise WrongPointerError(f'Wrong value `{value}`')
+        return value
+
+    def resolve_labels(self, *keys):
+        labels = {}
+        for key in keys:
+            labels.update(SCHEMA[key].get('labels', {}))
+        if self.key or not labels:
+            return
+        if isinstance(self.value, list):
+            self.value = [self.resolve_label(v, labels) for v in self.value]
+        else:
+            self.value = self.resolve_label(self.value, labels)
 
 
 def action(pattern):
@@ -311,6 +327,16 @@ class Condition(Step):
     @property
     def private(self):
         return self.func and self.func.private
+
+    def compile(self):
+        super().compile()
+        keys = [pointer.key for pointer in self.params.values() if pointer.key]
+        for pointer in self.params.values():
+            try:
+                pointer.resolve_labels(*keys)
+            except WrongPointerError as err:
+                err.args = (f'{err} (in `{self!r}`)',)
+                raise
 
 
 Line = namedtuple('Line', ['index', 'indent', 'keyword', 'sentence'])

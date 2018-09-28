@@ -1,4 +1,3 @@
-# FIXME CIF vs cdi (clash with Pointer loading enum label)
 CPF sur son temps de travail:
   tags: [CPF, sur son temps de travail]
   racine: organisme paritaire.rules
@@ -9,16 +8,16 @@ CPF demandeur d'emploi:
   tags: [CPF, DE]
   racine: CPF DE.rules
 CIF CDI sur son temps de travail:
-  tags: [CIF, cdi, sur son temps de travail]
+  tags: [CIF, CDI, sur son temps de travail]
   racine: organisme paritaire.rules
 CIF CDI hors temps de travail:
-  tags: [CIF, cdi, hors temps de travail]
+  tags: [CIF, CDI, hors temps de travail]
   racine: organisme paritaire.rules
 CIF CDD sur son temps de travail:
-  tags: [CIF, cdd, sur son temps de travail]
+  tags: [CIF, CDD, sur son temps de travail]
   racine: organisme paritaire.rules
 CIF CDD hors temps de travail:
-  tags: [CIF, cdd, hors temps de travail, DE]
+  tags: [CIF, CDD, hors temps de travail, DE]
   racine: organisme paritaire.rules
 CIF intérim sur son temps de travail:
   tags: [CIF, interim, sur son temps de travail]

@@ -17,8 +17,9 @@ def setup(context):
 @given(r"(?:les? |la |l')(?P<label>.+) (?:est|vaut|valent) (?P<value>.+)")
 def given_set_value(context, label, value):
     key = LABELS[label]
-    value = Pointer(value).get({})
-    context.data[key] = value
+    pointer = Pointer(value)
+    pointer.resolve_labels(key)
+    context.data[key] = pointer.get({})
 
 
 @given(r"c'est une formation éligible région «(?P<label>.+)»")
