@@ -1,4 +1,4 @@
-Si le nom du financement est «Accès des demandeurs d’emploi aux métiers agricoles»
+Si l'intitulé du financement est «Accès des demandeurs d’emploi aux métiers agricoles»
     Alors appliquer les règles «ADEMA»
 
 Si le financement est de type «AFC»
@@ -13,19 +13,19 @@ Si le financement est de type «POEC»
 Si le financement est de type «POEI»
     Alors appliquer les règles «POEI.rules»
 
-Si le nom du financement est «Financement individuel Agefiph»
+Si l'intitulé du financement est «Financement individuel Agefiph»
     Alors appliquer les règles «Agefiph.rules»
 
-Si le nom du financement est «Formation en alternance : contrat de professionnalisation»
+Si l'intitulé du financement est «Formation en alternance : contrat de professionnalisation»
     Alors appliquer les règles «contrat de professionnalisation.rules»
 
-Si le nom du financement est «Formation en alternance : contrat d'apprentissage»
+Si l'intitulé du financement est «Formation en alternance : contrat d'apprentissage»
     Alors appliquer les règles «contrat d'apprentissage.rules»
 
-Si le nom du financement est «Aide individuelle à la formation artisan»
+Si l'intitulé du financement est «Aide individuelle à la formation artisan»
     Alors appliquer les règles «AIF artisan»
 
-Si le nom du financement est «Aide individuelle à la formation»
+Si l'intitulé du financement est «Aide individuelle à la formation»
 
     Si la liste des codes FORMACODE de la formation ne contient aucun code parmi [43448,43436,31815,43441,44041,31815,43454,44054,43409,44041,31802,31854,31805,31827,31833,31815,43454,44054,43409,31734,32050,43438,43438,43438,42003,42030,42050,42060,46061,43445,43425,14449,42020,42093]
     Et le code CERTIFINFO de la formation ne fait pas partie de [49616,23710,55676,83419,96173]
@@ -38,7 +38,7 @@ Si le nom du financement est «Aide individuelle à la formation»
         Et appliquer les règles «AREF-RFPE-RPS»
 
         Si c'est un travailleur handicapé
-            Alors le nom du financement vaut «Aide individuelle à la Formation financée par Pôle emploi et l'Agefiph»
+            Alors l'intitulé du financement vaut «Aide individuelle à la Formation financée par Pôle emploi et l'Agefiph»
             Et le texte de description vaut «L'aide individuelle à la formation professionnelle (AIF) est une aide de Pôle emploi et de l'Agefiph qui vise à financer certains besoins individuels de formation auxquels les achats d'action de formation collectives ne peuvent répondre. L'AIF est réservée à des projets de formation dont la pertinence et la faisabilité sont partagées avecvotre conseiller Pôle emploi, par rapport au marché du travail. Il vérifiera aussi si les conditions du financement sont réunies. Si vous possédez des heures CPF, un complément de financement pourra être possible grâce à l'AIF.⏎L'AIF est réservée à des projets de formation dont la pertinence et la faisabilité sont partagées avec le conseiller référent Pôle emploi ou votre conseiller Cap Emploi.⏎Il partagera avec vous la pertinence de ce projet de formation par rapport au marché du travail. Il vérifiiera aussi si les conditions du financement sont réunies.»
 
     Si c'est un bilan de compétences
@@ -47,7 +47,7 @@ Si le nom du financement est «Aide individuelle à la formation»
         Et le texte de la prise en charge vaut «35€/h sur une durée maximale de 24 heures.»
 
 
-Si le nom du financement est «Programme de formations collectives financées par le Conseil régional de Normandie»
+Si l'intitulé du financement est «Programme de formations collectives financées par le Conseil régional de Normandie»
 
     Si c'est un demandeur d'emploi
     Et la région du bénéficiaire est «Normandie»
@@ -64,7 +64,7 @@ Si le nom du financement est «Programme de formations collectives financées pa
         Et le texte de la prise en charge vaut «Formation totalement financée par le Conseil régional de Normandie»
 
 
-Si le nom du financement est «Une formation, un emploi - individuel»
+Si l'intitulé du financement est «Une formation, un emploi - individuel»
 
     Si c'est un demandeur d'emploi
     Et la région de la formation est «Normandie»
@@ -86,7 +86,7 @@ Si le nom du financement est «Une formation, un emploi - individuel»
         Et le texte de la prise en charge vaut «Formation totalement financée par le Conseil régional de Normandie»
 
 
-Si le nom du financement est «Une formation, un emploi - collectif»
+Si l'intitulé du financement est «Une formation, un emploi - collectif»
 
     Si c'est un demandeur d'emploi
     Et la région de la formation est «Normandie»
@@ -100,7 +100,7 @@ Si le nom du financement est «Une formation, un emploi - collectif»
         Et le texte de la prise en charge vaut «Formation totalement financée par le Conseil régional de Normandie»
 
 
-Si le nom du financement est «Qualif individuel»
+Si l'intitulé du financement est «Qualif individuel»
 
     Si c'est un demandeur d'emploi
     Et la région de la formation est «Normandie»
@@ -131,7 +131,7 @@ Si le financement est de type «POEC»
         Alors le financement est éligible
 
 
-Si le nom du financement est «VAE Normandie»
+Si l'intitulé du financement est «VAE Normandie»
 
     Si c'est un demandeur d'emploi
     Et la région du bénéficiaire est «Normandie»

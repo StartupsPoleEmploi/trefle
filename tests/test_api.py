@@ -502,11 +502,11 @@ async def test_simulate_financement_properties(client):
     financements = json.loads(resp.body)['financements']
     assert financements
     assert financements[0].get('sigle')
-    assert financements[0].get('nom')
+    assert financements[0].get('intitule')
     assert financements[0].get('tags')
 
 
 async def test_explore_financements(client):
     resp = await client.get('/explore/financements')
     financements = json.loads(resp.body)
-    assert 'nom' in financements[0]
+    assert 'intitule' in financements[0]

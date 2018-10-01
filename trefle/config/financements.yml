@@ -125,7 +125,7 @@ Programmation compétences premières:
   tags: [DE, PCP]
   racine: Auvergne-Rhône-Alpes.rules
 Programme régional qualifiant ARA:
-  nom: Programme régional qualifiant
+  intitule: Programme régional qualifiant
   tags: [DE, région, ARA]
   racine: Auvergne-Rhône-Alpes.rules
 Projets collectifs régionaux:
@@ -224,7 +224,7 @@ Cap compétences clés:
   tags: [DE, collectif, région, Occitanie]
   racine: Occitanie.rules
 Programme régional qualifiant Occitanie:
-  nom: Programme régional qualifiant
+  intitule: Programme régional qualifiant
   tags: [DE, collectif, région, Occitanie]
   racine: Occitanie.rules
 Écoles régionales de la deuxième chance:

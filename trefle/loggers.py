@@ -27,7 +27,7 @@ def log_simulate(context, financements=None, errors=None):
     message = {
         'date': datetime.utcnow().isoformat(),
         'context': context,
-        'financements': [f['nom'] for f in financements if f['eligible']],
+        'financements': [f['intitule'] for f in financements if f['eligible']],
         'errors': errors,
         'version': VERSION,
     }

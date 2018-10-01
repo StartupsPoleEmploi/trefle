@@ -1,4 +1,4 @@
-Si le nom du financement est «Accès des demandeurs d’emploi aux métiers agricoles»
+Si l'intitulé du financement est «Accès des demandeurs d’emploi aux métiers agricoles»
     Alors appliquer les règles «ADEMA»
 
 Si le financement est de type «AFC»
@@ -13,19 +13,19 @@ Si le financement est de type «POEC»
 Si le financement est de type «POEI»
     Alors appliquer les règles «POEI.rules»
 
-Si le nom du financement est «Financement individuel Agefiph»
+Si l'intitulé du financement est «Financement individuel Agefiph»
     Alors appliquer les règles «Agefiph.rules»
 
-Si le nom du financement est «Formation en alternance : contrat de professionnalisation»
+Si l'intitulé du financement est «Formation en alternance : contrat de professionnalisation»
     Alors appliquer les règles «contrat de professionnalisation.rules»
 
-Si le nom du financement est «Formation en alternance : contrat d'apprentissage»
+Si l'intitulé du financement est «Formation en alternance : contrat d'apprentissage»
     Alors appliquer les règles «contrat d'apprentissage.rules»
 
-Si le nom du financement est «Aide individuelle à la formation artisan»
+Si l'intitulé du financement est «Aide individuelle à la formation artisan»
     Alors appliquer les règles «AIF artisan»
 
-Si le nom du financement est «Aide individuelle à la formation»
+Si l'intitulé du financement est «Aide individuelle à la formation»
 
     Si la liste des codes FORMACODE de la formation ne contient aucun code parmi [43441,44041,44083,44084,44050,44092,44072,44008,43491,43448,43497,43490,43439,43493,43470,43092,43476,44004,44026,43436]
     Et le code CERTIFINFO de la formation ne fait pas partie de [54912,54913,54917,84385,87189,87185,87187]
@@ -33,7 +33,7 @@ Si le nom du financement est «Aide individuelle à la formation»
         Et le texte de la prise en charge vaut «Formation totalement prise en charge, sous réserve d'acceptation par Pôle emploi»
 
 
-Si le nom du financement est «Formations sanitaire et social d'aide-soignant ou d'auxiliaire de puériculture région Île-de-France»
+Si l'intitulé du financement est «Formations sanitaire et social d'aide-soignant ou d'auxiliaire de puériculture région Île-de-France»
 
     Si c'est un demandeur d'emploi
     Et la région du bénéficiaire est «Île-de-France»
@@ -49,7 +49,7 @@ Si le nom du financement est «Formations sanitaire et social d'aide-soignant ou
         Et le texte de la prise en charge vaut «Formation totalement financée dans la limite du nombre de places attribuées au centre de formation.»
 
 
-Si le nom du financement est «Formations sanitaire et social post-bac région Île-de-France»
+Si l'intitulé du financement est «Formations sanitaire et social post-bac région Île-de-France»
 
     Si c'est un demandeur d'emploi
     Et la région du bénéficiaire est «Île-de-France»
@@ -64,7 +64,7 @@ Si le nom du financement est «Formations sanitaire et social post-bac région �
         Et le texte de la prise en charge vaut «Formation totalement financée dans la limite du nombre de places attribuées au centre de formation.»
 
 
-Si le nom du financement est «Programme régional qualifiant compétences»
+Si l'intitulé du financement est «Programme régional qualifiant compétences»
 
     Si c'est un demandeur d'emploi
     Et la région de la formation est «Île-de-France»
@@ -80,7 +80,7 @@ Si le nom du financement est «Programme régional qualifiant compétences»
             Alors appliquer les règles «AREF-RFPE-RPS»
 
 
-Si le nom du financement est «Chéquier unique VAE Région Ile-de-France»
+Si l'intitulé du financement est «Chéquier unique VAE Région Ile-de-France»
 
     Si c'est un demandeur d'emploi
     Et la région de la formation est «Île-de-France»
@@ -94,7 +94,7 @@ Si le nom du financement est «Chéquier unique VAE Région Ile-de-France»
         Et appliquer les règles «AREF-RFPE-RPS»
 
 
-Si le nom du financement est «Paris formation pour l'emploi»
+Si l'intitulé du financement est «Paris formation pour l'emploi»
 
     Si c'est un demandeur d'emploi
     Et le département de la formation est «Paris»

@@ -10,19 +10,19 @@ Si le financement est de type «POEC»
 Si le financement est de type «POEI»
     Alors appliquer les règles «POEI.rules»
 
-Si le nom du financement est «Financement individuel Agefiph»
+Si l'intitulé du financement est «Financement individuel Agefiph»
     Alors appliquer les règles «Agefiph.rules»
 
-Si le nom du financement est «Formation en alternance : contrat de professionnalisation»
+Si l'intitulé du financement est «Formation en alternance : contrat de professionnalisation»
     Alors appliquer les règles «contrat de professionnalisation.rules»
 
-Si le nom du financement est «Formation en alternance : contrat d'apprentissage»
+Si l'intitulé du financement est «Formation en alternance : contrat d'apprentissage»
     Alors appliquer les règles «contrat d'apprentissage.rules»
 
-Si le nom du financement est «Aide individuelle à la formation artisan»
+Si l'intitulé du financement est «Aide individuelle à la formation artisan»
     Alors appliquer les règles «AIF artisan»
 
-Si le nom du financement est «Aide individuelle à la formation»
+Si l'intitulé du financement est «Aide individuelle à la formation»
     Alors appliquer les règles «AIF»
 
 Si le financement n'est pas de type «AIF»
@@ -31,7 +31,7 @@ Si le financement n'est pas de type «AIF»
     Et la région de la formation est «Bretagne»
     Et c'est un demandeur d'emploi
 
-        Si le nom du financement est «Chèque formation»
+        Si l'intitulé du financement est «Chèque formation»
 
             Si ce n'est pas une formation CACES
             Et ce n'est pas une formation BULATS
@@ -63,7 +63,7 @@ Si le financement n'est pas de type «AIF»
                     Alors le texte des démarches vaut «Attention, pour obtenir une aide pour les formations de niveau supérieur à bac + 2, vous devrez justifier de 2 ans d’activité professionnelle.⏎Contactez votre conseiller emploi. Votre projet de formation doit être validé par une prestation de bilan ou de validation de projet. Si votre conseiller estime que le projet est cohérent, cette prestation n'est pas nécessaire.⏎Pour les formations éligibles au compte personnel de formation (CPF), son utilisation sera demandée en déduction ou en complément du Chèque Formation.⏎Vous devez justifier d'une résidence en Bretagne depuis au moins 6 mois à la date d'entrée en formation.»
 
 
-        Si le nom du financement est «Formations du domaine sanitaire et social»
+        Si l'intitulé du financement est «Formations du domaine sanitaire et social»
 
             Si la liste des codes FORMACODE de la formation contient au moins un code parmi [31815,43448,43092,43439,43436,43441,43497,44038,44092,44008,44028,44084,44050], ou le code CERTIFINFO de la formation fait partie de [87185,87187,87189]
             Et les codes financeur de la formation contiennent «Conseil régional»
@@ -73,7 +73,7 @@ Si le financement n'est pas de type «AIF»
                 Et le texte de description vaut «Ces formations sont du ressort exclusif du Conseil Régional de Bretagne. Celui-ci détermine les quotas de place, délivre les agréments au centre de formation.⏎L'entrée dans ces formations est conditionnée par la réussite à des concours spécifiques ou à des examens de sélection»
                 Et le texte de la prise en charge vaut «Prise en charge des frais pédagogiques par la Région dans la limite des places agréées par la Région.»
 
-        Si le nom du financement est «Programme Bretagne Formation»
+        Si l'intitulé du financement est «Programme Bretagne Formation»
 
             Si les codes financeur de la formation contiennent «Conseil régional»
             Et le niveau de sortie de la formation ne fait pas partie de [«I»,«II»,«V bis»,«VI»]

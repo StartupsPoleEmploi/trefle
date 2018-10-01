@@ -1,6 +1,6 @@
 <financements>
   <dl each={ this.financements }>
-    <dt>{ nom }</dt>
+    <dt>{ intitule }</dt>
     <dd if={ racine.endsWith('.rules') }><strong>Règles racine</strong>: <a href="#/rules/{ racine }">{ racine } <i class="icon">arrow_forward</i></a></dd>
     <dd if={ !racine.endsWith('.rules') }><strong>Règles racine</strong>: { racine }</dd>
     <dd><strong>Catégories</strong>: { _tags }</dd>

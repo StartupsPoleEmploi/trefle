@@ -90,9 +90,9 @@ async def cli_simulate(*args, context: json.loads={}, url=None, trace=False,
     else:
         print('Aucun financement éligible')
     for financement in eligibles:
-        print(financement['nom'])
+        print(financement['intitule'])
         for key, value in financement.items():
-            if not value or key in ('nom', 'organisme', 'explain', 'tags',
+            if not value or key in ('intitule', 'organisme', 'explain', 'tags',
                                     'eligible', 'ressources'):
                 continue
             schema = SCHEMA["financement." + key]
@@ -109,7 +109,7 @@ async def cli_simulate(*args, context: json.loads={}, url=None, trace=False,
     if non_eligibles and (show_non_eligible or trace):
         print('\nFinancements non éligibles\n')
         for financement in non_eligibles:
-            print('-', financement['nom'])
+            print('-', financement['intitule'])
             if trace:
                 for status in financement['explain']:
                     render_status(status)

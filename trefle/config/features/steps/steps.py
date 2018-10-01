@@ -52,24 +52,24 @@ def then_check_count(context, expected):
     assert found == int(expected), f'Found {found}'
 
 
-@then(r"le financement «(?P<nom>.+)» n'est pas proposé")
-def then_check_missing(context, nom):
-    if nom not in [f['nom'] for f in FINANCEMENTS]:
-        raise ValueError(f'{nom} is not a valid financement')
+@then(r"le financement «(?P<intitule>.+)» n'est pas proposé")
+def then_check_missing(context, intitule):
+    if intitule not in [f['intitule'] for f in FINANCEMENTS]:
+        raise ValueError(f'{intitule} is not a valid financement')
     for financement in context.passed:
-        if financement['nom'] == nom:
-            raise AssertionError(f'{nom} was found')
+        if financement['intitule'] == intitule:
+            raise AssertionError(f'{intitule} was found')
 
 
-@when(r'je sélectionne le financement «(?P<nom>.+)»')
-def when_select_one(context, nom):
+@when(r'je sélectionne le financement «(?P<intitule>.+)»')
+def when_select_one(context, intitule):
     assert context.passed, "No result found"
     for result in context.passed:
-        if result['nom'] == nom:
+        if result['intitule'] == intitule:
             context.result = result
             break
     else:
-        raise AssertionError(f'No result found with name {nom}')
+        raise AssertionError(f'No result found with name {intitule}')
 
 
 @then(r"l'organisme à contacter est «(?P<name>.+)»")

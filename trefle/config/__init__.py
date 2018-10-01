@@ -56,7 +56,7 @@ def load_financements():
     with (ROOT / 'financements.yml').open() as f:
         data = yaml.safe_load(f.read())
     for id_, props in data.items():
-        props.setdefault('nom', id_)
+        props.setdefault('intitule', id_)
         props['eligible'] = False
         FINANCEMENTS.append(props)
 

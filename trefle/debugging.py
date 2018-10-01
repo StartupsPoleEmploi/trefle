@@ -153,7 +153,7 @@ def make_scenario(data, financements, name='Donne-moi un nom'):
         if financement.get('eligible'):
             # Quand je sélectionne le financement «CPF hors temps de travail»
             steps.append(f"Quand je sélectionne le financement "
-                         f"«{financement['nom']}»")
+                         f"«{financement['intitule']}»")
             keys = ['remuneration', 'prise_en_charge',
                     'plafond_prise_en_charge', 'rff', 'debut_rff', 'fin_rff',
                     'fin_remuneration']
@@ -172,8 +172,8 @@ def make_scenario(data, financements, name='Donne-moi un nom'):
                 steps.append(f"Et l'organisme à contacter est "
                              f"«{financement['organisme']['nom']}»")
         else:
-            steps.append(f"Alors le financement «{financement['nom']}» n'est "
-                         "pas proposé")
+            steps.append(f"Alors le financement «{financement['intitule']}» "
+                         "n'est pas proposé")
     return header + '\n    '.join(steps)
 
 
@@ -234,7 +234,7 @@ def scenario_tag_from_step(scenario, step):
         if step.name.startswith(prefix):
             name = step.name[len(prefix)+2:-1]
             for financement in FINANCEMENTS:
-                if financement['nom'] == name:
+                if financement['intitule'] == name:
                     scenario.tags.extend(
                         [t.lower() for t in financement['tags']])
 

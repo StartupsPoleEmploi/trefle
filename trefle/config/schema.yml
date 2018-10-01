@@ -903,10 +903,10 @@ formation:
     type: boolean
     label: formation ouverte aux bénéficiaires individuels
 financement:
-  nom:
+  intitule:
     type: string
     public: true
-    label: nom du financement
+    label: intitulé du financement
   tags:
     type: array
     items:

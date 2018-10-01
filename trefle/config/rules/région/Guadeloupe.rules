@@ -1,4 +1,4 @@
-Si le nom du financement est «Accès des demandeurs d’emploi aux métiers agricoles»
+Si l'intitulé du financement est «Accès des demandeurs d’emploi aux métiers agricoles»
     Alors appliquer les règles «ADEMA»
 
 Si le financement est de type «AFC»
@@ -13,19 +13,19 @@ Si le financement est de type «POEC»
 Si le financement est de type «POEI»
     Alors appliquer les règles «POEI.rules»
 
-Si le nom du financement est «Financement individuel Agefiph»
+Si l'intitulé du financement est «Financement individuel Agefiph»
     Alors appliquer les règles «Agefiph.rules»
 
-Si le nom du financement est «Formation en alternance : contrat de professionnalisation»
+Si l'intitulé du financement est «Formation en alternance : contrat de professionnalisation»
     Alors appliquer les règles «contrat de professionnalisation.rules»
 
-Si le nom du financement est «Formation en alternance : contrat d'apprentissage»
+Si l'intitulé du financement est «Formation en alternance : contrat d'apprentissage»
     Alors appliquer les règles «contrat d'apprentissage.rules»
 
-Si le nom du financement est «Aide individuelle à la formation artisan»
+Si l'intitulé du financement est «Aide individuelle à la formation artisan»
     Alors appliquer les règles «AIF artisan»
 
-Si le nom du financement est «Aide individuelle à la formation»
+Si l'intitulé du financement est «Aide individuelle à la formation»
     Alors le plafond financier applicable vaut 1500
 
     Si la liste des codes FORMACODE de la formation ne contient aucun code parmi [44591,15081]

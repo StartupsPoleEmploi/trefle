@@ -15,7 +15,7 @@
     <h2>Financements</h2>
     <ul>
       <li each={ this.financements } class={result: 'result', visible: visible}>
-        <h3 class={ passed: eligible, failed: !eligible } onclick={ parent.toggle }>{nom}</h3>
+        <h3 class={ passed: eligible, failed: !eligible } onclick={ parent.toggle }>{intitule}</h3>
         <p><strong>Description</strong> {description}</p>
         <p><strong>Démarches</strong> {demarches}</p>
         <virtual if={ eligible }>

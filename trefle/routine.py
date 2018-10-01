@@ -164,7 +164,7 @@ def compute_modalites(context, financement):
     financement['heures'] = heures
     keys = ['remuneration_texte', 'prise_en_charge_texte', 'demarches', 'rff',
             'description', 'remuneration_annee_2', 'remuneration_annee_3',
-            'nom', 'en_savoir_plus']
+            'intitule', 'en_savoir_plus']
     for key in keys:
         name = f'financement.{key}'
         if name in context:
@@ -198,7 +198,7 @@ def get_root_rule(context, financement):
 def check_financement(context, financement):
     statuses = []
     financement['explain'] = []
-    context['financement.nom'] = financement['nom']
+    context['financement.intitule'] = financement['intitule']
     context['financement.tags'] = financement['tags']
     context['financement.eligible'] = False
     rule_name = get_root_rule(context, financement)
