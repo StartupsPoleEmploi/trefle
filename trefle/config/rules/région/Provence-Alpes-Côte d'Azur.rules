@@ -29,6 +29,16 @@ Si l'intitulé du financement est «Aide individuelle à la formation»
     Si la durée en mois de la formation n'est pas supérieure à 12
     Et la liste des codes FORMACODE de la formation ne contient aucun code parmi [15041,43448,43457]
     Et le code CERTIFINFO de la formation ne fait pas partie de [54912,54913,54917,87189,87185,87187]
+    et c'est une formation bilan de compétences
+    alors le plafond horaire applicable vaut 35
+
+    et la liste des codes FORMACODE de la formation contient [222, 318, 31667,24454, 22821,11557,31620,31606,11504,31686,11503,13245,12576,24099,45006,22612,22605,12592,46054,21527,31058,31624,34091,23053, 24491,31664, 46084, 31304, 46098, 31304, 46098, 23615, 24439, 42884, 11567, 11559, 22307, 22622, 21631, 34024, 12560, 11504, 11547, 21592, 22633, 45006, 24422, 12081, 12560, 24439, 22630, 11534, 12592, 31676, 31336,12592, 22307, 31604, 42884, 22851, 31606, 13245, 42884, 31652, 12526]
+Alors le plafond horaire applicable vaut 25
+
+et la liste des codes FORMACODE contient [152]
+Alors le plafond horaire applicable vaut 10
+
+et l'intensité horaire hebdomadaire est comprise entre 20 et 35
         Alors appliquer les règles «AIF»
         Et le plafond financier applicable vaut 3000
 
