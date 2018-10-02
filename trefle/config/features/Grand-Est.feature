@@ -8,11 +8,25 @@ Scénario: Cas nominal aide individuelle régionale à la formation (formation c
     Et la région du bénéficiaire vaut «Grand-Est»
     Et le niveau de sortie de la formation vaut «III»
     Et c'est une formation ouverte aux bénéficiaires individuels
-    Et c'est un formation certifiante
+    Et c'est une formation certifiante
+    Et c'est une formation éligible COPAREF de la région du bénéficiaire
     Quand je demande un calcul de financement
     Quand je sélectionne le financement «Aide individuelle régionale à la formation»
     Alors la rémunération applicable vaut 0
     Et la plafond de prise en charge vaut 6000
+
+
+Scénario: Aide individuelle régionale à la formation exclue, non éligible COPAREF/COPANEF (formation certifiante)
+    Soit un bénéficiaire et une formation
+    Et c'est un demandeur d'emploi
+    Et le montant de l'allocation du bénéficiaire vaut 1200
+    Et la durée en heures de la formation vaut 150
+    Et la région du bénéficiaire vaut «Grand-Est»
+    Et le niveau de sortie de la formation vaut «III»
+    Et c'est une formation ouverte aux bénéficiaires individuels
+    Et c'est une formation certifiante
+    Quand je demande un calcul de financement
+    Alors le financement «Aide individuelle régionale à la formation» n'est pas proposé
 
 
 Scénario: Cas nominal aide individuelle régionale à la formation (formation professionnalisante)
@@ -24,11 +38,25 @@ Scénario: Cas nominal aide individuelle régionale à la formation (formation p
     Et la région du bénéficiaire vaut «Grand-Est»
     Et le niveau de sortie de la formation vaut «III»
     Et c'est une formation ouverte aux bénéficiaires individuels
-    Et c'est un formation professionalisante
+    Et c'est un formation professionnalisante
     Quand je demande un calcul de financement
     Quand je sélectionne le financement «Aide individuelle régionale à la formation»
     Alors la rémunération applicable vaut 0
     Et la plafond de prise en charge vaut 6000
+
+
+Scénario: Formation trop longue pour ide individuelle régionale à la formation (formation professionnalisante)
+    Soit un bénéficiaire et une formation
+    Et c'est un demandeur d'emploi
+    Et le montant de l'allocation du bénéficiaire vaut 1200
+    Et la durée en heures de la formation vaut 650
+    Et la durée hebdomadaire de la formation vaut 30
+    Et la région du bénéficiaire vaut «Grand-Est»
+    Et le niveau de sortie de la formation vaut «III»
+    Et c'est une formation ouverte aux bénéficiaires individuels
+    Et c'est un formation professionnalisante
+    Quand je demande un calcul de financement
+    Alors le financement «Aide individuelle régionale à la formation» n'est pas proposé
 
 
 Scénario: Aide individuelle régionale à la formation avec mauvais niveau de sortie
@@ -39,6 +67,8 @@ Scénario: Aide individuelle régionale à la formation avec mauvais niveau de s
     Et la région du bénéficiaire vaut «Grand-Est»
     Et le niveau de sortie de la formation vaut «I»
     Et c'est une formation ouverte aux bénéficiaires individuels
+    Et c'est une formation certifiante
+    Et c'est une formation éligible COPAREF de la région du bénéficiaire
     Quand je demande un calcul de financement
     Alors le financement «Aide individuelle régionale à la formation» n'est pas proposé
 
