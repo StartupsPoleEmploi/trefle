@@ -107,8 +107,12 @@ def make_scenario(data, financements, name='Donne-moi un nom'):
             continue
         schema = SCHEMA[key]
         label = schema['label']
-        if 'enum' in schema and value is not None:
-            value = schema['enum'][value]
+        enum = schema.get('enum')
+        if enum and value is not None:
+            if isinstance(value, (list, tuple, set)):
+                value = [f'«{enum[v]}»' for v in value]
+            else:
+                value = enum[value]
         if isinstance(value, str):
             value = f'«{value}»'
         if isinstance(value, datetime):
@@ -134,10 +138,7 @@ def make_scenario(data, financements, name='Donne-moi un nom'):
             else:
                 steps.append(f"Et ce n'est pas {article} {label}")
         else:
-            if isinstance(value, (list, tuple, set)):
-                enum = schema.get('items', {}).get('enum')
-                if enum:
-                    value = [f'«{enum[v]}»' for v in value]
+            if isinstance(value, (list, set)):
                 value = '[' + ','.join(str(v) for v in value) + ']'
             article = 'le ' if schema.get('gender') == 'masculine' else 'la '
             if schema.get('number') == 'plural':
