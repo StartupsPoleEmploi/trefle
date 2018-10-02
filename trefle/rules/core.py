@@ -427,6 +427,8 @@ class Rule:
                 raise ParsingError('Wrong keyword', name, curr)
             if curr.indent != prev.indent and not parent:
                 raise ParsingError('Wrong indentation', name, curr)
+            if curr.keyword not in ('si', 'et', 'ou', 'alors'):
+                raise ParsingError('Unknown keyword', name, curr)
             if curr.keyword == 'si' or (and_terms and curr.keyword in ('et', 'ou')):
                 if curr.keyword == 'ou':
                     or_terms.append(and_terms[:])

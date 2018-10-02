@@ -398,6 +398,15 @@ Si l'organisme paritaire est «BLAH»
         Rule.load(data.splitlines(), name='foo')
 
 
+def test_should_raise_with_a_unknown_keyword():
+    data = """
+Si l'organisme paritaire est «BLAH»
+    Foo la rémunération applicable vaut 40
+"""
+    with pytest.raises(ParsingError):
+        Rule.load(data.splitlines(), name='foo')
+
+
 def test_should_raise_with_a_wrong_indent():
     data = """
 Si l'organisme paritaire est «BLAH»
