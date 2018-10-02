@@ -189,7 +189,8 @@ Qualif individuel:
 VAE Normandie:
   tags: [DE, VAE]
   racine: Normandie.rules
-Programme régional de formation:
+Programme régional de formation Nouvelle-Aquitaine:
+  intitule: Programme régional de formation
   sigle: PRF
   tags: [DE, collectif, PRF]
   racine: Nouvelle-Aquitaine.rules
@@ -239,3 +240,24 @@ Formations des établissements d'enseignement supérieur:
 Formation sanitaire et social:
   tags: [DE, collectif, région, Occitanie]
   racine: Occitanie.rules
+Le chèque pass formation:
+  tags: [DE, individuel, région]
+  racine: Hauts-de-France.rules
+  ressources:
+  - https://www.c2rp.fr/dispositifs/cheque-pass-formation
+Sanitaire et social:
+  tags: [DE, collectif, région]
+  racine: Hauts-de-France.rules
+  ressources:
+  - https://www.hautsdefrance.fr/bourses-formations-sanitaires-sociales
+Programme régional de formation Hauts-de-France:
+  intitule: Programme régional de formation
+  tags: [DE, collectif, région]
+  racine: Hauts-de-France.rules
+Pass emploi:
+  tags: [DE, individuel, région]
+  racine: Hauts-de-France.rules
+  ressources:
+    - https://www.c2rp.fr/dispositifs/pass-emploi
+    - https://www.hautsdefrance.fr/mot/formation/
+
