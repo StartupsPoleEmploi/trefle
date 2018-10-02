@@ -237,9 +237,36 @@ Formations des établissements d'enseignement supérieur:
 École de l'apprentissage:
   tags: [DE, région, Occitanie]
   racine: Occitanie.rules
-Formation sanitaire et social:
+Formation sanitaire et social Occitanie:
+  intitule: Formation sanitaire et social
   tags: [DE, collectif, région, Occitanie]
   racine: Occitanie.rules
+Aide individuelle régionale à la formation:
+  tags: [AIF, DE, individuel]
+  racine: Grand-Est.rules
+Formation sanitaire et social Grand-Est:
+  intitule: Formation sanitaire et social
+  tags: [DE, région, individuel, branche]
+  racine: Grand-Est.rules
+  ressources:
+  - https://www.grandest.fr/formations-sanitaires-sociales/bourses-secteur-sanitaire-social
+Programme régional de formation dans la région Grand-Est:
+  intitule: Programme régional de formation
+  sigle: PRF
+  tags: [DE, collectif, PRF]
+  racine: Grand-Est.rules
+Action collective financée par la Région Bourgogne:
+  intitule: Action collective financée par la Région
+  tags: [DE, collectif, région, Bourgogne]
+  racine: Bourgogne-Franche-Comté.rules
+Formation sanitaire et social Bourgogne:
+  intitule: Formation sanitaire et social
+  tags: [DE]
+  racine: Bourgogne-Franche-Comté.rules
+Dispositif accès à la qualification:
+  sigle: DAQ
+  tags: [DE, DAQ, région, Bourgogne]
+  racine: Bourgogne-Franche-Comté.rules
 Le chèque pass formation:
   tags: [DE, individuel, région]
   racine: Hauts-de-France.rules
@@ -260,4 +287,3 @@ Pass emploi:
   ressources:
     - https://www.c2rp.fr/dispositifs/pass-emploi
     - https://www.hautsdefrance.fr/mot/formation/
-

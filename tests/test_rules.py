@@ -166,6 +166,46 @@ Si l'organisme paritaire est «BLAH»
                                              "privé ET c'est un parent isolé")
 
 
+def test_mixing_Si_and_Ou_and_Et_and_inline():
+    data = """
+Si l'organisme paritaire est «BLAH»
+    Si c'est une formation certifiante
+    Et c'est une formation éligible COPAREF de la région du bénéficiaire, ou c'est une formation éligible COPANEF
+    Et la durée en heures de la formation n'est pas supérieure à 1600
+
+    Ou c'est une formation professionnalisante
+    Et la durée en heures de la formation n'est pas supérieure à 600
+    Et la durée hebdomadaire de la formation n'est pas inférieure à 20
+        Alors le prix horaire applicable vaut 99
+"""
+    root = Rule.load(data.splitlines(), name='foo')[0].root
+    assert len(root.children) == 1
+    assert len(root.actions) == 0
+    assert root.raw == "l'organisme paritaire est «BLAH»"
+    child = root.children[0]
+    assert len(child.terms) == 2
+    assert len(child.actions) == 1
+    assert child.actions[0].raw == 'le prix horaire applicable vaut 99'
+    assert child.connective == Condition.OR
+    assert child.raw == ("c'est une formation certifiante "
+                         "ET c'est une formation éligible COPAREF de la "
+                         "région du bénéficiaire OU c'est une formation "
+                         "éligible COPANEF ET la durée en heures de la "
+                         "formation n'est pas supérieure à 1600 OU c'est "
+                         "une formation professionnalisante ET la durée en "
+                         "heures de la formation n'est pas supérieure à 600 "
+                         "ET la durée hebdomadaire de la formation n'est pas "
+                         "inférieure à 20")
+    term = child.terms[0]
+    assert len(term.terms) == 3
+    assert term.terms[0].raw == "c'est une formation certifiante"
+    term = term.terms[1]
+    assert len(term.terms) == 2
+    assert term.connective == Condition.OR
+    assert term.raw == ("c'est une formation éligible COPAREF de la région du "
+                        "bénéficiaire OU c'est une formation éligible COPANEF")
+
+
 def test_inline_conditions():
     data = """
 Si l'organisme paritaire est «BLAH»
@@ -353,6 +393,15 @@ def test_should_raise_with_a_wrong_keyword():
     data = """
 Si l'organisme paritaire est «BLAH»
     Et la rémunération applicable vaut 40
+"""
+    with pytest.raises(ParsingError):
+        Rule.load(data.splitlines(), name='foo')
+
+
+def test_should_raise_with_a_unknown_keyword():
+    data = """
+Si l'organisme paritaire est «BLAH»
+    Foo la rémunération applicable vaut 40
 """
     with pytest.raises(ParsingError):
         Rule.load(data.splitlines(), name='foo')

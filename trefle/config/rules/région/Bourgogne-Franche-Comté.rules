@@ -2,13 +2,24 @@ Si l'intitulé du financement est «Accès des demandeurs d’emploi aux métier
     Alors appliquer les règles «ADEMA»
 
 Si le financement est de type «AFC»
-    Alors appliquer les règles «action collective»
+    Si l'intitulé du financement n'est pas «Action de formation collective financée par Pôle emploi»
+        Alors appliquer les règles «action collective»
+
+    Si l'intitulé du financement est «Action de formation collective financée par Pôle emploi»
+
+        Si la région de la formation vaut «Bourgogne-Franche-Comté»
+        Et les codes financeur de la formation contiennent «Pôle emploi»
+        Et le code CERTIFINFO de la formation ne fait pas partie de [54912,54913,54917,87185,87187]
+        Et c'est un demandeur d'emploi
+            Alors le financement est éligible
+            Et appliquer les règles «AREF-RFPE-RPS»
+            Et le texte des démarches vaut «Contacter votre conseiller référent emploi (Pôle emploi, mission locale ou Cap emploi).»
+            Et le texte de description vaut «Il s'agit d'une formation collective, délivrée en centre de formation avec une période de stage en entreprise, gratuite et réservée aux demandeurs d'emploi.»
+            Et le texte pour en savoir plus vaut «Renseignez-vous auprès de Pôle emploi pour les conditions d'attribution d'aides à la mobilité et de frais de garde d'enfants pour les parents isolés (soumis à des conditions de revenus), si vous êtes retenu sur une des places financées par Pôle emploi.»
+            Et le texte de la prise en charge vaut «Formation totalement financée.»
 
 Si le financement est de type «FAJ»
     Alors appliquer les règles «FAJ»
-
-Si le financement est de type «POEC»
-    Alors appliquer les règles «POEC»
 
 Si le financement est de type «POEI»
     Alors appliquer les règles «POEI»
@@ -33,3 +44,55 @@ Si l'intitulé du financement est «Aide individuelle à la formation»
     Et ce n'est pas un permis B
         Alors appliquer les règles «AIF»
         Et le texte de la prise en charge vaut «Formation totalement prise en charge, sous réserve d'acceptation par Pôle emploi»
+
+Si l'intitulé du financement est «Action collective financée par la Région»
+
+    Si les codes financeur de la formation contiennent «Conseil régional»
+    Et le code CERTIFINFO de la formation ne fait pas partie de [54912,54913,54917,87185,87187]
+    Et c'est un demandeur d'emploi
+    Et la région de la formation vaut «Bourgogne-Franche-Comté»
+        Alors le financement est éligible
+        Et appliquer les règles «AREF-RFPE-RPS»
+        Et le texte des démarches vaut «Contactez votre conseiller référent emploi (Pôle emploi, mission locale ou Cap emploi).»
+        Et le texte de description vaut «Il s'agit d'une formation collective qualifiante (qualification professionnelle reconnue), diplômante ou certifiante pour accéder à l’emploi : diplôme, CQP, titres homologués/certifiés inscrits au Répertoire national des certifications professionnelles (RNCP), délivrée en centre de formation avec une période de stage en entreprise, gratuite pour le demandeur d'emploi.»
+        Et le texte pour en savoir plus vaut «L’entrée en formation sur une action collective est ouverte aux demandeurs d’emploi inscrits à Pôle emploi en catégorie 1, 2 ou 3 et dont le projet professionnel a fait l’objet d’une validation par un conseiller Pôle emploi, Cap emploi ou mission locale.»
+        Et le texte de la prise en charge vaut «Formation totalement financée.»
+
+Si le financement est de type «POEC»
+
+    Si la région de la formation vaut «Bourgogne-Franche-Comté»
+    Et c'est une préparation opérationnelle à l'emploi collective
+    Et c'est un demandeur d'emploi
+        Alors le financement est éligible
+        Et appliquer les règles «AREF-RFPE-RPS»
+        Et le texte des démarches vaut «Contactez votre conseiller référent emploi (Pôle emploi, mission locale ou Cap emploi).»
+        Et le texte de description vaut «Il s'agit d'une formation professionnalisante, qui répond à un besoin de main-d'œuvre qualifiée exprimé par une branche, un secteur professionnel ou une profession… D'une durée maximale de 400h, elle inclut une période d'application en entreprise. Elle est gratuite et réservée aux demandeurs d'emploi.»
+        Et le texte pour en savoir plus vaut «Les frais pédagogiques sont pris en charge par un OPCA (organisme paritaire collecteur agréé). La rémunération est prise en charge par Pôle emploi.»
+        Et le texte de la prise en charge vaut «Formation totalement financée.»
+
+
+Si l'intitulé du financement est «Formation sanitaire et social»
+
+    Si la région de la formation vaut «Bourgogne-Franche-Comté»
+    Et c'est un demandeur d'emploi
+        Si le code CERTIFINFO de la formation vaut 54913, et le SIRET de l'organisme de formation fait partie de [26890005700061,26710079000059,26890025500012,26890023000072,26390003700080,26210007600286,26580008600018,20001120300037,26710033700034,26710076600117,26580007800015,20004782700056,26710028700130,26390004500109,26250462400012,13001406100019,26250176000082,26900129300118,26900129300167,26890015600103,77567227210495,77567227233851,19580050300037]
+        Ou le code CERTIFINFO de la formation vaut 54917, et le SIRET de l'organisme de formation fait partie de [26250462400012,26250176000082,77567227233851,19250030400022]
+        Ou le code CERTIFINFO de la formation vaut 54912, et le SIRET de l'organisme de formation fait partie de [26250176000082,26210007600310,26890015600103]
+            Alors le financement est éligible
+            Et appliquer les règles «AREF-RFPE-RPS»
+            Et le texte des démarches vaut «Admission après la réussite du concours d'entrée pour les formations débouchant sur un diplôme d'État d'aide-soignant, d'ambulancier ou d'auxiliaire de puériculture et d'accompagnant éducatif et social (option structure et domicile).⏎1) Retirer un dossier auprès de l'école concernée pour s'inscrire au concours.⏎2) Le projet doit être validé par le conseiller référent emploi.⏎3) Attention aux conditions d'éligibilité.⏎Ne sont pas éligibles : 1) les demandeurs d’emploi déjà détenteurs d’un diplôme paramédical (L.4383-3 du Code de la Santé) ou relevant du secteur social (L.451-1 du Code de l’action sociale et familiale), 2) les salariés du secteur privé ou public démissionnaires, 3) les personnes percevant une allocation d’étude versée par un centre hospitalier ou un employeur, 4) les démissionnaires d’un contrat à durée indéterminée dans les 4 mois avant leur entrée en formation, 5) Les dermandeurs d'emploi inscrits depuis moins de deux mois à Pôle emploi au moment du démarrage de la formation 6) les personnes en congé parental, 6) Les redoublants.⏎Un délai de carence de 2 ans entre deux qualifications professionnelles obtenues est exigé, quels que soient le financeur et le domaine de qualification.»
+            Et le texte de description vaut «Formation débouchant sur un diplôme d'État de niveau V, prise en charge et rémunérée pour les demandeurs d'emploi par la Région et par Pôle emploi.»
+            Et le texte de la prise en charge vaut «Formation totalement prise en charge en dehors de frais d'inscription (180 €).»
+
+Si l'intitulé du financement est «Dispositif accès à la qualification»
+
+    Si la région de la formation vaut «Bourgogne-Franche-Comté»
+    Et les codes financeur de la formation contiennent «Conseil régional»
+    Et l'intitulé normé de la formation contient «DAQ», ou l'intitulé normé de la formation contient «DISPOSITIFACCESALAQUALIFICATION»
+    Et c'est un demandeur d'emploi
+        Alors le financement est éligible
+        Et appliquer les règles «AREF-RFPE-RPS»
+        Et le texte des démarches vaut «Contactez votre conseiller référent emploi (Pôle emploi, mission locale ou Cap emploi).»
+        Et le texte de description vaut «Parcours de 650h maximum permettant à une personne peu ou pas qualifiée d'accéder à des formations qualifiantes en validant des certifcations comme le Certificat de formation générale, le Diplôme d’études en langue française option professionnelle), ou le diplôme de compétence en langue, le brevet informatique et internet adultes ou le passeport de compétences informatique européen), l'attestation de sécurité routière…»
+        Et le texte pour en savoir plus vaut «L’entrée en formation sur cette action collective est ouverte aux demandeurs d’emploi inscrits à Pôle emploi  en catégorie 1, 2 ou 3 et dont le projet a fait l’objet d’une validation par un conseiller Pôle emploi, Mission Locale ou Cap emploi.»
+        Et le texte de la prise en charge vaut «Formation totalement financée.»

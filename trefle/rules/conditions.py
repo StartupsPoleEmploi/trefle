@@ -33,9 +33,15 @@ def check_financement_not_type(context, tag):
 
 
 @private
-@condition(r"l'intitulé du financement est (?P<name>.+)")
+@condition(r"l'intitulé du financement (est|vaut) (?P<name>.+)")
 def check_financement_name(context, name):
     return context['financement.intitule'] == name.value
+
+
+@private
+@condition(r"l'intitulé du financement (n'est|ne vaut) pas (?P<name>.+)")
+def check_not_financement_name(context, name):
+    return context['financement.intitule'] != name.value
 
 
 @reason("{start.pointer.raw} trop ancien par rapport à {end.pointer.raw}")

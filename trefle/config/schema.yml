@@ -823,6 +823,11 @@ formation:
     source: catalogue
     xpath: boolean(number(//certifiante/text()))
     label: formation certifiante
+  professionnalisante:
+    type: boolean
+    source: catalogue
+    xpath: not(boolean(//certification))
+    label: formation professionnalisante
   enseignement_superieur:
     type: boolean
     source: catalogue

@@ -33,6 +33,7 @@ async def test_populate_formation_from_bytes():
         assert context['formation.duree_hebdo'] == 35
         assert context['formation.codes_financeur'] == {10, 5, 2}
         assert context['formation.certifiante'] is True
+        assert context['formation.professionnalisante'] is False
         assert context['formation.codes_cpf'] == {167204, 13352, 1487, 18320,
                                                   130805}
         assert context['formation.code_certifinfo'] == 80735
@@ -56,6 +57,8 @@ async def test_populate_formation_from_bytes():
     ('non_certifiante', 'formation.certifiante', False),
     ('certifiante', 'formation.certifiante', True),
     ('objectif_general_formation_certifiante', 'formation.certifiante', True),
+    ('non_professionnalisante', 'formation.professionnalisante', False),
+    ('professionnalisante', 'formation.professionnalisante', True),
     ('wrong_code_financeur_16', 'formation.codes_financeur', {0, 5, 10, 17}),
     ('entrees_sorties_permanentes', 'formation.entrees_sorties', 1),
     ('entrees_sorties_permanentes', 'formation.entrees_sorties_permanentes',

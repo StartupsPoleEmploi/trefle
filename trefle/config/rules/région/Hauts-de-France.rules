@@ -61,7 +61,7 @@ Si l'intitulé du financement est «Sanitaire et social»
     Et le code CERTIFINFO de la formation fait partie de [54913,54912], ou la liste des codes FORMACODE de la formation contient au moins un code parmi [43441]
         Alors le financement est éligible
         Et appliquer les règles «AREF-RFPE-RPS»
-        Le texte de la prise en charge vaut «Formation totalement financée.»
+        Et le texte de la prise en charge vaut «Formation totalement financée.»
         Et le texte de description vaut «Certaines formations relevant du secteur sanitaire et social font l'objet d'une subvention et peuvent ainsi, sous certaines conditions, être financées par la région.»
         Et le texte des démarches vaut «Contactez votre conseiller référent emploi (Pôle emploi, mission locale ou Cap emploi).»
 
@@ -76,7 +76,7 @@ Si l'intitulé du financement est «Programme régional de formation»
     Et la liste des codes FORMACODE de la formation ne contient aucun code parmi [43441]
         Alors le financement est éligible
         Et appliquer les règles «AREF-RFPE-RPS»
-        Le texte de la prise en charge vaut «Formation totalement financée.»
+        Et le texte de la prise en charge vaut «Formation totalement financée.»
         Et le texte de description vaut «Le programme régional de formation propose des actions de formation financées par le Conseil régional pour des demandeurs d'emploi ayant besoin d'une certification ou qualification.»
         Et le texte des démarches vaut «Contactez votre conseiller référent emploi (Pôle emploi, mission locale ou Cap emploi).»
 
