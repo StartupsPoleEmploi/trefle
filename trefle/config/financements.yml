@@ -254,4 +254,15 @@ Programme régional de formation dans la région Grand-Est:
   sigle: PRF
   tags: [DE, collectif, PRF]
   racine: Grand-Est.rules
-
+Action collective financée par la Région Bourgogne:
+  intitule: Action collective financée par la Région
+  tags: [DE, collectif, région, Bourgogne]
+  racine: Bourgogne-Franche-Comté.rules
+Formation sanitaire et social Bourgogne:
+  intitule: Formation sanitaire et social
+  tags: [DE]
+  racine: Bourgogne-Franche-Comté.rules
+Dispositif accès à la qualification:
+  sigle: DAQ
+  tags: [DE, DAQ, région, Bourgogne]
+  racine: Bourgogne-Franche-Comté.rules

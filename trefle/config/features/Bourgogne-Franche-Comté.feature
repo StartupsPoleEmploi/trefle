@@ -142,3 +142,137 @@ Scénario: Formation totalement financée par l'AIF
     Quand je sélectionne le financement «Aide individuelle à la formation»
     Alors la rémunération applicable vaut 4000
     Et le texte de la prise en charge vaut «Formation totalement prise en charge, sous réserve d'acceptation par Pôle emploi»
+
+
+Scénario: Action collective région
+    Soit un bénéficiaire et une formation
+    Et c'est un demandeur d'emploi
+    Et l'âge du bénéficiaire vaut 24
+    Et la durée en heures de la formation vaut 250
+    Et la région du bénéficiaire vaut «Bourgogne-Franche-Comté»
+    Et la région de la formation vaut «Bourgogne-Franche-Comté»
+    Et les codes financeur de la formation valent [«Conseil régional»]
+    Quand je demande un calcul de financement
+    Quand je sélectionne le financement «Action collective financée par la Région»
+    Alors la rémunération applicable vaut 339.35
+
+
+Scénario: Mauvais CERTIFINFO pour Action collective région
+    Soit un bénéficiaire et une formation
+    Et c'est un demandeur d'emploi
+    Et l'âge du bénéficiaire vaut 24
+    Et la durée en heures de la formation vaut 250
+    Et la région du bénéficiaire vaut «Bourgogne-Franche-Comté»
+    Et la région de la formation vaut «Bourgogne-Franche-Comté»
+    Et les codes financeur de la formation valent [«Conseil régional»]
+    Et le code CERTIFINFO de la formation vaut 54912
+    Quand je demande un calcul de financement
+    Alors le financement «Action collective financée par la Région» n'est pas proposé
+
+
+Scénario: POEC Bourgogne
+    Soit un bénéficiaire et une formation
+    Et c'est un demandeur d'emploi
+    Et l'âge du bénéficiaire vaut 38
+    Et la durée en heures de la formation vaut 120
+    Et c'est une préparation opérationnelle à l'emploi collective
+    Et l'allocation du bénéficiaire vaut «allocation d'aide au retour à l'emploi»
+    Et le montant de l'allocation du bénéficiaire vaut 800.0
+    Et la région du bénéficiaire vaut «Bourgogne-Franche-Comté»
+    Et la région de la formation vaut «Bourgogne-Franche-Comté»
+    Et les codes financeur de la formation valent [«OPCA»]
+    Et c'est une préparation opérationnelle à l'emploi
+    Quand je demande un calcul de financement
+    Quand je sélectionne le financement «Préparation opérationnelle à l'emploi collective»
+    Alors la rémunération applicable vaut 800.0
+
+
+Scénario: Action collective PE Bourgogne
+    Soit un bénéficiaire et une formation
+    Et c'est un demandeur d'emploi
+    Et l'âge du bénéficiaire vaut 38
+    Et la durée en heures de la formation vaut 120
+    Et l'allocation du bénéficiaire vaut «allocation d'aide au retour à l'emploi»
+    Et le montant de l'allocation du bénéficiaire vaut 800.0
+    Et la région du bénéficiaire vaut «Bourgogne-Franche-Comté»
+    Et la région de la formation vaut «Bourgogne-Franche-Comté»
+    Et les codes financeur de la formation valent [«Pôle emploi»]
+    Quand je demande un calcul de financement
+    Quand je sélectionne le financement «Action de formation collective financée par Pôle emploi»
+    Alors la rémunération applicable vaut 800.0
+
+
+Scénario: Manque code financeur pour Action collective PE Bourgogne
+    Soit un bénéficiaire et une formation
+    Et c'est un demandeur d'emploi
+    Et l'âge du bénéficiaire vaut 38
+    Et la durée en heures de la formation vaut 120
+    Et l'allocation du bénéficiaire vaut «allocation d'aide au retour à l'emploi»
+    Et le montant de l'allocation du bénéficiaire vaut 800.0
+    Et la région du bénéficiaire vaut «Bourgogne-Franche-Comté»
+    Et la région de la formation vaut «Bourgogne-Franche-Comté»
+    Quand je demande un calcul de financement
+    Alors le financement «Action de formation collective financée par Pôle emploi» n'est pas proposé
+
+
+Scénario: Mauvais CERTIFINFO pour Action collective PE Bourgogne
+    Soit un bénéficiaire et une formation
+    Et c'est un demandeur d'emploi
+    Et l'âge du bénéficiaire vaut 38
+    Et la durée en heures de la formation vaut 120
+    Et l'allocation du bénéficiaire vaut «allocation d'aide au retour à l'emploi»
+    Et le montant de l'allocation du bénéficiaire vaut 800.0
+    Et la région du bénéficiaire vaut «Bourgogne-Franche-Comté»
+    Et la région de la formation vaut «Bourgogne-Franche-Comté»
+    Et les codes financeur de la formation valent [«Pôle emploi»]
+    Et le code CERTIFINFO de la formation vaut 87187
+    Quand je demande un calcul de financement
+    Alors le financement «Action de formation collective financée par Pôle emploi» n'est pas proposé
+
+
+Scénario: Formation sanitaire et social
+    Soit un bénéficiaire et une formation
+    Et c'est un demandeur d'emploi
+    Et l'âge du bénéficiaire vaut 38
+    Et la durée en heures de la formation vaut 120
+    Et l'allocation du bénéficiaire vaut «allocation d'aide au retour à l'emploi»
+    Et le montant de l'allocation du bénéficiaire vaut 800.0
+    Et la région du bénéficiaire vaut «Bourgogne-Franche-Comté»
+    Et la région de la formation vaut «Bourgogne-Franche-Comté»
+    Et le code CERTIFINFO de la formation vaut 54913
+    Et le SIRET de l'organisme de formation vaut 26890005700061
+    Et c'est une formation ouverte aux bénéficiaires individuels
+    Quand je demande un calcul de financement
+    Quand je sélectionne le financement «Formation sanitaire et social»
+    Alors la rémunération applicable vaut 800.0
+
+
+Scénario: Mauvais SIRET pour formation sanitaire et social
+    Soit un bénéficiaire et une formation
+    Et c'est un demandeur d'emploi
+    Et l'âge du bénéficiaire vaut 38
+    Et la durée en heures de la formation vaut 120
+    Et l'allocation du bénéficiaire vaut «allocation d'aide au retour à l'emploi»
+    Et le montant de l'allocation du bénéficiaire vaut 800.0
+    Et la région du bénéficiaire vaut «Bourgogne-Franche-Comté»
+    Et la région de la formation vaut «Bourgogne-Franche-Comté»
+    Et le code CERTIFINFO de la formation vaut 54913
+    Et le SIRET de l'organisme de formation vaut 26890005700063
+    Et c'est une formation ouverte aux bénéficiaires individuels
+    Quand je demande un calcul de financement
+    Alors le financement «Formation sanitaire et social» n'est pas proposé
+
+Scénario: Cas nominal DAQ
+    Soit un bénéficiaire et une formation
+    Et c'est un demandeur d'emploi
+    Et l'âge du bénéficiaire vaut 38
+    Et la durée en heures de la formation vaut 120
+    Et l'allocation du bénéficiaire vaut «allocation d'aide au retour à l'emploi»
+    Et le montant de l'allocation du bénéficiaire vaut 800.0
+    Et la région du bénéficiaire vaut «Bourgogne-Franche-Comté»
+    Et la région de la formation vaut «Bourgogne-Franche-Comté»
+    Et les codes financeur de la formation valent [«Conseil régional»]
+    Et l'intitulé de la formation vaut «Dispositif accès à la qualification»
+    Quand je demande un calcul de financement
+    Quand je sélectionne le financement «Dispositif accès à la qualification»
+    Alors la rémunération applicable vaut 800.0
