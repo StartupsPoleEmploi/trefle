@@ -1,6 +1,6 @@
 Fonctionnalité: Grand-Est
 
-Scénario: Cas nominal aide individuelle régionale à la formation
+Scénario: Cas nominal aide individuelle régionale à la formation (formation certifiante)
     Soit un bénéficiaire et une formation
     Et c'est un demandeur d'emploi
     Et le montant de l'allocation du bénéficiaire vaut 1200
@@ -8,13 +8,30 @@ Scénario: Cas nominal aide individuelle régionale à la formation
     Et la région du bénéficiaire vaut «Grand-Est»
     Et le niveau de sortie de la formation vaut «III»
     Et c'est une formation ouverte aux bénéficiaires individuels
+    Et c'est un formation certifiante
     Quand je demande un calcul de financement
     Quand je sélectionne le financement «Aide individuelle régionale à la formation»
     Alors la rémunération applicable vaut 0
     Et la plafond de prise en charge vaut 6000
 
 
-Scénario: Aide individuelle régionale à la formation avec mauvais niveua de sortie
+Scénario: Cas nominal aide individuelle régionale à la formation (formation professionnalisante)
+    Soit un bénéficiaire et une formation
+    Et c'est un demandeur d'emploi
+    Et le montant de l'allocation du bénéficiaire vaut 1200
+    Et la durée en heures de la formation vaut 150
+    Et la durée hebdomadaire de la formation vaut 30
+    Et la région du bénéficiaire vaut «Grand-Est»
+    Et le niveau de sortie de la formation vaut «III»
+    Et c'est une formation ouverte aux bénéficiaires individuels
+    Et c'est un formation professionalisante
+    Quand je demande un calcul de financement
+    Quand je sélectionne le financement «Aide individuelle régionale à la formation»
+    Alors la rémunération applicable vaut 0
+    Et la plafond de prise en charge vaut 6000
+
+
+Scénario: Aide individuelle régionale à la formation avec mauvais niveau de sortie
     Soit un bénéficiaire et une formation
     Et c'est un demandeur d'emploi
     Et le montant de l'allocation du bénéficiaire vaut 1200
