@@ -16,13 +16,21 @@ Si c'est une demandeur d'emploi
     Et ce n'est pas un bénéficiaire en situation de création d'entreprise nécessitant cette formation
     Et ce n'est pas un stage de préparation à l'installation
     Et ce n'est pas un permis B
-    Et la liste des domaines FORMACODE de la formation ne contient aucun code parmi [430,434,440,150], ou la liste des codes FORMACODE de la formation contient 44067
     Et ce n'est pas une formation VAE
     Et ce n'est pas une formation de l'enseignement supérieur
     Et ce n'est pas une préparation opérationnelle à l'emploi collective
 
-        Si la liste des codes FORMACODE de la formation ne contient aucun code parmi [13030,50245,50445,50145,50349,50249,13250,31802]
-        # Pas de restriction FORMACODE pour ARA.
-        Ou la région du bénéficiaire est «Auvergne-Rhône-Alpes»
+        # National + ARA
+        Si la liste des domaines FORMACODE de la formation ne contient aucun code parmi [430,434,440,150], ou la liste des codes FORMACODE de la formation contient 44067
+        # restriction FORMACODE si bénéficiaire pas en ARA.
+        Et la région du bénéficiaire est «Auvergne-Rhône-Alpes», ou la liste des codes FORMACODE de la formation ne contient aucun code parmi [13030,50245,50445,50145,50349,50249,13250,31802]
             Alors le financement est éligible
             Et appliquer les règles «AREF-RFPE-RPS»
+
+        # Guadeloupe
+        Si la region du bénéficiaire est «Guadeloupe»
+        Et la liste des codes FORMACODE de la formation ne contient aucun code parmi [15081,13250]
+        Et le code CERTIFINFO de la formation ne fait pas partie de [54665, 84385, 83899]
+            Alors le financement est éligible
+            Et appliquer les règles «AREF-RFPE-RPS»
+

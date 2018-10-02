@@ -25,9 +25,96 @@ Si l'intitulé du financement est «Formation en alternance : contrat d'apprenti
 Si l'intitulé du financement est «Aide individuelle à la formation artisan»
     Alors appliquer les règles «AIF artisan»
 
-Si l'intitulé du financement est «Aide individuelle à la formation»
-    Alors le plafond financier applicable vaut 1500
 
-    Si la liste des codes FORMACODE de la formation ne contient aucun code parmi [44591,15081]
-        Alors appliquer les règles «AIF»
-        Et le texte de la prise en charge vaut «Formation financée jusqu'à 1500 € maximum»
+Si l'intitulé du financement est «Aide individuelle à la formation»
+    Si c'est un demandeur d'emploi
+    Et la région du bénéficiaire est «Guadeloupe»
+    Et c'est une formation ouverte aux bénéficiaires individuels
+    Et ce n'est pas une préparation opérationnelle à l'emploi collective
+    Et la liste des codes FORMACODE de la formation ne contient aucun code parmi [15081,13250], ou le code CERTIFINFO de le formation ne fait pas partie de [84385]
+    Et ce n'est pas un stage de préparation à l'installation
+    Et ce n'est pas un contrat d'apprentissage
+    Et ce n'est pas un contrat de professionnalisation
+    Et la durée en heures de la formation n'est pas supérieur à 300
+    Et le plafond financier applicable vaut 1500
+
+        Alors le financement est éligible
+        Et le texte de la prise en charge vaut «Formation totalement ou partiellement financée.»
+        Et le texte de description vaut «L’Aide individuelle à la formation est réservée à des projets de formation dont la pertinence est validée par votre conseiller référent emploi, en fonction de votre projet professionnel et du marché du travail.⏎Les formations financées par Pôle emploi doivent permettre un retour rapide à l'emploi.»
+        Et le texte des démarches vaut «1. Contactez un conseiller Pôle emploi pour connaître les conditions de la mobilisation éventuelle d'une aide individuelle de Pôle emploi dans votre région.⏎2. Votre projet de formation et son financement doivent être présentés bien en amont du début de la formation (au plus tard 15 jours avant).⏎3. Ne démarrez pas votre formation tant que vous n'avez pas eu la confirmation de l'accord de la part de votre conseiller.»
+        Et le texte en savoir plus vaut «L'AIF permet une prise en charge des frais pédagogiques mais ne couvre pas les frais annexes (droits d'inscriptions, acquisition de matériels, frais de passage d'examen …).⏎L'AIF peut être attribuée quelle que soit la modalité pédagogique de la formation, y compris pour une formation à distance (FOAD) ou pour une formation en cours du soir. Sous certaines conditions, ces formations peuvent ouvrir droit à des aides à la mobilité (déplacement et/ou hébergement).»
+        Et appliquer les règles «AREF-RFPE-RPS»
+
+
+Si l'intitulé du financement est «Le chèque qualification»
+
+    Si c'est un demandeur d'emploi
+    Et la région du bénéficiaire est «Guadeloupe»
+    Et la région de la formation est «Guadeloupe»
+    Et c'est une formation ouverte aux bénéficiaires individuels
+    Et la durée en heures de la formation est supérieure ou égale à 100
+    Et la durée en heures de la formation est inférieure ou égale à 1200
+    Et ce n'est pas une formation VAE
+    Et ce n'est pas un permis B
+    Et ce n'est pas un bénéficiaire en situation de création d'entreprise nécessitant cette formation
+    Et ce n'est pas un stage de préparation à l'installation
+    Et ce n'est pas un contrat de professionnalisation
+    Et ce n'est pas un contrat d'apprentissage
+    Et la liste des codes FORMACODE de la formation ne contient pas ['15081','13250','31802']
+    Et l'intitulé normé de la formation ne contient pas «AFC»
+    Et l'intitulé normé de la formation ne contient pas «BTS»
+    Et l'intitulé normé de la formation ne contient pas «LICENCE»
+    Et l'intitulé normé de la formation ne contient pas «MASTER»
+    Et l'intitulé normé de la formation ne contient pas «MASTERE»
+    Et l'intitulé normé de la formation ne contient pas «INGENIEUR»
+    Et l'intitulé normé de la formation ne contient pas «CAPACITE»
+    Et l'intitulé normé de la formation ne contient pas «PERMIS»
+    Et le plafond financier applicable vaut 4000
+        Alors le financement est éligible
+        Et 
+        
+            Si l'allocation du bénéficiaire vaut «allocation d'aide au retour à l'emploi»
+                Alors appliquer les règles «AREF»
+
+            Si la durée en heures de la formation est supérieure ou égales à 350
+                Alors appliquer les règles «RFPE-RPS»
+#TODO revoir pour les remu : texte si pas de rému ??
+    
+    
+            $array['title']="Le chèque qualification";
+            $array['step']="Contactez votre conseiller référent Pôle emploi pour valider avec lui votre projet de formation.<br/>A noter : les demandes d'aide doivent être instruites 45 jours avant le démarrage de l'action de formation.";
+            $array['descinfo']="Le Chèque qualification est un dispositif mis en place par le Conseil régional de la Guadeloupe pour répondre aux besoins individuels ne trouvant pas leur réponse dans les programmes collectifs.<br/>Il s’agit de permettre au bénéficiaire de l’aide d’accéder totalement ou partiellement à une formation qualifiante (ex: CCP, CQP, TP,...) en lien direct avec son projet professionnel.";
+            $array['info']="";
+            $array['cost']="Formation financée dans la limite de 4000 €.";
+            $array['cost-plafond']="4000";
+            if($situation_inscrit)
+                if($niveauscolaire<=CODENIVEAUSCOLAIRE_LICENCEMAITRISE)
+                    if(!$situation_projetcreationentreprise)
+                        if(isInGuadeloupe($domicileDepartementPath))
+                            if($training_duration>=100 && $training_duration<=1200)
+                                if(!hasCodeFinanceur($training_codefinanceur,CODEFINANCEUR_AGEFIPH,$nbPlaces) &&
+                                   !hasCodeFinanceur($training_codefinanceur,CODEFINANCEUR_POLE_EMPLOI,$nbPlaces) &&
+                                   !hasCodeFinanceur($training_codefinanceur,CODEFINANCEUR_COLLECTIVITE_TERRITORIALE_CONSEIL_REGIONAL,$nbPlaces) &&
+                                   !hasCodeFinanceur($training_codefinanceur,CODEFINANCEUR_OPCA,$nbPlaces) &&
+                                   !hasCodeFinanceur($training_codefinanceur,CODEFINANCEUR_ETAT_AUTRE,$nbPlaces)&&
+                                   !hasCodeFinanceur($training_codefinanceur,CODEFINANCEUR_ETAT_MINISTERE_DE_L_EDUCATION_NATIONALE,$nbPlaces) &&
+                                   !hasCodeFinanceur($training_codefinanceur,CODEFINANCEUR_ETAT_MINISTERE_CHARGE_DE_L_EMPLOI,$nbPlaces)&&
+                                   !hasCodeFinanceur($training_codefinanceur,CODEFINANCEUR_COLLECTIVITE_TERRITORIALE_COMMUNE,$nbPlaces) &&
+                                   !hasCodeFinanceur($training_codefinanceur,CODEFINANCEUR_COLLECTIVITE_TERRITORIALE_AUTRE,$nbPlaces) &&
+                                   !hasCodeFinanceur($training_codefinanceur,CODEFINANCEUR_COLLECTIVITE_TERRITORIALE_CONSEIL_GENERAL,$nbPlaces))
+                                    if(!in_array($training_formacode,array('15064','44591'))) //VAE
+                                        if(!in_array($training_formacode,array('15081','13250','31802')))
+                                            if(!in_array($training_codecertifinfo,array('84385','54664')))
+                                                if(!$training_contratprofessionalisation && !$training_contratapprentissage)
+                                                    if(!hasStrings(array('AFC','BTS','LICENCE','MASTER','MASTERE','INGENIEUR','CAPACITÉ','PERMIS'),$ad['title']))
+                                                    {
+                                                        arrayInsertAfterKey($droits,'finindividuel',$display,array('finindividuel_guadeloupe2'=>$array));
+                                                        if($allocation_type=='are')
+                                                            remuAREF($var,'finindividuel_guadeloupe2',$droits);
+                                                        elseif($training_duration>=350)
+                                                            remuRPS($var,'finindividuel_guadeloupe2',$droits);
+                                                        else
+                                                            remuTEXT($var,'finindividuel_guadeloupe2',$droits);
+                                                    }
+
+
