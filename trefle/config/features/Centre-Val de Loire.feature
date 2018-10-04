@@ -160,7 +160,7 @@ Scénario: Programme régional de formation Visa dans Visa dans le titre
     Alors le financement «Programme Régional de Formation Visa» n'est pas proposé
 
 
-Scénario: Cas nominal formations sanitaire et social subventionnées par le Conseil régional Centre-Val de Loire
+Scénario: Cas nominal formations sanitaire et sociale subventionnées par le Conseil régional Centre-Val de Loire
     Soit un bénéficiaire et une formation
     Et c'est un demandeur d'emploi
     Et le montant de l'allocation du bénéficiaire vaut 1200
@@ -171,12 +171,12 @@ Scénario: Cas nominal formations sanitaire et social subventionnées par le Con
     Et la liste des codes FORMACODE de la formation vaut [44083]
     Et le prix horaire de la formation vaut 0.0
     Quand je demande un calcul de financement
-    Quand je sélectionne le financement «Formations sanitaire et social subventionnées par le Conseil régional Centre-Val de Loire»
+    Quand je sélectionne le financement «Formations sanitaire et sociale subventionnées par le Conseil régional Centre-Val de Loire»
     Alors la rémunération applicable vaut 0
     Et la plafond de prise en charge vaut 0
 
 
-Scénario: Formations sanitaire et social subventionnées par le Conseil régional Centre-Val de Loire sans formacode élligible
+Scénario: Formations sanitaire et sociale subventionnées par le Conseil régional Centre-Val de Loire sans formacode élligible
     Soit un bénéficiaire et une formation
     Et c'est un demandeur d'emploi
     Et le montant de l'allocation du bénéficiaire vaut 1200
@@ -186,5 +186,4 @@ Scénario: Formations sanitaire et social subventionnées par le Conseil région
     Et la région de la formation vaut «Centre-Val de Loire»
     Et le prix horaire de la formation vaut 0.0
     Quand je demande un calcul de financement
-    Alors le financement «Formations sanitaire et social subventionnées par le Conseil régional Centre-Val de Loire» n'est pas proposé
-
+    Alors le financement «Formations sanitaire et sociale subventionnées par le Conseil régional Centre-Val de Loire» n'est pas proposé

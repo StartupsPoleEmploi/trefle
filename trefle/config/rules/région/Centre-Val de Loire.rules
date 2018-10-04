@@ -53,8 +53,8 @@ Si l'intitulé du financement est «Chèque formation Conseil régional Centre-V
     Et la liste des codes FORMACODE de la formation ne contient aucun code parmi [42001,42020,42030,42032,42034,42052,43418,14406,14407,14426,14428,14447,14449,14477,15450,15452,43425,43428,43438,43442,43444,43445,43438,14403,14405,14406,14407,14411,14414,14420,14423,14426,14428,14435,14441,14447,14450,14454,14456,14475,14477,14484,14489,14490,14496,14497,14498,42003,43024,42056,43441,44030,44041,44042,15009,42056,42075,42076,42078,42080,42081,43437,44028,15094,15093,15073,13030,43409,44002,42837,42814,42880,13275,13254,42022,43054,43042,50150,42025,31801,44575,91502,96129,43070,43440,43486,31826,31795,42811,42854,43409,44002,15084,15094,15093,15073,13030,15073,42814,42837,42880,31812,31816]
         Alors le financement est éligible
         Et appliquer les règles «AREF-RFPE-RPS»
-        Et le texte de description vaut «Ce dispositif individuel permet la prise en charge par le Conseil régional Centre-Val de Loire des coûts de formation, lorsque aucune action collective (financement Conseil régional ou Pôle emploi) qualifiante ne peut être mobilisée.⏎Cette formation doit être inscrite au Répertoire national des certifications professionnelles (RNCP). Elle se traduit par la remise d'un diplôme, d'un certificat de qualification professionnelle, d'un titre professionnel du ministère du Travail ou d'un titre homologué.»
-        Et le texte des démarches vaut «Contactez votre conseiller référent emploi (Pôle emploi, mission locale ou Cap emploi).⏎Vous lui présenterez deux devis minimum de deux organismes différents ainsi qu'une lettre de motivation.⏎Votre projet de formation et la demande de financement par un chèque formation doivent être présentés au plus tard deux semaines avant le début de la formation.»
+        Et le texte de description vaut «Ce dispositif individuel permet la prise en charge par le Conseil régional Centre-Val de Loire des coûts de formation, lorsque aucune action collective (financement Conseil régional ou Pôle emploi) qualifiante ne peut être mobilisée.⏎Cette formation doit être inscrite au Répertoire National des Certifications Professionnelles (RNCP). Elle se traduit par la remise d'un diplôme, d'un certificat de qualification professionnelle, d'un titre professionnel du ministère du travail ou d'un titre homologué.»
+        Et le texte des démarches vaut «Contacter votre conseiller référent emploi (Pôle emploi, mission locale ou Cap emploi).⏎Vous lui présenterez deux devis minimum de deux organismes différents ainsi qu'une lettre de motivation.⏎Votre projet de formation et la demande de financement par un chèque formation doivent être présentés au plus tard deux semaines avant le début de la formation.»
         Et le texte de la prise en charge vaut «Formation totalement ou partiellement financée.»
 
 
@@ -68,8 +68,8 @@ Si l'intitulé du financement est «Programme Régional de Formation»
     Et l'intitulé normé de la formation ne contient pas «VISA»
         Alors le financement est éligible
         Et appliquer les règles «AREF-RFPE-RPS»
-        Et le texte de description vaut «La région Centre-Val de Loire finance des actions de formation qualifiante, permettant d'obtenir un titre ou un diplome, des découvertes de métiers. Le Conseil régional finance également des actions d'élaboration de projets professionnels.»
-        Et le texte des démarches vaut «Contactez votre conseiller référent emploi (Pôle emploi, mission locale ou Cap emploi) ou l'organisme de formation.»
+        Et le texte de description vaut «La région Centre-Val de Loire finance des actions de formation qualifiante, permettant d'obtenir un titre ou un diplome, des découvertes de métiers. Le Conseil Régional finance également des actions d'élaboration de projets professionnels...»
+        Et le texte des démarches vaut «Contacter votre conseiller référent emploi (Pôle emploi, mission locale ou Cap emploi) ou l'organisme de formation.»
         Et le texte de la prise en charge vaut «Formation totalement financée.»
 
 
@@ -87,17 +87,16 @@ Si l'intitulé du financement est «Programme Régional de Formation Visa»
         Et le texte de la prise en charge vaut «Formation totalement financée.»
 
 
-Si l'intitulé du financement est «Formations sanitaire et social subventionnées par le Conseil régional Centre-Val de Loire»
+Si l'intitulé du financement est «Formations sanitaire et sociale subventionnées par le Conseil régional Centre-Val de Loire»
 
     Si la région de la formation est «Centre-Val de Loire»
     Et les codes financeur de la formation contiennent «Conseil régional»
     Et la liste des codes FORMACODE de la formation contient au moins un code parmi [43436,43448,43441,43409,44002,44004,44092,44050,43497,44083,44008,43491,43470,43476,43092,43490,31815,43006,43439,43456,15064,44591]
         Alors le financement est éligible
         Et appliquer les règles «AREF»
-        Et le texte de description vaut «La région Centre-Val de Loire finance quasiment toutes les formations sanitaire et social. Ainsi la région peut prendre en charge leur coût pédagogique.⏎Seuls les droits d'inscription et les frais de sécurité sociale fixés par arrêté ministériel restent à la charge des inscrits.»
+        Et le texte de description vaut «La région Centre-Val de Loire finance quasiment toutes les formations sanitaires et sociales. Ainsi la région peut prendre en charge leur coût pédagogique.⏎Seuls les droits d'inscription et les frais de sécurité sociale fixés par arrêté ministériel restent à la charge des inscrits.»
         Et le texte des démarches vaut «Renseignez-vous directement auprès de l'institut de formation choisi.»
         Et le texte de la prise en charge vaut «Formation totalement financée.»
-        #Et le texte pour en savoir plus vaut «Principales conditions pour bénéficier de ce financement : avoir réussi le concours d'entrée dans l'un des 22 instituts de formation agréés par la région Centre-Val de Loire, être étudiant issu du cursus scolaire, demandeur d'emploi, salarié en CDD ou en reconversion professionnelle. L'aide est versée directement à l'école par le Conseil régional, sans avance de frais de la part de l'élève.»
+#Et le texte pour en savoir plus vaut «Principales conditions pour bénéficier de ce financement : avoir réussi le concours d'entrée dans l'un des 22 instituts de formation agréés par la région Centre-Val de Loire, être étudiant issu du cursus scolaire, demandeur d'emploi, salarié en CDD ou en reconversion professionnelle. L'aide est versée directement à l'école par le Conseil régional, sans avance de frais de la part de l'élève.»
         Si l'allocation du bénéficiaire n'est pas «allocation d'aide au retour à l'emploi»
             Alors le texte de la rémunération vaut «Bourses d'études.⏎Demande à faire sur le site https://www.aress.regioncentre.fr/basscep/»
-
