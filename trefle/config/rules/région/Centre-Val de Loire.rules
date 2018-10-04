@@ -49,7 +49,8 @@ Si l'intitulé du financement est «Chèque formation Conseil régional Centre-V
     Et c'est un demandeur d'emploi
     Et c'est une formation RNCP, ou la liste des codes FORMACODE de la formation contient au moins un code parmi [15064,44591]
     Et les codes financeur de la formation contiennent «Conseil régional»
-    Et la durée en heures de la formation n'est pas supérieure à 1600, ou la durée en mois de la formation n'est pas supérieure à 18
+    Et la durée en heures de la formation n'est pas supérieure à 1600
+    Et la durée en mois de la formation n'est pas supérieure à 18
     Et la liste des codes FORMACODE de la formation ne contient aucun code parmi [42001,42020,42030,42032,42034,42052,43418,14406,14407,14426,14428,14447,14449,14477,15450,15452,43425,43428,43438,43442,43444,43445,43438,14403,14405,14406,14407,14411,14414,14420,14423,14426,14428,14435,14441,14447,14450,14454,14456,14475,14477,14484,14489,14490,14496,14497,14498,42003,43024,42056,43441,44030,44041,44042,15009,42056,42075,42076,42078,42080,42081,43437,44028,15094,15093,15073,13030,43409,44002,42837,42814,42880,13275,13254,42022,43054,43042,50150,42025,31801,44575,91502,96129,43070,43440,43486,31826,31795,42811,42854,43409,44002,15084,15094,15093,15073,13030,15073,42814,42837,42880,31812,31816]
         Alors le financement est éligible
         Et appliquer les règles «AREF-RFPE-RPS»
