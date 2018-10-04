@@ -287,3 +287,19 @@ Pass emploi:
   ressources:
     - https://www.c2rp.fr/dispositifs/pass-emploi
     - https://www.hautsdefrance.fr/mot/formation/
+Aide individuelle à la formation avec promesse d'embauche:
+  tags: [DE, région, individuel]
+  racine: Centre-Val de Loire.rules
+Chèque formation Conseil régional Centre-Val de Loire:
+  tags: [DE, région, collectif]
+  racine: Centre-Val de Loire.rules
+Programme Régional de Formation:
+  tags: [DE, région, collectif]
+  racine: Centre-Val de Loire.rules
+Programme Régional de Formation Visa:
+  tags: [DE, région, collectif]
+  racine: Centre-Val de Loire.rules
+Formations sanitaire et sociale subventionnées par le Conseil régional Centre-Val de Loire:
+  tags: [DE, région, collectif]
+  ressource: http://www.etoile.regioncentre.fr/GIP/accueiletoile/seformer/formation/articles-formation/Financer-une-formation-sanitaire-et-sociale#A125823
+  racine: Centre-Val de Loire.rules
