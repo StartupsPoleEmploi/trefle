@@ -29,8 +29,9 @@ function request(uri, settings) {
       if (e.lengthComputable) progress.value = Math.round(e.loaded * 100 / e.total)
     }
     xhr.open(settings.method || 'get', uri, true)
-    xhr.onload = (e) => {
-      res(JSON.parse(e.target.responseText))
+    xhr.onload = () => {
+      if (xhr.status == 200) res(JSON.parse(xhr.responseText))
+      else rej(JSON.parse(xhr.responseText))
       close()
     }
     xhr.onerror = (err) => {

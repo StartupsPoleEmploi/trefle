@@ -56,20 +56,14 @@
       if (this.opts.url) this.simulate_url(this.opts.url)
     }
 
-    this.dataErrors = (data) => {
+    this.onError = (data) => {
         this.errors = data
         this.update()
     }
 
-    this.handleResponse = (response, callback) => {
-        const promise = response.json()
-        if (response.ok) promise.then(callback)
-        else promise.then(this.dataErrors)
-    }
-
     this.decodeLBFURL = (url, callback) => {
       request(`../explore/decode-lbf-url?url=${encodeURIComponent(url)}`)
-      .then(callback)
+      .then(callback, this.onError)
     }
 
     this.simulate = (data) => {
@@ -82,7 +76,7 @@
         this.context = data.context
         this.scenario = data.scenario
         this.update()
-      })
+      }, this.onError)
     }
 
     this.submit = (e) => {
