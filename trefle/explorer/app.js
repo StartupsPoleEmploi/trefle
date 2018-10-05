@@ -1,5 +1,6 @@
 let SCHEMA
 let RULES
+let SCENARIOS
 
 function renderValue (key, value, schema) {
   schema = schema || SCHEMA[key]
