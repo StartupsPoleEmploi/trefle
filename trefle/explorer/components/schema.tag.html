@@ -1,6 +1,6 @@
 <schema>
   <ul>
-    <li each={ label, id in this.categories }><a href="#schema/{ id }" class='{ on: this.opts.id.startsWith(id) }' title={ id }>{ label }</a></li>
+    <li each={ label, id in this.categories }><a href="#schema/{ id }" class='{ on: this.opts.id && this.opts.id.startsWith(id) }' title={ id }>{ label }</a></li>
   </ul>
   <schema-entries if={ this.category } items={this.items} name={ this.categories[this.category] }></schema-entries>
 
