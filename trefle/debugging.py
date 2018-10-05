@@ -4,7 +4,7 @@ import os
 import sys
 from datetime import datetime
 from pathlib import Path
-from urllib.parse import parse_qs, urlparse
+from urllib.parse import parse_qsl, urlparse
 
 import phpserialize
 from behave.runner_util import parse_features
@@ -59,41 +59,47 @@ def data_from_lbf_url(url):
                  "form ab,cd…")
     charmap = {from_: to for from_, to in charmap.split(',')}
 
-    encrypted = parse_qs(urlparse(url).query)['a'][0]
-    encrypted = "".join(charmap[char] for char in encrypted[8:])
-    serialized = base64.b64decode(encrypted)
-    serialized = bz2.decompress(serialized)
-    args = phpserialize.loads(serialized)
+    args = dict(parse_qsl(urlparse(url).query))
+
+    if 'a' in args:
+        encrypted = args['a']
+        encrypted = "".join(charmap[char] for char in encrypted[8:])
+        serialized = base64.b64decode(encrypted)
+        serialized = bz2.decompress(serialized)
+        args.update({k.decode(): v.decode()
+                    for k, v in phpserialize.loads(serialized).items()})
+        del args['a']
 
     keymap = {
         # TODO deal with age
         # b'birthdate': b'20/10/1978',
-        b'droitprive': 'beneficiaire.droit_prive',
-        b'salaire': 'beneficiaire.remuneration',
-        b'situation_creditheurescpf': 'beneficiaire.solde_cpf',
-        b'contrat': 'beneficiaire.contrat',
-        b'experience': 'beneficiaire.experience_professionnelle',
-        b'moistravailleencdd': 'beneficiaire.mois_travailles_en_cdd',
-        b'ancienneteentrepriseactuelle': 'beneficiaire.mois_entreprise',
-        b'naf': 'beneficiaire.entreprise.naf',
-        b'idcc': 'beneficiaire.entreprise.idcc',
-        b'region': 'beneficiaire.entreprise.region',
-        b'entrepriselocationinsee': 'beneficiaire.entreprise.commune',
-        b'idformintercarif': 'formation.numero',
-        b'inscritDE': 'beneficiaire.inscrit_pe',
+        'droitprive': 'beneficiaire.droit_prive',
+        'salaire': 'beneficiaire.remuneration',
+        'situation_creditheurescpf': 'beneficiaire.solde_cpf',
+        'contrat': 'beneficiaire.contrat',
+        'experience': 'beneficiaire.experience_professionnelle',
+        'moistravailleencdd': 'beneficiaire.mois_travailles_en_cdd',
+        'ancienneteentrepriseactuelle': 'beneficiaire.mois_entreprise',
+        'naf': 'beneficiaire.entreprise.naf',
+        'idcc': 'beneficiaire.entreprise.idcc',
+        'region': 'beneficiaire.entreprise.region',
+        'entrepriselocationinsee': 'beneficiaire.entreprise.commune',
+        'idformintercarif': 'formation.numero',
+        'inscritDE': 'beneficiaire.inscrit_pe',
+        'situation_inscrit': 'beneficiaire.inscrit_pe',
     }
     data = {}
     for key, value in args.items():
-        if key == b'commune':
+        if key == 'commune':
             continue  # FIXME Bad value send from LBF.
-        key = keymap.get(key, f'beneficiaire.{key.decode()}')
-        data[key] = value.decode()
+        key = keymap.get(key, f'beneficiaire.{key}')
+        data[key] = value
 
-    if b'birthdate' in args:
+    if 'birthdate' in args:
         # Poor man age computation.
         # TODO: use dateutil or delorean here and in routine.py
         data['beneficiaire.age'] = (datetime.now().year -
-                                    int(args[b'birthdate'][-4:]))
+                                    int(args['birthdate'][-4:]))
     return data
 
 
