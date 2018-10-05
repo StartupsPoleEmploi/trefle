@@ -68,21 +68,21 @@
     }
 
     this.decodeLBFURL = (url, callback) => {
-      fetch(`../explore/decode-lbf-url?url=${encodeURIComponent(url)}`)
-      .then((response) => this.handleResponse(response, callback))
+      request(`../explore/decode-lbf-url?url=${encodeURIComponent(url)}`)
+      .then(callback)
     }
 
     this.simulate = (data) => {
-      fetch('/financement?context=1&scenario=1&explain=1', {
+      request('/financement?context=1&scenario=1&explain=1', {
         method: 'post',
         body: JSON.stringify(data)
       })
-      .then((response) => this.handleResponse(response, (data) => {
+      .then((data) => {
         this.financements = data.financements
         this.context = data.context
         this.scenario = data.scenario
         this.update()
-      }))
+      })
     }
 
     this.submit = (e) => {

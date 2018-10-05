@@ -52,8 +52,7 @@
     }
 
     this.load = () => {
-      fetch('../explore/scenarios')
-      .then((response) => response.json())
+      request('../explore/scenarios')
       .then(this.load_data)
     }
 

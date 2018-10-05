@@ -17,8 +17,7 @@
     this.results = []
 
     this.search = (text) => {
-      fetch(`http://163.172.180.45/search/?q=${text}`)
-      .then((response) => response.json())
+      request(`http://163.172.180.45/search/?q=${text}`)
       .then((data) => {
         this.results = data.results
         this.update()

@@ -17,8 +17,7 @@
     this.on('mount', () => this.load())
 
     this.load = () => {
-      fetch('../explore/financements')
-      .then((response) => response.json())
+      request('../explore/financements')
       .then(data => {
         this.financements = data
         for (var i = 0; i < this.financements.length; i++) {
