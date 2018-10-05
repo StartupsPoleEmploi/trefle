@@ -313,3 +313,12 @@ Action collective sanitaire et social financée par la région et Pôle Emploi:
   racine: Pays de la Loire.rules
   ressources:
     - http://www.paysdelaloire.fr/politiques-regionales/formation-professionnelle
+Chèque formation réussite:
+  tags: [DE, individuel, région]
+  racine: La Réunion.rules
+Chèque formation réussite VAE:
+  tags: [DE, individuel, région]
+  racine: La Réunion.rules
+"Chèque formation réussite - langue étrangère":
+  tags: [DE, individuel, région]
+  racine: La Réunion.rules
