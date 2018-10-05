@@ -1,4 +1,4 @@
-from trefle.config import load_schema, load_naf
+from trefle.config import Financement, Organisme, load_naf, load_schema
 
 
 def test_load_schema():
@@ -57,3 +57,21 @@ SECTION A;AGRICULTURE, SYLVICULTURE ET PÊCHE
         '0113': ['0113Z'],
         '0114': ['0114Z']
     }
+
+
+def test_financement_format():
+
+    financement = Financement(
+        remuneration=2000,
+        remuneration_texte="Rémunération de {remuneration} euros")
+    financement.format()
+    assert financement.remuneration_texte == "Rémunération de 2000 euros"
+
+
+def test_financement_format_nested():
+
+    financement = Financement(
+        organisme=Organisme(nom="Foo"),
+        remuneration_texte="Renseignez-vous auprès de {organisme.nom}")
+    financement.format()
+    assert financement.remuneration_texte == "Renseignez-vous auprès de Foo"

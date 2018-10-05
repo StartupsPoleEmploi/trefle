@@ -91,13 +91,13 @@ async def cli_simulate(*args, context: json.loads={}, url=None, trace=False,
                 print(tpl.format(key, str(value)))
             print('-' * 105)
     print('*' * 105)
-    eligibles = [f for f in financements if f['eligible']]
+    eligibles = [f for f in financements if f.eligible]
     if eligibles:
         print('Financements éligibles\n')
     else:
         print('Aucun financement éligible')
     for financement in eligibles:
-        print(financement['intitule'])
+        print(financement.intitule)
         for key, value in financement.items():
             if not value or key in ('intitule', 'organisme', 'explain', 'tags',
                                     'eligible', 'ressources'):
@@ -106,19 +106,19 @@ async def cli_simulate(*args, context: json.loads={}, url=None, trace=False,
             if isinstance(value, str) and len(value) > 100:
                 value = f'{value[:100]}…'
             print(f'  {schema["label"]}: {value}')
-        if financement.get('organisme'):
-            print('  organisme:', financement['organisme']['nom'])
+        if financement.organisme:
+            print('  organisme:', financement.organisme.nom)
         if trace:
-            for status in financement['explain']:
+            for status in financement.explain:
                 render_statuses(status)
         print('-'*80)
-    non_eligibles = [f for f in financements if not f['eligible']]
+    non_eligibles = [f for f in financements if not f.eligible]
     if non_eligibles and (show_non_eligible or trace):
         print('\nFinancements non éligibles\n')
         for financement in non_eligibles:
-            print('-', financement['intitule'])
+            print('-', financement.intitule)
             if trace:
-                for status in financement['explain']:
+                for status in financement.explain:
                     render_statuses(status)
     if output_scenario:
         if url:

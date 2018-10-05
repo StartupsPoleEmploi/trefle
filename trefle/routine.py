@@ -3,11 +3,10 @@ from datetime import timedelta
 from lxml import etree
 
 from .config import (CONSTANTS, ELIGIBILITE_URL, INTERCARIF_URL, LABELS,
-                     ORGANISMES, RULES, SCHEMA)
+                     ORGANISMES, RULES, SCHEMA, Organisme)
 from .exceptions import DataError, UpstreamError
 from .helpers import (diff_month, diff_week, fold_name, http_get,
-                      insee_commune_to_departement, insee_commune_to_region,
-                      revert_dict)
+                      insee_commune_to_departement, insee_commune_to_region)
 from .rules import Rule
 from .validators import format_naf
 
@@ -117,11 +116,7 @@ def load_organisme_contact_details(context, financement):
                       context.get('financement.organisme.nom'))
     if nom not in ORGANISMES:  # A DE financement?
         return
-    financement['organisme'] = ORGANISMES[nom]
-    # Q&D way to display the organisme details on LBF.
-    # TODO clean me.
-    financement['demarches'] = financement['demarches'].format(
-        **financement['organisme'])
+    financement.organisme = Organisme(ORGANISMES[nom])
 
 
 def compute_modalites(context, financement):
@@ -135,7 +130,7 @@ def compute_modalites(context, financement):
     plafond_prix_horaire = context.get('financement.plafond_prix_horaire', 0)
     indemnite_conges_payes = context.get('financement.indemnite_conges_payes',
                                          0)
-    financement['reste_a_charge'] = reste_a_charge
+    financement.reste_a_charge = reste_a_charge
     prise_en_charge = context.get('financement.prise_en_charge', None)
     if not prise_en_charge:
         if prix_horaire > 0:  # We can deal with a real prise_en_charge.
@@ -145,23 +140,23 @@ def compute_modalites(context, financement):
             if plafond_financier and plafond_financier < prise_en_charge:
                 prise_en_charge = plafond_financier
             prise_en_charge = prise_en_charge - reste_a_charge
-            financement['prix_horaire'] = prix_horaire
-    financement['prise_en_charge'] = prise_en_charge
+            financement.prix_horaire = prix_horaire
+    financement.prise_en_charge = prise_en_charge
     # If we have heures AND plafond_prix_horaire we have the real plafond.
     plafond_effectif = heures * plafond_prix_horaire
     if not plafond_financier or (plafond_effectif
                                  and plafond_effectif < plafond_financier):
         plafond_financier = heures * plafond_prix_horaire
-    financement['plafond_prix_horaire'] = plafond_prix_horaire
-    financement['plafond_prise_en_charge'] = plafond_financier - reste_a_charge
+    financement.plafond_prix_horaire = plafond_prix_horaire
+    financement.plafond_prise_en_charge = plafond_financier - reste_a_charge
     # FIXME: should we define default remuneration in common rules instead?
     remuneration = context.get('financement.remuneration', 0)
     plafond_remuneration = context.get('financement.plafond_remuneration', 0)
     if plafond_remuneration and plafond_remuneration < remuneration:
         remuneration = plafond_remuneration
-    financement['remuneration'] = remuneration
-    financement['indemnite_conges_payes'] = indemnite_conges_payes
-    financement['heures'] = heures
+    financement.remuneration = remuneration
+    financement.indemnite_conges_payes = indemnite_conges_payes
+    financement.heures = heures
     keys = ['remuneration_texte', 'prise_en_charge_texte', 'demarches', 'rff',
             'description', 'remuneration_annee_2', 'remuneration_annee_3',
             'intitule', 'en_savoir_plus']
@@ -170,17 +165,17 @@ def compute_modalites(context, financement):
         if name in context:
             financement[key] = context[name]
     if financement.get('demarches'):
-        financement['demarches'] = financement['demarches'].replace('⏎', '\n')
+        financement.demarches = financement.demarches.replace('⏎', '\n')
     if financement.get('rff'):
-        financement['fin_remuneration'] = context.get(
+        financement.fin_remuneration = context.get(
             'beneficiaire.fin_allocation')
-        financement['debut_rff'] = (financement['fin_remuneration']
-                                    + timedelta(days=1))
-        financement['fin_rff'] = context.get('formation.fin')
+        financement.debut_rff = (financement.fin_remuneration
+                                 + timedelta(days=1))
+        financement.fin_rff = context.get('formation.fin')
 
 
 def get_root_rule(context, financement):
-    name = financement['racine']
+    name = financement.racine
     if name.endswith('.rules'):
         return name
     name = LABELS.get(name, name)
@@ -197,20 +192,21 @@ def get_root_rule(context, financement):
 
 def check_financement(context, financement):
     statuses = []
-    financement['explain'] = []
-    context['financement.intitule'] = financement['intitule']
-    context['financement.tags'] = financement['tags']
+    financement.explain = []
+    context['financement.intitule'] = financement.intitule
+    context['financement.tags'] = financement.tags
     context['financement.eligible'] = False
     rule_name = get_root_rule(context, financement)
     if not rule_name:
         return
     for rule in RULES[rule_name]:
         statuses.extend(Rule.process(rule, context))
-    financement['explain'] = statuses
+    financement.explain = statuses
     if context['financement.eligible']:
         compute_modalites(context, financement)
         load_organisme_contact_details(context, financement)
-    financement['eligible'] = context['financement.eligible']
+        financement.format()
+    financement.eligible = context['financement.eligible']
     for key in list(financement.keys()):
         if key == 'organisme':
             continue  # reference
