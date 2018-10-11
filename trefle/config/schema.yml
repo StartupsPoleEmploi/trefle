@@ -513,6 +513,11 @@ beneficiaire:
       pattern: ^(2[AB]|[0-9]{2})[0-9]{3}$
       label: code INSEE de la commune de l'établissement du bénéficiaire
       gender: masculine
+    departement:
+      description: département de l'entreprise
+      type: string
+      label: département de l'établissement du bénéficiaire
+      enum: *departements
     region:
       description: région de l'entreprise
       type: string

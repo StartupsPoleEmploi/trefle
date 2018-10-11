@@ -6,23 +6,26 @@ from .config import (CONSTANTS, ELIGIBILITE_URL, INTERCARIF_URL, LABELS,
                      ORGANISMES, RULES, SCHEMA, Organisme)
 from .exceptions import DataError, UpstreamError
 from .helpers import (diff_month, diff_week, fold_name, http_get,
-                      insee_commune_to_departement, insee_commune_to_region)
+                      insee_commune_to_departement,
+                      insee_departement_to_region)
 from .rules import Rule
 from .validators import format_naf
 
 
 def extrapolate_context(context):
     context.update(CONSTANTS)
-    insee_commune_to_region(context, 'beneficiaire.entreprise.commune',
-                            'beneficiaire.entreprise.region')
-    insee_commune_to_region(context, 'beneficiaire.commune',
-                            'beneficiaire.region')
     insee_commune_to_departement(context, 'beneficiaire.commune',
                                  'beneficiaire.departement')
+    insee_commune_to_departement(context, 'beneficiaire.entreprise.commune',
+                                 'beneficiaire.entreprise.departement')
     # FIXME remove me when LBF sends INSEE code even for DE.
     # (this is a postcode).
-    insee_commune_to_region(context, 'beneficiaire.location',
-                            'beneficiaire.region')
+    insee_commune_to_departement(context, 'beneficiaire.location',
+                                 'beneficiaire.departement')
+    insee_departement_to_region(context, 'beneficiaire.entreprise.departement',
+                                'beneficiaire.entreprise.region')
+    insee_departement_to_region(context, 'beneficiaire.departement',
+                                'beneficiaire.region')
     if context.get('beneficiaire.allocation_type') == 'non':
         del context['beneficiaire.allocation_type']
 

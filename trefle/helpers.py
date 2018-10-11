@@ -89,14 +89,10 @@ def fold_name(s):
     return NON_ALPHA.sub('', unidecode(s).upper())
 
 
-def insee_commune_to_region(context, from_key, to_key):
+def insee_departement_to_region(context, from_key, to_key):
     if to_key in context or from_key not in context:
         return
-    chars = 2
-    from_string = context[from_key]
-    if from_string.startswith('97'):  # DROM
-        chars = 3
-    dep = from_string[:chars]
+    dep = context[from_key]
     if dep not in DEP_TO_REG:
         raise DataError(f'Valeur invalide: `{context[from_key]}`', from_key)
     context[to_key] = DEP_TO_REG[dep]
@@ -110,6 +106,8 @@ def insee_commune_to_departement(context, from_key, to_key):
     if from_string.startswith('97'):  # DROM
         chars = 3
     context[to_key] = from_string[:chars]
+    if to_key not in context:  # Invalid data.
+        raise DataError(f'Valeur invalide: `{context[from_key]}`', from_key)
 
 
 def revert_dict(d):

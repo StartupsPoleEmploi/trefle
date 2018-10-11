@@ -5,7 +5,7 @@ from trefle.context import Context
 from trefle.exceptions import DataError
 from trefle.helpers import (count_indent, diff_month, diff_week, flatten,
                             fold_name, insee_commune_to_departement,
-                            insee_commune_to_region, isfloat)
+                            insee_departement_to_region, isfloat)
 
 
 def test_flatten():
@@ -70,20 +70,20 @@ def test_fold_name(input, expected):
 
 
 @pytest.mark.parametrize('input,expected', [
-    ('93031', '11'),  # idf
-    ('20000', '94'),  # When consuming postode
-    ('97131', '01'),  # Guadeloupe
-    ('97231', '02'),  # Martinique
+    ('93', '11'),  # idf
+    ('20', '94'),  # When consuming postode
+    ('971', '01'),  # Guadeloupe
+    ('972', '02'),  # Martinique
     ('blah', False)
 ])
-def test_insee_commune_to_region(input, expected):
-    context = Context({'commune': input})
+def test_insee_departement_to_region(input, expected):
+    context = Context({'departement': input})
     if expected:
-        insee_commune_to_region(context, 'commune', 'region')
+        insee_departement_to_region(context, 'departement', 'region')
         assert context['region'] == expected
     else:
         with pytest.raises(DataError):
-            insee_commune_to_region(context, 'commune', 'region')
+            insee_departement_to_region(context, 'departement', 'region')
 
 
 @pytest.mark.parametrize('input,expected', [
@@ -92,13 +92,15 @@ def test_insee_commune_to_region(input, expected):
     ('97131', '971'),  # Guadeloupe
     ('97631', '976'),  # Mayotte
     ('99999', False),
+    ('invalide', False),
 ])
 def test_insee_commune_to_departement(input, expected):
     context = Context({'commune': input})
-    insee_commune_to_departement(context, 'commune',
-                                 'beneficiaire.departement')
     if expected:
+        insee_commune_to_departement(context, 'commune',
+                                     'beneficiaire.departement')
         assert context['beneficiaire.departement'] == expected
     else:
-        # Invalid enum value prevent to be added in context
-        assert 'beneficiaire.departement' not in context
+        with pytest.raises(DataError):
+            insee_commune_to_departement(context, 'commune',
+                                         'beneficiaire.departement')
