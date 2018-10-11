@@ -90,8 +90,6 @@ def data_from_lbf_url(url):
     }
     data = {}
     for key, value in args.items():
-        if key == 'commune':
-            continue  # FIXME Bad value send from LBF.
         key = keymap.get(key, f'beneficiaire.{key}')
         data[key] = value
 
