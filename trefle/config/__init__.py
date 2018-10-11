@@ -1,7 +1,7 @@
 import csv
 import re
 import sys
-from collections import defaultdict, namedtuple
+from collections import defaultdict
 from pathlib import Path
 
 import yaml
