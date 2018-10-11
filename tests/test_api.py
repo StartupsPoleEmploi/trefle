@@ -510,3 +510,21 @@ async def test_explore_financements(client):
     resp = await client.get('/explore/financements')
     financements = json.loads(resp.body)
     assert 'intitule' in financements[0]
+
+
+async def test_explore_schema(client):
+    resp = await client.get('/explore/schema')
+    data = json.loads(resp.body)
+    assert 'beneficiaire.age' in data
+
+
+async def test_explore_rules(client):
+    resp = await client.get('/explore/rules')
+    data = json.loads(resp.body)
+    assert 'CPF.rules' in data
+
+
+async def test_explore_scenarios(client):
+    resp = await client.get('/explore/scenarios')
+    data = json.loads(resp.body)
+    assert 'raw' in data[0]
