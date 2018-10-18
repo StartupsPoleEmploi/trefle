@@ -14,6 +14,51 @@ Scénario: cas nominal AIF
     Et le plafond de prise en charge vaut 3000
 
 
+Scénario: cas AIF avec bilan de compétence
+    Soit un bénéficiaire et une formation
+    Et c'est un demandeur d'emploi
+    Et la durée en heures de la formation vaut 120
+    Et la région du bénéficiaire vaut «Provence-Alpes-Côte d'Azur»
+    Et c'est une formation ouverte aux bénéficiaires individuels
+    Et l'âge du bénéficiaire vaut 30
+    Et c'est un bilan de compétences
+    Quand je demande un calcul de financement
+    Quand je sélectionne le financement «Aide individuelle à la formation»
+    Alors la rémunération applicable vaut 401.09
+    Et le plafond de prise en charge vaut 3000
+    Et le prix horaire plafond applicable vaut 35
+
+
+Scénario: cas AIF pour formation BTP
+    Soit un bénéficiaire et une formation
+    Et c'est un demandeur d'emploi
+    Et la durée en heures de la formation vaut 120
+    Et la région du bénéficiaire vaut «Provence-Alpes-Côte d'Azur»
+    Et c'est une formation ouverte aux bénéficiaires individuels
+    Et l'âge du bénéficiaire vaut 30
+    Et la liste des codes FORMACODE de la formation vaut [222]
+    Quand je demande un calcul de financement
+    Quand je sélectionne le financement «Aide individuelle à la formation»
+    Alors la rémunération applicable vaut 401.09
+    Et le plafond de prise en charge vaut 3000
+    Et le prix horaire plafond applicable vaut 25
+
+
+Scénario: cas AIF pour formation langues
+    Soit un bénéficiaire et une formation
+    Et c'est un demandeur d'emploi
+    Et la durée en heures de la formation vaut 120
+    Et la région du bénéficiaire vaut «Provence-Alpes-Côte d'Azur»
+    Et c'est une formation ouverte aux bénéficiaires individuels
+    Et l'âge du bénéficiaire vaut 30
+    Et la liste des codes FORMACODE de la formation vaut [152]
+    Quand je demande un calcul de financement
+    Quand je sélectionne le financement «Aide individuelle à la formation»
+    Alors la rémunération applicable vaut 401.09
+    Et le plafond de prise en charge vaut 1200
+    Et le prix horaire plafond applicable vaut 10
+
+
 Scénario: AIF avec ARE
     Soit un bénéficiaire et une formation
     Et c'est un demandeur d'emploi
