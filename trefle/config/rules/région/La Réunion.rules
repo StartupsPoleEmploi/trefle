@@ -52,9 +52,9 @@ Si le financement est de type «chèque»
     Et ce n'est pas un contrat de professionnalisation
         Alors le plafond financier applicable vaut 3000
         Et le texte de la prise en charge vaut «Formation totalement prise en charge.»
-        Et le texte de description vaut «Le dispositif intitulé \« Chèque formation réussite \» a pour objectif de répondre aux différentes demandes individuelles de formation des demandeurs d’emploi qui ont un projet professionnel clairement défini. En effet, cette aide individuelle doit participer à l’aboutissement d’un projet d’insertion professionnelle et de création d’activité à court terme. Aussi, le critère essentiel d’appréciation de l’opportunité demeure la faisabilité du projet professionnel.»
+        Et le texte de description vaut «Le dispositif intitulé « Chèque formation réussite » a pour objectif de répondre aux différentes demandes individuelles de formation des demandeurs d’emploi qui ont un projet professionnel clairement défini. En effet, cette aide individuelle doit participer à l’aboutissement d’un projet d’insertion professionnelle et de création d’activité à court terme. Aussi, le critère essentiel d’appréciation de l’opportunité demeure la faisabilité du projet professionnel.»
         Et le texte des démarches vaut «Rapprochez-vous de l'antenne de la région pour connaître les modalités de mise en œuvre ou contactez votre conseiller référent Pôle Emploi»
-        Et le texte pour en savoir plus vaut «Le bénéficiaire du \« Chèque formation réussite \»dispose du statut de stagiaire de la formation professionnelle mais ne perçoit aucune rémunération de la part du Conseil régional.»
+        Et le texte pour en savoir plus vaut «Le bénéficiaire du « Chèque formation réussite » dispose du statut de stagiaire de la formation professionnelle mais ne perçoit aucune rémunération de la part du Conseil régional.»
 
         Si ce n'est pas une formation VAE
 
