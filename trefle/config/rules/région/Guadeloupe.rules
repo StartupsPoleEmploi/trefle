@@ -1,9 +1,6 @@
 Si l'intitulé du financement est «Accès des demandeurs d’emploi aux métiers agricoles»
     Alors appliquer les règles «ADEMA»
 
-Si le financement est de type «AFC»
-    Alors appliquer les règles «action collective»
-
 Si le financement est de type «FAJ»
     Alors appliquer les règles «FAJ»
 
@@ -76,12 +73,12 @@ Si l'intitulé du financement est «Le chèque qualification»
 
         Si c'est un bénéficiaire en situation de création d'entreprise nécessitant cette formation
             Alors le texte des démarches vaut «Si vous êtes bien dans une démarche de création d'entreprise, contactez votre conseiller référent Pôle emploi pour valider avec lui votre projet de formation.⏎Important: les demandes d'aide doivent être instruites 45 jours avant le démarrage de l'action de formation.»
-            Et le texte de description vaut «Le Chèque qualification "Création ou reprise d'entreprise" est mis en oeuvre à titre expérimental. C'est un dispositif du Conseil régional de la Guadeloupe pour répondre aux besoins individuels ne trouvant pas leur réponse dans les programmes collectifs.⏎Il s’agit de permettre au bénéficiaire de l’aide d’accéder totalement ou partiellement à une formation qualifiante (ex: CCP, CQP, TP,...) en lien direct avec son projet de création ou de reprise d'entreprise.»
+            Et le texte de description vaut «Le Chèque qualification "Création ou reprise d'entreprise" est mis en œuvre à titre expérimental. C'est un dispositif du Conseil régional de la Guadeloupe pour répondre aux besoins individuels ne trouvant pas leur réponse dans les programmes collectifs.⏎Il s’agit de permettre au bénéficiaire de l’aide d’accéder totalement ou partiellement à une formation qualifiante (ex: CCP, CQP, TP,...) en lien direct avec son projet de création ou de reprise d'entreprise.»
             Et le texte de la prise en charge vaut «Formation totalement financée.»
             Et il n'y a pas de plafond financier applicable
 
         Si le niveau scolaire du bénéficiaire vaut «I»
-            Alors le texte de description vaut «Le Chèque qualification "cadres et jeunes diplômés" est mis en oeuvre à titre expérimental. C'est un dispositif du Conseil régional pour répondre aux besoins individuels ne trouvant pas leur réponse dans les programmes collectifs.⏎Il s’agit de permettre au bénéficiaire de l’aide d’accéder totalement ou partiellement à une formation qualifiante (ex: CCP, CQP, TP,...) en lien direct avec son projet professionnel.»
+            Alors le texte de description vaut «Le Chèque qualification "cadres et jeunes diplômés" est mis en œuvre à titre expérimental. C'est un dispositif du Conseil régional pour répondre aux besoins individuels ne trouvant pas leur réponse dans les programmes collectifs.⏎Il s’agit de permettre au bénéficiaire de l’aide d’accéder totalement ou partiellement à une formation qualifiante (ex: CCP, CQP, TP,...) en lien direct avec son projet professionnel.»
             Et le texte de la prise en charge vaut «Formation totalement financée.»
             Et il n'y a pas de plafond financier applicable
 
