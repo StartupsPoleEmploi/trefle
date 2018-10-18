@@ -13,6 +13,9 @@ Si le financement est de type «POEC»
 Si le financement est de type «POEI»
     Alors appliquer les règles «POEI»
 
+Si le financement est de type «E2C»
+    Alors appliquer les règles «E2C»
+
 Si l'intitulé du financement est «Financement individuel Agefiph»
     Alors appliquer les règles «Agefiph»
 

@@ -13,6 +13,9 @@ Si le financement est de type «POEC»
 Si le financement est de type «POEI»
     Alors appliquer les règles «POEI»
 
+Si le financement est de type «E2C»
+    Alors appliquer les règles «E2C»
+
 Si l'intitulé du financement est «Financement individuel Agefiph»
     Alors appliquer les règles «Agefiph»
 
@@ -118,17 +121,6 @@ Si l'intitulé du financement est «Aide à la VAE»
 
 Si la région du bénéficiaire est «Auvergne-Rhône-Alpes»
 Et la région de la formation est «Auvergne-Rhône-Alpes»
-
-    Si le financement est de type «E2C»
-
-        Si l'âge du bénéficiaire est inférieur à 26
-        Et le niveau scolaire du bénéficiaire n'est pas supérieur ou égal à «V»
-        Et c'est une formation E2C
-            Alors le financement est éligible
-            Et appliquer les règles «AREF-RFPE-RPS»
-            Et le texte des démarches vaut «Si vous avez abandonné votre scolarité depuis 6 mois ou plus, présentez-vous directement auprès du centre de formation ou renseignez-vous auprès de votre conseiller emploi.»
-            Et le texte de description vaut «Ce programme est conçu pour permettre à des jeunes (18-25 ans) en difficulté de préparer un projet professionnel et intégrer un parcours de formation ou d'insertion.⏎— Maîtriser les compétences de base (français, mathématiques, informatique) et la détermination d’un projet professionnel.⏎— Donner une place importante à l’alternance : 40 à 50% du parcours est consacré aux stages en entreprise pour découvrir le monde du travail, ses contraintes et ses possibilités.⏎— Parcours de 7 mois en moyenne.»
-            Et le texte des démarches vaut «Formation totalement financée par la Région»
 
     Si l'intitulé du financement est «Action projets individuels»
 

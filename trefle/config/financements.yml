@@ -103,7 +103,7 @@ Espaces territoriaux à la qualification:
 École de la deuxième chance:
   sigle: E2C
   tags: [DE, jeune, E2C]
-  racine: Auvergne-Rhône-Alpes.rules
+  racine: région du bénéficiaire
 Action projets individuels:
   sigle: API
   tags: [DE, API]
