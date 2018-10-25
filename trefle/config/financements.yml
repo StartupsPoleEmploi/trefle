@@ -53,6 +53,7 @@ Aide individuelle à la formation artisan:
 Formations avant embauche (AFPR, POEI):
   tags: [AFPR, POEI, DE]
   racine: région du bénéficiaire
+  ressources:      -https://www.pole-emploi.fr/candidat/l-action-de-formation-prealable-au-recrutement-afpr--@/article.jspz?id=60635
 Préparation opérationnelle à l'emploi collective:
   tags: [POEC, DE]
   racine: région du bénéficiaire
