@@ -28,6 +28,7 @@ Scénario: Cas nominal chèque pass formation
     Soit un bénéficiaire et une formation
     Et c'est un demandeur d'emploi
     Et le montant de l'allocation du bénéficiaire vaut 1200
+    Et l'allocation du bénéficiaire est «allocation de sécurisation professionnelle»
     Et la durée en heures de la formation vaut 150
     Et la région du bénéficiaire vaut «Hauts-de-France»
     Et c'est une formation ouverte aux bénéficiaires individuels
