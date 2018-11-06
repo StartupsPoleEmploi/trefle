@@ -38,7 +38,7 @@ Et ce n'est pas un contrat de professionnalisation
             Et appliquer les règles «AREF-RFPE-RPS»
             Et le texte des démarches vaut «Pour effectuer cette formation, contactez tout d'abord l'organisme de formation pour être sélectionné sur une des places financées par l'Agefiph.»
             Et le texte de description vaut «Cette action de formation est financée par l'Agefiph. Cet organisme finance des actions de formation pour des personnes reconnues travailleurs handicapées pour accéder ou conserver leur emploi.»
-            Et le texte de la prise en charge vaut «Formation totalement ou partiellement financée.»
+            Et le texte de la prise en charge vaut «Formation totalement financée.»
 
     Si le financement est de type «département»
 
