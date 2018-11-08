@@ -29,6 +29,48 @@ def extrapolate_context(context):
     if context.get('beneficiaire.allocation_type') == 'non':
         del context['beneficiaire.allocation_type']
 
+    _extrapolate_formation_context(context)
+
+
+def _extrapolate_formation_context(context):
+    # Compute durations.
+    if 'formation.debut' in context and 'formation.fin' in context:
+        mois = diff_month(context['formation.debut'], context['formation.fin'])
+        semaines = diff_week(context['formation.debut'],
+                             context['formation.fin'])
+        context['formation.semaines'] = semaines
+        context['formation.mois'] = mois
+        if not context.get('formation.duree_hebdo'):
+            context['formation.duree_hebdo'] = round(
+                context['formation.heures'] / semaines)
+
+    # Weird hack: Intercarif adds the `16` code in some situations and we need
+    # to remove it otherwise the formation is unavailable (`16` is a code
+    # financeur collectif).
+    if context.get('formation.codes_financeur', set()) & {0, 5, 10}:
+        context['formation.codes_financeur'].discard(16)
+
+    context['formation.intitule_norme'] = fold_name(
+        context.get('formation.intitule', ''))
+
+    if context.get('formation.heures_centre') is None:
+        total = context.get('formation.heures')
+        entreprise = context.get('formation.heures_entreprise')
+        if total and entreprise:
+            context['formation.heures_centre'] = total - entreprise
+
+    old_new_region = {'26': '27', '43': '27', '23': '28', '25': '28',
+                      '31': '32', '22': '32', '41': '44', '42': '44',
+                      '21': '44', '72': '75', '54': '75', '74': '75',
+                      '73': '76', '91': '76', '82': '84', '83': '84'}
+
+    if context.get('formation.region') in old_new_region:
+        context["formation.region"] = old_new_region[context["formation.region"]]
+
+    context["formation.regions_coparef"] = set(
+            old_new_region.get(r, r)
+            for r in context.get("formation.regions_coparef", []))
+
 
 async def get_formation_xml(formation_id):
     return (await http_get(f'{INTERCARIF_URL}?num={formation_id}')).content
@@ -79,34 +121,6 @@ async def populate_formation_from_bytes(context, content):
         ids = set(root.xpath('//extras[@info="eligibilite-cpf"]/extra[@info="france-entiere"][text()="1"]/../extra[@info="inter-branche"][text()="0"]/../@numero'))
         if ids:
             context['formation.codes_naf'] = await retrieve_codes_naf(ids)
-
-
-def extrapolate_formation_context(context):
-    # Compute durations.
-    if 'formation.debut' in context and 'formation.fin' in context:
-        mois = diff_month(context['formation.debut'], context['formation.fin'])
-        semaines = diff_week(context['formation.debut'],
-                             context['formation.fin'])
-        context['formation.semaines'] = semaines
-        context['formation.mois'] = mois
-        if not context.get('formation.duree_hebdo'):
-            context['formation.duree_hebdo'] = round(
-                context['formation.heures'] / semaines)
-
-    # Weird hack: Intercarif adds the `16` code in some situations and we need
-    # to remove it otherwise the formation is unavailable (`16` is a code
-    # financeur collectif).
-    if context['formation.codes_financeur'] & {0, 5, 10}:
-        context['formation.codes_financeur'].discard(16)
-
-    context['formation.intitule_norme'] = fold_name(
-        context.get('formation.intitule', ''))
-
-    if context.get('formation.heures_centre') is None:
-        total = context.get('formation.heures')
-        entreprise = context.get('formation.heures_entreprise')
-        if total and entreprise:
-            context['formation.heures_centre'] = total - entreprise
 
 
 def preprocess(context):

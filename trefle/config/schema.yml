@@ -460,6 +460,23 @@ beneficiaire:
       '84': Auvergne-Rhône-Alpes
       '93': Provence-Alpes-Côte d'Azur
       '94': Corse
+      # TODO remove old regions when we switch to API catalog
+      '26': Bourgogne
+      '43': Franche-Comté
+      '23': Haute-Normandie
+      '25': Basse-Normandie
+      '31': Nord-Pas-de-Calais
+      '22': Picardie
+      '41': Lorraine
+      '42': Alsace
+      '21': Champagne-Ardenne
+      '72': Aquitaine
+      '54': Poitou-Charentes
+      '74': Limousin
+      '73': Midi-Pyrénées
+      '91': Languedoc-Roussillon
+      '82': Rhône-Alpes
+      '83': Auvergne
   niveau_scolaire:
     alias: beneficiaire.niveauscolaire
     type: integer

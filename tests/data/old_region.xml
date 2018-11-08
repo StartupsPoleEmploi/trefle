@@ -1,0 +1,545 @@
+<?xml version="1.0" encoding="utf-8"?>
+<lheo xmlns="http://www.lheo.org/2.2">
+    <offres>
+        <formation numero="07_10" datecrea="20010503" datemaj="20171213" file="http://www.etoile.regioncentre.fr/metier-formation/lheo22/offre-10.xml" href="http://www.etoile.regioncentre.fr/GIP/accueiletoile/seformer/formation/detailformation/engineName/carifengine?screen=fiche_formation&amp;idFormation=10">
+            <domaine-formation>
+                <code-FORMACODE ref="V12" tag="principal">22403</code-FORMACODE>
+                <code-FORMACODE ref="V12">22402</code-FORMACODE>
+                <code-NSF>233</code-NSF>
+                <code-ROME>F1604</code-ROME>
+            </domaine-formation>
+            <intitule-formation>Titre professionnel plaquiste</intitule-formation>
+            <objectif-formation> L'objectif est d'obtenir la qualification de plaquiste, pour un accès à l'emploi.</objectif-formation>
+            <resultats-attendus>-</resultats-attendus>
+            <contenu-formation> Réaliser l'aménagement de locaux en produits à base de plaques de plâtre de technicité courante Réaliser l'aménagement de locaux recevant du public en plaques de plâtre de technicité particulière. Spécialisation : réaliser des ouvrages d'isolation acoustique, thermique et de protection incendie.</contenu-formation>
+            <certifiante>1</certifiante>
+            <contact-formation>
+                <coordonnees>
+                    <civilite>Madame</civilite>
+                    <nom>LEROY</nom>
+                    <prenom>Michèle</prenom>
+                    <adresse>
+                        <ligne>AFPA de Veigné</ligne>
+                        <ligne>Le Passoir</ligne>
+                        <codepostal>37250</codepostal>
+                        <ville>Veigné</ville>
+                        <departement>37</departement>
+                        <code-INSEE-commune>37266</code-INSEE-commune>
+                        <region>24</region>
+                        <pays>FR</pays>
+                        <geolocalisation>
+                            <latitude>47.3077865</latitude>
+                            <longitude>0.6867685</longitude>
+                        </geolocalisation>
+                    </adresse>
+                    <telfixe>
+                        <numtel>02 47 34 14 05</numtel>
+                    </telfixe>
+                    <portable>
+                        <numtel>06 45 49 99 85</numtel>
+                    </portable>
+                    <courriel>nadia.buffet@afpa.fr</courriel>
+                    <web>
+                        <urlweb>http://www.centre.afpa.fr</urlweb>
+                    </web>
+                </coordonnees>
+            </contact-formation>
+            <parcours-de-formation>3</parcours-de-formation>
+            <code-niveau-entree>1</code-niveau-entree>
+            <objectif-general-formation>6</objectif-general-formation>
+            <certification>
+                <code-RNCP>320</code-RNCP>
+                <code-CERTIFINFO>80735</code-CERTIFINFO>
+            </certification>
+            <code-niveau-sortie>4</code-niveau-sortie>
+            <url-formation>
+                <urlweb>http://www.etoile.regioncentre.fr/GIP/accueiletoile/seformer/formation/detailformation/engineName/carifengine?screen=fiche_formation&amp;idFormation=10</urlweb>
+            </url-formation>
+            <action numero="07_114782" datecrea="20010503" datemaj="20171213">
+                <rythme-formation>Continu temps plein, Modulaire</rythme-formation>
+                <code-public-vise ref="V12">83056</code-public-vise>
+                <niveau-entree-obligatoire>0</niveau-entree-obligatoire>
+                <modalites-alternance>-</modalites-alternance>
+                <modalites-enseignement>0</modalites-enseignement>
+                <conditions-specifiques>-</conditions-specifiques>
+                <prise-en-charge-frais-possible>0</prise-en-charge-frais-possible>
+                <lieu-de-formation>
+                    <coordonnees>
+                        <nom>AFPA de Veigné</nom>
+                        <adresse>
+                            <ligne>Le Passoir</ligne>
+                            <codepostal>37250</codepostal>
+                            <ville>Veigné</ville>
+                            <departement>37</departement>
+                            <code-INSEE-commune>37266</code-INSEE-commune>
+                            <region>24</region>
+                            <pays>FR</pays>
+                            <geolocalisation>
+                                <latitude>47.286057</latitude>
+                                <longitude>0.737711</longitude>
+                            </geolocalisation>
+                        </adresse>
+                        <telfixe>
+                            <numtel>39 36</numtel>
+                        </telfixe>
+                        <fax>
+                            <numtel>02 47 73 15 59</numtel>
+                        </fax>
+                        <web>
+                            <urlweb>http://www.centre.afpa.fr</urlweb>
+                        </web>
+                    </coordonnees>
+                </lieu-de-formation>
+                <modalites-entrees-sorties>0</modalites-entrees-sorties>
+                <url-action>
+                    <urlweb>http://www.etoile.regioncentre.fr/GIP/accueiletoile/seformer/formation/detailformation/engineName/carifengine?screen=fiche_formation&amp;idFormation=10</urlweb>
+                </url-action>
+                <session numero="114782" datecrea="20010503" datemaj="20171213">
+                    <periode>
+                        <debut>20171204</debut>
+                        <fin>20180601</fin>
+                    </periode>
+                    <adresse-inscription>
+                        <adresse>
+                            <ligne>AFPA de Veigné</ligne>
+                            <ligne>Le Passoir</ligne>
+                            <codepostal>37250</codepostal>
+                            <ville>Veigné</ville>
+                            <departement>37</departement>
+                            <code-INSEE-commune>37266</code-INSEE-commune>
+                            <region>24</region>
+                            <pays>FR</pays>
+                            <geolocalisation>
+                                <latitude>47.287281036377</latitude>
+                                <longitude>0.736479997634888</longitude>
+                            </geolocalisation>
+                        </adresse>
+                    </adresse-inscription>
+                    <etat-recrutement>1</etat-recrutement>
+                    <extras info="session-perimee">
+                        <extra info="session-perimee">0</extra>
+                    </extras>
+                    <extras info="eligibilite-cpf" numero="130805">
+                        <extra info="source">COPANEF (Comité paritaire interprofessionnel national pour l'emploi et la formation)</extra>
+                        <extra info="debut-validite">20150101</extra>
+                        <extra info="fin-validite">20191231</extra>
+                        <extra info="public">3</extra>
+                        <extra info="france-entiere">1</extra>
+                        <extra info="inter-branche">1</extra>
+                    </extras>
+                    <extras info="eligibilite-cpf" numero="1487">
+                        <extra info="source">CPNE conjointe du bâtiment et des travaux publics</extra>
+                        <extra info="debut-validite">20141204</extra>
+                        <extra info="fin-validite">20181231</extra>
+                        <extra info="public">1</extra>
+                        <extra info="france-entiere">1</extra>
+                        <extra info="inter-branche">0</extra>
+                        <extra info="branche">23.61Z</extra>
+                        <extra info="branche">23.62Z</extra>
+                    </extras>
+                    <extras info="eligibilite-cpf" numero="167204">
+                        <extra info="source">Liste à défaut de convention collective AGEFOS PME</extra>
+                        <extra info="debut-validite">20151218</extra>
+                        <extra info="fin-validite">20191231</extra>
+                        <extra info="public">1</extra>
+                        <extra info="france-entiere">1</extra>
+                        <extra info="inter-branche">0</extra>
+                        <extra info="branche">01.62Z</extra>
+                        <extra info="branche">05.20Z</extra>
+                    </extras>
+                    <extras info="eligibilite-cpf" numero="18320">
+                        <extra info="source">CPNE du travail temporaire</extra>
+                        <extra info="debut-validite">20150101</extra>
+                        <extra info="fin-validite">20181231</extra>
+                        <extra info="public">1</extra>
+                        <extra info="france-entiere">1</extra>
+                        <extra info="inter-branche">0</extra>
+                        <extra info="branche">78.20Z</extra>
+                    </extras>
+                </session>
+                <adresse-information>
+                    <adresse>
+                        <ligne>AFPA de Veigné</ligne>
+                        <ligne>Le Passoir</ligne>
+                        <codepostal>37250</codepostal>
+                        <ville>Veigné</ville>
+                        <departement>37</departement>
+                        <code-INSEE-commune>37266</code-INSEE-commune>
+                        <region>24</region>
+                        <pays>FR</pays>
+                        <geolocalisation>
+                            <latitude>47.287281036377</latitude>
+                            <longitude>0.736479997634888</longitude>
+                        </geolocalisation>
+                    </adresse>
+                </adresse-information>
+                <date-information>
+                    <date>00000000</date>
+                </date-information>
+                <restauration>Restauration sur place</restauration>
+                <hebergement>Hébergement possible</hebergement>
+                <transport>Accès parking possible</transport>
+                <acces-handicapes>Accès handicapé possible</acces-handicapes>
+                <langue-formation>FR</langue-formation>
+                <modalites-recrutement>Entretien, Tests</modalites-recrutement>
+                <code-perimetre-recrutement>3</code-perimetre-recrutement>
+                <conventionnement>0</conventionnement>
+                <organisme-formateur>
+                    <SIRET-formateur>
+                        <SIRET>82422814201874</SIRET>
+                    </SIRET-formateur>
+                    <raison-sociale-formateur>AFPA de Veigné</raison-sociale-formateur>
+                    <contact-formateur>
+                        <coordonnees>
+                            <nom>BERNOT</nom>
+                            <prenom>Delphine</prenom>
+                            <adresse>
+                                <ligne>Le Passoir</ligne>
+                                <codepostal>37250</codepostal>
+                                <ville>Veigné</ville>
+                                <departement>37</departement>
+                                <code-INSEE-commune>37266</code-INSEE-commune>
+                                <region>24</region>
+                                <pays>FR</pays>
+                                <geolocalisation>
+                                    <latitude>47.287281036377</latitude>
+                                    <longitude>0.736479997634888</longitude>
+                                </geolocalisation>
+                            </adresse>
+                            <portable>
+                                <numtel>06 32 12 65 37</numtel>
+                            </portable>
+                            <courriel>delphine.bernot@afpa.fr</courriel>
+                            <web>
+                                <urlweb>http://www.centre.afpa.fr</urlweb>
+                            </web>
+                        </coordonnees>
+                    </contact-formateur>
+                    <potentiel>
+                        <code-FORMACODE ref="V12">12205</code-FORMACODE>
+                        <code-FORMACODE ref="V12">12207</code-FORMACODE>
+                    </potentiel>
+                </organisme-formateur>
+                <organisme-financeur>
+                    <code-financeur>10</code-financeur>
+                    <nb-places-financees>4</nb-places-financees>
+                    <extras info="specificites">
+                        <extra info="code-public-vise" ref="V12">83056</extra>
+                        <extra info="code-perimetre-recrutement">3</extra>
+                        <extra info="programme-financeur">Formation adulte financée par l'entreprise ou le particulier</extra>
+                    </extras>
+                </organisme-financeur>
+                <organisme-financeur>
+                    <code-financeur>5</code-financeur>
+                    <nb-places-financees>4</nb-places-financees>
+                    <extras info="specificites">
+                        <extra info="code-public-vise" ref="V12">83056</extra>
+                        <extra info="code-perimetre-recrutement">3</extra>
+                        <extra info="programme-financeur">Formation adulte financée par l'entreprise ou le particulier</extra>
+                    </extras>
+                </organisme-financeur>
+                <extras info="type-action">
+                    <extra info="formation-initiale">0</extra>
+                    <extra info="action-perimee">0</extra>
+                </extras>
+                <extras info="dispositif">
+                    <extra info="contrat-apprentissage">0</extra>
+                    <extra info="contrat-professionnalisation">0</extra>
+                </extras>
+                <extras info="validation">
+                    <extra info="code-type-validation">5</extra>
+                </extras>
+            </action>
+            <action numero="07_123324" datecrea="20010503" datemaj="20171213">
+                <rythme-formation>Continu temps plein, Modulaire</rythme-formation>
+                <code-public-vise ref="V12">80006</code-public-vise>
+                <niveau-entree-obligatoire>0</niveau-entree-obligatoire>
+                <modalites-alternance>-</modalites-alternance>
+                <modalites-enseignement>0</modalites-enseignement>
+                <conditions-specifiques>-</conditions-specifiques>
+                <prise-en-charge-frais-possible>0</prise-en-charge-frais-possible>
+                <lieu-de-formation>
+                    <coordonnees>
+                        <nom>AFPA de Veigné</nom>
+                        <adresse>
+                            <ligne>LE PASSOIR</ligne>
+                            <codepostal>37250</codepostal>
+                            <ville>Veigné</ville>
+                            <departement>37</departement>
+                            <code-INSEE-commune>37266</code-INSEE-commune>
+                            <region>24</region>
+                            <pays>FR</pays>
+                            <geolocalisation>
+                                <latitude>47.306826</latitude>
+                                <longitude>0.688594</longitude>
+                            </geolocalisation>
+                        </adresse>
+                        <telfixe>
+                            <numtel>39 36</numtel>
+                        </telfixe>
+                        <fax>
+                            <numtel>02 47 73 15 59</numtel>
+                        </fax>
+                        <web>
+                            <urlweb>http://www.centre.afpa.fr</urlweb>
+                        </web>
+                    </coordonnees>
+                </lieu-de-formation>
+                <modalites-entrees-sorties>0</modalites-entrees-sorties>
+                <url-action>
+                    <urlweb>http://www.etoile.regioncentre.fr/GIP/accueiletoile/seformer/formation/detailformation/engineName/carifengine?screen=fiche_formation&amp;idFormation=10</urlweb>
+                </url-action>
+                <session numero="123324" datecrea="20010503" datemaj="20171213">
+                    <periode>
+                        <debut>20171030</debut>
+                        <fin>20180601</fin>
+                    </periode>
+                    <adresse-inscription>
+                        <adresse>
+                            <ligne>AFPA de Veigné</ligne>
+                            <ligne>Le Passoir</ligne>
+                            <codepostal>37250</codepostal>
+                            <ville>Veigné</ville>
+                            <departement>37</departement>
+                            <code-INSEE-commune>37266</code-INSEE-commune>
+                            <region>24</region>
+                            <pays>FR</pays>
+                            <geolocalisation>
+                                <latitude>47.287281036377</latitude>
+                                <longitude>0.736479997634888</longitude>
+                            </geolocalisation>
+                        </adresse>
+                    </adresse-inscription>
+                    <periode-inscription>
+                        <periode>
+                            <debut>00000000</debut>
+                            <fin>20180522</fin>
+                        </periode>
+                    </periode-inscription>
+                    <etat-recrutement>1</etat-recrutement>
+                    <extras info="session-perimee">
+                        <extra info="session-perimee">0</extra>
+                    </extras>
+                    <extras info="eligibilite-cpf" numero="130805">
+                        <extra info="source">COPANEF (Comité paritaire interprofessionnel national pour l'emploi et la formation)</extra>
+                        <extra info="debut-validite">20150101</extra>
+                        <extra info="fin-validite">20191231</extra>
+                        <extra info="public">3</extra>
+                        <extra info="france-entiere">1</extra>
+                        <extra info="inter-branche">1</extra>
+                    </extras>
+                    <extras info="eligibilite-cpf" numero="13352">
+                        <extra info="source">COPAREF Centre</extra>
+                        <extra info="debut-validite">2015-01-01</extra>
+                        <extra info="fin-validite">2018-12-31</extra>
+                        <extra info="public">2</extra>
+                        <extra info="france-entiere">0</extra>
+                        <extra info="region">24</extra>
+                        <extra info="inter-branche">1</extra>
+                    </extras>
+                    <extras info="eligibilite-cpf" numero="13352">
+                        <extra info="source">COPAREF Bourgogne</extra>
+                        <extra info="debut-validite">2015-01-01</extra>
+                        <extra info="fin-validite">2018-12-31</extra>
+                        <extra info="public">2</extra>
+                        <extra info="france-entiere">0</extra>
+                        <extra info="region">26</extra>
+                        <extra info="inter-branche">1</extra>
+                    </extras>
+                    <extras info="eligibilite-cpf" numero="1487">
+                        <extra info="source">CPNE conjointe du bâtiment et des travaux publics</extra>
+                        <extra info="debut-validite">20141204</extra>
+                        <extra info="fin-validite">20181231</extra>
+                        <extra info="public">1</extra>
+                        <extra info="france-entiere">1</extra>
+                        <extra info="inter-branche">0</extra>
+                        <extra info="branche">23.61Z</extra>
+                        <extra info="branche">23.62Z</extra>
+                    </extras>
+                    <extras info="eligibilite-cpf" numero="167204">
+                        <extra info="source">Liste à défaut de convention collective AGEFOS PME</extra>
+                        <extra info="debut-validite">20151218</extra>
+                        <extra info="fin-validite">20191231</extra>
+                        <extra info="public">1</extra>
+                        <extra info="france-entiere">1</extra>
+                        <extra info="inter-branche">0</extra>
+                        <extra info="branche">96.04Z</extra>
+                        <extra info="branche">96.09Z</extra>
+                    </extras>
+                    <extras info="eligibilite-cpf" numero="18320">
+                        <extra info="source">CPNE du travail temporaire</extra>
+                        <extra info="debut-validite">20150101</extra>
+                        <extra info="fin-validite">20181231</extra>
+                        <extra info="public">1</extra>
+                        <extra info="france-entiere">1</extra>
+                        <extra info="inter-branche">0</extra>
+                        <extra info="branche">78.20Z</extra>
+                    </extras>
+                </session>
+                <adresse-information>
+                    <adresse>
+                        <ligne>AFPA de Veigné</ligne>
+                        <ligne>Le Passoir</ligne>
+                        <codepostal>37250</codepostal>
+                        <ville>Veigné</ville>
+                        <departement>37</departement>
+                        <code-INSEE-commune>37266</code-INSEE-commune>
+                        <region>24</region>
+                        <pays>FR</pays>
+                        <geolocalisation>
+                            <latitude>47.287281036377</latitude>
+                            <longitude>0.736479997634888</longitude>
+                        </geolocalisation>
+                    </adresse>
+                </adresse-information>
+                <date-information>
+                    <date>00000000</date>
+                </date-information>
+                <restauration>Restauration sur place</restauration>
+                <hebergement>Hébergement possible</hebergement>
+                <transport>Accès parking possible</transport>
+                <acces-handicapes>Accès handicapé possible</acces-handicapes>
+                <langue-formation>FR</langue-formation>
+                <modalites-recrutement>Entretien, Tests</modalites-recrutement>
+                <code-perimetre-recrutement>3</code-perimetre-recrutement>
+                <nombre-heures-centre>585</nombre-heures-centre>
+                <nombre-heures-entreprise>112</nombre-heures-entreprise>
+                <nombre-heures-total>697</nombre-heures-total>
+                <conventionnement>1</conventionnement>
+                <organisme-formateur>
+                    <SIRET-formateur>
+                        <SIRET>82422814201874</SIRET>
+                    </SIRET-formateur>
+                    <raison-sociale-formateur>AFPA de Veigné</raison-sociale-formateur>
+                    <contact-formateur>
+                        <coordonnees>
+                            <nom>BERNOT</nom>
+                            <prenom>Delphine</prenom>
+                            <adresse>
+                                <ligne>Le Passoir</ligne>
+                                <codepostal>37250</codepostal>
+                                <ville>Veigné</ville>
+                                <departement>37</departement>
+                                <code-INSEE-commune>37266</code-INSEE-commune>
+                                <region>24</region>
+                                <pays>FR</pays>
+                                <geolocalisation>
+                                    <latitude>47.287281036377</latitude>
+                                    <longitude>0.736479997634888</longitude>
+                                </geolocalisation>
+                            </adresse>
+                            <portable>
+                                <numtel>06 32 12 65 37</numtel>
+                            </portable>
+                            <courriel>delphine.bernot@afpa.fr</courriel>
+                            <web>
+                                <urlweb>http://www.centre.afpa.fr</urlweb>
+                            </web>
+                        </coordonnees>
+                    </contact-formateur>
+                    <potentiel>
+                        <code-FORMACODE ref="V12">22297</code-FORMACODE>
+                        <code-FORMACODE ref="V12">22301</code-FORMACODE>
+                    </potentiel>
+                </organisme-formateur>
+                <organisme-financeur>
+                    <code-financeur>2</code-financeur>
+                    <nb-places-financees>5</nb-places-financees>
+                    <extras info="specificites">
+                        <extra info="code-public-vise" ref="V12">80006</extra>
+                        <extra info="code-perimetre-recrutement">3</extra>
+                        <extra info="programme-financeur">Programme régional 2017 : Parcours métiers</extra>
+                    </extras>
+                </organisme-financeur>
+                <extras info="type-action">
+                    <extra info="formation-initiale">0</extra>
+                    <extra info="action-perimee">0</extra>
+                </extras>
+                <extras info="dispositif">
+                    <extra info="contrat-apprentissage">0</extra>
+                    <extra info="contrat-professionnalisation">0</extra>
+                </extras>
+                <extras info="duree-hebdo">
+                    <extra info="duree-hebdo">35</extra>
+                </extras>
+                <extras info="validation">
+                    <extra info="code-type-validation">5</extra>
+                </extras>
+            </action>
+            <organisme-formation-responsable numero="07_1494">
+                <numero-activite>24930181145</numero-activite>
+                <SIRET-organisme-formation>
+                    <SIRET>82422814200660</SIRET>
+                </SIRET-organisme-formation>
+                <nom-organisme>DRAFPA d'Olivet</nom-organisme>
+                <raison-sociale>Direction régionale Centre de l'agence nationale pour la formation des adultes</raison-sociale>
+                <coordonnees-organisme>
+                    <coordonnees>
+                        <adresse>
+                            <ligne>Propriété de l'Archette</ligne>
+                            <ligne>Rue Basse Mouillère</ligne>
+                            <ligne>CS 50613</ligne>
+                            <codepostal>45160</codepostal>
+                            <ville>Olivet</ville>
+                            <departement>45</departement>
+                            <code-INSEE-commune>45232</code-INSEE-commune>
+                            <region>24</region>
+                            <pays>FR</pays>
+                            <geolocalisation>
+                                <latitude>47.8642616271973</latitude>
+                                <longitude>1.90131998062134</longitude>
+                            </geolocalisation>
+                        </adresse>
+                        <telfixe>
+                            <numtel>39 36</numtel>
+                        </telfixe>
+                        <fax>
+                            <numtel>02 38 22 86 85</numtel>
+                        </fax>
+                        <web>
+                            <urlweb>http://www.centre.afpa.fr</urlweb>
+                        </web>
+                    </coordonnees>
+                </coordonnees-organisme>
+                <contact-organisme>
+                    <coordonnees>
+                        <nom>LE POEC</nom>
+                        <prenom>Catherine</prenom>
+                        <adresse>
+                            <ligne>Propriété de l'Archette</ligne>
+                            <ligne>Rue Basse Mouillère</ligne>
+                            <ligne>CS 50613</ligne>
+                            <codepostal>45160</codepostal>
+                            <ville>Olivet</ville>
+                            <departement>45</departement>
+                            <code-INSEE-commune>45232</code-INSEE-commune>
+                            <region>24</region>
+                            <pays>FR</pays>
+                            <geolocalisation>
+                                <latitude>47.8642616271973</latitude>
+                                <longitude>1.90131998062134</longitude>
+                            </geolocalisation>
+                        </adresse>
+                        <telfixe>
+                            <numtel>3936</numtel>
+                        </telfixe>
+                        <fax>
+                            <numtel>02 38 22 86 85</numtel>
+                        </fax>
+                        <courriel>catherine.lepoec@afpa.fr</courriel>
+                        <web>
+                            <urlweb>http://www.centre.afpa.fr</urlweb>
+                        </web>
+                    </coordonnees>
+                </contact-organisme>
+                <potentiel>
+                    <code-FORMACODE ref="V12">22010</code-FORMACODE>
+                    <code-FORMACODE ref="V12">22054</code-FORMACODE>
+                </potentiel>
+                <extras info="categorie-organisme">
+                    <extra info="code-categorie-organisme">00</extra>
+                </extras>
+            </organisme-formation-responsable>
+        </formation>
+    </offres>
+</lheo>

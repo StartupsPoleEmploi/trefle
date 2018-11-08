@@ -14,9 +14,8 @@ async def simulate(data, financements):
     # Prepare context
     flatten(data)
     context = Context(data.copy())
-    routine.extrapolate_context(context)
     await routine.populate_formation(context)
-    routine.extrapolate_formation_context(context)
+    routine.extrapolate_context(context)
     routine.preprocess(context)
 
     # Compute organisme, prise en charge, rémunération per financement
