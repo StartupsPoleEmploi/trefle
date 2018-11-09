@@ -11,9 +11,8 @@ from trefle import routine
 async def test_populate_formation_from_bytes():
     with Path(__file__).parent.joinpath('data/formation.xml').open('rb') as f:
         context = Context({})
-        routine.extrapolate_context(context)
         await routine.populate_formation_from_bytes(context, f.read())
-        routine.extrapolate_formation_context(context)
+        routine.extrapolate_context(context)
         routine.preprocess(context)
 
         assert context['formation.eligible_copanef'] is True
@@ -33,6 +32,7 @@ async def test_populate_formation_from_bytes():
         assert context['formation.duree_hebdo'] == 35
         assert context['formation.codes_financeur'] == {10, 5, 2}
         assert context['formation.certifiante'] is True
+        assert context['formation.professionnalisante'] is False
         assert context['formation.codes_cpf'] == {167204, 13352, 1487, 18320,
                                                   130805}
         assert context['formation.code_certifinfo'] == 80735
@@ -56,6 +56,8 @@ async def test_populate_formation_from_bytes():
     ('non_certifiante', 'formation.certifiante', False),
     ('certifiante', 'formation.certifiante', True),
     ('objectif_general_formation_certifiante', 'formation.certifiante', True),
+    ('non_professionnalisante', 'formation.professionnalisante', False),
+    ('professionnalisante', 'formation.professionnalisante', True),
     ('wrong_code_financeur_16', 'formation.codes_financeur', {0, 5, 10, 17}),
     ('entrees_sorties_permanentes', 'formation.entrees_sorties', 1),
     ('entrees_sorties_permanentes', 'formation.entrees_sorties_permanentes',
@@ -67,14 +69,14 @@ async def test_populate_formation_from_bytes():
     ('heures_centre_empty', 'formation.heures_centre', 585),
     ('daeu', 'formation.daeu', True),
     ('daeu', 'formation.enseignement_superieur', True),
+    ('old_region', 'formation.regions_coparef', {'24', '27'}),
 ])
 @pytest.mark.asyncio
 async def test_populate_formation_from_bytes_edge_cases(path, key, value):
     with Path(__file__).parent.joinpath(f'data/{path}.xml').open('rb') as f:
         context = Context({})
-        routine.extrapolate_context(context)
         await routine.populate_formation_from_bytes(context, f.read())
-        routine.extrapolate_formation_context(context)
+        routine.extrapolate_context(context)
         routine.preprocess(context)
         assert context[key] == value
 
@@ -89,13 +91,25 @@ async def test_populate_formation_from_bytes_with_empty_list():
     context = Context({})
     with pytest.raises(ValueError):
         await routine.populate_formation_from_bytes(context, content)
-        routine.extrapolate_formation_context(context)
+        routine.extrapolate_context(context)
 
 
 def test_extrapolate_context_should_set_region():
     context = {'beneficiaire.entreprise.commune': '93031'}
     routine.extrapolate_context(context)
     assert context['beneficiaire.entreprise.region'] == '11'  # IDF
+
+
+def test_extrapolate_context_should_set_formation_old_region_to_new_region():
+    context = {'formation.region': '26'}  # Bourgogne
+    routine.extrapolate_context(context)
+    assert context['formation.region'] == '27'  # Bourgogne-Franche-Comté
+
+
+def test_extrapolate_context_should_set_coparef_old_region_to_new_region():
+    context = {'formation.regions_coparef': {'26', '53'}}  # Bourgogne / Bretagne
+    routine.extrapolate_context(context)
+    assert context['formation.regions_coparef'] == {'27', '53'}  # Bourgogne-Franche-Comté
 
 
 @pytest.mark.asyncio

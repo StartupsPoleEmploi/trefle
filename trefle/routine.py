@@ -3,29 +3,73 @@ from datetime import timedelta
 from lxml import etree
 
 from .config import (CONSTANTS, ELIGIBILITE_URL, INTERCARIF_URL, LABELS,
-                     ORGANISMES, RULES, SCHEMA)
+                     ORGANISMES, RULES, SCHEMA, Organisme)
 from .exceptions import DataError, UpstreamError
 from .helpers import (diff_month, diff_week, fold_name, http_get,
-                      insee_commune_to_departement, insee_commune_to_region,
-                      revert_dict)
+                      insee_commune_to_departement,
+                      insee_departement_to_region)
 from .rules import Rule
 from .validators import format_naf
 
 
 def extrapolate_context(context):
     context.update(CONSTANTS)
-    insee_commune_to_region(context, 'beneficiaire.entreprise.commune',
-                            'beneficiaire.entreprise.region')
-    insee_commune_to_region(context, 'beneficiaire.commune',
-                            'beneficiaire.region')
     insee_commune_to_departement(context, 'beneficiaire.commune',
                                  'beneficiaire.departement')
+    insee_commune_to_departement(context, 'beneficiaire.entreprise.commune',
+                                 'beneficiaire.entreprise.departement')
     # FIXME remove me when LBF sends INSEE code even for DE.
     # (this is a postcode).
-    insee_commune_to_region(context, 'beneficiaire.location',
-                            'beneficiaire.region')
+    insee_commune_to_departement(context, 'beneficiaire.location',
+                                 'beneficiaire.departement')
+    insee_departement_to_region(context, 'beneficiaire.entreprise.departement',
+                                'beneficiaire.entreprise.region')
+    insee_departement_to_region(context, 'beneficiaire.departement',
+                                'beneficiaire.region')
     if context.get('beneficiaire.allocation_type') == 'non':
         del context['beneficiaire.allocation_type']
+
+    _extrapolate_formation_context(context)
+
+
+def _extrapolate_formation_context(context):
+    # Compute durations.
+    if 'formation.debut' in context and 'formation.fin' in context:
+        mois = diff_month(context['formation.debut'], context['formation.fin'])
+        semaines = diff_week(context['formation.debut'],
+                             context['formation.fin'])
+        context['formation.semaines'] = semaines
+        context['formation.mois'] = mois
+        if not context.get('formation.duree_hebdo'):
+            context['formation.duree_hebdo'] = round(
+                context['formation.heures'] / semaines)
+
+    # Weird hack: Intercarif adds the `16` code in some situations and we need
+    # to remove it otherwise the formation is unavailable (`16` is a code
+    # financeur collectif).
+    if context.get('formation.codes_financeur', set()) & {0, 5, 10}:
+        context['formation.codes_financeur'].discard(16)
+
+    context['formation.intitule_norme'] = fold_name(
+        context.get('formation.intitule', ''))
+
+    if context.get('formation.heures_centre') is None:
+        total = context.get('formation.heures')
+        entreprise = context.get('formation.heures_entreprise')
+        if total and entreprise:
+            context['formation.heures_centre'] = total - entreprise
+
+    old_new_region = {'26': '27', '43': '27', '23': '28', '25': '28',
+                      '31': '32', '22': '32', '41': '44', '42': '44',
+                      '21': '44', '72': '75', '54': '75', '74': '75',
+                      '73': '76', '91': '76', '82': '84', '83': '84'}
+
+    if context.get('formation.region') in old_new_region:
+        context["formation.region"] = old_new_region[context["formation.region"]]
+
+    context["formation.regions_coparef"] = set(
+            old_new_region.get(r, r)
+            for r in context.get("formation.regions_coparef", []))
 
 
 async def get_formation_xml(formation_id):
@@ -79,34 +123,6 @@ async def populate_formation_from_bytes(context, content):
             context['formation.codes_naf'] = await retrieve_codes_naf(ids)
 
 
-def extrapolate_formation_context(context):
-    # Compute durations.
-    if 'formation.debut' in context and 'formation.fin' in context:
-        mois = diff_month(context['formation.debut'], context['formation.fin'])
-        semaines = diff_week(context['formation.debut'],
-                             context['formation.fin'])
-        context['formation.semaines'] = semaines
-        context['formation.mois'] = mois
-        if not context.get('formation.duree_hebdo'):
-            context['formation.duree_hebdo'] = round(
-                context['formation.heures'] / semaines)
-
-    # Weird hack: Intercarif adds the `16` code in some situations and we need
-    # to remove it otherwise the formation is unavailable (`16` is a code
-    # financeur collectif).
-    if context['formation.codes_financeur'] & {0, 5, 10}:
-        context['formation.codes_financeur'].discard(16)
-
-    context['formation.intitule_norme'] = fold_name(
-        context.get('formation.intitule', ''))
-
-    if context.get('formation.heures_centre') is None:
-        total = context.get('formation.heures')
-        entreprise = context.get('formation.heures_entreprise')
-        if total and entreprise:
-            context['formation.heures_centre'] = total - entreprise
-
-
 def preprocess(context):
     for rule in RULES['normalisation.rules']:
         Rule.process(rule, context)
@@ -117,11 +133,7 @@ def load_organisme_contact_details(context, financement):
                       context.get('financement.organisme.nom'))
     if nom not in ORGANISMES:  # A DE financement?
         return
-    financement['organisme'] = ORGANISMES[nom]
-    # Q&D way to display the organisme details on LBF.
-    # TODO clean me.
-    financement['demarches'] = financement['demarches'].format(
-        **financement['organisme'])
+    financement.organisme = Organisme(ORGANISMES[nom])
 
 
 def compute_modalites(context, financement):
@@ -135,7 +147,7 @@ def compute_modalites(context, financement):
     plafond_prix_horaire = context.get('financement.plafond_prix_horaire', 0)
     indemnite_conges_payes = context.get('financement.indemnite_conges_payes',
                                          0)
-    financement['reste_a_charge'] = reste_a_charge
+    financement.reste_a_charge = reste_a_charge
     prise_en_charge = context.get('financement.prise_en_charge', None)
     if not prise_en_charge:
         if prix_horaire > 0:  # We can deal with a real prise_en_charge.
@@ -145,23 +157,23 @@ def compute_modalites(context, financement):
             if plafond_financier and plafond_financier < prise_en_charge:
                 prise_en_charge = plafond_financier
             prise_en_charge = prise_en_charge - reste_a_charge
-            financement['prix_horaire'] = prix_horaire
-    financement['prise_en_charge'] = prise_en_charge
+            financement.prix_horaire = prix_horaire
+    financement.prise_en_charge = prise_en_charge
     # If we have heures AND plafond_prix_horaire we have the real plafond.
     plafond_effectif = heures * plafond_prix_horaire
     if not plafond_financier or (plafond_effectif
                                  and plafond_effectif < plafond_financier):
         plafond_financier = heures * plafond_prix_horaire
-    financement['plafond_prix_horaire'] = plafond_prix_horaire
-    financement['plafond_prise_en_charge'] = plafond_financier - reste_a_charge
+    financement.plafond_prix_horaire = plafond_prix_horaire
+    financement.plafond_prise_en_charge = plafond_financier - reste_a_charge
     # FIXME: should we define default remuneration in common rules instead?
     remuneration = context.get('financement.remuneration', 0)
     plafond_remuneration = context.get('financement.plafond_remuneration', 0)
     if plafond_remuneration and plafond_remuneration < remuneration:
         remuneration = plafond_remuneration
-    financement['remuneration'] = remuneration
-    financement['indemnite_conges_payes'] = indemnite_conges_payes
-    financement['heures'] = heures
+    financement.remuneration = remuneration
+    financement.indemnite_conges_payes = indemnite_conges_payes
+    financement.heures = heures
     keys = ['remuneration_texte', 'prise_en_charge_texte', 'demarches', 'rff',
             'description', 'remuneration_annee_2', 'remuneration_annee_3',
             'intitule', 'en_savoir_plus']
@@ -170,17 +182,17 @@ def compute_modalites(context, financement):
         if name in context:
             financement[key] = context[name]
     if financement.get('demarches'):
-        financement['demarches'] = financement['demarches'].replace('⏎', '\n')
+        financement.demarches = financement.demarches.replace('⏎', '\n')
     if financement.get('rff'):
-        financement['fin_remuneration'] = context.get(
+        financement.fin_remuneration = context.get(
             'beneficiaire.fin_allocation')
-        financement['debut_rff'] = (financement['fin_remuneration']
-                                    + timedelta(days=1))
-        financement['fin_rff'] = context.get('formation.fin')
+        financement.debut_rff = (financement.fin_remuneration
+                                 + timedelta(days=1))
+        financement.fin_rff = context.get('formation.fin')
 
 
 def get_root_rule(context, financement):
-    name = financement['racine']
+    name = financement.racine
     if name.endswith('.rules'):
         return name
     name = LABELS.get(name, name)
@@ -197,20 +209,21 @@ def get_root_rule(context, financement):
 
 def check_financement(context, financement):
     statuses = []
-    financement['explain'] = []
-    context['financement.intitule'] = financement['intitule']
-    context['financement.tags'] = financement['tags']
+    financement.explain = []
+    context['financement.intitule'] = financement.intitule
+    context['financement.tags'] = financement.tags
     context['financement.eligible'] = False
     rule_name = get_root_rule(context, financement)
     if not rule_name:
         return
     for rule in RULES[rule_name]:
         statuses.extend(Rule.process(rule, context))
-    financement['explain'] = statuses
+    financement.explain = statuses
     if context['financement.eligible']:
         compute_modalites(context, financement)
         load_organisme_contact_details(context, financement)
-    financement['eligible'] = context['financement.eligible']
+        financement.format()
+    financement.eligible = context['financement.eligible']
     for key in list(financement.keys()):
         if key == 'organisme':
             continue  # reference

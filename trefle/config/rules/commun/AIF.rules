@@ -1,7 +1,8 @@
 Si c'est un demandeur d'emploi
 Et c'est une formation ouverte aux bénéficiaires individuels
 Et ce n'est pas une préparation opérationnelle à l'emploi collective
-Et la liste des codes FORMACODE de la formation ne contient aucun code parmi [15064,13250,44091]
+Et ce n'est pas une formation VAE
+Et la liste des codes FORMACODE de la formation ne contient aucun code parmi [13250]
 Et ce n'est pas un stage de préparation à l'installation
 Et ce n'est pas un contrat d'apprentissage
 Et ce n'est pas un contrat de professionnalisation

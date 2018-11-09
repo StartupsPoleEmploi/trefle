@@ -78,7 +78,7 @@ Action de formation collective financée par l'État:
   tags: [DE, État, collectif, AFC]
   racine: région du bénéficiaire
 Chèque formation:
-  tags: [DE, région, individuel]
+  tags: [DE, région, individuel, chèque]
   racine: Bretagne.rules
   ressources:
   - https://www.seformerenbretagne.fr
@@ -189,7 +189,7 @@ Qualif individuel:
 VAE Normandie:
   tags: [DE, VAE]
   racine: Normandie.rules
-Programme régional de formation Nouvelle Aquitaine:
+Programme régional de formation Nouvelle-Aquitaine:
   intitule: Programme régional de formation
   sigle: PRF
   tags: [DE, collectif, PRF]
@@ -212,7 +212,7 @@ Parcours diplômants et actions préparatoires:
   tags: [DE, collectif, région, Occitanie]
   racine: Occitanie.rules
 Dispositif « chèque »:
-  tags: [DE, collectif, région, Occitanie]
+  tags: [DE, collectif, région, Occitanie, chèque]
   racine: Occitanie.rules
 Cap métiers:
   tags: [DE, collectif, région, Occitanie]
@@ -237,7 +237,8 @@ Formations des établissements d'enseignement supérieur:
 École de l'apprentissage:
   tags: [DE, région, Occitanie]
   racine: Occitanie.rules
-Formation sanitaire et social:
+Formation sanitaire et social Occitanie:
+  intitule: Formation sanitaire et social
   tags: [DE, collectif, région, Occitanie]
   racine: Occitanie.rules
 Le chèque qualification:
@@ -256,3 +257,78 @@ AIF département:
 Actions de formation collectives département:
   tags: [DE, collectif, région, Guadeloupe]
   racine: Guadeloupe.rules
+Aide individuelle régionale à la formation:
+  tags: [AIF, DE, individuel]
+  racine: Grand-Est.rules
+Formation sanitaire et social Grand-Est:
+  intitule: Formation sanitaire et social
+  tags: [DE, région, individuel, branche]
+  racine: Grand-Est.rules
+  ressources:
+  - https://www.grandest.fr/formations-sanitaires-sociales/bourses-secteur-sanitaire-social
+Programme régional de formation dans la région Grand-Est:
+  intitule: Programme régional de formation
+  sigle: PRF
+  tags: [DE, collectif, PRF]
+  racine: Grand-Est.rules
+Action collective financée par la Région Bourgogne:
+  intitule: Action collective financée par la Région
+  tags: [DE, collectif, région, Bourgogne]
+  racine: Bourgogne-Franche-Comté.rules
+Formation sanitaire et social Bourgogne:
+  intitule: Formation sanitaire et social
+  tags: [DE]
+  racine: Bourgogne-Franche-Comté.rules
+Dispositif accès à la qualification:
+  sigle: DAQ
+  tags: [DE, DAQ, région, Bourgogne]
+  racine: Bourgogne-Franche-Comté.rules
+Le chèque pass formation:
+  tags: [DE, individuel, région, chèque]
+  racine: Hauts-de-France.rules
+  ressources:
+  - https://www.c2rp.fr/dispositifs/cheque-pass-formation
+Sanitaire et social:
+  tags: [DE, collectif, région]
+  racine: Hauts-de-France.rules
+  ressources:
+  - https://www.hautsdefrance.fr/bourses-formations-sanitaires-sociales
+Programme régional de formation Hauts-de-France:
+  intitule: Programme régional de formation
+  tags: [DE, collectif, région]
+  racine: Hauts-de-France.rules
+Pass emploi:
+  tags: [DE, individuel, région]
+  racine: Hauts-de-France.rules
+  ressources:
+    - https://www.c2rp.fr/dispositifs/pass-emploi
+    - https://www.hautsdefrance.fr/mot/formation/
+Aide individuelle à la formation avec promesse d'embauche:
+  tags: [DE, région, individuel]
+  racine: Centre-Val de Loire.rules
+Chèque formation Conseil régional Centre-Val de Loire:
+  tags: [DE, région, collectif, chèque]
+  racine: Centre-Val de Loire.rules
+Programme Régional de Formation:
+  tags: [DE, région, collectif]
+  racine: Centre-Val de Loire.rules
+Programme Régional de Formation Visa:
+  tags: [DE, région, collectif]
+  racine: Centre-Val de Loire.rules
+Formations sanitaire et sociale subventionnées par le Conseil régional Centre-Val de Loire:
+  tags: [DE, région, collectif]
+  ressource: http://www.etoile.regioncentre.fr/GIP/accueiletoile/seformer/formation/articles-formation/Financer-une-formation-sanitaire-et-sociale#A125823
+  racine: Centre-Val de Loire.rules
+Action collective financée par la région:
+  tags: [DE, collectif, région]
+  racine: Pays de la Loire.rules
+  ressources:
+    - http://www.paysdelaloire.fr/politiques-regionales/formation-professionnelle
+Action collective sanitaire et social financée par la région et Pôle Emploi:
+  tags: [DE, collectif, région]
+  racine: Pays de la Loire.rules
+  ressources:
+    - http://www.paysdelaloire.fr/politiques-regionales/formation-professionnelle
+Chèque formation réussite:
+  tags: [DE, individuel, région, chèque]
+  racine: La Réunion.rules

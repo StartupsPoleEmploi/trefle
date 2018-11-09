@@ -34,14 +34,19 @@ def colorize(s, status, prefix='✓✗'):
     return func(f'{char}{s}')
 
 
-def render_status(status, level=0):
-    terms = status.terms or [status]
-    line = f' {status.condition.connective} '.join(
-        colorize(t.condition, t.status, prefix=None) for t in terms)
+def render_status(status):
+    if status.terms:
+        return '[' + f' {status.condition.connective} '.join(
+            render_status(t) for t in status.terms) + ']'
+    return colorize(status.condition, status.status, prefix=None)
+
+
+def render_statuses(status, level=0):
+    line = render_status(status)
     prefix = colorize('  '*level, status.status)
     print(f'    {prefix} {line}')
     for child in status.children:
-        render_status(child, level=level+1)
+        render_statuses(child, level=level+1)
 
 
 @cli(name='simulate')
@@ -86,13 +91,13 @@ async def cli_simulate(*args, context: json.loads={}, url=None, trace=False,
                 print(tpl.format(key, str(value)))
             print('-' * 105)
     print('*' * 105)
-    eligibles = [f for f in financements if f['eligible']]
+    eligibles = [f for f in financements if f.eligible]
     if eligibles:
         print('Financements éligibles\n')
     else:
         print('Aucun financement éligible')
     for financement in eligibles:
-        print(financement['intitule'])
+        print(financement.intitule)
         for key, value in financement.items():
             if not value or key in ('intitule', 'organisme', 'explain', 'tags',
                                     'eligible', 'ressources'):
@@ -101,20 +106,20 @@ async def cli_simulate(*args, context: json.loads={}, url=None, trace=False,
             if isinstance(value, str) and len(value) > 100:
                 value = f'{value[:100]}…'
             print(f'  {schema["label"]}: {value}')
-        if financement.get('organisme'):
-            print('  organisme:', financement['organisme']['nom'])
+        if financement.organisme:
+            print('  organisme:', financement.organisme.nom)
         if trace:
-            for status in financement['explain']:
-                render_status(status)
+            for status in financement.explain:
+                render_statuses(status)
         print('-'*80)
-    non_eligibles = [f for f in financements if not f['eligible']]
+    non_eligibles = [f for f in financements if not f.eligible]
     if non_eligibles and (show_non_eligible or trace):
         print('\nFinancements non éligibles\n')
         for financement in non_eligibles:
-            print('-', financement['intitule'])
+            print('-', financement.intitule)
             if trace:
-                for status in financement['explain']:
-                    render_status(status)
+                for status in financement.explain:
+                    render_statuses(status)
     if output_scenario:
         if url:
             print(f'# {url}')
@@ -124,8 +129,8 @@ async def cli_simulate(*args, context: json.loads={}, url=None, trace=False,
 
 def render_trace_condition(condition):
     if condition.terms:
-        for sub in condition.terms:
-            render_trace_condition(sub)
+        for term in condition.terms:
+            render_trace_condition(term)
     else:
         calls = []
         indent = condition.level * 4

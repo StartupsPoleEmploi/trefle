@@ -90,11 +90,6 @@ constante:
     format: int32
     value: 5994
     label: quatre fois le SMIC
-  domaine_formacode_langue:
-    description: le domaine FORMACODE des formations en langue
-    type: integer
-    value: 152
-    label: domaine FORMACODE langues
   codes_permis_b:
     type: array
     items:
@@ -460,6 +455,23 @@ beneficiaire:
       '84': Auvergne-Rhône-Alpes
       '93': Provence-Alpes-Côte d'Azur
       '94': Corse
+      # TODO remove old regions when we switch to API catalog
+      '26': Bourgogne
+      '43': Franche-Comté
+      '23': Haute-Normandie
+      '25': Basse-Normandie
+      '31': Nord-Pas-de-Calais
+      '22': Picardie
+      '41': Lorraine
+      '42': Alsace
+      '21': Champagne-Ardenne
+      '72': Aquitaine
+      '54': Poitou-Charentes
+      '74': Limousin
+      '73': Midi-Pyrénées
+      '91': Languedoc-Roussillon
+      '82': Rhône-Alpes
+      '83': Auvergne
   niveau_scolaire:
     alias: beneficiaire.niveauscolaire
     type: integer
@@ -513,6 +525,11 @@ beneficiaire:
       pattern: ^(2[AB]|[0-9]{2})[0-9]{3}$
       label: code INSEE de la commune de l'établissement du bénéficiaire
       gender: masculine
+    departement:
+      description: département de l'entreprise
+      type: string
+      label: département de l'établissement du bénéficiaire
+      enum: *departements
     region:
       description: région de l'entreprise
       type: string
@@ -626,6 +643,7 @@ formation:
     format: set
     items:
       type: integer
+      format: formacode
     source: catalogue
     xpath: //domaine-formation/code-FORMACODE/child::text()
     label: liste des codes FORMACODE de la formation
@@ -759,6 +777,18 @@ formation:
     source: catalogue
     xpath: boolean(//modalites-enseignement[text()="2"])
     label: formation ouverte à distance
+  langues:
+    type: boolean
+    source: catalogue
+    label: formation langues
+  langues_etrangeres:
+    type: boolean
+    source: catalogue
+    label: formation langues étrangères
+  fle:
+    type: boolean
+    source: catalogue
+    label: formation FLE
   toeic:
     type: boolean
     source: catalogue
@@ -823,6 +853,11 @@ formation:
     source: catalogue
     xpath: boolean(number(//certifiante/text()))
     label: formation certifiante
+  professionnalisante:
+    type: boolean
+    source: catalogue
+    xpath: not(boolean(//certification))
+    label: formation professionnalisante
   enseignement_superieur:
     type: boolean
     source: catalogue

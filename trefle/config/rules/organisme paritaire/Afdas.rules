@@ -44,7 +44,7 @@ Si le financement est de type «plan de formation»
             Et le plafond financier applicable vaut 2500
 
         # langues
-        Si la liste des domaines FORMACODE de la formation contient 152
+        Si c'est une formation langues
         Ou la liste des codes FORMACODE de la formation contient au moins un code parmi [70054,31056]
         Ou c'est une formation ouverte à distance
         Ou le niveau de sortie de la formation fait partie de [«I»,«II»]
@@ -65,7 +65,7 @@ Si le financement est de type «période de professionnalisation»
             Et le plafond financier applicable vaut 2500
 
         # langues
-        Si le domaine FORMACODE langues fait partie de la liste des domaines FORMACODE de la formation
+        Si c'est une formation langues
         # bureautique
         Ou la liste des codes FORMACODE de la formation contient au moins un code parmi [70054,31056]
         Ou c'est une formation ouverte à distance

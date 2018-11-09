@@ -31,7 +31,6 @@
 </main>
 
 <script>
-  riot.mount('navbar')
   route('/schema/(.+)', (id) => riot.mount('schema', {id: id}))
   route('/schema', () => riot.mount('schema'))
   route('/rules/(.+)', (id) => riot.mount('rules', {id: id}))
@@ -43,6 +42,5 @@
   route('/tools', () => riot.mount('tools'))
   route('/financements', () => riot.mount('financements'))
   route('/glossary', () => riot.mount('glossary'))
-
-  init();
+  riot.mount('navbar')
 </script>

@@ -2,7 +2,7 @@ Si le financement est de type «CPF»
     Alors appliquer les règles «CPF»
     Et le prix horaire plafond applicable vaut 80
     Et le plafond horaire applicable est égal au solde CPF du bénéficiaire
-    Si le domaine FORMACODE langues fait partie de la liste des domaines FORMACODE de la formation
+    Si c'est une formation langues
         Alors le prix horaire plafond applicable vaut 25
     Si c'est un bilan de compétences
         Alors le plafond financier applicable vaut 1750
@@ -14,5 +14,5 @@ Si le financement est de type «période de professionnalisation»
     Alors appliquer les règles «période de professionnalisation»
     Et le prix horaire plafond applicable vaut 30
 
-    Si le domaine FORMACODE langues fait partie de la liste des domaines FORMACODE de la formation
+    Si c'est une formation langues
         Alors le prix horaire plafond applicable vaut 20

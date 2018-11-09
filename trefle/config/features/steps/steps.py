@@ -6,6 +6,8 @@ from trefle.config import FINANCEMENTS
 from trefle.helpers import revert_dict
 from trefle.rules import LABELS, SCHEMA, Pointer
 
+INTITULES_FINANCEMENTS = set(f["intitule"] for f in FINANCEMENTS)
+
 use_step_matcher('re')
 
 
@@ -55,7 +57,7 @@ def then_check_count(context, expected):
 
 @then(r"le financement «(?P<intitule>.+)» n'est pas proposé")
 def then_check_missing(context, intitule):
-    if intitule not in [f['intitule'] for f in FINANCEMENTS]:
+    if intitule not in INTITULES_FINANCEMENTS:
         raise ValueError(f'{intitule} is not a valid financement')
     for financement in context.passed:
         if financement['intitule'] == intitule:
@@ -68,6 +70,8 @@ def when_select_one(context, intitule):
     for result in context.passed:
         if result['intitule'] == intitule:
             context.result = result
+            # some rules change the intitule of financement so let's keep track of it for futur check
+            INTITULES_FINANCEMENTS.add(result["intitule"])
             break
     else:
         raise AssertionError(f'No result found with name {intitule}')

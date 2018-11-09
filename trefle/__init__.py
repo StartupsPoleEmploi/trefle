@@ -14,9 +14,8 @@ async def simulate(data, financements):
     # Prepare context
     flatten(data)
     context = Context(data.copy())
-    routine.extrapolate_context(context)
     await routine.populate_formation(context)
-    routine.extrapolate_formation_context(context)
+    routine.extrapolate_context(context)
     routine.preprocess(context)
 
     # Compute organisme, prise en charge, rémunération per financement
@@ -34,7 +33,7 @@ async def simulate(data, financements):
 
 
 def get_financements(tags=None):
-    financements = [f.copy() for f in config.FINANCEMENTS]
+    financements = [config.Financement(f) for f in config.FINANCEMENTS]
     for tag in (tags or []):
         financements = [f for f in financements if tag in f['tags']]
     return financements

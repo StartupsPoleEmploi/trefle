@@ -10,9 +10,6 @@ Si le financement est de type «FAJ»
 Si le financement est de type «POEC»
     Alors appliquer les règles «POEC»
 
-Si le financement est de type «POEI»
-    Alors appliquer les règles «POEI»
-
 Si l'intitulé du financement est «Financement individuel Agefiph»
     Alors appliquer les règles «Agefiph»
 
@@ -26,10 +23,78 @@ Si l'intitulé du financement est «Aide individuelle à la formation artisan»
     Alors appliquer les règles «AIF artisan»
 
 Si l'intitulé du financement est «Aide individuelle à la formation»
-    Alors le texte de la prise en charge vaut «Formation partiellement ou totalement prise en charge à hauteur de 2500 €»
 
     Si la liste des codes FORMACODE de la formation ne contient aucun code parmi [43441]
+    Et la région du bénéficiaire vaut «Hauts-de-France»
     Et le code CERTIFINFO de la formation ne fait pas partie de [54913,54912]
     Et c'est une formation éligible COPAREF de la région du bénéficiaire, ou c'est une formation éligible COPANEF
         Alors appliquer les règles «AIF»
+        Et le texte de la prise en charge vaut «Formation partiellement ou totalement financée dans la limite de 2500 €.»
         Et le plafond financier applicable vaut 2500
+
+# NOTE : existance d'un même dispositif «chèque pass formation automatique» avec une condition dépendante d'un taux de retour à l'emploi
+Si l'intitulé du financement est «Le chèque pass formation»
+
+    Si c'est un demandeur d'emploi
+    Et la région du bénéficiaire vaut «Hauts-de-France»
+    Et c'est une formation ouverte aux bénéficiaires individuels
+    Et le code CERTIFINFO de la formation ne fait pas partie de [54913,54912]
+    Et la liste des codes FORMACODE de la formation ne contient aucun code parmi [31811,43441,13030,15073,43409,44002,42837]
+    Et ce n'est pas un permis B
+    Et ce n'est pas un stage de préparation à l'installation
+    Et la durée en mois de la formation n'est pas supérieure à 12
+    Et l'allocation du bénéficiaire est «allocation de sécurisation professionnelle»
+        Alors le financement est éligible
+        Et le plafond financier applicable vaut 6000
+        Et le texte de la prise en charge vaut «Formation partiellement ou totalement financée dans la limite de 6000 €.»
+        Et le prix horaire plafond applicable vaut 15
+        Et appliquer les règles «AREF-RFPE-RPS»
+        Et le texte de description vaut «Le chèque pass formation est un dispositif mis en place par le conseil régional Hauts-de-France pour répondre aux besoins individuels ne trouvant pas leur réponse dans les programmes collectifs.⏎Il s’agit de permettre au bénéficiaire de l’aide d’accéder à une formation qualifiante ou menant à une certification (CAP, bac, titre professionnel…) en lien direct avec son projet professionnel.⏎La durée des actions de formation ne peut dépasser douze mois.⏎Cette aide est versée par la région Hauts-de-France.»
+        Et le texte des démarches vaut «Contactez votre conseiller référent emploi (Pôle emploi, mission locale ou Cap emploi) pour valider avec lui votre projet de formation.⏎Vous devez obligatoirement mobiliser votre compte personnel de formation lors de la demande.⏎Les demandes d'aide doivent être instruites au moins trois semaines avant le démarrage de l'action de formation.»
+
+
+Si l'intitulé du financement est «Sanitaire et social»
+
+    Si c'est un demandeur d'emploi
+    Et la région du bénéficiaire vaut «Hauts-de-France»
+    Et la région de la formation est «Hauts-de-France»
+    Et les codes financeur de la formation contiennent «Conseil régional»
+    Et le code CERTIFINFO de la formation fait partie de [54913,54912], ou la liste des codes FORMACODE de la formation contient 43441
+        Alors le financement est éligible
+        Et appliquer les règles «AREF-RFPE-RPS»
+        Et le texte de la prise en charge vaut «Formation totalement financée.»
+        Et le texte de description vaut «Certaines formations relevant du secteur sanitaire et social font l'objet d'une subvention et peuvent ainsi, sous certaines conditions, être financées par la région.»
+        Et le texte des démarches vaut «Contactez votre conseiller référent emploi (Pôle emploi, mission locale ou Cap emploi).»
+
+
+Si l'intitulé du financement est «Programme régional de formation»
+
+    Si c'est un demandeur d'emploi
+    Et la région du bénéficiaire vaut «Hauts-de-France»
+    Et la région de la formation est «Hauts-de-France»
+    Et les codes financeur de la formation contiennent «Conseil régional»
+    Et le code CERTIFINFO de la formation ne fait pas partie de [54913,54912]
+    Et la liste des codes FORMACODE de la formation ne contient pas 43441
+        Alors le financement est éligible
+        Et appliquer les règles «AREF-RFPE-RPS»
+        Et le texte de la prise en charge vaut «Formation totalement financée.»
+        Et le texte de description vaut «Le programme régional de formation propose des actions de formation financées par le Conseil régional pour des demandeurs d'emploi ayant besoin d'une certification ou qualification.»
+        Et le texte des démarches vaut «Contactez votre conseiller référent emploi (Pôle emploi, mission locale ou Cap emploi).»
+
+
+Si l'intitulé du financement est «Pass emploi»
+
+    Si c'est un demandeur d'emploi
+    Et la région du bénéficiaire vaut «Hauts-de-France»
+    Et la région de la formation est «Hauts-de-France»
+    Et c'est une formation ouverte aux bénéficiaires individuels
+    Et la durée en heures de la formation est inférieure ou égale à 400
+    Et le code CERTIFINFO de la formation ne fait pas partie de [54912,54913]
+    Et la liste des codes FORMACODE de la formation ne contient pas 43441
+        Alors le financement est éligible
+        Et le prix horaire plafond applicable vaut 15
+        Et le texte de la prise en charge vaut «Formation partiellement ou totalement financée dans la limite de 15 € de l'heure.»
+        Et le texte des démarches vaut «Contactez votre conseiller référent emploi (Pôle emploi, mission locale ou Cap emploi) pour valider avec lui votre projet de formation et identifier une entreprise ayant des besoins de recrutements avec une adaptation au poste de travail. L'entreprise s’engage à recruter les candidats formés selon l’un des contrats suivants :⏎CDI, y compris CDI intérimaire,⏎CDD de six mois minimum,⏎contrat de professionnalisation de six mois minimum,⏎contrat d’apprentissage,⏎contrat en intérim de 6 mois sur une période de 12 mois.⏎L’entreprise s’engage par écrit à recruter les candidats formés.»
+        Et le texte de description vaut «Le Pass emploi est une aide mise en place par la région Hauts-de-France. Elle a pour objectif de permettre à des demandeurs d'emploi d'acquérir les connaissances et compétences nécessaires aux postes de travail proposés par une entreprise.»
+        Et appliquer les règles «AREF-RFPE-RPS»
+

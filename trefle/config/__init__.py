@@ -115,6 +115,28 @@ def load_features():
         }
 
 
+class SmartDict(dict):
+
+    def __getattr__(self, key):
+        return self.get(key)
+
+    def __setattr__(self, key, value):
+        self[key] = value
+
+
+class Financement(SmartDict):
+
+    def format(self):
+        """Allow to use financement properties as vars in text values."""
+        for key in ['demarches', 'description', 'en_savoir_plus',
+                    'remuneration_texte', 'prise_en_charge_texte']:
+            setattr(self, key, (getattr(self, key) or '').format(**self))
+
+
+class Organisme(SmartDict):
+    ...
+
+
 def init():
     print('Initializing config')
     with (ROOT / 'schema.yml').open() as f:
