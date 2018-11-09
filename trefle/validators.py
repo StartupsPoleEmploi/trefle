@@ -74,6 +74,14 @@ def format_naf(value):
     return value.replace('NAF', '').replace('APE', '').strip()
 
 
+@formatter('formacode')
+def format_formacode(value):
+    value = format_integer(value)
+    if value < 10000 or value > 99999:
+        raise ValueError(f"Valeur de FORMACODE invalide : `{value}`")
+    return value
+
+
 @formatter('domaine_formacode')
 def format_domaine_formacode(value):
     return int(str(value)[:3])

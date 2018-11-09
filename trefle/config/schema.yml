@@ -643,6 +643,7 @@ formation:
     format: set
     items:
       type: integer
+      format: formacode
     source: catalogue
     xpath: //domaine-formation/code-FORMACODE/child::text()
     label: liste des codes FORMACODE de la formation
