@@ -1,9 +1,6 @@
 Si l'intitulé du financement est «Accès des demandeurs d’emploi aux métiers agricoles»
     Alors appliquer les règles «ADEMA»
 
-Si le financement est de type «AFC»
-    Alors appliquer les règles «action collective»
-
 Si le financement est de type «FAJ»
     Alors appliquer les règles «FAJ»
 
@@ -12,6 +9,12 @@ Si le financement est de type «POEC»
 
 Si le financement est de type «POEI»
     Alors appliquer les règles «POEI»
+
+Si le financement est de type «AFC»
+# Une régle département est définie plus bas
+Et le financement n'est pas de type «département»
+    Alors appliquer les règles «action collective»
+
 
 Si l'intitulé du financement est «Financement individuel Agefiph»
     Alors appliquer les règles «Agefiph»
@@ -26,8 +29,159 @@ Si l'intitulé du financement est «Aide individuelle à la formation artisan»
     Alors appliquer les règles «AIF artisan»
 
 Si l'intitulé du financement est «Aide individuelle à la formation»
-    Alors le plafond financier applicable vaut 1500
+    Si c'est un demandeur d'emploi
+    Et la région du bénéficiaire est «Guadeloupe»
+    Et c'est une formation ouverte aux bénéficiaires individuels
+    Et ce n'est pas une préparation opérationnelle à l'emploi collective
+    Et le code CERTIFINFO de la formation ne fait pas partie de [84385]
+    Et la liste des codes FORMACODE de la formation ne contient aucun code parmi [15081,13250]
+    Et ce n'est pas un stage de préparation à l'installation
+    Et ce n'est pas un contrat d'apprentissage
+    Et ce n'est pas un contrat de professionnalisation
+    Et la durée en heures de la formation n'est pas supérieure à 300
+        Alors le financement est éligible
+        Et le plafond financier applicable vaut 1500
+        Et le texte de la prise en charge vaut «Formation totalement ou partiellement financée.»
+        Et le texte de description vaut «L’Aide individuelle à la formation est réservée à des projets de formation dont la pertinence est validée par votre conseiller référent emploi, en fonction de votre projet professionnel et du marché du travail.⏎Les formations financées par Pôle emploi doivent permettre un retour rapide à l'emploi.»
+        Et le texte des démarches vaut «1. Contactez un conseiller Pôle emploi pour connaître les conditions de la mobilisation éventuelle d'une aide individuelle de Pôle emploi dans votre région.⏎2. Votre projet de formation et son financement doivent être présentés bien en amont du début de la formation (au plus tard 15 jours avant).⏎3. Ne démarrez pas votre formation tant que vous n'avez pas eu la confirmation de l'accord de la part de votre conseiller.»
+        Et le texte pour en savoir plus vaut «L'AIF permet une prise en charge des frais pédagogiques mais ne couvre pas les frais annexes (droits d'inscriptions, acquisition de matériels, frais de passage d'examen …).⏎L'AIF peut être attribuée quelle que soit la modalité pédagogique de la formation, y compris pour une formation à distance (FOAD) ou pour une formation en cours du soir. Sous certaines conditions, ces formations peuvent ouvrir droit à des aides à la mobilité (déplacement et/ou hébergement).»
+        Et appliquer les règles «AREF-RFPE-RPS»
 
-    Si la liste des codes FORMACODE de la formation ne contient aucun code parmi [44591,15081]
-        Alors appliquer les règles «AIF»
-        Et le texte de la prise en charge vaut «Formation financée jusqu'à 1500 € maximum»
+
+Si l'intitulé du financement est «Le chèque qualification»
+
+    Si c'est un demandeur d'emploi
+    Et la région du bénéficiaire est «Guadeloupe»
+    Et la région de la formation est «Guadeloupe»
+    Et c'est une formation ouverte aux bénéficiaires individuels
+    Et la durée en heures de la formation est supérieure ou égale à 100
+    Et la durée en heures de la formation est inférieure ou égale à 1200
+    Et ce n'est pas une formation VAE
+    Et ce n'est pas un permis B
+    Et ce n'est pas un stage de préparation à l'installation
+    Et ce n'est pas un contrat de professionnalisation
+    Et ce n'est pas un contrat d'apprentissage
+    Et la liste des codes FORMACODE de la formation ne contient aucun code parmi [15081,13250,31802]
+    # TODO identifier le besoin (formacode ou certifinfo) pour ne pas faire de tests sur l'intitulé de la formation
+    Et l'intitulé normé de la formation ne contient pas «AFC»
+    Et l'intitulé normé de la formation ne contient pas «BTS»
+    Et l'intitulé normé de la formation ne contient pas «LICENCE»
+    Et l'intitulé normé de la formation ne contient pas «MASTER»
+    Et l'intitulé normé de la formation ne contient pas «MASTERE»
+    Et l'intitulé normé de la formation ne contient pas «INGENIEUR»
+    Et l'intitulé normé de la formation ne contient pas «CAPACITE»
+    Et l'intitulé normé de la formation ne contient pas «PERMIS»
+        Alors le financement est éligible
+        Et le plafond financier applicable vaut 4000
+        Et le texte de description vaut «Le Chèque qualification est un dispositif mis en place par le Conseil régional de la Guadeloupe pour répondre aux besoins individuels ne trouvant pas leur réponse dans les programmes collectifs.⏎Il s’agit de permettre au bénéficiaire de l’aide d’accéder totalement ou partiellement à une formation qualifiante (ex: CCP, CQP, TP,...) en lien direct avec son projet professionnel.»
+        Et le texte des démarches vaut «Contactez votre conseiller référent Pôle emploi pour valider avec lui votre projet de formation.⏎A noter: les demandes d'aide doivent être instruites 45 jours avant le démarrage de l'action de formation.»
+        Et le texte de la prise en charge vaut «Formation totalement ou partiellement financée.»
+        Et le plafond financier applicable vaut 4000
+
+        Si c'est un bénéficiaire en situation de création d'entreprise nécessitant cette formation
+            Alors le texte des démarches vaut «Si vous êtes bien dans une démarche de création d'entreprise, contactez votre conseiller référent Pôle emploi pour valider avec lui votre projet de formation.⏎Important: les demandes d'aide doivent être instruites 45 jours avant le démarrage de l'action de formation.»
+            Et le texte de description vaut «Le Chèque qualification "Création ou reprise d'entreprise" est mis en œuvre à titre expérimental. C'est un dispositif du Conseil régional de la Guadeloupe pour répondre aux besoins individuels ne trouvant pas leur réponse dans les programmes collectifs.⏎Il s’agit de permettre au bénéficiaire de l’aide d’accéder totalement ou partiellement à une formation qualifiante (ex: CCP, CQP, TP,...) en lien direct avec son projet de création ou de reprise d'entreprise.»
+            Et le texte de la prise en charge vaut «Formation totalement financée.»
+            Et il n'y a pas de plafond financier applicable
+
+        Si le niveau scolaire du bénéficiaire vaut «I»
+            Alors le texte de description vaut «Le Chèque qualification "cadres et jeunes diplômés" est mis en œuvre à titre expérimental. C'est un dispositif du Conseil régional pour répondre aux besoins individuels ne trouvant pas leur réponse dans les programmes collectifs.⏎Il s’agit de permettre au bénéficiaire de l’aide d’accéder totalement ou partiellement à une formation qualifiante (ex: CCP, CQP, TP,...) en lien direct avec son projet professionnel.»
+            Et le texte de la prise en charge vaut «Formation totalement financée.»
+            Et il n'y a pas de plafond financier applicable
+
+        Si l'allocation du bénéficiaire vaut «allocation d'aide au retour à l'emploi»
+            Alors appliquer les règles «AREF»
+
+        Si l'allocation du bénéficiaire n'est pas «allocation d'aide au retour à l'emploi»
+
+            Si la durée en heures de la formation est supérieure ou égale à 350
+                Alors appliquer les règles «RFPE-RPS»
+
+            Si la durée en heures de la formation est inférieure à 350
+                Alors le texte de la rémunération vaut «Vous pouvez demander un défraiement.»
+
+
+Si l'intitulé du financement est «Programme régional de formation»
+
+    Si c'est un demandeur d'emploi
+    Et la région de la formation est «Guadeloupe»
+    Et la région du bénéficiaire est «Guadeloupe»
+    Et les codes financeur de la formation contiennent «Conseil régional»
+        Alors le financement est éligible
+        Et le texte de description vaut «Le programme régional de formation propose des actions de formation financées par le Conseil régional pour des demandeurs d'emploi ayant besoin d'une certification ou qualification.»
+        Et le texte des démarches vaut «Contactez votre conseiller référent emploi (Pôle emploi, mission locale ou Cap emploi) pour valider avec lui votre projet de formation.»
+        Et le texte de la prise en charge vaut «Formation totalement financée.»
+
+        Si l'allocation du bénéficiaire vaut «allocation d'aide au retour à l'emploi»
+            Alors appliquer les règles «AREF»
+
+        Si l'allocation du bénéficiaire n'est pas «allocation d'aide au retour à l'emploi»
+
+            Si la durée en heures de la formation est supérieure ou égale à 350
+                Alors appliquer les règles «RFPE-RPS»
+
+            Si la durée en heures de la formation est inférieure à 350
+                Alors le texte de la rémunération vaut «Vous pouvez demander un défraiement.»
+
+
+Si l'intitulé du financement est «AIF région»
+
+    Si la région de la formation est «Guadeloupe»
+    Et la région du bénéficiaire est «Guadeloupe»
+    Et la durée en heures de la formation est supérieur ou égal à 100
+    Et c'est une formation ouverte aux bénéficiaires individuels
+    Et la liste des codes FORMACODE de la formation ne contient pas 13250
+    Et ce n'est pas un bilan de compétences
+    Et ce n'est pas un stage de préparation à l'installation
+    Et ce n'est pas un contrat d'apprentissage
+    Et ce n'est pas un contrat de professionnalisation
+    Et ce n'est pas un permis B
+    Et le niveau de sortie de la formation ne fait pas partie de [«III»,«II»,«I»]
+    Et l'intitulé normé de la formation ne contient pas «LICENCE»
+    Et l'intitulé normé de la formation ne contient pas «MASTER»
+    Et l'intitulé normé de la formation ne contient pas «MASTERE»
+    Et l'intitulé normé de la formation ne contient pas «DUT»
+    Et l'intitulé normé de la formation ne contient pas «BTS»
+    Et l'intitulé normé de la formation ne contient pas «PERMIS»
+        Alors le financement est éligible
+        Et le texte de description vaut «C'est une aide individuelle réservée aux formations qualifiantes attribuée par le Conseil régional de la Guadeloupe. L'aide est exclusivement réservée à des demandeurs d'emploi ou des salariés n'ayant bénéficié d'aucune autre aide de la région.⏎Cette aide peut venir en complément d'un montant accordé par un autre financeur tel que l'AIF (Pôle emploi), l'ADI pour les publics bénéficiaire du RSA, le FONGECIF ou un OPCA pour les salariés, le CPF pour un salarié ou un demandeur d'emploi ou en complément d'un apport personnel.»
+        Et le texte des démarches vaut «Contactez votre conseiller référent emploi (Pôle emploi, mission locale ou Cap emploi) pour valider avec lui votre projet de formation.⏎Les dossiers doivent être déposés au moins 3 mois avant le début de la formation.»
+        Et le texte de la prise en charge vaut «Formation prise en charge en complément d'un autre financement»
+        Et appliquer les règles «AREF»
+
+
+Si l'intitulé du financement est «AIF département»
+
+    Si c'est un demandeur d'emploi
+    Et l'allocation du bénéficiaire vaut «revenu de solidarité active»
+    Et la région de la formation est «Guadeloupe»
+    Et la région du bénéficiaire est «Guadeloupe»
+    Et la durée en heures de la formation est supérieure à 100
+    Et c'est une formation ouverte aux bénéficiaires individuels
+    Et ce n'est pas un stage de préparation à l'installation
+    Et ce n'est pas un contrat d'apprentissage
+    Et ce n'est pas un contrat de professionnalisation
+    Et la liste des codes FORMACODE de la formation ne contient pas 13250
+    Et ce n'est pas un bilan de compétences
+    Et ce n'est pas une formation VAE
+        Alors le financement est éligible
+        Et le texte de la prise en charge vaut «Prise en charge partielle des côuts pédagogiques.»
+        Et le texte de description vaut «Le Conseil Départemental de la Guadeloupe accorde des aides individuelles pour les formations des allocataires du RSA.⏎Cette aide vient généralement en complément d'un montant accordé par un autre financeur tel que le Conseil régional ou Pôle emploi.»
+        Et le texte des démarches vaut «Contactez votre référent de l'agence départementale de l'insertion pour valider avec lui votre projet de formation. Attribution de l'aide suite au passage du dossier devant une commission.»
+        Et le texte de la rémunération vaut «Maintien du RSA.»
+
+
+Si l'intitulé du financement est «Actions de formation collectives département»
+
+    Si c'est un demandeur d'emploi
+    Et l'allocation du bénéficiaire vaut «revenu de solidarité active»
+    Et la région de la formation est «Guadeloupe»
+    Et la région du bénéficiaire est «Guadeloupe»
+    Et les codes financeur de la formation contiennent «Conseil départemental»
+        Alors le financement est éligible
+        Et le texte de description vaut «Les actions de formation collectives du Conseil départemental sont proposées pour les bénéficiares du RSA.⏎Elles sont visibles sur le site internet du Conseil départemental de la Guadeloupe, dans le programme départemental d'insertion.»
+        Et le texte des démarches vaut «Contactez votre référent de l'agence départementale de l'insertion pour valider avec lui votre projet de formation. Attribution de l'aide suite au passage du dossier devant une commission.»
+        Et le texte de la prise en charge vaut «Formation totalement prise en charge.»
+        Et le texte de la rémunération vaut «Maintien du RSA.»
+
+
