@@ -19,7 +19,7 @@ Si le financement est de type «CPF»
             Alors le plafond financier applicable vaut 10000
 
     Si l'IDCC de l'établissement du bénéficiaire vaut «2120»
-        Si le domaine FORMACODE langues fait partie de la liste des domaines FORMACODE de la formation
+        Si c'est une formation langues
             Alors le prix horaire plafond applicable vaut 37
         Si c'est une formation éligible COPANEF
         Ou la région de l'établissement du bénéficiaire fait partie des régions éligibles COPAREF

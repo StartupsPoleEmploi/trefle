@@ -90,11 +90,6 @@ constante:
     format: int32
     value: 5994
     label: quatre fois le SMIC
-  domaine_formacode_langue:
-    description: le domaine FORMACODE des formations en langue
-    type: integer
-    value: 152
-    label: domaine FORMACODE langues
   codes_permis_b:
     type: array
     items:
@@ -781,6 +776,18 @@ formation:
     source: catalogue
     xpath: boolean(//modalites-enseignement[text()="2"])
     label: formation ouverte à distance
+  langues:
+    type: boolean
+    source: catalogue
+    label: formation langues
+  langues_etrangeres:
+    type: boolean
+    source: catalogue
+    label: formation langues étrangères
+  fle:
+    type: boolean
+    source: catalogue
+    label: formation FLE
   toeic:
     type: boolean
     source: catalogue

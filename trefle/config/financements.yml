@@ -78,7 +78,7 @@ Action de formation collective financée par l'État:
   tags: [DE, État, collectif, AFC]
   racine: région du bénéficiaire
 Chèque formation:
-  tags: [DE, région, individuel]
+  tags: [DE, région, individuel, chèque]
   racine: Bretagne.rules
   ressources:
   - https://www.seformerenbretagne.fr
@@ -212,7 +212,7 @@ Parcours diplômants et actions préparatoires:
   tags: [DE, collectif, région, Occitanie]
   racine: Occitanie.rules
 Dispositif « chèque »:
-  tags: [DE, collectif, région, Occitanie]
+  tags: [DE, collectif, région, Occitanie, chèque]
   racine: Occitanie.rules
 Cap métiers:
   tags: [DE, collectif, région, Occitanie]
@@ -268,7 +268,7 @@ Dispositif accès à la qualification:
   tags: [DE, DAQ, région, Bourgogne]
   racine: Bourgogne-Franche-Comté.rules
 Le chèque pass formation:
-  tags: [DE, individuel, région]
+  tags: [DE, individuel, région, chèque]
   racine: Hauts-de-France.rules
   ressources:
   - https://www.c2rp.fr/dispositifs/cheque-pass-formation
@@ -291,7 +291,7 @@ Aide individuelle à la formation avec promesse d'embauche:
   tags: [DE, région, individuel]
   racine: Centre-Val de Loire.rules
 Chèque formation Conseil régional Centre-Val de Loire:
-  tags: [DE, région, collectif]
+  tags: [DE, région, collectif, chèque]
   racine: Centre-Val de Loire.rules
 Programme Régional de Formation:
   tags: [DE, région, collectif]
@@ -313,3 +313,6 @@ Action collective sanitaire et social financée par la région et Pôle Emploi:
   racine: Pays de la Loire.rules
   ressources:
     - http://www.paysdelaloire.fr/politiques-regionales/formation-professionnelle
+Chèque formation réussite:
+  tags: [DE, individuel, région, chèque]
+  racine: La Réunion.rules

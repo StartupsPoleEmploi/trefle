@@ -24,6 +24,12 @@ Si la liste des codes CPF de la formation contient au moins un des codes CPF VAE
 Ou la liste des codes FORMACODE de la formation contient au moins un code parmi [15064,44591]
 Ou le code CERTIFINFO de la formation vaut 83899
     Alors c'est une formation VAE
+Si la liste des domaines FORMACODE de la formation contient 152
+    Alors c'est une formation langues
+    Si la liste des codes FORMACODE de la formation contient au moins un code parmi [15235,15226]
+        Alors c'est une formation FLE
+    Si la liste des codes FORMACODE de la formation ne contient aucun code parmi [15235,15226]
+        Alors c'est une formation langues étrangères
 Si la liste des domaines FORMACODE de la formation contient 150
     Alors c'est une formation en développement professionnel
 # http://lheo.gouv.fr/langage#dict-AIS

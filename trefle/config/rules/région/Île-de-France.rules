@@ -86,7 +86,7 @@ Si l'intitulé du financement est «Chéquier unique VAE Région Ile-de-France»
     Et la région de la formation est «Île-de-France»
     Et la région du bénéficiaire est «Île-de-France»
     Et c'est une formation ouverte aux bénéficiaires individuels
-    Et la liste des codes FORMACODE de la formation contient au moins un code parmi [15064,44591]
+    Et c'est une formation VAE
         Alors le financement est éligible
         Et le texte de description vaut «La région Ile-de-France finance des modules de formation pour :⏎- faciliter l'accès à la certification avant le jury : le bloc de compétences nécessaires est identifié par le certificateur⏎- vous permettre d'obtenir la certification après le passage devant le jury en cas de validation partielle : la décision du jury mentionne les modules non acquis pour lesquels une formation est nécessaire.⏎La Région finance les modules de formation avant ou après jury, dans la limite d'un plafond de 1 600 € TTC.⏎Pôle emploi complétera le financement des actions de formation post-jury si la Région ne couvre pas la totalité du coût de la formation.»
         Et le texte des démarches vaut «Le besoin de formation avant jury est examiné par le certificateur.⏎Le besoin de formation post jury est indiqué dans la décision du jury de validation.⏎Contacter le conseiller référent pour le montage du dossier.»
