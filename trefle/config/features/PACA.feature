@@ -36,7 +36,7 @@ Scénario: cas AIF pour formation BTP
     Et la région du bénéficiaire vaut «Provence-Alpes-Côte d'Azur»
     Et c'est une formation ouverte aux bénéficiaires individuels
     Et l'âge du bénéficiaire vaut 30
-    Et la liste des codes FORMACODE de la formation vaut [222]
+    Et la liste des domaines FORMACODE de la formation vaut [222]
     Quand je demande un calcul de financement
     Quand je sélectionne le financement «Aide individuelle à la formation»
     Alors la rémunération applicable vaut 401.09
@@ -51,7 +51,7 @@ Scénario: cas AIF pour formation langues
     Et la région du bénéficiaire vaut «Provence-Alpes-Côte d'Azur»
     Et c'est une formation ouverte aux bénéficiaires individuels
     Et l'âge du bénéficiaire vaut 30
-    Et la liste des codes FORMACODE de la formation vaut [152]
+    Et la liste des domaines FORMACODE de la formation vaut [152]
     Quand je demande un calcul de financement
     Quand je sélectionne le financement «Aide individuelle à la formation»
     Alors la rémunération applicable vaut 401.09
