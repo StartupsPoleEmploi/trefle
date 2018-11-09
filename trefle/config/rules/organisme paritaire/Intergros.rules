@@ -4,7 +4,7 @@ Si le financement est de type «CPF»
     Et le plafond horaire applicable est égal au solde CPF du bénéficiaire
     Et le prix horaire plafond applicable vaut 30
 
-    Si le domaine FORMACODE langues fait partie de la liste des domaines FORMACODE de la formation
+    Si c'est une formation langues
     Et c'est une formation ouverte à distance
         Alors le prix horaire plafond applicable vaut 10
 

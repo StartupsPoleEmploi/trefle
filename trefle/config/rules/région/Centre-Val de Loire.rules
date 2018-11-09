@@ -47,7 +47,7 @@ Si l'intitulé du financement est «Chèque formation Conseil régional Centre-V
 
     Si la région du bénéficiaire vaut «Centre-Val de Loire»
     Et c'est un demandeur d'emploi
-    Et c'est une formation RNCP, ou la liste des codes FORMACODE de la formation contient au moins un code parmi [15064,44591]
+    Et c'est une formation RNCP, ou c'est une formation VAE
     Et les codes financeur de la formation contiennent «Conseil régional»
     Et la durée en heures de la formation n'est pas supérieure à 1600
     Et la durée en mois de la formation n'est pas supérieure à 18
@@ -65,7 +65,8 @@ Si l'intitulé du financement est «Programme Régional de Formation»
     Et la région de la formation est «Centre-Val de Loire»
     Et c'est un demandeur d'emploi
     Et les codes financeur de la formation contiennent «Conseil régional»
-    Et la liste des codes FORMACODE de la formation ne contient aucun code parmi [43436,43448,43441,43409,44002,44004,44092,44050,43497,44083,44008,43491,43470,43476,43092,43490,31815,43006,43439,43456,15064,44591]
+    Et la liste des codes FORMACODE de la formation ne contient aucun code parmi [43436,43448,43441,43409,44002,44004,44092,44050,43497,44083,44008,43491,43470,43476,43092,43490,31815,43006,43439,43456]
+    Et ce n'est pas une formation VAE
     Et l'intitulé normé de la formation ne contient pas «VISA»
         Alors le financement est éligible
         Et appliquer les règles «AREF-RFPE-RPS»
@@ -92,7 +93,7 @@ Si l'intitulé du financement est «Formations sanitaire et sociale subventionn�
 
     Si la région de la formation est «Centre-Val de Loire»
     Et les codes financeur de la formation contiennent «Conseil régional»
-    Et la liste des codes FORMACODE de la formation contient au moins un code parmi [43436,43448,43441,43409,44002,44004,44092,44050,43497,44083,44008,43491,43470,43476,43092,43490,31815,43006,43439,43456,15064,44591]
+    Et la liste des codes FORMACODE de la formation contient au moins un code parmi [43436,43448,43441,43409,44002,44004,44092,44050,43497,44083,44008,43491,43470,43476,43092,43490,31815,43006,43439,43456]
         Alors le financement est éligible
         Et appliquer les règles «AREF»
         Et le texte de description vaut «La région Centre-Val de Loire finance quasiment toutes les formations sanitaires et sociales. Ainsi la région peut prendre en charge leur coût pédagogique.⏎Seuls les droits d'inscription et les frais de sécurité sociale fixés par arrêté ministériel restent à la charge des inscrits.»
