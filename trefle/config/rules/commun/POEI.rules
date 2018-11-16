@@ -5,6 +5,7 @@ Si c'est une demandeur d'emploi
     Si c'est un bénéficiaire ayant un contrat aidé en cours
         Alors le texte des démarches vaut «1-Postulez sur une offre d'emploi déposée auprès de Pôle emploi pour un CDI ou un CDD d'au moins 12 mois. Si vous n'avez pas l'ensemble des compétences demandées, vous pouvez proposer à l'employeur de suivre une formation adaptée d'une durée maximale de 400h.⏎2- En cas de réponse positive de l'employeur, contactez votre conseiller Pôle emploi qui finalisera avec ce dernier votre plan de formation.»
         Et le texte de description vaut «Ce dispositif vous permet de vous former en 400h maximum afin d'obtenir les compétences qui vous manquent, avant une embauche (en CDD d'au moins 12 mois ou en CDI ou en contrat en alternance d'au moins 12 mois).»
+        Et l'intitulé du financement vaut «Préparation Opérationnelle à l'Emploi Individuelle»
 
     Si c'est une préparation opérationnelle à l'emploi individuelle
         Alors le financement est éligible
