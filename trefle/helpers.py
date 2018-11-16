@@ -5,7 +5,7 @@ from math import ceil
 import requests
 from unidecode import unidecode
 
-from .exceptions import UpstreamError, DataError
+from .exceptions import UpstreamError, DataError, NoDataError
 
 
 DEP_TO_REG = {
@@ -90,8 +90,11 @@ def fold_name(s):
 
 
 def insee_departement_to_region(context, from_key, to_key):
-    dep = context.get(from_key)
-    if to_key in context or not dep:
+    if to_key in context:
+        return
+    try:
+        dep = context[from_key]
+    except (KeyError, NoDataError):
         return
     if dep not in DEP_TO_REG:
         raise DataError(f'Valeur invalide: `{context[from_key]}`', from_key)
@@ -99,14 +102,19 @@ def insee_departement_to_region(context, from_key, to_key):
 
 
 def insee_commune_to_departement(context, from_key, to_key):
-    commune = context.get(from_key)
-    if to_key in context or not commune:
+    if to_key in context:
+        return
+    try:
+        commune = context[from_key]
+    except (KeyError, NoDataError):
         return
     chars = 2
     if commune.startswith('97'):  # DROM
         chars = 3
-    context[to_key] = commune[:chars]
-    if to_key not in context:  # Invalid data.
+    try:
+        context[to_key] = commune[:chars]
+    except DataError:
+        # Invalid departement number, but target the commune key actually given
         raise DataError(f'Valeur invalide: `{context[from_key]}`', from_key)
 
 

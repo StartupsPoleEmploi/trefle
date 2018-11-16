@@ -43,11 +43,7 @@ def format_integer(value):
 
     int('6.0') would raise a ValueError.
     """
-    try:
-        return int(float(value))
-    except ValueError:
-        # French message
-        raise ValueError(f"`{value}` n'est pas un nombre")
+    return int(format_float(value))
 
 
 @formatter('idcc')
@@ -145,8 +141,10 @@ def validate_field(name, data):
     value = data.get(name)
     try:
         schema = SCHEMA[name]
-    except KeyError:
-        return value  # FIXME unknown keys (like parent, which is a hack)
+    except KeyError as err:
+        if name not in data:
+            raise NoDataError(str(err), name)
+        return value  # Pass by the value (consuming a legacy key?).
     if value is None and 'alias' in schema:
         for alias in schema['alias']:
             value = data.get(alias)

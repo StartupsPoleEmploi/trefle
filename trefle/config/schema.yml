@@ -566,6 +566,8 @@ formation:
     description: intitulé de la formation sans accent ni signes diacritiques et tout en minuscules
     type: string
     label: intitulé normé de la formation
+    # Allow to set an empty intitule_norme (occurs when the intitule itself is an empty string).
+    default: ""
   numero:
     description: identifiant INTERCARIF de la formation
     type: string
@@ -661,34 +663,34 @@ formation:
     type: integer
     format: int32
     source: catalogue
-    xpath: number(//certification/code-CERTIFINFO/child::text())
+    xpath: string(//certification/code-CERTIFINFO/child::text())
     label: code CERTIFINFO de la formation
     gender: masculine
   code_rncp:
     type: integer
     format: int32
     source: catalogue
-    xpath: number(//certification/code-RNCP/child::text())
+    xpath: string(//certification/code-RNCP/child::text())
     label: code RNCP de la formation
     gender: masculine
   heures:
     type: integer
     format: int32
     source: catalogue
-    xpath: number(//nombre-heures-total/child::text())
+    xpath: string(//nombre-heures-total/child::text())
     label: durée en heures de la formation
   heures_entreprise:
     type: integer
     format: int32
     source: catalogue
-    xpath: number(//nombre-heures-entreprise/child::text())
+    xpath: string(//nombre-heures-entreprise/child::text())
     label: nombre d'heures en entreprise
     gender: masculine
   heures_centre:
     type: integer
     format: int32
     source: catalogue
-    xpath: number(//nombre-heures-centre/child::text())
+    xpath: string(//nombre-heures-centre/child::text())
     label: nombre d'heures en centre
     gender: masculine
   mois:
@@ -703,7 +705,7 @@ formation:
     type: integer
     format: int32
     source: catalogue
-    xpath: number(//extras[@info="duree-hebdo"]/extra[@info="duree-hebdo"]/child::text())
+    xpath: string(//extras[@info="duree-hebdo"]/extra[@info="duree-hebdo"]/child::text())
     label: durée hebdomadaire de la formation
   prix_horaire:
     type: integer
@@ -753,7 +755,7 @@ formation:
     type: integer
     formation: int32
     source: catalogue
-    xpath: number(//objectif-general-formation/child::text())
+    xpath: string(//objectif-general-formation/child::text())
     enum: *codes_ais
   debut:
     description: date de début de la formation
@@ -916,7 +918,9 @@ formation:
     format: int32
     label: niveau de sortie de la formation
     source: catalogue
-    xpath: number(//code-niveau-sortie/child::text())
+    # Don't use number() xpath function so empty node does not return nan.
+    # And we cast in python anyway.
+    xpath: string(//code-niveau-sortie/child::text())
     gender: masculine
     url: http://lheo.gouv.fr/langage#dict-niveaux
     enum: *niveau_scolaire
@@ -924,7 +928,7 @@ formation:
     type: integer
     format: int32
     source: catalogue
-    xpath: number(//modalites-entrees-sorties)
+    xpath: string(//modalites-entrees-sorties)
     enum:
       0: entrées/sorties à dates fixes
       1: entrées/sorties permanentes

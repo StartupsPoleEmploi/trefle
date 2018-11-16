@@ -4,7 +4,7 @@ from lxml import etree
 
 from .config import (CONSTANTS, ELIGIBILITE_URL, INTERCARIF_URL, LABELS,
                      ORGANISMES, RULES, SCHEMA, Organisme)
-from .exceptions import DataError, UpstreamError
+from .exceptions import DataError, UpstreamError, NoDataError
 from .helpers import (diff_month, diff_week, fold_name, http_get,
                       insee_commune_to_departement,
                       insee_departement_to_region)
@@ -115,7 +115,11 @@ async def populate_formation_from_bytes(context, content):
             value = root.xpath(schema['xpath'])
             if value == []:  # Empty resultset.
                 value = None
-            context[key] = value
+            try:
+                context[key] = value
+            except DataError as err:
+                print(err)
+                continue
 
     if not context['formation.codes_naf']:
         ids = set(root.xpath('//extras[@info="eligibilite-cpf"]/extra[@info="france-entiere"][text()="1"]/../extra[@info="inter-branche"][text()="0"]/../@numero'))

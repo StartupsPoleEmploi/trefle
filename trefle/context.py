@@ -26,12 +26,8 @@ class Context:
         return self.cleaned_data[key]
 
     def __setitem__(self, key, value):
-        try:
-            self.set(key, {key: value})
-        except DataError:
-            pass
-        else:
-            self.data[key] = value
+        self.set(key, {key: value})
+        self.data[key] = value
 
     def __delitem__(self, key):
         del self.data[key]

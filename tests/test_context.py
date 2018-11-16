@@ -44,10 +44,11 @@ def test_setitem_should_validate_value(patch_schema):
     assert context['key'] == 12
 
 
-def test_setitem_should_not_set_invalid_value(patch_schema):
+def test_setitem_raise_on_invalid_value(patch_schema):
     patch_schema({'key': {'type': 'integer'}})
     context = Context({})
-    context['key'] = 'invalid'
+    with pytest.raises(DataError):
+        context['key'] = 'invalid'
     assert 'key' not in context
     assert context.get('key') is None
 
