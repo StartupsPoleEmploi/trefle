@@ -71,8 +71,6 @@ def data_from_lbf_url(url):
         del args['a']
 
     keymap = {
-        # TODO deal with age
-        # b'birthdate': b'20/10/1978',
         'droitprive': 'beneficiaire.droit_prive',
         'salaire': 'beneficiaire.remuneration',
         'situation_creditheurescpf': 'beneficiaire.solde_cpf',
@@ -93,11 +91,6 @@ def data_from_lbf_url(url):
         key = keymap.get(key, f'beneficiaire.{key}')
         data[key] = value
 
-    if 'birthdate' in args:
-        # Poor man age computation.
-        # TODO: use dateutil or delorean here and in routine.py
-        data['beneficiaire.age'] = (datetime.now().year -
-                                    int(args['birthdate'][-4:]))
     return data
 
 

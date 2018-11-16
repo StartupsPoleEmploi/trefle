@@ -1,6 +1,8 @@
 import asyncio
 import re
+from datetime import date
 from math import ceil
+
 
 import requests
 from unidecode import unidecode
@@ -29,6 +31,11 @@ DEP_TO_REG = {
     '20': '94',  # When consuming postcode.
 }
 NON_ALPHA = re.compile(r"[^0-9a-zA-Z]+")
+
+
+def calculate_age(born):
+    today = date.today()
+    return today.year - born.year - ((today.month, today.day) < (born.month, born.day))
 
 
 def diff_month(start, end):

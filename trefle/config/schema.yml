@@ -224,6 +224,12 @@ beneficiaire:
     format: date
     public: true
     label: date de fin de l'allocation du bénéficiaire
+  naissance:
+    alias: individu.dateNaissance
+    type: string
+    format: date
+    public: true
+    label: date de naissance du bénéficiaire
   age:
     description: âge du beneficiaire
     type: integer

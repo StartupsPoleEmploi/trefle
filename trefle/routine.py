@@ -5,9 +5,15 @@ from lxml import etree
 from .config import (CONSTANTS, ELIGIBILITE_URL, INTERCARIF_URL, LABELS,
                      ORGANISMES, RULES, SCHEMA, Organisme)
 from .exceptions import DataError, UpstreamError, NoDataError
-from .helpers import (diff_month, diff_week, fold_name, http_get,
-                      insee_commune_to_departement,
-                      insee_departement_to_region)
+from .helpers import (
+    diff_month,
+    diff_week,
+    fold_name,
+    http_get,
+    insee_commune_to_departement,
+    insee_departement_to_region,
+    calculate_age,
+)
 from .rules import Rule
 from .validators import format_naf
 
@@ -20,14 +26,19 @@ def extrapolate_context(context):
                                  'beneficiaire.entreprise.departement')
     # FIXME remove me when LBF sends INSEE code even for DE.
     # (this is a postcode).
-    insee_commune_to_departement(context, 'beneficiaire.location',
-                                 'beneficiaire.departement')
-    insee_departement_to_region(context, 'beneficiaire.entreprise.departement',
-                                'beneficiaire.entreprise.region')
-    insee_departement_to_region(context, 'beneficiaire.departement',
-                                'beneficiaire.region')
-    if context.get('beneficiaire.allocation_type') == 'non':
-        del context['beneficiaire.allocation_type']
+    insee_commune_to_departement(
+        context, "beneficiaire.location", "beneficiaire.departement"
+    )
+    insee_departement_to_region(
+        context, "beneficiaire.entreprise.departement", "beneficiaire.entreprise.region"
+    )
+    insee_departement_to_region(
+        context, "beneficiaire.departement", "beneficiaire.region"
+    )
+    if context.get("beneficiaire.allocation_type") == "non":
+        del context["beneficiaire.allocation_type"]
+    if "beneficiaire.age" not in context and context.get("beneficiaire.naissance"):
+        context["beneficiaire.age"] = calculate_age(context["beneficiaire.naissance"])
 
     _extrapolate_formation_context(context)
 

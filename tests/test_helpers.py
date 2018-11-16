@@ -1,11 +1,12 @@
-from datetime import datetime
+import datetime
 
 import pytest
 from trefle.context import Context
 from trefle.exceptions import DataError
 from trefle.helpers import (count_indent, diff_month, diff_week, flatten,
                             fold_name, insee_commune_to_departement,
-                            insee_departement_to_region, isfloat)
+                            insee_departement_to_region, isfloat,
+                            calculate_age)
 
 
 def test_flatten():
@@ -21,7 +22,7 @@ def test_flatten():
     ((2018, 1, 1), (2019, 5, 31), 17),
 ])
 def test_diff_month(start, end, months):
-    assert diff_month(datetime(*start), datetime(*end)) == months
+    assert diff_month(datetime.datetime(*start), datetime.datetime(*end)) == months
 
 
 @pytest.mark.parametrize('start,end,weeks', [
@@ -35,7 +36,7 @@ def test_diff_month(start, end, months):
     ((2018, 1, 1), (2019, 1, 1), 53),
 ])
 def test_diff_week(start, end, weeks):
-    assert diff_week(datetime(*start), datetime(*end)) == weeks
+    assert diff_week(datetime.datetime(*start), datetime.datetime(*end)) == weeks
 
 
 @pytest.mark.parametrize('input,expected', [
@@ -118,3 +119,17 @@ def test_insee_commune_to_departement(input, expected):
         with pytest.raises(DataError):
             insee_commune_to_departement(context, 'commune',
                                          'beneficiaire.departement')
+
+@pytest.mark.parametrize('input,expected', [
+    ((1999, 5, 20), 19),
+    ((1998, 10, 8), 20),
+    ((1998, 1, 1), 20),
+    ((1998, 12, 31), 19),
+])
+def test_calculate_age(input, expected, monkeypatch):
+    class mydate:
+        @classmethod
+        def today(cls):
+            return datetime.datetime(2018, 10, 8)
+    monkeypatch.setattr(datetime, 'date', mydate)
+    assert calculate_age(datetime.datetime(*input)) == expected
