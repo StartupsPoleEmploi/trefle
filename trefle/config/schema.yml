@@ -1038,7 +1038,7 @@ financement:
     description: Ce champ est défini quand on ne connaît pas le prix horaire de la formation. C'est donc une prise en charge maximale théorique, la prise en charge réelle dépendra du prix exact de la formation.
   plafond_financier:
     type: integer
-    format: int32
+    format: float
     label: plafond financier applicable
   plafond_horaire:
     type: integer
