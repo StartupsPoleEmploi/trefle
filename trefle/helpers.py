@@ -72,7 +72,7 @@ def flatten(data, output=None, namespace=None):
 async def http_get(url):
     loop = asyncio.get_event_loop()
     response = await loop.run_in_executor(None, requests.get, url)
-    if response.status_code >= 500:
+    if response.status_code >= 400:
         raise UpstreamError(f"UPSTREAM_ERROR: {url} {response.status_code}")
     return response
 
