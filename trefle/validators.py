@@ -148,7 +148,10 @@ def validate_field(name, data):
     except KeyError:
         return value  # FIXME unknown keys (like parent, which is a hack)
     if value is None and 'alias' in schema:
-        value = data.get(schema['alias'])
+        for alias in schema['alias']:
+            value = data.get(alias)
+            if value is not None:
+                break
     for validator in [validate_empty, validate_format, validate_enum,
                       validate_pattern]:
         try:

@@ -86,6 +86,20 @@ def test_insee_departement_to_region(input, expected):
             insee_departement_to_region(context, 'departement', 'region')
 
 
+def test_insee_departement_to_region_with_alias(patch_schema):
+    patch_schema({'departement': {'type': 'string', 'alias': ['departement_habitation']}, 'region': {'type': 'string'}})
+    context = Context({'departement_habitation': '35'})
+    insee_departement_to_region(context, 'departement', 'region')
+    assert context['region'] == '53'
+
+
+def test_insee_commune_to_departement_with_alias(patch_schema):
+    patch_schema({'commune': {'type': 'string', 'alias': ['commune_habitation']}, 'departement': {'type': 'string'}})
+    context = Context({'commune_habitation': '35001'})
+    insee_commune_to_departement(context, 'commune', 'departement')
+    assert context['departement'] == '35'
+
+
 @pytest.mark.parametrize('input,expected', [
     ('93031', '93'),  # idf
     ('2A000', '2A'),

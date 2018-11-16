@@ -47,6 +47,8 @@ def load_schema(data, output=None, namespace=None):
                     more['labels'][label] = key
             if 'pattern' in more:
                 more['pattern'] = re.compile(more['pattern'])
+            if 'alias' in more and not isinstance(more['alias'], list):
+                more['alias'] = [more['alias']]
         else:
             load_schema(more, output, ns)
     return output

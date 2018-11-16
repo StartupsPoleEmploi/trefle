@@ -59,3 +59,9 @@ def test_copy_should_copy_data_and_cleaned_data():
     assert context['key'] == 'value'
     context['key'] = 'again'
     assert other['key'] == 'other'
+
+
+def test_should_consume_alias(patch_schema):
+    patch_schema({'key': {'type': 'string', 'alias': ['key_alias']}})
+    context = Context({'key_alias': 'foo'})
+    assert context['key'] == 'foo'

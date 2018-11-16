@@ -90,22 +90,22 @@ def fold_name(s):
 
 
 def insee_departement_to_region(context, from_key, to_key):
-    if to_key in context or from_key not in context:
+    dep = context.get(from_key)
+    if to_key in context or not dep:
         return
-    dep = context[from_key]
     if dep not in DEP_TO_REG:
         raise DataError(f'Valeur invalide: `{context[from_key]}`', from_key)
     context[to_key] = DEP_TO_REG[dep]
 
 
 def insee_commune_to_departement(context, from_key, to_key):
-    if to_key in context or from_key not in context:
+    commune = context.get(from_key)
+    if to_key in context or not commune:
         return
     chars = 2
-    from_string = context[from_key]
-    if from_string.startswith('97'):  # DROM
+    if commune.startswith('97'):  # DROM
         chars = 3
-    context[to_key] = from_string[:chars]
+    context[to_key] = commune[:chars]
     if to_key not in context:  # Invalid data.
         raise DataError(f'Valeur invalide: `{context[from_key]}`', from_key)
 
