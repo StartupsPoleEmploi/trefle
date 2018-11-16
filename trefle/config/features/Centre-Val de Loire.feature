@@ -139,7 +139,7 @@ Scénario: Cas nominal programme régional de formation Visa
     Et la région du bénéficiaire vaut «Centre-Val de Loire»
     Et les codes financeur de la formation valent [«Conseil régional»]
     Et la région de la formation vaut «Centre-Val de Loire»
-    Et l'intitulé normé de la formation vaut «Formation VISA»
+    Et l'intitulé de la formation vaut «Formation VISA»
     Et le prix horaire de la formation vaut 0.0
     Quand je demande un calcul de financement
     Quand je sélectionne le financement «Programme Régional de Formation Visa»

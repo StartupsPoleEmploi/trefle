@@ -39,7 +39,7 @@ Si l'intitulé du financement est «Aide individuelle à la formation»
     Et le code CERTIFINFO de la formation ne fait pas partie de [87805,81306]
         Alors appliquer les règles «AIF»
         Et le plafond financier applicable vaut 2600
-        Et le texte de la prise en charge vaut «Formation totalement prise en charge.»
+        Et le texte de la prise en charge vaut «Formation totalement ou partiellement prise en charge.»
 
 
 Si l'intitulé du financement est «Chèque formation réussite»
