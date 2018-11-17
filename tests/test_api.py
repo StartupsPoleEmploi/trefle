@@ -8,20 +8,11 @@ from openapi_core import create_spec
 from openapi_core.wrappers.mock import MockRequest, MockResponse
 from openapi_core.shortcuts import ResponseValidator
 from openapi_spec_validator import validate_spec
-from roll.extensions import traceback
 
 
-from trefle.api import app as trefleapp
 from trefle.config import FINANCEMENTS
 
 pytestmark = pytest.mark.asyncio
-
-
-@pytest.fixture(scope='session')
-def app():
-    # Get the traceback in console in case of unhandled error.
-    traceback(trefleapp)
-    yield trefleapp
 
 
 async def test_schema(client):
@@ -47,7 +38,7 @@ async def test_simulate_endpoint(client):
     assert 'financements' in json.loads(resp.body)
     financements = json.loads(resp.body)['financements']
     assert financements
-    assert financements[0].get('eligible')
+    assert financements[-1].get('eligible')
     assert 'Version' in resp.headers
 
     validator = ResponseValidator(spec)
@@ -73,8 +64,8 @@ async def test_simulate_endpoint_without_formation_prix_horaire(client):
     assert 'financements' in json.loads(resp.body)
     financements = json.loads(resp.body)['financements']
     assert financements
-    assert financements[0]['prise_en_charge'] is None
-    assert financements[0]['plafond_prise_en_charge'] > 0
+    assert financements[-1]['prise_en_charge'] is None
+    assert financements[-1]['plafond_prise_en_charge'] > 0
 
 
 async def test_simulate_endpoint_with_formation_prix_horaire(client):
@@ -94,8 +85,8 @@ async def test_simulate_endpoint_with_formation_prix_horaire(client):
     assert 'financements' in json.loads(resp.body)
     financements = json.loads(resp.body)['financements']
     assert financements
-    assert financements[0]['plafond_prise_en_charge'] > 0
-    assert financements[0]['prise_en_charge'] > 0
+    assert financements[-1]['plafond_prise_en_charge'] > 0
+    assert financements[-1]['prise_en_charge'] > 0
 
 
 async def test_simulate_endpoint_filter_eligible(client):
@@ -217,7 +208,8 @@ async def test_simulate_triggers_log(client):
 
     log_path = Path(os.environ['TREFLE_LOG_DIR']) / 'trefle-simulate.log'
     log_path.write_text('')
-    await client.post('/financement', body=body)
+    resp = await client.post('/financement', body=body)
+    assert resp.status == 200
     lines = log_path.read_text().splitlines()
     assert len(lines) == 1
     log_data = json.loads(lines[0])
@@ -241,7 +233,8 @@ async def test_simulate_error_triggers_log(client):
 
     log_path = Path(os.environ['TREFLE_LOG_DIR']) / 'trefle-simulate.log'
     log_path.write_text('')
-    await client.post('/financement', body=body)
+    resp = await client.post('/financement', body=body)
+    assert resp.status == 422
     lines = log_path.read_text().splitlines()
     assert len(lines) == 1
     log_data = json.loads(lines[0])
@@ -473,7 +466,7 @@ async def test_rules_details(client):
         'beneficiaire.entreprise.idcc': 2706})
     assert resp.status == HTTPStatus.OK
     assert 'financements' in json.loads(resp.body)
-    financement = json.loads(resp.body)['financements'][0]
+    financement = json.loads(resp.body)['financements'][-1]
     assert financement['eligible'] is False
     assert financement['explain']
     assert financement['explain'][0]['params'] == {
@@ -501,9 +494,9 @@ async def test_simulate_financement_properties(client):
     assert 'financements' in json.loads(resp.body)
     financements = json.loads(resp.body)['financements']
     assert financements
-    assert financements[0].get('sigle')
-    assert financements[0].get('intitule')
-    assert financements[0].get('tags')
+    assert financements[-1].get('sigle')
+    assert financements[-1].get('intitule')
+    assert financements[-1].get('tags')
 
 
 async def test_explore_financements(client):

@@ -1,12 +1,154 @@
-CPF sur son temps de travail:
-  tags: [CPF, sur son temps de travail]
-  racine: organisme paritaire.rules
-CPF hors temps de travail:
-  tags: [CPF, hors temps de travail]
-  racine: organisme paritaire.rules
-CPF demandeur d'emploi:
-  tags: [CPF, DE]
-  racine: CPF DE.rules
+Aide individuelle à la formation:
+  type_lbf: aif
+  tags: [AIF, DE, individuel]
+  cpf_mobilisable: True
+  financee_pe: True
+  cumulable: True
+  racine: région du bénéficiaire
+Aide individuelle à la formation artisan:
+  type_lbf: aifartisan
+  tags: [AIF, artisan, DE, individuel]
+  cpf_mobilisable: True
+  financee_pe: True
+  cumulable: True
+  racine: région du bénéficiaire
+Aide individuelle régionale à la formation:
+  type_lbf: aif
+  tags: [AIF, DE, individuel]
+  cpf_mobilisable: True
+  financee_pe: True
+  cumulable: True
+  racine: Grand-Est.rules
+Financement individuel Agefiph:
+  type_lbf: agefiph
+  tags: [Agefiph, TH, DE, individuel]
+  cpf_mobilisable: True
+  financee_pe: False
+  cumulable: True
+  racine: région du bénéficiaire
+Aide individuelle Conseil régional:
+  type_lbf: finindividuel
+  tags: [DE, individuel, région, Nouvelle-Aquitaine]
+  cpf_mobilisable: True
+  financee_pe: False
+  cumulable: True
+  racine: Nouvelle-Aquitaine.rules
+  ressources:
+  - https://les-aides.nouvelle-aquitaine.fr/fiche/remuneration-des-stagiaires-de-la-formation-professionnelle/
+AIF région:
+  tags: [DE, individuel, région, Guadeloupe]
+  cpf_mobilisable: True
+  financee_pe: True
+  cumulable: True
+  racine: Guadeloupe.rules
+AIF département:
+  tags: [DE, individuel, région, Guadeloupe]
+  cpf_mobilisable: True
+  financee_pe: True
+  cumulable: True
+  racine: Guadeloupe.rules
+Fonds d'aide aux jeunes:
+  type_lbf: faj
+  tags: [FAJ, DE, jeune, individuel]
+  cpf_mobilisable: True
+  financee_pe: False
+  cumulable: True
+  racine: région du bénéficiaire
+Formations du domaine sanitaire et social:
+  type_lbf: finindividuel
+  tags: [DE, région, individuel, branche]
+  cpf_mobilisable: True
+  financee_pe: False
+  cumulable: True
+  racine: Bretagne.rules
+  ressources:
+  - https://www.bretagne.bzh/jcms/c_15456/fr/les-formations-sanitaires-et-sociales
+Chèque formation:
+  type_lbf: finindividuel
+  tags: [DE, région, individuel, chèque]
+  cpf_mobilisable: True
+  financee_pe: False
+  cumulable: True
+  racine: Bretagne.rules
+  ressources:
+  - https://www.seformerenbretagne.fr
+Action projets individuels:
+  type_lbf: finindividuel
+  sigle: API
+  tags: [DE, API, individuel]
+  cpf_mobilisable: True
+  financee_pe: False
+  cumulable: True
+  racine: Auvergne-Rhône-Alpes.rules
+Chéquier unique VAE Région Ile-de-France:
+  type_lbf: finindividuel
+  tags: [DE, région, individuel]
+  cpf_mobilisable: True
+  financee_pe: False
+  cumulable: True
+  racine: Île-de-France.rules
+Une formation, un emploi - individuel:
+  type_lbf: finindividuel
+  tags: [DE, région, individuel]
+  cpf_mobilisable: True
+  financee_pe: False
+  cumulable: True
+  racine: Normandie.rules
+Qualif individuel:
+  type_lbf: finindividuel
+  tags: [DE, région, individuel]
+  cpf_mobilisable: True
+  financee_pe: False
+  cumulable: True
+  racine: Normandie.rules
+Formation sanitaire et social Grand-Est:
+  type_lbf: finindividuel
+  intitule: Formation sanitaire et social
+  tags: [DE, région, individuel, branche]
+  cpf_mobilisable: True
+  financee_pe: False
+  cumulable: True
+  racine: Grand-Est.rules
+  ressources:
+  - https://www.grandest.fr/formations-sanitaires-sociales/bourses-secteur-sanitaire-social
+Le chèque pass formation:
+  type_lbf: finindividuel
+  tags: [DE, individuel, région]
+  cpf_mobilisable: True
+  financee_pe: False
+  cumulable: True
+  racine: Hauts-de-France.rules
+  ressources:
+  - https://www.c2rp.fr/dispositifs/cheque-pass-formation
+Pass emploi:
+  type_lbf: finindividuel
+  tags: [DE, individuel, région]
+  cpf_mobilisable: True
+  financee_pe: False
+  cumulable: True
+  racine: Hauts-de-France.rules
+  ressources:
+    - https://www.c2rp.fr/dispositifs/pass-emploi
+    - https://www.hautsdefrance.fr/mot/formation/
+Aide individuelle à la formation avec promesse d'embauche:
+  type_lbf: finindividuel
+  tags: [DE, région, individuel]
+  cpf_mobilisable: True
+  financee_pe: False
+  cumulable: True
+  racine: Centre-Val de Loire.rules
+Chèque formation réussite:
+  tags: [DE, individuel, région, chèque]
+  cpf_mobilisable: True
+  financee_pe: False
+  cumulable: True
+  racine: La Réunion.rules
+Le chèque qualification:
+  tags: [DE, individuel, région, chèque]
+  cpf_mobilisable: True
+  financee_pe: False
+  cumulable: True
+  racine: Guadeloupe.rules
 CIF CDI sur son temps de travail:
   tags: [CIF, CDI, sur son temps de travail]
   racine: organisme paritaire.rules
@@ -15,273 +157,431 @@ CIF CDI hors temps de travail:
   racine: organisme paritaire.rules
 CIF CDD sur son temps de travail:
   tags: [CIF, CDD, sur son temps de travail]
+  cpf_mobilisable: True
   racine: organisme paritaire.rules
 CIF CDD hors temps de travail:
   tags: [CIF, CDD, hors temps de travail, DE]
+  cpf_mobilisable: True
+  financee_pe: False
+  cumulable: False
   racine: organisme paritaire.rules
 CIF intérim sur son temps de travail:
   tags: [CIF, interim, sur son temps de travail]
+  cpf_mobilisable: True
+  financee_pe: False
+  cumulable: True
   racine: organisme paritaire.rules
 CIF intérim hors temps de travail:
   tags: [CIF, interim, hors temps de travail, DE]
+  cpf_mobilisable: True
+  financee_pe: False
+  cumulable: True
   racine: organisme paritaire.rules
 CIF intermittents hors temps de travail:
   tags: [CIF, intermittent, hors temps de travail]
+  cpf_mobilisable: True
+  financee_pe: False
+  cumulable: True
   racine: organisme paritaire.rules
 Période de professionnalisation sur son temps de travail:
   tags: [période de professionnalisation, sur son temps de travail]
+  cpf_mobilisable: True
+  financee_pe: False
+  cumulable: True
   racine: organisme paritaire.rules
   ressources:
   - https://www.service-public.fr/particuliers/vosdroits/F13516
 Plan de formation sur son temps de travail:
   tags: [plan de formation, sur son temps de travail]
+  cpf_mobilisable: True
+  financee_pe: False
+  cumulable: True
   racine: organisme paritaire.rules
   ressources:
   - https://www.service-public.fr/particuliers/vosdroits/F11267
-Aide individuelle à la formation:
-  tags: [AIF, DE]
-  racine: région du bénéficiaire
-Aide individuelle à la formation artisan:
-  tags: [AIF, artisan, DE]
+Formations avant embauche (AFPR, POEI):
+  type_lbf: afprpoei
+  tags: [AFPR, POEI, POE, DE]
+  cpf_mobilisable: False
+  financee_pe: True
+  cumulable: False
   racine: région du bénéficiaire
 "Formation en alternance : contrat d'apprentissage":
+  type_lbf: contratapprentissage
   tags: [contrat apprentissage, alternance, DE]
+  cpf_mobilisable: False
+  financee_pe: False
+  cumulable: False
   racine: région du bénéficiaire
 "Formation en alternance : contrat de professionnalisation":
+  type_lbf: contratdepro
   tags: [contrat professionnalisation, alternance, DE]
-  racine: région du bénéficiaire
-Formations avant embauche (AFPR, POEI):
-  tags: [AFPR, POEI, DE]
-  racine: région du bénéficiaire
-Préparation opérationnelle à l'emploi collective:
-  tags: [POEC, DE]
-  racine: région du bénéficiaire
-Financement individuel Agefiph:
-  tags: [Agefiph, DE]
-  racine: région du bénéficiaire
-Fonds d'aide aux jeunes:
-  tags: [FAJ, DE, jeune]
-  racine: région du bénéficiaire
-Action de formation collective financée par la région:
-  tags: [DE, région, collectif, AFC]
+  cpf_mobilisable: False
+  financee_pe: False
+  cumulable: False
   racine: région du bénéficiaire
 Action de formation collective financée par Pôle emploi:
+  type_lbf: poleemploicollectif
   tags: [DE, PE, collectif, AFC]
+  cpf_mobilisable: True
+  financee_pe: True
+  cumulable: False
+  racine: région du bénéficiaire
+Préparation opérationnelle à l'emploi collective:
+  type_lbf: poecollective
+  tags: [POEC, POE, DE]
+  cpf_mobilisable: False
+  financee_pe: True
+  cumulable: False
+  racine: région du bénéficiaire
+Action de formation collective financée par la région:
+  type_lbf: actioncollectiveregion
+  tags: [DE, région, collectif, AFC]
+  cpf_mobilisable: True
+  financee_pe: False
+  cumulable: False
   racine: région du bénéficiaire
 Action de formation collective financée par l'Agefiph:
-  tags: [DE, TH, collectif, AFC]
+  type_lbf: agefiphcollectif
+  tags: [DE, Agefiph, TH, collectif, AFC]
+  cpf_mobilisable: True
+  financee_pe: False
+  cumulable: False
   racine: région du bénéficiaire
 Action de formation collective financée par le conseil départemental:
+  type_lbf: conseildepartementalcollectif
   tags: [DE, département, collectif, AFC]
+  cpf_mobilisable: True
+  financee_pe: False
+  cumulable: False
   racine: région du bénéficiaire
 Action de formation collective financée par l'État:
+  type_lbf: etat
   tags: [DE, État, collectif, AFC]
+  cpf_mobilisable: True
+  financee_pe: False
+  cumulable: False
   racine: région du bénéficiaire
-Chèque formation:
-  tags: [DE, région, individuel, chèque]
-  racine: Bretagne.rules
-  ressources:
-  - https://www.seformerenbretagne.fr
-Formations du domaine sanitaire et social:
-  tags: [DE, région, individuel, branche]
-  racine: Bretagne.rules
-  ressources:
-  - https://www.bretagne.bzh/jcms/c_15456/fr/les-formations-sanitaires-et-sociales
 Programme Bretagne Formation:
+  type_lbf: actioncollectiveregion
   tags: [DE, région, collectif]
+  cpf_mobilisable: True
+  financee_pe: False
+  cumulable: False
   racine: Bretagne.rules
   ressources:
   - https://www.seformerenbretagne.fr
 Accès aux premiers savoirs:
+  type_lbf: actioncollectiveregion
   sigle: ETAPS
   tags: [DE, région, collectif]
+  cpf_mobilisable: True
+  financee_pe: False
+  cumulable: False
   racine: Provence-Alpes-Côte d'Azur.rules
 Espaces territoriaux à la qualification:
+  type_lbf: actioncollectiveregion
   tags: [DE, région, collectif, ETAQ]
+  cpf_mobilisable: True
+  financee_pe: False
+  cumulable: False
   sigle: ETAQ
   racine: Provence-Alpes-Côte d'Azur.rules
 École de la deuxième chance:
   sigle: E2C
-  tags: [DE, jeune, E2C]
-  racine: Auvergne-Rhône-Alpes.rules
-Action projets individuels:
-  sigle: API
-  tags: [DE, API]
+  type_lbf: actioncollectiveregion
+  tags: [DE, jeune, E2C, region, collectif]
+  cpf_mobilisable: True
+  financee_pe: False
+  cumulable: False
   racine: Auvergne-Rhône-Alpes.rules
 Programme Enseignement supérieur:
   sigle: ESUP
-  tags: [DE, ESUP]
+  type_lbf: actioncollectiveregion
+  tags: [DE, ESUP, region, collectif]
+  cpf_mobilisable: True
+  financee_pe: False
+  cumulable: False
   racine: Auvergne-Rhône-Alpes.rules
 Contrat d'aide et retour à l'emploi durable:
   sigle: CARED
-  tags: [DE, CARED]
+  type_lbf: actioncollectiveregion
+  tags: [DE, CARED, region, collectif]
+  cpf_mobilisable: True
+  financee_pe: False
+  cumulable: False
   racine: Auvergne-Rhône-Alpes.rules
 Contrat d'aide et retour à l'emploi durable collectif:
-  tags: [DE, CARED]
+  type_lbf: actioncollectiveregion
+  tags: [DE, CARED, region, collectif]
+  cpf_mobilisable: True
+  financee_pe: False
+  cumulable: False
   racine: Auvergne-Rhône-Alpes.rules
 Programmation compétences premières:
   sigle: PCP
-  tags: [DE, PCP]
+  type_lbf: actioncollectiveregion
+  tags: [DE, PCP, region, collectif]
+  cpf_mobilisable: True
+  financee_pe: False
+  cumulable: False
   racine: Auvergne-Rhône-Alpes.rules
 Programme régional qualifiant ARA:
   intitule: Programme régional qualifiant
-  tags: [DE, région, ARA]
+  type_lbf: actioncollectiveregion
+  tags: [DE, région, ARA, collectif]
+  cpf_mobilisable: True
+  financee_pe: False
+  cumulable: False
   racine: Auvergne-Rhône-Alpes.rules
 Projets collectifs régionaux:
-  tags: [DE, région, ARA]
+  type_lbf: actioncollectiveregion
+  tags: [DE, région, ARA, collectif]
+  cpf_mobilisable: True
+  financee_pe: False
+  cumulable: False
   racine: Auvergne-Rhône-Alpes.rules
 Programme régional sanitaire et social:
-  tags: [DE, région, ARA]
+  type_lbf: actioncollectiveregion
+  tags: [DE, région, ARA, collectif]
+  cpf_mobilisable: True
+  financee_pe: False
+  cumulable: False
   racine: Auvergne-Rhône-Alpes.rules
 Programme régional sanitaire et social - ambulancier:
+  type_lbf: actioncollectiveregion
   tags: [DE]
+  cpf_mobilisable: True
+  financee_pe: False
+  cumulable: False
   racine: Auvergne-Rhône-Alpes.rules
 Aide à la VAE:
+  type_lbf: actioncollectiveregion
   tags: [DE, VAE]
+  cpf_mobilisable: True
+  financee_pe: False
+  cumulable: False
   racine: Auvergne-Rhône-Alpes.rules
 Action collective financée par la Collectivité territoriale de Corse:
+  type_lbf: actioncollectiveregion
   tags: [DE, collectif, région]
+  cpf_mobilisable: True
+  financee_pe: False
+  cumulable: False
   racine: Corse.rules
 Programme sanitaire et social:
+  type_lbf: actioncollectiveregion
   tags: [DE, collectif, région]
+  cpf_mobilisable: True
+  financee_pe: False
+  cumulable: False
   racine: Corse.rules
 Action collective financée par la région:
+  type_lbf: actioncollectiveregion
   tags: [DE, collectif, région]
+  cpf_mobilisable: True
+  financee_pe: False
+  cumulable: False
   racine: Pays de la Loire.rules
   ressources:
     - http://www.paysdelaloire.fr/politiques-regionales/formation-professionnelle
 Action collective sanitaire et social financée par la région et Pôle emploi:
+  type_lbf: actioncollectiveregion
   tags: [DE, collectif, région]
+  cpf_mobilisable: True
+  financee_pe: False
+  cumulable: False
   racine: Pays de la Loire.rules
   ressources:
     - http://www.paysdelaloire.fr/politiques-regionales/formation-professionnelle
 Formations sanitaire et social d'aide-soignant ou d'auxiliaire de puériculture région Île-de-France:
+  type_lbf: actioncollectiveregion
   tags: [DE, région, collectif]
+  cpf_mobilisable: True
+  financee_pe: False
+  cumulable: False
   racine: Île-de-France.rules
 Formations sanitaire et social post-bac région Île-de-France:
+  type_lbf: actioncollectiveregion
   tags: [DE, région, collectif]
+  cpf_mobilisable: True
+  financee_pe: False
+  cumulable: False
   racine: Île-de-France.rules
 Programme régional qualifiant compétences:
+  type_lbf: actioncollectiveregion
   tags: [DE, région, collectif]
-  racine: Île-de-France.rules
-Chéquier unique VAE Région Ile-de-France:
-  tags: [DE, région, individuel]
+  cpf_mobilisable: True
+  financee_pe: False
+  cumulable: False
   racine: Île-de-France.rules
 Paris formation pour l'emploi:
+  type_lbf: actioncollectiveregion
   tags: [DE, département, collectif]
+  cpf_mobilisable: True
+  financee_pe: False
+  cumulable: False
   racine: Île-de-France.rules
 Accès des demandeurs d’emploi aux métiers agricoles:
   sigle: ADEMA
+  type_lbf: actioncollectiveregion
   tags: [DE, collectif, ADEMA]
+  cpf_mobilisable: True
+  financee_pe: False
+  cumulable: False
   racine: région du bénéficiaire
 Programme de formations collectives financées par le Conseil régional de Normandie:
+  type_lbf: actioncollectiveregion
   tags: [DE, région, collectif]
-  racine: Normandie.rules
-Une formation, un emploi - individuel:
-  tags: [DE, région, individuel]
+  cpf_mobilisable: True
+  financee_pe: False
+  cumulable: False
   racine: Normandie.rules
 Une formation, un emploi - collectif:
+  type_lbf: actioncollectiveregion
   tags: [DE, région, collectif]
-  racine: Normandie.rules
-Qualif individuel:
-  tags: [DE, région, individuel]
+  cpf_mobilisable: True
+  financee_pe: False
+  cumulable: False
   racine: Normandie.rules
 VAE Normandie:
-  tags: [DE, VAE]
+  type_lbf: actioncollectiveregion
+  tags: [DE, region, VAE]
+  cpf_mobilisable: True
+  financee_pe: False
+  cumulable: False
   racine: Normandie.rules
 Programme régional de formation Nouvelle-Aquitaine:
   intitule: Programme régional de formation
   sigle: PRF
+  type_lbf: actioncollectiveregion
   tags: [DE, collectif, PRF]
+  cpf_mobilisable: True
+  financee_pe: False
+  cumulable: False
   racine: Nouvelle-Aquitaine.rules
 Parcours régional de préparation à l'apprentissage:
   sigle: PREPA
+  type_lbf: actioncollectiveregion
   tags: [DE, collectif, PREPA]
+  cpf_mobilisable: True
+  financee_pe: False
+  cumulable: False
   racine: Nouvelle-Aquitaine.rules
-Aide individuelle Conseil régional:
-  tags: [DE, individuel, région, Nouvelle-Aquitaine]
-  racine: Nouvelle-Aquitaine.rules
-  ressources:
-  - https://les-aides.nouvelle-aquitaine.fr/fiche/remuneration-des-stagiaires-de-la-formation-professionnelle/
 Parcours Orientation Insertion:
+  type_lbf: actioncollectiveregion
   tags: [DE, collectif, région, Occitanie]
+  cpf_mobilisable: True
+  financee_pe: False
+  cumulable: False
   racine: Occitanie.rules
   ressources:
   - http://www.laregion.fr
 Parcours diplômants et actions préparatoires:
+  type_lbf: actioncollectiveregion
   tags: [DE, collectif, région, Occitanie]
+  cpf_mobilisable: True
+  financee_pe: False
+  cumulable: False
   racine: Occitanie.rules
 Dispositif « chèque »:
+  type_lbf: actioncollectiveregion
   tags: [DE, collectif, région, Occitanie, chèque]
+  cpf_mobilisable: True
+  financee_pe: False
+  cumulable: False
   racine: Occitanie.rules
 Cap métiers:
+  type_lbf: actioncollectiveregion
   tags: [DE, collectif, région, Occitanie]
+  cpf_mobilisable: True
+  financee_pe: False
+  cumulable: False
   racine: Occitanie.rules
 Cap avenir:
+  type_lbf: actioncollectiveregion
   tags: [DE, collectif, région, Occitanie]
+  cpf_mobilisable: True
+  financee_pe: False
+  cumulable: False
   racine: Occitanie.rules
 Cap compétences clés:
+  type_lbf: actioncollectiveregion
   tags: [DE, collectif, région, Occitanie]
+  cpf_mobilisable: True
+  financee_pe: False
+  cumulable: False
   racine: Occitanie.rules
 Programme régional qualifiant Occitanie:
   intitule: Programme régional qualifiant
+  type_lbf: actioncollectiveregion
   tags: [DE, collectif, région, Occitanie]
+  cpf_mobilisable: True
+  financee_pe: False
+  cumulable: False
   racine: Occitanie.rules
 Écoles régionales de la deuxième chance:
   sigle: ER2C
+  type_lbf: actioncollectiveregion
   tags: [DE, région, Occitanie, ER2C]
+  cpf_mobilisable: True
+  financee_pe: False
+  cumulable: False
   racine: Occitanie.rules
 Formations des établissements d'enseignement supérieur:
+  type_lbf: actioncollectiveregion
   tags: [DE, région, Occitanie]
+  cpf_mobilisable: True
+  financee_pe: False
+  cumulable: False
   racine: Occitanie.rules
 École de l'apprentissage:
+  type_lbf: actioncollectiveregion
   tags: [DE, région, Occitanie]
+  cpf_mobilisable: True
+  financee_pe: False
+  cumulable: False
   racine: Occitanie.rules
 Formation sanitaire et social Occitanie:
   intitule: Formation sanitaire et social
+  type_lbf: actioncollectiveregion
   tags: [DE, collectif, région, Occitanie]
+  cpf_mobilisable: True
+  financee_pe: False
+  cumulable: False
   racine: Occitanie.rules
-Le chèque qualification:
-  tags: [DE, individuel, région, Guadeloupe]
-  racine: Guadeloupe.rules
-Programme régional de formation Guadeloupe:
-  intitule: Programme régional de formation
-  tags: [DE, collectif, région, Guadeloupe]
-  racine: Guadeloupe.rules
-AIF région:
-  tags: [DE, individuel, région, Guadeloupe]
-  racine: Guadeloupe.rules
-AIF département:
-  tags: [DE, individuel, région, Guadeloupe]
-  racine: Guadeloupe.rules
-Actions de formation collectives département:
-  tags: [DE, collectif, région, Guadeloupe]
-  racine: Guadeloupe.rules
-Aide individuelle régionale à la formation:
-  tags: [AIF, DE, individuel]
-  racine: Grand-Est.rules
-Formation sanitaire et social Grand-Est:
-  intitule: Formation sanitaire et social
-  tags: [DE, région, individuel, branche]
-  racine: Grand-Est.rules
-  ressources:
-  - https://www.grandest.fr/formations-sanitaires-sociales/bourses-secteur-sanitaire-social
 Programme régional de formation dans la région Grand-Est:
   intitule: Programme régional de formation
   sigle: PRF
+  type_lbf: actioncollectiveregion
   tags: [DE, collectif, PRF]
+  cpf_mobilisable: True
+  financee_pe: False
+  cumulable: False
   racine: Grand-Est.rules
 Action collective financée par la Région Bourgogne:
   intitule: Action collective financée par la Région
+  type_lbf: actioncollectiveregion
   tags: [DE, collectif, région, Bourgogne]
+  cpf_mobilisable: True
+  financee_pe: False
+  cumulable: False
   racine: Bourgogne-Franche-Comté.rules
 Formation sanitaire et social Bourgogne:
   intitule: Formation sanitaire et social
+  type_lbf: actioncollectiveregion
   tags: [DE]
+  cpf_mobilisable: True
+  financee_pe: False
+  cumulable: False
   racine: Bourgogne-Franche-Comté.rules
 Dispositif accès à la qualification:
   sigle: DAQ
+  type_lbf: actioncollectiveregion
   tags: [DE, DAQ, région, Bourgogne]
+  cpf_mobilisable: True
+  financee_pe: False
+  cumulable: False
   racine: Bourgogne-Franche-Comté.rules
 Le chèque pass formation:
   tags: [DE, individuel, région, chèque]
@@ -289,46 +589,94 @@ Le chèque pass formation:
   ressources:
   - https://www.c2rp.fr/dispositifs/cheque-pass-formation
 Sanitaire et social:
+  type_lbf: actioncollectiveregion
   tags: [DE, collectif, région]
+  cpf_mobilisable: True
+  financee_pe: False
+  cumulable: False
   racine: Hauts-de-France.rules
   ressources:
   - https://www.hautsdefrance.fr/bourses-formations-sanitaires-sociales
 Programme régional de formation Hauts-de-France:
   intitule: Programme régional de formation
+  type_lbf: actioncollectiveregion
   tags: [DE, collectif, région]
+  cpf_mobilisable: True
+  financee_pe: False
+  cumulable: False
   racine: Hauts-de-France.rules
-Pass emploi:
-  tags: [DE, individuel, région]
-  racine: Hauts-de-France.rules
-  ressources:
-    - https://www.c2rp.fr/dispositifs/pass-emploi
-    - https://www.hautsdefrance.fr/mot/formation/
-Aide individuelle à la formation avec promesse d'embauche:
-  tags: [DE, région, individuel]
-  racine: Centre-Val de Loire.rules
 Chèque formation Conseil régional Centre-Val de Loire:
+  type_lbf: actioncollectiveregion
   tags: [DE, région, collectif, chèque]
+  cpf_mobilisable: True
+  financee_pe: False
+  cumulable: False
   racine: Centre-Val de Loire.rules
 Programme Régional de Formation:
+  type_lbf: actioncollectiveregion
   tags: [DE, région, collectif]
+  cpf_mobilisable: True
+  financee_pe: False
+  cumulable: False
   racine: Centre-Val de Loire.rules
 Programme Régional de Formation Visa:
-  tags: [DE, région, collectif]
+  type_lbf: actioncollectiveregion
+  tags: [DE, région, collectif, VISA]
+  cpf_mobilisable: True
+  financee_pe: False
+  cumulable: False
   racine: Centre-Val de Loire.rules
 Formations sanitaire et sociale subventionnées par le Conseil régional Centre-Val de Loire:
+  type_lbf: actioncollectiveregion
   tags: [DE, région, collectif]
+  cpf_mobilisable: True
+  financee_pe: False
+  cumulable: False
   ressource: http://www.etoile.regioncentre.fr/GIP/accueiletoile/seformer/formation/articles-formation/Financer-une-formation-sanitaire-et-sociale#A125823
   racine: Centre-Val de Loire.rules
 Action collective financée par la région:
+  type_lbf: actioncollectiveregion
   tags: [DE, collectif, région]
+  cpf_mobilisable: True
+  financee_pe: False
+  cumulable: False
   racine: Pays de la Loire.rules
   ressources:
     - http://www.paysdelaloire.fr/politiques-regionales/formation-professionnelle
 Action collective sanitaire et social financée par la région et Pôle Emploi:
+  type_lbf: actioncollectiveregion
   tags: [DE, collectif, région]
+  cpf_mobilisable: True
+  financee_pe: False
+  cumulable: False
   racine: Pays de la Loire.rules
   ressources:
     - http://www.paysdelaloire.fr/politiques-regionales/formation-professionnelle
-Chèque formation réussite:
-  tags: [DE, individuel, région, chèque]
-  racine: La Réunion.rules
+Programme régional de formation Guadeloupe:
+  type_lbf: actioncollectiveregion
+  intitule: Programme régional de formation
+  tags: [DE, collectif, région, Guadeloupe]
+  cpf_mobilisable: True
+  financee_pe: False
+  cumulable: False
+  racine: Guadeloupe.rules
+Actions de formation collectives département:
+  type_lbf: actioncollectiveregion
+  tags: [DE, collectif, région, Guadeloupe]
+  cpf_mobilisable: True
+  financee_pe: False
+  cumulable: False
+  racine: Guadeloupe.rules
+CPF demandeur d'emploi:
+  type_lbf: cpf
+  tags: [CPF, DE]
+  cpf_mobilisable: True
+  financee_pe: False
+  cumulable: True
+  racine: CPF DE.rules
+CPF sur son temps de travail:
+  tags: [CPF, sur son temps de travail]
+  racine: organisme paritaire.rules
+CPF hors temps de travail:
+  tags: [CPF, hors temps de travail]
+  racine: organisme paritaire.rules

@@ -2,8 +2,16 @@ from datetime import timedelta
 
 from lxml import etree
 
-from .config import (CONSTANTS, ELIGIBILITE_URL, INTERCARIF_URL, LABELS,
-                     ORGANISMES, RULES, SCHEMA, Organisme)
+from .config import (
+    CONSTANTS,
+    ELIGIBILITE_URL,
+    INTERCARIF_URL,
+    LABELS,
+    ORGANISMES,
+    RULES,
+    SCHEMA,
+    Organisme,
+)
 from .exceptions import DataError, UpstreamError, NoDataError
 from .helpers import (
     diff_month,
@@ -20,10 +28,14 @@ from .validators import format_naf
 
 def extrapolate_context(context):
     context.update(CONSTANTS)
-    insee_commune_to_departement(context, 'beneficiaire.commune',
-                                 'beneficiaire.departement')
-    insee_commune_to_departement(context, 'beneficiaire.entreprise.commune',
-                                 'beneficiaire.entreprise.departement')
+    insee_commune_to_departement(
+        context, "beneficiaire.commune", "beneficiaire.departement"
+    )
+    insee_commune_to_departement(
+        context,
+        "beneficiaire.entreprise.commune",
+        "beneficiaire.entreprise.departement",
+    )
     # FIXME remove me when LBF sends INSEE code even for DE.
     # (this is a postcode).
     insee_commune_to_departement(
@@ -35,17 +47,29 @@ def extrapolate_context(context):
     insee_departement_to_region(
         context, "beneficiaire.departement", "beneficiaire.region"
     )
+    if not context.get("formation.region"):
+        insee_departement_to_region(
+            context, "formation.departement", "formation.region"
+        )
     if context.get("beneficiaire.allocation_type") == "non":
         del context["beneficiaire.allocation_type"]
+    if context.get("individu.type") == "DE":
+        context["beneficiaire.inscrit_pe"] = True
     if "beneficiaire.age" not in context and context.get("beneficiaire.naissance"):
         context["beneficiaire.age"] = calculate_age(context["beneficiaire.naissance"])
+    if context.get("individu.travailleurHandicape"):
+        context["beneficiaire.th"] = context.get("individu.travailleurHandicape")
+    if context.get("individu.contratAide.enCours"):
+        context["beneficiaire.contrat_aide_actuel"] = True
+    if context.get("individu.contratAide.termine"):
+        context["beneficiaire.contrat_aide_passe"] = True
 
     _extrapolate_formation_context(context)
 
 
 def _extrapolate_formation_context(context):
     # Compute durations.
-    if 'formation.debut' in context and 'formation.fin' in context:
+    if "formation.debut" in context and "formation.fin" in context and not context.get("formation.entrees_sorties_permanentes"):
         mois = diff_month(context['formation.debut'], context['formation.fin'])
         semaines = diff_week(context['formation.debut'],
                              context['formation.fin'])
@@ -84,42 +108,42 @@ def _extrapolate_formation_context(context):
 
 
 async def get_formation_xml(formation_id):
-    return (await http_get(f'{INTERCARIF_URL}?num={formation_id}')).content
+    return (await http_get(f"{INTERCARIF_URL}?num={formation_id}")).content
 
 
 async def populate_formation(context):
-    if not context.get('formation.numero'):
+    if not context.get("formation.numero"):
         return
 
-    formation_id = context['formation.numero']
+    formation_id = context["formation.numero"]
     xml = await get_formation_xml(formation_id)
 
     try:
         await populate_formation_from_bytes(context, xml)
     except ValueError as err:
         # Give more context.
-        raise DataError(f'Error with id `{formation_id}`: `{err}`')
+        raise DataError(f"Error with id `{formation_id}`: `{err}`")
 
 
 async def retrieve_codes_naf(ids):
-    params = ''.join(f'&id[]={id}' for id in ids)
-    url = f'{ELIGIBILITE_URL}{params}'
+    params = "".join(f"&id[]={id}" for id in ids)
+    url = f"{ELIGIBILITE_URL}{params}"
     response = await http_get(url)
     tree = etree.fromstring(response.content)
-    return set(format_naf(c) for c in tree.xpath('//branche/child::text()'))
+    return set(format_naf(c) for c in tree.xpath("//branche/child::text()"))
 
 
 async def populate_formation_from_bytes(context, content):
     # Doc for leoh: http://lheo.gouv.fr/langage
     # TODO: deal with action or session optional ids.
-    content = content.replace(b' xmlns="http://www.lheo.org/2.2"', b'')
+    content = content.replace(b' xmlns="http://www.lheo.org/2.2"', b"")
     try:
         tree = etree.fromstring(content)
     except etree.XMLSyntaxError:
-        raise UpstreamError('UPSTREAM_ERROR: Invalid INTERCARIF XML')
-    root = tree.find('offres/formation')
+        raise UpstreamError("UPSTREAM_ERROR: Invalid INTERCARIF XML")
+    root = tree.find("offres/formation")
     if root is None:
-        raise ValueError('No formation found')
+        raise ValueError("No formation found")
 
     for key, schema in SCHEMA.items():
         if schema.get("source") == "catalogue" and schema.get("xpath"):
@@ -132,20 +156,25 @@ async def populate_formation_from_bytes(context, content):
                 print(f'Warning: invalid data while processing {key} with {value} ({err})')
                 continue
 
-    if not context['formation.codes_naf']:
-        ids = set(root.xpath('//extras[@info="eligibilite-cpf"]/extra[@info="france-entiere"][text()="1"]/../extra[@info="inter-branche"][text()="0"]/../@numero'))
+    if not context["formation.codes_naf"]:
+        ids = set(
+            root.xpath(
+                '//extras[@info="eligibilite-cpf"]/extra[@info="france-entiere"][text()="1"]/../extra[@info="inter-branche"][text()="0"]/../@numero'
+            )
+        )
         if ids:
-            context['formation.codes_naf'] = await retrieve_codes_naf(ids)
+            context["formation.codes_naf"] = await retrieve_codes_naf(ids)
 
 
 def preprocess(context):
-    for rule in RULES['normalisation.rules']:
+    for rule in RULES["normalisation.rules"]:
         Rule.process(rule, context)
 
 
 def load_organisme_contact_details(context, financement):
-    nom = context.get('financement.organisme.agence',
-                      context.get('financement.organisme.nom'))
+    nom = context.get(
+        "financement.organisme.agence", context.get("financement.organisme.nom")
+    )
     if nom not in ORGANISMES:  # A DE financement?
         return
     financement.organisme = Organisme(ORGANISMES[nom])
@@ -153,17 +182,17 @@ def load_organisme_contact_details(context, financement):
 
 def compute_modalites(context, financement):
     # TODO: HT vs TTC everywhere
-    heures = context['formation.heures']
-    heures = min(context['formation.heures'],
-                 context.get('financement.plafond_horaire', heures))
-    prix_horaire = context.get('formation.prix_horaire', 0)
-    plafond_financier = context.get('financement.plafond_financier')
-    reste_a_charge = context.get('financement.reste_a_charge', 0)
-    plafond_prix_horaire = context.get('financement.plafond_prix_horaire', 0)
-    indemnite_conges_payes = context.get('financement.indemnite_conges_payes',
-                                         0)
+    heures = context["formation.heures"]
+    heures = min(
+        context["formation.heures"], context.get("financement.plafond_horaire", heures)
+    )
+    prix_horaire = context.get("formation.prix_horaire", 0)
+    plafond_financier = context.get("financement.plafond_financier")
+    reste_a_charge = context.get("financement.reste_a_charge", 0)
+    plafond_prix_horaire = context.get("financement.plafond_prix_horaire", 0)
+    indemnite_conges_payes = context.get("financement.indemnite_conges_payes", 0)
     financement.reste_a_charge = reste_a_charge
-    prise_en_charge = context.get('financement.prise_en_charge', None)
+    prise_en_charge = context.get("financement.prise_en_charge", None)
     if not prise_en_charge:
         if prix_horaire > 0:  # We can deal with a real prise_en_charge.
             if plafond_prix_horaire and plafond_prix_horaire < prix_horaire:
@@ -176,72 +205,79 @@ def compute_modalites(context, financement):
     financement.prise_en_charge = prise_en_charge
     # If we have heures AND plafond_prix_horaire we have the real plafond.
     plafond_effectif = heures * plafond_prix_horaire
-    if not plafond_financier or (plafond_effectif
-                                 and plafond_effectif < plafond_financier):
+    if not plafond_financier or (
+        plafond_effectif and plafond_effectif < plafond_financier
+    ):
         plafond_financier = heures * plafond_prix_horaire
     financement.plafond_prix_horaire = plafond_prix_horaire
     financement.plafond_prise_en_charge = plafond_financier - reste_a_charge
     # FIXME: should we define default remuneration in common rules instead?
-    remuneration = context.get('financement.remuneration', 0)
-    plafond_remuneration = context.get('financement.plafond_remuneration', 0)
+    remuneration = context.get("financement.remuneration", 0)
+    plafond_remuneration = context.get("financement.plafond_remuneration", 0)
     if plafond_remuneration and plafond_remuneration < remuneration:
         remuneration = plafond_remuneration
     financement.remuneration = remuneration
     financement.indemnite_conges_payes = indemnite_conges_payes
     financement.heures = heures
-    keys = ['remuneration_texte', 'prise_en_charge_texte', 'demarches', 'rff',
-            'description', 'remuneration_annee_2', 'remuneration_annee_3',
-            'intitule', 'en_savoir_plus']
+    keys = [
+        "remuneration_texte",
+        "prise_en_charge_texte",
+        "demarches",
+        "rff",
+        "description",
+        "remuneration_annee_2",
+        "remuneration_annee_3",
+        "intitule",
+        "en_savoir_plus",
+    ]
     for key in keys:
-        name = f'financement.{key}'
+        name = f"financement.{key}"
         if name in context:
             financement[key] = context[name]
-    if financement.get('demarches'):
-        financement.demarches = financement.demarches.replace('⏎', '\n')
-    if financement.get('rff'):
-        financement.fin_remuneration = context.get(
-            'beneficiaire.fin_allocation')
-        financement.debut_rff = (financement.fin_remuneration
-                                 + timedelta(days=1))
-        financement.fin_rff = context.get('formation.fin')
+    if financement.get("demarches"):
+        financement.demarches = financement.demarches.replace("⏎", "\n")
+    if financement.get("rff"):
+        financement.fin_remuneration = context.get("beneficiaire.fin_allocation")
+        financement.debut_rff = financement.fin_remuneration + timedelta(days=1)
+        financement.fin_rff = context.get("formation.fin")
 
 
 def get_root_rule(context, financement):
     name = financement.racine
-    if name.endswith('.rules'):
+    if name.endswith(".rules"):
         return name
     name = LABELS.get(name, name)
     if name in SCHEMA:
         schema = SCHEMA[name]
         name = context.get(name)
         # Rules have human friendly names, so revert the enum logic here
-        enum = schema.get('enum')
+        enum = schema.get("enum")
         if enum:
             name = enum.get(name, name)
     if name:
-        return f'{name}.rules'
+        return f"{name}.rules"
 
 
 def check_financement(context, financement):
     statuses = []
     financement.explain = []
-    context['financement.intitule'] = financement.intitule
-    context['financement.tags'] = financement.tags
-    context['financement.eligible'] = False
+    context["financement.intitule"] = financement.intitule
+    context["financement.tags"] = financement.tags
+    context["financement.eligible"] = False
     rule_name = get_root_rule(context, financement)
     if not rule_name:
         return
     for rule in RULES[rule_name]:
         statuses.extend(Rule.process(rule, context))
     financement.explain = statuses
-    if context['financement.eligible']:
+    if context["financement.eligible"]:
         compute_modalites(context, financement)
         load_organisme_contact_details(context, financement)
         financement.format()
-    financement.eligible = context['financement.eligible']
+    financement.eligible = context["financement.eligible"]
     for key in list(financement.keys()):
-        if key == 'organisme':
+        if key == "organisme":
             continue  # reference
-        name = f'financement.{key}'
-        if name not in SCHEMA or not SCHEMA[name].get('public'):
+        name = f"financement.{key}"
+        if name not in SCHEMA or not SCHEMA[name].get("public"):
             del financement[key]

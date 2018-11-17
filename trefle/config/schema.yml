@@ -182,6 +182,7 @@ beneficiaire:
     label: demandeur d'emploi
     gender: masculine
   solde_cpf:
+    alias: individu.heuresCPF
     description: solde du compte CPF du bénéficiaire
     type: integer
     format: int32
@@ -238,11 +239,13 @@ beneficiaire:
     label: âge du bénéficiaire
     gender: masculine
   parent_isole:
+    alias: individu.parentIsole
     type: boolean
     public: true
     label: parent isolé
     gender: masculine
   mere_trois_enfants:
+    alias: individu.mere3enfants
     type: boolean
     public: true
     label: mère de famille ayant au moins trois enfants
@@ -251,7 +254,9 @@ beneficiaire:
     public: true
     label: femme divorcée, veuve ou séparée judiciairement depuis moins de trois ans
   creation_entreprise:
-    alias: beneficiaire.situation_projetcreationentreprise
+    alias:
+      - beneficiaire.situation_projetcreationentreprise
+      - individu.projetCreationEntreprise
     type: boolean
     public: true
     label: bénéficiaire en situation de création d'entreprise nécessitant cette formation
@@ -329,6 +334,7 @@ beneficiaire:
     pattern: ^(2[AB]|[0-9]{2})[0-9]{3}$
     label: commune du bénéficiaire
   departement:
+    alias: individu.departementHabitation
     description: code INSEE du département où réside le bénéficiaire
     type: string
     public: true
@@ -575,6 +581,7 @@ formation:
     # Allow to set an empty intitule_norme (occurs when the intitule itself is an empty string).
     default: ""
   numero:
+    alias: formationVisee.codeFormation
     description: identifiant INTERCARIF de la formation
     type: string
     public: true
@@ -952,12 +959,28 @@ financement:
     type: string
     public: true
     label: intitulé du financement
+  type_lbf:
+    type: string
+    public: true
+    label: identifiant LBF d'un financement
+  financee_pe:
+    type: boolean
+    public: true
+    label: Formation financéee par Pôle emploi
   tags:
     type: array
     items:
       type: string
     public: true
     label: catégories du financement
+  cpf_mobilisable:
+    type: boolean
+    public: true
+    label: CPF mobilisable pour le financement
+  cumulable:
+    type: boolean
+    public: true
+    label: dispositif cumulable avec un autre
   sigle:
     type: string
     public: true

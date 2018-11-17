@@ -95,6 +95,7 @@ def format_date(value):
     tries = [
         (8, '%Y%m%d'),
         (10, '%d/%m/%Y'),  # From LBF.
+        (10, '%Y-%m-%d'),  # From TMF.
         # Consider the day was invalid, try with month only.
         (6, '%Y%m'),
         # Consider even the month was invalid, try with year only.
