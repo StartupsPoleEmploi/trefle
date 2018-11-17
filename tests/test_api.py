@@ -8,20 +8,11 @@ from openapi_core import create_spec
 from openapi_core.wrappers.mock import MockRequest, MockResponse
 from openapi_core.shortcuts import ResponseValidator
 from openapi_spec_validator import validate_spec
-from roll.extensions import traceback
 
 
-from trefle.api import app as trefleapp
 from trefle.config import FINANCEMENTS
 
 pytestmark = pytest.mark.asyncio
-
-
-@pytest.fixture(scope='session')
-def app():
-    # Get the traceback in console in case of unhandled error.
-    traceback(trefleapp)
-    yield trefleapp
 
 
 async def test_schema(client):
@@ -217,7 +208,8 @@ async def test_simulate_triggers_log(client):
 
     log_path = Path(os.environ['TREFLE_LOG_DIR']) / 'trefle-simulate.log'
     log_path.write_text('')
-    await client.post('/financement', body=body)
+    resp = await client.post('/financement', body=body)
+    assert resp.status == 200
     lines = log_path.read_text().splitlines()
     assert len(lines) == 1
     log_data = json.loads(lines[0])
@@ -241,7 +233,8 @@ async def test_simulate_error_triggers_log(client):
 
     log_path = Path(os.environ['TREFLE_LOG_DIR']) / 'trefle-simulate.log'
     log_path.write_text('')
-    await client.post('/financement', body=body)
+    resp = await client.post('/financement', body=body)
+    assert resp.status == 422
     lines = log_path.read_text().splitlines()
     assert len(lines) == 1
     log_data = json.loads(lines[0])

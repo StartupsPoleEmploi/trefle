@@ -8,6 +8,7 @@ from . import VERSION, simulate, get_financements
 from .config import FINANCEMENTS, GLOSSARY, NAF, RAW_RULES, SCHEMA
 from .debugging import data_from_lbf_url, make_scenario, SCENARIOS
 from .exceptions import DataError
+from .legacy import simulate_legacy
 from .loggers import log_simulate, logger
 from .openapis import OPENAPI
 from .routine import get_formation_json
@@ -58,6 +59,9 @@ async def simulate_(request, response):
     response.json = body
 
     log_simulate(context, financements=financements)
+
+
+app.route('/legacy', methods=['POST'])(simulate_legacy)
 
 
 @app.route('/schema')

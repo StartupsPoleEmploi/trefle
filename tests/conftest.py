@@ -3,8 +3,18 @@ from collections import namedtuple
 from pathlib import Path
 
 import pytest
+from roll.extensions import traceback
 
 from trefle.rules import LABELS, SCHEMA
+
+
+@pytest.fixture(scope='session')
+def app():
+    # Do not import before pytest_configure has run to patch env vars.
+    from trefle.api import app as trefleapp
+    # Get the traceback in console in case of unhandled error.
+    traceback(trefleapp)
+    yield trefleapp
 
 
 @pytest.fixture
