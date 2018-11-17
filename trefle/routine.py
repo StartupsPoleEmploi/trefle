@@ -122,14 +122,14 @@ async def populate_formation_from_bytes(context, content):
         raise ValueError('No formation found')
 
     for key, schema in SCHEMA.items():
-        if schema.get('source') == 'catalogue' and schema.get('xpath'):
-            value = root.xpath(schema['xpath'])
-            if value == []:  # Empty resultset.
-                value = None
+        if schema.get("source") == "catalogue" and schema.get("xpath"):
+            value = root.xpath(schema["xpath"])
+            if value in ('', [], None):  # Empty resultset.
+                continue
             try:
                 context[key] = value
             except DataError as err:
-                print(err)
+                print(f'Warning: invalid data while processing {key} with {value} ({err})')
                 continue
 
     if not context['formation.codes_naf']:
