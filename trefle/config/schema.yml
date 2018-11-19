@@ -226,7 +226,9 @@ beneficiaire:
     public: true
     label: date de fin de l'allocation du bénéficiaire
   naissance:
-    alias: individu.dateNaissance
+    alias: 
+    - individu.dateNaissance
+    - beneficiaire.birthdate
     type: string
     format: date
     public: true

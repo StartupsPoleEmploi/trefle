@@ -1,16 +1,16 @@
 [
   {
+    "test": true,
     "formationVisee": {
       "codeFormation": "21_65896"
     },
     "individu": {
-      "test": true,
       "type": "DE",
       "chomageDePlusDeSixMois": true,
-      "departementHabitation": "44",
+      "departementHabitation": "62",
       "dateNaissance": "1980-12-12",
       "niveauEtude": 3,
-      "heuresCPF": "100",
+      "heuresCPF": "200",
       "typeAllocation": {
         "type": "non"
       },
@@ -21,11 +21,11 @@
     }
   },
   {
+    "test": true,
     "formationVisee": {
       "codeFormation": "04_A814179"
     },
     "individu": {
-      "test": true,
       "type": "DE",
       "chomageDePlusDeSixMois": true,
       "departementHabitation": "93",
@@ -42,11 +42,11 @@
     }
   },
   {
+    "test": true,
     "formationVisee": {
       "codeFormation": "24_113168"
     },
     "individu": {
-      "test": true,
       "type": "DE",
       "chomageDePlusDeSixMois": true,
       "departementHabitation": "13",
@@ -63,11 +63,11 @@
     }
   },
   {
+    "test": true,
     "formationVisee": {
       "codeFormation": "17_37091"
     },
     "individu": {
-      "test": true,
       "type": "DE",
       "chomageDePlusDeSixMois": true,
       "departementHabitation": "93",
@@ -85,11 +85,11 @@
     }
   },
   {
+    "test": true,
     "formationVisee": {
       "codeFormation": "14_AF_0000029913"
     },
     "individu": {
-      "test": true,
       "type": "DE",
       "chomageDePlusDeSixMois": true,
       "departementHabitation": "49",
@@ -106,11 +106,11 @@
     }
   },
   {
+    "test": true,
     "formationVisee": {
       "codeFormation": "14_AF_0000056890"
     },
     "individu": {
-      "test": true,
       "type": "DE",
       "chomageDePlusDeSixMois": true,
       "departementHabitation": "94",
@@ -127,11 +127,11 @@
     }
   },
   {
+    "test": true,
     "formationVisee": {
       "codeFormation": "17_33241"
     },
     "individu": {
-      "test": true,
       "type": "DE",
       "chomageDePlusDeSixMois": true,
       "departementHabitation": "57",
@@ -148,14 +148,14 @@
     }
   },
   {
+    "test": true,
     "formationVisee": {
       "codeFormation": "14_AF_0000047955"
     },
     "individu": {
-      "test": true,
       "type": "DE",
       "chomageDePlusDeSixMois": true,
-      "departementHabitation": "93",
+      "departementHabitation": "62",
       "dateNaissance": "1980-12-12",
       "niveauEtude": 3,
       "heuresCPF": "100",
@@ -169,11 +169,11 @@
     }
   },
   {
+    "test": true,
     "formationVisee": {
       "codeFormation": "02_201508006899"
     },
     "individu": {
-      "test": true,
       "type": "DE",
       "chomageDePlusDeSixMois": true,
       "departementHabitation": "93",
@@ -186,11 +186,11 @@
     }
   },
   {
+    "test": true,
     "formationVisee": {
       "codeFormation": "11_3344"
     },
     "individu": {
-      "test": true,
       "type": "DE",
       "chomageDePlusDeSixMois": true,
       "departementHabitation": "971",
@@ -203,11 +203,11 @@
     }
   },
   {
+    "test": true,
     "formationVisee": {
       "codeFormation": "03_1700339F"
     },
     "individu": {
-      "test": true,
       "type": "DE",
       "chomageDePlusDeSixMois": true,
       "departementHabitation": "15",
@@ -226,74 +226,55 @@
     }
   },
   {
+    "test": true,
     "formationVisee": {
-      "codeFormation": "24_122040"
+      "codeFormation": "03_1700339F"
     },
     "individu": {
-      "test": true,
       "type": "DE",
       "chomageDePlusDeSixMois": true,
-      "departementHabitation": "13",
+      "departementHabitation": "15",
       "dateNaissance": "1980-12-12",
       "niveauEtude": 3,
       "heuresCPF": "100",
       "typeAllocation": {
         "type": "non"
       },
-      "contratAide": {
-        "enCours": false,
-        "termine": true
+      "interimExperience": {
+        "1600HeuresDepuis6mois": true,
+        "derniereMissionDateFin": "2018-02-15"
       }
     }
   },
   {
+    "test": true,
     "formationVisee": {
-      "codeFormation": "24_64724"
+      "codeFormation": "03_1700339F"
     },
     "individu": {
-      "test": true,
       "type": "DE",
       "chomageDePlusDeSixMois": true,
-      "departementHabitation": "13",
-      "dateNaissance": "1980-12-12",
+      "departementHabitation": "15",
+      "dateNaissance": "1999-02-15",
       "niveauEtude": 3,
-      "heuresCPF": "100",
+      "heuresCPF": 0,
       "typeAllocation": {
         "type": "non"
       },
-      "contratAide": {
-        "enCours": false,
-        "termine": true
+      "cddTermine": {
+        "depuisMoinsUnAn": true,
+        "24MoisSur5Ans": true,
+        "4MoisSur1An": true,
+        "cddDateDeFin": "2018-02-15"
       }
     }
   },
   {
-    "formationVisee": {
-      "codeFormation": "18_3529"
-    },
-    "individu": {
-      "test": true,
-      "type": "DE",
-      "chomageDePlusDeSixMois": true,
-      "departementHabitation": "62",
-      "dateNaissance": "1980-12-12",
-      "niveauEtude": 3,
-      "heuresCPF": "100",
-      "typeAllocation": {
-        "type": "non"
-      },
-      "contratAide": {
-        "enCours": false,
-        "termine": true
-      }
-    }
-  },
-  {
+    "test": true,
     "formationVisee": {
       "codeFormation": "20_F126000055809_401850"
     },
     "individu": {
-      "test": true,
       "type": "DE",
       "chomageDePlusDeSixMois": true,
       "departementHabitation": "62",
@@ -310,35 +291,14 @@
     }
   },
   {
-    "formationVisee": {
-      "codeFormation": "11_3573"
-    },
-    "individu": {
-      "test": true,
-      "type": "DE",
-      "chomageDePlusDeSixMois": true,
-      "departementHabitation": "971",
-      "dateNaissance": "1980-12-12",
-      "niveauEtude": 3,
-      "heuresCPF": "100",
-      "typeAllocation": {
-        "type": "non"
-      },
-      "contratAide": {
-        "enCours": false,
-        "termine": true
-      }
-    }
-  },
-  {
+    "test": true,
     "formationVisee": {
       "codeFormation": "25_98S1701949"
     },
     "individu": {
-      "test": true,
       "type": "DE",
       "chomageDePlusDeSixMois": true,
-      "departementHabitation": "974",
+      "departementHabitation": "971",
       "dateNaissance": "1980-12-12",
       "niveauEtude": 3,
       "heuresCPF": "100",
@@ -352,11 +312,32 @@
     }
   },
   {
+    "test": true,
+    "formationVisee": {
+      "codeFormation": "25_98S1701949"
+    },
+    "individu": {
+      "type": "DE",
+      "chomageDePlusDeSixMois": true,
+      "departementHabitation": "974",
+      "dateNaissance": "1980-12-12",
+      "niveauEtude": 3,
+      "heuresCPF": "100",
+      "typeAllocation": {
+        "type": "non"
+      },
+      "contratAide": {
+        "enCours": false,
+        "termine": true
+      }
+    }
+  },
+  {
+    "test": true,
     "formationVisee": {
       "codeFormation": "07_25556"
     },
     "individu": {
-      "test": true,
       "type": "DE",
       "chomageDePlusDeSixMois": true,
       "departementHabitation": "37",
@@ -374,11 +355,11 @@
     }
   },
   {
+    "test": true,
     "formationVisee": {
       "codeFormation": "25_98S1701949"
     },
     "individu": {
-      "test": true,
       "type": "DE",
       "chomageDePlusDeSixMois": true,
       "departementHabitation": "974",
@@ -396,11 +377,11 @@
     }
   },
   {
+    "test": true,
     "formationVisee": {
       "codeFormation": "05_54176"
     },
     "individu": {
-      "test": true,
       "type": "DE",
       "chomageDePlusDeSixMois": true,
       "departementHabitation": "71",
@@ -418,15 +399,15 @@
     }
   },
   {
+    "test": true,
     "formationVisee": {
       "codeFormation": "21_61339"
     },
     "individu": {
-      "test": true,
       "type": "DE",
       "chomageDePlusDeSixMois": true,
       "departementHabitation": "53",
-      "dateNaissance": "1980-12-12",
+      "dateNaissance": "1994-12-12",
       "niveauEtude": 3,
       "heuresCPF": "100",
       "typeAllocation": {
@@ -445,40 +426,15 @@
     }
   },
   {
+    "test": true,
     "formationVisee": {
       "codeFormation": "25_98S1701949"
     },
     "individu": {
-      "test": true,
       "type": "DE",
       "chomageDePlusDeSixMois": true,
       "departementHabitation": "974",
-      "dateNaissance": "1980-12-12",
-      "niveauEtude": 3,
-      "heuresCPF": "100",
-      "typeAllocation": {
-        "type": "non"
-      },
-      "cddTermine": {
-        "depuisMoinsUnAn": true,
-        "24MoisSur5Ans": true
-      },
-      "contratAide": {
-        "enCours": false,
-        "termine": true
-      }
-    }
-  },
-  {
-    "formationVisee": {
-      "codeFormation": "03_1702030F"
-    },
-    "individu": {
-      "test": true,
-      "type": "DE",
-      "chomageDePlusDeSixMois": true,
-      "departementHabitation": "63",
-      "dateNaissance": "1980-12-12",
+      "dateNaissance": "1994-12-12",
       "niveauEtude": 3,
       "heuresCPF": "100",
       "typeAllocation": {
@@ -497,11 +453,38 @@
     }
   },
   {
+    "test": true,
+    "formationVisee": {
+      "codeFormation": "03_1702030F"
+    },
+    "individu": {
+      "type": "DE",
+      "chomageDePlusDeSixMois": true,
+      "departementHabitation": "63",
+      "dateNaissance": "1994-12-12",
+      "niveauEtude": 3,
+      "heuresCPF": "100",
+      "typeAllocation": {
+        "type": "non"
+      },
+      "cddTermine": {
+        "depuisMoinsUnAn": true,
+        "24MoisSur5Ans": true,
+        "4MoisSur1An": true,
+        "cddDateDeFin": "2018-02-15"
+      },
+      "contratAide": {
+        "enCours": false,
+        "termine": true
+      }
+    }
+  },
+  {
+    "test": true,
     "formationVisee": {
       "codeFormation": "09_94F1800047"
     },
     "individu": {
-      "test": true,
       "type": "DE",
       "chomageDePlusDeSixMois": true,
       "departementHabitation": "2B",
@@ -514,6 +497,126 @@
       "contratAide": {
         "enCours": false,
         "termine": true
+      }
+    }
+  },
+  {
+    "test": true,
+    "formationVisee": {
+      "codeFormation": "21_61339"
+    },
+    "individu": {
+      "type": "DE",
+      "chomageDePlusDeSixMois": true,
+      "departementHabitation": "53",
+      "dateNaissance": "1994-12-12",
+      "niveauEtude": 3,
+      "heuresCPF": "100",
+      "typeAllocation": {
+        "type": "non"
+      },
+      "cddTermine": {
+        "depuisMoinsUnAn": true,
+        "24MoisSur5Ans": true,
+        "4MoisSur1An": true,
+        "cddDateDeFin": "2018-02-15"
+      },
+      "contratAide": {
+        "enCours": false,
+        "termine": true
+      }
+    }
+  },
+  {
+    "test": true,
+    "formationVisee": {
+      "codeFormation": "25_98S1701949"
+    },
+    "individu": {
+      "type": "DE",
+      "chomageDePlusDeSixMois": true,
+      "departementHabitation": "974",
+      "dateNaissance": "1994-12-12",
+      "niveauEtude": 3,
+      "heuresCPF": "100",
+      "typeAllocation": {
+        "type": "non"
+      },
+      "cddTermine": {
+        "depuisMoinsUnAn": true,
+        "24MoisSur5Ans": true,
+        "4MoisSur1An": true,
+        "cddDateDeFin": "2018-02-15"
+      },
+      "contratAide": {
+        "enCours": false,
+        "termine": true
+      }
+    }
+  },
+  {
+    "test": true,
+    "formationVisee": {
+      "codeFormation": "03_1702030F"
+    },
+    "individu": {
+      "type": "DE",
+      "chomageDePlusDeSixMois": true,
+      "departementHabitation": "63",
+      "dateNaissance": "1994-12-12",
+      "niveauEtude": 3,
+      "heuresCPF": "100",
+      "typeAllocation": {
+        "type": "non"
+      },
+      "cddTermine": {
+        "depuisMoinsUnAn": true,
+        "24MoisSur5Ans": true,
+        "4MoisSur1An": true,
+        "cddDateDeFin": "2018-02-15"
+      },
+      "contratAide": {
+        "enCours": false,
+        "termine": true
+      }
+    }
+  },
+  {
+    "test": true,
+    "formationVisee": {
+      "codeFormation": "09_94F1800047"
+    },
+    "individu": {
+      "type": "DE",
+      "chomageDePlusDeSixMois": true,
+      "departementHabitation": "2B",
+      "dateNaissance": "1980-12-12",
+      "niveauEtude": 3,
+      "heuresCPF": "100",
+      "typeAllocation": {
+        "type": "non"
+      },
+      "contratAide": {
+        "enCours": false,
+        "termine": true
+      }
+    }
+  },
+  {
+    "test": true,
+    "formationVisee": {
+      "codeFormation": "20_16973"
+    },
+    "individu": {
+      "type": "DE",
+      "departementHabitation": "75",
+      "dateNaissance": "1980-06-15",
+      "niveauEtude": 3,
+      "heuresCPF": 0,
+      "typeAllocation": {
+        "type": "ARE",
+        "dateFinIndemnisation": "2019-06-15",
+        "montantMensuelAllocation": "1500"
       }
     }
   }

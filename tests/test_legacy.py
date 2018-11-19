@@ -133,11 +133,11 @@ async def test_invalid_data(client):
         if path.suffix == ".json"
         and path.name
         not in [
-            "case_18.json",  # TODO Pb: different codes financeur LBF/Trefle for different strategy
-            "case_14.json",  # TODO Pb: LBF no control for codes financeur individuel
-            "case_10.json",  # TODO Fix order in financement (CPF in first)
-            "case_13.json",  # TODO Fix order in financement (CPF in first)
-            ]
+            "case_28.json",  # TODO Sur LBF, CPF affichée même si nombre d'heures pas renseignées
+            "case_15.json",  # TODO vérifier règle chèque formation (voir note sur règle LBF) et ordre des dispositifs inversés
+            "case_10.json",  # TODO ordre inversé AIF / POEI
+            "case_17.json",  # TODO à voir : 3 pour Trefle et 5 pour LBF
+        ]
     ],
 )
 async def test_legacy_calls(path, client):
@@ -176,8 +176,10 @@ async def test_legacy_calls(path, client):
         try:
             assert financement_lbf in financements_trefle_cleaned
         except AssertionError:
-            print('context:')
-            print(json.dumps(data['in']))
+            print("idintercarif:")
+            print(json.dumps(data["_id"]))
+            print("context:")
+            print(json.dumps(data["in"]))
             raise
 
 
