@@ -212,10 +212,11 @@ async def populate_legacy(path: Path):
         for key, value in context.items():
             if key.startswith("formation."):
                 body[key] = value
+        id = body["formationVisee"]["codeFormation"]
         del body["formationVisee"]
         del body["formation.numero"]
         with dest.joinpath(f"case_{idx+1}.json").open("w") as f:
-            f.write(json.dumps({"in": body, "out": output}))
+            f.write(json.dumps({"_id": id, "in": body, "out": output}))
 
 
 def main():

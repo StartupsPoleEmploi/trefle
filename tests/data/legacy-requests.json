@@ -4,6 +4,7 @@
       "codeFormation": "21_65896"
     },
     "individu": {
+      "test": true,
       "type": "DE",
       "chomageDePlusDeSixMois": true,
       "departementHabitation": "44",
@@ -24,6 +25,7 @@
       "codeFormation": "04_A814179"
     },
     "individu": {
+      "test": true,
       "type": "DE",
       "chomageDePlusDeSixMois": true,
       "departementHabitation": "93",
@@ -44,6 +46,7 @@
       "codeFormation": "24_113168"
     },
     "individu": {
+      "test": true,
       "type": "DE",
       "chomageDePlusDeSixMois": true,
       "departementHabitation": "13",
@@ -64,6 +67,7 @@
       "codeFormation": "17_37091"
     },
     "individu": {
+      "test": true,
       "type": "DE",
       "chomageDePlusDeSixMois": true,
       "departementHabitation": "93",
@@ -85,6 +89,7 @@
       "codeFormation": "14_AF_0000029913"
     },
     "individu": {
+      "test": true,
       "type": "DE",
       "chomageDePlusDeSixMois": true,
       "departementHabitation": "49",
@@ -105,6 +110,7 @@
       "codeFormation": "14_AF_0000056890"
     },
     "individu": {
+      "test": true,
       "type": "DE",
       "chomageDePlusDeSixMois": true,
       "departementHabitation": "94",
@@ -125,6 +131,7 @@
       "codeFormation": "17_33241"
     },
     "individu": {
+      "test": true,
       "type": "DE",
       "chomageDePlusDeSixMois": true,
       "departementHabitation": "57",
@@ -145,6 +152,7 @@
       "codeFormation": "14_AF_0000047955"
     },
     "individu": {
+      "test": true,
       "type": "DE",
       "chomageDePlusDeSixMois": true,
       "departementHabitation": "93",
@@ -165,6 +173,7 @@
       "codeFormation": "02_201508006899"
     },
     "individu": {
+      "test": true,
       "type": "DE",
       "chomageDePlusDeSixMois": true,
       "departementHabitation": "93",
@@ -181,6 +190,7 @@
       "codeFormation": "11_3344"
     },
     "individu": {
+      "test": true,
       "type": "DE",
       "chomageDePlusDeSixMois": true,
       "departementHabitation": "971",
@@ -197,6 +207,7 @@
       "codeFormation": "03_1700339F"
     },
     "individu": {
+      "test": true,
       "type": "DE",
       "chomageDePlusDeSixMois": true,
       "departementHabitation": "15",
@@ -219,6 +230,7 @@
       "codeFormation": "24_122040"
     },
     "individu": {
+      "test": true,
       "type": "DE",
       "chomageDePlusDeSixMois": true,
       "departementHabitation": "13",
@@ -239,6 +251,7 @@
       "codeFormation": "24_64724"
     },
     "individu": {
+      "test": true,
       "type": "DE",
       "chomageDePlusDeSixMois": true,
       "departementHabitation": "13",
@@ -259,6 +272,7 @@
       "codeFormation": "18_3529"
     },
     "individu": {
+      "test": true,
       "type": "DE",
       "chomageDePlusDeSixMois": true,
       "departementHabitation": "62",
@@ -279,6 +293,7 @@
       "codeFormation": "20_F126000055809_401850"
     },
     "individu": {
+      "test": true,
       "type": "DE",
       "chomageDePlusDeSixMois": true,
       "departementHabitation": "62",
@@ -299,6 +314,7 @@
       "codeFormation": "11_3573"
     },
     "individu": {
+      "test": true,
       "type": "DE",
       "chomageDePlusDeSixMois": true,
       "departementHabitation": "971",
@@ -319,6 +335,7 @@
       "codeFormation": "25_98S1701949"
     },
     "individu": {
+      "test": true,
       "type": "DE",
       "chomageDePlusDeSixMois": true,
       "departementHabitation": "974",
@@ -339,6 +356,7 @@
       "codeFormation": "07_25556"
     },
     "individu": {
+      "test": true,
       "type": "DE",
       "chomageDePlusDeSixMois": true,
       "departementHabitation": "37",
@@ -360,6 +378,7 @@
       "codeFormation": "25_98S1701949"
     },
     "individu": {
+      "test": true,
       "type": "DE",
       "chomageDePlusDeSixMois": true,
       "departementHabitation": "974",
@@ -381,6 +400,7 @@
       "codeFormation": "05_54176"
     },
     "individu": {
+      "test": true,
       "type": "DE",
       "chomageDePlusDeSixMois": true,
       "departementHabitation": "71",
@@ -402,6 +422,7 @@
       "codeFormation": "21_61339"
     },
     "individu": {
+      "test": true,
       "type": "DE",
       "chomageDePlusDeSixMois": true,
       "departementHabitation": "53",
@@ -428,6 +449,7 @@
       "codeFormation": "25_98S1701949"
     },
     "individu": {
+      "test": true,
       "type": "DE",
       "chomageDePlusDeSixMois": true,
       "departementHabitation": "974",
@@ -452,6 +474,7 @@
       "codeFormation": "03_1702030F"
     },
     "individu": {
+      "test": true,
       "type": "DE",
       "chomageDePlusDeSixMois": true,
       "departementHabitation": "63",
@@ -478,6 +501,7 @@
       "codeFormation": "09_94F1800047"
     },
     "individu": {
+      "test": true,
       "type": "DE",
       "chomageDePlusDeSixMois": true,
       "departementHabitation": "2B",
