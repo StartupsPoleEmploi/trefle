@@ -78,7 +78,7 @@ Scénario: Cas nominal formation sanitaire et social
     Et c'est un demandeur d'emploi
     Et le montant de l'allocation du bénéficiaire vaut 1200
     Et la durée en heures de la formation vaut 150
-    Et la région du bénéficiaire vaut «Grand-Est»
+    Et la région de la formation vaut «Grand-Est»
     Et les codes financeur de la formation valent [«Conseil régional»]
     Et le code CERTIFINFO de la formation vaut 48735
     Quand je demande un calcul de financement
@@ -92,7 +92,18 @@ Scénario: Formation sanitaire et social sans certifinfo pour la formation
     Et c'est un demandeur d'emploi
     Et le montant de l'allocation du bénéficiaire vaut 1200
     Et la durée en heures de la formation vaut 150
-    Et la région du bénéficiaire vaut «Grand-Est»
+    Et la région de la formation vaut «Grand-Est»
+    Et les codes financeur de la formation valent [«Conseil régional»]
+    Quand je demande un calcul de financement
+    Alors le financement «Formation sanitaire et social» n'est pas proposé
+
+
+Scénario: Formation sanitaire et social en dehors de Grand-Est
+    Soit un bénéficiaire et une formation
+    Et c'est un demandeur d'emploi
+    Et le montant de l'allocation du bénéficiaire vaut 1200
+    Et la durée en heures de la formation vaut 150
+    Et la région de la formation vaut «Bretagne»
     Et les codes financeur de la formation valent [«Conseil régional»]
     Quand je demande un calcul de financement
     Alors le financement «Formation sanitaire et social» n'est pas proposé

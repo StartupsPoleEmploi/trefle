@@ -53,6 +53,7 @@ Si l'intitulé du financement est «Aide individuelle régionale à la formation
 Si l'intitulé du financement est «Formation sanitaire et social»
 
     Si c'est un demandeur d'emploi
+    Et la région de la formation est «Grand-Est»
     Et le code CERTIFINFO de la formation fait partie de [48735,64144,48172,78851,20138,49332,18730,71516,18733,78459,53335,20132,54913,54917,54912,20103,20120,23715,53277,53865,73378,21097]
     Et les codes financeur de la formation contiennent «Conseil régional»
         Alors le financement est éligible
