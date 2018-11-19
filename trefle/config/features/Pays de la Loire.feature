@@ -38,7 +38,7 @@ Scénario: Action collective financée par la région avec niveau de sortie > 3
     Alors la rémunération applicable vaut 1200.0
     Et la plafond de prise en charge vaut 0
 
-Scénario: Action collective financée par la région avec mauvaus code financeur
+Scénario: Action collective financée par la région avec mauvais code financeur
     Soit un bénéficiaire et une formation
     Et c'est un demandeur d'emploi
     Et le montant de l'allocation du bénéficiaire vaut 1200.0
@@ -47,4 +47,37 @@ Scénario: Action collective financée par la région avec mauvaus code financeu
     Et la durée en heures de la formation vaut 100
     Quand je demande un calcul de financement
     Alors le financement «Action collective financée par la région» n'est pas proposé
+
+Scénario: Cas nominal Action collective sanitaire et social financée par la région et Pôle emploi
+    Soit un bénéficiaire et une formation
+    Et c'est un demandeur d'emploi
+    Et le montant de l'allocation du bénéficiaire vaut 1200.0
+    Et la région de la formation vaut «Pays de la Loire»
+    Et la liste des codes FORMACODE de la formation vaut [43436]
+    Et les codes financeur de la formation valent [«Conseil régional»,«Pôle emploi»]
+    Et la durée en heures de la formation vaut 100
+    Quand je demande un calcul de financement
+    Quand je sélectionne le financement «Action collective sanitaire et social financée par la région et Pôle Emploi»
+    Alors le plafond de prise en charge vaut 0
+
+Scénario: Cas Action collective sanitaire et social financée par la région et Pôle emploi sans code financeur Pôle emploi
+    Soit un bénéficiaire et une formation
+    Et c'est un demandeur d'emploi
+    Et le montant de l'allocation du bénéficiaire vaut 1200.0
+    Et la région de la formation vaut «Pays de la Loire»
+    Et la liste des codes FORMACODE de la formation vaut [43436]
+    Et les codes financeur de la formation valent [«Conseil régional»]
+    Et la durée en heures de la formation vaut 100
+    Quand je demande un calcul de financement
+    Alors le financement «Action collective sanitaire et social financée par la région et Pôle Emploi» n'est pas proposé
+
+Scénario: Cas Action collective sanitaire et social financée par la région et Pôle emploi sans formacode
+    Soit un bénéficiaire et une formation
+    Et c'est un demandeur d'emploi
+    Et le montant de l'allocation du bénéficiaire vaut 1200.0
+    Et la région de la formation vaut «Pays de la Loire»
+    Et les codes financeur de la formation valent [«Conseil régional»,«Pôle emploi»]
+    Et la durée en heures de la formation vaut 100
+    Quand je demande un calcul de financement
+    Alors le financement «Action collective sanitaire et social financée par la région et Pôle Emploi» n'est pas proposé
 

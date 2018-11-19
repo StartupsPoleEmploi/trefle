@@ -1,3 +1,30 @@
+Si le financement est de type «AFC»
+    Alors appliquer les règles «action collective»
+
+Si le financement est de type «FAJ»
+    Alors appliquer les règles «FAJ»
+
+Si le financement est de type «POEC»
+    Alors appliquer les règles «POEC»
+
+Si le financement est de type «POEI»
+    Alors appliquer les règles «POEI»
+
+Si l'intitulé du financement est «Financement individuel Agefiph»
+    Alors appliquer les règles «Agefiph.rules»
+
+Si l'intitulé du financement est «Formation en alternance : contrat de professionnalisation»
+    Alors appliquer les règles «contrat de professionnalisation.rules»
+
+Si l'intitulé du financement est «Formation en alternance : contrat d'apprentissage»
+    Alors appliquer les règles «contrat d'apprentissage.rules»
+
+Si l'intitulé du financement est «Aide individuelle à la formation artisan»
+    Alors appliquer les règles «AIF artisan»
+
+Si l'intitulé du financement est «Aide individuelle à la formation»
+    Alors appliquer les règles «AIF»
+
 Si la région de la formation est «Pays de la Loire»
 Et c'est un demandeur d'emploi
 
@@ -21,6 +48,7 @@ Et c'est un demandeur d'emploi
 
         Si la liste des codes FORMACODE de la formation contient au moins un code parmi [43436,43441,31815]
         Et les codes financeur de la formation contiennent «Conseil régional»
+        Et les codes financeur de la formation contiennent «Pôle emploi»
             Alors le financement est éligible
             Et le texte des démarches vaut «Pour effectuer cette formation, il vous faut tout d'abord réussir le concours d'entrée. Contactez l'organisme de formation.»
             Et le texte de description vaut «Cette action de formation est financée par la Région et Pôle emploi»
