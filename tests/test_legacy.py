@@ -137,6 +137,7 @@ async def test_invalid_data(client):
             "case_15.json",  # TODO vérifier règle chèque formation (voir note sur règle LBF) et ordre des dispositifs inversés
             "case_10.json",  # TODO ordre inversé AIF / POEI
             "case_17.json",  # TODO à voir : 3 pour Trefle et 5 pour LBF
+            "case_29.json",  # TODO Pb: LBF no control for codes financeur individuel
         ]
     ],
 )
