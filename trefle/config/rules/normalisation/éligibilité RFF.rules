@@ -20,5 +20,5 @@ Ou la région du bénéficiaire est «Mayotte»
         Alors c'est une formation éligible à la RFF
 Si la région du bénéficiaire est «Martinique»
 Ou la région du bénéficiaire est «Guyane»
-    Si la liste des codes ROME de la formation contient au moins un code parmi [«A1101»,«A1205»,«A1405»,«C1109»,«D1102»,«D1202»,«1407»,«F1103»,«F1302»,«F1608»,«F1701»,«F1702»,«F1704»,«G1101»,«G1202»,«G1203»,«G1303»,«G1603»,«G1604»,«H2909»,«H2911»,«H2913»,«I1307»,«I1309»,«I1604»,«I1606»,«I1607»,«J1404»,«J1406»,«J1412»,«K1203»,«K1206»,«K1801»,«K1901»,«K2201»,«M1203»,«M1204»,«M1205»,«M1206»,«1402»,«M1609»,«N1302»]
+    Si la liste des codes ROME de la formation contient au moins un code parmi [«A1101»,«A1205»,«A1405»,«C1109»,«D1102»,«D1202»,«D1407»,«F1103»,«F1302»,«F1608»,«F1701»,«F1702»,«F1704»,«G1101»,«G1202»,«G1203»,«G1303»,«G1603»,«G1604»,«H2909»,«H2911»,«H2913»,«I1307»,«I1309»,«I1604»,«I1606»,«I1607»,«J1404»,«J1406»,«J1412»,«K1203»,«K1206»,«K1801»,«K1901»,«K2201»,«M1203»,«M1204»,«M1205»,«M1206»,«M1402»,«M1609»,«N1302»]
         Alors c'est une formation éligible à la RFF
