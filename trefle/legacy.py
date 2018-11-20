@@ -63,6 +63,9 @@ async def simulate_legacy(request, response):
         if financement.type_lbf == "aif" and context.get("formation.permisb"):
             financement.type_lbf = "finindividuelpermisb"
 
+        if financement.type_lbf == "afprpoei" and context.get("beneficiaire.departement") == "971":
+            financement.type_lbf = "poei"
+
         mapped.append(
             {
                 "libelle": financement.intitule,
