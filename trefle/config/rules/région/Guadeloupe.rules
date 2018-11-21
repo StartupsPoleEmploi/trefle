@@ -52,7 +52,8 @@ Si l'intitulé du financement est «Le chèque qualification»
 
     Si c'est un demandeur d'emploi
     Et la région du bénéficiaire est «Guadeloupe»
-    Et la région de la formation est «Guadeloupe»
+    # TODO : vérifier qu'il faut bien vérifier la région de la formation car ce n'est pas le cas sur LBF
+    # Et la région de la formation est «Guadeloupe» 
     Et c'est une formation ouverte aux bénéficiaires individuels
     Et la durée en heures de la formation est supérieure ou égale à 100
     Et la durée en heures de la formation est inférieure ou égale à 1200
