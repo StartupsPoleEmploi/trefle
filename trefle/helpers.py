@@ -72,7 +72,8 @@ def flatten(data, output=None, namespace=None):
 async def http_get(url):
     loop = asyncio.get_event_loop()
     response = await loop.run_in_executor(None, requests.get, url)
-    if response.status_code >= 400:
+    # catalog not available just forward the 500 response
+    if response.status_code >= 500:
         raise UpstreamError(f"UPSTREAM_ERROR: {url} {response.status_code}")
     return response
 
@@ -127,3 +128,31 @@ def insee_commune_to_departement(context, from_key, to_key):
 
 def revert_dict(d):
     return {v: k for k, v in d.items()}
+
+
+def json_path(pattern, data):
+
+    steps = pattern.split(".")
+    for step in steps:
+        if step.startswith('='):
+            data = str(data) == step[1:]
+            break
+        if data in [None, []]:
+            data = None
+            continue
+        if step == "[]":
+            try:
+                data = [d for l in data for d in l]
+            except TypeError:
+                data = None
+        elif isinstance(data, list):
+            if step.isdigit():
+                data = data[int(step)]
+            else:
+                data = [d[step] for d in data if step in d]
+        else:
+            try:
+                data = data.get(step)
+            except AttributeError:
+                data = None
+    return data

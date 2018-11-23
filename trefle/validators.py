@@ -78,11 +78,6 @@ def format_formacode(value):
     return value
 
 
-@formatter('domaine_formacode')
-def format_domaine_formacode(value):
-    return int(str(value)[:3])
-
-
 @formatter('date')
 def format_date(value):
     if isinstance(value, datetime):
@@ -93,6 +88,7 @@ def format_date(value):
 
     # LHEO date is quite a mess, let's try to do our best.
     tries = [
+        (10, '%Y-%m-%d'),
         (8, '%Y%m%d'),
         (10, '%d/%m/%Y'),  # From LBF.
         # Consider the day was invalid, try with month only.

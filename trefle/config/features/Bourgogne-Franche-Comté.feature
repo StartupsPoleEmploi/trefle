@@ -49,7 +49,6 @@ Scénario: AIF avec RFF
     Et ce n'est pas un contrat d'apprentissage
     Et ce n'est pas un contrat de professionnalisation
     Et le niveau de sortie de la formation vaut «III»
-    Et la modalités d'entrées-sorties vaut «entrées/sorties à dates fixes»
     Et ce n'est pas une formation à entrées-sorties permanentes
     Et la durée en semaines de la formation vaut 161
     Et la durée en mois de la formation vaut 37
@@ -128,7 +127,6 @@ Scénario: Formation totalement financée par l'AIF
     Et ce n'est pas un contrat d'apprentissage
     Et ce n'est pas un contrat de professionnalisation
     Et le niveau de sortie de la formation vaut «inconnu»
-    Et la modalités d'entrées-sorties vaut «entrées/sorties à dates fixes»
     Et ce n'est pas une formation à entrées-sorties permanentes
     Et la durée en semaines de la formation vaut 45
     Et la durée en mois de la formation vaut 10

@@ -27,7 +27,13 @@ def patch_schema():
 
 @pytest.fixture
 def mock_get(monkeypatch):
-    Response = namedtuple("Response", ('status_code', 'content',))
+    class Response:
+        def __init__(self, status_code, content):
+            self.status_code = status_code
+            self.content = content
+
+        def json(self):
+            return self.content
 
     def patch(status_code=200, content=''):
         def _get(url):

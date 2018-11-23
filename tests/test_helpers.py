@@ -1,4 +1,6 @@
 import datetime
+import json
+from pathlib import Path
 
 import pytest
 from trefle.context import Context
@@ -6,7 +8,7 @@ from trefle.exceptions import DataError
 from trefle.helpers import (count_indent, diff_month, diff_week, flatten,
                             fold_name, insee_commune_to_departement,
                             insee_departement_to_region, isfloat,
-                            calculate_age)
+                            calculate_age, json_path)
 
 
 def test_flatten():
@@ -133,3 +135,36 @@ def test_calculate_age(input, expected, monkeypatch):
             return datetime.datetime(2018, 10, 8)
     monkeypatch.setattr(datetime, 'date', mydate)
     assert calculate_age(datetime.datetime(*input)) == expected
+
+
+@pytest.mark.parametrize('input,expected', [
+     ("intitule", "Titre professionnel plaquiste"),
+     ("sessions.0.localisation.formation.commune-insee", "37266"),
+     ("sessions.0.financeurs.code", ["2"]),
+     ("sessions.0.missing.and.missing", None),
+     ("sessions.0.eligibilite-cpf.region-insee", ["24"]),
+     ("sessions.missing", []),
+     ("sessions.0.eligibilite-cpf.branches.[]", ['23.61Z',
+                                                 '43.99E',
+                                                 '01.62Z',
+                                                 '96.04Z',
+                                                 '96.09Z',
+                                                 '78.20Z',
+                                                 '23.61Z',
+                                                 '43.99E',
+                                                 '01.62Z',
+                                                 '05.20Z',
+                                                 '96.09Z',
+                                                 '78.20Z']),
+     ("modalites-enseignement.=2", False),
+     ("validation.=5", True),
+     ("certification.[]", None),
+     ("certification.missing", None),
+])
+def test_json_path(input, expected):
+    path = Path(__file__).parent / 'data/formation.json'
+    data = json.loads(path.read_text())
+    assert json_path(input, data) == expected
+
+
+

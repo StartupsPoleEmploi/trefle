@@ -422,12 +422,7 @@ async def test_simulate_endpoint_with_invalid_formation_id(client, mock_get):
         'beneficiaire.entreprise.commune': '2A004',
         'beneficiaire.entreprise.idcc': 2706
     }
-    content = b"""<?xml version="1.0" encoding="utf-8"?>
-                  <lheo xmlns="http://www.lheo.org/2.2">
-                  <offres>
-                  </offres>
-                  </lheo>"""
-    mock_get(content=content)
+    mock_get(status_code=404)
     resp = await client.post('/financement', body=body)
 
     assert resp.status == HTTPStatus.UNPROCESSABLE_ENTITY

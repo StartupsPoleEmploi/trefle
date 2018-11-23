@@ -61,7 +61,7 @@ Scénario: est salarié OPCAIM période de professionnalisation FORMACODE 316 ce
     Et c'est une formation certifiante
     Et c'est un contrat de professionnalisation
     Et le niveau de sortie de la formation vaut «III»
-    Et la modalités d'entrées-sorties vaut «entrées/sorties à dates fixes»
+    Et ce n'est pas une formation à entrées-sorties permanentes
     Et la durée en semaines de la formation vaut 37
     Et la durée en mois de la formation vaut 8
     Et la durée hebdomadaire de la formation vaut 38

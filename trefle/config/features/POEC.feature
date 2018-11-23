@@ -97,7 +97,7 @@ Scénario: Financement POEC
     Et ce n'est pas un contrat d'apprentissage
     Et ce n'est pas un contrat de professionnalisation
     Et le niveau de sortie de la formation vaut «aucun»
-    Et la modalités d'entrées-sorties vaut «entrées/sorties à dates fixes»
+    Et ce n'est pas une formation à entrées-sorties permanentes
     Et ce n'est pas une formation à entrées-sorties permanentes
     Et la durée en semaines de la formation vaut 14
     Et la durée en mois de la formation vaut 3

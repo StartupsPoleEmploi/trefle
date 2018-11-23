@@ -2,6 +2,7 @@ from http import HTTPStatus
 
 from roll import HttpError, Roll
 from roll.extensions import cors
+import ujson as json
 
 from . import VERSION, simulate, get_financements
 from .config import FINANCEMENTS, GLOSSARY, NAF, RAW_RULES, SCHEMA
@@ -9,7 +10,7 @@ from .debugging import data_from_lbf_url, make_scenario, SCENARIOS
 from .exceptions import DataError
 from .loggers import log_simulate, logger
 from .openapis import OPENAPI
-from .routine import get_formation_xml
+from .routine import get_formation_json
 
 app = Roll()
 cors(app)
@@ -96,8 +97,8 @@ async def explore_scenarios(request, response):
 
 @app.route('/explore/catalog')
 async def explore_catalog(request, response):
-    response.body = await get_formation_xml(request.query.get('id'))
-    response.headers['Content-Type'] = 'text/xml'
+    data = await get_formation_json(request.query.get('id'))
+    response.body = json.dumps(data, indent=2, ensure_ascii=False)
 
 
 @app.route('/explore/decode-lbf-url')

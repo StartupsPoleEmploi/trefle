@@ -33,8 +33,11 @@ Si la liste des domaines FORMACODE de la formation contient 152
 Si la liste des domaines FORMACODE de la formation contient 150
     Alors c'est une formation en développement professionnel
 # http://lheo.gouv.fr/langage#dict-AIS
+# TODO verifier si présence de code certifinfo == certifiante
 Si le code AIS de la formation fait partie des codes AIS certifiants
     Alors c'est une formation certifiante
+Si ce n'est pas une formation certifiante
+    Alors c'est une formation professionnalisante
 Si les codes financeur de la formation ne contiennent aucun des codes financeur collectif
     Alors c'est une formation ouverte aux bénéficiaires individuels
 Si la durée en heures de la formation est inférieure ou égale à 400
@@ -82,4 +85,8 @@ Ou l'intitulé normé de la formation contient «EXPLORATIONDUPROJETPROFESSIONNE
 Ou l'intitulé normé de la formation contient «ELABORATIONDUPROJETPROFESSIONNEL»
 Ou l'intitulé normé de la formation contient «STABILISATIONDUPROJETPROFESSIONNEL»
     Alors c'est une formation PCP
-
+Si le code RNCP de la formation est défini
+    Alors c'est une formation RNCP
+Si les codes NAF CPNE éligibles ne sont pas définies
+Et les régions éligibles COPAREF ne sont pas définies
+    Alors c'est une formation éligible COPANEF

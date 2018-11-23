@@ -23,6 +23,7 @@ Scénario: Aide individuelle régionale à la formation exclue, non éligible CO
     Et la durée en heures de la formation vaut 150
     Et la région du bénéficiaire vaut «Grand-Est»
     Et le niveau de sortie de la formation vaut «III»
+    Et les codes NAF CPNE éligibles valent [«6202Z»]
     Et c'est une formation ouverte aux bénéficiaires individuels
     Et c'est une formation certifiante
     Quand je demande un calcul de financement

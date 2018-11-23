@@ -1,0 +1,225 @@
+{
+  "catalogue": "Intercarif",
+  "id": "243",
+  "uid": "07_10",
+  "intitule": "Titre professionnel plaquiste",
+  "premier-intitule": "Se former aux métiers du second oeuvre : Titre professionnel plaquiste",
+  "objectif": "L'objectif est d'obtenir la qualification de plaquiste, pour un accès à l'emploi.",
+  "description": "Réaliser l'aménagement de locaux en produits à base de plaques de plâtre de technicité courante Réaliser l'aménagement de locaux recevant du public en plaques de plâtre de technicité particulière. Spécialisation : réaliser des ouvrages d'isolation acoustique, thermique et de protection incendie.",
+  "domaines-formacode": [
+    "224"
+  ],
+  "formacode": [
+    "22402",
+    "22403"
+  ],
+  "codes-rome-vises": [
+    "F1604"
+  ],
+  "sessions": [
+    {
+      "id": "23772429",
+      "uid": "152199",
+      "uida": "07_152199",
+      "debut": "2018-05-14",
+      "fin": "2018-12-14",
+      "nombre-heures-total": "697",
+      "nombre-heures-entreprise": "112",
+      "nombre-heures-centre": "585",
+      "localisation": {
+        "formation": {
+          "longitude": "0.688594",
+          "latitude": "47.306826",
+          "path": "/1/1/12/4/92/",
+          "ville": "Veigné",
+          "code-postal": "37250",
+          "commune-insee": "37266",
+          "adresse": "LE PASSOIR\n"
+        }
+      },
+      "financeurs": [
+        {
+          "code": "2",
+          "places": "5",
+          "libelle": "Collectivite Territoriale Conseil Regional"
+        }
+      ],
+      "contact": {
+        "tel": "39 36",
+        "fax": "02 47 73 15 59",
+        "url": "http://www.centre.afpa.fr"
+      },
+      "eligibilite-cpf": [
+        {
+          "debut": "2018-02-23",
+          "fin": "2018-12-31",
+          "code": "222905",
+          "type": "SALARIE"
+        },
+        {
+          "debut": "2015-01-01",
+          "fin": "2019-12-31",
+          "code": "130805",
+          "type": "TOUTPUBLIC"
+        },
+        {
+          "debut": "2018-09-27",
+          "fin": "2019-12-31",
+          "code": "222991",
+          "type": "SALARIE"
+        },
+        {
+          "debut": "2018-06-18",
+          "fin": "2018-12-31",
+          "code": "227989",
+          "type": "SALARIE"
+        },
+        {
+          "debut": "2018-11-08",
+          "fin": "2018-12-31",
+          "code": "232054",
+          "type": "DE"
+        },
+        {
+          "debut": "2014-12-04",
+          "fin": "2018-12-31",
+          "code": "1487",
+          "type": "SALARIE"
+        },
+        {
+          "debut": "2018-09-26",
+          "fin": "2019-12-31",
+          "code": "233155",
+          "type": "TOUTPUBLIC"
+        },
+        {
+          "debut": "2015-12-18",
+          "fin": "2019-12-31",
+          "code": "167204",
+          "type": "SALARIE"
+        },
+        {
+          "debut": "2015-01-01",
+          "fin": "2018-12-31",
+          "code": "18320",
+          "type": "SALARIE"
+        }
+      ]
+    },
+    {
+      "id": "23772430",
+      "uid": "164050",
+      "uida": "07_164050",
+      "debut": "2018-06-18",
+      "fin": "2018-12-14",
+      "nombre-heures-total": "697",
+      "nombre-heures-entreprise": "112",
+      "nombre-heures-centre": "585",
+      "localisation": {
+        "formation": {
+          "longitude": "0.737711",
+          "latitude": "47.286057",
+          "path": "/1/1/12/4/92/",
+          "ville": "Veigné",
+          "code-postal": "37250",
+          "commune-insee": "37266",
+          "adresse": "LE PASSOIR\n"
+        }
+      },
+      "financeurs": [
+        {
+          "code": "2",
+          "places": "5",
+          "libelle": "Collectivite Territoriale Conseil Regional"
+        }
+      ],
+      "contact": {
+        "tel": "39 36",
+        "fax": "02 47 73 15 59",
+        "url": "http://www.centre.afpa.fr"
+      },
+      "eligibilite-cpf": [
+        {
+          "debut": "2018-02-23",
+          "fin": "2018-12-31",
+          "code": "222905",
+          "type": "SALARIE"
+        },
+        {
+          "debut": "2015-01-01",
+          "fin": "2019-12-31",
+          "code": "130805",
+          "type": "TOUTPUBLIC"
+        },
+        {
+          "debut": "2018-09-27",
+          "fin": "2019-12-31",
+          "code": "222991",
+          "type": "SALARIE"
+        },
+        {
+          "debut": "2018-06-18",
+          "fin": "2018-12-31",
+          "code": "227989",
+          "type": "SALARIE"
+        },
+        {
+          "debut": "2018-11-08",
+          "fin": "2018-12-31",
+          "code": "232054",
+          "type": "DE"
+        },
+        {
+          "debut": "2014-12-04",
+          "fin": "2018-12-31",
+          "code": "1487",
+          "type": "SALARIE"
+        },
+        {
+          "debut": "2018-09-26",
+          "fin": "2019-12-31",
+          "code": "233155",
+          "type": "TOUTPUBLIC"
+        },
+        {
+          "debut": "2015-12-18",
+          "fin": "2019-12-31",
+          "code": "167204",
+          "type": "SALARIE"
+        },
+        {
+          "debut": "2015-01-01",
+          "fin": "2018-12-31",
+          "code": "18320",
+          "type": "SALARIE"
+        }
+      ]
+    }
+  ],
+  "organisme": {
+    "id": "12804",
+    "nom": "DRAFPA d'Olivet",
+    "siret": "82436343600497",
+    "localisation": {
+      "longitude": "1.9013199806213",
+      "latitude": "47.864261627197",
+      "adresse": "Propriété de l'Archette\nRue Basse Mouillère\n",
+      "ville": "Olivet",
+      "code-postal": "45160"
+    },
+    "contact": {
+      "tel": "39 36",
+      "fax": "02 38 22 86 85",
+      "url": "http://www.centre.afpa.fr"
+    }
+  },
+  "duree-hebdomadaire": 35,
+  "niveau-retour-embauche": 4,
+  "code-certifinfo": "80735",
+  "code-rncp": "320",
+  "niveau-sortie": "4",
+  "validation": 5,
+  "modalite-enseignement": 0,
+  "entrees-sorties-permanentes": true,
+  "certifiante": true
+}

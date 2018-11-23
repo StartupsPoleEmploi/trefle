@@ -225,7 +225,6 @@ Scénario: période de professionnalisation avec entrées-sorties permanentes
     Et la date de début de la formation vaut «24/01/2018»
     Et la date de fin de la formation vaut «31/12/2019»
     Et c'est une formation ouverte à distance
-    Et la modalités d'entrées-sorties vaut «entrées/sorties permanentes»
     Et c'est une formation à entrées-sorties permanentes
     Et la durée en semaines de la formation vaut 101
     Et la durée en mois de la formation vaut 23

@@ -14,10 +14,16 @@ def check_false(context, key):
     return key.value is False
 
 
-@reason("{key.pointer.raw} est définie: {key}")
+@reason("{key.pointer.raw} est défini: {key}")
 @condition(r"(l'|les? |la )(?P<key>.+) (n'est|ne sont) pas définie?s?")
 def check_none(context, key):
     return key.value in (None, '')
+
+
+@reason("{key.pointer.raw} n'est pas défini: {key}")
+@condition(r"(l'|les? |la )(?P<key>.+) (est|sont) définie?s?")
+def check_not_none(context, key):
+    return key.value not in (None, '')
 
 
 @private
