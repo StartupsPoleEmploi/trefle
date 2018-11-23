@@ -1,3 +1,4 @@
+import json
 from pathlib import Path
 
 import pytest
@@ -8,10 +9,10 @@ from trefle import routine
 
 
 @pytest.mark.asyncio
-async def test_populate_formation_from_bytes():
-    with Path(__file__).parent.joinpath('data/formation.xml').open('rb') as f:
+async def test_populate_formation_from_json():
+    with Path(__file__).parent.joinpath('data/formation.json').open('rb') as f:
         context = Context({})
-        await routine.populate_formation_from_bytes(context, f.read())
+        await routine.populate_formation_from_json(context, json.loads(f.read()))
         routine.extrapolate_context(context)
         routine.preprocess(context)
 

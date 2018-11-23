@@ -64,6 +64,11 @@ def format_organisme(value):
     return ORGANISMES[folded]['nom']
 
 
+@formatter('nafs')
+def format_nafs(value):
+    return [code for codes in value for code in codes]
+
+
 @formatter('naf')
 def format_naf(value):
     value = value.replace('.', '').upper().replace(' ', '')
@@ -76,11 +81,6 @@ def format_formacode(value):
     if value < 10000 or value > 99999:
         raise ValueError(f"Valeur de FORMACODE invalide : `{value}`")
     return value
-
-
-@formatter('domaine_formacode')
-def format_domaine_formacode(value):
-    return int(str(value)[:3])
 
 
 @formatter('date')
@@ -128,6 +128,7 @@ def with_array(func):
     def wrapper(schema, value):
         if value is not None:
             if schema['type'] == 'array':
+                value = func(schema, value)
                 value = [func(schema['items'], v) for v in value]
                 if schema.get('format') == 'set':
                     value = set(value)
@@ -190,6 +191,8 @@ def validate_format(schema, value):
 
 @with_array
 def validate_enum(schema, value):
+    if isinstance(value, set):
+        return value
     if value and 'enum' in schema and value not in schema['enum']:
         raise ValueError(
             f"`{value}` ne fait pas partie de {list(schema['enum'].keys())}")

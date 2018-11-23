@@ -20,6 +20,7 @@ GLOSSARY = {}
 NAF = {}
 FEATURES = {}
 
+LBF_URL = 'http://labonneformation.pole-emploi.local/api/v1/detail'
 INTERCARIF_URL = 'https://labonneformation.pole-emploi.fr/ws_intercarif'
 ELIGIBILITE_URL = 'http://www.intercariforef.org/serviceweb2/eligibilite/?filtre=branche&'
 

@@ -1,8 +1,9 @@
+import json
 from datetime import timedelta
 
-from lxml import etree
+import objectpath
 
-from .config import (CONSTANTS, ELIGIBILITE_URL, INTERCARIF_URL, LABELS,
+from .config import (CONSTANTS, ELIGIBILITE_URL, LBF_URL, INTERCARIF_URL, LABELS,
                      ORGANISMES, RULES, SCHEMA, Organisme)
 from .exceptions import DataError, UpstreamError, NoDataError
 from .helpers import (
@@ -70,6 +71,15 @@ def _extrapolate_formation_context(context):
         if total and entreprise:
             context['formation.heures_centre'] = total - entreprise
 
+    insee_commune_to_departement(
+        context, "formation.commune", "formation.departement"
+    )
+
+    insee_departement_to_region(
+        context, "formation.departement", "formation.region"
+    )
+
+    # TODO logic to move in LBF catalog
     old_new_region = {'26': '27', '43': '27', '23': '28', '25': '28',
                       '31': '32', '22': '32', '41': '44', '42': '44',
                       '21': '44', '72': '75', '54': '75', '74': '75',
@@ -83,8 +93,11 @@ def _extrapolate_formation_context(context):
             for r in context.get("formation.regions_coparef", []))
 
 
-async def get_formation_xml(formation_id):
-    return (await http_get(f'{INTERCARIF_URL}?num={formation_id}')).content
+async def get_formation_json(formation_id):
+    data = (await http_get(f"{LBF_URL}?user=TEST&uid={formation_id}")).json()
+    if not data:
+        raise UpstreamError(f'UPSTREAM_ERROR: Empty catalog data for {formation_id}')
+    return data
 
 
 async def populate_formation(context):
@@ -92,10 +105,10 @@ async def populate_formation(context):
         return
 
     formation_id = context['formation.numero']
-    xml = await get_formation_xml(formation_id)
+    data = await get_formation_json(formation_id)
 
     try:
-        await populate_formation_from_bytes(context, xml)
+        await populate_formation_from_json(context, data)
     except ValueError as err:
         # Give more context.
         raise DataError(f'Error with id `{formation_id}`: `{err}`')
@@ -109,21 +122,14 @@ async def retrieve_codes_naf(ids):
     return set(format_naf(c) for c in tree.xpath('//branche/child::text()'))
 
 
-async def populate_formation_from_bytes(context, content):
+async def populate_formation_from_json(context, content):
     # Doc for leoh: http://lheo.gouv.fr/langage
     # TODO: deal with action or session optional ids.
-    content = content.replace(b' xmlns="http://www.lheo.org/2.2"', b'')
-    try:
-        tree = etree.fromstring(content)
-    except etree.XMLSyntaxError:
-        raise UpstreamError('UPSTREAM_ERROR: Invalid INTERCARIF XML')
-    root = tree.find('offres/formation')
-    if root is None:
-        raise ValueError('No formation found')
+    tree = objectpath.Tree(content)
 
     for key, schema in SCHEMA.items():
-        if schema.get("source") == "catalogue" and schema.get("xpath"):
-            value = root.xpath(schema["xpath"])
+        if schema.get("source") == "catalogue" and schema.get("objectpath"):
+            value = tree.execute(schema["objectpath"])
             if value in ('', [], None):  # Empty resultset.
                 continue
             try:
