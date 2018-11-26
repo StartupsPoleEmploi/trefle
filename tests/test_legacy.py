@@ -97,7 +97,6 @@ async def test_legacy_call(client):
     data["donneeStructurees"]["codesFinanceur"] = set(
         data["donneeStructurees"]["codesFinanceur"]
     )
-    del data["donneeStructurees"]["priorite"]
     del data["donneeStructurees"]["remunerations"]
     for key_to_del in ["montant", "plafond"]:
         if key_to_del in data["donneeStructurees"]["cout"] and not bool(
@@ -108,6 +107,7 @@ async def test_legacy_call(client):
     assert data["donneeStructurees"] == {
         "familleDispositif": "Financement individuel",
         "typeDispositif": "aif",
+        "priorite": 7,
         "codesFinanceur": {"5", "10", "17"},
         "cout": {
             "resteACharge": True,
@@ -135,7 +135,7 @@ async def test_invalid_data(client):
         not in [
             "case_28.json",  # TODO Sur LBF, CPF affichée même si nombre d'heures pas renseignées
             "case_15.json",  # TODO vérifier règle chèque formation (voir note sur règle LBF) et ordre des dispositifs inversés
-            "case_10.json",  # TODO ordre inversé AIF / POEI
+            # "case_10.json",  # TODO ordre inversé AIF / POEI
             "case_17.json",  # TODO à voir : 3 pour Trefle et 5 pour LBF
             "case_29.json",  # TODO Pb: LBF no control for codes financeur individuel
         ]
@@ -188,27 +188,33 @@ def _clean_financements_data(financements):
     cleaned = []
     for financement in financements:
         if financement["donneeStructurees"]["typeDispositif"] != "autres":
-            del financement["donneeStructurees"]["priorite"]
-            for key_cout in ["montant", "plafond"]:
-                if key_cout in financement["donneeStructurees"]["cout"]:
-                    financement["donneeStructurees"]["cout"][key_cout] = float(
-                        financement["donneeStructurees"]["cout"][key_cout]
-                    )
-                    if not financement["donneeStructurees"]["cout"][key_cout]:
-                        del financement["donneeStructurees"]["cout"][key_cout]
-            try:
-                del financement["donneeStructurees"]["remunerations"]
-            except KeyError:
-                pass
+            if financement["donneeStructurees"]["familleDispositif"] != "CIF":
+                for key_cout in ["montant", "plafond"]:
+                    if key_cout in financement["donneeStructurees"]["cout"]:
+                        financement["donneeStructurees"]["cout"][key_cout] = float(
+                            financement["donneeStructurees"]["cout"][key_cout]
+                        )
+                        if not financement["donneeStructurees"]["cout"][key_cout]:
+                            del financement["donneeStructurees"]["cout"][key_cout]
+                try:
+                    del financement["donneeStructurees"]["remunerations"]
+                except KeyError:
+                    pass
 
-            if "codesFinanceur" in financement["donneeStructurees"]:
-                if financement["donneeStructurees"]["codesFinanceur"]:
-                    financement["donneeStructurees"]["codesFinanceur"] = set(
-                        financement["donneeStructurees"]["codesFinanceur"]
-                    )
-                else:
-                    del financement["donneeStructurees"]["codesFinanceur"]
+                if "priorite" in financement["donneeStructurees"]:
+                    if isinstance(financement["donneeStructurees"]["priorite"], float):
+                        financement["donneeStructurees"]["priorite"] = str(
+                            financement["donneeStructurees"]["priorite"]
+                            )
 
-            cleaned.append(financement["donneeStructurees"])
+                if "codesFinanceur" in financement["donneeStructurees"]:
+                    if financement["donneeStructurees"]["codesFinanceur"]:
+                        financement["donneeStructurees"]["codesFinanceur"] = set(
+                            financement["donneeStructurees"]["codesFinanceur"]
+                        )
+                    else:
+                        del financement["donneeStructurees"]["codesFinanceur"]
+
+                cleaned.append(financement["donneeStructurees"])
 
     return cleaned

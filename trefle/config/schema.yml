@@ -965,6 +965,10 @@ financement:
     type: string
     public: true
     label: identifiant LBF d'un financement
+  priorite_lbf:
+    type: integer
+    public: true
+    label: priorité LBF d'un financement
   financee_pe:
     type: boolean
     public: true

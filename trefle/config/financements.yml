@@ -1,5 +1,6 @@
 Aide individuelle à la formation:
   type_lbf: aif
+  priorite_lbf: 7
   tags: [AIF, DE, individuel]
   cpf_mobilisable: True
   financee_pe: True
@@ -7,6 +8,7 @@ Aide individuelle à la formation:
   racine: région du bénéficiaire
 Aide individuelle à la formation artisan:
   type_lbf: aifartisan
+  priorite_lbf: 7
   tags: [AIF, artisan, DE, individuel]
   cpf_mobilisable: True
   financee_pe: True
@@ -14,6 +16,7 @@ Aide individuelle à la formation artisan:
   racine: région du bénéficiaire
 Aide individuelle régionale à la formation:
   type_lbf: aif
+  priorite_lbf: 7
   tags: [AIF, DE, individuel]
   cpf_mobilisable: True
   financee_pe: True
@@ -21,6 +24,7 @@ Aide individuelle régionale à la formation:
   racine: Grand-Est.rules
 Financement individuel Agefiph:
   type_lbf: agefiph
+  priorite_lbf: 6.1
   tags: [Agefiph, TH, DE, individuel]
   cpf_mobilisable: True
   financee_pe: False
@@ -28,6 +32,7 @@ Financement individuel Agefiph:
   racine: région du bénéficiaire
 Aide individuelle Conseil régional:
   type_lbf: finindividuel
+  priorite_lbf: 6.3
   tags: [DE, individuel, région, Nouvelle-Aquitaine]
   cpf_mobilisable: True
   financee_pe: False
@@ -36,12 +41,16 @@ Aide individuelle Conseil régional:
   ressources:
   - https://les-aides.nouvelle-aquitaine.fr/fiche/remuneration-des-stagiaires-de-la-formation-professionnelle/
 AIF région:
+  type_lbf: aif
+  priorite_lbf: 7
   tags: [DE, individuel, région, Guadeloupe]
   cpf_mobilisable: True
   financee_pe: True
   cumulable: True
   racine: Guadeloupe.rules
 AIF département:
+  type_lbf: aif
+  priorite_lbf: 7
   tags: [DE, individuel, région, Guadeloupe]
   cpf_mobilisable: True
   financee_pe: True
@@ -49,6 +58,7 @@ AIF département:
   racine: Guadeloupe.rules
 Fonds d'aide aux jeunes:
   type_lbf: faj
+  priorite_lbf: 6.2
   tags: [FAJ, DE, jeune, individuel]
   cpf_mobilisable: True
   financee_pe: False
@@ -56,6 +66,7 @@ Fonds d'aide aux jeunes:
   racine: région du bénéficiaire
 Formations du domaine sanitaire et social:
   type_lbf: finindividuel
+  priorite_lbf: 6.3
   tags: [DE, région, individuel, branche]
   cpf_mobilisable: True
   financee_pe: False
@@ -65,6 +76,7 @@ Formations du domaine sanitaire et social:
   - https://www.bretagne.bzh/jcms/c_15456/fr/les-formations-sanitaires-et-sociales
 Chèque formation:
   type_lbf: finindividuel
+  priorite_lbf: 6.3
   tags: [DE, région, individuel, chèque]
   cpf_mobilisable: True
   financee_pe: False
@@ -74,6 +86,7 @@ Chèque formation:
   - https://www.seformerenbretagne.fr
 Action projets individuels:
   type_lbf: finindividuel
+  priorite_lbf: 6.3
   sigle: API
   tags: [DE, API, individuel]
   cpf_mobilisable: True
@@ -82,6 +95,7 @@ Action projets individuels:
   racine: Auvergne-Rhône-Alpes.rules
 Chéquier unique VAE Région Ile-de-France:
   type_lbf: finindividuel
+  priorite_lbf: 6.3
   tags: [DE, région, individuel]
   cpf_mobilisable: True
   financee_pe: False
@@ -89,6 +103,7 @@ Chéquier unique VAE Région Ile-de-France:
   racine: Île-de-France.rules
 Une formation, un emploi - individuel:
   type_lbf: finindividuel
+  priorite_lbf: 6.3
   tags: [DE, région, individuel]
   cpf_mobilisable: True
   financee_pe: False
@@ -96,6 +111,7 @@ Une formation, un emploi - individuel:
   racine: Normandie.rules
 Qualif individuel:
   type_lbf: finindividuel
+  priorite_lbf: 6.3
   tags: [DE, région, individuel]
   cpf_mobilisable: True
   financee_pe: False
@@ -103,6 +119,7 @@ Qualif individuel:
   racine: Normandie.rules
 Formation sanitaire et social Grand-Est:
   type_lbf: finindividuel
+  priorite_lbf: 6.3
   intitule: Formation sanitaire et social
   tags: [DE, région, individuel, branche]
   cpf_mobilisable: True
@@ -113,6 +130,7 @@ Formation sanitaire et social Grand-Est:
   - https://www.grandest.fr/formations-sanitaires-sociales/bourses-secteur-sanitaire-social
 Le chèque pass formation:
   type_lbf: finindividuel
+  priorite_lbf: 6.3
   tags: [DE, individuel, région]
   cpf_mobilisable: True
   financee_pe: False
@@ -122,6 +140,7 @@ Le chèque pass formation:
   - https://www.c2rp.fr/dispositifs/cheque-pass-formation
 Pass emploi:
   type_lbf: finindividuel
+  priorite_lbf: 6.3
   tags: [DE, individuel, région]
   cpf_mobilisable: True
   financee_pe: False
@@ -132,18 +151,23 @@ Pass emploi:
     - https://www.hautsdefrance.fr/mot/formation/
 Aide individuelle à la formation avec promesse d'embauche:
   type_lbf: finindividuel
+  priorite_lbf: 6.3
   tags: [DE, région, individuel]
   cpf_mobilisable: True
   financee_pe: False
   cumulable: True
   racine: Centre-Val de Loire.rules
 Chèque formation réussite:
+  type_lbf: finindividuel
+  priorite_lbf: 6.3
   tags: [DE, individuel, région, chèque]
   cpf_mobilisable: True
   financee_pe: False
   cumulable: True
   racine: La Réunion.rules
 Le chèque qualification:
+  type_lbf: finindividuel
+  priorite_lbf: 6.3
   tags: [DE, individuel, région, chèque]
   cpf_mobilisable: True
   financee_pe: False
@@ -201,6 +225,7 @@ Plan de formation sur son temps de travail:
   - https://www.service-public.fr/particuliers/vosdroits/F11267
 Formations avant embauche (AFPR, POEI):
   type_lbf: afprpoei
+  priorite_lbf: 4
   tags: [AFPR, POEI, POE, DE]
   cpf_mobilisable: False
   financee_pe: True
@@ -208,6 +233,7 @@ Formations avant embauche (AFPR, POEI):
   racine: région du bénéficiaire
 "Formation en alternance : contrat d'apprentissage":
   type_lbf: contratapprentissage
+  priorite_lbf: 3
   tags: [contrat apprentissage, alternance, DE]
   cpf_mobilisable: False
   financee_pe: False
@@ -215,6 +241,7 @@ Formations avant embauche (AFPR, POEI):
   racine: région du bénéficiaire
 "Formation en alternance : contrat de professionnalisation":
   type_lbf: contratdepro
+  priorite_lbf: 3
   tags: [contrat professionnalisation, alternance, DE]
   cpf_mobilisable: False
   financee_pe: False
@@ -222,6 +249,7 @@ Formations avant embauche (AFPR, POEI):
   racine: région du bénéficiaire
 Action de formation collective financée par Pôle emploi:
   type_lbf: poleemploicollectif
+  priorite_lbf: 2
   tags: [DE, PE, collectif, AFC]
   cpf_mobilisable: True
   financee_pe: True
@@ -229,6 +257,7 @@ Action de formation collective financée par Pôle emploi:
   racine: région du bénéficiaire
 Préparation opérationnelle à l'emploi collective:
   type_lbf: poecollective
+  priorite_lbf: 1
   tags: [POEC, POE, DE]
   cpf_mobilisable: False
   financee_pe: True
@@ -236,6 +265,7 @@ Préparation opérationnelle à l'emploi collective:
   racine: région du bénéficiaire
 Action de formation collective financée par la région:
   type_lbf: actioncollectiveregion
+  priorite_lbf: 1
   tags: [DE, région, collectif, AFC]
   cpf_mobilisable: True
   financee_pe: False
@@ -243,6 +273,7 @@ Action de formation collective financée par la région:
   racine: région du bénéficiaire
 Action de formation collective financée par l'Agefiph:
   type_lbf: agefiphcollectif
+  priorite_lbf: 1
   tags: [DE, Agefiph, TH, collectif, AFC]
   cpf_mobilisable: True
   financee_pe: False
@@ -250,6 +281,7 @@ Action de formation collective financée par l'Agefiph:
   racine: région du bénéficiaire
 Action de formation collective financée par le conseil départemental:
   type_lbf: conseildepartementalcollectif
+  priorite_lbf: 1
   tags: [DE, département, collectif, AFC]
   cpf_mobilisable: True
   financee_pe: False
@@ -257,6 +289,7 @@ Action de formation collective financée par le conseil départemental:
   racine: région du bénéficiaire
 Action de formation collective financée par l'État:
   type_lbf: etat
+  priorite_lbf: 1
   tags: [DE, État, collectif, AFC]
   cpf_mobilisable: True
   financee_pe: False
@@ -264,6 +297,7 @@ Action de formation collective financée par l'État:
   racine: région du bénéficiaire
 Programme Bretagne Formation:
   type_lbf: actioncollectiveregion
+  priorite_lbf: 1
   tags: [DE, région, collectif]
   cpf_mobilisable: True
   financee_pe: False
@@ -273,6 +307,7 @@ Programme Bretagne Formation:
   - https://www.seformerenbretagne.fr
 Accès aux premiers savoirs:
   type_lbf: actioncollectiveregion
+  priorite_lbf: 1
   sigle: ETAPS
   tags: [DE, région, collectif]
   cpf_mobilisable: True
@@ -281,6 +316,7 @@ Accès aux premiers savoirs:
   racine: Provence-Alpes-Côte d'Azur.rules
 Espaces territoriaux à la qualification:
   type_lbf: actioncollectiveregion
+  priorite_lbf: 1
   tags: [DE, région, collectif, ETAQ]
   cpf_mobilisable: True
   financee_pe: False
@@ -290,6 +326,7 @@ Espaces territoriaux à la qualification:
 École de la deuxième chance:
   sigle: E2C
   type_lbf: actioncollectiveregion
+  priorite_lbf: 1
   tags: [DE, jeune, E2C, region, collectif]
   cpf_mobilisable: True
   financee_pe: False
@@ -298,6 +335,7 @@ Espaces territoriaux à la qualification:
 Programme Enseignement supérieur:
   sigle: ESUP
   type_lbf: actioncollectiveregion
+  priorite_lbf: 1
   tags: [DE, ESUP, region, collectif]
   cpf_mobilisable: True
   financee_pe: False
@@ -306,6 +344,7 @@ Programme Enseignement supérieur:
 Contrat d'aide et retour à l'emploi durable:
   sigle: CARED
   type_lbf: actioncollectiveregion
+  priorite_lbf: 1
   tags: [DE, CARED, region, collectif]
   cpf_mobilisable: True
   financee_pe: False
@@ -313,6 +352,7 @@ Contrat d'aide et retour à l'emploi durable:
   racine: Auvergne-Rhône-Alpes.rules
 Contrat d'aide et retour à l'emploi durable collectif:
   type_lbf: actioncollectiveregion
+  priorite_lbf: 1
   tags: [DE, CARED, region, collectif]
   cpf_mobilisable: True
   financee_pe: False
@@ -321,6 +361,7 @@ Contrat d'aide et retour à l'emploi durable collectif:
 Programmation compétences premières:
   sigle: PCP
   type_lbf: actioncollectiveregion
+  priorite_lbf: 1
   tags: [DE, PCP, region, collectif]
   cpf_mobilisable: True
   financee_pe: False
@@ -329,6 +370,7 @@ Programmation compétences premières:
 Programme régional qualifiant ARA:
   intitule: Programme régional qualifiant
   type_lbf: actioncollectiveregion
+  priorite_lbf: 1
   tags: [DE, région, ARA, collectif]
   cpf_mobilisable: True
   financee_pe: False
@@ -336,6 +378,7 @@ Programme régional qualifiant ARA:
   racine: Auvergne-Rhône-Alpes.rules
 Projets collectifs régionaux:
   type_lbf: actioncollectiveregion
+  priorite_lbf: 1
   tags: [DE, région, ARA, collectif]
   cpf_mobilisable: True
   financee_pe: False
@@ -343,6 +386,7 @@ Projets collectifs régionaux:
   racine: Auvergne-Rhône-Alpes.rules
 Programme régional sanitaire et social:
   type_lbf: actioncollectiveregion
+  priorite_lbf: 1
   tags: [DE, région, ARA, collectif]
   cpf_mobilisable: True
   financee_pe: False
@@ -350,6 +394,7 @@ Programme régional sanitaire et social:
   racine: Auvergne-Rhône-Alpes.rules
 Programme régional sanitaire et social - ambulancier:
   type_lbf: actioncollectiveregion
+  priorite_lbf: 1
   tags: [DE]
   cpf_mobilisable: True
   financee_pe: False
@@ -357,6 +402,7 @@ Programme régional sanitaire et social - ambulancier:
   racine: Auvergne-Rhône-Alpes.rules
 Aide à la VAE:
   type_lbf: actioncollectiveregion
+  priorite_lbf: 1
   tags: [DE, VAE]
   cpf_mobilisable: True
   financee_pe: False
@@ -364,6 +410,7 @@ Aide à la VAE:
   racine: Auvergne-Rhône-Alpes.rules
 Action collective financée par la Collectivité territoriale de Corse:
   type_lbf: actioncollectiveregion
+  priorite_lbf: 1
   tags: [DE, collectif, région]
   cpf_mobilisable: True
   financee_pe: False
@@ -371,6 +418,7 @@ Action collective financée par la Collectivité territoriale de Corse:
   racine: Corse.rules
 Programme sanitaire et social:
   type_lbf: actioncollectiveregion
+  priorite_lbf: 1
   tags: [DE, collectif, région]
   cpf_mobilisable: True
   financee_pe: False
@@ -378,6 +426,7 @@ Programme sanitaire et social:
   racine: Corse.rules
 Action collective financée par la région:
   type_lbf: actioncollectiveregion
+  priorite_lbf: 1
   tags: [DE, collectif, région]
   cpf_mobilisable: True
   financee_pe: False
@@ -387,6 +436,7 @@ Action collective financée par la région:
     - http://www.paysdelaloire.fr/politiques-regionales/formation-professionnelle
 Action collective sanitaire et social financée par la région et Pôle emploi:
   type_lbf: actioncollectiveregion
+  priorite_lbf: 1
   tags: [DE, collectif, région]
   cpf_mobilisable: True
   financee_pe: False
@@ -396,6 +446,7 @@ Action collective sanitaire et social financée par la région et Pôle emploi:
     - http://www.paysdelaloire.fr/politiques-regionales/formation-professionnelle
 Formations sanitaire et social d'aide-soignant ou d'auxiliaire de puériculture région Île-de-France:
   type_lbf: actioncollectiveregion
+  priorite_lbf: 1
   tags: [DE, région, collectif]
   cpf_mobilisable: True
   financee_pe: False
@@ -403,6 +454,7 @@ Formations sanitaire et social d'aide-soignant ou d'auxiliaire de puériculture 
   racine: Île-de-France.rules
 Formations sanitaire et social post-bac région Île-de-France:
   type_lbf: actioncollectiveregion
+  priorite_lbf: 1
   tags: [DE, région, collectif]
   cpf_mobilisable: True
   financee_pe: False
@@ -410,6 +462,7 @@ Formations sanitaire et social post-bac région Île-de-France:
   racine: Île-de-France.rules
 Programme régional qualifiant compétences:
   type_lbf: actioncollectiveregion
+  priorite_lbf: 1
   tags: [DE, région, collectif]
   cpf_mobilisable: True
   financee_pe: False
@@ -417,6 +470,7 @@ Programme régional qualifiant compétences:
   racine: Île-de-France.rules
 Paris formation pour l'emploi:
   type_lbf: actioncollectiveregion
+  priorite_lbf: 1
   tags: [DE, département, collectif]
   cpf_mobilisable: True
   financee_pe: False
@@ -425,6 +479,7 @@ Paris formation pour l'emploi:
 Accès des demandeurs d’emploi aux métiers agricoles:
   sigle: ADEMA
   type_lbf: actioncollectiveregion
+  priorite_lbf: 1
   tags: [DE, collectif, ADEMA]
   cpf_mobilisable: True
   financee_pe: False
@@ -432,6 +487,7 @@ Accès des demandeurs d’emploi aux métiers agricoles:
   racine: région du bénéficiaire
 Programme de formations collectives financées par le Conseil régional de Normandie:
   type_lbf: actioncollectiveregion
+  priorite_lbf: 1
   tags: [DE, région, collectif]
   cpf_mobilisable: True
   financee_pe: False
@@ -439,6 +495,7 @@ Programme de formations collectives financées par le Conseil régional de Norma
   racine: Normandie.rules
 Une formation, un emploi - collectif:
   type_lbf: actioncollectiveregion
+  priorite_lbf: 1
   tags: [DE, région, collectif]
   cpf_mobilisable: True
   financee_pe: False
@@ -446,6 +503,7 @@ Une formation, un emploi - collectif:
   racine: Normandie.rules
 VAE Normandie:
   type_lbf: actioncollectiveregion
+  priorite_lbf: 1
   tags: [DE, region, VAE]
   cpf_mobilisable: True
   financee_pe: False
@@ -455,6 +513,7 @@ Programme régional de formation Nouvelle-Aquitaine:
   intitule: Programme régional de formation
   sigle: PRF
   type_lbf: actioncollectiveregion
+  priorite_lbf: 1
   tags: [DE, collectif, PRF]
   cpf_mobilisable: True
   financee_pe: False
@@ -463,6 +522,7 @@ Programme régional de formation Nouvelle-Aquitaine:
 Parcours régional de préparation à l'apprentissage:
   sigle: PREPA
   type_lbf: actioncollectiveregion
+  priorite_lbf: 1
   tags: [DE, collectif, PREPA]
   cpf_mobilisable: True
   financee_pe: False
@@ -470,6 +530,7 @@ Parcours régional de préparation à l'apprentissage:
   racine: Nouvelle-Aquitaine.rules
 Parcours Orientation Insertion:
   type_lbf: actioncollectiveregion
+  priorite_lbf: 1
   tags: [DE, collectif, région, Occitanie]
   cpf_mobilisable: True
   financee_pe: False
@@ -479,6 +540,7 @@ Parcours Orientation Insertion:
   - http://www.laregion.fr
 Parcours diplômants et actions préparatoires:
   type_lbf: actioncollectiveregion
+  priorite_lbf: 1
   tags: [DE, collectif, région, Occitanie]
   cpf_mobilisable: True
   financee_pe: False
@@ -486,6 +548,7 @@ Parcours diplômants et actions préparatoires:
   racine: Occitanie.rules
 Dispositif « chèque »:
   type_lbf: actioncollectiveregion
+  priorite_lbf: 1
   tags: [DE, collectif, région, Occitanie, chèque]
   cpf_mobilisable: True
   financee_pe: False
@@ -493,6 +556,7 @@ Dispositif « chèque »:
   racine: Occitanie.rules
 Cap métiers:
   type_lbf: actioncollectiveregion
+  priorite_lbf: 1
   tags: [DE, collectif, région, Occitanie]
   cpf_mobilisable: True
   financee_pe: False
@@ -500,6 +564,7 @@ Cap métiers:
   racine: Occitanie.rules
 Cap avenir:
   type_lbf: actioncollectiveregion
+  priorite_lbf: 1
   tags: [DE, collectif, région, Occitanie]
   cpf_mobilisable: True
   financee_pe: False
@@ -507,6 +572,7 @@ Cap avenir:
   racine: Occitanie.rules
 Cap compétences clés:
   type_lbf: actioncollectiveregion
+  priorite_lbf: 1
   tags: [DE, collectif, région, Occitanie]
   cpf_mobilisable: True
   financee_pe: False
@@ -515,6 +581,7 @@ Cap compétences clés:
 Programme régional qualifiant Occitanie:
   intitule: Programme régional qualifiant
   type_lbf: actioncollectiveregion
+  priorite_lbf: 1
   tags: [DE, collectif, région, Occitanie]
   cpf_mobilisable: True
   financee_pe: False
@@ -523,6 +590,7 @@ Programme régional qualifiant Occitanie:
 Écoles régionales de la deuxième chance:
   sigle: ER2C
   type_lbf: actioncollectiveregion
+  priorite_lbf: 1
   tags: [DE, région, Occitanie, ER2C]
   cpf_mobilisable: True
   financee_pe: False
@@ -530,6 +598,7 @@ Programme régional qualifiant Occitanie:
   racine: Occitanie.rules
 Formations des établissements d'enseignement supérieur:
   type_lbf: actioncollectiveregion
+  priorite_lbf: 1
   tags: [DE, région, Occitanie]
   cpf_mobilisable: True
   financee_pe: False
@@ -537,6 +606,7 @@ Formations des établissements d'enseignement supérieur:
   racine: Occitanie.rules
 École de l'apprentissage:
   type_lbf: actioncollectiveregion
+  priorite_lbf: 1
   tags: [DE, région, Occitanie]
   cpf_mobilisable: True
   financee_pe: False
@@ -545,6 +615,7 @@ Formations des établissements d'enseignement supérieur:
 Formation sanitaire et social Occitanie:
   intitule: Formation sanitaire et social
   type_lbf: actioncollectiveregion
+  priorite_lbf: 1
   tags: [DE, collectif, région, Occitanie]
   cpf_mobilisable: True
   financee_pe: False
@@ -554,6 +625,7 @@ Programme régional de formation dans la région Grand-Est:
   intitule: Programme régional de formation
   sigle: PRF
   type_lbf: actioncollectiveregion
+  priorite_lbf: 1
   tags: [DE, collectif, PRF]
   cpf_mobilisable: True
   financee_pe: False
@@ -562,6 +634,7 @@ Programme régional de formation dans la région Grand-Est:
 Action collective financée par la Région Bourgogne:
   intitule: Action collective financée par la Région
   type_lbf: actioncollectiveregion
+  priorite_lbf: 1
   tags: [DE, collectif, région, Bourgogne]
   cpf_mobilisable: True
   financee_pe: False
@@ -570,6 +643,7 @@ Action collective financée par la Région Bourgogne:
 Formation sanitaire et social Bourgogne:
   intitule: Formation sanitaire et social
   type_lbf: actioncollectiveregion
+  priorite_lbf: 1
   tags: [DE]
   cpf_mobilisable: True
   financee_pe: False
@@ -578,6 +652,7 @@ Formation sanitaire et social Bourgogne:
 Dispositif accès à la qualification:
   sigle: DAQ
   type_lbf: actioncollectiveregion
+  priorite_lbf: 1
   tags: [DE, DAQ, région, Bourgogne]
   cpf_mobilisable: True
   financee_pe: False
@@ -590,6 +665,7 @@ Le chèque pass formation:
   - https://www.c2rp.fr/dispositifs/cheque-pass-formation
 Sanitaire et social:
   type_lbf: actioncollectiveregion
+  priorite_lbf: 1
   tags: [DE, collectif, région]
   cpf_mobilisable: True
   financee_pe: False
@@ -600,6 +676,7 @@ Sanitaire et social:
 Programme régional de formation Hauts-de-France:
   intitule: Programme régional de formation
   type_lbf: actioncollectiveregion
+  priorite_lbf: 1
   tags: [DE, collectif, région]
   cpf_mobilisable: True
   financee_pe: False
@@ -607,6 +684,7 @@ Programme régional de formation Hauts-de-France:
   racine: Hauts-de-France.rules
 Chèque formation Conseil régional Centre-Val de Loire:
   type_lbf: actioncollectiveregion
+  priorite_lbf: 1
   tags: [DE, région, collectif, chèque]
   cpf_mobilisable: True
   financee_pe: False
@@ -614,6 +692,7 @@ Chèque formation Conseil régional Centre-Val de Loire:
   racine: Centre-Val de Loire.rules
 Programme Régional de Formation:
   type_lbf: actioncollectiveregion
+  priorite_lbf: 1
   tags: [DE, région, collectif]
   cpf_mobilisable: True
   financee_pe: False
@@ -621,6 +700,7 @@ Programme Régional de Formation:
   racine: Centre-Val de Loire.rules
 Programme Régional de Formation Visa:
   type_lbf: actioncollectiveregion
+  priorite_lbf: 1
   tags: [DE, région, collectif, VISA]
   cpf_mobilisable: True
   financee_pe: False
@@ -628,6 +708,7 @@ Programme Régional de Formation Visa:
   racine: Centre-Val de Loire.rules
 Formations sanitaire et sociale subventionnées par le Conseil régional Centre-Val de Loire:
   type_lbf: actioncollectiveregion
+  priorite_lbf: 1
   tags: [DE, région, collectif]
   cpf_mobilisable: True
   financee_pe: False
@@ -636,6 +717,7 @@ Formations sanitaire et sociale subventionnées par le Conseil régional Centre-
   racine: Centre-Val de Loire.rules
 Action collective financée par la région:
   type_lbf: actioncollectiveregion
+  priorite_lbf: 1
   tags: [DE, collectif, région]
   cpf_mobilisable: True
   financee_pe: False
@@ -645,6 +727,7 @@ Action collective financée par la région:
     - http://www.paysdelaloire.fr/politiques-regionales/formation-professionnelle
 Action collective sanitaire et social financée par la région et Pôle Emploi:
   type_lbf: actioncollectiveregion
+  priorite_lbf: 1
   tags: [DE, collectif, région]
   cpf_mobilisable: True
   financee_pe: False
@@ -654,6 +737,7 @@ Action collective sanitaire et social financée par la région et Pôle Emploi:
     - http://www.paysdelaloire.fr/politiques-regionales/formation-professionnelle
 Programme régional de formation Guadeloupe:
   type_lbf: actioncollectiveregion
+  priorite_lbf: 1
   intitule: Programme régional de formation
   tags: [DE, collectif, région, Guadeloupe]
   cpf_mobilisable: True
@@ -662,6 +746,7 @@ Programme régional de formation Guadeloupe:
   racine: Guadeloupe.rules
 Actions de formation collectives département:
   type_lbf: actioncollectiveregion
+  priorite_lbf: 1
   tags: [DE, collectif, région, Guadeloupe]
   cpf_mobilisable: True
   financee_pe: False
@@ -669,6 +754,7 @@ Actions de formation collectives département:
   racine: Guadeloupe.rules
 CPF demandeur d'emploi:
   type_lbf: cpf
+  priorite_lbf: 0
   tags: [CPF, DE]
   cpf_mobilisable: True
   financee_pe: False

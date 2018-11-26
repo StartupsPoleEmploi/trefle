@@ -33,7 +33,7 @@ async def simulate_legacy(request, response):
     financements = [f for f in financements if f["eligible"]]
     log_simulate(context, financements=financements)
     mapped = []
-    for financement in financements:
+    for financement in reversed(financements):
         for tag, label in FAMILLE_MAPPING.items():
             if tag in financement.tags:
                 famille = label
@@ -78,7 +78,7 @@ async def simulate_legacy(request, response):
                 "donneeStructurees": {
                     "familleDispositif": famille,
                     "typeDispositif": financement.type_lbf,
-                    "priorite": 5,  # Ask if used by TMF team
+                    "priorite": financement.priorite_lbf,
                     "codesFinanceur": list(map(str, codes_financeur)),
                     "cout": {
                         "montant": montant,
