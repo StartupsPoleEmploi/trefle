@@ -48,7 +48,7 @@ Et ce n'est pas un contrat de professionnalisation
         Et la liste des codes FORMACODE de la formation ne contient pas 44030
             Alors le financement est éligible
             Et appliquer les règles «AREF-RFPE-RPS»
-            Et le texte des démarches vaut «Pour effectuer cette formation, contactez l'organisme de formation ou votre conseiller référent emploipour être sélectionné sur une des places financées par le Conseil Départemental»
+            Et le texte des démarches vaut «Pour effectuer cette formation, contactez l'organisme de formation ou votre conseiller référent emploi pour être sélectionné sur une des places financées par le Conseil Départemental»
             Et le texte de description vaut «Cette action de formation qui vous permet de devenir assistante maternelle est financée par le Conseil Départemental.»
             Et le texte de la prise en charge vaut «Formation totalement financée.»
 
