@@ -330,6 +330,7 @@ beneficiaire:
     public: true
     label: ancienneté en heures du bénéficiaire dans son entreprise
   commune:
+    alias: beneficiaire.communeinsee
     description: code INSEE de la commune où réside le bénéficiaire
     type: string
     public: true
