@@ -11,6 +11,7 @@ Scénario: Cas nominal POEI
     Quand je demande un calcul de financement
     Quand je sélectionne le financement «Formations avant embauche (AFPR, POEI)»
     Alors la rémunération applicable vaut 401.09
+    Et le plafond de prise en charge vaut 960
 
 
 Scénario: Pas de POEI pour formation de l'ensignement supérieur
@@ -62,6 +63,7 @@ Scénario: POEI possible pour FORMACODE 44067
     Quand je demande un calcul de financement
     Quand je sélectionne le financement «Formations avant embauche (AFPR, POEI)»
     Alors la rémunération applicable vaut 401.09
+    Et le plafond de prise en charge vaut 960
 
 
 Scénario: POEI avec ARE
@@ -77,6 +79,7 @@ Scénario: POEI avec ARE
     Quand je demande un calcul de financement
     Quand je sélectionne le financement «Formations avant embauche (AFPR, POEI)»
     Alors la rémunération applicable vaut 800
+    Et le plafond de prise en charge vaut 960
 
 Scénario: Financement exclu pour cause de FORMACODE
     Soit un bénéficiaire et une formation
@@ -104,3 +107,4 @@ Scénario: Financement OK avec FORMACODE exclu si bénficiaire en ARA
     Quand je demande un calcul de financement
     Et je sélectionne le financement «Formations avant embauche (AFPR, POEI)»
     Alors la rémunération applicable vaut 800.0
+    Et le plafond de prise en charge vaut 960
