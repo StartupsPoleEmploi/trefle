@@ -201,11 +201,19 @@ def _clean_financements_data(financements):
                 except KeyError:
                     pass
 
+                # LBF doesn't calculate plafond for afprpoei unlike does Trefle
+                if financement["donneeStructurees"]["typeDispositif"] in [
+                    "poei",
+                    "afprpoei",
+                ]:
+                    if "plafond" in financement["donneeStructurees"]["cout"]:
+                        del financement["donneeStructurees"]["cout"]["plafond"]
+
                 if "priorite" in financement["donneeStructurees"]:
                     if isinstance(financement["donneeStructurees"]["priorite"], float):
                         financement["donneeStructurees"]["priorite"] = str(
                             financement["donneeStructurees"]["priorite"]
-                            )
+                        )
 
                 if "codesFinanceur" in financement["donneeStructurees"]:
                     if financement["donneeStructurees"]["codesFinanceur"]:
