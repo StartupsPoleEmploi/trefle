@@ -106,8 +106,8 @@ async def test_legacy_call(client):
 
     assert data["donneeStructurees"] == {
         "familleDispositif": "Financement individuel",
-        "typeDispositif": "faj",
-        "priorite": 6.2,
+        "typeDispositif": "agefiph",
+        "priorite": 6.1,
         "codesFinanceur": {"5", "10", "17"},
         "cout": {
             "resteACharge": True,

@@ -38,7 +38,7 @@ async def test_simulate_endpoint(client):
     assert 'financements' in json.loads(resp.body)
     financements = json.loads(resp.body)['financements']
     assert financements
-    assert financements[-1].get('eligible')
+    assert financements[0].get('eligible')
     assert 'Version' in resp.headers
 
     validator = ResponseValidator(spec)
@@ -64,8 +64,8 @@ async def test_simulate_endpoint_without_formation_prix_horaire(client):
     assert 'financements' in json.loads(resp.body)
     financements = json.loads(resp.body)['financements']
     assert financements
-    assert financements[-1]['prise_en_charge'] is None
-    assert financements[-1]['plafond_prise_en_charge'] > 0
+    assert financements[0]['prise_en_charge'] is None
+    assert financements[0]['plafond_prise_en_charge'] > 0
 
 
 async def test_simulate_endpoint_with_formation_prix_horaire(client):
@@ -85,8 +85,8 @@ async def test_simulate_endpoint_with_formation_prix_horaire(client):
     assert 'financements' in json.loads(resp.body)
     financements = json.loads(resp.body)['financements']
     assert financements
-    assert financements[-1]['plafond_prise_en_charge'] > 0
-    assert financements[-1]['prise_en_charge'] > 0
+    assert financements[0]['plafond_prise_en_charge'] > 0
+    assert financements[0]['prise_en_charge'] > 0
 
 
 async def test_simulate_endpoint_filter_eligible(client):
@@ -466,7 +466,7 @@ async def test_rules_details(client):
         'beneficiaire.entreprise.idcc': 2706})
     assert resp.status == HTTPStatus.OK
     assert 'financements' in json.loads(resp.body)
-    financement = json.loads(resp.body)['financements'][-1]
+    financement = json.loads(resp.body)['financements'][0]
     assert financement['eligible'] is False
     assert financement['explain']
     assert financement['explain'][0]['params'] == {
@@ -494,9 +494,9 @@ async def test_simulate_financement_properties(client):
     assert 'financements' in json.loads(resp.body)
     financements = json.loads(resp.body)['financements']
     assert financements
-    assert financements[-1].get('sigle')
-    assert financements[-1].get('intitule')
-    assert financements[-1].get('tags')
+    assert financements[0].get('sigle')
+    assert financements[0].get('intitule')
+    assert financements[0].get('tags')
 
 
 async def test_explore_financements(client):

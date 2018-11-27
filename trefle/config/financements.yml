@@ -1,260 +1,17 @@
-Aide individuelle à la formation:
-  type_lbf: aif
-  priorite_lbf: 7
-  tags: [AIF, DE, individuel]
-  cpf_mobilisable: True
-  financee_pe: True
-  cumulable: True
-  racine: région du bénéficiaire
-Aide individuelle à la formation artisan:
-  type_lbf: aifartisan
-  priorite_lbf: 7
-  tags: [AIF, artisan, DE, individuel]
-  cpf_mobilisable: True
-  financee_pe: True
-  cumulable: True
-  racine: région du bénéficiaire
-Aide individuelle régionale à la formation:
-  type_lbf: aif
-  priorite_lbf: 7
-  tags: [AIF, DE, individuel]
-  cpf_mobilisable: True
-  financee_pe: True
-  cumulable: True
-  racine: Grand-Est.rules
-Financement individuel Agefiph:
-  type_lbf: agefiph
-  priorite_lbf: 6.1
-  tags: [Agefiph, TH, DE, individuel]
-  cpf_mobilisable: True
-  financee_pe: False
-  cumulable: True
-  racine: région du bénéficiaire
-Aide individuelle Conseil régional:
-  type_lbf: finindividuel
-  priorite_lbf: 6.3
-  tags: [DE, individuel, région, Nouvelle-Aquitaine]
-  cpf_mobilisable: True
-  financee_pe: False
-  cumulable: True
-  racine: Nouvelle-Aquitaine.rules
-  ressources:
-  - https://les-aides.nouvelle-aquitaine.fr/fiche/remuneration-des-stagiaires-de-la-formation-professionnelle/
-AIF région:
-  type_lbf: aif
-  priorite_lbf: 7
-  tags: [DE, individuel, région, Guadeloupe]
-  cpf_mobilisable: True
-  financee_pe: True
-  cumulable: True
-  racine: Guadeloupe.rules
-AIF département:
-  type_lbf: aif
-  priorite_lbf: 7
-  tags: [DE, individuel, région, Guadeloupe]
-  cpf_mobilisable: True
-  financee_pe: True
-  cumulable: True
-  racine: Guadeloupe.rules
-Fonds d'aide aux jeunes:
-  type_lbf: faj
-  priorite_lbf: 6.2
-  tags: [FAJ, DE, jeune, individuel]
-  cpf_mobilisable: True
-  financee_pe: False
-  cumulable: True
-  racine: région du bénéficiaire
-Formations du domaine sanitaire et social:
-  type_lbf: finindividuel
-  priorite_lbf: 6.3
-  tags: [DE, région, individuel, branche]
-  cpf_mobilisable: True
-  financee_pe: False
-  cumulable: True
-  racine: Bretagne.rules
-  ressources:
-  - https://www.bretagne.bzh/jcms/c_15456/fr/les-formations-sanitaires-et-sociales
-Chèque formation:
-  type_lbf: finindividuel
-  priorite_lbf: 6.3
-  tags: [DE, région, individuel, chèque]
-  cpf_mobilisable: True
-  financee_pe: False
-  cumulable: True
-  racine: Bretagne.rules
-  ressources:
-  - https://www.seformerenbretagne.fr
-Action projets individuels:
-  type_lbf: finindividuel
-  priorite_lbf: 6.3
-  sigle: API
-  tags: [DE, API, individuel]
-  cpf_mobilisable: True
-  financee_pe: False
-  cumulable: True
-  racine: Auvergne-Rhône-Alpes.rules
-Chéquier unique VAE Région Ile-de-France:
-  type_lbf: finindividuel
-  priorite_lbf: 6.3
-  tags: [DE, région, individuel]
-  cpf_mobilisable: True
-  financee_pe: False
-  cumulable: True
-  racine: Île-de-France.rules
-Une formation, un emploi - individuel:
-  type_lbf: finindividuel
-  priorite_lbf: 6.3
-  tags: [DE, région, individuel]
-  cpf_mobilisable: True
-  financee_pe: False
-  cumulable: True
-  racine: Normandie.rules
-Qualif individuel:
-  type_lbf: finindividuel
-  priorite_lbf: 6.3
-  tags: [DE, région, individuel]
-  cpf_mobilisable: True
-  financee_pe: False
-  cumulable: True
-  racine: Normandie.rules
-Formation sanitaire et social Grand-Est:
-  type_lbf: finindividuel
-  priorite_lbf: 6.3
-  intitule: Formation sanitaire et social
-  tags: [DE, région, individuel, branche]
-  cpf_mobilisable: True
-  financee_pe: False
-  cumulable: True
-  racine: Grand-Est.rules
-  ressources:
-  - https://www.grandest.fr/formations-sanitaires-sociales/bourses-secteur-sanitaire-social
-Le chèque pass formation:
-  type_lbf: finindividuel
-  priorite_lbf: 6.3
-  tags: [DE, individuel, région]
-  cpf_mobilisable: True
-  financee_pe: False
-  cumulable: True
-  racine: Hauts-de-France.rules
-  ressources:
-  - https://www.c2rp.fr/dispositifs/cheque-pass-formation
-Pass emploi:
-  type_lbf: finindividuel
-  priorite_lbf: 6.3
-  tags: [DE, individuel, région]
-  cpf_mobilisable: True
-  financee_pe: False
-  cumulable: True
-  racine: Hauts-de-France.rules
-  ressources:
-    - https://www.c2rp.fr/dispositifs/pass-emploi
-    - https://www.hautsdefrance.fr/mot/formation/
-Aide individuelle à la formation avec promesse d'embauche:
-  type_lbf: finindividuel
-  priorite_lbf: 6.3
-  tags: [DE, région, individuel]
-  cpf_mobilisable: True
-  financee_pe: False
-  cumulable: True
-  racine: Centre-Val de Loire.rules
-Chèque formation réussite:
-  type_lbf: finindividuel
-  priorite_lbf: 6.3
-  tags: [DE, individuel, région, chèque]
-  cpf_mobilisable: True
-  financee_pe: False
-  cumulable: True
-  racine: La Réunion.rules
-Le chèque qualification:
-  type_lbf: finindividuel
-  priorite_lbf: 6.3
-  tags: [DE, individuel, région, chèque]
-  cpf_mobilisable: True
-  financee_pe: False
-  cumulable: True
-  racine: Guadeloupe.rules
-CIF CDI sur son temps de travail:
-  tags: [CIF, CDI, sur son temps de travail]
+CPF sur son temps de travail:
+  tags: [CPF, sur son temps de travail]
   racine: organisme paritaire.rules
-CIF CDI hors temps de travail:
-  tags: [CIF, CDI, hors temps de travail]
+CPF hors temps de travail:
+  tags: [CPF, hors temps de travail]
   racine: organisme paritaire.rules
-CIF CDD sur son temps de travail:
-  tags: [CIF, CDD, sur son temps de travail]
-  cpf_mobilisable: True
-  racine: organisme paritaire.rules
-CIF CDD hors temps de travail:
-  tags: [CIF, CDD, hors temps de travail, DE]
-  cpf_mobilisable: True
-  financee_pe: False
-  cumulable: False
-  racine: organisme paritaire.rules
-CIF intérim sur son temps de travail:
-  tags: [CIF, interim, sur son temps de travail]
+CPF demandeur d'emploi:
+  type_lbf: cpf
+  priorite_lbf: 0
+  tags: [CPF, DE]
   cpf_mobilisable: True
   financee_pe: False
   cumulable: True
-  racine: organisme paritaire.rules
-CIF intérim hors temps de travail:
-  tags: [CIF, interim, hors temps de travail, DE]
-  cpf_mobilisable: True
-  financee_pe: False
-  cumulable: True
-  racine: organisme paritaire.rules
-CIF intermittents hors temps de travail:
-  tags: [CIF, intermittent, hors temps de travail]
-  cpf_mobilisable: True
-  financee_pe: False
-  cumulable: True
-  racine: organisme paritaire.rules
-Période de professionnalisation sur son temps de travail:
-  tags: [période de professionnalisation, sur son temps de travail]
-  cpf_mobilisable: True
-  financee_pe: False
-  cumulable: True
-  racine: organisme paritaire.rules
-  ressources:
-  - https://www.service-public.fr/particuliers/vosdroits/F13516
-Plan de formation sur son temps de travail:
-  tags: [plan de formation, sur son temps de travail]
-  cpf_mobilisable: True
-  financee_pe: False
-  cumulable: True
-  racine: organisme paritaire.rules
-  ressources:
-  - https://www.service-public.fr/particuliers/vosdroits/F11267
-Formations avant embauche (AFPR, POEI):
-  type_lbf: afprpoei
-  priorite_lbf: 4
-  tags: [AFPR, POEI, POE, DE]
-  cpf_mobilisable: False
-  financee_pe: True
-  cumulable: False
-  racine: région du bénéficiaire
-"Formation en alternance : contrat d'apprentissage":
-  type_lbf: contratapprentissage
-  priorite_lbf: 3
-  tags: [contrat apprentissage, alternance, DE]
-  cpf_mobilisable: False
-  financee_pe: False
-  cumulable: False
-  racine: région du bénéficiaire
-"Formation en alternance : contrat de professionnalisation":
-  type_lbf: contratdepro
-  priorite_lbf: 3
-  tags: [contrat professionnalisation, alternance, DE]
-  cpf_mobilisable: False
-  financee_pe: False
-  cumulable: False
-  racine: région du bénéficiaire
-Action de formation collective financée par Pôle emploi:
-  type_lbf: poleemploicollectif
-  priorite_lbf: 2
-  tags: [DE, PE, collectif, AFC]
-  cpf_mobilisable: True
-  financee_pe: True
-  cumulable: False
-  racine: région du bénéficiaire
+  racine: CPF DE.rules
 Préparation opérationnelle à l'emploi collective:
   type_lbf: poecollective
   priorite_lbf: 1
@@ -752,17 +509,260 @@ Actions de formation collectives département:
   financee_pe: False
   cumulable: False
   racine: Guadeloupe.rules
-CPF demandeur d'emploi:
-  type_lbf: cpf
-  priorite_lbf: 0
-  tags: [CPF, DE]
+Action de formation collective financée par Pôle emploi:
+  type_lbf: poleemploicollectif
+  priorite_lbf: 2
+  tags: [DE, PE, collectif, AFC]
+  cpf_mobilisable: True
+  financee_pe: True
+  cumulable: False
+  racine: région du bénéficiaire
+"Formation en alternance : contrat d'apprentissage":
+  type_lbf: contratapprentissage
+  priorite_lbf: 3
+  tags: [contrat apprentissage, alternance, DE]
+  cpf_mobilisable: False
+  financee_pe: False
+  cumulable: False
+  racine: région du bénéficiaire
+"Formation en alternance : contrat de professionnalisation":
+  type_lbf: contratdepro
+  priorite_lbf: 3
+  tags: [contrat professionnalisation, alternance, DE]
+  cpf_mobilisable: False
+  financee_pe: False
+  cumulable: False
+  racine: région du bénéficiaire
+Formations avant embauche (AFPR, POEI):
+  type_lbf: afprpoei
+  priorite_lbf: 4
+  tags: [AFPR, POEI, POE, DE]
+  cpf_mobilisable: False
+  financee_pe: True
+  cumulable: False
+  racine: région du bénéficiaire
+Financement individuel Agefiph:
+  type_lbf: agefiph
+  priorite_lbf: 6.1
+  tags: [Agefiph, TH, DE, individuel]
   cpf_mobilisable: True
   financee_pe: False
   cumulable: True
-  racine: CPF DE.rules
-CPF sur son temps de travail:
-  tags: [CPF, sur son temps de travail]
+  racine: région du bénéficiaire
+Fonds d'aide aux jeunes:
+  type_lbf: faj
+  priorite_lbf: 6.2
+  tags: [FAJ, DE, jeune, individuel]
+  cpf_mobilisable: True
+  financee_pe: False
+  cumulable: True
+  racine: région du bénéficiaire
+Formations du domaine sanitaire et social:
+  type_lbf: finindividuel
+  priorite_lbf: 6.3
+  tags: [DE, région, individuel, branche]
+  cpf_mobilisable: True
+  financee_pe: False
+  cumulable: True
+  racine: Bretagne.rules
+  ressources:
+  - https://www.bretagne.bzh/jcms/c_15456/fr/les-formations-sanitaires-et-sociales
+Chèque formation:
+  type_lbf: finindividuel
+  priorite_lbf: 6.3
+  tags: [DE, région, individuel, chèque]
+  cpf_mobilisable: True
+  financee_pe: False
+  cumulable: True
+  racine: Bretagne.rules
+  ressources:
+  - https://www.seformerenbretagne.fr
+Action projets individuels:
+  type_lbf: finindividuel
+  priorite_lbf: 6.3
+  sigle: API
+  tags: [DE, API, individuel]
+  cpf_mobilisable: True
+  financee_pe: False
+  cumulable: True
+  racine: Auvergne-Rhône-Alpes.rules
+Chéquier unique VAE Région Ile-de-France:
+  type_lbf: finindividuel
+  priorite_lbf: 6.3
+  tags: [DE, région, individuel]
+  cpf_mobilisable: True
+  financee_pe: False
+  cumulable: True
+  racine: Île-de-France.rules
+Une formation, un emploi - individuel:
+  type_lbf: finindividuel
+  priorite_lbf: 6.3
+  tags: [DE, région, individuel]
+  cpf_mobilisable: True
+  financee_pe: False
+  cumulable: True
+  racine: Normandie.rules
+Qualif individuel:
+  type_lbf: finindividuel
+  priorite_lbf: 6.3
+  tags: [DE, région, individuel]
+  cpf_mobilisable: True
+  financee_pe: False
+  cumulable: True
+  racine: Normandie.rules
+Formation sanitaire et social Grand-Est:
+  type_lbf: finindividuel
+  priorite_lbf: 6.3
+  intitule: Formation sanitaire et social
+  tags: [DE, région, individuel, branche]
+  cpf_mobilisable: True
+  financee_pe: False
+  cumulable: True
+  racine: Grand-Est.rules
+  ressources:
+  - https://www.grandest.fr/formations-sanitaires-sociales/bourses-secteur-sanitaire-social
+Le chèque pass formation:
+  type_lbf: finindividuel
+  priorite_lbf: 6.3
+  tags: [DE, individuel, région]
+  cpf_mobilisable: True
+  financee_pe: False
+  cumulable: True
+  racine: Hauts-de-France.rules
+  ressources:
+  - https://www.c2rp.fr/dispositifs/cheque-pass-formation
+Pass emploi:
+  type_lbf: finindividuel
+  priorite_lbf: 6.3
+  tags: [DE, individuel, région]
+  cpf_mobilisable: True
+  financee_pe: False
+  cumulable: True
+  racine: Hauts-de-France.rules
+  ressources:
+    - https://www.c2rp.fr/dispositifs/pass-emploi
+    - https://www.hautsdefrance.fr/mot/formation/
+Aide individuelle à la formation avec promesse d'embauche:
+  type_lbf: finindividuel
+  priorite_lbf: 6.3
+  tags: [DE, région, individuel]
+  cpf_mobilisable: True
+  financee_pe: False
+  cumulable: True
+  racine: Centre-Val de Loire.rules
+Chèque formation réussite:
+  type_lbf: finindividuel
+  priorite_lbf: 6.3
+  tags: [DE, individuel, région, chèque]
+  cpf_mobilisable: True
+  financee_pe: False
+  cumulable: True
+  racine: La Réunion.rules
+Le chèque qualification:
+  type_lbf: finindividuel
+  priorite_lbf: 6.3
+  tags: [DE, individuel, région, chèque]
+  cpf_mobilisable: True
+  financee_pe: False
+  cumulable: True
+  racine: Guadeloupe.rules
+Aide individuelle Conseil régional:
+  type_lbf: finindividuel
+  priorite_lbf: 6.3
+  tags: [DE, individuel, région, Nouvelle-Aquitaine]
+  cpf_mobilisable: True
+  financee_pe: False
+  cumulable: True
+  racine: Nouvelle-Aquitaine.rules
+  ressources:
+  - https://les-aides.nouvelle-aquitaine.fr/fiche/remuneration-des-stagiaires-de-la-formation-professionnelle/
+Aide individuelle à la formation:
+  type_lbf: aif
+  priorite_lbf: 7
+  tags: [AIF, DE, individuel]
+  cpf_mobilisable: True
+  financee_pe: True
+  cumulable: True
+  racine: région du bénéficiaire
+Aide individuelle à la formation artisan:
+  type_lbf: aifartisan
+  priorite_lbf: 7
+  tags: [AIF, artisan, DE, individuel]
+  cpf_mobilisable: True
+  financee_pe: True
+  cumulable: True
+  racine: région du bénéficiaire
+Aide individuelle régionale à la formation:
+  type_lbf: aif
+  priorite_lbf: 7
+  tags: [AIF, DE, individuel]
+  cpf_mobilisable: True
+  financee_pe: True
+  cumulable: True
+  racine: Grand-Est.rules
+AIF région:
+  type_lbf: aif
+  priorite_lbf: 7
+  tags: [DE, individuel, région, Guadeloupe]
+  cpf_mobilisable: True
+  financee_pe: True
+  cumulable: True
+  racine: Guadeloupe.rules
+AIF département:
+  type_lbf: aif
+  priorite_lbf: 7
+  tags: [DE, individuel, région, Guadeloupe]
+  cpf_mobilisable: True
+  financee_pe: True
+  cumulable: True
+  racine: Guadeloupe.rules
+CIF CDI sur son temps de travail:
+  tags: [CIF, CDI, sur son temps de travail]
   racine: organisme paritaire.rules
-CPF hors temps de travail:
-  tags: [CPF, hors temps de travail]
+CIF CDI hors temps de travail:
+  tags: [CIF, CDI, hors temps de travail]
   racine: organisme paritaire.rules
+CIF CDD sur son temps de travail:
+  tags: [CIF, CDD, sur son temps de travail]
+  cpf_mobilisable: True
+  racine: organisme paritaire.rules
+CIF CDD hors temps de travail:
+  tags: [CIF, CDD, hors temps de travail, DE]
+  cpf_mobilisable: True
+  financee_pe: False
+  cumulable: False
+  racine: organisme paritaire.rules
+CIF intérim sur son temps de travail:
+  tags: [CIF, interim, sur son temps de travail]
+  cpf_mobilisable: True
+  financee_pe: False
+  cumulable: True
+  racine: organisme paritaire.rules
+CIF intérim hors temps de travail:
+  tags: [CIF, interim, hors temps de travail, DE]
+  cpf_mobilisable: True
+  financee_pe: False
+  cumulable: True
+  racine: organisme paritaire.rules
+CIF intermittents hors temps de travail:
+  tags: [CIF, intermittent, hors temps de travail]
+  cpf_mobilisable: True
+  financee_pe: False
+  cumulable: True
+  racine: organisme paritaire.rules
+Période de professionnalisation sur son temps de travail:
+  tags: [période de professionnalisation, sur son temps de travail]
+  cpf_mobilisable: True
+  financee_pe: False
+  cumulable: True
+  racine: organisme paritaire.rules
+  ressources:
+  - https://www.service-public.fr/particuliers/vosdroits/F13516
+Plan de formation sur son temps de travail:
+  tags: [plan de formation, sur son temps de travail]
+  cpf_mobilisable: True
+  financee_pe: False
+  cumulable: True
+  racine: organisme paritaire.rules
+  ressources:
+  - https://www.service-public.fr/particuliers/vosdroits/F11267

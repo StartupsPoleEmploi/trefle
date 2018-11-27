@@ -33,7 +33,7 @@ async def simulate_legacy(request, response):
     financements = [f for f in financements if f["eligible"]]
     log_simulate(context, financements=financements)
     mapped = []
-    for financement in reversed(financements):
+    for financement in financements:
         for tag, label in FAMILLE_MAPPING.items():
             if tag in financement.tags:
                 famille = label
