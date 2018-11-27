@@ -541,6 +541,8 @@ Formations avant embauche (AFPR, POEI):
   financee_pe: True
   cumulable: False
   racine: région du bénéficiaire
+  ressources:
+  - https://www.pole-emploi.fr/candidat/l-action-de-formation-prealable-au-recrutement-afpr--@/article.jspz?id=60635
 Financement individuel Agefiph:
   type_lbf: agefiph
   priorite_lbf: 6.1
