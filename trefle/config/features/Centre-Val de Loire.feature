@@ -55,6 +55,7 @@ Scénario: Cas nominal AIF avec promesse d'embauche
     Et le montant de l'allocation du bénéficiaire vaut 1200
     Et la durée en heures de la formation vaut 500
     Et la région du bénéficiaire vaut «Centre-Val de Loire»
+    Et la région de la formation vaut «Centre-Val de Loire»
     Et la liste des codes FORMACODE de la formation vaut [14406]
     Et c'est une formation ouverte aux bénéficiaires individuels
     Et le prix horaire de la formation vaut 0.0
