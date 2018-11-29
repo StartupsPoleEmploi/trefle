@@ -1,0 +1,83 @@
+{
+  "catalogue": "Intercarif",
+  "id": "387280",
+  "uid": "24_166936",
+  "intitule": "Optimiser ses outils de diffusion (secteur culturel)",
+  "premier-intitule": "Optimiser ses outils de diffusion",
+  "objectif": "o Préparer les éléments nécessaire à la mise en oeuvre d'une stratégie de diffusion\no Développer une posture et un discours convaincant auprès d'un programmateur\no Animer un fichier de contacts pertinent\no Construire des supports de communication et de prospection efficaces",
+  "objectif-general-formation": {},
+  "description": "Les principes de la diffusion\n- L'analyse du projet dans son environnement artistique\n- La création d'un réseau de diffusion\n- La gestion d'un fichier de programmateurs\n- Le plan d'actions pour la prospection\n- La répartition des tâches et l'organisation du temps de travail\nLes outils numériques de travail et de communication\n- Les éléments à réunir pour constituer un « dossier de diffusion » dématérialisé\n- La création de contenus et l'optimisation des visuels\n- Les outils collaboratifs 2.0 : agenda, partage de documents, sondage\n- Les outils de messagerie\n- La construction de newsletters : principes et usages\nL'élaboration et la mise à jour d'un fichier de contacts\n- Les bases pour concevoir et intégrer un fichier de contacts\n- L'identification et la qualification des contacts et prospects\n- Le choix, le recueil et la classification des variables nécessaires\n- L'enrichissement et le suivi de son fichier\nLa prise de contact et la négociation\n- La posture et le discours du chargé(e) de diffusion\n- La valorisation des singularités et forces d'un projet artistique\n- Les objectifs à atteindre\n- Les techniques d'argumentation et de négociation",
+  "codes-rome-vises": [
+    "L1302",
+    "L1303",
+    "M1701"
+  ],
+  "sessions": [
+    {
+      "id": "22404600",
+      "uid": "210036",
+      "uida": "24_1397890",
+      "debut": "2019-03-18",
+      "fin": "2019-03-20",
+      "nombre-heures-total": "21",
+      "nombre-heures-centre": "21",
+      "localisation": {
+        "formation": {
+          "longitude": "4.88697",
+          "latitude": "43.9281",
+          "path": "/1/1/9/6/23/",
+          "ville": "Avignon",
+          "code-postal": "84000",
+          "commune-insee": "84007",
+          "adresse": "24 boulevard St Michel\n"
+        }
+      },
+      "contact": {
+        "email": "formation@arcade-paca.com",
+        "tel": "04 42 21 78 00",
+        "fax": "04 42 21 78 01",
+        "url": "http://formationculture.com/"
+      }
+    }
+  ],
+  "organisme": {
+    "id": "6137",
+    "nom": "Agence Régionale de Coordination Artistique et de Développement - ARCADE",
+    "siret": "30535079500046",
+    "localisation": {
+      "longitude": "5.5248",
+      "latitude": "43.5614",
+      "adresse": "6 place Barthélémy Niollon\n",
+      "ville": "Aix-en-Provence",
+      "code-postal": "13617"
+    },
+    "contact": {
+      "email": "formation@arcade-paca.com",
+      "tel": "04 42 21 78 64",
+      "fax": "04 42 21 78 01",
+      "url": "http://formationculture.com/"
+    }
+  },
+  "niveau-retour-embauche": 3,
+  "niveau-sortie": "1",
+  "resultats-attendus": "Attestation",
+  "validation": 0,
+  "modalite-alternance": "Néant",
+  "modalite-enseignement": 0,
+  "modalite-duree-indicative": "3 jours",
+  "conditions-specifiques": "Aucune",
+  "condition-prise-en-charge": "Néant",
+  "conditions-prise-en-charge": "Néant",
+  "modalites-pedagogiques": "- Des méthodes pédagogiques actives et participatives qui alternent apports théoriques, exercices pratiques, études de cas individuelles ou en petits groupes, mises en situation. La format",
+  "certification": false,
+  "formacode": [
+    "34566",
+    "32096",
+    "45004"
+  ],
+  "domaines-formacode": [
+    "34",
+    "32",
+    "45"
+  ]
+}

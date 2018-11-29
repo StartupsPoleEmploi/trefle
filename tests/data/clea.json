@@ -53,6 +53,14 @@
         {
           "debut": "2018-02-23",
           "fin": "2018-12-31",
+          "code": "201",
+          "type": "TOUTPUBLIC",
+          "france-entiere": 1,
+          "inter-branche": 1
+        },
+        {
+          "debut": "2018-02-23",
+          "fin": "2018-12-31",
           "code": "222905",
           "type": "SALARIE",
           "branches": [

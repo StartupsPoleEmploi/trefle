@@ -81,10 +81,8 @@
           "debut": "2018-06-18",
           "fin": "2018-12-31",
           "code": "227989",
-          "type": "SALARIE",
-          "branches": [
-            "78.20Z"
-          ]
+          "type": "DE",
+          "region-insee": "26"
         },
         {
           "debut": "2018-11-08",
@@ -449,7 +447,7 @@
           "fin": "2018-12-31",
           "code": "232054",
           "type": "DE",
-          "region-insee": "24"
+          "region-insee": "26"
         },
         {
           "debut": "2014-12-04",

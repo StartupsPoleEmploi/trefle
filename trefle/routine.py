@@ -1,8 +1,6 @@
 import json
 from datetime import timedelta
 
-import objectpath
-
 from .config import (CONSTANTS, ELIGIBILITE_URL, LBF_URL, INTERCARIF_URL, LABELS,
                      ORGANISMES, RULES, SCHEMA, Organisme)
 from .exceptions import DataError, UpstreamError, NoDataError
@@ -14,6 +12,7 @@ from .helpers import (
     insee_commune_to_departement,
     insee_departement_to_region,
     calculate_age,
+    json_path,
 )
 from .rules import Rule
 from .validators import format_naf
@@ -96,7 +95,7 @@ def _extrapolate_formation_context(context):
 async def get_formation_json(formation_id):
     data = (await http_get(f"{LBF_URL}?user=TEST&uid={formation_id}")).json()
     if not data:
-        raise UpstreamError(f'UPSTREAM_ERROR: Empty catalog data for {formation_id}')
+        raise ValueError('No formation found')
     return data
 
 
@@ -105,31 +104,23 @@ async def populate_formation(context):
         return
 
     formation_id = context['formation.numero']
-    data = await get_formation_json(formation_id)
 
     try:
+        data = await get_formation_json(formation_id)
         await populate_formation_from_json(context, data)
     except ValueError as err:
         # Give more context.
         raise DataError(f'Error with id `{formation_id}`: `{err}`')
 
 
-async def retrieve_codes_naf(ids):
-    params = ''.join(f'&id[]={id}' for id in ids)
-    url = f'{ELIGIBILITE_URL}{params}'
-    response = await http_get(url)
-    tree = etree.fromstring(response.content)
-    return set(format_naf(c) for c in tree.xpath('//branche/child::text()'))
-
-
 async def populate_formation_from_json(context, content):
     # Doc for leoh: http://lheo.gouv.fr/langage
     # TODO: deal with action or session optional ids.
-    tree = objectpath.Tree(content)
 
     for key, schema in SCHEMA.items():
-        if schema.get("source") == "catalogue" and schema.get("objectpath"):
-            value = tree.execute(schema["objectpath"])
+        if schema.get("source") == "catalogue" and schema.get("path"):
+            value = json_path(schema["path"], content)
+            print(key,value)
             if value in ('', [], None):  # Empty resultset.
                 continue
             try:
@@ -137,11 +128,6 @@ async def populate_formation_from_json(context, content):
             except DataError as err:
                 print(f'Warning: invalid data while processing {key} with {value} ({err})')
                 continue
-
-    if not context['formation.codes_naf']:
-        ids = set(root.xpath('//extras[@info="eligibilite-cpf"]/extra[@info="france-entiere"][text()="1"]/../extra[@info="inter-branche"][text()="0"]/../@numero'))
-        if ids:
-            context['formation.codes_naf'] = await retrieve_codes_naf(ids)
 
 
 def preprocess(context):

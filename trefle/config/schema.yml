@@ -566,7 +566,7 @@ formation:
     type: string
     public: true
     label: intitulé de la formation
-    objectpath: $.intitule
+    path: intitule
     source: catalogue
   intitule_norme:
     description: intitulé de la formation sans accent ni signes diacritiques et tout en minuscules
@@ -585,7 +585,7 @@ formation:
     public: true
     pattern: ^(2[AB]|[0-9]{2})[0-9]{3}$
     label: commune de la formation
-    objectpath: $.sessions[0].localisation.formation."commune-insee"
+    path: sessions.0.localisation.formation.commune-insee
     source: catalogue
   departement:
     description: code INSEE du département où se passe la formation
@@ -605,7 +605,7 @@ formation:
     format: int32
     public: true
     source: catalogue
-    objectpath: $.organisme.siret
+    path: organisme.siret
     label: SIRET de l'organisme de formation
     gender: masculine
   codes_financeur:
@@ -616,7 +616,7 @@ formation:
       type: integer
       enum: *codes_financeur
     source: catalogue
-    objectpath: $.sessions[0].financeurs[code]
+    path: sessions.0.financeurs.code
     label: codes financeur de la formation
     gender: masculine
     number: plural
@@ -625,7 +625,7 @@ formation:
     description: cette formation est au catalogue COPANEF
     type: boolean
     source: catalogue
-    objectpath: $.copanef
+    path: copanef
     label: formation éligible COPANEF
   eligible_coparef:
     description: cette formation est au catalogue COPAREF
@@ -640,7 +640,7 @@ formation:
       type: string
       enum: *regions
     source: catalogue
-    objectpath: $.sessions[0]."eligbilite-cpf"[region-insee]
+    path: sessions.0.eligibilite-cpf.region-insee
     label: régions éligibles COPAREF
   codes_rome:
     type: array
@@ -648,7 +648,7 @@ formation:
     items:
       type: string
     source: catalogue
-    objectpath: $."codes-romes-vises"
+    path: codes-romes-vises
     label: liste des codes ROME de la formation
   codes_formacode:
     type: array
@@ -657,7 +657,7 @@ formation:
       type: integer
       format: formacode
     source: catalogue
-    objectpath: $.formacode
+    path: formacode
     label: liste des codes FORMACODE de la formation
   domaines_formacode:
     description: domaines (trois premiers caractères des codes) FORMACODE de la formation
@@ -665,41 +665,41 @@ formation:
     format: set
     items:
       type: integer
-    objectpath: $."domaines-formacode"
+    path: domaines-formacode
     source: catalogue
     label: liste des domaines FORMACODE de la formation
   code_certifinfo:
     type: integer
     format: int32
     source: catalogue
-    objectpath: $."code-certifinfo"
+    path: code-certifinfo
     label: code CERTIFINFO de la formation
     gender: masculine
   code_rncp:
     type: integer
     format: int32
     source: catalogue
-    objectpath: $."code-rncp"
+    path: code-rncp
     label: code RNCP de la formation
     gender: masculine
   heures:
     type: integer
     format: int32
     source: catalogue
-    objectpath: $.sessions[0]."nombre-heures-total"
+    path: sessions.0.nombre-heures-total
     label: durée en heures de la formation
   heures_entreprise:
     type: integer
     format: int32
     source: catalogue
-    objectpath: $.sessions[0]."nombre-heures-entreprise"
+    path: sessions.0.nombre-heures-entreprise
     label: nombre d'heures en entreprise
     gender: masculine
   heures_centre:
     type: integer
     format: int32
     source: catalogue
-    objectpath: $.sessions[0]."nombre-heures-centre"
+    path: sessions.0.nombre-heures-centre
     label: nombre d'heures en centre
     gender: masculine
   mois:
@@ -714,14 +714,14 @@ formation:
     type: integer
     format: int32
     source: catalogue
-    objectpath: $."duree-hebdomadaire"
+    path: duree-hebdomadaire
     label: durée hebdomadaire de la formation
   prix_horaire:
     type: integer
     format: float
     default: 0
     source: catalogue
-    objectpath: $."prix-horaire-TTC"
+    path: prix-horaire-TTC
     label: prix horaire de la formation
     description: prix horaire TTC de la formation
     gender: masculine
@@ -729,7 +729,7 @@ formation:
     type: integer
     format: float
     source: catalogue
-    objectpath: $."prix-total-TTC"
+    path: prix-total-TTC
     label: prix total de la formation
     description: prix total TTC de la formation
     gender: masculine
@@ -745,18 +745,16 @@ formation:
       type: integer
       format: int32
     source: catalogue
-    objectpath: $.sessions[0]."eligibilite-cpf"[code]
+    path: sessions.0.eligibilite-cpf.code
     label: liste des codes CPF de la formation
   codes_naf:
     description: codes NAF des différents CPNE
     type: array
-    format: nafs
     items:
       type: string
       format: naf
     source: catalogue
-    # TODO concat arrays
-    objectpath: $.sessions[0]."eligibilite-cpf"[branches]
+    path: sessions.0.eligibilite-cpf.branches.[]
     label: codes NAF CPNE éligibles
     number: plural
   objectif_general_formation:
@@ -765,8 +763,7 @@ formation:
     type: integer
     formation: int32
     source: catalogue
-    # TODO missing data
-    objectpath: $."objectif-general-formation"
+    path: objectif-general-formation
     enum: *codes_ais
   debut:
     description: date de début de la formation
@@ -774,21 +771,21 @@ formation:
     type: string
     format: date
     source: catalogue
-    objectpath: $.sessions[0].debut
+    path: sessions.0.debut
   fin:
     description: date de fin de la formation
     label: date de fin de la formation
     type: string
     format: date
     source: catalogue
-    objectpath: $.sessions[0].fin
+    path: sessions.0.fin
   rff:
     type: boolean
     label: formation éligible à la RFF
   foad:
     type: boolean
     source: catalogue
-    objectpath: $."modalites-enseignement" is 2
+    path: modalites-enseignement.=2
     label: formation ouverte à distance
   langues:
     type: boolean
@@ -864,9 +861,10 @@ formation:
   certifiante:
     type: boolean
     source: catalogue
-    objectpath: $.certifiante
+    path: certifiante
     label: formation certifiante
   professionnalisante:
+    default: false
     type: boolean
     label: formation professionnalisante
   enseignement_superieur:
@@ -884,12 +882,12 @@ formation:
   poec:
     type: boolean
     source: catalogue
-    objectpath: $."programme-financeur" is "POEC"
+    path: programme-financeur.=POEC
     label: préparation opérationnelle à l'emploi collective
   poei:
     type: boolean
     source: catalogue
-    objectpath: $."programme-financeur" is "POEI"
+    path: programme-financeur.=POEI
     label: préparation opérationnelle à l'emploi individuelle
   poe:
     type: boolean
@@ -902,20 +900,21 @@ formation:
     gender: masculine
   rncp:
     type: boolean
-    source: catalogue
-    objectpath: $."code-RNCP"
+    default: false
     label: formation RNCP
     description: cette formation est inscrite au RNCP
   contrat_apprentissage:
     type: boolean
+    default: false
     source: catalogue
-    objectpath: $."contrat-apprentissage"
+    path: contrat-apprentissage
     label: contrat d'apprentissage
     gender: masculine
   contrat_professionnalisation:
     type: boolean
+    default: false
     source: catalogue
-    objectpath: $."contrat-professionnalisation"
+    path: contrat-professionnalisation
     label: contrat de professionnalisation
     gender: masculine
   developpement_professionnel:
@@ -927,7 +926,7 @@ formation:
     format: int32
     label: niveau de sortie de la formation
     source: catalogue
-    objectpath: $."niveau-sortie"
+    path: niveau-sortie
     gender: masculine
     url: http://lheo.gouv.fr/langage#dict-niveaux
     enum: *niveau_scolaire
@@ -935,8 +934,7 @@ formation:
     type: integer
     format: int32
     source: catalogue
-    # TODO missing data
-    objectpath: $."modalites-entrees-sorties"
+    path: modalites-entrees-sorties
     enum:
       0: entrées/sorties à dates fixes
       1: entrées/sorties permanentes
@@ -944,8 +942,7 @@ formation:
   entrees_sorties_permanentes:
     type: boolean
     source: catalogue
-    # TODO missing data
-    objectpath: $."modalites-entrees-sorties" is 1
+    path: modalites-entrees-sorties.=1
     label: formation à entrées-sorties permanentes
   individuels:
     type: boolean

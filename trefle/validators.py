@@ -64,11 +64,6 @@ def format_organisme(value):
     return ORGANISMES[folded]['nom']
 
 
-@formatter('nafs')
-def format_nafs(value):
-    return [code for codes in value for code in codes]
-
-
 @formatter('naf')
 def format_naf(value):
     value = value.replace('.', '').upper().replace(' ', '')
@@ -93,6 +88,7 @@ def format_date(value):
 
     # LHEO date is quite a mess, let's try to do our best.
     tries = [
+        (10, '%Y-%m-%d'),
         (8, '%Y%m%d'),
         (10, '%d/%m/%Y'),  # From LBF.
         # Consider the day was invalid, try with month only.
@@ -192,6 +188,8 @@ def validate_format(schema, value):
 @with_array
 def validate_enum(schema, value):
     if isinstance(value, set):
+        return value
+    if isinstance(value, list):
         return value
     if value and 'enum' in schema and value not in schema['enum']:
         raise ValueError(

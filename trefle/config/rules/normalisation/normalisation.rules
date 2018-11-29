@@ -85,4 +85,23 @@ Ou l'intitulé normé de la formation contient «EXPLORATIONDUPROJETPROFESSIONNE
 Ou l'intitulé normé de la formation contient «ELABORATIONDUPROJETPROFESSIONNEL»
 Ou l'intitulé normé de la formation contient «STABILISATIONDUPROJETPROFESSIONNEL»
     Alors c'est une formation PCP
+Si le code RNCP de la formation est défini
+    Alors c'est un formation RNCP
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

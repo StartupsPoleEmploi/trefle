@@ -762,5 +762,6 @@
   "modalites-entrees-sorties": true,
   "certifiante": true,
   "rncp": true,
-  "copanef": true
+  "copanef": true,
+  "contrat-apprentissage": true
 }
