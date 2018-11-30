@@ -1,4 +1,5 @@
 import csv
+import os
 import re
 import sys
 from collections import defaultdict
@@ -20,6 +21,7 @@ GLOSSARY = {}
 NAF = {}
 FEATURES = {}
 
+LBF_USER = os.environ['LBF_USER']
 LBF_URL = 'http://labonneformation.pole-emploi.local/api/v1/detail'
 INTERCARIF_URL = 'https://labonneformation.pole-emploi.fr/ws_intercarif'
 ELIGIBILITE_URL = 'http://www.intercariforef.org/serviceweb2/eligibilite/?filtre=branche&'

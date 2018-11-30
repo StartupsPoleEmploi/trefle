@@ -1,8 +1,9 @@
 import json
 from datetime import timedelta
 
-from .config import (CONSTANTS, ELIGIBILITE_URL, LBF_URL, INTERCARIF_URL, LABELS,
-                     ORGANISMES, RULES, SCHEMA, Organisme)
+from .config import (CONSTANTS, ELIGIBILITE_URL, LBF_URL, LBF_USER, INTERCARIF_URL,
+                     LABELS, ORGANISMES, RULES, SCHEMA, Organisme)
+
 from .exceptions import DataError, UpstreamError, NoDataError
 from .helpers import (
     diff_month,
@@ -93,7 +94,12 @@ def _extrapolate_formation_context(context):
 
 
 async def get_formation_json(formation_id):
-    data = (await http_get(f"{LBF_URL}?user=TEST&uid={formation_id}")).json()
+    try:
+        data = (await http_get(f"{LBF_URL}?user={LBF_USER}&uid={formation_id}")).json()
+    except ValueError as err:
+        err.args = ('Invalid formation data',)
+        raise
+
     if not data:
         raise ValueError('No formation found')
     return data
@@ -120,7 +126,6 @@ async def populate_formation_from_json(context, content):
     for key, schema in SCHEMA.items():
         if schema.get("source") == "catalogue" and schema.get("path"):
             value = json_path(schema["path"], content)
-            print(key,value)
             if value in ('', [], None):  # Empty resultset.
                 continue
             try:
