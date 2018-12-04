@@ -16,7 +16,7 @@ async def test_populate_formation_from_json():
         routine.extrapolate_context(context)
         routine.preprocess(context)
 
-        assert context['formation.eligible_copanef'] is True
+        assert context['formation.eligible_copanef'] is False
         assert context['formation.codes_naf'] == ['2361Z', '4399E', '0162Z',
                                                   '9604Z', '9609Z', '7820Z',
                                                   '2361Z', '4399E', '0162Z',
@@ -75,6 +75,7 @@ async def test_populate_formation_from_json():
     ('daeu', 'formation.daeu', True),
     ('daeu', 'formation.enseignement_superieur', True),
     ('old_region', 'formation.regions_coparef', {'24', '27'}),
+    ('with_copanef', 'formation.eligible_copanef', True),
 ])
 @pytest.mark.asyncio
 async def test_populate_formation_from_json_edge_cases(path, key, value):

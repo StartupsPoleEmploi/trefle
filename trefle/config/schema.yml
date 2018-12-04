@@ -624,8 +624,7 @@ formation:
   eligible_copanef:
     description: cette formation est au catalogue COPANEF
     type: boolean
-    source: catalogue
-    path: copanef
+    default: false
     label: formation éligible COPANEF
   eligible_coparef:
     description: cette formation est au catalogue COPAREF

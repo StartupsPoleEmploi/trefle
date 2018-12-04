@@ -761,6 +761,5 @@
   "certification": true,
   "modalites-entrees-sorties": true,
   "certifiante": true,
-  "rncp": true,
-  "copanef": true
+  "rncp": true
 }
