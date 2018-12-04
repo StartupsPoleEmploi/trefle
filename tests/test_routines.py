@@ -43,7 +43,6 @@ async def test_populate_formation_from_json():
         assert context['formation.code_certifinfo'] == 80735
         assert context['formation.code_rncp'] == 320
         assert context['formation.rncp'] is True
-        assert context['formation.entrees_sorties'] == 1
         assert context['formation.entrees_sorties_permanentes'] is False
         assert context['formation.contrat_apprentissage'] is False
         assert context['formation.contrat_professionnalisation'] is False
@@ -64,7 +63,6 @@ async def test_populate_formation_from_json():
     ('non_professionnalisante', 'formation.professionnalisante', False),
     ('professionnalisante', 'formation.professionnalisante', True),
     ('wrong_code_financeur_16', 'formation.codes_financeur', {2, 10}),
-    ('entrees_sorties_permanentes', 'formation.entrees_sorties', 1),
     ('entrees_sorties_permanentes', 'formation.entrees_sorties_permanentes',
      True),
     ('contrat_apprentissage', 'formation.contrat_apprentissage', True),

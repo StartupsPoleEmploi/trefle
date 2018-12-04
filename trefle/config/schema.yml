@@ -929,19 +929,10 @@ formation:
     gender: masculine
     url: http://lheo.gouv.fr/langage#dict-niveaux
     enum: *niveau_scolaire
-  entrees_sorties:
-    type: integer
-    format: int32
-    source: catalogue
-    path: modalites-entrees-sorties
-    enum:
-      0: entrées/sorties à dates fixes
-      1: entrées/sorties permanentes
-    label: modalités d'entrées-sorties
   entrees_sorties_permanentes:
     type: boolean
     source: catalogue
-    path: modalites-entrees-sorties.=1
+    path: entrees-sorties-permanentes
     label: formation à entrées-sorties permanentes
   individuels:
     type: boolean
