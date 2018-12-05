@@ -759,9 +759,7 @@
   "validation": 5,
   "modalite-enseignement": 0,
   "certification": true,
-  "modalites-entrees-sorties": true,
+  "entrees-sorties-permanentes": true,
   "certifiante": true,
-  "rncp": true,
-  "copanef": true,
   "contrat-professionnalisation": true
 }

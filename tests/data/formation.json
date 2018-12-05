@@ -760,6 +760,5 @@
   "modalite-enseignement": 0,
   "certification": true,
   "entrees-sorties-permanentes": false,
-  "certifiante": true,
-  "rncp": true
+  "certifiante": true
 }

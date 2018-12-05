@@ -220,6 +220,6 @@
   "niveau-sortie": "4",
   "validation": 5,
   "modalite-enseignement": 0,
-  "modalites-entrees-sorties": true,
+  "entrees-sorties-permanentes": true,
   "certifiante": true
 }
