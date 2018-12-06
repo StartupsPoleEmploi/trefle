@@ -22,6 +22,7 @@ NAF = {}
 FEATURES = {}
 
 LBF_USER = os.environ['LBF_USER']
+LBF_KEY = os.environ.get('LBF_KEY', 'toto')
 LBF_URL = 'http://labonneformation.pole-emploi.local/api/v1/detail'
 INTERCARIF_URL = 'https://labonneformation.pole-emploi.fr/ws_intercarif'
 ELIGIBILITE_URL = 'http://www.intercariforef.org/serviceweb2/eligibilite/?filtre=branche&'

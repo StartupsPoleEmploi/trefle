@@ -1,3 +1,4 @@
+import datetime
 import json
 from pathlib import Path
 
@@ -104,3 +105,16 @@ async def test_populate_formation_upstream_error(mock_get):
     mock_get(status_code=500)
     with pytest.raises(exceptions.UpstreamError):
         await routine.populate_formation({'formation.numero': 'ZORGLUB'})
+
+def test_build_catalog_url(monkeypatch):
+    fakenow = datetime.datetime(2017, 10, 12, 13, 45, 0)
+    class mydate:
+        @classmethod
+        def utcnow(cls):
+            return fakenow
+    monkeypatch.setattr(datetime, 'datetime', mydate)
+    monkeypatch.setattr('trefle.config.LBF_USER', 'foobar')
+    monkeypatch.setattr('trefle.config.LBF_KEY', 'barfoo')
+    assert routine.build_catalog_url('12345') == 'http://labonneformation.pole-emploi.local/api/v1/detail?user=foobar&uid=12345&timestamp=2017-10-12T13%3A45%3A00&signature=2aabef68f687ecdbb084e2b1dc930583'
+
+
