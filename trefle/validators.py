@@ -3,13 +3,10 @@ from datetime import datetime
 
 from .config import IDCC, ORGANISMES
 from .exceptions import DataError, NoDataError
-from .helpers import fold_name
+from .helpers import fold_name, TRUE_VALUES, FALSE_VALUES, EMPTY_VALUES
 from .rules import SCHEMA
 
 formatters = {}
-
-TRUE_VALUES = ('oui', 'yes', 'true', 'on', '1')
-FALSE_VALUES = ('non', 'no', 'false', 'off', '0')
 
 
 def formatter(*formats):
@@ -160,7 +157,7 @@ def validate_field(name, data):
 
 
 def validate_empty(schema, value):
-    if value in (None, ''):
+    if value in EMPTY_VALUES:
         if 'default' in schema:
             return schema['default']
         if schema.get('format') == 'set':

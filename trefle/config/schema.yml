@@ -629,6 +629,7 @@ formation:
   eligible_coparef:
     description: cette formation est au catalogue COPAREF
     type: boolean
+    default: false
     source: catalogue
     label: formation éligible COPAREF de la région du bénéficiaire
   regions_coparef:

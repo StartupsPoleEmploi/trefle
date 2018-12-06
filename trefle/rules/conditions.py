@@ -1,5 +1,5 @@
 from .core import condition, private, reason
-from ..helpers import diff_month
+from ..helpers import diff_month, EMPTY_VALUES
 
 
 @reason("ce n'est pas {key.pointer.raw}")
@@ -17,13 +17,13 @@ def check_false(context, key):
 @reason("{key.pointer.raw} est défini: {key}")
 @condition(r"(l'|les? |la )(?P<key>.+) (n'est|ne sont) pas définie?s?")
 def check_none(context, key):
-    return key.value in (None, '')
+    return key.value in EMPTY_VALUES
 
 
 @reason("{key.pointer.raw} n'est pas défini: {key}")
 @condition(r"(l'|les? |la )(?P<key>.+) (est|sont) définie?s?")
 def check_not_none(context, key):
-    return key.value not in (None, '')
+    return key.value not in EMPTY_VALUES
 
 
 @private

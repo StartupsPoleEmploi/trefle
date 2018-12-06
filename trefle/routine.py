@@ -14,6 +14,7 @@ from .helpers import (
     insee_departement_to_region,
     calculate_age,
     json_path,
+    EMPTY_VALUES,
 )
 from .rules import Rule
 from .validators import format_naf
@@ -126,7 +127,7 @@ async def populate_formation_from_json(context, content):
     for key, schema in SCHEMA.items():
         if schema.get("source") == "catalogue" and schema.get("path"):
             value = json_path(schema["path"], content)
-            if value in ('', [], None):  # Empty resultset.
+            if value in EMPTY_VALUES:
                 continue
             try:
                 context[key] = value
