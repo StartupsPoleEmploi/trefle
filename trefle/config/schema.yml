@@ -90,12 +90,24 @@ constante:
     format: int32
     value: 5994
     label: quatre fois le SMIC
+  codes_permis:
+    type: array
+    items:
+      type: integer
+    value: [54664, 78281, 81308, 81306, 54662, 54665, 97711, 66300]
+    label: codes CERTIFINFO pour les permis de conduire de tout type
   codes_permis_b:
     type: array
     items:
       type: integer
     value: [54664]
     label: codes CERTIFINFO pour un permis B
+  codes_capacites_transport_lourd:
+    type: array
+    items:
+      type: integer
+    value: [55535, 55534, 76874, 55518, 89259]
+    label: codes CERTIFINFO pour des capacités de transport de plus de 3 tonnes
   codes_spi:
     type: array
     items:
@@ -846,10 +858,20 @@ formation:
     source: catalogue
     label: bilan de compétences
     gender: masculine
+  permis:
+    type: boolean
+    source: catalogue
+    label: permis de conduire
+    gender: masculine
   permis_b:
     type: boolean
     source: catalogue
     label: permis B
+    gender: masculine
+  capacites_transport_lourd:
+    type: boolean
+    source: catalogue
+    label: capacité de transport lourd
     gender: masculine
   spi:
     type: boolean

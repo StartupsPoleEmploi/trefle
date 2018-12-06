@@ -57,7 +57,8 @@ Si l'intitulé du financement est «Le chèque qualification»
     Et la durée en heures de la formation est supérieure ou égale à 100
     Et la durée en heures de la formation est inférieure ou égale à 1200
     Et ce n'est pas une formation VAE
-    Et ce n'est pas un permis B
+    Et ce n'est pas un permis de conduire
+    Et ce n'est pas une capacité de transport lourd
     Et ce n'est pas un stage de préparation à l'installation
     Et ce n'est pas un contrat de professionnalisation
     Et ce n'est pas un contrat d'apprentissage
@@ -69,8 +70,6 @@ Si l'intitulé du financement est «Le chèque qualification»
     Et l'intitulé normé de la formation ne contient pas «MASTER»
     Et l'intitulé normé de la formation ne contient pas «MASTERE»
     Et l'intitulé normé de la formation ne contient pas «INGENIEUR»
-    Et l'intitulé normé de la formation ne contient pas «CAPACITE»
-    Et l'intitulé normé de la formation ne contient pas «PERMIS»
         Alors le financement est éligible
         Et le plafond financier applicable vaut 4000
         Et le texte de description vaut «Le Chèque qualification est un dispositif mis en place par le Conseil régional de la Guadeloupe pour répondre aux besoins individuels ne trouvant pas leur réponse dans les programmes collectifs.⏎Il s’agit de permettre au bénéficiaire de l’aide d’accéder totalement ou partiellement à une formation qualifiante (ex: CCP, CQP, TP,...) en lien direct avec son projet professionnel.»
@@ -135,14 +134,13 @@ Si l'intitulé du financement est «AIF région»
     Et ce n'est pas un stage de préparation à l'installation
     Et ce n'est pas un contrat d'apprentissage
     Et ce n'est pas un contrat de professionnalisation
-    Et ce n'est pas un permis B
+    Et ce n'est pas un permis de conduire
     Et le niveau de sortie de la formation ne fait pas partie de [«III»,«II»,«I»]
     Et l'intitulé normé de la formation ne contient pas «LICENCE»
     Et l'intitulé normé de la formation ne contient pas «MASTER»
     Et l'intitulé normé de la formation ne contient pas «MASTERE»
     Et l'intitulé normé de la formation ne contient pas «DUT»
     Et l'intitulé normé de la formation ne contient pas «BTS»
-    Et l'intitulé normé de la formation ne contient pas «PERMIS»
         Alors le financement est éligible
         Et le texte de description vaut «C'est une aide individuelle réservée aux formations qualifiantes attribuée par le Conseil régional de la Guadeloupe. L'aide est exclusivement réservée à des demandeurs d'emploi ou des salariés n'ayant bénéficié d'aucune autre aide de la région.⏎Cette aide peut venir en complément d'un montant accordé par un autre financeur tel que l'AIF (Pôle emploi), l'ADI pour les publics bénéficiaire du RSA, le FONGECIF ou un OPCA pour les salariés, le CPF pour un salarié ou un demandeur d'emploi ou en complément d'un apport personnel.»
         Et le texte des démarches vaut «Contactez votre conseiller référent emploi (Pôle emploi, mission locale ou Cap emploi) pour valider avec lui votre projet de formation.⏎Les dossiers doivent être déposés au moins 3 mois avant le début de la formation.»

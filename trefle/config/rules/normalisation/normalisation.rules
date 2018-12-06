@@ -14,8 +14,12 @@ Si le code CERTIFINFO de la formation fait partie des codes CERTIFINFO BEC
     Alors c'est une formation BEC
 Si le code CERTIFINFO de la formation fait partie des codes CERTIFINFO pour un SPI
     Alors c'est un stage de préparation à l'installation
+Si le code CERTIFINFO de la formation fait partie des codes CERTIFINFO pour les permis de conduire de tout type
+    Alors c'est un permis de conduire
 Si le code CERTIFINFO de la formation fait partie des codes CERTIFINFO pour un permis B
     Alors c'est un permis B
+Si le code CERTIFINFO de la formation fait partie des codes CERTIFINFO pour des capacités de transport de plus de 3 tonnes
+    Alors c'est une capacité de transport lourd
 Si le code CERTIFINFO de la formation fait partie des codes CERTIFINFO pour un bilan de compétences
     Alors c'est un bilan de compétences
 Si la liste des codes CPF de la formation contient au moins un des codes CPF CléA
