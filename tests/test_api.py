@@ -462,7 +462,9 @@ async def test_rules_details(client):
         'beneficiaire.remuneration': 1400,
         'beneficiaire.droit_prive': True,
         'beneficiaire.contrat': 'cdi',
-        'formation.eligible_copanef': False,
+        # make sure eligible copanef will be false
+        'formation.regions_coparef': ['11'],
+        'formation.codes_naf': [],
         'formation.heures': 100,
         'beneficiaire.entreprise.commune': '2A004',
         'beneficiaire.entreprise.idcc': 2706})

@@ -31,6 +31,9 @@ DEP_TO_REG = {
     '20': '94',  # When consuming postcode.
 }
 NON_ALPHA = re.compile(r"[^0-9a-zA-Z]+")
+TRUE_VALUES = ('oui', 'yes', 'true', 'on', '1')
+FALSE_VALUES = ('non', 'no', 'false', 'off', '0')
+EMPTY_VALUES = (None, '', set(), [])
 
 
 def calculate_age(born):
