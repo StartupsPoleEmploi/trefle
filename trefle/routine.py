@@ -1,8 +1,12 @@
 import json
-from datetime import timedelta
+import hashlib
+import hmac
+import datetime
+from urllib.parse import urlencode
 
-from .config import (CONSTANTS, ELIGIBILITE_URL, LBF_URL, LBF_USER, INTERCARIF_URL,
-                     LABELS, ORGANISMES, RULES, SCHEMA, Organisme)
+from . import config  # allow to monkeypatch test
+from .config import (CONSTANTS, ELIGIBILITE_URL, INTERCARIF_URL, LABELS, ORGANISMES,
+                     RULES, SCHEMA, Organisme)
 
 from .exceptions import DataError, UpstreamError, NoDataError
 from .helpers import (
@@ -94,9 +98,23 @@ def _extrapolate_formation_context(context):
             for r in context.get("formation.regions_coparef", []))
 
 
+def build_catalog_url(formation_id):
+    now = datetime.datetime.utcnow().replace(microsecond=0).isoformat()
+    # (alphabetical) order of parameters is important.
+    params = (
+        ('user', config.LBF_USER),
+        ('uid', formation_id),
+        ('timestamp', now),
+    )
+    query_string = urlencode(params)
+    signature = hmac.new(config.LBF_KEY.encode(), query_string.encode(), hashlib.md5).hexdigest()
+    return f"{config.LBF_URL}?{query_string}&signature={signature}"
+
+
 async def get_formation_json(formation_id):
+    url = build_catalog_url(formation_id)
     try:
-        data = (await http_get(f"{LBF_URL}?user={LBF_USER}&uid={formation_id}")).json()
+        data = (await http_get(url)).json()
     except ValueError as err:
         err.args = ('Invalid formation data',)
         raise
@@ -200,7 +218,7 @@ def compute_modalites(context, financement):
         financement.fin_remuneration = context.get(
             'beneficiaire.fin_allocation')
         financement.debut_rff = (financement.fin_remuneration
-                                 + timedelta(days=1))
+                                 + datetime.timedelta(days=1))
         financement.fin_rff = context.get('formation.fin')
 
 
