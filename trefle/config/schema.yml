@@ -90,12 +90,24 @@ constante:
     format: int32
     value: 5994
     label: quatre fois le SMIC
+  codes_permis:
+    type: array
+    items:
+      type: integer
+    value: [54664, 78281, 81308, 81306, 54662, 54665, 97711, 66300]
+    label: codes CERTIFINFO pour les permis de conduire de tout type
   codes_permis_b:
     type: array
     items:
       type: integer
     value: [54664]
     label: codes CERTIFINFO pour un permis B
+  codes_capacites_transport_lourd:
+    type: array
+    items:
+      type: integer
+    value: [55535, 55534, 76874, 55518, 89259]
+    label: codes CERTIFINFO pour des capacités de transport de plus de 3 tonnes
   codes_spi:
     type: array
     items:
@@ -150,6 +162,12 @@ constante:
       type: integer
     value: [55673, 55674, 55675, 55676, 55677, 55803, 55804, 55805, 55806,55807, 55808, 55809,55810, 55811, 55812, 55813, 55814, 55815, 55816, 55817, 55818, 55819, 55820, 55822, 55821, 55823, 55824, 55825, 55826, 55827, 84700, 84449, 84700, 84715, 85312, 85338]
     label: codes CERTIFINFO CACES
+  codes_BTS:
+    type: array
+    items:
+      type: integer
+    value: [18807, 54459, 100355, 18817, 63193, 57473, 53656, 94419, 63417, 82776, 18838, 18840, 75789, 55086, 63656, 83602, 63122, 94413, 87965, 87967, 87933, 94417, 18869, 81072, 75791, 63194, 100329, 52838, 18877, 87937, 18882, 59361, 46605, 46606, 53178, 77616, 77617, 18883, 69042, 94751, 87865, 75792, 88275, 88277, 82783, 82786, 82787, 87929, 87927, 100367, 104237, 18935, 18945, 18946, 52853, 46615, 83108, 83109, 94415, 82779, 100561, 82784, 100563, 82785, 100565, 87941, 87957, 87959, 104239, 18990, 100359, 100361, 100363, 83222, 83223, 88017, 81472, 81473, 81476, 81474, 81475, 18998, 80278, 80279, 80280, 87931, 82792, 77194, 77192, 81074, 87935, 53825, 100357, 19004, 19005, 19007, 68699, 87961, 19015, 77615, 79115, 19041, 19042, 19045, 53410, 76575, 76576, 100365, 82695, 82403, 82402, 84989, 55794, 55786, 55783, 55787, 55791, 55793, 55796, 55790, 55784, 55797, 55795, 55782, 55788, 55785, 55792, 55789, 81073, 19072, 77618, 89377, 89379, 74872, 75787, 64218, 81071, 18894, 87939, 89751, 89753, 8910]
+    label: codes CERTIFINFO BTS
   codes_ais_certifiants:
     value: [6, 7]
     label: codes AIS certifiants
@@ -881,10 +899,39 @@ formation:
     source: catalogue
     label: bilan de compétences
     gender: masculine
+  bts:
+    type: boolean
+    source: catalogue
+    label: BTS
+    gender: masculine
+  licence:
+    type: boolean
+    source: catalogue
+    label: licence
+  master:
+    type: boolean
+    source: catalogue
+    label: master
+    gender: masculine
+  ingenieur:
+    type: boolean
+    source: catalogue
+    label: niveau ingénieur
+    gender: masculine
+  permis:
+    type: boolean
+    source: catalogue
+    label: permis de conduire
+    gender: masculine
   permis_b:
     type: boolean
     source: catalogue
     label: permis B
+    gender: masculine
+  capacites_transport_lourd:
+    type: boolean
+    source: catalogue
+    label: capacité de transport lourd
     gender: masculine
   spi:
     type: boolean

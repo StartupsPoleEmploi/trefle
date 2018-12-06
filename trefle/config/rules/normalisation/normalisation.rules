@@ -17,8 +17,12 @@ Si le code CERTIFINFO de la formation fait partie des codes CERTIFINFO BEC
     Alors c'est une formation BEC
 Si le code CERTIFINFO de la formation fait partie des codes CERTIFINFO pour un SPI
     Alors c'est un stage de préparation à l'installation
+Si le code CERTIFINFO de la formation fait partie des codes CERTIFINFO pour les permis de conduire de tout type
+    Alors c'est un permis de conduire
 Si le code CERTIFINFO de la formation fait partie des codes CERTIFINFO pour un permis B
     Alors c'est un permis B
+Si le code CERTIFINFO de la formation fait partie des codes CERTIFINFO pour des capacités de transport de plus de 3 tonnes
+    Alors c'est une capacité de transport lourd
 Si le code CERTIFINFO de la formation fait partie des codes CERTIFINFO pour un bilan de compétences
     Alors c'est un bilan de compétences
 Si la liste des codes CPF de la formation contient au moins un des codes CPF CléA
@@ -58,6 +62,11 @@ Ou l'intitulé normé de la formation contient «INGENIEUR»
 Ou l'intitulé normé de la formation contient «LICENCE»
 Ou l'intitulé normé de la formation contient «MASTER»
 Ou l'intitulé normé de la formation contient «MASTERE»
+Ou c'est un master
+Ou c'est un BTS
+Ou c'est une licence
+Ou c'est un niveau ingénieur
+Ou le niveau de sortie de la formation fait partie de [«III»,«II»,«I»]
     Alors c'est une formation de l'enseignement supérieur
 Si c'est un demandeur d'emploi
     Alors appliquer les règles «éligibilité RFF»
@@ -74,7 +83,7 @@ Ou l'intitulé normé de la formation contient «DEUXIEMECHANCE»
 Ou l'intitulé normé de la formation contient «2ECHANCE»
 Ou l'intitulé normé de la formation contient «2EMECHANCE»
 Ou l'intitulé normé de la formation contient «ER2C»
-Ou la liste des codes FORMACODE de la formation contient au moins un code parmi [98808,15041]
+Ou la liste des codes FORMACODE de la formation contient au moins un code parmi [98808,15041,38808,15041,15061,15062]
     Alors c'est une formation E2C
 Si l'intitulé normé de la formation contient «DAEU»
 Ou l'intitulé normé de la formation contient «DIPLOMEDACCESAUXETUDESUNIVERSITAIRES»
@@ -90,3 +99,12 @@ Ou l'intitulé normé de la formation contient «STABILISATIONDUPROJETPROFESSION
     Alors c'est une formation PCP
 Si le code RNCP de la formation est défini
     Alors c'est une formation RNCP
+Si la liste des codes FORMACODE de la formation contient au moins un code parmi [50205,50229,50250]
+    Alors c'est une licence
+Si la liste des codes FORMACODE de la formation contient au moins un code parmi [50170,50171,32062,34024,23613,22257,21054,21059,22024,24054,22211,45554,31606,31654,34030,46348,46236,24231]
+    Alors c'est un niveau ingénieur
+Si la liste des codes FORMACODE de la formation contient au moins un code parmi [50139,50105,50132]
+    Alors c'est un master
+Si le code CERTIFINFO de la formation fait partie des codes CERTIFINFO BTS
+Ou la liste des codes FORMACODE de la formation contient au moins un code parmi [50320,50323]
+    Alors c'est un BTS
