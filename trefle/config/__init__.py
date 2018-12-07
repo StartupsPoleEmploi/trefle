@@ -21,7 +21,7 @@ GLOSSARY = {}
 NAF = {}
 FEATURES = {}
 
-CATALOG_USER = os.environ["CATALOG_USER"]
+CATALOG_USER = os.environ.get("CATALOG_USER", "tata")
 CATALOG_KEY = os.environ.get("CATALOG_KEY", "toto")
 CATALOG_URL = os.environ.get(
     "CATALOG_URL", "https://labonneformation.beta.pole-emploi.fr/api/v1/detail"
