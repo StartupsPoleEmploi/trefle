@@ -2,6 +2,7 @@ from .core import condition, private, reason
 from ..helpers import diff_month, EMPTY_VALUES
 
 
+# fmt: off
 @reason("ce n'est pas {key.pointer.raw}")
 @condition(r"c'est une? (?P<key>.+)")
 def check_true(context, key):

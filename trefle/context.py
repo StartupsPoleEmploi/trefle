@@ -3,7 +3,6 @@ from .validators import validate_field
 
 
 class Context:
-
     def __init__(self, data):
         self.data = data
         self.cleaned_data = {}

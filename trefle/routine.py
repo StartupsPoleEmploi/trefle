@@ -5,10 +5,9 @@ import datetime
 from urllib.parse import urlencode
 
 from . import config  # allow to monkeypatch test
-from .config import (CONSTANTS, ELIGIBILITE_URL, INTERCARIF_URL, LABELS, ORGANISMES,
-                     RULES, SCHEMA, Organisme)
+from .config import CONSTANTS, LABELS, ORGANISMES, RULES, SCHEMA, Organisme
 
-from .exceptions import DataError, UpstreamError, NoDataError
+from .exceptions import DataError
 from .helpers import (
     diff_month,
     diff_week,
@@ -21,7 +20,6 @@ from .helpers import (
     EMPTY_VALUES,
 )
 from .rules import Rule
-from .validators import format_naf
 
 
 def extrapolate_context(context):
@@ -67,63 +65,64 @@ def extrapolate_context(context):
 
 def _extrapolate_formation_context(context):
     # Compute durations.
-    if "formation.debut" in context and "formation.fin" in context and not context.get("formation.entrees_sorties_permanentes"):
-        mois = diff_month(context['formation.debut'], context['formation.fin'])
-        semaines = diff_week(context['formation.debut'],
-                             context['formation.fin'])
-        context['formation.semaines'] = semaines
-        context['formation.mois'] = mois
-        if not context.get('formation.duree_hebdo'):
-            context['formation.duree_hebdo'] = round(
-                context['formation.heures'] / semaines)
+    if (
+        "formation.debut" in context
+        and "formation.fin" in context
+        and not context.get("formation.entrees_sorties_permanentes")
+    ):
+        mois = diff_month(context["formation.debut"], context["formation.fin"])
+        semaines = diff_week(context["formation.debut"], context["formation.fin"])
+        context["formation.semaines"] = semaines
+        context["formation.mois"] = mois
+        if not context.get("formation.duree_hebdo"):
+            context["formation.duree_hebdo"] = round(
+                context["formation.heures"] / semaines
+            )
 
     # Weird hack: Intercarif adds the `16` code in some situations and we need
     # to remove it otherwise the formation is unavailable (`16` is a code
     # financeur collectif).
-    if context.get('formation.codes_financeur', set()) & {0, 5, 10}:
-        context['formation.codes_financeur'].discard(16)
+    if context.get("formation.codes_financeur", set()) & {0, 5, 10}:
+        context["formation.codes_financeur"].discard(16)
 
-    context['formation.intitule_norme'] = fold_name(
-        context.get('formation.intitule', ''))
+    context["formation.intitule_norme"] = fold_name(
+        context.get("formation.intitule", "")
+    )
 
-    if context.get('formation.heures_centre') is None:
-        total = context.get('formation.heures')
-        entreprise = context.get('formation.heures_entreprise')
+    if context.get("formation.heures_centre") is None:
+        total = context.get("formation.heures")
+        entreprise = context.get("formation.heures_entreprise")
         if total and entreprise:
-            context['formation.heures_centre'] = total - entreprise
+            context["formation.heures_centre"] = total - entreprise
 
-    insee_commune_to_departement(
-        context, "formation.commune", "formation.departement"
-    )
+    insee_commune_to_departement(context, "formation.commune", "formation.departement")
 
-    insee_departement_to_region(
-        context, "formation.departement", "formation.region"
-    )
+    insee_departement_to_region(context, "formation.departement", "formation.region")
 
     # TODO logic to move in LBF catalog
+    # fmt: off
     old_new_region = {'26': '27', '43': '27', '23': '28', '25': '28',
                       '31': '32', '22': '32', '41': '44', '42': '44',
                       '21': '44', '72': '75', '54': '75', '74': '75',
                       '73': '76', '91': '76', '82': '84', '83': '84'}
+    # fmt: on
 
-    if context.get('formation.region') in old_new_region:
+    if context.get("formation.region") in old_new_region:
         context["formation.region"] = old_new_region[context["formation.region"]]
 
     context["formation.regions_coparef"] = set(
-            old_new_region.get(r, r)
-            for r in context.get("formation.regions_coparef", []))
+        old_new_region.get(r, r) for r in context.get("formation.regions_coparef", [])
+    )
 
 
 def build_catalog_url(formation_id):
     now = datetime.datetime.utcnow().replace(microsecond=0).isoformat()
     # (alphabetical) order of parameters is important.
-    params = (
-        ('user', config.LBF_USER),
-        ('uid', formation_id),
-        ('timestamp', now),
-    )
+    params = (("user", config.LBF_USER), ("uid", formation_id), ("timestamp", now))
     query_string = urlencode(params)
-    signature = hmac.new(config.LBF_KEY.encode(), query_string.encode(), hashlib.md5).hexdigest()
+    signature = hmac.new(
+        config.LBF_KEY.encode(), query_string.encode(), hashlib.md5
+    ).hexdigest()
     return f"{config.LBF_URL}?{query_string}&signature={signature}"
 
 
@@ -132,11 +131,11 @@ async def get_formation_json(formation_id):
     try:
         data = (await http_get(url)).json()
     except ValueError as err:
-        err.args = ('Invalid formation data',)
+        err.args = ("Invalid formation data",)
         raise
 
     if not data:
-        raise ValueError('No formation found')
+        raise ValueError("No formation found")
     return data
 
 
@@ -144,7 +143,7 @@ async def populate_formation(context):
     if not context.get("formation.numero"):
         return
 
-    formation_id = context['formation.numero']
+    formation_id = context["formation.numero"]
 
     try:
         data = await get_formation_json(formation_id)
@@ -166,7 +165,9 @@ async def populate_formation_from_json(context, content):
             try:
                 context[key] = value
             except DataError as err:
-                print(f'Warning: invalid data while processing {key} with {value} ({err})')
+                print(
+                    f"Warning: invalid data while processing {key} with {value} ({err})"
+                )
                 continue
 
 
@@ -238,14 +239,14 @@ def compute_modalites(context, financement):
         name = f"financement.{key}"
         if name in context:
             financement[key] = context[name]
-    if financement.get('demarches'):
-        financement.demarches = financement.demarches.replace('⏎', '\n')
-    if financement.get('rff'):
-        financement.fin_remuneration = context.get(
-            'beneficiaire.fin_allocation')
-        financement.debut_rff = (financement.fin_remuneration
-                                 + datetime.timedelta(days=1))
-        financement.fin_rff = context.get('formation.fin')
+    if financement.get("demarches"):
+        financement.demarches = financement.demarches.replace("⏎", "\n")
+    if financement.get("rff"):
+        financement.fin_remuneration = context.get("beneficiaire.fin_allocation")
+        financement.debut_rff = financement.fin_remuneration + datetime.timedelta(
+            days=1
+        )
+        financement.fin_rff = context.get("formation.fin")
 
 
 def get_root_rule(context, financement):

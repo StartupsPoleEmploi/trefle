@@ -48,8 +48,7 @@ async def simulate_legacy(request, response):
         plafond = 0
         if financement.plafond_prix_horaire and financement.type_lbf == "cpf":
             montant = "%.2f" % (
-                context.get("beneficiaire.solde_cpf")
-                * financement.plafond_prix_horaire
+                context.get("beneficiaire.solde_cpf") * financement.plafond_prix_horaire
             )
         else:
             if financement.type_lbf == "aifartisan":
@@ -57,13 +56,18 @@ async def simulate_legacy(request, response):
             else:
                 plafond = "%.2f" % financement.get("plafond_prise_en_charge")
 
-        if financement.type_lbf == "aif" and context.get("formation.bilan_de_competences"):
+        if financement.type_lbf == "aif" and context.get(
+            "formation.bilan_de_competences"
+        ):
             financement.type_lbf = "aifbilancompetence"
 
         if financement.type_lbf == "aif" and context.get("formation.permisb"):
             financement.type_lbf = "finindividuelpermisb"
 
-        if financement.type_lbf == "afprpoei" and context.get("beneficiaire.departement") == "971":
+        if (
+            financement.type_lbf == "afprpoei"
+            and context.get("beneficiaire.departement") == "971"
+        ):
             financement.type_lbf = "poei"
 
         mapped.append(

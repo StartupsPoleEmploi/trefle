@@ -3,24 +3,29 @@ import re
 from collections import namedtuple
 from datetime import datetime
 
-from ..exceptions import (DataError, NoDataError, NoStepError, ParsingError,
-                          WrongPointerError)
+from ..exceptions import (
+    DataError,
+    NoDataError,
+    NoStepError,
+    ParsingError,
+    WrongPointerError,
+)
 from ..helpers import count_indent, isfloat
 
 SCHEMA = {}
 LABELS = {}
 RULES = {}
 IDCC = {}
-DATE_PATTERN = re.compile(r'\d{2}/\d{2}/\d{4}')
+DATE_PATTERN = re.compile(r"\d{2}/\d{2}/\d{4}")
 
 
 def parse_value(value, default=...):
-    if value[0] == '«' and value[-1] == '»':
+    if value[0] == "«" and value[-1] == "»":
         value = value[1:-1]
         if DATE_PATTERN.match(value):
-            value = datetime.strptime(value, '%d/%m/%Y')
-    elif value[0] == '[' and value[-1] == ']':
-        value = [parse_value(v) for v in value[1:-1].split(',')]
+            value = datetime.strptime(value, "%d/%m/%Y")
+    elif value[0] == "[" and value[-1] == "]":
+        value = [parse_value(v) for v in value[1:-1].split(",")]
     elif value.isdigit():
         value = int(value)
     elif isfloat(value):
@@ -39,14 +44,13 @@ def Label(v):
 
 
 class Pointer:
-
     def __init__(self, raw):
         self.raw = raw
         self.key = None
         self.compile()
 
     def __repr__(self):
-        return f'<Pointer: {self.raw}>'
+        return f"<Pointer: {self.raw}>"
 
     def compile(self):
         self.value = parse_value(self.raw)
@@ -66,13 +70,13 @@ class Pointer:
             value = labels[value]
         except KeyError:
             if value not in labels.values():
-                raise WrongPointerError(f'Wrong value `{value}`')
+                raise WrongPointerError(f"Wrong value `{value}`")
         return value
 
     def resolve_labels(self, *keys):
         labels = {}
         for key in keys:
-            labels.update(SCHEMA[key].get('labels', {}))
+            labels.update(SCHEMA[key].get("labels", {}))
         if self.key or not labels:
             return
         if isinstance(self.value, list):
@@ -82,7 +86,6 @@ class Pointer:
 
 
 def action(pattern):
-
     def wrapper(func):
         Action.register(pattern, func)
         return func
@@ -91,7 +94,6 @@ def action(pattern):
 
 
 def condition(pattern):
-
     def wrapper(func):
         func.reason = None
         func.private = False
@@ -102,7 +104,6 @@ def condition(pattern):
 
 
 def reason(msg):
-
     def wrapper(func):
         func.reason = msg
         return func
@@ -117,13 +118,12 @@ def private(func):
 
 
 class Value:
-
     def __init__(self, pointer, context):
         self.value = pointer.get(context)
         self.pointer = pointer
 
     def __str__(self):
-        return str(self.value or 'aucun(e)')
+        return str(self.value or "aucun(e)")
 
     @property
     def json(self):
@@ -132,7 +132,6 @@ class Value:
 
 
 class Status:
-
     def __init__(self, condition, parent=None):
         self.condition = condition
         self.status = None
@@ -146,27 +145,25 @@ class Status:
         return self.status
 
     def __repr__(self):
-        return f'<Status {self.condition} => {self.status}'
+        return f"<Status {self.condition} => {self.status}"
 
     @property
     def json(self):
-        out = {'condition': str(self.condition), 'status': self.status,
-               'params': {}}
+        out = {"condition": str(self.condition), "status": self.status, "params": {}}
         for param in self.params.values():
             if param.json:
-                out['params'].update(param.json)
+                out["params"].update(param.json)
         if self.terms:
-            out['terms'] = [t.json for t in self.terms]
-            out['connective'] = self.condition.connective
+            out["terms"] = [t.json for t in self.terms]
+            out["connective"] = self.condition.connective
         elif not self.status:
-            out['reason'] = self.reason
+            out["reason"] = self.reason
         if self.children:
-            out['children'] = [c.json for c in self.children]
+            out["children"] = [c.json for c in self.children]
         return out
 
 
 class Step:
-
     def __init__(self, path=None, line=0):
         self.func = None
         self.params = {}
@@ -175,7 +172,7 @@ class Step:
         self.pattern = None
 
     def __repr__(self):
-        return f'<{self.__class__.__name__}: {self} ({self.path}:{self.line})>'
+        return f"<{self.__class__.__name__}: {self} ({self.path}:{self.line})>"
 
     def __str__(self):
         return self.raw
@@ -188,7 +185,7 @@ class Step:
                 self.pattern = pattern.pattern
                 break
         else:
-            raise NoStepError(f'No pattern matches step: `{self!r}`')
+            raise NoStepError(f"No pattern matches step: `{self!r}`")
         return match.groupdict()
 
     @property
@@ -207,8 +204,7 @@ class Step:
                 value = type_(value)
             except Exception as err:
                 # Give more context.
-                err.args = (f'`{err}` (in `{self!r}`, '
-                            f'pattern: {self.pattern})',)
+                err.args = (f"`{err}` (in `{self!r}`, " f"pattern: {self.pattern})",)
                 raise
             self.params[name] = value
 
@@ -235,19 +231,19 @@ class Action(Step):
             # can be written without checking explicitly if the financement is
             # éligible, and we want to make the data required only when this is
             # the case.
-            if context.get('financement.eligible'):
+            if context.get("financement.eligible"):
                 raise
 
 
 class Condition(Step):
 
     PATTERNS = {}
-    AND = 'ET'
-    OR = 'OU'
+    AND = "ET"
+    OR = "OU"
     DEFAULT_TYPE = Pointer
 
     def __init__(self, terms, connective=None, level=0, path=None, line=0):
-        assert terms, 'Cannot create a Condition without terms'
+        assert terms, "Cannot create a Condition without terms"
         super().__init__(path, line)
         self.children = []
         self.actions = []
@@ -269,27 +265,31 @@ class Condition(Step):
 
     def split_inline_conditions(self, terms):
         term = terms[0][0]
-        if ', ou ' in term:
-            return [[t] for t in term.split(', ou ')]
-        if ', et ' in term:
-            return [term.split(', et ')]
+        if ", ou " in term:
+            return [[t] for t in term.split(", ou ")]
+        if ", et " in term:
+            return [term.split(", et ")]
         return terms
 
     def load_or_terms(self, terms):
         self.connective = self.OR
-        self.terms = [Condition([t], level=self.level, path=self.path,
-                                line=self.line) for t in terms]
-        self.raw = f' {self.connective} '.join(str(t) for t in self.terms)
+        self.terms = [
+            Condition([t], level=self.level, path=self.path, line=self.line)
+            for t in terms
+        ]
+        self.raw = f" {self.connective} ".join(str(t) for t in self.terms)
 
     def load_and_terms(self, terms):
-        self.terms = [Condition([[t]], level=self.level, path=self.path,
-                                line=self.line) for t in terms]
-        self.raw = f' {self.connective} '.join(str(t) for t in self.terms)
+        self.terms = [
+            Condition([[t]], level=self.level, path=self.path, line=self.line)
+            for t in terms
+        ]
+        self.raw = f" {self.connective} ".join(str(t) for t in self.terms)
 
     def load_single(self, term):
         self.raw = term
         self.compile()
-        self.negative = ' pas ' in self.pattern
+        self.negative = " pas " in self.pattern
 
     def evaluate(self, context):
         return {n: Value(v, context) for n, v in self.params.items()}
@@ -308,15 +308,16 @@ class Condition(Step):
             except NoDataError as err:
                 # Negative conditions are True by default, positive are False.
                 status.status = self.negative
-                label = SCHEMA.get(err.key, {}).get('label', err.key)
+                label = SCHEMA.get(err.key, {}).get("label", err.key)
                 status.reason = f"Donnée manquante pour «{label}»"
             except DataError:
                 raise
             except Exception as err:
                 # Give more context.
-                params = ' AND '.join(f'{key}={value}'
-                                      for key, value in status.params.items())
-                err.args = (f'{err} (in `{self.raw}`, where {params})',)
+                params = " AND ".join(
+                    f"{key}={value}" for key, value in status.params.items()
+                )
+                err.args = (f"{err} (in `{self.raw}`, where {params})",)
                 raise
             else:
                 status.status = self.func(context, **status.params)
@@ -335,23 +336,21 @@ class Condition(Step):
             try:
                 pointer.resolve_labels(*keys)
             except WrongPointerError as err:
-                err.args = (f'{err} (in `{self!r}`)',)
+                err.args = (f"{err} (in `{self!r}`)",)
                 raise
 
 
-Line = namedtuple('Line', ['index', 'indent', 'keyword', 'sentence'])
+Line = namedtuple("Line", ["index", "indent", "keyword", "sentence"])
 
 
 class StopRecursivity(Exception):
-
     def __init__(self, indent):
         self.indent = indent
 
 
 class Rule:
-
     def __init__(self, name, root):
-        assert root, 'Cannot create a rule without root'
+        assert root, "Cannot create a rule without root"
         self.root = root
         self.name = name
 
@@ -397,11 +396,11 @@ class Rule:
         for index, raw in enumerate(iterable):
             indent = count_indent(raw)
             line = raw.strip()
-            if not line or line.startswith('#'):
+            if not line or line.startswith("#"):
                 continue
             keyword, sentence = line.split(maxsplit=1)
             keyword = keyword.lower()
-            next_ = Line(index+1, indent, keyword, sentence)
+            next_ = Line(index + 1, indent, keyword, sentence)
             if current:
                 yield (previous, current, next_)
                 previous = current
@@ -422,37 +421,40 @@ class Rule:
         connective = None
         for (prev, curr, next_) in lines:
             if curr.indent % 4 != 0:
-                raise ParsingError('Wrong indentation', name, curr)
-            if curr.indent != prev.indent and curr.keyword not in ['si', 'alors']:
-                raise ParsingError('Wrong keyword', name, curr)
+                raise ParsingError("Wrong indentation", name, curr)
+            if curr.indent != prev.indent and curr.keyword not in ["si", "alors"]:
+                raise ParsingError("Wrong keyword", name, curr)
             if curr.indent != prev.indent and not parent:
-                raise ParsingError('Wrong indentation', name, curr)
-            if curr.keyword not in ('si', 'et', 'ou', 'alors'):
-                raise ParsingError('Unknown keyword', name, curr)
-            if curr.keyword == 'si' or (and_terms and curr.keyword in ('et', 'ou')):
-                if curr.keyword == 'ou':
+                raise ParsingError("Wrong indentation", name, curr)
+            if curr.keyword not in ("si", "et", "ou", "alors"):
+                raise ParsingError("Unknown keyword", name, curr)
+            if curr.keyword == "si" or (and_terms and curr.keyword in ("et", "ou")):
+                if curr.keyword == "ou":
                     or_terms.append(and_terms[:])
                     and_terms = []
                     and_terms.append(curr.sentence)
                 else:
                     and_terms.append(curr.sentence)
                 if not connective:
-                    connective = Condition.OR if curr.keyword == 'ou' else Condition.AND
-            elif curr.keyword == 'alors' or (actions and curr.keyword == 'et'):
-                actions.append(
-                    Action(curr.sentence, path=name, line=curr.index))
-            if actions and (next_.indent < curr.indent or next_.keyword == 'si'):
+                    connective = Condition.OR if curr.keyword == "ou" else Condition.AND
+            elif curr.keyword == "alors" or (actions and curr.keyword == "et"):
+                actions.append(Action(curr.sentence, path=name, line=curr.index))
+            if actions and (next_.indent < curr.indent or next_.keyword == "si"):
                 parent.actions = actions
                 actions = []
             if next_.indent < curr.indent:
                 raise StopRecursivity(indent=next_.indent)
                 # Move back one step up in recursivity.
             if next_.indent > curr.indent:
-                if next_.keyword in ('si', 'alors') and and_terms:
+                if next_.keyword in ("si", "alors") and and_terms:
                     or_terms.append(and_terms[:])
-                    current = Condition(or_terms[:], connective,
-                                        level=int(curr.indent/4), path=name,
-                                        line=curr.index)
+                    current = Condition(
+                        or_terms[:],
+                        connective,
+                        level=int(curr.indent / 4),
+                        path=name,
+                        line=curr.index,
+                    )
                     if curr.indent == 0:
                         rules.append(Rule(name, current))
                         parent = current
@@ -475,8 +477,8 @@ class Rule:
             return rule.assess(context, parent=status)
         except NoDataError as err:
             # Give more context.
-            err.args = (f'`{err}` (from `{rule}`)',)
+            err.args = (f"`{err}` (from `{rule}`)",)
             raise
 
     def __repr__(self):
-        return f'<Rule: {self.name}>'
+        return f"<Rule: {self.name}>"

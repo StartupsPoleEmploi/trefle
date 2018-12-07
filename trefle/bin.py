@@ -12,7 +12,7 @@ from roll.extensions import simple_server, static, traceback
 from trefle import simulate, get_financements
 from trefle.api import app
 from trefle.debugging import data_from_lbf_url, green, make_scenario, red
-from trefle.exceptions import DataError, UpstreamError
+from trefle.exceptions import DataError
 from trefle.helpers import flatten
 from trefle.rules import SCHEMA, Pointer
 
@@ -202,12 +202,15 @@ async def populate_legacy(path: Path):
                 break
             continue
         output = resp.json()
-        output['financements'] = sorted(output['financements'], key=lambda f: float(f["donneeStructurees"]["priorite"]))
+        output["financements"] = sorted(
+            output["financements"],
+            key=lambda f: float(f["donneeStructurees"]["priorite"]),
+        )
         context = deepcopy(body)
         try:
             await simulate(context, get_financements())
         except DataError as err:
-            print(f'{err}')
+            print(f"{err}")
             continue
         for key, value in context.items():
             if key.startswith("formation."):

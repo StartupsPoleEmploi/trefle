@@ -10,6 +10,7 @@ from unidecode import unidecode
 from .exceptions import UpstreamError, DataError, NoDataError
 
 
+# fmt: off
 DEP_TO_REG = {
     '01': '84', '02': '32', '03': '84', '04': '93', '05': '93', '06': '93',
     '07': '84', '08': '44', '09': '76', '10': '44', '11': '76', '12': '76',
@@ -30,10 +31,11 @@ DEP_TO_REG = {
     '971': '01', '972': '02', '973': '03', '974': '04', '976': '06',
     '20': '94',  # When consuming postcode.
 }
+# fmt: on
 NON_ALPHA = re.compile(r"[^0-9a-zA-Z]+")
-TRUE_VALUES = ('oui', 'yes', 'true', 'on', '1')
-FALSE_VALUES = ('non', 'no', 'false', 'off', '0')
-EMPTY_VALUES = (None, '', set(), [])
+TRUE_VALUES = ("oui", "yes", "true", "on", "1")
+FALSE_VALUES = ("non", "no", "false", "off", "0")
+EMPTY_VALUES = (None, "", set(), [])
 
 
 def calculate_age(born):
@@ -42,9 +44,11 @@ def calculate_age(born):
 
 
 def diff_month(start, end):
-    return ((end.year - start.year) * 12
-            + (end.month - start.month)
-            + round((end.day - start.day) / 30))
+    return (
+        (end.year - start.year) * 12
+        + (end.month - start.month)
+        + round((end.day - start.day) / 30)
+    )
 
 
 def diff_week(start, end):
@@ -65,7 +69,7 @@ def flatten(data, output=None, namespace=None):
         if isinstance(more, dict):
             flatten(more, output, ns)
             continue
-        name = '.'.join(ns)
+        name = ".".join(ns)
         output[name] = more
     data.clear()
     data.update(output)
@@ -91,13 +95,13 @@ def isfloat(v):
 
 def count_indent(s):
     for i, c in enumerate(s):
-        if c != ' ':
+        if c != " ":
             return i
     return len(s)
 
 
 def fold_name(s):
-    return NON_ALPHA.sub('', unidecode(s).upper())
+    return NON_ALPHA.sub("", unidecode(s).upper())
 
 
 def insee_departement_to_region(context, from_key, to_key):
@@ -108,7 +112,7 @@ def insee_departement_to_region(context, from_key, to_key):
     except (KeyError, NoDataError):
         return
     if dep not in DEP_TO_REG:
-        raise DataError(f'Valeur invalide: `{context[from_key]}`', from_key)
+        raise DataError(f"Valeur invalide: `{context[from_key]}`", from_key)
     context[to_key] = DEP_TO_REG[dep]
 
 
@@ -120,13 +124,13 @@ def insee_commune_to_departement(context, from_key, to_key):
     except (KeyError, NoDataError):
         return
     chars = 2
-    if commune.startswith('97'):  # DROM
+    if commune.startswith("97"):  # DROM
         chars = 3
     try:
         context[to_key] = commune[:chars]
     except DataError:
         # Invalid departement number, but target the commune key actually given
-        raise DataError(f'Valeur invalide: `{context[from_key]}`', from_key)
+        raise DataError(f"Valeur invalide: `{context[from_key]}`", from_key)
 
 
 def revert_dict(d):
@@ -137,7 +141,7 @@ def json_path(pattern, data):
 
     steps = pattern.split(".")
     for step in steps:
-        if step.startswith('='):
+        if step.startswith("="):
             data = str(data) == step[1:]
             break
         if data in [None, []]:

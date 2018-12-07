@@ -13,10 +13,11 @@ def formatter(*formats):
     def wrapper(func):
         formatters.update({f: func for f in formats})
         return func
+
     return wrapper
 
 
-@formatter('boolean')
+@formatter("boolean")
 def format_boolean(value):
     value = str(value).lower()
     if value in TRUE_VALUES:
@@ -26,7 +27,7 @@ def format_boolean(value):
     raise ValueError(f"`{value}` n'est pas de type booléen")
 
 
-@formatter('float')
+@formatter("float")
 def format_float(value):
     try:
         return float(value)
@@ -34,7 +35,7 @@ def format_float(value):
         raise ValueError(f"`{value}` n'est pas un nombre")
 
 
-@formatter('integer')
+@formatter("integer")
 def format_integer(value):
     """An int converter that allows to cast a float like string.
 
@@ -43,31 +44,31 @@ def format_integer(value):
     return int(format_float(value))
 
 
-@formatter('idcc')
+@formatter("idcc")
 def format_idcc(value):
     value = str(value)
-    while value and value[0] == '0':
+    while value and value[0] == "0":
         value = value[1:]
     if value not in IDCC:
         raise ValueError(f"Valeur d'IDCC inconnue: `{value}`")
     return value
 
 
-@formatter('opca', 'opacif')
+@formatter("opca", "opacif")
 def format_organisme(value):
     folded = fold_name(value)
     if folded not in ORGANISMES:
         raise ValueError(f"Organisme inconnu: `{value}`")
-    return ORGANISMES[folded]['nom']
+    return ORGANISMES[folded]["nom"]
 
 
-@formatter('naf')
+@formatter("naf")
 def format_naf(value):
-    value = value.replace('.', '').upper().replace(' ', '')
-    return value.replace('NAF', '').replace('APE', '').strip()
+    value = value.replace(".", "").upper().replace(" ", "")
+    return value.replace("NAF", "").replace("APE", "").strip()
 
 
-@formatter('formacode')
+@formatter("formacode")
 def format_formacode(value):
     value = format_integer(value)
     if value < 10000 or value > 99999:
@@ -75,7 +76,7 @@ def format_formacode(value):
     return value
 
 
-@formatter('date')
+@formatter("date")
 def format_date(value):
     if isinstance(value, datetime):
         return value
@@ -85,15 +86,15 @@ def format_date(value):
 
     # LHEO date is quite a mess, let's try to do our best.
     tries = [
-        (10, '%Y-%m-%d'),
-        (8, '%Y%m%d'),
-        (10, '%d/%m/%Y'),  # From LBF.
-        (10, '%Y-%m-%d'),  # From TMF.
+        (10, "%Y-%m-%d"),
+        (8, "%Y%m%d"),
+        (10, "%d/%m/%Y"),  # From LBF.
+        (10, "%Y-%m-%d"),  # From TMF.
         # Consider the day was invalid, try with month only.
-        (6, '%Y%m'),
+        (6, "%Y%m"),
         # Consider even the month was invalid, try with year only.
         # But let's raise this time, row will be logged and skipped.
-        (4, '%Y'),
+        (4, "%Y"),
     ]
     for chars, format_ in tries:
         with suppress(ValueError):
@@ -102,28 +103,27 @@ def format_date(value):
     raise ValueError(f"`{value}` n'est pas un format de date connu")
 
 
-@formatter('money')
+@formatter("money")
 def format_remuneration(value):
-    value = str(value).replace(',', '.')  # French uses "," as delimiter.
-    value = value.replace('€', '')
+    value = str(value).replace(",", ".")  # French uses "," as delimiter.
+    value = value.replace("€", "")
     value = value.strip()
     if not value:
         value = 0
     return float(value)
 
 
-@formatter('string')
+@formatter("string")
 def format_string(value):
     return str(value)
 
 
 def with_array(func):
-
     def wrapper(schema, value):
         if value is not None:
-            if schema['type'] == 'array':
-                value = [func(schema['items'], v) for v in value]
-                if schema.get('format') == 'set':
+            if schema["type"] == "array":
+                value = [func(schema["items"], v) for v in value]
+                if schema.get("format") == "set":
                     value = set(value)
                 return value
         return func(schema, value)
@@ -139,13 +139,12 @@ def validate_field(name, data):
         if name not in data:
             raise NoDataError(str(err), name)
         return value  # Pass by the value (consuming a legacy key?).
-    if value is None and 'alias' in schema:
-        for alias in schema['alias']:
+    if value is None and "alias" in schema:
+        for alias in schema["alias"]:
             value = data.get(alias)
             if value is not None:
                 break
-    for validator in [validate_empty, validate_format, validate_enum,
-                      validate_pattern]:
+    for validator in [validate_empty, validate_format, validate_enum, validate_pattern]:
         try:
             value = validator(schema, value)
         except ValueError as err:
@@ -158,19 +157,19 @@ def validate_field(name, data):
 
 def validate_empty(schema, value):
     if value in EMPTY_VALUES:
-        if 'default' in schema:
-            return schema['default']
-        if schema.get('format') == 'set':
+        if "default" in schema:
+            return schema["default"]
+        if schema.get("format") == "set":
             return set()
-        raise NoDataError('Ce champ est obligatoire')
+        raise NoDataError("Ce champ est obligatoire")
     return value
 
 
 @with_array
 def validate_format(schema, value):
     if value is not None:
-        type_ = schema['type']
-        format_ = schema.get('format')
+        type_ = schema["type"]
+        format_ = schema.get("format")
         # If there is formatter, it has precedence, and should take care of the
         # type too (so it can deal with cleaning the data before).
         func = formatters.get(format_, formatters.get(type_))
@@ -184,15 +183,15 @@ def validate_format(schema, value):
 
 @with_array
 def validate_enum(schema, value):
-    if value and 'enum' in schema and value not in schema['enum']:
+    if value and "enum" in schema and value not in schema["enum"]:
         raise ValueError(
-            f"`{value}` ne fait pas partie de {list(schema['enum'].keys())}")
+            f"`{value}` ne fait pas partie de {list(schema['enum'].keys())}"
+        )
     return value
 
 
 @with_array
 def validate_pattern(schema, value):
-    if value and 'pattern' in schema and not schema['pattern'].match(value):
-        raise ValueError(
-            f"`{value}` n'est pas au format {schema['pattern'].pattern}")
+    if value and "pattern" in schema and not schema["pattern"].match(value):
+        raise ValueError(f"`{value}` n'est pas au format {schema['pattern'].pattern}")
     return value

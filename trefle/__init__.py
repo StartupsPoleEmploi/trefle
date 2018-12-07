@@ -28,12 +28,12 @@ async def simulate(data, financements):
     # FIXME (limits of the single-store-all context object)
     # Clean keys not meant to be exposed
     for key in list(data.keys()):
-        if key.startswith('financement'):
+        if key.startswith("financement"):
             del data[key]
 
 
 def get_financements(tags=None):
     financements = [config.Financement(f) for f in config.FINANCEMENTS]
-    for tag in (tags or []):
-        financements = [f for f in financements if tag in f['tags']]
+    for tag in tags or []:
+        financements = [f for f in financements if tag in f["tags"]]
     return financements
