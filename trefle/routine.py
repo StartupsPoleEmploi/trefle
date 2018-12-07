@@ -118,12 +118,12 @@ def _extrapolate_formation_context(context):
 def build_catalog_url(formation_id):
     now = datetime.datetime.utcnow().replace(microsecond=0).isoformat()
     # (alphabetical) order of parameters is important.
-    params = (("user", config.LBF_USER), ("uid", formation_id), ("timestamp", now))
+    params = (("user", config.CATALOG_USER), ("uid", formation_id), ("timestamp", now))
     query_string = urlencode(params)
     signature = hmac.new(
-        config.LBF_KEY.encode(), query_string.encode(), hashlib.md5
+        config.CATALOG_KEY.encode(), query_string.encode(), hashlib.md5
     ).hexdigest()
-    return f"{config.LBF_URL}?{query_string}&signature={signature}"
+    return f"{config.CATALOG_URL}?{query_string}&signature={signature}"
 
 
 async def get_formation_json(formation_id):

@@ -21,9 +21,11 @@ GLOSSARY = {}
 NAF = {}
 FEATURES = {}
 
-LBF_USER = os.environ["LBF_USER"]
-LBF_KEY = os.environ.get("LBF_KEY", "toto")
-LBF_URL = "http://labonneformation.pole-emploi.local/api/v1/detail"
+CATALOG_USER = os.environ["CATALOG_USER"]
+CATALOG_KEY = os.environ.get("CATALOG_KEY", "toto")
+CATALOG_URL = os.environ.get(
+    "CATALOG_URL", "https://labonneformation.beta.pole-emploi.fr/api/v1/detail"
+)
 
 
 def load_schema(data, output=None, namespace=None):

@@ -113,8 +113,9 @@ def test_build_catalog_url(monkeypatch):
         def utcnow(cls):
             return fakenow
     monkeypatch.setattr(datetime, 'datetime', mydate)
-    monkeypatch.setattr('trefle.config.LBF_USER', 'foobar')
-    monkeypatch.setattr('trefle.config.LBF_KEY', 'barfoo')
-    assert routine.build_catalog_url('12345') == 'http://labonneformation.pole-emploi.local/api/v1/detail?user=foobar&uid=12345&timestamp=2017-10-12T13%3A45%3A00&signature=2aabef68f687ecdbb084e2b1dc930583'
+    monkeypatch.setattr('trefle.config.CATALOG_USER', 'foobar')
+    monkeypatch.setattr('trefle.config.CATALOG_KEY', 'barfoo')
+    monkeypatch.setattr('trefle.config.CATALOG_URL', 'http://catalog.fr')
+    assert routine.build_catalog_url('12345') == 'http://catalog.fr?user=foobar&uid=12345&timestamp=2017-10-12T13%3A45%3A00&signature=2aabef68f687ecdbb084e2b1dc930583'
 
 
