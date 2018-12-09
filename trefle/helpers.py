@@ -156,7 +156,20 @@ def json_path(pattern, data):
             if step.isdigit():
                 data = data[int(step)]
             else:
-                data = [d[step] for d in data if step in d]
+                filter_ = step.split("//")
+                if len(filter_) > 1:
+                    step = filter_[0]
+                    filter_ = filter_[1].split("=")
+                    data = [
+                        d[step]
+                        for d in data
+                        if step in d
+                        and filter_[0] in d
+                        and d[filter_[0]] in filter_[1].split("|")
+                    ]
+                else:
+                    filter_ = False
+                    data = [d[step] for d in data if step in d]
         else:
             try:
                 data = data.get(step)

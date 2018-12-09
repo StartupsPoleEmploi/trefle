@@ -642,6 +642,16 @@ formation:
     default: false
     source: catalogue
     label: formation éligible COPAREF de la région du bénéficiaire
+  regions_coparef_de:
+    description: régions d'éligibilité si COPAREF dans les listes_eligibilite_cpf
+    type: array
+    format: set
+    items:
+      type: string
+      enum: *regions
+    source: catalogue
+    path: sessions.0.eligibilite-cpf.region-insee//type=DE|TOUTPUBLIC
+    label: régions éligibles COPAREF pour un demandeur d'emploi
   regions_coparef:
     description: régions d'éligibilité si COPAREF dans les listes_eligibilite_cpf
     type: array
@@ -650,7 +660,7 @@ formation:
       type: string
       enum: *regions
     source: catalogue
-    path: sessions.0.eligibilite-cpf.region-insee
+    path: sessions.0.eligibilite-cpf.region-insee//type=SALARIE|TOUTPUBLIC
     label: régions éligibles COPAREF
   codes_rome:
     type: array
@@ -755,8 +765,18 @@ formation:
       type: integer
       format: int32
     source: catalogue
-    path: sessions.0.eligibilite-cpf.code
+    path: sessions.0.eligibilite-cpf.code//type=SALARIE|TOUTPUBLIC
     label: liste des codes CPF de la formation
+  codes_cpf_de:
+    description: codes CPF de la formation pour un demandeur d'emploi
+    type: array
+    format: set
+    items:
+      type: integer
+      format: int32
+    source: catalogue
+    path: sessions.0.eligibilite-cpf.code//type=DE|TOUTPUBLIC
+    label: liste des codes CPF de la formation pour un demandeur d'emploi
   codes_naf:
     description: codes NAF des différents CPNE
     type: array
@@ -765,7 +785,7 @@ formation:
       type: string
       format: naf
     source: catalogue
-    path: sessions.0.eligibilite-cpf.branches.[]
+    path: sessions.0.eligibilite-cpf.branches//type=SALARIE.[]
     label: codes NAF CPNE éligibles
     number: plural
   objectif_general_formation:

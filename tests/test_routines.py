@@ -21,7 +21,7 @@ async def test_populate_formation_from_json():
         assert context['formation.codes_naf'] == {'0162Z', '0520Z', '2361Z',
                                                   '4399E', '7820Z', '9604Z',
                                                   '9609Z'}
-        assert context['formation.regions_coparef'] == {'24'}
+        assert context['formation.regions_coparef_de'] == {'24'}
         assert context['formation.codes_formacode'] == {22403, 22402}
         assert context['formation.domaines_formacode'] == {224}
         assert context['formation.foad'] is False
@@ -36,7 +36,8 @@ async def test_populate_formation_from_json():
         assert context['formation.certifiante'] is True
         assert context['formation.professionnalisante'] is False
         assert context['formation.codes_cpf'] == {233155, 167204, 222991, 18320, 1487,
-                                                  130805, 232054, 227989, 222905}
+                                                  130805, 227989, 222905}
+        assert context['formation.codes_cpf_de'] == {233155, 130805, 232054}
         assert context['formation.code_certifinfo'] == 80735
         assert context['formation.code_rncp'] == 320
         assert context['formation.rncp'] is True
@@ -69,7 +70,7 @@ async def test_populate_formation_from_json():
     ('heures_centre_empty', 'formation.heures_centre', 585),
     ('daeu', 'formation.daeu', True),
     ('daeu', 'formation.enseignement_superieur', True),
-    ('old_region', 'formation.regions_coparef', {'24', '27'}),
+    ('old_region', 'formation.regions_coparef_de', {'24', '27'}),
     ('with_copanef', 'formation.eligible_copanef', True),
 ])
 @pytest.mark.asyncio
@@ -81,6 +82,17 @@ async def test_populate_formation_from_json_edge_cases(path, key, value):
     routine.extrapolate_context(context)
     routine.preprocess(context)
     assert context[key] == value
+
+
+@pytest.mark.asyncio
+async def test_preprocess_should_set_codes_cpf_of_de():
+    with Path(__file__).parent.joinpath('data/formation.json').open('rb') as f:
+        context = Context({'beneficiaire.inscrit_pe': True})
+        await routine.populate_formation_from_json(context, json.loads(f.read()))
+        routine.extrapolate_context(context)
+        routine.preprocess(context)
+        assert context['formation.codes_cpf'] == {233155, 130805, 232054}
+
 
 def test_extrapolate_context_should_set_region():
     context = {'beneficiaire.entreprise.commune': '93031'}
