@@ -90,6 +90,3 @@ Ou l'intitulé normé de la formation contient «STABILISATIONDUPROJETPROFESSION
     Alors c'est une formation PCP
 Si le code RNCP de la formation est défini
     Alors c'est une formation RNCP
-Si les codes NAF CPNE éligibles ne sont pas définis
-Et les régions éligibles COPAREF ne sont pas définies
-    Alors c'est une formation éligible COPANEF
