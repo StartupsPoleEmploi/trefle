@@ -87,8 +87,11 @@ async def simulate_legacy(request, response):
             data["donneeStructurees"]["remunerations"] = [
                 {"montant": financement.remuneration, "nature": "brut"}
             ]
-
-        if financement.plafond_prix_horaire and financement.type_lbf == "cpf":
+        if (
+            financement.plafond_prix_horaire
+            and financement.type_lbf == "cpf"
+            and context.get("beneficiaire.solde_cpf")
+        ):
             data["donneeStructurees"]["cout"]["montant"] = "%.2f" % (
                 context.get("beneficiaire.solde_cpf") * financement.plafond_prix_horaire
             )
