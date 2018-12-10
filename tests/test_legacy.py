@@ -97,8 +97,9 @@ async def test_legacy_call(client):
     )
     del data["donneeStructurees"]["remunerations"]
     for key_to_del in ["montant", "plafond"]:
-        if key_to_del in data["donneeStructurees"]["cout"] and not bool(
-            float(data["donneeStructurees"]["cout"][key_to_del])
+        if (
+            key_to_del in data["donneeStructurees"]["cout"]
+            and not data["donneeStructurees"]["cout"][key_to_del]
         ):
             del data["donneeStructurees"]["cout"][key_to_del]
 

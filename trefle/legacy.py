@@ -31,6 +31,7 @@ async def simulate_legacy(request, response):
         raise HttpError(HTTPStatus.BAD_REQUEST, error)
 
     financements = [f for f in financements if f["eligible"]]
+    financements.reverse()
     log_simulate(context, financements=financements)
     mapped = []
     for financement in financements:
@@ -50,10 +51,10 @@ async def simulate_legacy(request, response):
             montant = "%.2f" % (
                 context.get("beneficiaire.solde_cpf") * financement.plafond_prix_horaire
             )
-        else:
+        elif financement.get("plafond_prise_en_charge") not in [0, None]:
             if financement.type_lbf == "aifartisan":
                 montant = "%.2f" % financement.get("plafond_prise_en_charge")
-            else:
+            elif financement.type_lbf != "cpf":
                 plafond = "%.2f" % financement.get("plafond_prise_en_charge")
 
         if financement.type_lbf == "aif" and context.get(
@@ -70,12 +71,22 @@ async def simulate_legacy(request, response):
         ):
             financement.type_lbf = "poei"
 
+        if not financement.remuneration_texte:
+            if financement.remuneration:
+                financement.remuneration_texte = (
+                    f"Vous percevrez {financement.remuneration} € brut / mois"
+                )
+            else:
+                financement.remuneration_texte = (
+                    f"Pas de rémunération spécifique"
+                )
+
         mapped.append(
             {
                 "libelle": financement.intitule,
                 "donneeConsolidees": {
-                    "description": financement.description,
-                    "infoComplementaires": financement.en_savoir_plus,
+                    "description": financement.demarches,
+                    "infoComplementaires": financement.description,
                     "cout": financement.prise_en_charge_texte,
                     "remuneration": financement.remuneration_texte,
                 },
