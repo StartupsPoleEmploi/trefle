@@ -1,5 +1,5 @@
 Si c'est un demandeur d'emploi
-Et le solde CPF du bénéficiaire est supérieur à 0
+Et le solde CPF du bénéficiaire est supérieur à 0, ou le solde CPF du bénéficiaire n'est pas défini
 Et ce n'est pas un contrat de professionnalisation
 Et ce n'est pas un contrat d'apprentissage
 # TODO Et ce n'est pas une préparation ou un accompagnement VAE
@@ -7,12 +7,16 @@ Et ce n'est pas une formation VAE
     Si la région du bénéficiaire fait partie des régions éligibles COPAREF
     Ou c'est une formation éligible COPANEF
         Alors le financement est éligible
+        Et l'intitulé du financement vaut «Compte Personnel de Formation (CPF)»
         Et appliquer les règles «AREF-RFPE-RPS»
-        Et le plafond horaire applicable est égale au solde CPF du bénéficiaire
         Et le prix horaire plafond applicable vaut 9
         Et le texte de la prise en charge vaut «Formation totalement ou partiellement financée sur la base de 9 € multipliée par vos heures CPF acquises. Dans le cas d'un financement partiel, vous pouvez prendre en charge vous-même le reste à charge ou faire appel à des cofinancements.»
         Et le texte de description vaut «Le compte personnel de formation (CPF) permet à toute personne active d’acquérir des droits pour financer totalement ou partiellement une formation qualifiante. NB : dans le cas d'une formation financée par PE ou la Région, il pourra vous être demandé de contribuer à son financement avec votre CPF.»
         Et le texte des démarches vaut «1. Contactez votre conseiller référent emploi pour valider avec lui votre projet de formation.⏎2. Créez votre compte CPF sur le site https://www.moncompteactivite.gouv.fr»
 
-        Si le solde CPF du bénéficiaire est supérieur ou égal à la durée en heures de la formation
-            Alors le texte des démarches vaut «1. Vous pouvez directement faire la demande de financement sur https://www.moncompteactivite.gouv.fr et prendre contact avec l'organisme de formation pour vous inscrire à la formation.⏎2. Si le montant couvert par le CPF est insuffisant, il peut être complété par vous-même ou, sous conditions, par d'autres dispositifs de financement disponibles.»
+        Si le solde CPF du bénéficiaire est défini
+            Alors le plafond horaire applicable est égale au solde CPF du bénéficiaire
+
+            Si le solde CPF du bénéficiaire est supérieur ou égal à la durée en heures de la formation
+                Alors le texte des démarches vaut «1. Vous pouvez directement faire la demande de financement sur https://www.moncompteactivite.gouv.fr et prendre contact avec l'organisme de formation pour vous inscrire à la formation.⏎2. Si le montant couvert par le CPF est insuffisant, il peut être complété par vous-même ou, sous conditions, par d'autres dispositifs de financement disponibles.»
+
