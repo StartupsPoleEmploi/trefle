@@ -95,7 +95,10 @@ async def test_legacy_call(client):
     data["donneeStructurees"]["codesFinanceur"] = set(
         data["donneeStructurees"]["codesFinanceur"]
     )
-    del data["donneeStructurees"]["remunerations"]
+    try:
+        del data["donneeStructurees"]["remunerations"]
+    except KeyError:
+        pass
     for key_to_del in ["montant", "plafond"]:
         if (
             key_to_del in data["donneeStructurees"]["cout"]
