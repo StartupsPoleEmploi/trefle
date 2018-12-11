@@ -141,9 +141,6 @@ def json_path(pattern, data):
 
     steps = pattern.split(".")
     for step in steps:
-        if step.startswith("="):
-            data = str(data) == step[1:]
-            break
         if data in [None, []]:
             data = None
             continue
@@ -156,21 +153,16 @@ def json_path(pattern, data):
             if step.isdigit():
                 data = data[int(step)]
             else:
-                filter_ = step.split("//")
-                if len(filter_) > 1:
-                    step = filter_[0]
-                    filter_ = filter_[1].split("=")
-                    data = [
-                        d[step]
-                        for d in data
-                        if step in d
-                        and filter_[0] in d
-                        and d[filter_[0]] in filter_[1].split("|")
-                    ]
+                if "=" in step:
+                    key, value = step.split("=")
+                    data = [d for d in data if str(d.get(key)) in value.split("|")]
                 else:
-                    filter_ = False
                     data = [d[step] for d in data if step in d]
         else:
+            if "=" in step:
+                key, value = step.split("=")
+                data = str(data.get(key)) in value.split("|")
+                continue
             try:
                 data = data.get(step)
             except AttributeError:
