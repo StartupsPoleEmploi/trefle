@@ -191,6 +191,7 @@ async def populate_legacy(path: Path):
     data = json.loads(path.read_text())
     dest = path.parent / "legacy"
     for idx, body in enumerate(data):
+        time.sleep(0.5)
         resp = requests.post(
             "http://labonneformation.pole-emploi.local/api/v1/financement?user=NOCONTROL",
             json=body,
