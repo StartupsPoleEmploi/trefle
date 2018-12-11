@@ -190,14 +190,12 @@ def _clean_financements_data(financements):
         if financement["donneeStructurees"]["typeDispositif"] != "autres":
             if financement["donneeStructurees"]["familleDispositif"] != "CIF":
                 for key_cout in ["montant", "plafond"]:
-                    if (
-                            key_cout in financement["donneeStructurees"]["cout"]
-                            and financement["donneeStructurees"]["cout"][key_cout]
-                        ):
-                        financement["donneeStructurees"]["cout"][key_cout] = float(
-                            financement["donneeStructurees"]["cout"][key_cout]
-                        )
-                        if not financement["donneeStructurees"]["cout"][key_cout]:
+                    if key_cout in financement["donneeStructurees"]["cout"]:
+                        if financement["donneeStructurees"]["cout"][key_cout]:
+                            financement["donneeStructurees"]["cout"][key_cout] = float(
+                                financement["donneeStructurees"]["cout"][key_cout]
+                            )
+                        else:
                             del financement["donneeStructurees"]["cout"][key_cout]
                 try:
                     del financement["donneeStructurees"]["remunerations"]
