@@ -27,7 +27,8 @@ Si l'intitulé du financement est «Aide individuelle à la formation artisan»
 
 Si l'intitulé du financement est «Aide individuelle à la formation»
 
-    Si la durée en heures de la formation est inférieure ou égale à 400, ou la durée en mois de la formation est supérieur à 12
+    Si la région du bénéficiaire est «Nouvelle-Aquitaine»
+    Et la durée en heures de la formation est inférieure ou égale à 400, ou la durée en mois de la formation est supérieur à 12
     Et la durée hebdomadaire de la formation n'est pas inférieure ou égale à 21
     Et la liste des codes FORMACODE de la formation ne contient aucun code parmi [31826,31795,31768,31747,31709,31715,31717,31708,31828,24069,24066,43409,44002,15073,13030,43448,43457,43456,43439,43449,43490,43491,43493,43497,43092,43436,43441,31815,43006,44092,44008,44084,44083,44050,44092,434436,43425,43428,43430,43433,43445,43442,43438,43443,43444,43490,43442,14447,14407,14426,14456]
     Et le code CERTIFINFO de la formation ne fait pas partie de [87805,49616,23710,54660,81306,78281,54662,81136]
