@@ -635,6 +635,8 @@ formation:
     description: cette formation est au catalogue COPANEF
     type: boolean
     default: false
+    source: catalogue
+    path: sessions.0.eligibilite-cpf.copanef.0
     label: formation éligible COPANEF
   eligible_coparef:
     description: cette formation est au catalogue COPAREF
@@ -642,6 +644,16 @@ formation:
     default: false
     source: catalogue
     label: formation éligible COPAREF de la région du bénéficiaire
+  regions_coparef_de:
+    description: régions d'éligibilité si COPAREF dans les listes_eligibilite_cpf
+    type: array
+    format: set
+    items:
+      type: string
+      enum: *regions
+    source: catalogue
+    path: sessions.0.eligibilite-cpf.type=DE|TOUTPUBLIC.region-insee
+    label: régions éligibles COPAREF pour un demandeur d'emploi
   regions_coparef:
     description: régions d'éligibilité si COPAREF dans les listes_eligibilite_cpf
     type: array
@@ -650,7 +662,7 @@ formation:
       type: string
       enum: *regions
     source: catalogue
-    path: sessions.0.eligibilite-cpf.region-insee
+    path: sessions.0.eligibilite-cpf.type=SALARIE|TOUTPUBLIC.region-insee
     label: régions éligibles COPAREF
   codes_rome:
     type: array
@@ -755,8 +767,18 @@ formation:
       type: integer
       format: int32
     source: catalogue
-    path: sessions.0.eligibilite-cpf.code
+    path: sessions.0.eligibilite-cpf.type=SALARIE|TOUTPUBLIC.code
     label: liste des codes CPF de la formation
+  codes_cpf_de:
+    description: codes CPF de la formation pour un demandeur d'emploi
+    type: array
+    format: set
+    items:
+      type: integer
+      format: int32
+    source: catalogue
+    path: sessions.0.eligibilite-cpf.type=DE|TOUTPUBLIC.code
+    label: liste des codes CPF de la formation pour un demandeur d'emploi
   codes_naf:
     description: codes NAF des différents CPNE
     type: array
@@ -765,7 +787,7 @@ formation:
       type: string
       format: naf
     source: catalogue
-    path: sessions.0.eligibilite-cpf.branches.[]
+    path: sessions.0.eligibilite-cpf.type=SALARIE.branches.[]
     label: codes NAF CPNE éligibles
     number: plural
   objectif_general_formation:
@@ -796,7 +818,7 @@ formation:
   foad:
     type: boolean
     source: catalogue
-    path: modalites-enseignement.=2
+    path: modalites-enseignement=2
     label: formation ouverte à distance
   langues:
     type: boolean
@@ -893,12 +915,12 @@ formation:
   poec:
     type: boolean
     source: catalogue
-    path: programme-financeur.=POEC
+    path: programme-financeur=POEC
     label: préparation opérationnelle à l'emploi collective
   poei:
     type: boolean
     source: catalogue
-    path: programme-financeur.=POEI
+    path: programme-financeur=POEI
     label: préparation opérationnelle à l'emploi individuelle
   poe:
     type: boolean

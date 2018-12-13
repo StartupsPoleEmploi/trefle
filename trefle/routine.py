@@ -114,6 +114,11 @@ def _extrapolate_formation_context(context):
         old_new_region.get(r, r) for r in context.get("formation.regions_coparef", [])
     )
 
+    context["formation.regions_coparef_de"] = set(
+        old_new_region.get(r, r)
+        for r in context.get("formation.regions_coparef_de", [])
+    )
+
 
 def build_catalog_url(formation_id):
     now = datetime.datetime.utcnow().replace(microsecond=0).isoformat()
