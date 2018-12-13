@@ -73,7 +73,7 @@ async def test_legacy_context(client):
         "formation.prix_horaire": 0,
         "beneficiaire.creation_entreprise": True,
         "formation.intitule_norme": "",
-        "beneficiaire.age": 17,
+        "beneficiaire.age": 18,
         "beneficiaire.naissance": 976_579_200,
         "formation.codes_naf": ["4532Z"],
         "formation.contrat_apprentissage": False,
