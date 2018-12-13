@@ -135,6 +135,7 @@ Si l'intitulé du financement est «VAE Normandie»
 
     Si c'est un demandeur d'emploi
     Et la région du bénéficiaire est «Normandie»
+    Et la liste des codes FORMACODE de la formation contient au moins un code parmi [15064,44591], ou le code CERTIFINFO de la formation vaut 83899
         Alors le financement est éligible
         Et le texte de description vaut «Financement par la Région d'un accompagnement de 20h maximum pour constituer votre dossier VAE et préparer l'entretien avec le jury de validation.»
         Et le texte des démarches vaut «Contactez le Point relais conseil le plus proche de votre domicile. Trouvez les coordonnées des Points relais en Normandie sur https://vae.normandie.fr/les-points-relais-conseil.»

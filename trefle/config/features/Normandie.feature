@@ -45,6 +45,7 @@ Scénario: Cas nominal VAE Normandie
     Soit un bénéficiaire et une formation
     Et c'est un demandeur d'emploi
     Et le montant de l'allocation du bénéficiaire vaut 1200
+    Et le code CERTIFINFO de la formation vaut 83899
     Et la région du bénéficiaire vaut «Normandie»
     Et la durée en heures de la formation vaut 100
     Et c'est une formation ouverte aux bénéficiaires individuels
