@@ -27,7 +27,8 @@ Si l'intitulé du financement est «Aide individuelle à la formation artisan»
 
 Si l'intitulé du financement est «Aide individuelle à la formation»
 
-    Si la liste des codes FORMACODE de la formation ne contient aucun code parmi [13030,15073,43409,44002,42793]
+    Si la région du bénéficiaire est «La Réunion», ou la région du bénéficiaire est «Mayotte»
+    Et la liste des codes FORMACODE de la formation ne contient aucun code parmi [13030,15073,43409,44002,42793]
     Et le code CERTIFINFO de la formation ne fait pas partie de [54912,87185,87187,87189]
     Et ce n'est pas une formation VAE
     Et ce n'est pas une formation en développement professionnel
