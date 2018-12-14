@@ -22,6 +22,9 @@ FAMILLE_MAPPING = {
 
 async def simulate_legacy(request, response):
     context = request.json
+    context["individu"]["departementHabitation"] = context["individu"][
+        "departementHabitation"
+    ].upper()
     financements = get_financements(tags=request.query.list("tags", []))
     try:
         await simulate(context, financements)
