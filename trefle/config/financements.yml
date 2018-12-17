@@ -718,40 +718,43 @@ AIF département:
   financee_pe: True
   cumulable: True
   racine: Guadeloupe.rules
-CIF CDI sur son temps de travail:
-  tags: [CIF, CDI, sur son temps de travail]
+CPF de transition professionnel:
+  tags: [individuel, DE, salarie]
   racine: organisme paritaire.rules
-CIF CDI hors temps de travail:
-  tags: [CIF, CDI, hors temps de travail]
-  racine: organisme paritaire.rules
-CIF CDD sur son temps de travail:
-  tags: [CIF, CDD, sur son temps de travail]
-  cpf_mobilisable: True
-  racine: organisme paritaire.rules
-CIF CDD hors temps de travail:
-  tags: [CIF, CDD, hors temps de travail, DE]
-  cpf_mobilisable: True
-  financee_pe: False
-  cumulable: False
-  racine: organisme paritaire.rules
-CIF intérim sur son temps de travail:
-  tags: [CIF, interim, sur son temps de travail]
-  cpf_mobilisable: True
-  financee_pe: False
-  cumulable: True
-  racine: organisme paritaire.rules
-CIF intérim hors temps de travail:
-  tags: [CIF, interim, hors temps de travail, DE]
-  cpf_mobilisable: True
-  financee_pe: False
-  cumulable: True
-  racine: organisme paritaire.rules
-CIF intermittents hors temps de travail:
-  tags: [CIF, intermittent, hors temps de travail]
-  cpf_mobilisable: True
-  financee_pe: False
-  cumulable: True
-  racine: organisme paritaire.rules
+  # CIF CDI sur son temps de travail:
+  #   tags: [CIF, CDI, sur son temps de travail]
+  #   racine: organisme paritaire.rules
+  # CIF CDI hors temps de travail:
+  #   tags: [CIF, CDI, hors temps de travail]
+  #   racine: organisme paritaire.rules
+  # CIF CDD sur son temps de travail:
+  #   tags: [CIF, CDD, sur son temps de travail]
+  #   cpf_mobilisable: True
+  #   racine: organisme paritaire.rules
+  # CIF CDD hors temps de travail:
+  #   tags: [CIF, CDD, hors temps de travail, DE]
+  #   cpf_mobilisable: True
+  #   financee_pe: False
+  #   cumulable: False
+  #   racine: organisme paritaire.rules
+  # CIF intérim sur son temps de travail:
+  #   tags: [CIF, interim, sur son temps de travail]
+  #   cpf_mobilisable: True
+  #   financee_pe: False
+  #   cumulable: True
+  #   racine: organisme paritaire.rules
+  # CIF intérim hors temps de travail:
+  #   tags: [CIF, interim, hors temps de travail, DE]
+  #   cpf_mobilisable: True
+  #   financee_pe: False
+  #   cumulable: True
+  #   racine: organisme paritaire.rules
+  # CIF intermittents hors temps de travail:
+  #   tags: [CIF, intermittent, hors temps de travail]
+  #   cpf_mobilisable: True
+  #   financee_pe: False
+  #   cumulable: True
+  #   racine: organisme paritaire.rules
 Période de professionnalisation sur son temps de travail:
   tags: [période de professionnalisation, sur son temps de travail]
   cpf_mobilisable: True

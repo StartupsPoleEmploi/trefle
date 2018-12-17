@@ -1,0 +1,43 @@
+trefle/config/features/Afdas.feature:4  cas nominal d'un intermittent
+  trefle/config/features/FAFSEA.feature:4  cas nominal d'un CIF CDI
+  trefle/config/features/FAFSEA.feature:26  CIF CDI avec plafond de prix horaire
+  trefle/config/features/FAFSEA.feature:48  CIF CDI avec plafond financier
+  trefle/config/features/FAFSEA.feature:70  CIF CDI avec plafond de rémunération
+  trefle/config/features/FAFSEA.feature:93  CIF CDI avec plafond de rémunération et plancher à deux SMIC
+  trefle/config/features/FAFSEA.feature:115  CIF CDI avec moins de 120 heures
+  trefle/config/features/FAF_TT.feature:181  cas nominal d'un CIF intérim
+  trefle/config/features/FAF_TT.feature:208  CIF intérim avec salaire supérieur à deux SMIC
+  trefle/config/features/FAF_TT.feature:233  CIF intérim DE
+  trefle/config/features/Fongecif.feature:5  cas nominal d'un CIF CDI
+  trefle/config/features/Fongecif.feature:28  cas d'un CIF CDI avec moins de 24 mois d'expérience professionnelle
+  trefle/config/features/Fongecif.feature:45  cas d'un CIF CDI avec moins de 12 mois d'ancienneté dans l'entreprise
+  trefle/config/features/Fongecif.feature:62  cas d'un CIF CDI avec 12 mois d'ancienneté dans l'entreprise (moins d'un an donc)
+  trefle/config/features/Fongecif.feature:79  CIF CDI avec plafond financier
+  trefle/config/features/Fongecif.feature:102  CIF CDI avec plafond prix horaire
+  trefle/config/features/Fongecif.feature:125  CIF CDI avec un salaire > 2 SMIC
+  trefle/config/features/Fongecif.feature:150  CIF CDI avec un salaire > 3 SMIC
+  trefle/config/features/Fongecif.feature:173  cas nominal d'un CIF CDD pour un bénéficiaire âgé de plus de 26 ans
+  trefle/config/features/Fongecif.feature:198  cas nominal d'un CIF CDD pour un bénéficiaire âgé de plus de 26 ans n'ayant pas assez travaillé dans les 12 derniers mois
+  trefle/config/features/Fongecif.feature:217  cas nominal d'un CIF CDD pour un bénéficiaire âgé de plus de 26 ans manquant d'expérience professionnelle
+  trefle/config/features/Fongecif.feature:235  cas nominal d'un CIF CDD pour un bénéficiaire âgé de moins de 26 ans
+  trefle/config/features/Fongecif.feature:260  cas d'un CIF CDI d'un jeune de moins de 26 ans dans l'artisanat
+  trefle/config/features/Fongecif.feature:283  cas d'un CIF CDI dans l'artisanat d'un jeune manquant d'ancienneté professionnelle
+  trefle/config/features/Fongecif.feature:300  CIF CDI avec moins de 120 heures et IDCC artisanat
+  trefle/config/features/Fongecif.feature:320  CIF CDD pour une formation de moins de 120 heures
+  trefle/config/features/Fongecif.feature:342  CIF CDD pour une formation de moins de 120 heures et un jeune de moins de 26 ans
+  trefle/config/features/Fongecif.feature:363  CIF CDI en Corse
+  trefle/config/features/Fongecif.feature:382  Formation de 12 mois
+  trefle/config/features/Fongecif.feature:414  Sans code financeur
+  trefle/config/features/Fongecif.feature:438  Avec un code financeur collectif
+  trefle/config/features/Fongecif.feature:465  CIF CDD DE
+  trefle/config/features/Fongecif.feature:485  CIF CDD DE pas possible parce que le contrat est trop ancien
+  trefle/config/features/UNAGECIF.feature:5  cas nominal d'un CIF CDI
+  trefle/config/features/Unifaf.feature:4  cas nominal d'un CIF CDI
+  trefle/config/features/Unifaf.feature:26  CIF CDI avec plafond de rémunération
+  trefle/config/features/Unifaf.feature:49  CIF CDI avec plafond de rémunération et plancher à deux SMIC
+  trefle/config/features/Uniformation.feature:4  cas nominal d'un CIF CDI
+  trefle/config/features/Uniformation.feature:26  CIF CDI avec plafond de prix horaire
+  trefle/config/features/Uniformation.feature:48  CIF CDI avec plafond de rémunération
+  trefle/config/features/Uniformation.feature:70  CIF CDI avec plafond de rémunération et formation certifiante
+  trefle/config/features/commun.feature:73  CIF et CPF
+  trefle/config/features/commun.feature:114  le bénéficiaire n'a pas défini de rémunération

@@ -5,7 +5,7 @@ Si c'est une formation ouverte aux bénéficiaires individuels
 
         Alors définir les organismes paritaires
 
-        Si le financement est de type «CIF»
+        Si l'intitulé du financement est «CPF de transition professionnel»
             Alors l'organisme paritaire est l'OPACIF de l'établissement du bénéficiaire
             Et appliquer les règles de l'organisme paritaire
 

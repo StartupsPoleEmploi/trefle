@@ -141,7 +141,7 @@ async def test_simulate_endpoint_filter_tags(client):
     resp = await client.post('/financement?tags=CPF', body=body)
     assert resp.status == HTTPStatus.OK
     financements = json.loads(resp.body)['financements']
-    assert len(financements) == 3
+    assert len(financements) == 4
     for financement in financements:
         assert 'CPF' in financement['tags']
 

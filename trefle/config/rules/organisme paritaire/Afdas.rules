@@ -1,3 +1,6 @@
+Si l'intitulé du financement est «CPF de transition professionnel»
+    Alors appliquer les règles «CPF de transition professionnel»
+
 Si le financement est de type «CPF»
     Alors appliquer les règles «CPF»
     Et le prix horaire plafond applicable vaut 35
@@ -6,33 +9,33 @@ Si le financement est de type «CPF»
         Alors le prix horaire plafond applicable vaut 100
         Et le plafond horaire applicable est égal à la durée en heures de la formation
 
-Si le financement est de type «CIF»
-
-    Alors appliquer les règles «CIF»
-    Et la rémunération applicable est égale à la rémunération du bénéficiaire
-
-    Si la rémunération du bénéficiaire est supérieure à deux fois le SMIC
-        Alors la rémunération applicable est égale à 80% de la rémunération du bénéficiaire
-
-        # TODO: how to properly make this dynamic with SMIC value?
-        # 3746 = deux fois le smic / 0.8
-        Si la rémunération du bénéficiaire est inférieure à 3746
-            Alors la rémunération applicable est égale à deux fois le SMIC
-
-        # 7492 = quatre fois le smic / 0.8
-        Si la rémunération du bénéficiaire est supérieur à 7492
-            Alors la rémunération applicable est égale à quatre fois le SMIC
-
-    Si le type de contrat du bénéficiaire est «CDI»
-        # HT
-        Alors le plafond financier applicable vaut 18000
-        Et le prix horaire plafond applicable vaut 28
-
-    Si le type de contrat du bénéficiaire est «CDD»
-    Et la durée hebdomadaire de la formation est supérieure ou égale à 25
-        # HT
-        Alors le plafond financier applicable vaut 21000
-        Et le prix horaire plafond applicable vaut 35
+        #Si le financement est de type «CIF»
+        #
+        #    Alors appliquer les règles «CIF»
+        #    Et la rémunération applicable est égale à la rémunération du bénéficiaire
+        #
+        #    Si la rémunération du bénéficiaire est supérieure à deux fois le SMIC
+        #        Alors la rémunération applicable est égale à 80% de la rémunération du bénéficiaire
+        #
+        #        # TODO: how to properly make this dynamic with SMIC value?
+        #        # 3746 = deux fois le smic / 0.8
+        #        Si la rémunération du bénéficiaire est inférieure à 3746
+        #            Alors la rémunération applicable est égale à deux fois le SMIC
+        #
+        #        # 7492 = quatre fois le smic / 0.8
+        #        Si la rémunération du bénéficiaire est supérieur à 7492
+        #            Alors la rémunération applicable est égale à quatre fois le SMIC
+        #
+        #    Si le type de contrat du bénéficiaire est «CDI»
+        #        # HT
+        #        Alors le plafond financier applicable vaut 18000
+        #        Et le prix horaire plafond applicable vaut 28
+        #
+        #    Si le type de contrat du bénéficiaire est «CDD»
+        #    Et la durée hebdomadaire de la formation est supérieure ou égale à 25
+        #        # HT
+        #        Alors le plafond financier applicable vaut 21000
+        #        Et le prix horaire plafond applicable vaut 35
 
 Si le financement est de type «plan de formation»
 

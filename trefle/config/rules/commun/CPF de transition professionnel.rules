@@ -1,0 +1,14 @@
+Si c'est un bénéficiaire de droit privé
+Ou c'est un demandeur d'emploi, et le type de contrat du bénéficiaire fait partie de [«CDD»,«intérimaire»,«CDI»]
+
+    Si c'est une formation ouverte aux bénéficiaires individuels
+    Et ce n'est pas un contrat d'apprentissage
+    Et ce n'est pas un contrat de professionnalisation
+        Alors le financement est éligible
+        Et le texte de description vaut «Le cpf de transition professionnelle permet au salarié de suivre, à son initiative et à titre individuel, une formation, dans le but de :⏎- se reconvertir⏎- ou acquérir un niveau supérieur de qualification ou une 1re qualification⏎- ou se perfectionner⏎- ou s'ouvrir plus largement à la culture et à la vie sociale.»
+
+        Si c'est un bénéficiaire de droit privé
+            Alors le texte des démarches vaut «Pour vous renseigner sur le cpf de transition professionnelle, vous pouvez contacter le Fongecif de votre région pour obtenir des conseils et renseignements sur le dispositif. Retirer auprès de l'organisme {organisme.nom} un dossier de demande de prise en charge.⏎Vérifier les délais pour faire cette demande. ⏎Il est possible que votre Compte Personnel de Formation soit mobilisé pour le financement de cette formation: vous devez activer votre compte sur le site cpf»
+
+        Si c'est un demandeur d'emploi
+            Alors le texte des démarches vaut «Pour vous renseigner sur le cpf de transition professionnelle, vous pouvez contacter le Fongecif de votre région pour obtenir des conseils et renseignements sur le dispositif.⏎Vérifier les délais pour faire cette demande. ⏎Il est possible que votre Compte Personnel de Formation soit mobilisé pour le financement de cette formation: vous devez activer votre compte sur le site cpf»

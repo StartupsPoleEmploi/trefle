@@ -14,7 +14,7 @@ Scénario: cas nominal d'un intermittent
     Et la durée en heures de la formation vaut 500
     Et la durée en mois de la formation vaut 10
     Quand je demande un calcul de financement
-    Et je sélectionne le financement «CIF intermittents hors temps de travail»
+    Et je sélectionne le financement «CPF de transition professionnel»
     Alors l'organisme à contacter est «Afdas»
     Et le montant de prise en charge vaut 7500
     Et la rémunération applicable vaut 1400
