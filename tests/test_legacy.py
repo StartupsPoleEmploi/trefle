@@ -135,12 +135,7 @@ async def test_invalid_data(client):
         if path.suffix == ".json"
         and path.name
         not in [
-            "case_28.json",  # TODO Sur LBF, CPF affichée même si nombre d'heures pas renseignées
-            "case_19.json",  # TODO CPF copanef anomaly
-            "case_1.json",  # TODO Idem
-            "case_2.json",  # TODO Idem
-            "case_8.json",  # TODO Idem
-            "case_5.json",  # TODO Idem
+            "case_28.json",  # TODO Sur LBF, CPF affichée même si heures cpf = 0
             "case_22.json",  # TODO voir avec Armelle : sur trèfle AFPRPOEI et Action coll en + sur trèfle
             "case_26.json",  # TODO Idem car même formation
             "case_15.json",  # TODO vérifier règle chèque formation (voir note sur règle LBF) et ordre des dispositifs inversés
@@ -198,11 +193,10 @@ def _clean_financements_data(financements):
             if financement["donneeStructurees"]["familleDispositif"] != "CIF":
                 for key_cout in ["montant", "plafond"]:
                     if key_cout in financement["donneeStructurees"]["cout"]:
-                        if financement["donneeStructurees"]["cout"][key_cout]:
-                            financement["donneeStructurees"]["cout"][key_cout] = float(
-                                financement["donneeStructurees"]["cout"][key_cout]
-                            )
-                        else:
+                        financement["donneeStructurees"]["cout"][key_cout] = float(
+                            financement["donneeStructurees"]["cout"][key_cout]
+                        )
+                        if not financement["donneeStructurees"]["cout"][key_cout]:
                             del financement["donneeStructurees"]["cout"][key_cout]
                 try:
                     del financement["donneeStructurees"]["remunerations"]

@@ -52,7 +52,7 @@ async def simulate_legacy(request, response):
         ):
             financement.type_lbf = "aifbilancompetence"
 
-        if financement.type_lbf == "aif" and context.get("formation.permisb"):
+        if financement.type_lbf == "aif" and context.get("formation.permis_b"):
             financement.type_lbf = "finindividuelpermisb"
 
         if (

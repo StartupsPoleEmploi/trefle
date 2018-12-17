@@ -208,6 +208,9 @@ async def populate_legacy(path: Path):
             key=lambda f: float(f["donneeStructurees"]["priorite"]),
         )
         context = deepcopy(body)
+        context["individu"]["departementHabitation"] = context["individu"][
+            "departementHabitation"
+        ].upper()
         try:
             await simulate(context, get_financements())
         except DataError as err:
