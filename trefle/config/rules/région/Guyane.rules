@@ -28,7 +28,7 @@ Si l'intitulé du financement est «Aide individuelle à la formation artisan»
 Si l'intitulé du financement est «Aide individuelle à la formation»
     Si la région du bénéficiaire est «Guyane»
     Et le code RNCP de la formation n'est pas 28414
-    Et la liste des codes FORMACODE de la formation ne contient aucun code parmi [13030,15073,43409,44002,42837,43445,43425,43454,14449,42020]
+    Et la liste des codes FORMACODE de la formation ne contient aucun code parmi [13030,15073,43409,44002,42837,43445,43425,43454,14449,42020,95107]
     Et ce n'est pas une formation en développement professionnel
         Alors appliquer les règles «AIF»
         Et le plafond financier applicable vaut 2800
