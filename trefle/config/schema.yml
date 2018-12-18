@@ -836,8 +836,16 @@ formation:
   foad:
     type: boolean
     source: catalogue
-    path: modalites-enseignement=2
+    path: modalite-enseignement=2
     label: formation ouverte à distance
+  codes_modalite_pedagogique:
+    type: array
+    format: set
+    items:
+      type: string
+    source: catalogue
+    path: code-modalite-pedagogique
+    label: liste des codes des modalités pédagogiques
   langues:
     type: boolean
     source: catalogue

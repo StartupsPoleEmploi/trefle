@@ -63,6 +63,7 @@ async def test_legacy_context(client):
         "formation.individuels": True,
         "formation.regions_coparef": [],
         "formation.regions_coparef_de": [],
+        "formation.codes_modalite_pedagogique": [],
         "beneficiaire.solde_cpf": 100,
         "beneficiaire.departement": "35",
         "beneficiaire.region": "53",
