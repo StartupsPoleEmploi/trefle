@@ -95,7 +95,7 @@ constante:
     items:
       type: integer
     value: [54664, 78281, 81308, 81306, 54662, 54665, 97711, 66300]
-    label: codes CERTIFINFO pour les permis de conduire de tout type
+    label: codes CERTIFINFO pour les permis de conduire
   codes_permis_b:
     type: array
     items:
@@ -107,7 +107,7 @@ constante:
     items:
       type: integer
     value: [55535, 55534, 76874, 55518, 89259]
-    label: codes CERTIFINFO pour des capacités de transport de plus de 3 tonnes
+    label: codes CERTIFINFO pour des capacités de transport lourd
   codes_spi:
     type: array
     items:
@@ -928,11 +928,10 @@ formation:
     source: catalogue
     label: permis B
     gender: masculine
-  capacites_transport_lourd:
+  capacite_transport_lourd:
     type: boolean
     source: catalogue
     label: capacité de transport lourd
-    gender: masculine
   spi:
     type: boolean
     source: catalogue

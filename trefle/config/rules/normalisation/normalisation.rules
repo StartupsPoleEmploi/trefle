@@ -17,11 +17,11 @@ Si le code CERTIFINFO de la formation fait partie des codes CERTIFINFO BEC
     Alors c'est une formation BEC
 Si le code CERTIFINFO de la formation fait partie des codes CERTIFINFO pour un SPI
     Alors c'est un stage de préparation à l'installation
-Si le code CERTIFINFO de la formation fait partie des codes CERTIFINFO pour les permis de conduire de tout type
+Si le code CERTIFINFO de la formation fait partie des codes CERTIFINFO pour les permis de conduire
     Alors c'est un permis de conduire
 Si le code CERTIFINFO de la formation fait partie des codes CERTIFINFO pour un permis B
     Alors c'est un permis B
-Si le code CERTIFINFO de la formation fait partie des codes CERTIFINFO pour des capacités de transport de plus de 3 tonnes
+Si le code CERTIFINFO de la formation fait partie des codes CERTIFINFO pour des capacités de transport lourd
     Alors c'est une capacité de transport lourd
 Si le code CERTIFINFO de la formation fait partie des codes CERTIFINFO pour un bilan de compétences
     Alors c'est un bilan de compétences
@@ -52,15 +52,20 @@ Et les codes financeur de la formation contiennent au moins un code parmi [«OPC
     Alors c'est une préparation opérationnelle à l'emploi collective
 Si l'intitulé de la formation contient «POEI»
     Alors c'est une préparation opérationnelle à l'emploi individuelle
-Si l'intitulé normé de la formation contient «BTS»
-Ou l'intitulé normé de la formation contient «BACHELOR»
+Si la liste des codes FORMACODE de la formation contient au moins un code parmi [50205,50229,50250]
+    Alors c'est une licence
+Si la liste des codes FORMACODE de la formation contient au moins un code parmi [50170,50171,32062,34024,23613,22257,21054,21059,22024,24054,22211,45554,31606,31654,34030,46348,46236,24231]
+    Alors c'est un niveau ingénieur
+Si la liste des codes FORMACODE de la formation contient au moins un code parmi [50139,50105,50132]
+    Alors c'est un master
+Si le code CERTIFINFO de la formation fait partie des codes CERTIFINFO BTS
+Ou la liste des codes FORMACODE de la formation contient au moins un code parmi [50320,50323]
+    Alors c'est un BTS
+Si l'intitulé normé de la formation contient «BACHELOR»
 Ou l'intitulé normé de la formation contient «CAPACITE»
 Ou l'intitulé normé de la formation contient «DAEU»
 Ou l'intitulé normé de la formation contient «DEUST»
 Ou l'intitulé normé de la formation contient «DIPLOMEDACCESAUXETUDESUNIVERSITAIRES»
-Ou l'intitulé normé de la formation contient «INGENIEUR»
-Ou l'intitulé normé de la formation contient «LICENCE»
-Ou l'intitulé normé de la formation contient «MASTER»
 Ou l'intitulé normé de la formation contient «MASTERE»
 Ou c'est un master
 Ou c'est un BTS
@@ -99,12 +104,3 @@ Ou l'intitulé normé de la formation contient «STABILISATIONDUPROJETPROFESSION
     Alors c'est une formation PCP
 Si le code RNCP de la formation est défini
     Alors c'est une formation RNCP
-Si la liste des codes FORMACODE de la formation contient au moins un code parmi [50205,50229,50250]
-    Alors c'est une licence
-Si la liste des codes FORMACODE de la formation contient au moins un code parmi [50170,50171,32062,34024,23613,22257,21054,21059,22024,24054,22211,45554,31606,31654,34030,46348,46236,24231]
-    Alors c'est un niveau ingénieur
-Si la liste des codes FORMACODE de la formation contient au moins un code parmi [50139,50105,50132]
-    Alors c'est un master
-Si le code CERTIFINFO de la formation fait partie des codes CERTIFINFO BTS
-Ou la liste des codes FORMACODE de la formation contient au moins un code parmi [50320,50323]
-    Alors c'est un BTS
