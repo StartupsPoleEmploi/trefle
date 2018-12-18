@@ -93,6 +93,32 @@ Scénario: Mauvais FORMACODE pour le chèque qualification
     Alors le financement «Le chèque qualification» n'est pas proposé
 
 
+Scénario: Pas de formation capacité pour le chèque qualification
+    Soit un bénéficiaire et une formation
+    Et c'est un demandeur d'emploi
+    Et le montant de l'allocation du bénéficiaire vaut 1200
+    Et la durée en heures de la formation vaut 250
+    Et la région du bénéficiaire vaut «Guadeloupe»
+    Et la région de la formation vaut «Guadeloupe»
+    Et c'est une formation ouverte aux bénéficiaires individuels
+    Et le code CERTIFINFO de la formation vaut 55535
+    Quand je demande un calcul de financement
+    Alors le financement «Le chèque qualification» n'est pas proposé
+
+
+Scénario: Pas de formation permis pour le chèque qualification
+    Soit un bénéficiaire et une formation
+    Et c'est un demandeur d'emploi
+    Et le montant de l'allocation du bénéficiaire vaut 1200
+    Et la durée en heures de la formation vaut 250
+    Et la région du bénéficiaire vaut «Guadeloupe»
+    Et la région de la formation vaut «Guadeloupe»
+    Et c'est une formation ouverte aux bénéficiaires individuels
+    Et le code CERTIFINFO de la formation vaut 97711
+    Quand je demande un calcul de financement
+    Alors le financement «Le chèque qualification» n'est pas proposé
+
+
 Scénario: Cas nominal chèque qualification jeune diplômé
     Soit un bénéficiaire et une formation
     Et c'est un demandeur d'emploi

@@ -34,7 +34,7 @@ Si l'intitulé du financement est «Aide individuelle à la formation»
         Et la liste des domaines FORMACODE de la formation ne contient pas 434, ou la liste des codes FORMACODE de la formation contient au moins un code parmi [43421,43429,43485,43401,43424,43415,43407,43426,43417,43486]
         Et la liste des codes FORMACODE de la formation ne contient aucun code parmi [31802,31811,31812,44028]
         Et le code CERTIFINFO de la formation ne fait pas partie de [49616,56306,87185,87187,87189,52411,63669,63670,88309]
-        # TODO - si intitulé comprend licence, master, ingénieur
+        Et ce n'est pas une formation de l'enseignement supérieur
         # TODO si certifinfo Ambulancier (DEA) 59412 + siret 77567227207806
             Alors appliquer les règles «AIF»
             Et le plafond financier applicable vaut 1000

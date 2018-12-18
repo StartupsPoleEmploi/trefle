@@ -95,10 +95,14 @@ async def test_legacy_call(client):
     data["donneeStructurees"]["codesFinanceur"] = set(
         data["donneeStructurees"]["codesFinanceur"]
     )
-    del data["donneeStructurees"]["remunerations"]
+    try:
+        del data["donneeStructurees"]["remunerations"]
+    except KeyError:
+        pass
     for key_to_del in ["montant", "plafond"]:
-        if key_to_del in data["donneeStructurees"]["cout"] and not bool(
-            float(data["donneeStructurees"]["cout"][key_to_del])
+        if (
+            key_to_del in data["donneeStructurees"]["cout"]
+            and not data["donneeStructurees"]["cout"][key_to_del]
         ):
             del data["donneeStructurees"]["cout"][key_to_del]
 
@@ -131,7 +135,9 @@ async def test_invalid_data(client):
         if path.suffix == ".json"
         and path.name
         not in [
-            "case_28.json",  # TODO Sur LBF, CPF affichée même si nombre d'heures pas renseignées
+            "case_28.json",  # TODO Sur LBF, CPF affichée même si heures cpf = 0
+            "case_22.json",  # TODO voir avec Armelle : sur trèfle AFPRPOEI et Action coll en + sur trèfle
+            "case_26.json",  # TODO Idem car même formation
             "case_15.json",  # TODO vérifier règle chèque formation (voir note sur règle LBF) et ordre des dispositifs inversés
             "case_17.json",  # TODO à voir : 3 pour Trefle et 5 pour LBF
             "case_29.json",  # TODO Pb: LBF no control for codes financeur individuel

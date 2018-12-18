@@ -1,613 +1,880 @@
 [
   {
-    "test": true,
     "formationVisee": {
-      "codeFormation": "21_65896"
+      "codeFormation": "21_65896",
+      "codeSession": "65896"
     },
     "individu": {
+      "test": true,
       "type": "DE",
-      "chomageDePlusDeSixMois": true,
+      "chomageDePlusDeSixMois": "true",
+      "cumulDureeInscriptionSur12Mois": "12",
       "departementHabitation": "62",
       "dateNaissance": "1980-12-12",
-      "niveauEtude": 3,
+      "niveauEtude": "3",
       "heuresCPF": "200",
-      "typeAllocation": {
-        "type": "non"
-      },
-      "contratAide": {
-        "enCours": false,
-        "termine": true
-      }
-    }
-  },
-  {
-    "test": true,
-    "formationVisee": {
-      "codeFormation": "04_A814179"
-    },
-    "individu": {
-      "type": "DE",
-      "chomageDePlusDeSixMois": true,
-      "departementHabitation": "93",
-      "dateNaissance": "1980-12-12",
-      "niveauEtude": 3,
-      "heuresCPF": "100",
-      "typeAllocation": {
-        "type": "non"
-      },
-      "contratAide": {
-        "enCours": false,
-        "termine": true
-      }
-    }
-  },
-  {
-    "test": true,
-    "formationVisee": {
-      "codeFormation": "24_113168"
-    },
-    "individu": {
-      "type": "DE",
-      "chomageDePlusDeSixMois": true,
-      "departementHabitation": "13",
-      "dateNaissance": "1980-12-12",
-      "niveauEtude": 3,
-      "heuresCPF": "100",
-      "typeAllocation": {
-        "type": "non"
-      },
-      "contratAide": {
-        "enCours": false,
-        "termine": true
-      }
-    }
-  },
-  {
-    "test": true,
-    "formationVisee": {
-      "codeFormation": "17_37091"
-    },
-    "individu": {
-      "type": "DE",
-      "chomageDePlusDeSixMois": true,
-      "departementHabitation": "93",
-      "dateNaissance": "1980-12-12",
-      "niveauEtude": 3,
-      "heuresCPF": "100",
-      "typeAllocation": {
-        "type": "non"
-      },
-      "contratAide": {
-        "enCours": false,
-        "termine": true
-      },
-      "travailleurHandicape": true
-    }
-  },
-  {
-    "test": true,
-    "formationVisee": {
-      "codeFormation": "14_AF_0000029913"
-    },
-    "individu": {
-      "type": "DE",
-      "chomageDePlusDeSixMois": true,
-      "departementHabitation": "49",
-      "dateNaissance": "1980-12-12",
-      "niveauEtude": 3,
-      "heuresCPF": "100",
-      "typeAllocation": {
-        "type": "non"
-      },
-      "contratAide": {
-        "enCours": false,
-        "termine": true
-      }
-    }
-  },
-  {
-    "test": true,
-    "formationVisee": {
-      "codeFormation": "14_AF_0000056890"
-    },
-    "individu": {
-      "type": "DE",
-      "chomageDePlusDeSixMois": true,
-      "departementHabitation": "94",
-      "dateNaissance": "1980-12-12",
-      "niveauEtude": 3,
-      "heuresCPF": "100",
-      "typeAllocation": {
-        "type": "RSA"
-      },
-      "contratAide": {
-        "enCours": false,
-        "termine": true
-      }
-    }
-  },
-  {
-    "test": true,
-    "formationVisee": {
-      "codeFormation": "17_33241"
-    },
-    "individu": {
-      "type": "DE",
-      "chomageDePlusDeSixMois": true,
-      "departementHabitation": "57",
-      "dateNaissance": "1980-12-12",
-      "niveauEtude": 3,
-      "heuresCPF": "100",
-      "typeAllocation": {
-        "type": "non"
-      },
-      "contratAide": {
-        "enCours": false,
-        "termine": true
-      }
-    }
-  },
-  {
-    "test": true,
-    "formationVisee": {
-      "codeFormation": "14_AF_0000047955"
-    },
-    "individu": {
-      "type": "DE",
-      "chomageDePlusDeSixMois": true,
-      "departementHabitation": "62",
-      "dateNaissance": "1980-12-12",
-      "niveauEtude": 3,
-      "heuresCPF": "100",
-      "typeAllocation": {
-        "type": "non"
-      },
-      "contratAide": {
-        "enCours": false,
-        "termine": true
-      }
-    }
-  },
-  {
-    "test": true,
-    "formationVisee": {
-      "codeFormation": "02_201508006899"
-    },
-    "individu": {
-      "type": "DE",
-      "chomageDePlusDeSixMois": true,
-      "departementHabitation": "93",
-      "dateNaissance": "1980-12-12",
-      "niveauEtude": 3,
-      "heuresCPF": "100",
-      "typeAllocation": {
-        "type": "non"
-      }
-    }
-  },
-  {
-    "test": true,
-    "formationVisee": {
-      "codeFormation": "11_3344"
-    },
-    "individu": {
-      "type": "DE",
-      "chomageDePlusDeSixMois": true,
-      "departementHabitation": "971",
-      "dateNaissance": "1980-12-12",
-      "niveauEtude": 3,
-      "heuresCPF": "100",
-      "typeAllocation": {
-        "type": "non"
-      }
-    }
-  },
-  {
-    "test": true,
-    "formationVisee": {
-      "codeFormation": "03_1700339F"
-    },
-    "individu": {
-      "type": "DE",
-      "chomageDePlusDeSixMois": true,
-      "departementHabitation": "15",
-      "dateNaissance": "1999-02-15",
-      "niveauEtude": 3,
-      "heuresCPF": 0,
-      "typeAllocation": {
-        "type": "non"
+      "contratApprentissage": "false",
+      "apprentissageSituation": {
+        "ruptureContratApprentissage": "false"
       },
       "cddTermine": {
-        "depuisMoinsUnAn": true,
-        "24MoisSur5Ans": true,
-        "4MoisSur1An": true,
-        "cddDateDeFin": "2018-02-15"
-      }
-    }
-  },
-  {
-    "test": true,
-    "formationVisee": {
-      "codeFormation": "03_1700339F"
-    },
-    "individu": {
-      "type": "DE",
-      "chomageDePlusDeSixMois": true,
-      "departementHabitation": "15",
-      "dateNaissance": "1980-12-12",
-      "niveauEtude": 3,
-      "heuresCPF": "100",
-      "typeAllocation": {
-        "type": "non"
+        "depuisMoinsUnAn": "false",
+        "12MoisSur5Ans": "false"
       },
       "interimExperience": {
-        "1600HeuresDepuis6mois": true,
-        "derniereMissionDateFin": "2018-02-15"
-      }
+        "1600HeuresDepuis6mois": "false",
+        "600HeuresDepuis6mois": "false"
+      },
+      "contratAide": "false",
+      "travailleurHandicape": "false",
+      "projetCreationEntreprise": "false"
     }
   },
   {
-    "test": true,
     "formationVisee": {
-      "codeFormation": "03_1700339F"
+      "codeFormation": "04_A814179",
+      "codeSession": "76415"
     },
     "individu": {
+      "test": true,
       "type": "DE",
-      "chomageDePlusDeSixMois": true,
-      "departementHabitation": "15",
-      "dateNaissance": "1999-02-15",
-      "niveauEtude": 3,
-      "heuresCPF": 0,
-      "typeAllocation": {
-        "type": "non"
+      "chomageDePlusDeSixMois": "true",
+      "cumulDureeInscriptionSur12Mois": "12",
+      "departementHabitation": "93",
+      "dateNaissance": "1980-12-12",
+      "niveauEtude": "3",
+      "heuresCPF": "100",
+      "contratApprentissage": "false",
+      "apprentissageSituation": {
+        "ruptureContratApprentissage": "false"
       },
       "cddTermine": {
-        "depuisMoinsUnAn": true,
-        "24MoisSur5Ans": true,
-        "4MoisSur1An": true,
-        "cddDateDeFin": "2018-02-15"
-      }
+        "depuisMoinsUnAn": "false",
+        "12MoisSur5Ans": "false"
+      },
+      "interimExperience": {
+        "1600HeuresDepuis6mois": "false",
+        "600HeuresDepuis6mois": "false"
+      },
+      "contratAide": "false",
+      "travailleurHandicape": "false",
+      "projetCreationEntreprise": "false"
     }
   },
   {
-    "test": true,
     "formationVisee": {
-      "codeFormation": "20_F126000055809_401850"
+      "codeFormation": "24_113168",
+      "codeSession": "192043"
     },
     "individu": {
+      "test": true,
       "type": "DE",
-      "chomageDePlusDeSixMois": true,
+      "chomageDePlusDeSixMois": "true",
+      "cumulDureeInscriptionSur12Mois": "12",
+      "departementHabitation": "13",
+      "dateNaissance": "1980-12-12",
+      "niveauEtude": "3",
+      "heuresCPF": "100",
+      "contratApprentissage": "false",
+      "apprentissageSituation": {
+        "ruptureContratApprentissage": "false"
+      },
+      "cddTermine": {
+        "depuisMoinsUnAn": "false",
+        "12MoisSur5Ans": "false"
+      },
+      "interimExperience": {
+        "1600HeuresDepuis6mois": "false",
+        "600HeuresDepuis6mois": "false"
+      },
+      "contratAide": "false",
+      "travailleurHandicape": "false",
+      "projetCreationEntreprise": "false"
+    }
+  },
+  {
+    "formationVisee": {
+      "codeFormation": "17_37091",
+      "codeSession": "SE_0000185145"
+    },
+    "individu": {
+      "test": true,
+      "type": "DE",
+      "chomageDePlusDeSixMois": "true",
+      "cumulDureeInscriptionSur12Mois": "12",
+      "departementHabitation": "93",
+      "dateNaissance": "1980-12-12",
+      "niveauEtude": "3",
+      "heuresCPF": "100",
+      "contratApprentissage": "false",
+      "apprentissageSituation": {
+        "ruptureContratApprentissage": "false"
+      },
+      "cddTermine": {
+        "depuisMoinsUnAn": "false",
+        "12MoisSur5Ans": "false"
+      },
+      "interimExperience": {
+        "1600HeuresDepuis6mois": "false",
+        "600HeuresDepuis6mois": "false"
+      },
+      "contratAide": "false",
+      "travailleurHandicape": "true",
+      "projetCreationEntreprise": "false"
+    }
+  },
+  {
+    "formationVisee": {
+      "codeFormation": "14_AF_0000029913",
+      "codeSession": "SE_0000206534"
+    },
+    "individu": {
+      "test": true,
+      "type": "DE",
+      "chomageDePlusDeSixMois": "true",
+      "cumulDureeInscriptionSur12Mois": "12",
+      "departementHabitation": "49",
+      "dateNaissance": "1980-12-12",
+      "niveauEtude": "3",
+      "heuresCPF": "100",
+      "contratApprentissage": "false",
+      "apprentissageSituation": {
+        "ruptureContratApprentissage": "false"
+      },
+      "cddTermine": {
+        "depuisMoinsUnAn": "false",
+        "12MoisSur5Ans": "false"
+      },
+      "interimExperience": {
+        "1600HeuresDepuis6mois": "false",
+        "600HeuresDepuis6mois": "false"
+      },
+      "contratAide": "false",
+      "travailleurHandicape": "false",
+      "projetCreationEntreprise": "false"
+    }
+  },
+  {
+    "formationVisee": {
+      "codeFormation": "14_AF_0000056890",
+      "codeSession": "SE_0000139453"
+    },
+    "individu": {
+      "test": true,
+      "type": "DE",
+      "chomageDePlusDeSixMois": "true",
+      "cumulDureeInscriptionSur12Mois": "12",
+      "typeAllocation": {
+        "type": "rsa"
+      },
+      "departementHabitation": "94",
+      "dateNaissance": "1980-12-12",
+      "niveauEtude": "3",
+      "heuresCPF": "100",
+      "contratApprentissage": "false",
+      "apprentissageSituation": {
+        "ruptureContratApprentissage": "false"
+      },
+      "cddTermine": {
+        "depuisMoinsUnAn": "false",
+        "12MoisSur5Ans": "false"
+      },
+      "interimExperience": {
+        "1600HeuresDepuis6mois": "false",
+        "600HeuresDepuis6mois": "false"
+      },
+      "contratAide": "false",
+      "travailleurHandicape": "false",
+      "projetCreationEntreprise": "false"
+    }
+  },
+  {
+    "formationVisee": {
+      "codeFormation": "17_33241",
+      "codeSession": "58222"
+    },
+    "individu": {
+      "test": true,
+      "type": "DE",
+      "chomageDePlusDeSixMois": "true",
+      "cumulDureeInscriptionSur12Mois": "12",
+      "departementHabitation": "57",
+      "dateNaissance": "1980-12-12",
+      "niveauEtude": "3",
+      "heuresCPF": "100",
+      "contratApprentissage": "false",
+      "apprentissageSituation": {
+        "ruptureContratApprentissage": "false"
+      },
+      "cddTermine": {
+        "depuisMoinsUnAn": "false",
+        "12MoisSur5Ans": "false"
+      },
+      "interimExperience": {
+        "1600HeuresDepuis6mois": "false",
+        "600HeuresDepuis6mois": "false"
+      },
+      "contratAide": "false",
+      "travailleurHandicape": "false",
+      "projetCreationEntreprise": "false"
+    }
+  },
+  {
+    "formationVisee": {
+      "codeFormation": "14_AF_0000047955",
+      "codeSession": "SE_0000183155"
+    },
+    "individu": {
+      "test": true,
+      "type": "DE",
+      "chomageDePlusDeSixMois": "true",
+      "cumulDureeInscriptionSur12Mois": "12",
       "departementHabitation": "62",
       "dateNaissance": "1980-12-12",
-      "niveauEtude": 3,
+      "niveauEtude": "3",
       "heuresCPF": "100",
-      "typeAllocation": {
-        "type": "non"
+      "contratApprentissage": "false",
+      "apprentissageSituation": {
+        "ruptureContratApprentissage": "false"
       },
-      "contratAide": {
-        "enCours": false,
-        "termine": true
-      }
+      "cddTermine": {
+        "depuisMoinsUnAn": "false",
+        "12MoisSur5Ans": "false"
+      },
+      "interimExperience": {
+        "1600HeuresDepuis6mois": "false",
+        "600HeuresDepuis6mois": "false"
+      },
+      "contratAide": "false",
+      "travailleurHandicape": "false",
+      "projetCreationEntreprise": "false"
     }
   },
   {
-    "test": true,
     "formationVisee": {
-      "codeFormation": "25_98S1701949"
+      "codeFormation": "02_201508006899",
+      "codeSession": "77300"
     },
     "individu": {
+      "test": true,
       "type": "DE",
-      "chomageDePlusDeSixMois": true,
+      "chomageDePlusDeSixMois": "true",
+      "cumulDureeInscriptionSur12Mois": "12",
+      "departementHabitation": "93",
+      "dateNaissance": "1980-12-12",
+      "niveauEtude": "3",
+      "heuresCPF": "100",
+      "contratApprentissage": "false",
+      "cddTermine": {
+        "depuisMoinsUnAn": "false",
+        "12MoisSur5Ans": "false"
+      },
+      "interimExperience": {
+        "1600HeuresDepuis6mois": "false",
+        "600HeuresDepuis6mois": "false"
+      },
+      "contratAide": {
+        "encours": "true",
+        "termine": "false"
+      },
+      "travailleurHandicape": "false",
+      "projetCreationEntreprise": "false"
+    }
+  },
+  {
+    "formationVisee": {
+      "codeFormation": "11_3344",
+      "codeSession": "12"
+    },
+    "individu": {
+      "test": true,
+      "type": "DE",
+      "chomageDePlusDeSixMois": "true",
+      "cumulDureeInscriptionSur12Mois": "12",
       "departementHabitation": "971",
       "dateNaissance": "1980-12-12",
-      "niveauEtude": 3,
+      "niveauEtude": "3",
       "heuresCPF": "100",
-      "typeAllocation": {
-        "type": "non"
+      "contratApprentissage": "false",
+      "apprentissageSituation": {
+        "ruptureContratApprentissage": "false"
+      },
+      "cddTermine": {
+        "depuisMoinsUnAn": "false",
+        "12MoisSur5Ans": "false"
+      },
+      "interimExperience": {
+        "1600HeuresDepuis6mois": "false",
+        "600HeuresDepuis6mois": "false"
+      },
+      "contratAide": {
+        "enCours": "false",
+        "termine": "false"
+      },
+      "travailleurHandicape": "false",
+      "projetCreationEntreprise": "false"
+    }
+  },
+  {
+    "formationVisee": {
+      "codeFormation": "03_1700339F",
+      "codeSession": "109567"
+    },
+    "individu": {
+      "test": true,
+      "type": "DE",
+      "chomageDePlusDeSixMois": "true",
+      "cumulDureeInscriptionSur12Mois": "12",
+      "departementHabitation": "15",
+      "dateNaissance": "1999-02-15",
+      "niveauEtude": "3",
+      "contratApprentissage": "false",
+      "apprentissageSituation": {
+        "ruptureContratApprentissage": "false"
+      },
+      "cddTermine": {
+        "depuisMoinsUnAn": "true",
+        "12MoisSur5Ans": "true",
+        "4MoisSur1An": "true",
+        "cddDateDeFin": "2018-02-15"
+      },
+      "interimExperience": {
+        "1600HeuresDepuis6mois": "false",
+        "600HeuresDepuis6mois": "false"
+      },
+      "contratAide": {
+        "enCours": "false",
+        "termine": "false"
+      },
+      "travailleurHandicape": "false",
+      "projetCreationEntreprise": "false"
+    }
+  },
+  {
+    "formationVisee": {
+      "codeFormation": "03_1700339F",
+      "codeSession": "109567"
+    },
+    "individu": {
+      "test": true,
+      "type": "DE",
+      "chomageDePlusDeSixMois": "true",
+      "cumulDureeInscriptionSur12Mois": "12",
+      "departementHabitation": "15",
+      "dateNaissance": "1980-12-12",
+      "niveauEtude": "3",
+      "heuresCPF": "100",
+      "contratApprentissage": "false",
+      "apprentissageSituation": {
+        "ruptureContratApprentissage": "false"
+      },
+      "cddTermine": {
+        "depuisMoinsUnAn": "false",
+        "12MoisSur5Ans": "false"
+      },
+      "interimExperience": {
+        "1600HeuresDepuis6mois": "true",
+        "600HeuresDepuis6mois": "true",
+        "derniereMissionDateFin": "2018-02-15"
+      },
+      "contratAide": {
+        "encours": "false",
+        "termine": "false"
+      },
+      "travailleurHandicape": "false",
+      "projetCreationEntreprise": "false"
+    }
+  },
+  {
+    "formationVisee": {
+      "codeFormation": "03_1700339F",
+      "codeSession": "109567"
+    },
+    "individu": {
+      "test": true,
+      "type": "DE",
+      "chomageDePlusDeSixMois": "true",
+      "cumulDureeInscriptionSur12Mois": "12",
+      "departementHabitation": "15",
+      "dateNaissance": "1999-02-15",
+      "niveauEtude": "3",
+      "contratApprentissage": "false",
+      "apprentissageSituation": {
+        "ruptureContratApprentissage": "false"
+      },
+      "cddTermine": {
+        "depuisMoinsUnAn": "true",
+        "12MoisSur5Ans": "true",
+        "4MoisSur1An": "true",
+        "cddDateDeFin": "2018-02-15"
+      },
+      "interimExperience": {
+        "1600HeuresDepuis6mois": "false",
+        "600HeuresDepuis6mois": "false"
+      },
+      "contratAide": {
+        "enCours": "false",
+        "termine": "false"
+      },
+      "travailleurHandicape": "false",
+      "projetCreationEntreprise": "false"
+    }
+  },
+  {
+    "formationVisee": {
+      "codeFormation": "20_1275193",
+      "codeSession": "1281318"
+    },
+    "individu": {
+      "test": true,
+      "type": "DE",
+      "chomageDePlusDeSixMois": "true",
+      "cumulDureeInscriptionSur12Mois": "12",
+      "departementHabitation": "62",
+      "dateNaissance": "1980-12-12",
+      "niveauEtude": "3",
+      "heuresCPF": "100",
+      "contratApprentissage": "false",
+      "apprentissageSituation": {
+        "ruptureContratApprentissage": "false"
+      },
+      "cddTermine": {
+        "depuisMoinsUnAn": "false",
+        "12MoisSur5Ans": "false"
+      },
+      "interimExperience": {
+        "1600HeuresDepuis6mois": "false",
+        "600HeuresDepuis6mois": "false"
+      },
+      "contratAide": "false",
+      "travailleurHandicape": "false",
+      "projetCreationEntreprise": "false"
+    }
+  },
+  {
+    "formationVisee": {
+      "codeFormation": "25_98S1701949",
+      "codeSession": "2"
+    },
+    "individu": {
+      "test": true,
+      "type": "DE",
+      "chomageDePlusDeSixMois": "true",
+      "cumulDureeInscriptionSur12Mois": "12",
+      "departementHabitation": "971",
+      "dateNaissance": "1980-12-12",
+      "niveauEtude": "3",
+      "heuresCPF": "100",
+      "contratApprentissage": "false",
+      "apprentissageSituation": {
+        "ruptureContratApprentissage": "false"
+      },
+      "cddTermine": {
+        "depuisMoinsUnAn": "false",
+        "12MoisSur5Ans": "false"
+      },
+      "interimExperience": {
+        "1600HeuresDepuis6mois": "false",
+        "600HeuresDepuis6mois": "false"
       },
       "contratAide": {
         "enCours": true,
         "termine": false
-      }
+      },
+      "travailleurHandicape": "false",
+      "projetCreationEntreprise": "false"
     }
   },
   {
-    "test": true,
     "formationVisee": {
-      "codeFormation": "25_98S1701949"
+      "codeFormation": "25_98S1701949",
+      "codeSession": "1"
     },
     "individu": {
+      "test": true,
       "type": "DE",
-      "chomageDePlusDeSixMois": true,
+      "chomageDePlusDeSixMois": "true",
+      "cumulDureeInscriptionSur12Mois": "12",
       "departementHabitation": "974",
       "dateNaissance": "1980-12-12",
-      "niveauEtude": 3,
+      "niveauEtude": "3",
       "heuresCPF": "100",
-      "typeAllocation": {
-        "type": "non"
+      "contratApprentissage": "false",
+      "apprentissageSituation": {
+        "ruptureContratApprentissage": "false"
       },
-      "contratAide": {
-        "enCours": false,
-        "termine": true
-      }
+      "cddTermine": {
+        "depuisMoinsUnAn": "false",
+        "12MoisSur5Ans": "false"
+      },
+      "interimExperience": {
+        "1600HeuresDepuis6mois": "false",
+        "600HeuresDepuis6mois": "false"
+      },
+      "contratAide": "false",
+      "travailleurHandicape": "false",
+      "projetCreationEntreprise": "false"
     }
   },
   {
-    "test": true,
     "formationVisee": {
-      "codeFormation": "07_25556"
+      "codeFormation": "07_25556",
+      "codeSession": "160953"
     },
     "individu": {
+      "test": true,
       "type": "DE",
-      "chomageDePlusDeSixMois": true,
+      "chomageDePlusDeSixMois": "true",
+      "cumulDureeInscriptionSur12Mois": "12",
       "departementHabitation": "37",
       "dateNaissance": "1970-02-15",
-      "niveauEtude": 3,
+      "niveauEtude": "3",
       "heuresCPF": "100",
-      "typeAllocation": {
-        "type": "non"
+      "contratApprentissage": "false",
+      "apprentissageSituation": {
+        "ruptureContratApprentissage": "false"
       },
-      "contratAide": {
-        "enCours": false,
-        "termine": true
+      "cddTermine": {
+        "depuisMoinsUnAn": "false",
+        "12MoisSur5Ans": "false"
       },
-      "travailleurHandicape": true
+      "interimExperience": {
+        "1600HeuresDepuis6mois": "false",
+        "600HeuresDepuis6mois": "false"
+      },
+      "contratAide": "false",
+      "travailleurHandicape": "true",
+      "projetCreationEntreprise": "false"
     }
   },
   {
-    "test": true,
     "formationVisee": {
-      "codeFormation": "25_98S1701949"
+      "codeFormation": "25_98S1701949",
+      "codeSession": "1"
     },
     "individu": {
+      "test": true,
       "type": "DE",
-      "chomageDePlusDeSixMois": true,
+      "chomageDePlusDeSixMois": "true",
+      "cumulDureeInscriptionSur12Mois": "12",
       "departementHabitation": "974",
       "dateNaissance": "1980-12-12",
-      "niveauEtude": 3,
+      "niveauEtude": "3",
       "heuresCPF": "100",
-      "typeAllocation": {
-        "type": "non"
+      "contratApprentissage": "false",
+      "apprentissageSituation": {
+        "ruptureContratApprentissage": "false"
       },
-      "contratAide": {
-        "enCours": false,
-        "termine": true
+      "cddTermine": {
+        "depuisMoinsUnAn": "false",
+        "12MoisSur5Ans": "false"
       },
-      "travailleurHandicape": true
+      "interimExperience": {
+        "1600HeuresDepuis6mois": "false",
+        "600HeuresDepuis6mois": "false"
+      },
+      "contratAide": "false",
+      "travailleurHandicape": "true",
+      "projetCreationEntreprise": "false"
     }
   },
   {
-    "test": true,
     "formationVisee": {
-      "codeFormation": "05_54176"
+      "codeFormation": "05_54176",
+      "codeSession": "40543"
     },
     "individu": {
+      "test": true,
       "type": "DE",
-      "chomageDePlusDeSixMois": true,
+      "chomageDePlusDeSixMois": "true",
+      "cumulDureeInscriptionSur12Mois": "12",
       "departementHabitation": "71",
       "dateNaissance": "1980-12-12",
-      "niveauEtude": 3,
+      "niveauEtude": "3",
       "heuresCPF": "100",
-      "typeAllocation": {
-        "type": "non"
+      "contratApprentissage": "false",
+      "apprentissageSituation": {
+        "ruptureContratApprentissage": "false"
       },
-      "contratAide": {
-        "enCours": false,
-        "termine": true
+      "cddTermine": {
+        "depuisMoinsUnAn": "false",
+        "12MoisSur5Ans": "false"
       },
-      "travailleurHandicape": true
+      "interimExperience": {
+        "1600HeuresDepuis6mois": "false",
+        "600HeuresDepuis6mois": "false"
+      },
+      "contratAide": "false",
+      "travailleurHandicape": "true",
+      "projetCreationEntreprise": "false"
     }
   },
   {
-    "test": true,
     "formationVisee": {
-      "codeFormation": "21_61339"
+      "codeFormation": "21_76517",
+      "codeSession": "61339"
     },
     "individu": {
+      "test": true,
       "type": "DE",
-      "chomageDePlusDeSixMois": true,
+      "chomageDePlusDeSixMois": "true",
+      "cumulDureeInscriptionSur12Mois": "12",
       "departementHabitation": "53",
       "dateNaissance": "1994-12-12",
-      "niveauEtude": 3,
+      "niveauEtude": "3",
       "heuresCPF": "100",
-      "typeAllocation": {
-        "type": "non"
+      "contratApprentissage": "false",
+      "apprentissageSituation": {
+        "ruptureContratApprentissage": "false"
       },
       "cddTermine": {
-        "depuisMoinsUnAn": true,
-        "24MoisSur5Ans": true,
-        "4MoisSur1An": true,
+        "depuisMoinsUnAn": "true",
+        "12MoisSur5Ans": "true",
+        "4MoisSur1An": "true",
         "cddDateDeFin": "2018-02-15"
       },
-      "contratAide": {
-        "enCours": false,
-        "termine": true
-      }
+      "interimExperience": {
+        "1600HeuresDepuis6mois": "false",
+        "600HeuresDepuis6mois": "false"
+      },
+      "contratAide": "false",
+      "travailleurHandicape": "false",
+      "projetCreationEntreprise": "false"
     }
   },
   {
-    "test": true,
     "formationVisee": {
-      "codeFormation": "25_98S1701949"
+      "codeFormation": "25_98S1701949",
+      "codeSession": "1"
     },
     "individu": {
+      "test": true,
       "type": "DE",
-      "chomageDePlusDeSixMois": true,
+      "chomageDePlusDeSixMois": "true",
+      "cumulDureeInscriptionSur12Mois": "12",
       "departementHabitation": "974",
       "dateNaissance": "1994-12-12",
-      "niveauEtude": 3,
+      "niveauEtude": "3",
       "heuresCPF": "100",
-      "typeAllocation": {
-        "type": "non"
+      "contratApprentissage": "false",
+      "apprentissageSituation": {
+        "ruptureContratApprentissage": "false"
       },
       "cddTermine": {
-        "depuisMoinsUnAn": true,
-        "24MoisSur5Ans": true,
-        "4MoisSur1An": true,
+        "depuisMoinsUnAn": "true",
+        "12MoisSur5Ans": "true",
+        "4MoisSur1An": "true",
         "cddDateDeFin": "2018-02-15"
       },
-      "contratAide": {
-        "enCours": false,
-        "termine": true
-      }
+      "interimExperience": {
+        "1600HeuresDepuis6mois": "false",
+        "600HeuresDepuis6mois": "false"
+      },
+      "contratAide": "false",
+      "travailleurHandicape": "false",
+      "projetCreationEntreprise": "false"
     }
   },
   {
-    "test": true,
     "formationVisee": {
-      "codeFormation": "03_1702030F"
+      "codeFormation": "03_1702030F",
+      "codeSession": "120799"
     },
     "individu": {
+      "test": true,
       "type": "DE",
-      "chomageDePlusDeSixMois": true,
+      "chomageDePlusDeSixMois": "true",
+      "cumulDureeInscriptionSur12Mois": "12",
       "departementHabitation": "63",
       "dateNaissance": "1994-12-12",
-      "niveauEtude": 3,
+      "niveauEtude": "3",
       "heuresCPF": "100",
-      "typeAllocation": {
-        "type": "non"
+      "contratApprentissage": "false",
+      "apprentissageSituation": {
+        "ruptureContratApprentissage": "false"
       },
       "cddTermine": {
-        "depuisMoinsUnAn": true,
-        "24MoisSur5Ans": true,
-        "4MoisSur1An": true,
+        "depuisMoinsUnAn": "true",
+        "12MoisSur5Ans": "true",
+        "4MoisSur1An": "true",
         "cddDateDeFin": "2018-02-15"
       },
-      "contratAide": {
-        "enCours": false,
-        "termine": true
-      }
-    }
-  },
-  {
-    "test": true,
-    "formationVisee": {
-      "codeFormation": "09_94F1800047"
-    },
-    "individu": {
-      "type": "DE",
-      "chomageDePlusDeSixMois": true,
-      "departementHabitation": "2B",
-      "dateNaissance": "1980-12-12",
-      "niveauEtude": 3,
-      "heuresCPF": "100",
-      "typeAllocation": {
-        "type": "non"
+      "interimExperience": {
+        "1600HeuresDepuis6mois": "false",
+        "600HeuresDepuis6mois": "false"
       },
-      "contratAide": {
-        "enCours": false,
-        "termine": true
-      }
+      "contratAide": "false",
+      "travailleurHandicape": "false",
+      "projetCreationEntreprise": "false"
     }
   },
   {
-    "test": true,
     "formationVisee": {
-      "codeFormation": "21_61339"
+      "codeFormation": "09_94F1800047",
+      "codeSession": "9592"
     },
     "individu": {
+      "test": true,
       "type": "DE",
-      "chomageDePlusDeSixMois": true,
+      "chomageDePlusDeSixMois": "true",
+      "cumulDureeInscriptionSur12Mois": "12",
+      "departementHabitation": "2b",
+      "dateNaissance": "1980-12-12",
+      "niveauEtude": "3",
+      "heuresCPF": "100",
+      "contratApprentissage": "false",
+      "apprentissageSituation": {
+        "ruptureContratApprentissage": "false"
+      },
+      "cddTermine": {
+        "depuisMoinsUnAn": "false",
+        "12MoisSur5Ans": "false"
+      },
+      "interimExperience": {
+        "1600HeuresDepuis6mois": "false",
+        "600HeuresDepuis6mois": "false"
+      },
+      "contratAide": "false",
+      "travailleurHandicape": "false",
+      "projetCreationEntreprise": "false"
+    }
+  },
+  {
+    "formationVisee": {
+      "codeFormation": "21_76517",
+      "codeSession": "61339"
+    },
+    "individu": {
+      "test": true,
+      "type": "DE",
+      "chomageDePlusDeSixMois": "true",
+      "cumulDureeInscriptionSur12Mois": "12",
       "departementHabitation": "53",
       "dateNaissance": "1994-12-12",
-      "niveauEtude": 3,
+      "niveauEtude": "3",
       "heuresCPF": "100",
-      "typeAllocation": {
-        "type": "non"
+      "contratApprentissage": "false",
+      "apprentissageSituation": {
+        "ruptureContratApprentissage": "false"
       },
       "cddTermine": {
-        "depuisMoinsUnAn": true,
-        "24MoisSur5Ans": true,
-        "4MoisSur1An": true,
+        "depuisMoinsUnAn": "true",
+        "12MoisSur5Ans": "true",
+        "4MoisSur1An": "true",
         "cddDateDeFin": "2018-02-15"
       },
-      "contratAide": {
-        "enCours": false,
-        "termine": true
-      }
+      "interimExperience": {
+        "1600HeuresDepuis6mois": "false",
+        "600HeuresDepuis6mois": "false"
+      },
+      "contratAide": "false",
+      "travailleurHandicape": "false",
+      "projetCreationEntreprise": "false"
     }
   },
   {
-    "test": true,
     "formationVisee": {
-      "codeFormation": "25_98S1701949"
+      "codeFormation": "25_98S1701949",
+      "codeSession": "1"
     },
     "individu": {
+      "test": true,
       "type": "DE",
-      "chomageDePlusDeSixMois": true,
+      "chomageDePlusDeSixMois": "true",
+      "cumulDureeInscriptionSur12Mois": "12",
       "departementHabitation": "974",
       "dateNaissance": "1994-12-12",
-      "niveauEtude": 3,
+      "niveauEtude": "3",
       "heuresCPF": "100",
-      "typeAllocation": {
-        "type": "non"
+      "contratApprentissage": "false",
+      "apprentissageSituation": {
+        "ruptureContratApprentissage": "false"
       },
       "cddTermine": {
-        "depuisMoinsUnAn": true,
-        "24MoisSur5Ans": true,
-        "4MoisSur1An": true,
+        "depuisMoinsUnAn": "true",
+        "12MoisSur5Ans": "true",
+        "4MoisSur1An": "true",
         "cddDateDeFin": "2018-02-15"
       },
-      "contratAide": {
-        "enCours": false,
-        "termine": true
-      }
+      "interimExperience": {
+        "1600HeuresDepuis6mois": "false",
+        "600HeuresDepuis6mois": "false"
+      },
+      "contratAide": "false",
+      "travailleurHandicape": "false",
+      "projetCreationEntreprise": "false"
     }
   },
   {
-    "test": true,
     "formationVisee": {
-      "codeFormation": "03_1702030F"
+      "codeFormation": "03_1702030F",
+      "codeSession": "120799"
     },
     "individu": {
+      "test": true,
       "type": "DE",
-      "chomageDePlusDeSixMois": true,
+      "chomageDePlusDeSixMois": "true",
+      "cumulDureeInscriptionSur12Mois": "12",
       "departementHabitation": "63",
       "dateNaissance": "1994-12-12",
-      "niveauEtude": 3,
+      "niveauEtude": "3",
       "heuresCPF": "100",
-      "typeAllocation": {
-        "type": "non"
+      "contratApprentissage": "false",
+      "apprentissageSituation": {
+        "ruptureContratApprentissage": "false"
       },
       "cddTermine": {
-        "depuisMoinsUnAn": true,
-        "24MoisSur5Ans": true,
-        "4MoisSur1An": true,
+        "depuisMoinsUnAn": "true",
+        "12MoisSur5Ans": "true",
+        "4MoisSur1An": "true",
         "cddDateDeFin": "2018-02-15"
       },
-      "contratAide": {
-        "enCours": false,
-        "termine": true
-      }
+      "interimExperience": {
+        "1600HeuresDepuis6mois": "false",
+        "600HeuresDepuis6mois": "false"
+      },
+      "contratAide": "false",
+      "travailleurHandicape": "false",
+      "projetCreationEntreprise": "false"
     }
   },
   {
-    "test": true,
     "formationVisee": {
-      "codeFormation": "09_94F1800047"
+      "codeFormation": "09_94F1800047",
+      "codeSession": "9592"
     },
     "individu": {
+      "test": true,
       "type": "DE",
-      "chomageDePlusDeSixMois": true,
-      "departementHabitation": "2B",
+      "chomageDePlusDeSixMois": "true",
+      "cumulDureeInscriptionSur12Mois": "12",
+      "departementHabitation": "2b",
       "dateNaissance": "1980-12-12",
-      "niveauEtude": 3,
+      "niveauEtude": "3",
       "heuresCPF": "100",
-      "typeAllocation": {
-        "type": "non"
+      "contratApprentissage": "false",
+      "apprentissageSituation": {
+        "ruptureContratApprentissage": "false"
       },
-      "contratAide": {
-        "enCours": false,
-        "termine": true
-      }
+      "cddTermine": {
+        "depuisMoinsUnAn": "false",
+        "12MoisSur5Ans": "false"
+      },
+      "interimExperience": {
+        "1600HeuresDepuis6mois": "false",
+        "600HeuresDepuis6mois": "false"
+      },
+      "contratAide": "false",
+      "travailleurHandicape": "false",
+      "projetCreationEntreprise": "false"
     }
   },
   {
-    "test": true,
     "formationVisee": {
       "codeFormation": "20_16973"
     },
     "individu": {
+      "test": true,
       "type": "DE",
       "departementHabitation": "75",
       "dateNaissance": "1980-06-15",
@@ -621,11 +888,11 @@
     }
   },
   {
-    "test": true,
     "formationVisee": {
       "codeFormation": "18_3529"
     },
     "individu": {
+      "test": true,
       "type": "DE",
       "chomageDePlusDeSixMois": true,
       "departementHabitation": "62",
@@ -642,11 +909,11 @@
     }
   },
   {
-    "test": true,
     "formationVisee": {
       "codeFormation": "24_122040"
     },
     "individu": {
+      "test": true,
       "type": "DE",
       "chomageDePlusDeSixMois": true,
       "departementHabitation": "13",

@@ -4,7 +4,7 @@ CPF sur son temps de travail:
 CPF hors temps de travail:
   tags: [CPF, hors temps de travail]
   racine: organisme paritaire.rules
-CPF demandeur d'emploi:
+Compte Personnel de Formation (CPF):
   type_lbf: cpf
   priorite_lbf: 0
   tags: [CPF, DE]
