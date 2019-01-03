@@ -22,9 +22,3 @@ Si le financement est de type «CIF»
             # 3746 = deux fois le smix / 0.8
             Si la rémunération du bénéficiaire est inférieure à 3746
                 Alors la rémunération applicable est égale à deux fois le SMIC
-
-Si le financement est de type «période de professionnalisation»
-    Alors appliquer les règles «période de professionnalisation»
-    Et le plafond financier applicable vaut 6750
-    Et le prix horaire plafond applicable vaut 25
-    Et la rémunération applicable est égale à la rémunération du bénéficiaire

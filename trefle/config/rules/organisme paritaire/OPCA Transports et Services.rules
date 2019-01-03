@@ -11,14 +11,3 @@ Si le financement est de type «CPF»
     Si le code NAF de l'établissement du bénéficiaire fait partie des codes NAF CPNE éligibles
         Alors le prix horaire plafond applicable vaut 30
 
-Si le financement est de type «période de professionnalisation»
-
-    Si la liste des domaines FORMACODE de la formation contient 318
-    Et le niveau de sortie de la formation fait partie de [«I»,«II»,«III»,«IV»,«V»]
-        Alors appliquer les règles «période de professionnalisation»
-        Et le prix horaire plafond applicable vaut 10.5
-
-        Si le niveau de sortie de la formation vaut «V»
-        Et la liste des codes FORMACODE de la formation contient au moins un code parmi [31816,31854]
-        # Et contient CAP
-            Alors le prix horaire plafond applicable vaut 13.5

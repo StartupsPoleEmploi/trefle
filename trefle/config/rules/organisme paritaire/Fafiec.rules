@@ -10,9 +10,3 @@ Si le financement est de type «CPF»
         Alors le prix horaire plafond applicable vaut 100
         Alors le plafond horaire applicable est égal à la durée en heures de la formation
 
-Si le financement est de type «période de professionnalisation»
-    Alors appliquer les règles «période de professionnalisation»
-    Et le prix horaire plafond applicable vaut 30
-
-    Si c'est une formation langues
-        Alors le prix horaire plafond applicable vaut 20

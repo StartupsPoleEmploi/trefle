@@ -33,7 +33,3 @@ Si le financement est de type «CIF»
 
     Si le financement est de type «sur son temps de travail»
         Alors la rémunération applicable est égale à la rémunération du bénéficiaire
-
-Si le financement est de type «période de professionnalisation»
-    Alors appliquer les règles «période de professionnalisation»
-    Et le prix horaire plafond applicable vaut 12

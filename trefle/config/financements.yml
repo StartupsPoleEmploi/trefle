@@ -752,14 +752,6 @@ CIF intermittents hors temps de travail:
   financee_pe: False
   cumulable: True
   racine: organisme paritaire.rules
-Période de professionnalisation sur son temps de travail:
-  tags: [période de professionnalisation, sur son temps de travail]
-  cpf_mobilisable: True
-  financee_pe: False
-  cumulable: True
-  racine: organisme paritaire.rules
-  ressources:
-  - https://www.service-public.fr/particuliers/vosdroits/F13516
 Plan de formation sur son temps de travail:
   tags: [plan de formation, sur son temps de travail]
   cpf_mobilisable: True
