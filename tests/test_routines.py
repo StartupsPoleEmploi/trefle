@@ -24,7 +24,7 @@ async def test_populate_formation_from_json():
         assert context['formation.regions_coparef_de'] == {'24'}
         assert context['formation.codes_formacode'] == {22403, 22402}
         assert context['formation.domaines_formacode'] == {224}
-        assert context['formation.foad'] is True
+        assert context['formation.foad'] is False
         assert context['formation.niveau_sortie'] == 4
         assert context['formation.heures'] == 697
         assert context['formation.heures_entreprise'] == 112
@@ -40,7 +40,6 @@ async def test_populate_formation_from_json():
         assert context['formation.codes_cpf_de'] == {233155, 130805, 232054}
         assert context['formation.code_certifinfo'] == 80735
         assert context['formation.code_rncp'] == 320
-        assert context['formation.codes_modalite_pedagogique'] == {"96133"}
         assert context['formation.rncp'] is True
         assert context['formation.entrees_sorties_permanentes'] is False
         assert context['formation.contrat_apprentissage'] is False
@@ -73,6 +72,7 @@ async def test_populate_formation_from_json():
     ('daeu', 'formation.enseignement_superieur', True),
     ('old_region', 'formation.regions_coparef_de', {'24', '27'}),
     ('with_copanef', 'formation.eligible_copanef', True),
+    ('with_codes_modalite_pedagogique', 'formation.foad', True),
 ])
 @pytest.mark.asyncio
 async def test_populate_formation_from_json_edge_cases(path, key, value):

@@ -836,7 +836,7 @@ formation:
   foad:
     type: boolean
     source: catalogue
-    path: modalite-enseignement=2
+    path: modalites-enseignement=2
     label: formation ouverte à distance
   codes_modalite_pedagogique:
     type: array

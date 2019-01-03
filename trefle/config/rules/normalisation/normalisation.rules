@@ -104,7 +104,6 @@ Ou l'intitulé normé de la formation contient «STABILISATIONDUPROJETPROFESSION
     Alors c'est une formation PCP
 Si le code RNCP de la formation est défini
     Alors c'est une formation RNCP
-Si ce n'est pas une formation ouverte à distance
-Et la liste des codes des modalités pédagogiques contient au moins un code parmi [«96133»,«96131»,«96130»,«96129»]
+Si la liste des codes des modalités pédagogiques contient au moins un code parmi [«96133»,«96131»,«96130»,«96129»]
     Alors c'est une formation ouverte à distance
 

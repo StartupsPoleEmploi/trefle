@@ -758,6 +758,7 @@
   "niveau-sortie": "4",
   "validation": 5,
   "modalite-enseignement": 0,
+  "code-modalite-pedagogique": ["96133"],
   "certification": true,
   "entrees-sorties-permanentes": false,
   "certifiante": true
