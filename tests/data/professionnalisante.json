@@ -59,7 +59,7 @@
     }
   },
   "niveau-retour-embauche": 3,
-  "niveau-sortie": "1",
+  "code-niveau-sortie": "1",
   "resultats-attendus": "Attestation",
   "validation": 0,
   "modalite-alternance": "Néant",

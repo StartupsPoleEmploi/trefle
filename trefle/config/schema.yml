@@ -1005,7 +1005,7 @@ formation:
     format: int32
     label: niveau de sortie de la formation
     source: catalogue
-    path: niveau-sortie
+    path: code-niveau-sortie
     gender: masculine
     url: http://lheo.gouv.fr/langage#dict-niveaux
     enum: *niveau_scolaire

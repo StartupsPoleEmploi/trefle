@@ -763,7 +763,7 @@
   "niveau-retour-embauche": 4,
   "code-certifinfo": "80735",
   "code-rncp": "320",
-  "niveau-sortie": "4",
+  "code-niveau-sortie": "4",
   "validation": 5,
   "modalite-enseignement": 0,
   "certification": true,
