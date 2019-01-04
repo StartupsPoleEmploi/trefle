@@ -133,46 +133,6 @@ Scénario: Agence Agefomat sur NAF
     Quand je sélectionne le financement «CPF hors temps de travail»
     Alors l'organisme à contacter est «AGEFOS PME établissement Agefomat»
 
-# https://labonneformation.beta.pole-emploi.fr/engager-les-demarches?a=SW2dO3MqGVeKYcg4TkJiTImFcDassmdCQ4ssllQysssst_CCkPs4cLack2aK10K1vucc74N4g8HeNfKsyQssaGvV8ByIOi2Ras3oGBk3nEZJSd3qrpBVIMqLA73rHbNYFDasQhwwve00VIm46LKYDcmlnsAGvKKwmJ4qF1Q6NTeH%3DfomQsQNca5jj7UjBYsQIRYWXVdNfe4fFsDXADYFguSnQcHQmodsms%3D2Ux7DnBtvsddtyqgkAoBhWhpYQ1-aIiF-GUFg8PeZP4r9NW8A1iXIpF-dp04SLkeFyRDWb2AY_vK5OCedQ1U-vrmutXiGH7JUYj14rM6_qEp4Idpxu1h9fLEnd-s8rmstg9BB1ZNKf9ppe-Pd-5siROT_rnNr0RfmmBMyFpsz
-Scénario: période de professionnalisation + CPF
-    Soit un bénéficiaire et une formation
-    Et la rémunération du bénéficiaire vaut 1500
-    Et c'est un bénéficiaire de droit privé
-    Et le solde CPF du bénéficiaire vaut 150
-    Et le type de contrat du bénéficiaire vaut «CDI»
-    Et l'expérience professionnelle du bénéficiaire dans les cinq dernières années vaut 12
-    Et l'ancienneté en mois du bénéficiaire dans son entreprise vaut 12
-    Et le code NAF de l'établissement du bénéficiaire vaut «8891A»
-    Et l'IDCC de l'établissement du bénéficiaire vaut «2395»
-    Et la région de l'établissement du bénéficiaire vaut «Provence-Alpes-Côte d'Azur»
-    Et ce n'est pas une formation éligible COPANEF
-    Et c'est une formation éligible région «Provence-Alpes-Côte d'Azur»
-    Et la régions éligibles COPAREF vaut [«Provence-Alpes-Côte d'Azur»]
-    Et la liste des codes FORMACODE de la formation vaut [44028]
-    Et la liste des domaines FORMACODE de la formation vaut [440]
-    Et le code CERTIFINFO de la formation vaut 30958
-    Et la durée en heures de la formation vaut 805
-    Et la liste des codes CPF de la formation vaut [18082,161236,157711]
-    Et les codes NAF CPNE éligibles vaut [«8810A»,«8559B»,«8891A»,«8810B»,«9609Z»,«8622A»,«8622C»,«8899A»,«8621Z»,«7830Z»,«8899B»]
-    Et le niveau de sortie de la formation vaut «V»
-    Et c'est une formation certifiante
-    Et la durée en mois de la formation vaut 6
-    Et la durée en semaines de la formation vaut 28
-    Et la durée hebdomadaire de la formation vaut 29
-    Quand je demande un calcul de financement
-    Quand je sélectionne le financement «CPF sur son temps de travail»
-    Alors l'organisme à contacter est «AGEFOS PME Provence Alpes Côte d'Azur»
-    Et le plafond de prise en charge vaut 7500
-    Et la rémunération applicable vaut 1500
-    Quand je sélectionne le financement «CPF hors temps de travail»
-    Alors l'organisme à contacter est «AGEFOS PME Provence Alpes Côte d'Azur»
-    Et le plafond de prise en charge vaut 7500
-    Et la rémunération applicable vaut 0
-    Quand je sélectionne le financement «Période de professionnalisation sur son temps de travail»
-    Alors l'organisme à contacter est «AGEFOS PME Provence Alpes Côte d'Azur»
-    Et le plafond de prise en charge vaut 7365.75
-    Et la rémunération applicable vaut 1500
-
 
 Scénario: pas de financement pour une formation réservée Pôle Emploi
     Soit un bénéficiaire et une formation
@@ -202,35 +162,3 @@ Scénario: pas de financement pour une formation réservée Pôle Emploi
     Et la durée hebdomadaire de la formation vaut 29
     Quand je demande un calcul de financement
     Alors aucun financement n'est proposé
-
-Scénario: période de professionnalisation avec entrées-sorties permanentes
-    Soit un bénéficiaire et une formation
-    Et c'est un bénéficiaire de droit privé
-    Et la rémunération du bénéficiaire vaut 1500
-    Et le type de contrat du bénéficiaire vaut «CDI»
-    Et l'expérience professionnelle du bénéficiaire dans les cinq dernières années vaut 36
-    Et l'ancienneté en mois du bénéficiaire dans son entreprise vaut 12
-    Et le code NAF de l'établissement du bénéficiaire vaut «5510Z»
-    Et l'IDCC de l'établissement du bénéficiaire vaut «1631»
-    Et le âge du bénéficiaire vaut 28
-    Et la région de l'établissement du bénéficiaire vaut «Île-de-France»
-    Et la département de la formation vaut «Var»
-    Et la région de la formation vaut «Provence-Alpes-Côte d'Azur»
-    Et la liste des codes ROME de la formation vaut [I1402,I1401]
-    Et la liste des codes FORMACODE de la formation vaut [31073,31003,31005,31006,31007]
-    Et la liste des domaines FORMACODE de la formation vaut [310]
-    Et la durée en heures de la formation vaut 241
-    Et le nombre d'heures en centre vaut 241
-    Et la durée hebdomadaire de la formation vaut 25
-    Et la date de début de la formation vaut «24/01/2018»
-    Et la date de fin de la formation vaut «31/12/2019»
-    Et c'est une formation ouverte à distance
-    Et c'est une formation à entrées-sorties permanentes
-    Et la durée en semaines de la formation vaut 101
-    Et la durée en mois de la formation vaut 23
-    Et c'est une formation ouverte aux bénéficiaires individuels
-    Quand je demande un calcul de financement
-    Et je sélectionne le financement «Période de professionnalisation sur son temps de travail»
-    Alors la rémunération applicable vaut 1500
-    Et la plafond de prise en charge vaut 2205.15
-    Et l'organisme à contacter est «AGEFOS PME Ile de France»

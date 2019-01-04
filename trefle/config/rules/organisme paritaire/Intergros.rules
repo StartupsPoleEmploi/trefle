@@ -16,19 +16,6 @@ Si le financement est de type «CPF»
     Si c'est une formation CléA
         Alors le prix horaire plafond applicable vaut 18
 
-Si le financement est de type «période de professionnalisation»
-
-    Si c'est une formation CléA
-        Alors appliquer les règles «période de professionnalisation»
-        Et le prix horaire plafond applicable vaut 18
-
-        Si c'est une formation ouverte à distance
-            Alors le prix horaire plafond applicable vaut 10
-
-    Si le code RNCP de la formation est 16457
-        Alors appliquer les règles «période de professionnalisation»
-        Et le prix horaire plafond applicable vaut 20
-
 Si le financement est de type «plan de formation»
 
     Si c'est une formation CléA

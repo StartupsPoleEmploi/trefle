@@ -18,20 +18,3 @@ Si le financement est de type «CPF»
     Si c'est une formation VAE
         Alors le prix horaire plafond applicable vaut 80
         Et le plafond horaire applicable est égal à la durée en heures de la formation
-
-Si le financement est de type «période de professionnalisation»
-    Alors appliquer les règles «période de professionnalisation»
-    Et le prix horaire plafond applicable vaut 12
-
-    Si c'est une formation CléA
-    # lutte contre l'illétrisme
-    Ou la liste des codes FORMACODE de la formation contient 15043
-    # FLE
-    Ou la liste des codes FORMACODE de la formation contient 15226
-    # Chantier
-    Ou la liste des codes FORMACODE de la formation contient au moins un code parmi [22254,22273,22274,22283,22286,22293,22294,22297]
-        Alors le prix horaire plafond applicable vaut 22
-
-    # Conduite d'engins
-    Si la liste des codes FORMACODE de la formation contient au moins un code parmi [31701,31702,31703,31706,31708,31709,31711,31715,31717,31721,31726,31728,31729,31734,31736,31738,31747,31754,31759,31768,31769,31770,31771,31776,31784,31793,31795,31807]
-        Alors le prix horaire plafond applicable vaut 28

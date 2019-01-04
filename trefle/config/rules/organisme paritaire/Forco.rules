@@ -19,10 +19,3 @@ Si le financement est de type «CPF»
         Si c'est une formation VAE
             Alors le plafond horaire applicable est égal à la durée en heures de la formation
 
-Si le financement est de type «période de professionnalisation»
-
-    Si c'est une formation VAE
-    # formation commerce et distribution
-    Ou la liste des domaines FORMACODE de la formation contient 345, et c'est une formation certifiante
-        Alors appliquer les règles «période de professionnalisation»
-        Et le prix horaire plafond applicable vaut 9.15

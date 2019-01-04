@@ -13,26 +13,6 @@ Si le financement est de type «CPF»
     # Si kkchose CONTIENT «CQP»
     #     Alors le prix horaire plafond applicable vaut 60
 
-Si le financement est de type «période de professionnalisation»
-
-    # CONTRÔLE TECHNIQUE AUTOMOBILE
-    Si la liste des codes FORMACODE de la formation contient 23649
-    Ou c'est une formation CléA
-    Ou c'est une formation ouverte à distance
-    # formation répertoire national des Certifications de la branche
-    # Mention PL ou 2 roues du BEPECASER
-    Ou le code RNCP de la formation vaut 6103, et la durée en heures de la formation est inférieure à 175
-    # BAFM
-    Ou le code CERTIFINFO de la formation vaut 78290, et la durée en heures de la formation est inférieure à 350
-    # Titre ESCR
-    Ou le code RNCP de la formation vaut 25651, et la durée en heures de la formation est inférieure à 455
-    # Certificat Complémentaire de Spécialisation 2 roues
-    Ou le code CERTIFINFO de la formation vaut 88675, et la durée en heures de la formation est inférieure à 240
-    # Certificat Complémentaire de Spécialisation PL
-    Ou le code RNCP de la formation vaut 1883, et la durée en heures de la formation est inférieure à 200
-        Alors appliquer les règles «période de professionnalisation»
-        Et le prix horaire plafond applicable vaut 15
-
 Si le financement est de type «plan de formation»
     Alors la rémunération applicable est égale à la rémunération du bénéficiaire
 

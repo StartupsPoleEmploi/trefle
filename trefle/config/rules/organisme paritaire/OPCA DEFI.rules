@@ -40,13 +40,3 @@ Si le financement est de type «CPF»
             Alors le prix horaire plafond applicable est égal au prix horaire de la formation
         Si c'est une formation langues
             Alors le prix horaire plafond applicable vaut 12
-
-Si le financement est de type «période de professionnalisation»
-    # Formation industrielle
-    Si la liste des domaines FORMACODE de la formation contient 316
-    Ou c'est une formation CléA
-        Alors appliquer les règles «période de professionnalisation»
-        Et le prix horaire plafond applicable vaut 10
-
-        Si c'est une formation certifiante
-            Alors le prix horaire plafond applicable vaut 20
