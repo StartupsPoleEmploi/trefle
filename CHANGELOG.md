@@ -1,7 +1,15 @@
 # Changelog
 
-## dev
+## 0.7.0
 
+- switch to LBF json catalog instead of Intercarif XML
+- rules: remove CIF and contrat de professionnalisation
+- rules: add legacy LBF API mode
+- rules: add DE rules
+- refactor financements populate
+- simulate: allow to filter financements by tags
+- explorer: add progressiv bar, cache scenarios, and display simulation request errors
+- explorer: change API path to relative
 - explorer: only display bénéficiaire and formation context in simulate
 - explorer: add Features tab
 
