@@ -72,6 +72,7 @@ async def test_populate_formation_from_json():
     ('daeu', 'formation.enseignement_superieur', True),
     ('old_region', 'formation.regions_coparef_de', {'24', '27'}),
     ('with_copanef', 'formation.eligible_copanef', True),
+    ('with_codes_modalite_pedagogique', 'formation.foad', True),
 ])
 @pytest.mark.asyncio
 async def test_populate_formation_from_json_edge_cases(path, key, value):
