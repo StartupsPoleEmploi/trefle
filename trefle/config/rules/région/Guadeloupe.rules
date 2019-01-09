@@ -100,7 +100,6 @@ Si l'intitulé du financement est «Programme régional de formation»
 
     Si c'est un demandeur d'emploi
     Et la région de la formation est «Guadeloupe»
-    Et la région du bénéficiaire est «Guadeloupe»
     Et les codes financeur de la formation contiennent «Conseil régional»
         Alors le financement est éligible
         Et le texte de description vaut «Le programme régional de formation propose des actions de formation financées par le Conseil régional pour des demandeurs d'emploi ayant besoin d'une certification ou qualification.»
