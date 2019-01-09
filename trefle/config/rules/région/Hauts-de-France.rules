@@ -70,7 +70,6 @@ Si l'intitulé du financement est «Sanitaire et social»
 Si l'intitulé du financement est «Programme régional de formation»
 
     Si c'est un demandeur d'emploi
-    Et la région du bénéficiaire vaut «Hauts-de-France»
     Et la région de la formation est «Hauts-de-France»
     Et les codes financeur de la formation contiennent «Conseil régional»
     Et le code CERTIFINFO de la formation ne fait pas partie de [54913,54912]
