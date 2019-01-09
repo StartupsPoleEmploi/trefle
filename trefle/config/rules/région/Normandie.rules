@@ -51,7 +51,6 @@ Si l'intitulé du financement est «Aide individuelle à la formation»
 Si l'intitulé du financement est «Programme de formations collectives financées par le Conseil régional de Normandie»
 
     Si c'est un demandeur d'emploi
-    Et la région du bénéficiaire est «Normandie»
     Et la région de la formation est «Normandie»
     Et l'allocation du bénéficiaire n'est pas «allocation de sécurisation professionnelle»
     Et les codes financeur de la formation contiennent «Conseil régional»
