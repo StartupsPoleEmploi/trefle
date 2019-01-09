@@ -67,9 +67,11 @@ def data_from_lbf_url(url):
         encrypted = "".join(charmap[char] for char in encrypted[8:])
         serialized = base64.b64decode(encrypted)
         serialized = bz2.decompress(serialized)
-        args.update(
-            {k.decode(): v.decode() for k, v in phpserialize.loads(serialized).items()}
-        )
+        for k, v in phpserialize.loads(serialized).items():
+            try:
+                args[k.decode()] = v.decode()
+            except AttributeError:
+                continue
         del args["a"]
 
     keymap = {
