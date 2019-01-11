@@ -59,29 +59,29 @@ def check_diff_dates(context, start, end, amount):
 
 
 @reason("{left.pointer.raw} vaut {left}, c'est inférieur ou égal au seuil de {right}")
-@condition(r"(l'|les? |la )(?P<left>.+) est supérieure? à (l'|les? |la )?(?P<right>.+)")
-@condition(r"(l'|les? |la )(?P<left>.+) (n'est|ne sont) pas inférieure?s? ou éga(le?s?|aux)? à (l'|les? |la )?(?P<right>.+)")
+@condition(r"(l'|les? |la )(?P<left>.+) est supérieure? (à|aux?) (l'|les? |la )?(?P<right>.+)")
+@condition(r"(l'|les? |la )(?P<left>.+) (n'est|ne sont) pas inférieure?s? ou éga(le?s?|aux)? (à|aux?) (l'|les? |la )?(?P<right>.+)")
 def check_gt(context, left, right):
     return left.value > right.value
 
 
 @reason("{left.pointer.raw} trop faible: {left}, au lieu de {right} au moins")
-@condition(r"(l'|les? |la )(?P<left>.+) est supérieure? ou égale? à (l'|les? |la )?(?P<right>.+)")
-@condition(r"(l'|les? |la )(?P<left>.+) (n'est|ne sont) pas inférieure?s? à (l'|les? |la )?(?P<right>.+)")
+@condition(r"(l'|les? |la )(?P<left>.+) est supérieure? ou égale? (à|aux?) (l'|les? |la )?(?P<right>.+)")
+@condition(r"(l'|les? |la )(?P<left>.+) (n'est|ne sont) pas inférieure?s? (à|aux?) (l'|les? |la )?(?P<right>.+)")
 def check_ge(context, left, right):
     return left.value >= right.value
 
 
 @reason("{left.pointer.raw} trop grande: {left} (le maximum est {right})")
-@condition(r"(l'|les? |la )(?P<left>.+?) est inférieure? ou égale? à (?P<rate>[\d\.]+)% (de l'|du |de la |des )?(?P<right>.+)")
-@condition(r"(l'|les? |la )(?P<left>.+?) (n'est|ne sont) pas supérieure?s? à (?P<rate>[\d\.]+)% (de l'|du |de la |des )?(?P<right>.+)")
+@condition(r"(l'|les? |la )(?P<left>.+?) est inférieure? ou égale? (à|aux?) (?P<rate>[\d\.]+)% (de l'|du |de la |des )?(?P<right>.+)")
+@condition(r"(l'|les? |la )(?P<left>.+?) (n'est|ne sont) pas supérieure?s? (à|aux?) (?P<rate>[\d\.]+)% (de l'|du |de la |des )?(?P<right>.+)")
 def check_percent_le(context, left, rate, right):
     return left.value <= (right.value * rate.value / 100)
 
 
 @reason("{left.pointer.raw} trop grande: {left} (le maximum est {right})")
-@condition(r"(l'|les? |la )(?P<left>.+) est inférieure? ou égale? à (l'|les? |la )?(?P<right>.+)")
-@condition(r"(l'|les? |la )(?P<left>.+) (n'est|ne sont) pas supérieure?s? à (l'|les? |la )?(?P<right>.+)")
+@condition(r"(l'|les? |la )(?P<left>.+) est inférieure? ou égale? (à|aux?) (l'|les? |la )?(?P<right>.+)")
+@condition(r"(l'|les? |la )(?P<left>.+) (n'est|ne sont) pas supérieure?s? (à|aux?) (l'|les? |la )?(?P<right>.+)")
 def check_le(context, left, right):
     return left.value <= right.value
 
