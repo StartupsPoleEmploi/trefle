@@ -1,9 +1,9 @@
 CPF sur son temps de travail:
   tags: [CPF, sur son temps de travail]
-  racine: organisme paritaire.rules
+  racine: CPF.rules
 CPF hors temps de travail:
   tags: [CPF, hors temps de travail]
-  racine: organisme paritaire.rules
+  racine: CPF.rules
 Compte Personnel de Formation (CPF):
   type_lbf: cpf
   priorite_lbf: 0

@@ -64,9 +64,9 @@ Scénario: le solde CPF n'est pas plafonné
     Et le solde CPF du bénéficiaire vaut 192
     Quand je demande un calcul de financement
     Et je sélectionne le financement «CPF sur son temps de travail»
-    Alors le plafond de prise en charge vaut 1920
+    Alors le montant de prise en charge vaut 192
     Quand je sélectionne le financement «CPF hors temps de travail»
-    Alors le plafond de prise en charge vaut 1920
+    Alors le montant de prise en charge vaut 192
 
 
 Scénario: le bénéficiaire n'a pas défini de rémunération
@@ -92,10 +92,8 @@ Scénario: le bénéficiaire n'a pas défini de rémunération
     Et la durée hebdomadaire de la formation vaut 35
     Quand je demande un calcul de financement
     Quand je sélectionne le financement «CPF sur son temps de travail»
-    Alors l'organisme à contacter est «AGEFOS PME Auvergne Rhône Alpes»
-    Et le plafond de prise en charge vaut 7500
+    Alors le montant de prise en charge vaut 150
     Et la rémunération applicable vaut 0
     Quand je sélectionne le financement «CPF hors temps de travail»
-    Alors l'organisme à contacter est «AGEFOS PME Auvergne Rhône Alpes»
-    Et le plafond de prise en charge vaut 7500
+    Alors le montant de prise en charge vaut 150
     Et la rémunération applicable vaut 0
