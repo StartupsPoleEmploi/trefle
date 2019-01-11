@@ -1,11 +1,12 @@
-Si c'est une formation éligible COPAREF de la région du bénéficiaire
+Si c'est une formation ouverte aux bénéficiaires individuels
+Et c'est une formation éligible COPAREF de la région du bénéficiaire
 Ou c'est une formation éligible COPANEF
 Ou le code NAF de l'établissement du bénéficiaire fait partie des codes NAF CPNE éligibles
 Et ce n'est pas un contrat de professionnalisation
 Et ce n'est pas un contrat d'apprentissage
     Si le solde CPF du bénéficiaire est supérieur à 0
         Alors le financement est éligible
-        Et le montant de prise en charge est égal au solde CPF du bénéficiaire
+        Et le plafond financier applicable est le solde CPF du bénéficiaire
         Et le texte de description vaut «Le compte personnel de formation (CPF) permet à toute personne active d’acquérir des droits pour financer totalement ou partiellement une formation.»
 
         Si le financement est de type «hors temps de travail»

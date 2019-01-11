@@ -13,7 +13,7 @@ Et ce n'est pas un contrat d'apprentissage
         Et le texte des démarches vaut «1. Contactez votre conseiller référent emploi pour valider avec lui votre projet de formation.⏎2. Consultez votre compte CPF sur le site https://www.moncompteactivite.gouv.fr»
 
         Si le solde CPF du bénéficiaire est défini
-            Alors le montant de prise en charge est égal au solde CPF du bénéficiaire
+            Alors le plafond financier applicable est le solde CPF du bénéficiaire
 
-            Si le solde CPF du bénéficiaire est supérieur ou égal au plafond de prise en charge
+            Si le solde CPF du bénéficiaire est supérieur ou égal au montant de prise en charge
                 Alors le texte des démarches vaut «Vous pouvez directement faire la demande de financement sur https://www.moncompteactivite.gouv.fr et prendre contact avec l'organisme de formation pour vous inscrire à la formation.»
