@@ -4,7 +4,7 @@ Fonctionnalité: OPCABAIA
 Scénario: CPF avec IDCC 1672
     Soit un bénéficiaire et une formation
     Et c'est un bénéficiaire de droit privé
-    Et le solde CPF du bénéficiaire vaut 150
+    Et le solde CPF du bénéficiaire vaut 10000
     Et la rémunération du bénéficiaire vaut 1500
     Et le âge du bénéficiaire vaut 28
     Et l'expérience professionnelle du bénéficiaire dans les cinq dernières années vaut 28

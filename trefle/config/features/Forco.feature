@@ -4,7 +4,7 @@ Fonctionnalité: Forco
 Scénario: Formation CPF
     Soit un bénéficiaire et une formation
     Et c'est un bénéficiaire de droit privé
-    Et le solde CPF du bénéficiaire vaut «50»
+    Et le solde CPF du bénéficiaire vaut «500»
     Et la rémunération du bénéficiaire vaut «1200»
     Et le âge du bénéficiaire vaut 17
     Et l'expérience professionnelle du bénéficiaire dans les cinq dernières années vaut 12
@@ -29,11 +29,11 @@ Scénario: Formation CPF
     Quand je demande un calcul de financement
     Quand je sélectionne le financement «CPF sur son temps de travail»
     Alors l'organisme à contacter est «Forco»
-    Et le plafond de prise en charge vaut 2250
+    Et le plafond de prise en charge vaut 500
     Et la rémunération applicable vaut 1200
     Quand je sélectionne le financement «CPF hors temps de travail»
     Alors l'organisme à contacter est «Forco»
-    Et le plafond de prise en charge vaut 2250
+    Et le plafond de prise en charge vaut 500
     Et la rémunération applicable vaut 0
 
 

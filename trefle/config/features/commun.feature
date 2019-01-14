@@ -61,7 +61,7 @@ Scénario: le solde CPF n'est pas plafonné
     Et l'IDCC de l'établissement du bénéficiaire vaut 7010
     Et le prix horaire de la formation vaut 10
     Et la durée en heures de la formation vaut 300
-    Et le solde CPF du bénéficiaire vaut 192
+    Et le solde CPF du bénéficiaire vaut 1920
     Quand je demande un calcul de financement
     Et je sélectionne le financement «CPF sur son temps de travail»
     Alors le plafond de prise en charge vaut 1920
@@ -72,7 +72,7 @@ Scénario: le solde CPF n'est pas plafonné
 Scénario: le bénéficiaire n'a pas défini de rémunération
     Soit un bénéficiaire et une formation
     Et c'est un bénéficiaire de droit privé
-    Et le solde CPF du bénéficiaire vaut 150
+    Et le solde CPF du bénéficiaire vaut 1500
     Et le type de contrat du bénéficiaire vaut «CDI»
     Et l'expérience professionnelle du bénéficiaire dans les cinq dernières années vaut 24
     Et l'ancienneté en mois du bénéficiaire dans son entreprise vaut 24
@@ -93,9 +93,9 @@ Scénario: le bénéficiaire n'a pas défini de rémunération
     Quand je demande un calcul de financement
     Quand je sélectionne le financement «CPF sur son temps de travail»
     Alors l'organisme à contacter est «AGEFOS PME Auvergne Rhône Alpes»
-    Et le plafond de prise en charge vaut 7500
+    Et le plafond de prise en charge vaut 1500
     Et la rémunération applicable vaut 0
     Quand je sélectionne le financement «CPF hors temps de travail»
     Alors l'organisme à contacter est «AGEFOS PME Auvergne Rhône Alpes»
-    Et le plafond de prise en charge vaut 7500
+    Et le plafond de prise en charge vaut 1500
     Et la rémunération applicable vaut 0

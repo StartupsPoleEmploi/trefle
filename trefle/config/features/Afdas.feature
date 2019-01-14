@@ -15,11 +15,11 @@ Scénario: plafond prix horaire d'une formation VAE
     Quand je demande un calcul de financement
     Et je sélectionne le financement «CPF sur son temps de travail»
     Alors l'organisme à contacter est «Afdas»
-    Et le montant de prise en charge vaut 7000
+    Et le montant de prise en charge vaut 100
     Et la rémunération applicable vaut 1400
     Quand je sélectionne le financement «CPF hors temps de travail»
     Alors l'organisme à contacter est «Afdas»
-    Et le montant de prise en charge vaut 7000
+    Et le montant de prise en charge vaut 100
     Et la rémunération applicable vaut 0
 
 Scénario: plafond horaire d'une formation VAE
@@ -36,11 +36,11 @@ Scénario: plafond horaire d'une formation VAE
     Quand je demande un calcul de financement
     Et je sélectionne le financement «CPF sur son temps de travail»
     Alors l'organisme à contacter est «Afdas»
-    Et le montant de prise en charge vaut 3500
+    Et le montant de prise en charge vaut 50
     Et la rémunération applicable vaut 1400
     Quand je sélectionne le financement «CPF hors temps de travail»
     Alors l'organisme à contacter est «Afdas»
-    Et le montant de prise en charge vaut 3500
+    Et le montant de prise en charge vaut 50
     Et la rémunération applicable vaut 0
 
 

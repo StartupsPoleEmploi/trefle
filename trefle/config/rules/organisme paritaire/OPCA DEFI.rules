@@ -1,42 +1,42 @@
 Si le financement est de type «CPF»
     Alors appliquer les règles «CPF»
-    Et le plafond horaire applicable est égal au solde CPF du bénéficiaire
+    # Et le plafond horaire applicable est égal au solde CPF du bénéficiaire
 
-    Si l'IDCC de l'établissement du bénéficiaire vaut «292»
-        Alors le prix horaire plafond applicable vaut 25
-        Si c'est une formation VAE
-            Alors le plafond horaire applicable est égal à la durée en heures de la formation
-        Si le code NAF de l'établissement du bénéficiaire fait partie des codes NAF CPNE éligibles
-            Alors le prix horaire plafond applicable est égal au prix horaire de la formation
+    # Si l'IDCC de l'établissement du bénéficiaire vaut «292»
+    #     Alors le prix horaire plafond applicable vaut 25
+    #     Si c'est une formation VAE
+    #         Alors le plafond horaire applicable est égal à la durée en heures de la formation
+    #     Si le code NAF de l'établissement du bénéficiaire fait partie des codes NAF CPNE éligibles
+    #         Alors le prix horaire plafond applicable est égal au prix horaire de la formation
 
-    Si l'IDCC de l'établissement du bénéficiaire vaut «44»
-        Alors le prix horaire plafond applicable vaut 35
-        Si c'est une formation VAE
-            Alors le prix horaire plafond applicable est égal au prix horaire de la formation
-            Alors le plafond financier applicable vaut 5000
-        Si c'est une formation éligible COPANEF
-            Alors le prix horaire plafond applicable vaut 35
-            Si c'est une formation BEC
-                Alors le prix horaire plafond applicable est égal au prix horaire de la formation
-            Si c'est un permis B
-                Alors le plafond financier applicable vaut 1000
-            Si c'est un bilan de compétences
-                Alors le plafond financier applicable vaut 3000
-        Si le code NAF de l'établissement du bénéficiaire fait partie des codes NAF CPNE éligibles
-            Alors le prix horaire plafond applicable est égal au prix horaire de la formation
+    # Si l'IDCC de l'établissement du bénéficiaire vaut «44»
+    #     Alors le prix horaire plafond applicable vaut 35
+    #     Si c'est une formation VAE
+    #         Alors le prix horaire plafond applicable est égal au prix horaire de la formation
+    #         Alors le plafond financier applicable vaut 5000
+    #     Si c'est une formation éligible COPANEF
+    #         Alors le prix horaire plafond applicable vaut 35
+    #         Si c'est une formation BEC
+    #             Alors le prix horaire plafond applicable est égal au prix horaire de la formation
+    #         Si c'est un permis B
+    #             Alors le plafond financier applicable vaut 1000
+    #         Si c'est un bilan de compétences
+    #             Alors le plafond financier applicable vaut 3000
+    #     Si le code NAF de l'établissement du bénéficiaire fait partie des codes NAF CPNE éligibles
+    #         Alors le prix horaire plafond applicable est égal au prix horaire de la formation
 
-    Si l'IDCC de l'établissement du bénéficiaire fait partie de [«76»,«1388»]
-        Alors le prix horaire plafond applicable est égal au prix horaire de la formation
-        Alors le plafond horaire applicable est égal au solde CPF du bénéficiaire
-        Si c'est une formation VAE
-            Alors le plafond horaire applicable est égal à la durée en heures de la formation
+    # Si l'IDCC de l'établissement du bénéficiaire fait partie de [«76»,«1388»]
+    #     Alors le prix horaire plafond applicable est égal au prix horaire de la formation
+    #     Alors le plafond horaire applicable est égal au solde CPF du bénéficiaire
+    #     Si c'est une formation VAE
+    #         Alors le plafond horaire applicable est égal à la durée en heures de la formation
 
-    Si l'IDCC de l'établissement du bénéficiaire vaut «1555»
-        Alors le plafond horaire applicable est égal au solde CPF du bénéficiaire
-        Si c'est une formation VAE
-            Alors le prix horaire plafond applicable est égal au prix horaire de la formation
-            Alors le plafond horaire applicable est égal à la durée en heures de la formation
-        Si c'est une formation VAE
-            Alors le prix horaire plafond applicable est égal au prix horaire de la formation
-        Si c'est une formation langues
-            Alors le prix horaire plafond applicable vaut 12
+    # Si l'IDCC de l'établissement du bénéficiaire vaut «1555»
+    #     Alors le plafond horaire applicable est égal au solde CPF du bénéficiaire
+    #     Si c'est une formation VAE
+    #         Alors le prix horaire plafond applicable est égal au prix horaire de la formation
+    #         Alors le plafond horaire applicable est égal à la durée en heures de la formation
+    #     Si c'est une formation VAE
+    #         Alors le prix horaire plafond applicable est égal au prix horaire de la formation
+    #     Si c'est une formation langues
+    #         Alors le prix horaire plafond applicable vaut 12

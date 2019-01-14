@@ -197,7 +197,11 @@ def _clean_financements_data(financements):
                         financement["donneeStructurees"]["cout"][key_cout] = float(
                             financement["donneeStructurees"]["cout"][key_cout]
                         )
-                        if not financement["donneeStructurees"]["cout"][key_cout]:
+                        if (
+                            not financement["donneeStructurees"]["cout"][key_cout]
+                            or financement["donneeStructurees"]["familleDispositif"]
+                            == "CPF"
+                        ):
                             del financement["donneeStructurees"]["cout"][key_cout]
                 try:
                     del financement["donneeStructurees"]["remunerations"]

@@ -14,9 +14,9 @@ Scénario: cas nominal d'une formation COPANEF
     Quand je demande un calcul de financement
     Et je sélectionne le financement «CPF sur son temps de travail»
     Alors l'organisme à contacter est «FAFSEA»
-    Et le montant de prise en charge vaut 1250
+    Et le montant de prise en charge vaut 50
     Et la rémunération applicable vaut 1400
     Quand je sélectionne le financement «CPF hors temps de travail»
     Alors l'organisme à contacter est «FAFSEA»
-    Et le montant de prise en charge vaut 1250
+    Et le montant de prise en charge vaut 50
     Et la rémunération applicable vaut 0

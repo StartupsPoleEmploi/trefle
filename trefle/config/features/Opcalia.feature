@@ -6,7 +6,7 @@ Scénario: CPF intermittent
     Soit un bénéficiaire et une formation
     Et la rémunération du bénéficiaire vaut 1400
     Et c'est un bénéficiaire de droit privé
-    Et le solde CPF du bénéficiaire vaut 150
+    Et le solde CPF du bénéficiaire vaut 15000
     Et le type de contrat du bénéficiaire vaut «intermittent»
     Et l'expérience professionnelle du bénéficiaire dans les cinq dernières années vaut 24
     Et l'ancienneté en mois du bénéficiaire dans son entreprise vaut 12
@@ -27,9 +27,9 @@ Scénario: CPF intermittent
     Quand je demande un calcul de financement
     Quand je sélectionne le financement «CPF sur son temps de travail»
     Alors l'organisme à contacter est «Opcalia Auvergne Rhône Alpes»
-    Et le plafond de prise en charge vaut 7500
+    Et le plafond de prise en charge vaut 15000
     Et la rémunération applicable vaut 1400
     Quand je sélectionne le financement «CPF hors temps de travail»
     Alors l'organisme à contacter est «Opcalia Auvergne Rhône Alpes»
-    Et le plafond de prise en charge vaut 7500
+    Et le plafond de prise en charge vaut 15000
     Et la rémunération applicable vaut 0

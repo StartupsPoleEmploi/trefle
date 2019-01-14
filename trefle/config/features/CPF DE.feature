@@ -10,7 +10,7 @@ Scénario: Cas nominal CPF COPANEF demandeur d'emploi
     Et c'est une formation ouverte aux bénéficiaires individuels
     Quand je demande un calcul de financement
     Quand je sélectionne le financement «Compte Personnel de Formation (CPF)»
-    Alors le plafond de prise en charge vaut 900
+    Alors le plafond de prise en charge vaut 100
     Et la rémunération applicable vaut 401.09
 
 Scénario: Cas nominal CPF COPAREF demandeur d'emploi
@@ -23,7 +23,7 @@ Scénario: Cas nominal CPF COPAREF demandeur d'emploi
     Et c'est une formation éligible région «Île-de-France»
     Quand je demande un calcul de financement
     Quand je sélectionne le financement «Compte Personnel de Formation (CPF)»
-    Alors le plafond de prise en charge vaut 900
+    Alors le plafond de prise en charge vaut 100
     Et la rémunération applicable vaut 0
 
 Scénario: Cas nominal CPF si le solde n'est pas connu
@@ -35,5 +35,4 @@ Scénario: Cas nominal CPF si le solde n'est pas connu
     Et c'est une formation éligible région «Île-de-France»
     Quand je demande un calcul de financement
     Quand je sélectionne le financement «Compte Personnel de Formation (CPF)»
-    Alors le plafond de prise en charge vaut 1080
-    Et la rémunération applicable vaut 0
+    Alors la rémunération applicable vaut 0
