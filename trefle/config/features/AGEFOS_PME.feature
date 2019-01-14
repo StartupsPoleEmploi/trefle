@@ -14,11 +14,11 @@ Scénario: cas nominal d'une formation COPANEF
     Quand je demande un calcul de financement
     Et je sélectionne le financement «CPF sur son temps de travail»
     Alors l'organisme à contacter est «AGEFOS PME»
-    Et le montant de prise en charge vaut 1250
+    Et le montant de prise en charge vaut 50
     Et la rémunération applicable vaut 1400
     Quand je sélectionne le financement «CPF hors temps de travail»
     Alors l'organisme à contacter est «AGEFOS PME»
-    Et le montant de prise en charge vaut 1250
+    Et le montant de prise en charge vaut 50
     Et la rémunération applicable vaut 0
 
 Scénario: plafond horaire d'une formation VAE
@@ -35,11 +35,11 @@ Scénario: plafond horaire d'une formation VAE
     Quand je demande un calcul de financement
     Et je sélectionne le financement «CPF sur son temps de travail»
     Alors l'organisme à contacter est «AGEFOS PME»
-    Et le montant de prise en charge vaut 1250
+    Et le montant de prise en charge vaut 50
     Et la rémunération applicable vaut 1400
     Quand je sélectionne le financement «CPF hors temps de travail»
     Alors l'organisme à contacter est «AGEFOS PME»
-    Et le montant de prise en charge vaut 1250
+    Et le montant de prise en charge vaut 50
     Et la rémunération applicable vaut 0
 
 Scénario: cas nominal d'une formation Région (Conseil régional)
@@ -58,11 +58,11 @@ Scénario: cas nominal d'une formation Région (Conseil régional)
     Quand je demande un calcul de financement
     Et je sélectionne le financement «CPF sur son temps de travail»
     Alors l'organisme à contacter est «AGEFOS PME Provence Alpes Côte d'Azur»
-    Et le montant de prise en charge vaut 7500
+    Et le montant de prise en charge vaut 150
     Et la rémunération applicable vaut 2000
     Quand je sélectionne le financement «CPF hors temps de travail»
     Alors l'organisme à contacter est «AGEFOS PME Provence Alpes Côte d'Azur»
-    Et le montant de prise en charge vaut 7500
+    Et le montant de prise en charge vaut 150
     Et la rémunération applicable vaut 0
 
 # https://labonneformation-trefle.beta.pole-emploi.fr/engager-les-demarches?a=nbC2MndnGVeKYcg4TkJiTJJ3YdossmWCQ4ssllQvsssst_CC2Ps4cmG3HeNBKg83KUfBKbI3yavvGavfNyBeQBQ33Rm3Qs2ss4GoDPE9y3qd2wwfNRvYdgfZ5PhAj3hJ7A14oHAvfDLh%3D2mGE05XVk6wQG7ypQaQKI%3DZT%3DaJAyVe4MFAHsEtoBsvNkx-NmhV%3D25Fy4Ynxr3A4ZHqIGM8HXRmLyG4EMsGg8P2nF4ldob5gamYX%3DX%3DkAPP11xwxFmT0FoxPSaTWXE6OB1Mp5vUS7EyTa3-eBLeKaLHN0iVpASvNXvs96Mkx17okUtFf4KvBIPwggcQ3QwdMQSRb9SdtkVcsy3wDXba%3DT8RNlBscbGQg9iCeVN9e%3Du3XK4pga7aaKgm7_nlWFSme-Kko96ytRsz
@@ -92,11 +92,11 @@ Scénario: plafond horaire sur une formation simple
     Quand je demande un calcul de financement
     Quand je sélectionne le financement «CPF sur son temps de travail»
     Alors l'organisme à contacter est «AGEFOS PME Provence Alpes Côte d'Azur»
-    Et le plafond de prise en charge vaut 7500
+    Et le plafond de prise en charge vaut 150
     Et la rémunération applicable vaut 1400
     Quand je sélectionne le financement «CPF hors temps de travail»
     Alors l'organisme à contacter est «AGEFOS PME Provence Alpes Côte d'Azur»
-    Et le plafond de prise en charge vaut 7500
+    Et le plafond de prise en charge vaut 150
     Et la rémunération applicable vaut 0
 
 Scénario: Agence Agefomat sur IDCC

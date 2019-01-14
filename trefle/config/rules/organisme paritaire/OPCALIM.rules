@@ -1,12 +1,12 @@
 Si le financement est de type «CPF»
     Alors appliquer les règles «CPF»
-    Et le prix horaire plafond applicable vaut 50
-    Et le plafond horaire applicable est égal au solde CPF du bénéficiaire
-    Et le plafond financier applicable vaut 8000
+    # Et le prix horaire plafond applicable vaut 50
+    # Et le plafond horaire applicable est égal au solde CPF du bénéficiaire
+    # Et le plafond financier applicable vaut 8000
 
-    Si c'est une formation VAE
-        Alors le plafond horaire applicable est égal à la durée en heures de la formation
+    # Si c'est une formation VAE
+    #     Alors le plafond horaire applicable est égal à la durée en heures de la formation
 
-        Si le code NAF de l'établissement du bénéficiaire fait partie des codes NAF CPNE éligibles
-            Alors le plafond financier applicable vaut 0
+    #     Si le code NAF de l'établissement du bénéficiaire fait partie des codes NAF CPNE éligibles
+    #         Alors le plafond financier applicable vaut 0
 

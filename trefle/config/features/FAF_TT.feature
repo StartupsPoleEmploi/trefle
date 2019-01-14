@@ -7,7 +7,7 @@ Scénario: cas nominal d'une formation COPANEF
     Et c'est un bénéficiaire de droit privé
     Et la rémunération du bénéficiaire vaut 1400
     Et le type de contrat du bénéficiaire vaut «intérimaire»
-    Et le solde CPF du bénéficiaire vaut 50
+    Et le solde CPF du bénéficiaire vaut 1000
     Et c'est une formation éligible COPANEF
     Et l'IDCC de l'établissement du bénéficiaire vaut 2378
     Et le prix horaire de la formation vaut 25
@@ -15,11 +15,11 @@ Scénario: cas nominal d'une formation COPANEF
     Quand je demande un calcul de financement
     Et je sélectionne le financement «CPF sur son temps de travail»
     Alors l'organisme à contacter est «FAF.TT»
-    Et le montant de prise en charge vaut 600
+    Et le montant de prise en charge vaut 1000
     Et la rémunération applicable vaut 1400
     Quand je sélectionne le financement «CPF hors temps de travail»
     Alors l'organisme à contacter est «FAF.TT»
-    Et le montant de prise en charge vaut 600
+    Et le montant de prise en charge vaut 1000
     Et la rémunération applicable vaut 0
 
 
@@ -28,7 +28,7 @@ Scénario: cas d'une formation TOEIC
     Et c'est un bénéficiaire de droit privé
     Et la rémunération du bénéficiaire vaut 1400
     Et le type de contrat du bénéficiaire vaut «intérimaire»
-    Et le solde CPF du bénéficiaire vaut 50
+    Et le solde CPF du bénéficiaire vaut 1000
     Et c'est une formation éligible COPANEF
     Et c'est une formation TOEIC
     Et l'IDCC de l'établissement du bénéficiaire vaut 2378
@@ -37,11 +37,11 @@ Scénario: cas d'une formation TOEIC
     Quand je demande un calcul de financement
     Et je sélectionne le financement «CPF sur son temps de travail»
     Alors l'organisme à contacter est «FAF.TT»
-    Et le montant de prise en charge vaut 1250
+    Et le montant de prise en charge vaut 1000
     Et la rémunération applicable vaut 1400
     Quand je sélectionne le financement «CPF hors temps de travail»
     Alors l'organisme à contacter est «FAF.TT»
-    Et le montant de prise en charge vaut 1250
+    Et le montant de prise en charge vaut 1000
     Et la rémunération applicable vaut 0
 
 
@@ -50,7 +50,7 @@ Scénario: cas d'une formation BULATS
     Et c'est un bénéficiaire de droit privé
     Et la rémunération du bénéficiaire vaut 1400
     Et le type de contrat du bénéficiaire vaut «intérimaire»
-    Et le solde CPF du bénéficiaire vaut 50
+    Et le solde CPF du bénéficiaire vaut 1000
     Et c'est une formation éligible COPANEF
     Et c'est une formation BULATS
     Et l'IDCC de l'établissement du bénéficiaire vaut 2378
@@ -59,11 +59,11 @@ Scénario: cas d'une formation BULATS
     Quand je demande un calcul de financement
     Et je sélectionne le financement «CPF sur son temps de travail»
     Alors l'organisme à contacter est «FAF.TT»
-    Et le montant de prise en charge vaut 1250
+    Et le montant de prise en charge vaut 1000
     Et la rémunération applicable vaut 1400
     Quand je sélectionne le financement «CPF hors temps de travail»
     Alors l'organisme à contacter est «FAF.TT»
-    Et le montant de prise en charge vaut 1250
+    Et le montant de prise en charge vaut 1000
     Et la rémunération applicable vaut 0
 
 
@@ -72,7 +72,7 @@ Scénario: cas d'une formation CACES
     Et c'est un bénéficiaire de droit privé
     Et la rémunération du bénéficiaire vaut 1400
     Et le type de contrat du bénéficiaire vaut «intérimaire»
-    Et le solde CPF du bénéficiaire vaut 50
+    Et le solde CPF du bénéficiaire vaut 1000
     Et c'est une formation éligible COPANEF
     Et c'est une formation CACES
     Et l'IDCC de l'établissement du bénéficiaire vaut 2378
@@ -81,11 +81,11 @@ Scénario: cas d'une formation CACES
     Quand je demande un calcul de financement
     Et je sélectionne le financement «CPF sur son temps de travail»
     Alors l'organisme à contacter est «FAF.TT»
-    Et le montant de prise en charge vaut 500
+    Et le montant de prise en charge vaut 1000
     Et la rémunération applicable vaut 1400
     Quand je sélectionne le financement «CPF hors temps de travail»
     Alors l'organisme à contacter est «FAF.TT»
-    Et le montant de prise en charge vaut 500
+    Et le montant de prise en charge vaut 1000
     Et la rémunération applicable vaut 0
 
 
@@ -94,7 +94,7 @@ Scénario: cas nominal d'une formation VAE
     Et c'est un bénéficiaire de droit privé
     Et la rémunération du bénéficiaire vaut 1400
     Et le type de contrat du bénéficiaire vaut «intérimaire»
-    Et le solde CPF du bénéficiaire vaut 20
+    Et le solde CPF du bénéficiaire vaut 1000
     Et c'est une formation éligible COPANEF
     Et c'est une formation VAE
     Et l'IDCC de l'établissement du bénéficiaire vaut 2378
@@ -116,7 +116,7 @@ Scénario: plafond de prix horaire sur une formation VAE
     Et c'est un bénéficiaire de droit privé
     Et la rémunération du bénéficiaire vaut 1400
     Et le type de contrat du bénéficiaire vaut «intérimaire»
-    Et le solde CPF du bénéficiaire vaut 20
+    Et le solde CPF du bénéficiaire vaut 600
     Et c'est une formation éligible COPANEF
     Et c'est une formation VAE
     Et l'IDCC de l'établissement du bénéficiaire vaut 2378
@@ -125,11 +125,11 @@ Scénario: plafond de prix horaire sur une formation VAE
     Quand je demande un calcul de financement
     Et je sélectionne le financement «CPF sur son temps de travail»
     Alors l'organisme à contacter est «FAF.TT»
-    Et le montant de prise en charge vaut 630
+    Et le montant de prise en charge vaut 600
     Et la rémunération applicable vaut 1400
     Quand je sélectionne le financement «CPF hors temps de travail»
     Alors l'organisme à contacter est «FAF.TT»
-    Et le montant de prise en charge vaut 630
+    Et le montant de prise en charge vaut 600
     Et la rémunération applicable vaut 0
 
 
@@ -138,7 +138,7 @@ Scénario: plafond horaire sur une formation VAE
     Et c'est un bénéficiaire de droit privé
     Et la rémunération du bénéficiaire vaut 1400
     Et le type de contrat du bénéficiaire vaut «intérimaire»
-    Et le solde CPF du bénéficiaire vaut 50
+    Et le solde CPF du bénéficiaire vaut 1000
     Et c'est une formation éligible COPANEF
     Et c'est une formation VAE
     Et l'IDCC de l'établissement du bénéficiaire vaut 2378
@@ -147,11 +147,11 @@ Scénario: plafond horaire sur une formation VAE
     Quand je demande un calcul de financement
     Et je sélectionne le financement «CPF sur son temps de travail»
     Alors l'organisme à contacter est «FAF.TT»
-    Et le montant de prise en charge vaut 480
+    Et le montant de prise en charge vaut 1000
     Et la rémunération applicable vaut 1400
     Quand je sélectionne le financement «CPF hors temps de travail»
     Alors l'organisme à contacter est «FAF.TT»
-    Et le montant de prise en charge vaut 480
+    Et le montant de prise en charge vaut 1000
     Et la rémunération applicable vaut 0
 
 
@@ -160,7 +160,7 @@ Scénario: cas nominal d'un CPF CPNE
     Et c'est un bénéficiaire de droit privé
     Et la rémunération du bénéficiaire vaut 1400
     Et le type de contrat du bénéficiaire vaut «intérimaire»
-    Et le solde CPF du bénéficiaire vaut 50
+    Et le solde CPF du bénéficiaire vaut 1000
     Et ce n'est pas une formation éligible COPANEF
     Et l'IDCC de l'établissement du bénéficiaire vaut 2378
     Et le code NAF de l'établissement du bénéficiaire vaut «6910Z»
@@ -170,9 +170,9 @@ Scénario: cas nominal d'un CPF CPNE
     Quand je demande un calcul de financement
     Et je sélectionne le financement «CPF sur son temps de travail»
     Alors l'organisme à contacter est «FAF.TT»
-    Et le montant de prise en charge vaut 600
+    Et le montant de prise en charge vaut 1000
     Et la rémunération applicable vaut 1400
     Quand je sélectionne le financement «CPF hors temps de travail»
     Alors l'organisme à contacter est «FAF.TT»
-    Et le montant de prise en charge vaut 600
+    Et le montant de prise en charge vaut 1000
     Et la rémunération applicable vaut 0

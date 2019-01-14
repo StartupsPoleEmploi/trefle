@@ -14,11 +14,11 @@ Scénario: cas nominal d'une formation COPANEF
     Quand je demande un calcul de financement
     Et je sélectionne le financement «CPF sur son temps de travail»
     Alors l'organisme à contacter est «Actalians»
-    Et le montant de prise en charge vaut 1250
+    Et le montant de prise en charge vaut 50
     Et la rémunération applicable vaut 1400
     Quand je sélectionne le financement «CPF hors temps de travail»
     Alors l'organisme à contacter est «Actalians»
-    Et le montant de prise en charge vaut 1250
+    Et le montant de prise en charge vaut 50
     Et la rémunération applicable vaut 0
 
 
@@ -38,11 +38,11 @@ Scénario: formation COPAREF IDF
     Quand je demande un calcul de financement
     Et je sélectionne le financement «CPF sur son temps de travail»
     Alors l'organisme à contacter est «Actalians»
-    Et le montant de prise en charge vaut 2500
+    Et le montant de prise en charge vaut 50
     Et la rémunération applicable vaut 1600
     Quand je sélectionne le financement «CPF hors temps de travail»
     Alors l'organisme à contacter est «Actalians»
-    Et le montant de prise en charge vaut 2500
+    Et le montant de prise en charge vaut 50
     Et la rémunération applicable vaut 0
 
 
@@ -62,11 +62,11 @@ Scénario: formation COPAREF IDF sur code INSEE commune
     Quand je demande un calcul de financement
     Et je sélectionne le financement «CPF sur son temps de travail»
     Alors l'organisme à contacter est «Actalians»
-    Et le montant de prise en charge vaut 2500
+    Et le montant de prise en charge vaut 50
     Et la rémunération applicable vaut 1600
     Quand je sélectionne le financement «CPF hors temps de travail»
     Alors l'organisme à contacter est «Actalians»
-    Et le montant de prise en charge vaut 2500
+    Et le montant de prise en charge vaut 50
     Et la rémunération applicable vaut 0
 
 
@@ -84,11 +84,11 @@ Scénario: formation VAE avec prix horaire supérieur au plafond
     Quand je demande un calcul de financement
     Et je sélectionne le financement «CPF sur son temps de travail»
     Alors l'organisme à contacter est «Actalians»
-    Et le montant de prise en charge vaut 600
+    Et le montant de prise en charge vaut 50
     Et la rémunération applicable vaut 1400
     Quand je sélectionne le financement «CPF hors temps de travail»
     Alors l'organisme à contacter est «Actalians»
-    Et le montant de prise en charge vaut 600
+    Et le montant de prise en charge vaut 50
     Et la rémunération applicable vaut 0
 
 
@@ -106,11 +106,11 @@ Scénario: formation CleA avec prix horaire supérieur au plafond
     Quand je demande un calcul de financement
     Et je sélectionne le financement «CPF sur son temps de travail»
     Alors l'organisme à contacter est «Actalians»
-    Et le montant de prise en charge vaut 1350
+    Et le montant de prise en charge vaut 50
     Et la rémunération applicable vaut 1400
     Quand je sélectionne le financement «CPF hors temps de travail»
     Alors l'organisme à contacter est «Actalians»
-    Et le montant de prise en charge vaut 1350
+    Et le montant de prise en charge vaut 50
     Et la rémunération applicable vaut 0
 
 
@@ -129,10 +129,10 @@ Scénario: cas nominal d'une formation CPNE
     Quand je demande un calcul de financement
     Et je sélectionne le financement «CPF sur son temps de travail»
     Alors l'organisme à contacter est «Actalians»
-    Et le montant de prise en charge vaut 1250
+    Et le montant de prise en charge vaut 50
     Et la rémunération applicable vaut 1400
     Quand je sélectionne le financement «CPF hors temps de travail»
     Alors l'organisme à contacter est «Actalians»
-    Et le montant de prise en charge vaut 1250
+    Et le montant de prise en charge vaut 50
     Et la rémunération applicable vaut 0
 

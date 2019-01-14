@@ -6,7 +6,7 @@ Scénario: cas nominal Fafiec
     Soit un bénéficiaire et une formation
     Et c'est un bénéficiaire de droit privé
     Et la rémunération du bénéficiaire vaut 1600
-    Et le solde CPF du bénéficiaire vaut 120
+    Et le solde CPF du bénéficiaire vaut 1200
     Et le type de contrat du bénéficiaire vaut «CDD»
     Et l'expérience professionnelle du bénéficiaire dans les cinq dernières années vaut 48
     Et le nombre de mois travaillés par le bénéficiaire dans la dernière année vaut 12
@@ -30,11 +30,11 @@ Scénario: cas nominal Fafiec
     Quand je demande un calcul de financement
     Quand je sélectionne le financement «CPF sur son temps de travail»
     Alors l'organisme à contacter est «Fafiec»
-    Et le plafond de prise en charge vaut 9600
+    Et le plafond de prise en charge vaut 1200
     Et la rémunération applicable vaut 1600
     Quand je sélectionne le financement «CPF hors temps de travail»
     Alors l'organisme à contacter est «Fafiec»
-    Et le plafond de prise en charge vaut 9600
+    Et le plafond de prise en charge vaut 1200
     Et la rémunération applicable vaut 0
 
 
@@ -42,7 +42,7 @@ Scénario: CPF sur CPNE
     Soit un bénéficiaire et une formation
     Et c'est un bénéficiaire de droit privé
     Et la rémunération du bénéficiaire vaut 1600
-    Et le solde CPF du bénéficiaire vaut 120
+    Et le solde CPF du bénéficiaire vaut 1200
     Et le type de contrat du bénéficiaire vaut «CDD»
     Et l'expérience professionnelle du bénéficiaire dans les cinq dernières années vaut 48
     Et le nombre de mois travaillés par le bénéficiaire dans la dernière année vaut 12
@@ -55,9 +55,9 @@ Scénario: CPF sur CPNE
     Quand je demande un calcul de financement
     Quand je sélectionne le financement «CPF sur son temps de travail»
     Alors l'organisme à contacter est «Fafiec»
-    Et le plafond de prise en charge vaut 8000
+    Et le plafond de prise en charge vaut 1200
     Et la rémunération applicable vaut 1600
     Quand je sélectionne le financement «CPF hors temps de travail»
     Alors l'organisme à contacter est «Fafiec»
-    Et le plafond de prise en charge vaut 8000
+    Et le plafond de prise en charge vaut 1200
     Et la rémunération applicable vaut 0
