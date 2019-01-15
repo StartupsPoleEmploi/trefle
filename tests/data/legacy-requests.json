@@ -12,7 +12,7 @@
       "departementHabitation": "62",
       "dateNaissance": "1980-12-12",
       "niveauEtude": "3",
-      "heuresCPF": "200",
+      "montantCPF": "200",
       "contratApprentissage": "false",
       "apprentissageSituation": {
         "ruptureContratApprentissage": "false"
@@ -43,7 +43,7 @@
       "departementHabitation": "93",
       "dateNaissance": "1980-12-12",
       "niveauEtude": "3",
-      "heuresCPF": "100",
+      "montantCPF": "100",
       "contratApprentissage": "false",
       "apprentissageSituation": {
         "ruptureContratApprentissage": "false"
@@ -74,7 +74,7 @@
       "departementHabitation": "13",
       "dateNaissance": "1980-12-12",
       "niveauEtude": "3",
-      "heuresCPF": "100",
+      "montantCPF": "100",
       "contratApprentissage": "false",
       "apprentissageSituation": {
         "ruptureContratApprentissage": "false"
@@ -105,7 +105,7 @@
       "departementHabitation": "93",
       "dateNaissance": "1980-12-12",
       "niveauEtude": "3",
-      "heuresCPF": "100",
+      "montantCPF": "100",
       "contratApprentissage": "false",
       "apprentissageSituation": {
         "ruptureContratApprentissage": "false"
@@ -136,7 +136,7 @@
       "departementHabitation": "49",
       "dateNaissance": "1980-12-12",
       "niveauEtude": "3",
-      "heuresCPF": "100",
+      "montantCPF": "100",
       "contratApprentissage": "false",
       "apprentissageSituation": {
         "ruptureContratApprentissage": "false"
@@ -170,7 +170,7 @@
       "departementHabitation": "94",
       "dateNaissance": "1980-12-12",
       "niveauEtude": "3",
-      "heuresCPF": "100",
+      "montantCPF": "100",
       "contratApprentissage": "false",
       "apprentissageSituation": {
         "ruptureContratApprentissage": "false"
@@ -201,7 +201,7 @@
       "departementHabitation": "57",
       "dateNaissance": "1980-12-12",
       "niveauEtude": "3",
-      "heuresCPF": "100",
+      "montantCPF": "100",
       "contratApprentissage": "false",
       "apprentissageSituation": {
         "ruptureContratApprentissage": "false"
@@ -232,7 +232,7 @@
       "departementHabitation": "62",
       "dateNaissance": "1980-12-12",
       "niveauEtude": "3",
-      "heuresCPF": "100",
+      "montantCPF": "100",
       "contratApprentissage": "false",
       "apprentissageSituation": {
         "ruptureContratApprentissage": "false"
@@ -263,7 +263,7 @@
       "departementHabitation": "93",
       "dateNaissance": "1980-12-12",
       "niveauEtude": "3",
-      "heuresCPF": "100",
+      "montantCPF": "100",
       "contratApprentissage": "false",
       "cddTermine": {
         "depuisMoinsUnAn": "false",
@@ -294,7 +294,7 @@
       "departementHabitation": "971",
       "dateNaissance": "1980-12-12",
       "niveauEtude": "3",
-      "heuresCPF": "100",
+      "montantCPF": "100",
       "contratApprentissage": "false",
       "apprentissageSituation": {
         "ruptureContratApprentissage": "false"
@@ -363,7 +363,7 @@
       "departementHabitation": "15",
       "dateNaissance": "1980-12-12",
       "niveauEtude": "3",
-      "heuresCPF": "100",
+      "montantCPF": "100",
       "contratApprentissage": "false",
       "apprentissageSituation": {
         "ruptureContratApprentissage": "false"
@@ -433,7 +433,7 @@
       "departementHabitation": "62",
       "dateNaissance": "1980-12-12",
       "niveauEtude": "3",
-      "heuresCPF": "100",
+      "montantCPF": "100",
       "contratApprentissage": "false",
       "apprentissageSituation": {
         "ruptureContratApprentissage": "false"
@@ -464,7 +464,7 @@
       "departementHabitation": "971",
       "dateNaissance": "1980-12-12",
       "niveauEtude": "3",
-      "heuresCPF": "100",
+      "montantCPF": "100",
       "contratApprentissage": "false",
       "apprentissageSituation": {
         "ruptureContratApprentissage": "false"
@@ -498,7 +498,7 @@
       "departementHabitation": "974",
       "dateNaissance": "1980-12-12",
       "niveauEtude": "3",
-      "heuresCPF": "100",
+      "montantCPF": "100",
       "contratApprentissage": "false",
       "apprentissageSituation": {
         "ruptureContratApprentissage": "false"
@@ -529,7 +529,7 @@
       "departementHabitation": "37",
       "dateNaissance": "1970-02-15",
       "niveauEtude": "3",
-      "heuresCPF": "100",
+      "montantCPF": "100",
       "contratApprentissage": "false",
       "apprentissageSituation": {
         "ruptureContratApprentissage": "false"
@@ -560,7 +560,7 @@
       "departementHabitation": "974",
       "dateNaissance": "1980-12-12",
       "niveauEtude": "3",
-      "heuresCPF": "100",
+      "montantCPF": "100",
       "contratApprentissage": "false",
       "apprentissageSituation": {
         "ruptureContratApprentissage": "false"
@@ -591,7 +591,7 @@
       "departementHabitation": "71",
       "dateNaissance": "1980-12-12",
       "niveauEtude": "3",
-      "heuresCPF": "100",
+      "montantCPF": "100",
       "contratApprentissage": "false",
       "apprentissageSituation": {
         "ruptureContratApprentissage": "false"
@@ -622,7 +622,7 @@
       "departementHabitation": "53",
       "dateNaissance": "1994-12-12",
       "niveauEtude": "3",
-      "heuresCPF": "100",
+      "montantCPF": "100",
       "contratApprentissage": "false",
       "apprentissageSituation": {
         "ruptureContratApprentissage": "false"
@@ -655,7 +655,7 @@
       "departementHabitation": "974",
       "dateNaissance": "1994-12-12",
       "niveauEtude": "3",
-      "heuresCPF": "100",
+      "montantCPF": "100",
       "contratApprentissage": "false",
       "apprentissageSituation": {
         "ruptureContratApprentissage": "false"
@@ -688,7 +688,7 @@
       "departementHabitation": "63",
       "dateNaissance": "1994-12-12",
       "niveauEtude": "3",
-      "heuresCPF": "100",
+      "montantCPF": "100",
       "contratApprentissage": "false",
       "apprentissageSituation": {
         "ruptureContratApprentissage": "false"
@@ -721,7 +721,7 @@
       "departementHabitation": "2b",
       "dateNaissance": "1980-12-12",
       "niveauEtude": "3",
-      "heuresCPF": "100",
+      "montantCPF": "100",
       "contratApprentissage": "false",
       "apprentissageSituation": {
         "ruptureContratApprentissage": "false"
@@ -752,7 +752,7 @@
       "departementHabitation": "53",
       "dateNaissance": "1994-12-12",
       "niveauEtude": "3",
-      "heuresCPF": "100",
+      "montantCPF": "100",
       "contratApprentissage": "false",
       "apprentissageSituation": {
         "ruptureContratApprentissage": "false"
@@ -785,7 +785,7 @@
       "departementHabitation": "974",
       "dateNaissance": "1994-12-12",
       "niveauEtude": "3",
-      "heuresCPF": "100",
+      "montantCPF": "100",
       "contratApprentissage": "false",
       "apprentissageSituation": {
         "ruptureContratApprentissage": "false"
@@ -818,7 +818,7 @@
       "departementHabitation": "63",
       "dateNaissance": "1994-12-12",
       "niveauEtude": "3",
-      "heuresCPF": "100",
+      "montantCPF": "100",
       "contratApprentissage": "false",
       "apprentissageSituation": {
         "ruptureContratApprentissage": "false"
@@ -851,7 +851,7 @@
       "departementHabitation": "2b",
       "dateNaissance": "1980-12-12",
       "niveauEtude": "3",
-      "heuresCPF": "100",
+      "montantCPF": "100",
       "contratApprentissage": "false",
       "apprentissageSituation": {
         "ruptureContratApprentissage": "false"
@@ -879,7 +879,7 @@
       "departementHabitation": "75",
       "dateNaissance": "1980-06-15",
       "niveauEtude": 3,
-      "heuresCPF": 0,
+      "montantCPF": 0,
       "typeAllocation": {
         "type": "ARE",
         "dateFinIndemnisation": "2019-06-15",
@@ -898,7 +898,7 @@
       "departementHabitation": "62",
       "dateNaissance": "1980-12-12",
       "niveauEtude": 3,
-      "heuresCPF": "100",
+      "montantCPF": "100",
       "typeAllocation": {
         "type": "non"
       },
@@ -919,7 +919,7 @@
       "departementHabitation": "13",
       "dateNaissance": "1980-12-12",
       "niveauEtude": 3,
-      "heuresCPF": "100",
+      "montantCPF": "100",
       "typeAllocation": {
         "type": "non"
       },

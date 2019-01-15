@@ -200,7 +200,7 @@ beneficiaire:
     label: demandeur d'emploi
     gender: masculine
   solde_cpf:
-    alias: individu.heuresCPF
+    alias: individu.montantCPF
     description: solde du compte CPF du bénéficiaire
     type: integer
     format: int32

@@ -25,7 +25,7 @@ BODY = {
         "departementHabitation": "35",
         "dateNaissance": "2000-12-12",
         "niveauEtude": "1",
-        "heuresCPF": "100",
+        "montantCPF": "100",
         "contratApprentissage": "true",
         "apprentissageSituation": {
             "crontratType": "4",
