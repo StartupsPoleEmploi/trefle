@@ -1,3 +1,6 @@
+Si le financement est de type «E2C»
+    Alors appliquer les règles «E2C»
+
 Si le financement est de type «AFC»
     Alors appliquer les règles «action collective»
 

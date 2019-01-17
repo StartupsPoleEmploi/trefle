@@ -1,3 +1,6 @@
+Si le financement est de type «E2C»
+    Alors appliquer les règles «E2C»
+
 Si l'intitulé du financement est «Accès des demandeurs d’emploi aux métiers agricoles»
     Alors appliquer les règles «ADEMA»
 
@@ -151,22 +154,6 @@ Si l'intitulé du financement est «Programme régional qualifiant»
         Et appliquer les règles «AREF-RFPE-RPS»
         Et le texte des démarches vaut «Contactez votre référent emploi (Pôle emploi, mission locale, Cap emploi, services d’insertion du conseil départemental, CIDFF ou APEC) pour valider votre projet de formation et son financement et obtenir la fiche de prescription nécessaire pour participer aux sélections de l'organisme de formation.»
         Et le texte de description vaut «Le Programme régional qualifiant propose d'acquérir des compétences reconnues grâce à une certification professionnelle, une qualification, un diplôme, un titre homologué ou un certificat de qualification délivré par une branche professionnelle, ou un perfectionnement en vue d'obtenir un emploi stable.»
-        Et le texte de la prise en charge vaut «Formation totalement financée par la région Occitanie.»
-
-
-Si l'intitulé du financement est «Écoles régionales de la deuxième chance»
-
-    Si le département de la formation fait partie de [«Aude»,«Gard»,«Hérault»,«Lozère»,«Pyrénées-Orientales»]
-    Et les codes financeur de la formation contiennent «Conseil régional»
-    Et c'est une formation E2C
-    Et c'est un demandeur d'emploi
-    Et la région du bénéficiaire vaut «Occitanie»
-    Et l'âge du bénéficiaire n'est pas supérieur ou égal à 26
-    Et le niveau scolaire du bénéficiaire n'est pas supérieur à «IV»
-        Alors le financement est éligible
-        Et appliquer les règles «AREF-RFPE-RPS»
-        Et le texte des démarches vaut «Contactez votre référent emploi (Pôle emploi, mission locale, Cap emploi, services d’insertion du conseil départemental, CIDFF ou APEC) pour valider votre projet de formation et son financement et obtenir la fiche de prescription nécessaire pour participer aux sélections de l'organisme de formation.»
-        Et le texte de description vaut «Il s’agit de permettre aux jeunes de 18 à 25 ans sortis du système scolaire depuis plus de 6 mois ou relevant de mesures d’insertion socio-professionnelles de parvenir à la maîtrise des savoirs de base : lire, écrire, compter, notions d’informatique, notions d’une langue étrangère.⏎Pendant cette période, les jeunes sont amenés à faire deux ou trois stages dans des entreprises de la région pour découvrir le monde du travail, ses contraintes, ses possibilités.⏎La formation est très personnalisée, c’est-à-dire que chaque jeune est suivi à l’intérieur de l’école par un « référent » avec qui il peut s’entretenir de ses problèmes tant pédagogiques que personnels. Dans l’entreprise, il est suivi par un tuteur.»
         Et le texte de la prise en charge vaut «Formation totalement financée par la région Occitanie.»
 
 
