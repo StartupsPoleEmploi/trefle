@@ -1,13 +1,13 @@
 Si le financement est de type «CPF»
     Alors appliquer les règles «CPF»
     #MAJ 17 janvier 2019
-    # Et le prix horaire plafond applicable vaut 50
-    # Et le plafond horaire applicable est égal au solde CPF du bénéficiaire
-    # Si c'est une formation langues
-    #     Alors le prix horaire plafond applicable vaut 30
-    # Si c'est un bilan de compétences
-    #     Alors le plafond financier applicable vaut 1750
-    # Si c'est une formation VAE
-    #     Alors le prix horaire plafond applicable vaut 100
-    #     Alors le plafond horaire applicable est égal à la durée en heures de la formation
+    Et le prix horaire plafond applicable vaut 50
+    Et le plafond financier applicable est égal au solde CPF du bénéficiaire
+    Si c'est une formation langues
+        Alors le prix horaire plafond applicable vaut 30
+    Si c'est un bilan de compétences
+        Alors le plafond financier applicable vaut 1750
+    Si c'est une formation VAE
+        Alors le prix horaire plafond applicable vaut 100
+        Alors le plafond horaire applicable est égal à la durée en heures de la formation
 
