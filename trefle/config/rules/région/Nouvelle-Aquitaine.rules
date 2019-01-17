@@ -1,3 +1,6 @@
+Si le financement est de type «E2C»
+    Alors appliquer les règles «E2C»
+
 Si l'intitulé du financement est «Accès des demandeurs d’emploi aux métiers agricoles»
     Alors appliquer les règles «ADEMA»
 

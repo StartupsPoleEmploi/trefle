@@ -88,7 +88,7 @@ Espaces territoriaux à la qualification:
   cpf_mobilisable: True
   financee_pe: False
   cumulable: False
-  racine: Auvergne-Rhône-Alpes.rules
+  racine: région du bénéficiaire
 Programme Enseignement supérieur:
   sigle: ESUP
   type_lbf: actioncollectiveregion

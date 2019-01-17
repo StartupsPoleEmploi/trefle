@@ -383,64 +383,6 @@ Scénario: Pas de «Programme régional qualifiant» pour un «Cap compétences 
     Alors le financement «Programme régional qualifiant» n'est pas proposé
 
 
-Scénario: Cas nominal «ER2C»
-    Soit un bénéficiaire et une formation
-    Et c'est un demandeur d'emploi
-    Et l'âge du bénéficiaire vaut 24
-    Et la durée en heures de la formation vaut 250
-    Et la région du bénéficiaire vaut «Occitanie»
-    Et la région de la formation vaut «Occitanie»
-    Et le département de la formation vaut «Gard»
-    Et les codes financeur de la formation valent [«Conseil régional»]
-    Et l'intitulé de la formation vaut «Action de formation ER2C»
-    Quand je demande un calcul de financement
-    Quand je sélectionne le financement «Écoles régionales de la deuxième chance»
-    Alors la rémunération applicable vaut 339.35
-
-
-Scénario: Mauvais département pour «ER2C»
-    Soit un bénéficiaire et une formation
-    Et c'est un demandeur d'emploi
-    Et l'âge du bénéficiaire vaut 24
-    Et la durée en heures de la formation vaut 250
-    Et la région du bénéficiaire vaut «Occitanie»
-    Et la région de la formation vaut «Occitanie»
-    Et le département de la formation vaut «Haute-Garonne»
-    Et les codes financeur de la formation valent [«Conseil régional»]
-    Et l'intitulé de la formation vaut «Action de formation ER2C»
-    Quand je demande un calcul de financement
-    Alors le financement «Écoles régionales de la deuxième chance» n'est pas proposé
-
-
-Scénario: Bénéficiaire trop âgé pour «ER2C»
-    Soit un bénéficiaire et une formation
-    Et c'est un demandeur d'emploi
-    Et l'âge du bénéficiaire vaut 26
-    Et la durée en heures de la formation vaut 250
-    Et la région du bénéficiaire vaut «Occitanie»
-    Et la région de la formation vaut «Occitanie»
-    Et le département de la formation vaut «Aude»
-    Et les codes financeur de la formation valent [«Conseil régional»]
-    Et l'intitulé de la formation vaut «Action de formation ER2C»
-    Quand je demande un calcul de financement
-    Alors le financement «Écoles régionales de la deuxième chance» n'est pas proposé
-
-
-Scénario: Niveau d'étude trop élevé pour «ER2C»
-    Soit un bénéficiaire et une formation
-    Et c'est un demandeur d'emploi
-    Et l'âge du bénéficiaire vaut 25
-    Et la durée en heures de la formation vaut 250
-    Et la région du bénéficiaire vaut «Occitanie»
-    Et la région de la formation vaut «Occitanie»
-    Et le département de la formation vaut «Aude»
-    Et les codes financeur de la formation valent [«Conseil régional»]
-    Et l'intitulé de la formation vaut «Action de formation ER2C»
-    Et le niveau scolaire du bénéficiaire vaut «II»
-    Quand je demande un calcul de financement
-    Alors le financement «Écoles régionales de la deuxième chance» n'est pas proposé
-
-
 Scénario: Cas nominal «Formations des établissements d'enseignement supérieur»
     Soit un bénéficiaire et une formation
     Et c'est un demandeur d'emploi
