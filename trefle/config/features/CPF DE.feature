@@ -13,6 +13,19 @@ Scénario: Cas nominal CPF COPANEF demandeur d'emploi
     Alors le plafond de prise en charge vaut 100
     Et la rémunération applicable vaut 401.09
 
+Scénario: Cas nominal CPF COPANEF demandeur d'emploi avec plafond
+    Soit un bénéficiaire et une formation
+    Et l'âge du bénéficiaire est 42
+    Et c'est un demandeur d'emploi
+    Et c'est une formation éligible COPANEF
+    Et le solde CPF du bénéficiaire vaut 2000
+    Et la durée en heures de la formation vaut 120
+    Et c'est une formation ouverte aux bénéficiaires individuels
+    Quand je demande un calcul de financement
+    Quand je sélectionne le financement «Compte Personnel de Formation (CPF)»
+    Alors le plafond de prise en charge vaut 1800
+    Et la rémunération applicable vaut 401.09
+
 Scénario: Cas nominal CPF COPAREF demandeur d'emploi
     Soit un bénéficiaire et une formation
     Et c'est un demandeur d'emploi
