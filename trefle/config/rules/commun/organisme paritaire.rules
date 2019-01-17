@@ -10,8 +10,8 @@ Si c'est une formation ouverte aux bénéficiaires individuels
             Alors l'organisme paritaire est l'OPCA de l'établissement du bénéficiaire
             Et appliquer les règles de l'organisme paritaire
 
-        Si le financement est de type «plan de formation»
+        Si le financement est de type «plan de développement des compétences»
             Alors l'organisme paritaire est l'OPCA de l'établissement du bénéficiaire
-            Et le texte de description vaut «Le financement de cette formation peut être réalisé dans le cadre du plan de formation de votre entreprise.»
+            Et le texte de description vaut «Le financement de cette formation peut être réalisé dans le cadre du plan de développement des compétences de votre entreprise.»
             Et le texte des démarches vaut «Contactez votre entreprise pour les modalités de mise en œuvre.»
             Et appliquer les règles de l'organisme paritaire

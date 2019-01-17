@@ -44,7 +44,7 @@ Scénario: plafond horaire d'une formation VAE
     Et la rémunération applicable vaut 0
 
 
-Scénario: Cas nominal d'un plan de formation VAE
+Scénario: Cas nominal d'un plan de développement des compétences VAE
     Soit un bénéficiaire et une formation
     Et c'est un bénéficiaire de droit privé
     Et la rémunération du bénéficiaire vaut 1400
@@ -53,13 +53,13 @@ Scénario: Cas nominal d'un plan de formation VAE
     Et la durée en heures de la formation vaut 100
     Et c'est une formation VAE
     Quand je demande un calcul de financement
-    Quand je sélectionne le financement «Plan de formation sur son temps de travail»
+    Quand je sélectionne le financement «Plan de développement des compétences sur son temps de travail»
     Alors l'organisme à contacter est «Afdas»
     Et le plafond de prise en charge vaut 2500
     Et la rémunération applicable vaut 1400
 
 
-Scénario: Cas d'un plan de formation avec niveau de sortie II
+Scénario: Cas d'un plan de développement des compétences avec niveau de sortie II
     Soit un bénéficiaire et une formation
     Et c'est un bénéficiaire de droit privé
     Et la rémunération du bénéficiaire vaut 1400
@@ -68,13 +68,13 @@ Scénario: Cas d'un plan de formation avec niveau de sortie II
     Et la durée en heures de la formation vaut 100
     Et le niveau de sortie de la formation vaut «II»
     Quand je demande un calcul de financement
-    Quand je sélectionne le financement «Plan de formation sur son temps de travail»
+    Quand je sélectionne le financement «Plan de développement des compétences sur son temps de travail»
     Alors l'organisme à contacter est «Afdas»
     Et le plafond de prise en charge vaut 4000
     Et la rémunération applicable vaut 1400
 
 
-Scénario: Cas d'un plan de formation avec niveau de sortie I
+Scénario: Cas d'un plan de développement des compétences avec niveau de sortie I
     Soit un bénéficiaire et une formation
     Et c'est un bénéficiaire de droit privé
     Et la rémunération du bénéficiaire vaut 1400
@@ -83,13 +83,13 @@ Scénario: Cas d'un plan de formation avec niveau de sortie I
     Et la durée en heures de la formation vaut 100
     Et le niveau de sortie de la formation vaut «II»
     Quand je demande un calcul de financement
-    Quand je sélectionne le financement «Plan de formation sur son temps de travail»
+    Quand je sélectionne le financement «Plan de développement des compétences sur son temps de travail»
     Alors l'organisme à contacter est «Afdas»
     Et le plafond de prise en charge vaut 4000
     Et la rémunération applicable vaut 1400
 
 
-Scénario: Pas de plan de formation avec le niveau de sortie III
+Scénario: Pas de plan de développement des compétences avec le niveau de sortie III
     Soit un bénéficiaire et une formation
     Et c'est un bénéficiaire de droit privé
     Et la rémunération du bénéficiaire vaut 1400
@@ -98,6 +98,6 @@ Scénario: Pas de plan de formation avec le niveau de sortie III
     Et la durée en heures de la formation vaut 100
     Et le niveau de sortie de la formation vaut «III»
     Quand je demande un calcul de financement
-    Alors le financement «Plan de formation sur son temps de travail» n'est pas proposé
+    Alors le financement «Plan de développement des compétences sur son temps de travail» n'est pas proposé
 
 

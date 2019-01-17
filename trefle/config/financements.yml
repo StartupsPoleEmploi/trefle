@@ -718,8 +718,8 @@ AIF département:
   financee_pe: True
   cumulable: True
   racine: Guadeloupe.rules
-Plan de formation sur son temps de travail:
-  tags: [plan de formation, sur son temps de travail]
+Plan de développement des compétences sur son temps de travail:
+  tags: [plan de développement des compétences, sur son temps de travail]
   cpf_mobilisable: True
   financee_pe: False
   cumulable: True
