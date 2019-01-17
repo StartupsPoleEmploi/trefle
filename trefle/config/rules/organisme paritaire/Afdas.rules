@@ -6,13 +6,13 @@ Si le financement est de type «CPF»
     #     Alors le prix horaire plafond applicable vaut 100
     #     Et le plafond horaire applicable est égal à la durée en heures de la formation
 
-Si le financement est de type «plan de formation»
+Si le financement est de type «plan de développement des compétences»
 
     Si le type de contrat du bénéficiaire fait partie de [«CDD»,«CDI»]
         Alors la rémunération applicable est égale à la rémunération du bénéficiaire
 
         Si c'est une formation VAE
-            Alors appliquer les règles «plan de formation»
+            Alors appliquer les règles «plan de développement des compétences»
             Et le plafond financier applicable vaut 2500
 
         # langues
@@ -20,11 +20,11 @@ Si le financement est de type «plan de formation»
         Ou la liste des codes FORMACODE de la formation contient au moins un code parmi [70054,31056]
         Ou c'est une formation ouverte à distance
         Ou le niveau de sortie de la formation fait partie de [«I»,«II»]
-            Alors appliquer les règles «plan de formation»
+            Alors appliquer les règles «plan de développement des compétences»
             Et le prix horaire plafond applicable vaut 40
 
 
         Si c'est un bilan de compétences
-            Alors appliquer les règles «plan de formation»
+            Alors appliquer les règles «plan de développement des compétences»
             Et le plafond financier applicable vaut 1800
 
