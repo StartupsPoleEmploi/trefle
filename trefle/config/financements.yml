@@ -726,3 +726,40 @@ Plan de développement des compétences sur son temps de travail:
   racine: organisme paritaire.rules
   ressources:
   - https://www.service-public.fr/particuliers/vosdroits/F11267
+Projet de transition professionnelle:
+  tags: [ptp, CDD, DE]
+  racine: projet de transition professionnelle.rules
+Projet de transition professionnelle CDI sur son temps de travail:
+  tags: [ptp, CDI, sur son temps de travail]
+  racine: projet de transition professionnelle.rules
+Projet de transition professionnelle CDI hors temps de travail:
+  tags: [ptp, CDI, hors temps de travail]
+  racine: projet de transition professionnelle.rules
+Projet de transition professionnelle CDD sur son temps de travail:
+  tags: [ptp, CDD, sur son temps de travail]
+  cpf_mobilisable: True
+  racine: projet de transition professionnelle.rules
+Projet de transition professionnelle CDD hors temps de travail:
+  tags: [ptp, CDD, hors temps de travail, DE]
+  cpf_mobilisable: True
+  financee_pe: False
+  cumulable: False
+  racine: projet de transition professionnelle.rules
+Projet de transition professionnelle intérim sur son temps de travail:
+  tags: [ptp, interim, sur son temps de travail]
+  cpf_mobilisable: True
+  financee_pe: False
+  cumulable: True
+  racine: projet de transition professionnelle.rules
+Projet de transition professionnelle intérim hors temps de travail:
+  tags: [ptp, interim, hors temps de travail, DE]
+  cpf_mobilisable: True
+  financee_pe: False
+  cumulable: True
+  racine: projet de transition professionnelle.rules
+Projet de transition professionnelle intermittents hors temps de travail:
+  tags: [ptp, intermittent, hors temps de travail]
+  cpf_mobilisable: True
+  financee_pe: False
+  cumulable: True
+  racine: projet de transition professionnelle.rules

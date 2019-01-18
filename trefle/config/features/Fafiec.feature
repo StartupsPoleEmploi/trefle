@@ -8,7 +8,7 @@ Scénario: cas nominal Fafiec
     Et la rémunération du bénéficiaire vaut 1600
     Et le solde CPF du bénéficiaire vaut 1200
     Et le type de contrat du bénéficiaire vaut «CDD»
-    Et l'expérience professionnelle du bénéficiaire dans les cinq dernières années vaut 48
+    Et l'expérience professionnelle du bénéficiaire vaut 48
     Et le nombre de mois travaillés par le bénéficiaire dans la dernière année vaut 12
     Et l'ancienneté en mois du bénéficiaire dans son entreprise vaut 12
     Et le code NAF de l'établissement du bénéficiaire vaut «6202A»
@@ -44,7 +44,7 @@ Scénario: CPF sur CPNE
     Et la rémunération du bénéficiaire vaut 1600
     Et le solde CPF du bénéficiaire vaut 1200
     Et le type de contrat du bénéficiaire vaut «CDD»
-    Et l'expérience professionnelle du bénéficiaire dans les cinq dernières années vaut 48
+    Et l'expérience professionnelle du bénéficiaire vaut 48
     Et le nombre de mois travaillés par le bénéficiaire dans la dernière année vaut 12
     Et l'ancienneté en mois du bénéficiaire dans son entreprise vaut 12
     Et le code NAF de l'établissement du bénéficiaire vaut «6202A»

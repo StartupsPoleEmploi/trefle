@@ -291,7 +291,13 @@ beneficiaire:
     public: true
     label: bénéficiaire ayant achevé un contrat aidé
   experience_professionnelle:
-    description: nombre de mois travaillés sur les 5 dernières années
+    description: nombre de mois travaillés
+    type: integer
+    format: int32
+    public: true
+    label: expérience professionnelle du bénéficiaire
+  experience_professionnelle_5_dernieres_annees:
+    description: nombre de mois travaillés dans les cinq dernières années
     type: integer
     format: int32
     public: true

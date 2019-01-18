@@ -7,7 +7,7 @@ Scénario: Formation CPF
     Et le solde CPF du bénéficiaire vaut «500»
     Et la rémunération du bénéficiaire vaut «1200»
     Et le âge du bénéficiaire vaut 17
-    Et l'expérience professionnelle du bénéficiaire dans les cinq dernières années vaut 12
+    Et l'expérience professionnelle du bénéficiaire vaut 12
     Et le nombre de mois travaillés par le bénéficiaire dans la dernière année vaut 4
     Et le type de contrat du bénéficiaire vaut «CDD»
     Et le code NAF de l'établissement du bénéficiaire vaut «9499Z»
@@ -43,7 +43,7 @@ Scénario: Formation CPF réservée
     Et le solde CPF du bénéficiaire vaut «50»
     Et la rémunération du bénéficiaire vaut «1200»
     Et le âge du bénéficiaire vaut 17
-    Et l'expérience professionnelle du bénéficiaire dans les cinq dernières années vaut 12
+    Et l'expérience professionnelle du bénéficiaire vaut 12
     Et le nombre de mois travaillés par le bénéficiaire dans la dernière année vaut 4
     Et le type de contrat du bénéficiaire vaut «CDD»
     Et le code NAF de l'établissement du bénéficiaire vaut «9499Z»

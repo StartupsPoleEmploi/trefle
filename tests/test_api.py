@@ -470,9 +470,13 @@ async def test_rules_details(client):
         'formation.individuels': True
     }
     assert 'CPF' in financement['tags']
-    assert not financement['explain'][0]['children'][0]['terms'][1]['status']
-    assert financement['explain'][0]['children'][0]['terms'][1]['reason'] == \
-        "type de contrat du bénéficiaire vaut «cdi» au lieu de «cdd»"
+    assert not financement['explain'][0]['children'][0]['children'][0]['terms'][1][
+        'status'
+    ]
+    assert (
+        financement['explain'][0]['children'][0]['children'][0]['terms'][1]['reason']
+        == "ce n'est pas formation éligible COPANEF"
+    )
 
 
 async def test_simulate_financement_properties(client):
