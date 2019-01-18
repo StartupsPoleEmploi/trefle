@@ -1,11 +1,8 @@
 Si c'est une formation ouverte aux bénéficiaires individuels
     Si c'est un bénéficiaire de droit privé
-    Ou le type de contrat du bénéficiaire vaut «CDD»
-    Ou le type de contrat du bénéficiaire vaut «intérimaire»
 
         Alors définir les organismes paritaires
 
-    Si c'est un bénéficiaire de droit privé
         Si le financement est de type «CPF»
             Alors l'organisme paritaire est l'OPCA de l'établissement du bénéficiaire
             Et appliquer les règles de l'organisme paritaire
