@@ -72,23 +72,23 @@ constante:
   smic:
     type: integer
     format: float
-    value: 1498.47
+    value: 1521.22
     label: SMIC
   # TODO: move to preprocess
   deux_smic:
     type: integer
     format: float
-    value: 2997
+    value: 3043
     label: deux fois le SMIC
   trois_smic:
     type: integer
     format: float
-    value: 4495
+    value: 4065
     label: trois fois le SMIC
   quatre_smic:
     type: integer
     format: int32
-    value: 5994
+    value: 6086
     label: quatre fois le SMIC
   codes_permis:
     type: array

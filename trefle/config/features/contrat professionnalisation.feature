@@ -11,7 +11,7 @@ Scénario: Contrat de professionnalisation pour un mineur
     Et la région du bénéficiaire vaut «Bretagne»
     Quand je demande un calcul de financement
     Quand je sélectionne le financement «Formation en alternance : contrat de professionnalisation»
-    Alors la rémunération applicable vaut 824.16
+    Alors la rémunération applicable vaut 836.67
 
 
 Scénario: jeune de moins de 21 ans ayant un niveau bac pro ou supérieur
@@ -25,7 +25,7 @@ Scénario: jeune de moins de 21 ans ayant un niveau bac pro ou supérieur
     Et la région du bénéficiaire vaut «Bretagne»
     Quand je demande un calcul de financement
     Quand je sélectionne le financement «Formation en alternance : contrat de professionnalisation»
-    Alors la rémunération applicable vaut 974.01
+    Alors la rémunération applicable vaut 988.79
 
 
 Scénario: jeune de 22 ans sans niveau scolaire
@@ -38,7 +38,7 @@ Scénario: jeune de 22 ans sans niveau scolaire
     Et la région du bénéficiaire vaut «Bretagne»
     Quand je demande un calcul de financement
     Quand je sélectionne le financement «Formation en alternance : contrat de professionnalisation»
-    Alors la rémunération applicable vaut 1048.93
+    Alors la rémunération applicable vaut 1064.85
 
 
 Scénario: travailleur handicapé
@@ -52,7 +52,7 @@ Scénario: travailleur handicapé
     Et la région du bénéficiaire vaut «Bretagne»
     Quand je demande un calcul de financement
     Quand je sélectionne le financement «Formation en alternance : contrat de professionnalisation»
-    Alors la rémunération applicable vaut 1498.47
+    Alors la rémunération applicable vaut 1521.22
 
 
 Scénario: trop âgé pour un contrat de professionnalisation
@@ -75,4 +75,4 @@ Scénario: jeune de moins de 26 ans non demandeur d'emploi
     Et la région du bénéficiaire vaut «Bretagne»
     Quand je demande un calcul de financement
     Quand je sélectionne le financement «Formation en alternance : contrat de professionnalisation»
-    Alors la rémunération applicable vaut 1048.93
+    Alors la rémunération applicable vaut 1064.85
