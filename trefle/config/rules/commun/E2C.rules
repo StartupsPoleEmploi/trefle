@@ -3,7 +3,7 @@ Si le financement est de type «E2C»
     Si l'âge du bénéficiaire est inférieur à 26
     Et le niveau scolaire du bénéficiaire n'est pas supérieur ou égal à «V»
     Et les codes financeur de la formation contiennent «Conseil régional»
-    Et la liste des codes FORMACODE de la formation contient au moins un code parmi [38808,15041,15062]
+    Et la liste des codes FORMACODE de la formation contient au moins un code parmi [38808,15040,15041,15061,15062]
     Et c'est une formation E2C
         Alors le financement est éligible
         Et appliquer les règles «AREF-RFPE-RPS»
