@@ -697,7 +697,7 @@ formation:
       type: integer
       format: formacode
     source: catalogue
-    path: formacode
+    path: codes-formacode
     label: liste des codes FORMACODE de la formation
   domaines_formacode:
     description: domaines (trois premiers caractères des codes) FORMACODE de la formation
