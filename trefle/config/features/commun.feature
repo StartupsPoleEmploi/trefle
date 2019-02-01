@@ -74,7 +74,7 @@ Scénario: le bénéficiaire n'a pas défini de rémunération
     Et c'est un bénéficiaire de droit privé
     Et le solde CPF du bénéficiaire vaut 1500
     Et le type de contrat du bénéficiaire vaut «CDI»
-    Et l'expérience professionnelle du bénéficiaire dans les cinq dernières années vaut 24
+    Et l'expérience professionnelle du bénéficiaire vaut 24
     Et l'ancienneté en mois du bénéficiaire dans son entreprise vaut 24
     Et le code NAF de l'établissement du bénéficiaire vaut «7830Z»
     Et l'IDCC de l'établissement du bénéficiaire vaut «2397»

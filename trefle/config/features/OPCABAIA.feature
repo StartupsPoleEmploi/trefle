@@ -7,7 +7,7 @@ Scénario: CPF avec IDCC 1672
     Et le solde CPF du bénéficiaire vaut 10000
     Et la rémunération du bénéficiaire vaut 1500
     Et le âge du bénéficiaire vaut 28
-    Et l'expérience professionnelle du bénéficiaire dans les cinq dernières années vaut 28
+    Et l'expérience professionnelle du bénéficiaire vaut 28
     Et le type de contrat du bénéficiaire vaut «CDI»
     Et l'ancienneté en mois du bénéficiaire dans son entreprise vaut 6
     Et le code NAF de l'établissement du bénéficiaire vaut «6512Z»
