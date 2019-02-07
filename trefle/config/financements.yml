@@ -726,6 +726,9 @@ Plan de développement des compétences sur son temps de travail:
   racine: organisme paritaire.rules
   ressources:
   - https://www.service-public.fr/particuliers/vosdroits/F11267
+Projet de transition professionnelle:
+  tags: [ptp, CDD, DE]
+  racine: projet de transition professionnelle.rules
 Projet de transition professionnelle CDI sur son temps de travail:
   tags: [ptp, CDI, sur son temps de travail]
   racine: projet de transition professionnelle.rules

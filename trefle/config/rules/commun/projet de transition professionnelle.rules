@@ -46,6 +46,7 @@ Ou c'est un demandeur d'emploi, et le type de contrat du bénéficiaire fait par
 
         Si c'est un demandeur d'emploi
             Alors appliquer les règles «AREF»
+            Et le titre du dispositif est «Projet de transition professionnel»
             Et le texte des démarches vaut «Pour vous renseigner sur le projet de transition professionnelle, vous pouvez contacter le Fongecif de votre région pour obtenir des conseils et renseignements sur le dispositif. Retirez auprès de votre Fongecif un dossier de demande de prise en charge.⏎Votre Compte Personnel de Formation sera mobilisé pour le financement de cette formation: vous devrez activer votre compte sur le site CPF.»
 
         #Si le financement est de type «intermittent»
