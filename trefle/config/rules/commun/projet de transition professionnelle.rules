@@ -27,26 +27,25 @@ Ou c'est un demandeur d'emploi, et le type de contrat du bénéficiaire fait par
                     Alors le financement est éligible
 
         Si le financement est de type «CDD»
-            Si c'est un bénéficiaire de droit privé
-            Ou la durée en mois entre la date de fin de contrat du bénéficiaire et la date de début de la formation est inférieure ou égale à 12
-                Si le type de contrat du bénéficiaire est «CDD»
-                Et le nombre de mois travaillés par le bénéficiaire dans la dernière année est supérieur ou égal à 4
-                    Alors le texte des démarches vaut «Pour vous renseigner sur le projet de transition professionnelle, vous pouvez contacter le Fongecif de votre région pour obtenir des conseils et renseignements sur le dispositif. ⏎Vérifiez les délais pour faire cette demande auprès de votre employeur: selon les cas, le délai est de 2 à 4 mois.⏎Votre Compte Personnel de Formation sera mobilisé pour le financement de cette formation: vous devrez activer votre compte sur le site CPF.»
+            Si le type de contrat du bénéficiaire est «CDD»
+            Et le nombre de mois travaillés par le bénéficiaire dans la dernière année est supérieur ou égal à 4
+            Et l'expérience professionnelle du bénéficiaire dans les cinq dernières années est supérieure ou égale à 24
+                Alors le texte des démarches vaut «Pour vous renseigner sur le projet de transition professionnelle, vous pouvez contacter le Fongecif de votre région pour obtenir des conseils et renseignements sur le dispositif. ⏎Vérifiez les délais pour faire cette demande auprès de votre employeur: selon les cas, le délai est de 2 à 4 mois.⏎Votre Compte Personnel de Formation sera mobilisé pour le financement de cette formation: vous devrez activer votre compte sur le site CPF.»
 
-                    Si le financement est de type «sur son temps de travail»
-                    Et c'est un bénéficiaire de droit privé
-                        Alors le financement est éligible
+                Si le financement est de type «sur son temps de travail»
+                Et c'est un bénéficiaire de droit privé
+                    Alors le financement est éligible
 
-                    Si le financement est de type «hors temps de travail»
-                    Et la durée en heures de la formation est supérieure ou égale à 30
-                        Alors le financement est éligible
-                        Et la rémunération applicable est égale à la rémunération du bénéficiaire
-                        Si la rémunération du bénéficiaire est supérieure ou égale à deux fois le SMIC
-                            Alors la rémunération applicable est égale à 90% de la rémunération du bénéficiaire
+                Si le financement est de type «hors temps de travail»
+                Et la durée en heures de la formation est supérieure ou égale à 30
+                    Alors le financement est éligible
+                    Et la rémunération applicable est égale à la rémunération du bénéficiaire
+                    Si la rémunération du bénéficiaire est supérieure ou égale à deux fois le SMIC
+                        Alors la rémunération applicable est égale à 90% de la rémunération du bénéficiaire
 
         Si c'est un demandeur d'emploi
             Alors appliquer les règles «AREF»
-            Et le titre du dispositif est «Projet de transition professionnel»
+            Et le titre du dispositif est «Projet de transition professionnelle»
             Et le texte des démarches vaut «Pour vous renseigner sur le projet de transition professionnelle, vous pouvez contacter le Fongecif de votre région pour obtenir des conseils et renseignements sur le dispositif. Retirez auprès de votre Fongecif un dossier de demande de prise en charge.⏎Votre Compte Personnel de Formation sera mobilisé pour le financement de cette formation: vous devrez activer votre compte sur le site CPF.»
 
         #Si le financement est de type «intermittent»
