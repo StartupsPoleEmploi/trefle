@@ -7,7 +7,7 @@ Et ce n'est pas un contrat d'apprentissage
     Ou les codes financeur de la formation contiennent au moins un code parmi [«Conseil régional»,«Pôle emploi»,«Agefiph»]
 
         Alors le financement est éligible
-        Et appliquer les règles «AREF-RFPE-RPS»
+        Et appliquer les règles «AREF»
         Et le texte de la prise en charge vaut «Formation totalement ou partiellement financée dans la limite de votre solde cpf et à hauteur de 15 euros de l'heure. Dans le cas d'un financement partiel, vous pouvez prendre en charge vous-même le reste du montant ou faire appel à des cofinancements. Un abondement de votre compte est possible dans certains cas, demandez les conditions à votre conseiller en évolution professionnelle.»
         Et le texte de description vaut «Le CPF peut financer totalement ou partiellement une formation certifiante. NB : dans le cas d'une formation cofinancée par la région ou Pôle emploi, le compte personnel de formation (CPF) pourra être mobilisé.»
         Et le texte des démarches vaut «1. Contactez votre conseiller référent emploi pour valider avec lui votre projet de formation.⏎2. Consultez votre compte CPF sur le site https://www.moncompteactivite.gouv.fr»
