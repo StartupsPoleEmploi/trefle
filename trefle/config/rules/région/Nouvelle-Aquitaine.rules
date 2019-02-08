@@ -31,7 +31,6 @@ Si l'intitulé du financement est «Aide individuelle à la formation artisan»
 Si l'intitulé du financement est «Aide individuelle à la formation»
 
     Si la région du bénéficiaire est «Nouvelle-Aquitaine»
-    Et la durée en heures de la formation est inférieure ou égale à 400, ou la durée en mois de la formation est supérieur à 12
     Et la durée hebdomadaire de la formation n'est pas inférieure ou égale à 21
     Et la liste des codes FORMACODE de la formation ne contient aucun code parmi [31826,31795,31768,31747,31709,31715,31717,31708,31828,24069,24066,43409,44002,15073,13030,43448,43457,43456,43439,43449,43490,43491,43493,43497,43092,43436,43441,31815,43006,44092,44008,44084,44083,44050,44092,434436,43425,43428,43430,43433,43445,43442,43438,43443,43444,43490,43442,14447,14407,14426,14456]
     Et le code CERTIFINFO de la formation ne fait pas partie de [87805,49616,23710,54660,81306,78281,54662,81136]
@@ -39,13 +38,17 @@ Si l'intitulé du financement est «Aide individuelle à la formation»
         Si ce n'est pas une formation en développement professionnel
         Ou la liste des codes CPF de la formation contient 201
             Alors appliquer les règles «AIF»
-            Et le plafond financier applicable vaut 3000
-            Et le texte de la prise en charge vaut «Formation partiellement ou totalement financée dans la limite de 3000 euros, et du montant correspondant à vos droits CPF si la formation est éligible.»
-            Et le texte des démarches vaut «Contactez votre conseiller référent emploi (Pôle emploi, Mission Locale ou Opérateur Placement Spécialisé, ex-CAP Emploi) pour valider votre projet de formation.⏎Le projet doit être validé et le dossier complet, au plus tard 15 jours avant l'entrée en formation.⏎Si la formation est éligible au Compte Personnnel de Formation (CPF), votre conseiller recueillera votre consentement à mobiliser vos heures acquises afin de financer tout ou partie de la formation.»
+            Et le plafond financier applicable vaut 4000
+            Si le niveau du bénéficiaire est inférieur à IV
+                Et le plafond financier applicable vaut 6000
+            Et le texte de la prise en charge vaut «Formation partiellement ou totalement financée dans la limite de 4000 euros, ou de 6000 euros si vous avez une qualification inférieure au BAC ou équivalent, et du montant correspondant à vos droits CPF si la formation est éligible.»
+            Et le texte des démarches vaut «Contactez votre conseiller référent emploi (Pôle emploi, Mission Locale ou Opérateur Placement Spécialisé, ex-CAP Emploi) pour valider votre projet de formation.⏎Le projet doit être validé et le dossier complet, au plus tard 15 jours avant l'entrée en formation.⏎Si la formation est éligible au Compte Personnnel de Formation (CPF), votre conseiller recueillera votre consentement à mobiliser vos droits cpf afin de financer tout ou partie de la formation.»
 
             Si c'est un travailleur handicapé
-                Alors le plafond financier applicable vaut 6000
-                Et le texte de la prise en charge vaut «Formation partiellement ou totalement financée dans la limite de 6000 euros, financés pour moitié par Pôle emploi et pour moitié par l'Agefiph, et du montant correspondant à vos heures CPF si la formation est éligible.»
+                Alors le plafond financier applicable vaut 4000
+                Si le niveau du bénéficiaire est inférieur à IV
+                Et le plafond financier applicable vaut 6000
+                Et le texte de la prise en charge vaut «Formation partiellement ou totalement financée dans la limite de 4000 euros, l'Agefiph peut participer au delà du montant du plafond financier et du montant correspondant à vos droits CPF si la formation est éligible.»
 
 
 Si l'intitulé du financement est «Programme régional de formation»
@@ -94,8 +97,9 @@ Si l'intitulé du financement est «Programme régional de formation»
                 Alors l'intitulé du financement vaut «Programme régional de formation sanitaire et social»
 
         Si l'allocation du bénéficiaire vaut «allocation d'aide au retour à l'emploi»
-        Ou la durée en heures de la formation n'est pas inférieure à 150
-            Alors appliquer les règles «AREF-RFPE-RPS»
+            Alors appliquer les règles «AREF»
+            Si la durée de la formation est supérieure à 150 heures 
+                Alors appliquer la règle «RPS»
 
 
 Si l'intitulé du financement est «Parcours régional de préparation à l'apprentissage»
@@ -103,11 +107,11 @@ Si l'intitulé du financement est «Parcours régional de préparation à l'appr
     Si la région de la formation est «Nouvelle-Aquitaine»
     Et la région du bénéficiaire est «Nouvelle-Aquitaine»
     Et c'est un demandeur d'emploi
-    Et l'âge du bénéficiaire n'est pas supérieur ou égal à 26, ou c'est un travailleur handicapé
+    Et l'âge du bénéficiaire n'est pas supérieur ou égal à 29, ou c'est un travailleur handicapé
     Et l'intitulé normé de la formation contient «PREPAMETIERS»
         Alors le financement est éligible
         Et le texte des démarches vaut «Contactez votre mission locale ou Opérateur placement spécialisé, ex-Cap Emploi pour valider votre projet.»
-        Et le texte de description vaut «Dispositif financé par le Conseil régional permettant un accompagnement individualisé d'un projet de formation en apprentissage et la recherche d'un employeur. Réservé aux jeunes de moins de 26 ans ou aux personnes reconnues travailleur handicapé»
+        Et le texte de description vaut «Dispositif financé par le Conseil régional permettant un accompagnement individualisé d'un projet de formation en apprentissage et la recherche d'un employeur. Réservé aux jeunes de moins de 30 ans ou aux personnes reconnues travailleur handicapé»
         Et le texte de la prise en charge vaut «Formation totalement financée.»
 
         Si l'allocation du bénéficiaire vaut «allocation d'aide au retour à l'emploi»
@@ -131,7 +135,7 @@ Si l'intitulé du financement est «Aide individuelle Conseil régional»
     Et la liste des codes FORMACODE de la formation ne contient aucun code parmi [43412,43437,43409,44002,15073,13030,43448,43457,43456,43439,43449,43490,43491,43493,43497,43092,43436,43441,31815,43006,44092,44008,44084,44083,44050,44092,43425,43428,43430,43433,43445,43442,43438,43443,43444,43490,43442,14447,14407,14426,14456,31826,31795,31768,31747,31709,31715,31717,31708,31828,24069,24066]
     Et le code CERTIFINFO de la formation ne fait pas partie de [65960,87805,49616,23710,54660,81306,78281,54664,54662,81136]
         Alors le financement est éligible
-        Et appliquer les règles «AREF-RFPE-RPS»
+        Et appliquer les règles «AREF-RPS»
         Et le texte des démarches vaut «Contactez votre conseiller référent emploi (Pôle emploi, Mission locale ou Operateur de placement spécialisés, ex-CAP Emploi) pour valider votre projet de formation. Vous pouvez pour cela lui présenter 2 à 3 devis d'organismes de formation différents ainsi qu'une lettre de motivation.⏎Le projet doit être validé et le dossier complet pour être transmis — au plus tard 6 semaines avant l'entrée en formation — au Conseil régional, qui décide ou non de l'attribution de l'aide.»
         Et le texte de description vaut «L’aide individuelle de la Région vise à financer certains besoins individuels de formation auxquels les achats d’action de formation collectifs ne peuvent répondre, ni les autres dispositifs de formation individuels.»
         Et le texte de la prise en charge vaut «Formation totalement ou partiellement financée dans la limite de 3000 €.»
