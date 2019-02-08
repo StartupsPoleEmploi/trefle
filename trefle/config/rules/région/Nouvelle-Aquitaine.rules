@@ -38,15 +38,15 @@ Si l'intitulé du financement est «Aide individuelle à la formation»
         Si ce n'est pas une formation en développement professionnel
         Ou la liste des codes CPF de la formation contient 201
             Alors appliquer les règles «AIF»
-            Et le plafond financier applicable vaut 4000
-            Si le niveau du bénéficiaire est inférieur à IV
-                Et le plafond financier applicable vaut 6000
             Et le texte de la prise en charge vaut «Formation partiellement ou totalement financée dans la limite de 4000 euros, ou de 6000 euros si vous avez une qualification inférieure au BAC ou équivalent, et du montant correspondant à vos droits CPF si la formation est éligible.»
             Et le texte des démarches vaut «Contactez votre conseiller référent emploi (Pôle emploi, Mission Locale ou Opérateur Placement Spécialisé, ex-CAP Emploi) pour valider votre projet de formation.⏎Le projet doit être validé et le dossier complet, au plus tard 15 jours avant l'entrée en formation.⏎Si la formation est éligible au Compte Personnnel de Formation (CPF), votre conseiller recueillera votre consentement à mobiliser vos droits cpf afin de financer tout ou partie de la formation.»
+            Et le plafond financier applicable vaut 4000
+            Si le niveau du bénéficiaire est inférieur à «IV»
+                Alors le plafond financier applicable vaut 6000
 
             Si c'est un travailleur handicapé
-                Alors le plafond financier applicable vaut 4000
                 Et le texte de la prise en charge vaut «Formation partiellement ou totalement financée dans la limite de 4000 euros, l'Agefiph peut participer au delà du montant du plafond financier et du montant correspondant à vos droits CPF si la formation est éligible.»
+                Alors le plafond financier applicable vaut 4000
                 Si le niveau du bénéficiaire est inférieur à «IV»
                     Alors le plafond financier applicable vaut 6000
 
