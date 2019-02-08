@@ -296,6 +296,12 @@ beneficiaire:
     format: int32
     public: true
     label: expérience professionnelle du bénéficiaire
+  experience_professionnelle_5_dernieres_annees:
+    description: nombre de mois travaillés dans les cinq dernières années
+    type: integer
+    format: int32
+    public: true
+    label: expérience professionnelle du bénéficiaire dans les cinq dernières années
   mois_travailles_en_cdd:
     description: nombre de mois travaillés sur un contrat CDD sur les 12 derniers mois
     type: integer
