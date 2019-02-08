@@ -11,6 +11,7 @@ from behave.runner_util import parse_features
 from unidecode import unidecode
 
 from .config import SCHEMA, FINANCEMENTS
+from .helpers import flatten
 
 
 SCENARIOS = []
@@ -67,33 +68,8 @@ def data_from_lbf_url(url):
         encrypted = "".join(charmap[char] for char in encrypted[8:])
         serialized = base64.b64decode(encrypted)
         serialized = bz2.decompress(serialized)
-        for k, v in phpserialize.loads(serialized).items():
-            try:
-                args[k.decode()] = v.decode()
-            except AttributeError:
-                continue
-        del args["a"]
-
-    keymap = {
-        "droitprive": "beneficiaire.droit_prive",
-        "salaire": "beneficiaire.remuneration",
-        "situation_creditheurescpf": "beneficiaire.solde_cpf",
-        "contrat": "beneficiaire.contrat",
-        "experience": "beneficiaire.experience_professionnelle",
-        "moistravailleencdd": "beneficiaire.mois_travailles_en_cdd",
-        "ancienneteentrepriseactuelle": "beneficiaire.mois_entreprise",
-        "naf": "beneficiaire.entreprise.naf",
-        "idcc": "beneficiaire.entreprise.idcc",
-        "region": "beneficiaire.entreprise.region",
-        "entrepriselocationinsee": "beneficiaire.entreprise.commune",
-        "idformintercarif": "formation.numero",
-        "inscritDE": "beneficiaire.inscrit_pe",
-        "situation_inscrit": "beneficiaire.inscrit_pe",
-    }
-    data = {}
-    for key, value in args.items():
-        key = keymap.get(key, f"beneficiaire.{key}")
-        data[key] = value
+        data = phpserialize.loads(serialized, decode_strings=True)
+        data = flatten(data)
 
     return data
 
