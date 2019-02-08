@@ -46,9 +46,9 @@ Si l'intitulé du financement est «Aide individuelle à la formation»
 
             Si c'est un travailleur handicapé
                 Alors le plafond financier applicable vaut 4000
-                Si le niveau du bénéficiaire est inférieur à IV
-                Et le plafond financier applicable vaut 6000
                 Et le texte de la prise en charge vaut «Formation partiellement ou totalement financée dans la limite de 4000 euros, l'Agefiph peut participer au delà du montant du plafond financier et du montant correspondant à vos droits CPF si la formation est éligible.»
+                Si le niveau du bénéficiaire est inférieur à «IV»
+                    Alors le plafond financier applicable vaut 6000
 
 
 Si l'intitulé du financement est «Programme régional de formation»
