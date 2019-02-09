@@ -7,12 +7,13 @@ Scénario: Cas nominal demandeur d'emploi - CDD
     Et le département du bénéficiaire vaut «Cantal»
     Et le type de contrat du bénéficiaire est «CDD»
     Et le nombre de mois travaillés par le bénéficiaire dans la dernière année est 8
+    Et l'expérience professionnelle du bénéficiaire dans les cinq dernières années est 36
     Et la date de fin de contrat du bénéficiaire vaut «01/09/2018»
     Et la durée en heures de la formation est 50
     Et la date de début de la formation vaut «01/03/2019»
     Et la rémunération du bénéficiaire est 3100
     Quand je demande un calcul de financement
-    Quand je sélectionne le financement «Projet de transition professionnelle CDD hors temps de travail»
+    Quand je sélectionne le financement «Projet de transition professionnelle»
     Alors le plafond de prise en charge vaut 0
     Et la rémunération applicable vaut 2790
 
@@ -24,6 +25,7 @@ Scénario: Cas nominal salarié - CDD
     Et le type de contrat du bénéficiaire est «CDD»
     Et l'IDCC de l'établissement du bénéficiaire vaut 800
     Et le nombre de mois travaillés par le bénéficiaire dans la dernière année est 8
+    Et l'expérience professionnelle du bénéficiaire dans les cinq dernières années est 36
     Et la date de fin de contrat du bénéficiaire vaut «01/09/2018»
     Et la durée en heures de la formation est 50
     Et la date de début de la formation vaut «01/03/2019»
