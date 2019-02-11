@@ -41,13 +41,13 @@ Si l'intitulé du financement est «Aide individuelle à la formation»
             Et le texte de la prise en charge vaut «Formation partiellement ou totalement financée dans la limite de 4000 euros, ou de 6000 euros si vous avez une qualification inférieure au BAC ou équivalent, et du montant correspondant à vos droits CPF si la formation est éligible.»
             Et le texte des démarches vaut «Contactez votre conseiller référent emploi (Pôle emploi, Mission Locale ou Opérateur Placement Spécialisé, ex-CAP Emploi) pour valider votre projet de formation.⏎Le projet doit être validé et le dossier complet, au plus tard 15 jours avant l'entrée en formation.⏎Si la formation est éligible au Compte Personnnel de Formation (CPF), votre conseiller recueillera votre consentement à mobiliser vos droits cpf afin de financer tout ou partie de la formation.»
             Et le plafond financier applicable vaut 4000
-            Si le niveau du bénéficiaire est inférieur à «IV»
+            Si le niveau scolaire du bénéficiaire est inférieur à «IV»
                 Alors le plafond financier applicable vaut 6000
 
             Si c'est un travailleur handicapé
-                Et le texte de la prise en charge vaut «Formation partiellement ou totalement financée dans la limite de 4000 euros, l'Agefiph peut participer au delà du montant du plafond financier et du montant correspondant à vos droits CPF si la formation est éligible.»
-                Alors le plafond financier applicable vaut 4000
-                Si le niveau du bénéficiaire est inférieur à «IV»
+                Alors le texte de la prise en charge vaut «Formation partiellement ou totalement financée dans la limite de 4000 euros, l'Agefiph peut participer au delà du montant du plafond financier et du montant correspondant à vos droits CPF si la formation est éligible.»
+                Et le plafond financier applicable vaut 4000
+                Si le niveau scolaire du bénéficiaire est inférieur à «IV»
                     Alors le plafond financier applicable vaut 6000
 
 
@@ -97,9 +97,8 @@ Si l'intitulé du financement est «Programme régional de formation»
                 Alors l'intitulé du financement vaut «Programme régional de formation sanitaire et social»
 
         Si l'allocation du bénéficiaire vaut «allocation d'aide au retour à l'emploi»
-            Alors appliquer les règles «AREF»
-            Si la durée de la formation est supérieure à 150 heures 
-                Alors appliquer la règle «RPS»
+        Ou la durée en heures de la formation n'est pas inférieure à 150
+            Alors appliquer les règles «AREF-RFPE-RPS»
 
 
 Si l'intitulé du financement est «Parcours régional de préparation à l'apprentissage»
@@ -135,7 +134,7 @@ Si l'intitulé du financement est «Aide individuelle Conseil régional»
     Et la liste des codes FORMACODE de la formation ne contient aucun code parmi [43412,43437,43409,44002,15073,13030,43448,43457,43456,43439,43449,43490,43491,43493,43497,43092,43436,43441,31815,43006,44092,44008,44084,44083,44050,44092,43425,43428,43430,43433,43445,43442,43438,43443,43444,43490,43442,14447,14407,14426,14456,31826,31795,31768,31747,31709,31715,31717,31708,31828,24069,24066]
     Et le code CERTIFINFO de la formation ne fait pas partie de [65960,87805,49616,23710,54660,81306,78281,54664,54662,81136]
         Alors le financement est éligible
-        Et appliquer les règles «AREF-RPS»
+        Et appliquer les règles «AREF-RFPE-RPS»
         Et le texte des démarches vaut «Contactez votre conseiller référent emploi (Pôle emploi, Mission locale ou Operateur de placement spécialisés, ex-CAP Emploi) pour valider votre projet de formation. Vous pouvez pour cela lui présenter 2 à 3 devis d'organismes de formation différents ainsi qu'une lettre de motivation.⏎Le projet doit être validé et le dossier complet pour être transmis — au plus tard 6 semaines avant l'entrée en formation — au Conseil régional, qui décide ou non de l'attribution de l'aide.»
         Et le texte de description vaut «L’aide individuelle de la Région vise à financer certains besoins individuels de formation auxquels les achats d’action de formation collectifs ne peuvent répondre, ni les autres dispositifs de formation individuels.»
         Et le texte de la prise en charge vaut «Formation totalement ou partiellement financée dans la limite de 3000 €.»
