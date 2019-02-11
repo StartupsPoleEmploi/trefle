@@ -12,6 +12,7 @@ Scénario: Cas nominal demandeur d'emploi - CDD
     Et la durée en heures de la formation est 50
     Et la date de début de la formation vaut «01/03/2019»
     Et la rémunération du bénéficiaire est 3100
+    Et c'est une formation éligible COPANEF
     Quand je demande un calcul de financement
     Quand je sélectionne le financement «Projet de transition professionnelle»
     Alors le plafond de prise en charge vaut 0
@@ -29,6 +30,7 @@ Scénario: Cas nominal salarié - CDD
     Et la date de fin de contrat du bénéficiaire vaut «01/09/2018»
     Et la durée en heures de la formation est 50
     Et la date de début de la formation vaut «01/03/2019»
+    Et c'est une formation éligible COPANEF
     Quand je demande un calcul de financement
     Quand je sélectionne le financement «Projet de transition professionnelle CDD sur son temps de travail»
     Alors le plafond de prise en charge vaut 0
@@ -43,6 +45,7 @@ Scénario: Cas nominal salarié - CDI hors temps de travail
     Et l'ancienneté en mois du bénéficiaire dans son entreprise est 36
     Et l'expérience professionnelle du bénéficiaire est 48
     Et la durée en heures de la formation est 50
+    Et c'est une formation éligible COPANEF
     Quand je demande un calcul de financement
     Quand je sélectionne le financement «Projet de transition professionnelle CDI hors temps de travail»
     Alors le plafond de prise en charge vaut 0
@@ -58,6 +61,7 @@ Scénario: Cas nominal salarié - CDI sur temps de travail
     Et l'expérience professionnelle du bénéficiaire est 48
     Et la durée en heures de la formation est 50
     Et la rémunération du bénéficiaire est 3100
+    Et c'est une formation éligible COPANEF
     Quand je demande un calcul de financement
     Quand je sélectionne le financement «Projet de transition professionnelle CDI sur son temps de travail»
     Alors le plafond de prise en charge vaut 0
