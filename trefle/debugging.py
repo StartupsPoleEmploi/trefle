@@ -87,7 +87,7 @@ def make_scenario(data, financements, name="Donne-moi un nom"):
         if enum and value is not None:
             if isinstance(value, (list, tuple, set)):
                 value = [f"«{enum[v]}»" for v in value]
-            else:
+            elif value is not '':
                 value = enum[value]
         if isinstance(value, str):
             value = f"«{value}»"
