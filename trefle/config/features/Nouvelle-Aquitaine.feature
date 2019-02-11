@@ -11,21 +11,7 @@ Scénario: cas nominal AIF
     Et c'est une formation ouverte aux bénéficiaires individuels
     Quand je demande un calcul de financement
     Quand je sélectionne le financement «Aide individuelle à la formation»
-    Alors le plafond de prise en charge vaut 3000
-    Et le texte de la prise en charge vaut «Formation partiellement ou totalement financée dans la limite de 3000 euros, et du montant correspondant à vos droits CPF si la formation est éligible.»
-
-
-Scénario: Formation trop longue pour l'AIF
-    Soit un bénéficiaire et une formation
-    Et c'est un demandeur d'emploi
-    Et la durée en heures de la formation vaut 401
-    Et le nombre d'heures en centre vaut 100
-    Et le nombre d'heures en entreprise vaut 20
-    Et la rémunération du bénéficiaire vaut 1000
-    Et la région du bénéficiaire vaut «Nouvelle-Aquitaine»
-    Et c'est une formation ouverte aux bénéficiaires individuels
-    Quand je demande un calcul de financement
-    Alors le financement «Aide individuelle à la formation» n'est pas proposé
+    Alors le plafond de prise en charge vaut 4000
 
 
 Scénario: Durée hebdo trop courte pour l'AIF
@@ -205,10 +191,10 @@ Scénario: «PREPA Métiers» avec ARE
     Alors la rémunération applicable vaut 800.0
 
 
-Scénario: Pas de «PREPA Métiers» si > 25 ans
+Scénario: Pas de «PREPA Métiers» si > 29 ans
     Soit un bénéficiaire et une formation
     Et c'est un demandeur d'emploi
-    Et le âge du bénéficiaire vaut 26
+    Et le âge du bénéficiaire vaut 30
     Et la durée en heures de la formation vaut 150
     Et la région du bénéficiaire vaut «Nouvelle-Aquitaine»
     Et la région de la formation vaut «Nouvelle-Aquitaine»
