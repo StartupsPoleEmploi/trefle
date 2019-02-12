@@ -1,4 +1,5 @@
 <financements>
+  <h2>Liste des types de financements <a href=https://framagit.org/ybon/trefle/tree/master/trefle/config/financements.yml target=_blank><i class="icon">edit</i></a></h2>
   <dl each={ this.financements }>
     <dt>{ intitule }</dt>
     <dd if={ racine.endsWith('.rules') }><strong>Règles racine</strong>: <a href="#/rules/{ racine }">{ racine } <i class="icon">arrow_forward</i></a></dd>

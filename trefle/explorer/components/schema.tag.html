@@ -44,7 +44,7 @@
 </schema>
 
 <schema-entries>
-  <h2>{ this.opts.name }</h2>
+  <h2>{ this.opts.name } <a href=https://framagit.org/ybon/trefle/tree/master/trefle/config/schema.yml target=_blank><i class=icon>edit</i></a></h2>
   <dl each={ props, key in this.opts.items } id='schema/{ key }'>
     <dt>{props.label || props.description} <a href="#schema/{ key }" class=anchor>#</a></dt>
     <dd if={ props.value }><strong>Valeur constante</strong> { renderValue(key, props.value) }</dd>

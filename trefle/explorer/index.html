@@ -31,16 +31,20 @@
 </main>
 
 <script>
-  route('/schema/(.+)', (id) => riot.mount('schema', {id: id}))
-  route('/schema', () => riot.mount('schema'))
-  route('/rules/(.+)', (id) => riot.mount('rules', {id: id}))
-  route('/rules', () => riot.mount('rules'))
-  route('/scenarios/(.+)', (filters) => riot.mount('scenarios', {filters: decodeURIComponent(filters).split(',')}))
-  route('/scenarios', () => riot.mount('scenarios'))
-  route('/simulate', () => riot.mount('simulate'))
-  route('/simulate/(.+)', (url) => riot.mount('simulate', {url: url}))
-  route('/tools', () => riot.mount('tools'))
-  route('/financements', () => riot.mount('financements'))
-  route('/glossary', () => riot.mount('glossary'))
+  function page() {
+    riot.mount.apply(null, arguments)
+    document.querySelector('header')._tag.update()
+  }
   riot.mount('navbar')
+  route('/schema/(.+)', (id) => page('schema', {id: id}))
+  route('/schema', () => page('schema'))
+  route('/rules/(.+)', (id) => page('rules', {id: id}))
+  route('/rules', () => page('rules'))
+  route('/scenarios/(.+)', (filters) => page('scenarios', {filters: decodeURIComponent(filters).split(',')}))
+  route('/scenarios', () => page('scenarios'))
+  route('/simulate', () => page('simulate'))
+  route('/simulate/(.+)', (url) => page('simulate', {url: url}))
+  route('/tools', () => page('tools'))
+  route('/financements', () => page('financements'))
+  route('/glossary', () => page('glossary'))
 </script>

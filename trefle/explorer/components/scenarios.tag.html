@@ -5,7 +5,7 @@
   <div if={ this.selected_filters.length && this.active.length }>
     <!-- <h3>{ this.feature.path } <a href=https://framagit.org/ybon/trefle/tree/master/trefle/config/{ this.feature.path } target=_blank> <i class="icon">edit</i></a></h3> -->
     <ul>
-      <li each={ this.active }><h4>{ name }</h4>
+        <li each={ this.active }><h4>{ name } <a href=https://framagit.org/ybon/trefle/tree/master/{ filename }#L{ line } target=_blank><i class=icon>edit</i></a></h4>
         <rule content={ raw }></rule>
         <!-- <pre><div each={ steps }>{ keyword } { name }</div></pre> -->
       </li>
