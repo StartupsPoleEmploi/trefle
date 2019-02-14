@@ -144,6 +144,7 @@ Si l'intitulé du financement est «Cap compétences clés»
 Si l'intitulé du financement est «Programme régional qualifiant»
 
     Si le département de la formation fait partie de [«Aude»,«Gard»,«Hérault»,«Lozère»,«Pyrénées-Orientales»]
+    Et c'est un demandeur d'emploi
     Et les codes financeur de la formation contiennent «Conseil régional»
     Et la liste des codes FORMACODE de la formation ne contient aucun code parmi [43436,31815,43441,43458,43491,43448,43457,43497,43449,43497,43490,43006,43439,43092,44083,44028,44047,44084,44050,44092,44092,44092,44008]
     Et l'intitulé normé de la formation ne contient pas «ACTIONCAPAVENIR»
@@ -176,7 +177,7 @@ Si l'intitulé du financement est «Formations des établissements d'enseignemen
 
 Si l'intitulé du financement est «École de l'apprentissage»
 
-    Si l'âge du bénéficiaire n'est pas supérieur ou égal à 26
+    Si l'âge du bénéficiaire n'est pas supérieur ou égal à 29
     Ou c'est un travailleur handicapé, et l'âge du bénéficiaire n'est pas supérieur ou égal à 30
 
         Si la région du bénéficiaire vaut «Occitanie»
