@@ -694,7 +694,7 @@ formation:
     items:
       type: string
     source: catalogue
-    path: codes-romes
+    path: codes-rome
     label: liste des codes ROME de la formation
   codes_formacode:
     type: array
