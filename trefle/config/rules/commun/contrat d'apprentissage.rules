@@ -25,6 +25,6 @@ Et c'est un contrat d'apprentissage
         Alors le financement est éligible
 
     Si l'âge du bénéficiaire est supérieur ou égal à 16
-        Si l'âge du bénéficiaire est inférieur ou égal à 25
+        Si l'âge du bénéficiaire est inférieur ou égal à 29
         Ou l'âge du bénéficiaire est inférieur ou égal à 30, et la région du bénéficiaire fait partie de [«Bretagne»,«Bourgogne-Franche-Comté»,«Centre-Val de Loire»,«Grand-Est»,«Hauts-de-France»,«Nouvelle-Aquitaine»,«Pays de la Loire»]
             Alors le financement est éligible
