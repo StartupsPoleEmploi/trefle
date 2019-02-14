@@ -52,7 +52,7 @@ Scénario: pas de contrat d'apprentissage pour un jeune de plus de 25 ans
     Et c'est un demandeur d'emploi
     Et la durée en heures de la formation vaut 120
     Et c'est un contrat d'apprentissage
-    Et le âge du bénéficiaire vaut 26
+    Et le âge du bénéficiaire vaut 30
     Et c'est une formation ouverte aux bénéficiaires individuels
     Et la région du bénéficiaire vaut «Normandie»
     Quand je demande un calcul de financement
@@ -64,7 +64,7 @@ Scénario: contrat d'apprentissage pour un jeune de plus de 25 ans possible en r
     Et c'est un demandeur d'emploi
     Et la durée en heures de la formation vaut 120
     Et c'est un contrat d'apprentissage
-    Et le âge du bénéficiaire vaut 26
+    Et le âge du bénéficiaire vaut 30
     Et la région du bénéficiaire est «Bretagne»
     Et c'est une formation ouverte aux bénéficiaires individuels
     Quand je demande un calcul de financement
