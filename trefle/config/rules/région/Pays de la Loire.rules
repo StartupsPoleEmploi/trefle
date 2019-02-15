@@ -64,19 +64,16 @@ Et c'est un demandeur d'emploi
                 Alors le texte de la rémunération est «Demande de bourse régionale à effectuer sur http://www.paysdelaloire.fr/services-en-ligne/aides-regionales/aides-regionales-themes/formation/actu-detaillee/n/formations-sanitaires-et-sociales-demande-de-bourses-en-ligne-2/»
 
     Si l'intitulé du financement est «Parcours TPME vers l'emploi»
-    Et le nombre d'heures de la formation est comprise entre 401 et 800
-        Alors la formation est éligible
-        Et le montant horaire de la prise en charge de la formation vaut 18
-        Et le texte de description vaut «Dispositif expérimental financé par la région Pays de Loire visant à former des candidats en lien avec une future embauche dans une entreprise de moins de 20 salariés.
-La formation a un lien avec le poste proposé et l'employeur s'engage à embaucher pour au moins 6 mois de contrat à durée déterminée et de 20 heures minimum par semaine.»
+    Et la durée en heures de la formation est supérieur à 401
+    Et la durée en heures de la formation est inférieur ou égal à 800
+        Alors le financement est éligible
+        Et le prix horaire applicable vaut 18
+        Et le texte de description vaut «Dispositif expérimental financé par la région Pays de Loire visant à former des candidats en lien avec une future embauche dans une entreprise de moins de 20 salariés. La formation a un lien avec le poste proposé et l'employeur s'engage à embaucher pour au moins 6 mois de contrat à durée déterminée et de 20 heures minimum par semaine.»
         Et le texte des démarches vaut «Contactez votre conseiller Pôle emploi des Pays de la Loire pour vous renseigner sur les modalités de prise en charge de la formation.»
         Et le texte de la prise en charge vaut «Formation totalement ou partiellement»
-        
-        Si le montant de l'ARE du bénéficiaire est supérieur à 80% du SMIC 
-            Alors appliquer les règles «AREF»
-        Si le montant de l'ARE du bénéficiaire est inférieure à 80% du montant du SMIC 
+
+        Si l'allocation du bénéficiaire est «allocation d'aide au retour à l'emploi»
             Alors la rémunération applicable est égale à 80% du SMIC
 
-
-
-
+            Si le montant de l'allocation du bénéficiaire n'est pas supérieur à 80% du SMIC
+                Alors appliquer les règles «AREF»

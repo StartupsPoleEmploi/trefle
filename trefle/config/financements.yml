@@ -492,6 +492,14 @@ Action collective sanitaire et social financée par la région et Pôle Emploi:
   racine: Pays de la Loire.rules
   ressources:
     - http://www.paysdelaloire.fr/politiques-regionales/formation-professionnelle
+Parcours TPME vers l'emploi:
+  type_lbf: actioncollectiveregion
+  priorite_lbf: 1
+  tags: [DE, collectif, région]
+  cpf_mobilisable: True
+  financee_pe: False
+  cumulable: False
+  racine: Pays de la Loire.rules
 Programme régional de formation Guadeloupe:
   type_lbf: actioncollectiveregion
   priorite_lbf: 1
