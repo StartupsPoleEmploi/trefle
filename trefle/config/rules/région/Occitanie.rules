@@ -30,9 +30,9 @@ Si l'intitulé du financement est «Aide individuelle à la formation artisan»
 
 Si l'intitulé du financement est «Aide individuelle à la formation»
     Si la région du bénéficiaire est «Occitanie»
-        Alors le texte de la prise en charge vaut «Formation totalement ou partiellement financée dans la limite de 1000 € (possibilité de cofinancement à étudier avec votre conseiller référent mais sans autofinancement)»
+        Alors le texte de la prise en charge vaut «Formation totalement ou partiellement financée dans la limite de 2500 euros,ou de 5000 euros si vous avez une qualification inférieure au BAC ou équivalent, et du montant correspondant à vos droits CPF si la formation est éligible.»
 
-        Si le niveau scolaire du bénéficiaire ne fait pas partie de [«I»,«II»,«III»,«IV»]
+        Si le niveau scolaire du bénéficiaire ne fait pas partie de [«I»,«II»,«III»]
         Et ce n'est pas une formation en développement professionnel, ou la liste des codes CPF de la formation contient 201
         Et la liste des domaines FORMACODE de la formation ne contient pas 434, ou la liste des codes FORMACODE de la formation contient au moins un code parmi [43421,43429,43485,43401,43424,43415,43407,43426,43417,43486]
         Et la liste des codes FORMACODE de la formation ne contient aucun code parmi [31802,31811,31812,44028]
@@ -40,10 +40,11 @@ Si l'intitulé du financement est «Aide individuelle à la formation»
         Et ce n'est pas une formation de l'enseignement supérieur
         # TODO si certifinfo Ambulancier (DEA) 59412 + siret 77567227207806
             Alors appliquer les règles «AIF»
-            Et le plafond financier applicable vaut 1000
+            Et le plafond financier applicable vaut 2500
 
             Si c'est un permis B
-                Alors le texte de la prise en charge vaut «Vous pouvez utiliser votre CPF pour financer totalement ou partiellement votre permis de conduire catégorie B. Pôle emploi peut éventuellement vous apporter un complément de financement. Votre auto-école doit impérativement vous présenter à l'examen de conduite au plus tard six mois après votre inscription.»
+                Alors le texte de la prise en charge vaut «Formation totalement ou partiellement pris en charge dans la limite de 1200 euros.Vous pouvez utiliser votre CPF pour financer votre permis de conduire catégorie B.  Votre auto-école doit impérativement vous présenter à l'examen de conduite au plus tard six mois après votre inscription.»
+                Et le plafond financier applicable vaut 1200
 
 Si l'intitulé du financement est «Parcours Orientation Insertion»
 
