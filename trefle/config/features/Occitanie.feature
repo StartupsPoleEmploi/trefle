@@ -8,7 +8,7 @@ Scénario: cas nominal AIF
     Et c'est une formation ouverte aux bénéficiaires individuels
     Quand je demande un calcul de financement
     Quand je sélectionne le financement «Aide individuelle à la formation»
-    Alors le plafond de prise en charge vaut 1000
+    Alors le plafond de prise en charge vaut 2500
 
 
 Scénario: Niveau scolaire trop élevé pour un AIF
@@ -16,7 +16,7 @@ Scénario: Niveau scolaire trop élevé pour un AIF
     Et c'est un demandeur d'emploi
     Et la durée en heures de la formation vaut 120
     Et la région du bénéficiaire vaut «Occitanie»
-    Et la niveau scolaire du bénéficiaire vaut «IV»
+    Et la niveau scolaire du bénéficiaire vaut «III»
     Et c'est une formation ouverte aux bénéficiaires individuels
     Quand je demande un calcul de financement
     Alors le financement «Aide individuelle à la formation» n'est pas proposé
@@ -43,7 +43,7 @@ Scénario: Domaine FORMACODE 150 mais code CPF 201 OK pour AIF
     Et c'est une formation ouverte aux bénéficiaires individuels
     Quand je demande un calcul de financement
     Quand je sélectionne le financement «Aide individuelle à la formation»
-    Alors le plafond de prise en charge vaut 1000
+    Alors le plafond de prise en charge vaut 2500
 
 
 Scénario: Cas nominal «Parcours orientation insertion»
