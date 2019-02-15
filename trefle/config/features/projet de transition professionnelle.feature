@@ -8,7 +8,6 @@ Scénario: Cas nominal demandeur d'emploi - CDD
     Et le type de contrat du bénéficiaire est «CDD»
     Et le nombre de mois travaillés par le bénéficiaire dans la dernière année est 8
     Et l'expérience professionnelle du bénéficiaire dans les cinq dernières années est 36
-    Et la date de fin de contrat du bénéficiaire vaut «01/09/2018»
     Et la durée en heures de la formation est 50
     Et la date de début de la formation vaut «01/03/2019»
     Et la rémunération du bénéficiaire est 3100
@@ -27,7 +26,6 @@ Scénario: Cas nominal salarié - CDD
     Et l'IDCC de l'établissement du bénéficiaire vaut 800
     Et le nombre de mois travaillés par le bénéficiaire dans la dernière année est 8
     Et l'expérience professionnelle du bénéficiaire dans les cinq dernières années est 36
-    Et la date de fin de contrat du bénéficiaire vaut «01/09/2018»
     Et la durée en heures de la formation est 50
     Et la date de début de la formation vaut «01/03/2019»
     Et c'est une formation éligible COPANEF
