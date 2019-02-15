@@ -31,6 +31,7 @@ Si l'intitulé du financement est «Aide individuelle à la formation artisan»
 Si l'intitulé du financement est «Aide individuelle à la formation»
 
     Si la région du bénéficiaire est «Normandie»
+    Et c'est une formation ouverte aux bénéficiaires individuels
     Et la liste des codes FORMACODE de la formation ne contient aucun code parmi [43448,43436,31815,43441,44041,31815,43454,44054,43409,44041,31802,31854,31805,31827,31833,31815,43454,44054,43409,31734,32050,43438,43438,43438,42003,42030,42050,42060,46061,43445,43425,14449,42020,42093]
     Et le code CERTIFINFO de la formation ne fait pas partie de [49616,23710,55676,83419,96173]
     Et ce n'est pas une formation VAE
