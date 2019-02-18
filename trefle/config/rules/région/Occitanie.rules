@@ -45,6 +45,7 @@ Si l'intitulé du financement est «Aide individuelle à la formation»
 
         Si c'est un permis B
             Alors le financement est éligible
+            Et appliquer les règles «AREF-RFPE-RPS»
             Et le texte de la prise en charge vaut «Formation totalement ou partiellement pris en charge dans la limite de 1200 euros.Vous pouvez utiliser votre CPF pour financer votre permis de conduire catégorie B.  Votre auto-école doit impérativement vous présenter à l'examen de conduite au plus tard six mois après votre inscription.»
             Et le plafond financier applicable vaut 1200
 
