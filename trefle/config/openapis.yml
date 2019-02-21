@@ -1,7 +1,18 @@
 openapi: 3.0.0
 info:
-  title: Moteur de financement salariés
+  title: Api moteur de financement formation professionnelle
+  description: Obtenir la liste des financements possibles (coûts et rémunération) en fonction du profil du bénéficiaire et des caractéristiques de la formation.
   version: 1.0.0
+  contact:
+    email: david.foucher@pole-emploi.fr
+servers:
+  - url: http://trefle.pole-emploi.fr
+    description: serveur de production
+  - url: http://trefle.beta.pole-emploi.fr
+    description: serveur de recette
+tags:
+- name: financement
+  description: Obtenir la liste des financements possibles (coûts et rémunération) en fonction du profil du bénéficiaire et des caractéristiques de la formation.
 paths:
   /financement:
     post:
@@ -13,6 +24,11 @@ paths:
           description: Permet de filtrer les financements selon leur éligibilité
           schema:
             type: boolean
+      requestBody:
+        content:
+          'application/json':
+            schema:
+              $ref: '#/components/schemas/request'
       responses:
         200:
           description: Calcul effectué avec succès
@@ -34,6 +50,12 @@ paths:
                 $ref: '#/components/schemas/errors'
 components:
   schemas:
+    request:
+      properties:
+        beneficiaire:
+          $ref: '#/components/schemas/beneficiaire'
+        formation:
+          $ref: '#/components/schemas/formation'
     collection:
       required:
         - financements

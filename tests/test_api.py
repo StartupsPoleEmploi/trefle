@@ -42,7 +42,7 @@ async def test_simulate_endpoint(client):
     assert 'Version' in resp.headers
 
     validator = ResponseValidator(spec)
-    request = MockRequest('http://localhost', 'post', '/financement')
+    request = MockRequest('http://trefle.pole-emploi.fr', 'post', '/financement')
     response = MockResponse(resp.body, resp.status.value)
     result = validator.validate(request, response)
     result.raise_for_errors()
@@ -382,7 +382,7 @@ async def test_simulate_endpoint_with_invalid_data(client):
     assert 'application/json' in resp.headers['Content-Type']
 
     validator = ResponseValidator(spec)
-    request = MockRequest('http://localhost', 'post', '/financement')
+    request = MockRequest('http://trefle.pole-emploi.fr', 'post', '/financement')
     response = MockResponse(resp.body, resp.status.value)
     result = validator.validate(request, response)
     result.raise_for_errors()
