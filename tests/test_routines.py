@@ -119,8 +119,10 @@ async def test_populate_formation_upstream_error(mock_get):
     with pytest.raises(exceptions.UpstreamError):
         await routine.populate_formation({'formation.numero': 'ZORGLUB'})
 
+
 def test_build_catalog_url(monkeypatch):
     fakenow = datetime.datetime(2017, 10, 12, 13, 45, 0)
+
     class mydate:
         @classmethod
         def utcnow(cls):
@@ -132,3 +134,8 @@ def test_build_catalog_url(monkeypatch):
     assert routine.build_catalog_url('12345') == 'http://catalog.fr?user=foobar&uid=12345&timestamp=2017-10-12T13%3A45%3A00&signature=2aabef68f687ecdbb084e2b1dc930583'
 
 
+@pytest.mark.parametrize('term', ['coiff', '2596'])
+def test_search_idcc_code_by_word(term):
+    data = {'2596': {'Convention collective': 'Coiffure', 'OPCA': 'AGEFOS PME',
+                      'OPACIF': 'Fongecif'}}
+    assert routine.search_idcc(term) == data
