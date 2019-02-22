@@ -136,6 +136,6 @@ def test_build_catalog_url(monkeypatch):
 
 @pytest.mark.parametrize('term', ['coiff', '2596'])
 def test_search_idcc_code_by_word(term):
-    data = [{'2596': {'Convention collective': 'Coiffure', 'OPCA': 'AGEFOS PME',
-                      'OPACIF': 'Fongecif'}}]
+    data = {'2596': {'Convention collective': 'Coiffure', 'OPCA': 'AGEFOS PME',
+                      'OPACIF': 'Fongecif'}}
     assert routine.search_idcc(term) == data

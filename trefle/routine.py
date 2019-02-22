@@ -296,12 +296,12 @@ def check_financement(context, financement):
 
 
 def search_idcc(term):
-    data = []
+    data = {}
     for k in IDCC:
         if k.startswith(term):
-            data.append({k: IDCC[k]})
+            data[k] = IDCC[k]
         else:
             for v in IDCC[k]:
                 if IDCC[k][v].lower().startswith(term.lower()):
-                    data.append({k: IDCC[k]})
+                    data[k] = IDCC[k]
     return data
