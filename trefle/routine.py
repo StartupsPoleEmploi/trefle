@@ -5,7 +5,7 @@ import datetime
 from urllib.parse import urlencode
 
 from . import config  # allow to monkeypatch test
-from .config import CONSTANTS, LABELS, ORGANISMES, RULES, SCHEMA, Organisme
+from .config import CONSTANTS, LABELS, ORGANISMES, RULES, SCHEMA, Organisme, IDCC
 
 from .exceptions import DataError
 from .helpers import (
@@ -293,3 +293,15 @@ def check_financement(context, financement):
         name = f"financement.{key}"
         if name not in SCHEMA or not SCHEMA[name].get("public"):
             del financement[key]
+
+
+def search_idcc(term):
+    data = {}
+    for k in IDCC:
+        if k.startswith(term):
+            data[k] = IDCC[k]
+        else:
+            for v in IDCC[k]:
+                if IDCC[k][v].lower().startswith(term.lower()):
+                    data[k] = IDCC[k]
+    return data

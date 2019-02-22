@@ -5,13 +5,13 @@ from roll.extensions import cors
 import ujson as json
 
 from . import VERSION, simulate, get_financements
-from .config import FINANCEMENTS, GLOSSARY, NAF, RAW_RULES, SCHEMA
+from .config import FINANCEMENTS, GLOSSARY, NAF, IDCC, RAW_RULES, SCHEMA
 from .debugging import data_from_lbf_url, make_scenario, SCENARIOS
 from .exceptions import DataError
 from .legacy import simulate_legacy
 from .loggers import log_simulate, logger
 from .openapis import OPENAPI
-from .routine import get_formation_json
+from .routine import get_formation_json, search_idcc
 
 app = Roll()
 cors(app)
@@ -76,6 +76,11 @@ async def schema(request, response):
 @app.route("/naf")
 async def naf(request, response):
     response.json = NAF.get(request.query.get("q"), [])
+
+
+@app.route("/idcc")
+async def idcc(request, response):
+    response.json = search_idcc(request.query.get("q"))
 
 
 @app.route("/explore/schema")
