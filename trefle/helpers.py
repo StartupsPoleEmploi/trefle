@@ -111,6 +111,9 @@ def insee_departement_to_region(context, from_key, to_key):
         dep = context[from_key]
     except (KeyError, NoDataError):
         return
+    if dep in {'975', '977', '978', '984', '986'}:
+        # pas de région pour ces codes départements
+        return
     if dep not in DEP_TO_REG:
         raise DataError(f"Valeur invalide: `{context[from_key]}`", from_key)
     context[to_key] = DEP_TO_REG[dep]
