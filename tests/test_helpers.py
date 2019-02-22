@@ -89,6 +89,7 @@ def test_fold_name(input, expected):
         ("20", "94"),  # When consuming postode
         ("971", "01"),  # Guadeloupe
         ("972", "02"),  # Martinique
+        ("975", None),  # no region for saint-pierre
         ("blah", False),
     ],
 )
@@ -98,8 +99,12 @@ def test_insee_departement_to_region(input, expected):
         insee_departement_to_region(context, "departement", "region")
         assert context["region"] == expected
     else:
-        with pytest.raises(DataError):
+        if expected is None:
             insee_departement_to_region(context, "departement", "region")
+            assert "region" not in context
+        else:
+            with pytest.raises(DataError):
+                insee_departement_to_region(context, "departement", "region")
 
 
 def test_insee_departement_to_region_with_alias(patch_schema):
