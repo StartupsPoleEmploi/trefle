@@ -86,6 +86,7 @@ Scénario: Cas nominal Parcours TPME vers l'emploi
     Et c'est un demandeur d'emploi
     Et le montant de l'allocation du bénéficiaire vaut 1800.0
     Et la région de la formation vaut «Pays de la Loire»
+    Et les codes financeur de la formation valent [«Conseil régional»]
     #Et les codes financeur de la formation valent [«Conseil régional»,«Pôle emploi»]
     Et la durée en heures de la formation vaut 500
     Quand je demande un calcul de financement
@@ -97,6 +98,7 @@ Scénario: Cas nominal Parcours TPME vers l'emploi avec ARE inférieur à 80% du
     Et c'est un demandeur d'emploi
     Et l'allocation du bénéficiaire vaut «allocation d'aide au retour à l'emploi»
     Et le montant de l'allocation du bénéficiaire vaut 500
+    Et les codes financeur de la formation valent [«Conseil régional»]
     Et la région de la formation vaut «Pays de la Loire»
     #Et les codes financeur de la formation valent [«Conseil régional»,«Pôle emploi»]
     Et la durée en heures de la formation vaut 500
@@ -109,6 +111,7 @@ Scénario: Cas nominal Parcours TPME vers l'emploi avec ARE supérieur à 80% du
     Et l'allocation du bénéficiaire vaut «allocation d'aide au retour à l'emploi»
     Et c'est un demandeur d'emploi
     Et le montant de l'allocation du bénéficiaire vaut 1600
+    Et les codes financeur de la formation valent [«Conseil régional»]
     Et la région de la formation vaut «Pays de la Loire»
     #Et les codes financeur de la formation valent [«Conseil régional»,«Pôle emploi»]
     Et la durée en heures de la formation vaut 500

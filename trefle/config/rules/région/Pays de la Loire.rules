@@ -66,6 +66,7 @@ Et c'est un demandeur d'emploi
     Si l'intitulé du financement est «Parcours TPME vers l'emploi»
     Et la durée en heures de la formation est supérieur à 401
     Et la durée en heures de la formation est inférieur ou égal à 800
+    Et les codes financeur de la formation contiennent «Conseil régional»
         Alors le financement est éligible
         Et le prix horaire applicable vaut 18
         Et le texte de description vaut «Dispositif expérimental financé par la région Pays de Loire visant à former des candidats en lien avec une future embauche dans une entreprise de moins de 20 salariés. La formation a un lien avec le poste proposé et l'employeur s'engage à embaucher pour au moins 6 mois de contrat à durée déterminée et de 20 heures minimum par semaine.»
