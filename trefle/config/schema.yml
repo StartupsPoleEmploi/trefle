@@ -897,6 +897,11 @@ formation:
     type: boolean
     source: catalogue
     label: formation PFB
+  pic:
+    type: boolean
+    source: catalogue
+    label: formation PIC
+    path: pic
   bilan_de_competences:
     type: boolean
     source: catalogue
