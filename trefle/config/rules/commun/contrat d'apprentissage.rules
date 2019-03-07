@@ -5,15 +5,15 @@ Et c'est un contrat d'apprentissage
     Et le texte de description vaut «Le contrat d'apprentissage est un contrat de travail qui permet de se former en vue d'acquérir un diplôme d'Etat ou un titre professionnel tout en étant salarié d’une entreprise.⏎L’avantage : la formation repose sur le principe de l’alternance entre enseignement théorique en centre de formation et mise en pratique chez l’employeur avec lequel l’apprenti a signé son contrat.»
 
     Si l'âge du bénéficiaire est inférieur à 18
-        Alors la rémunération applicable est égale à 25% du SMIC
-        Et la rémunération applicable la deuxième année est égale à 37% du SMIC
-        Et la rémunération applicable la troisième année est égale à 53% du SMIC
+        Alors la rémunération applicable est égale à 27% du SMIC
+        Et la rémunération applicable la deuxième année est égale à 39% du SMIC
+        Et la rémunération applicable la troisième année est égale à 55% du SMIC
 
     Si l'âge du bénéficiaire est supérieur ou égal à 18
     Et l'âge du bénéficiaire est inférieur à 21
-        Alors la rémunération applicable est égale à 41% du SMIC
-        Et la rémunération applicable la deuxième année est égale à 49% du SMIC
-        Et la rémunération applicable la troisième année est égale à 65% du SMIC
+        Alors la rémunération applicable est égale à 43% du SMIC
+        Et la rémunération applicable la deuxième année est égale à 51% du SMIC
+        Et la rémunération applicable la troisième année est égale à 67% du SMIC
 
     Si l'âge du bénéficiaire est supérieur ou égal à 21
         Alors la rémunération applicable est égale à 53% du SMIC
