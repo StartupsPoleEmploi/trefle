@@ -12,9 +12,9 @@ Scénario: contrat d'apprentissage pour mineur
     Et la région du bénéficiaire vaut «Bretagne»
     Quand je demande un calcul de financement
     Quand je sélectionne le financement «Formation en alternance : contrat d'apprentissage»
-    Alors la rémunération applicable vaut 380.31
-    Et la rémunération applicable la deuxième année vaut 562.85
-    Et la rémunération applicable la troisième année vaut 806.25
+    Alors la rémunération applicable vaut 410.73
+    Et la rémunération applicable la deuxième année vaut 593.28
+    Et la rémunération applicable la troisième année vaut 836.67
 
 
 Scénario: contrat d'apprentissage pour jeune de moins de 21 ans
@@ -27,9 +27,9 @@ Scénario: contrat d'apprentissage pour jeune de moins de 21 ans
     Et la région du bénéficiaire vaut «Bretagne»
     Quand je demande un calcul de financement
     Quand je sélectionne le financement «Formation en alternance : contrat d'apprentissage»
-    Alors la rémunération applicable vaut 623.7
-    Et la rémunération applicable la deuxième année vaut 745.4
-    Et la rémunération applicable la troisième année vaut 988.79
+    Alors la rémunération applicable vaut 654.12
+    Et la rémunération applicable la deuxième année vaut 775.82
+    Et la rémunération applicable la troisième année vaut 1019.22
 
 
 Scénario: contrat d'apprentissage pour un bénéficiaire de 21 ans
