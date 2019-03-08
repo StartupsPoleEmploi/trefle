@@ -88,7 +88,6 @@ async def test_legacy_context(client):
         "formation.eligible_copanef": False,
         "formation.eligible_coparef": False,
         "formation.professionnalisante": True,
-        "formation.rncp": False,
     }
 
 
