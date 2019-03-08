@@ -77,19 +77,19 @@ Scénario: Cas nominal AIF avec promesse d'embauche avec certinfo invalide
     Alors le financement «Aide individuelle à la formation avec promesse d'embauche» n'est pas proposé
 
 
-Scénario: Cas nominal chèque formation Conseil régional Centre-Val de Loire
-    Soit un bénéficiaire et une formation
-    Et c'est un demandeur d'emploi
-    Et le montant de l'allocation du bénéficiaire vaut 1200
-    Et la durée en heures de la formation vaut 500
-    Et la région du bénéficiaire vaut «Centre-Val de Loire»
-    Et les codes financeur de la formation valent [«Conseil régional»]
-    Et c'est une formation RNCP
-    Et le prix horaire de la formation vaut 0.0
-    Quand je demande un calcul de financement
-    Quand je sélectionne le financement «Chèque formation Conseil régional Centre-Val de Loire»
-    Alors la rémunération applicable vaut 0
-    Et la plafond de prise en charge vaut 0
+#Scénario: Cas nominal chèque formation Conseil régional Centre-Val de Loire
+#    Soit un bénéficiaire et une formation
+#    Et c'est un demandeur d'emploi
+#    Et le montant de l'allocation du bénéficiaire vaut 1200
+#    Et la durée en heures de la formation vaut 500
+#    Et la région du bénéficiaire vaut «Centre-Val de Loire»
+#    Et les codes financeur de la formation valent [«Conseil régional»]
+#    Et c'est une formation RNCP
+#    Et le prix horaire de la formation vaut 0.0
+#    Quand je demande un calcul de financement
+#    Quand je sélectionne le financement «Chèque formation Conseil régional Centre-Val de Loire»
+#    Alors la rémunération applicable vaut 0
+#    Et la plafond de prise en charge vaut 0
 
 
 Scénario: Chèque formation Conseil régional Centre-Val de Loire avec formation non RNCP
