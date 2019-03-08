@@ -48,8 +48,10 @@ Scénario: cas d'une formation CPF sans solde CPF
     Et le prix horaire de la formation vaut 25
     Et la durée en heures de la formation vaut 100
     Quand je demande un calcul de financement
-    Alors le financement «CPF sur son temps de travail» n'est pas proposé
-    Et le financement «CPF hors temps de travail» n'est pas proposé
+    Et je sélectionne le financement «CPF sur son temps de travail»
+    Alors le plafond de prise en charge vaut 0
+    Quand je sélectionne le financement «CPF hors temps de travail»
+    Alors le plafond de prise en charge vaut 0
 
 
 Scénario: le solde CPF n'est pas plafonné
