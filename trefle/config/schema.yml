@@ -208,7 +208,7 @@ beneficiaire:
     label: solde CPF du bénéficiaire
     gender: masculine
   remuneration:
-    description: Rémunération actuelle en euros
+    description: rémunération actuelle en euros
     type: integer
     format: money
     default: 0
@@ -224,6 +224,7 @@ beneficiaire:
     label: montant de l'allocation du bénéficiaire
     gender: masculine
   type_allocation:
+    description: le type d'allocation du bénéficiaire
     alias: beneficiaire.allocation_type
     type: string
     public: true
@@ -238,6 +239,7 @@ beneficiaire:
       aex: allocation ex-employeur secteur public
     label: allocation du bénéficiaire
   fin_allocation:
+    description: la date de fin de l'allocation du bénéficiaire
     alias: beneficiaire.allocation_dateend
     type: string
     format: date
@@ -259,21 +261,25 @@ beneficiaire:
     label: âge du bénéficiaire
     gender: masculine
   parent_isole:
+    description: vous êtes un parent isolé
     alias: individu.parentIsole
     type: boolean
     public: true
     label: parent isolé
     gender: masculine
   mere_trois_enfants:
+    description: vous êtes une  mère de famille ayant au moins trois enfants
     alias: individu.mere3enfants
     type: boolean
     public: true
     label: mère de famille ayant au moins trois enfants
   veuve_ou_divorcee:
+    description: vous êtes une femme divorcée, veuve ou séparée judiciairement depuis moins de trois ans
     type: boolean
     public: true
     label: femme divorcée, veuve ou séparée judiciairement depuis moins de trois ans
   creation_entreprise:
+    description: le bénéficiaire est en situation de création d'entreprise
     alias:
       - beneficiaire.situation_projetcreationentreprise
       - individu.projetCreationEntreprise
@@ -281,11 +287,13 @@ beneficiaire:
     public: true
     label: bénéficiaire en situation de création d'entreprise nécessitant cette formation
   contrat_aide_actuel:
+    description: le bénéficiaire a un contrat aidé en cours
     alias: beneficiaire.situation_personneencourscontrataide
     type: boolean
     public: true
     label: bénéficiaire ayant un contrat aidé en cours
   contrat_aide_passe:
+    description: le bénéficiaire a achevé un contrat aidé
     alias: beneficiaire.situation_personnesortantcontrataide
     type: boolean
     public: true
@@ -569,7 +577,7 @@ beneficiaire:
       label: région de l'établissement du bénéficiaire
       enum: *regions
     opca:
-      description: L'OPCA auquel est rattaché l'établissement du bénéficiaire. Optionnel, habituellement déduit de l'IDCC.
+      description: l'OPCA auquel est rattaché l'établissement du bénéficiaire. Optionnel, habituellement déduit de l'IDCC.
       type: string
       format: opca
       public: true
@@ -577,7 +585,7 @@ beneficiaire:
       label: OPCA de l'établissement du bénéficiaire
       gender: masculine
     opacif:
-      description: L'OPACIF auquel est rattaché l'établissement du bénéficiaire. Optionnel, habituellement déduit de l'IDCC.
+      description: l'OPACIF auquel est rattaché l'établissement du bénéficiaire. Optionnel, habituellement déduit de l'IDCC.
       type: string
       format: opacif
       public: true
@@ -1196,7 +1204,7 @@ financement:
     items:
       type: string
       format: url
-    description: Liste d'adresses Internet pour en savoir plus sur le sujet.
+    description: liste d'adresses Internet pour en savoir plus sur le sujet
   explain:
     type: array
     public: true
@@ -1236,7 +1244,7 @@ financement:
             additionalProperties:
               type: string
               nullable: true
-    description: Liste de conditions nécessaires pour rendre ce financement éligible
+    description: liste de conditions nécessaires pour rendre ce financement éligible
   organisme:
     nom:
       public: true
