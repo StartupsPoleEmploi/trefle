@@ -61,7 +61,7 @@ Programme Bretagne Formation:
   cumulable: False
   racine: Bretagne.rules
   ressources:
-  - https://www.seformerenbretagne.fr
+    - https://www.seformerenbretagne.fr
 Accès aux premiers savoirs:
   type_lbf: actioncollectiveregion
   priorite_lbf: 1
@@ -71,7 +71,8 @@ Accès aux premiers savoirs:
   financee_pe: False
   cumulable: False
   racine: Provence-Alpes-Côte d'Azur.rules
-  ressources: http://www.orientationsud.fr/Aide/Detail/100
+  ressources:
+    - http://www.orientationsud.fr/Aide/Detail/100
 Espaces territoriaux à la qualification:
   type_lbf: actioncollectiveregion
   priorite_lbf: 1
@@ -81,7 +82,8 @@ Espaces territoriaux à la qualification:
   cumulable: False
   sigle: ETAQ
   racine: Provence-Alpes-Côte d'Azur.rules
-  ressources: https://www.maregionsud.fr/se-former/service-public-regional-de-formation-permanente-et-dapprentissage/formation-professionnelle/programme-regional-de-formation/etaq.html
+  ressources:
+    - https://www.maregionsud.fr/se-former/service-public-regional-de-formation-permanente-et-dapprentissage/formation-professionnelle/programme-regional-de-formation/etaq.html
 École de la deuxième chance:
   sigle: E2C
   type_lbf: actioncollectiveregion
@@ -91,7 +93,8 @@ Espaces territoriaux à la qualification:
   financee_pe: False
   cumulable: False
   racine: région du bénéficiaire
-  ressources: https://reseau-e2c.fr/
+  ressources:
+    - https://reseau-e2c.fr/
 Programme Enseignement supérieur:
   sigle: ESUP
   type_lbf: actioncollectiveregion
@@ -110,7 +113,8 @@ Contrat d'aide et retour à l'emploi durable:
   financee_pe: False
   cumulable: False
   racine: Auvergne-Rhône-Alpes.rules
-  ressources: http://www.orientation.auvergnerhonealpes.fr/dispositifs/contrat-daide-et-de-retour-lemploi-durable-cared-formation
+  ressources:
+    - http://www.orientation.auvergnerhonealpes.fr/dispositifs/contrat-daide-et-de-retour-lemploi-durable-cared-formation
 Contrat d'aide et retour à l'emploi durable collectif:
   type_lbf: actioncollectiveregion
   priorite_lbf: 1
@@ -128,7 +132,8 @@ Programmation compétences premières:
   financee_pe: False
   cumulable: False
   racine: Auvergne-Rhône-Alpes.rules
-  ressources: http://www.orientation.auvergnerhonealpes.fr/dispositifs/competences-premieres-conseil-regional
+  ressources:
+    - http://www.orientation.auvergnerhonealpes.fr/dispositifs/competences-premieres-conseil-regional
 Programme régional qualifiant ARA:
   intitule: Programme régional qualifiant
   type_lbf: actioncollectiveregion
@@ -154,7 +159,8 @@ Programme régional sanitaire et social:
   financee_pe: False
   cumulable: False
   racine: Auvergne-Rhône-Alpes.rules
-  ressources: https://www.auvergnerhonealpes.fr/aide/47/89-bourse-regionale-pour-les-formations-sanitaires-et-sociales-formations-apprentissage.htm
+  ressources:
+    - https://www.auvergnerhonealpes.fr/aide/47/89-bourse-regionale-pour-les-formations-sanitaires-et-sociales-formations-apprentissage.htm
 Programme régional sanitaire et social - ambulancier:
   type_lbf: actioncollectiveregion
   priorite_lbf: 1
@@ -163,7 +169,8 @@ Programme régional sanitaire et social - ambulancier:
   financee_pe: False
   cumulable: False
   racine: Auvergne-Rhône-Alpes.rules
-  ressources: https://www.auvergnerhonealpes.fr/aide/46/89-gratuite-des-frais-de-scolarite-pour-les-formations-d-aide-soignant-d-auxiliaire-de-puericulture-et-d-ambulancier-formations-apprentissage.htm
+  ressources:
+    - https://www.auvergnerhonealpes.fr/aide/46/89-gratuite-des-frais-de-scolarite-pour-les-formations-d-aide-soignant-d-auxiliaire-de-puericulture-et-d-ambulancier-formations-apprentissage.htm
 Aide à la VAE:
   type_lbf: actioncollectiveregion
   priorite_lbf: 1
@@ -172,7 +179,8 @@ Aide à la VAE:
   financee_pe: False
   cumulable: False
   racine: Auvergne-Rhône-Alpes.rules
-  ressources: https://avril.pole-emploi.fr/
+  ressources:
+    - https://avril.pole-emploi.fr/
 Action collective financée par la Collectivité territoriale de Corse:
   type_lbf: actioncollectiveregion
   priorite_lbf: 1
@@ -189,7 +197,8 @@ Programme sanitaire et social:
   financee_pe: False
   cumulable: False
   racine: Corse.rules
-  ressources : https://www.corse.fr/L-aide-regionale-champ-sanitaire-et-social_a3447.html
+  ressources:
+    - https://www.corse.fr/L-aide-regionale-champ-sanitaire-et-social_a3447.html
 Action collective financée par la région:
   type_lbf: actioncollectiveregion
   priorite_lbf: 1
@@ -218,7 +227,8 @@ Formations sanitaire et social d'aide-soignant ou d'auxiliaire de puériculture 
   financee_pe: False
   cumulable: False
   racine: Île-de-France.rules
-  ressources: https://www.iledefrance.fr/toutes-les-actualites/bourse-calendrier-procedure
+  ressources:
+    - https://www.iledefrance.fr/toutes-les-actualites/bourse-calendrier-procedure
 Formations sanitaire et social post-bac région Île-de-France:
   type_lbf: actioncollectiveregion
   priorite_lbf: 1
@@ -243,7 +253,8 @@ Paris formation pour l'emploi:
   financee_pe: False
   cumulable: False
   racine: Île-de-France.rules
-  ressources: https://www.paris.fr/services-et-infos-pratiques/emploi-et-formations/formations/acceder-a-une-formation-professionnelle-2723
+  ressources:
+    - https://www.paris.fr/services-et-infos-pratiques/emploi-et-formations/formations/acceder-a-une-formation-professionnelle-2723
 Accès des demandeurs d’emploi aux métiers agricoles:
   sigle: ADEMA
   type_lbf: actioncollectiveregion
@@ -253,7 +264,8 @@ Accès des demandeurs d’emploi aux métiers agricoles:
   financee_pe: False
   cumulable: False
   racine: région du bénéficiaire
-  ressources: http://www.fafsea.com/adema/candidats/dispositif/etapes.html
+  ressources:
+    - http://www.fafsea.com/adema/candidats/dispositif/etapes.html
 Programme de formations collectives financées par le Conseil régional de Normandie:
   type_lbf: actioncollectiveregion
   priorite_lbf: 1
@@ -270,7 +282,8 @@ Une formation, un emploi - collectif:
   financee_pe: False
   cumulable: False
   racine: Normandie.rules
-  ressources: https://aides.normandie.fr/une-formation-un-emploi
+  ressources:
+    - https://aides.normandie.fr/une-formation-un-emploi
 VAE Normandie:
   type_lbf: actioncollectiveregion
   priorite_lbf: 1
@@ -279,7 +292,8 @@ VAE Normandie:
   financee_pe: False
   cumulable: False
   racine: Normandie.rules
-  ressources: https://avril.pole-emploi.fr/
+  ressources:
+    - https://avril.pole-emploi.fr/
 Programme régional de formation Nouvelle-Aquitaine:
   intitule: Programme régional de formation
   sigle: PRF
@@ -290,7 +304,8 @@ Programme régional de formation Nouvelle-Aquitaine:
   financee_pe: False
   cumulable: False
   racine: Nouvelle-Aquitaine.rules
-  ressources: https://les-aides.nouvelle-aquitaine.fr/economie-et-emploi/programme-regional-de-formation-prf
+  ressources:
+    - https://les-aides.nouvelle-aquitaine.fr/economie-et-emploi/programme-regional-de-formation-prf
 Parcours régional de préparation à l'apprentissage:
   sigle: PREPA
   type_lbf: actioncollectiveregion
@@ -309,7 +324,7 @@ Parcours Orientation Insertion:
   cumulable: False
   racine: Occitanie.rules
   ressources:
-  - http://www.laregion.fr
+    - http://www.laregion.fr
 Parcours diplômants et actions préparatoires:
   type_lbf: actioncollectiveregion
   priorite_lbf: 1
@@ -326,7 +341,8 @@ Dispositif « chèque »:
   financee_pe: False
   cumulable: False
   racine: Occitanie.rules
-  ressources: https://www.meformerenregion.fr/financer-une-formation/cheques-formation
+  ressources:
+    - https://www.meformerenregion.fr/financer-une-formation/cheques-formation
 Cap métiers:
   type_lbf: actioncollectiveregion
   priorite_lbf: 1
@@ -335,7 +351,8 @@ Cap métiers:
   financee_pe: False
   cumulable: False
   racine: Occitanie.rules
-  ressources: https://www.meformerenregion.fr/financer-une-formation/cap-metiers
+  ressources:
+    - https://www.meformerenregion.fr/financer-une-formation/cap-metiers
 Cap avenir:
   type_lbf: actioncollectiveregion
   priorite_lbf: 1
@@ -344,7 +361,8 @@ Cap avenir:
   financee_pe: False
   cumulable: False
   racine: Occitanie.rules
-  ressources : https://www.meformerenregion.fr/financer-une-formation/cap-avenir
+  ressources:
+    - https://www.meformerenregion.fr/financer-une-formation/cap-avenir
 Cap compétences clés:
   type_lbf: actioncollectiveregion
   priorite_lbf: 1
@@ -353,7 +371,8 @@ Cap compétences clés:
   financee_pe: False
   cumulable: False
   racine: Occitanie.rules
-  ressources: https://www.meformerenregion.fr/financer-une-formation/cap-competences-cles
+  ressources:
+    - https://www.meformerenregion.fr/financer-une-formation/cap-competences-cles
 Programme régional qualifiant Occitanie:
   intitule: Programme régional qualifiant
   type_lbf: actioncollectiveregion
@@ -363,7 +382,8 @@ Programme régional qualifiant Occitanie:
   financee_pe: False
   cumulable: False
   racine: Occitanie.rules
-  ressources: https://www.meformerenregion.fr/financer-une-formation/prq
+  ressources:
+    - https://www.meformerenregion.fr/financer-une-formation/prq
 Écoles régionales de la deuxième chance:
   sigle: ER2C
   type_lbf: actioncollectiveregion
@@ -381,7 +401,8 @@ Formations des établissements d'enseignement supérieur:
   financee_pe: False
   cumulable: False
   racine: Occitanie.rules
-  ressources: https://www.laregion.fr/Formations-de-l-enseignement-superieur
+  ressources:
+    - https://www.laregion.fr/Formations-de-l-enseignement-superieur
 École de l'apprentissage:
   type_lbf: actioncollectiveregion
   priorite_lbf: 1
@@ -399,7 +420,8 @@ Formation sanitaire et social Occitanie:
   financee_pe: False
   cumulable: False
   racine: Occitanie.rules
-  ressources : https://www.meformerenregion.fr/financer-une-formation/formations-sanitaires-et-sociales
+  ressources:
+    - https://www.meformerenregion.fr/financer-une-formation/formations-sanitaires-et-sociales
 Programme régional de formation dans la région Grand-Est:
   intitule: Programme régional de formation
   sigle: PRF
@@ -441,7 +463,7 @@ Le chèque pass formation:
   tags: [DE, individuel, région, chèque]
   racine: Hauts-de-France.rules
   ressources:
-  - http://www.c2rp.fr/dispositifs/cheque-pass-formation
+    - http://www.c2rp.fr/dispositifs/cheque-pass-formation
 Sanitaire et social:
   type_lbf: actioncollectiveregion
   priorite_lbf: 1
@@ -451,7 +473,7 @@ Sanitaire et social:
   cumulable: False
   racine: Hauts-de-France.rules
   ressources:
-  - https://www.hautsdefrance.fr/bourses-formations-sanitaires-sociales
+    - https://www.hautsdefrance.fr/bourses-formations-sanitaires-sociales
 Programme régional de formation Hauts-de-France:
   intitule: Programme régional de formation
   type_lbf: actioncollectiveregion
@@ -485,7 +507,8 @@ Programme Régional de Formation Visa:
   financee_pe: False
   cumulable: False
   racine: Centre-Val de Loire.rules
-  ressource : https://libres-savoirs.regioncentre.fr/uPortal/espace/informations/article/3007
+  ressource :
+    - https://libres-savoirs.regioncentre.fr/uPortal/espace/informations/article/3007
 Formations sanitaire et sociale subventionnées par le Conseil régional Centre-Val de Loire:
   type_lbf: actioncollectiveregion
   priorite_lbf: 1
@@ -493,7 +516,8 @@ Formations sanitaire et sociale subventionnées par le Conseil régional Centre-
   cpf_mobilisable: True
   financee_pe: False
   cumulable: False
-  ressource: http://www.regioncentre-valdeloire.fr/accueil/les-services-en-ligne/la-region-vous-aide/education-formation/aide-a-la-formation-sanitaire-et.html
+  ressource:
+    - http://www.regioncentre-valdeloire.fr/accueil/les-services-en-ligne/la-region-vous-aide/education-formation/aide-a-la-formation-sanitaire-et.html
   racine: Centre-Val de Loire.rules
 Action collective financée par la région:
   type_lbf: actioncollectiveregion
@@ -573,7 +597,7 @@ Formations avant embauche (AFPR, POEI):
   cumulable: False
   racine: région du bénéficiaire
   ressources:
-  - https://www.pole-emploi.fr/candidat/l-action-de-formation-prealable-au-recrutement-afpr--@/article.jspz?id=60635
+    - https://www.pole-emploi.fr/candidat/l-action-de-formation-prealable-au-recrutement-afpr--@/article.jspz?id=60635
 Financement individuel Agefiph:
   type_lbf: agefiph
   priorite_lbf: 6.1
@@ -590,7 +614,8 @@ Fonds d'aide aux jeunes:
   financee_pe: False
   cumulable: True
   racine: région du bénéficiaire
-  ressources: https://www.defi-metiers.fr/dispositifs/fonds-daide-aux-jeunes-faj
+  ressources:
+    - https://www.defi-metiers.fr/dispositifs/fonds-daide-aux-jeunes-faj
 Formations du domaine sanitaire et social:
   type_lbf: finindividuel
   priorite_lbf: 6.3
@@ -600,7 +625,7 @@ Formations du domaine sanitaire et social:
   cumulable: True
   racine: Bretagne.rules
   ressources:
-  - https://www.bretagne.bzh/jcms/c_15456/fr/les-formations-sanitaires-et-sociales
+    - https://www.bretagne.bzh/jcms/c_15456/fr/les-formations-sanitaires-et-sociales
 Chèque formation:
   type_lbf: finindividuel
   priorite_lbf: 6.3
@@ -709,7 +734,7 @@ Aide individuelle Conseil régional:
   cumulable: True
   racine: Nouvelle-Aquitaine.rules
   ressources:
-  - https://les-aides.nouvelle-aquitaine.fr/fiche/remuneration-des-stagiaires-de-la-formation-professionnelle/
+    - https://les-aides.nouvelle-aquitaine.fr/fiche/remuneration-des-stagiaires-de-la-formation-professionnelle/
 Aide individuelle à la formation:
   type_lbf: aif
   priorite_lbf: 7
@@ -757,7 +782,7 @@ Plan de développement des compétences sur son temps de travail:
   cumulable: True
   racine: organisme paritaire.rules
   ressources:
-  - https://www.service-public.fr/particuliers/vosdroits/F11267
+    - https://www.service-public.fr/particuliers/vosdroits/F11267
 Projet de transition professionnelle:
   tags: [ptp, CDD, DE]
   racine: projet de transition professionnelle.rules
