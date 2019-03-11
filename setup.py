@@ -13,6 +13,8 @@ VERSION = (0, 7, 0)
 
 __author__ = "Yohan Boniface"
 __contact__ = "yohan.boniface@data.gouv.fr"
+__maintainer__ = "David Foucher"
+__maintainer_contact__ = "david.foucher@pole-emploi.fr"
 __homepage__ = "https://framagit.org/ybon/trefle"
 __version__ = ".".join(map(str, VERSION))
 
@@ -24,6 +26,8 @@ setup(
     url=__homepage__,
     author=__author__,
     author_email=__contact__,
+    maintainer=__maintainer__,
+    maintainer_email=__maintainer_contact__,
     license="MIT",
     # See https://pypi.python.org/pypi?%3Aaction=list_classifiers
     classifiers=[

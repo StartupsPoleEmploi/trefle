@@ -6,3 +6,4 @@ requests==2.19.1
 roll==0.9.1
 ujson==1.35
 unidecode==1.0.22
+jinja2==2.10

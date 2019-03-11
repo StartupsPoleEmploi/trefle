@@ -2,13 +2,15 @@ openapi: 3.0.0
 info:
   title: Api moteur de financement formation professionnelle
   description: Obtenir la liste des financements possibles (coûts et rémunération) en fonction du profil du bénéficiaire et des caractéristiques de la formation.
-  version: 1.0.0
+  version: {{ version }}
   contact:
-    email: david.foucher@pole-emploi.fr
+    email: {{ contact }}
 servers:
-  - url: http://trefle.pole-emploi.fr
+  - url: http://trefle.pole-emploi.fr/
     description: serveur de production
-  - url: http://trefle.beta.pole-emploi.fr
+  - url: http://trefle.pole-emploi.fr/api-moteur/{{ shortversion }}
+    description: serveur de production
+  - url: http://trefle.beta.pole-emploi.fr/api-moteur/{{ shortversion }}
     description: serveur de recette
 tags:
 - name: financement

@@ -1,9 +1,20 @@
+from jinja2 import Environment, DictLoader
 from pathlib import Path
 
 import yaml
 
+from . import VERSION
+
+
+def render_schema(openapitemplate):
+    env = Environment(loader=DictLoader({'openapi.yml': openapitemplate}))
+    template = env.get_template('openapi.yml')
+    return template.render(version=VERSION, shortversion=VERSION[:3],
+                           contact='david.foucher@pole-emploi.fr')
+
+
 with (Path(__file__).parent / "config/openapis.yml").open() as f:
-    OPENAPI = yaml.safe_load(f.read())
+    OPENAPI = yaml.safe_load(render_schema(f.read()))
 
 with (Path(__file__).parent / "config/schema.yml").open() as f:
     SCHEMA = yaml.safe_load(f.read())
