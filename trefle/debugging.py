@@ -63,13 +63,15 @@ def data_from_lbf_url(url):
 
     args = dict(parse_qsl(urlparse(url).query))
 
-    if "a" in args:
+    try:
         encrypted = args["a"]
         encrypted = "".join(charmap[char] for char in encrypted[8:])
         serialized = base64.b64decode(encrypted)
         serialized = bz2.decompress(serialized)
         data = phpserialize.loads(serialized, decode_strings=True)
         data = flatten(data)
+    except KeyError as err:
+        sys.exit(f"Url parsing error : {err}")
 
     return data
 
