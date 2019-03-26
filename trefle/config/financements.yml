@@ -88,7 +88,7 @@ Espaces territoriaux à la qualification:
   sigle: E2C
   type_lbf: actioncollectiveregion
   priorite_lbf: 1
-  tags: [DE, jeune, région, collectif, national]
+  tags: [DE, E2C, jeune, région, collectif, national]
   cpf_mobilisable: True
   financee_pe: False
   cumulable: False
@@ -609,7 +609,7 @@ Financement individuel Agefiph:
 Fonds d'aide aux jeunes:
   type_lbf: faj
   priorite_lbf: 6.2
-  tags: [DE, jeune, individuel, national]
+  tags: [DE, FAJ, jeune, individuel, national]
   cpf_mobilisable: True
   financee_pe: False
   cumulable: True
