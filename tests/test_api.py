@@ -482,7 +482,7 @@ async def test_rules_details(client):
 async def test_simulate_financement_properties(client):
     resp = await client.get('/schema')
 
-    resp = await client.post('/financement?tags=PRF', body={
+    resp = await client.post('/financement?tags=API', body={
         'beneficiaire.solde_cpf': 10,
         'beneficiaire.remuneration': 1400,
         'beneficiaire.droit_prive': True,
