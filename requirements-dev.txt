@@ -1,7 +1,7 @@
 hupper
 minicli
-openapi-core
-openapi-spec-validator
+openapi-core==0.8.0
+openapi-spec-validator==0.2.6
 pytest
 pytest-asyncio
 pytest-cov
