@@ -181,6 +181,8 @@ def load_scenario(feature, scenario):
     steps = [load_step(scenario, step) for step in scenario.steps]
     return {
         "name": scenario.name,
+        "filename": scenario.filename,
+        "line": scenario.line,
         "raw": "\n".join("{keyword} {name}".format(**step) for step in steps),
         "tags": set(scenario.tags),
     }

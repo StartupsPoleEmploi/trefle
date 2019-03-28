@@ -1,11 +1,11 @@
 constante:
   minimum_aref:
-    type: integer
+    type: number
     format: float
     value: 616.2
     label: minimum AREF
   rff:
-    type: integer
+    type: number
     format: float
     value: 652.02
     label: montant de la RFF en vigueur
@@ -70,23 +70,23 @@ constante:
     label: codes CPF CléA
   # https://www.service-public.fr/particuliers/vosdroits/F2300
   smic:
-    type: integer
+    type: number
     format: float
     value: 1521.22
     label: SMIC
   # TODO: move to preprocess
   deux_smic:
-    type: integer
+    type: number
     format: float
     value: 3043
     label: deux fois le SMIC
   trois_smic:
-    type: integer
+    type: number
     format: float
     value: 4065
     label: trois fois le SMIC
   quatre_smic:
-    type: integer
+    type: number
     format: int32
     value: 6086
     label: quatre fois le SMIC
@@ -209,7 +209,7 @@ beneficiaire:
     gender: masculine
   remuneration:
     description: rémunération actuelle en euros
-    type: integer
+    type: number
     format: money
     default: 0
     public: true
@@ -217,7 +217,7 @@ beneficiaire:
   allocation:
     alias: beneficiaire.allocation_cost
     description: montant de l'allocation en euros
-    type: integer
+    type: number
     format: money
     default: 0
     public: true
@@ -760,7 +760,7 @@ formation:
     path: duree-hebdomadaire
     label: durée hebdomadaire de la formation
   prix_horaire:
-    type: integer
+    type: number
     format: float
     default: 0
     source: catalogue
@@ -769,7 +769,7 @@ formation:
     description: prix horaire TTC de la formation
     gender: masculine
   prix_total:
-    type: integer
+    type: number
     format: float
     source: catalogue
     path: prix-total-TTC
@@ -777,7 +777,7 @@ formation:
     description: prix total TTC de la formation
     gender: masculine
   prix_horaire_ht:
-    type: integer
+    type: number
     format: float
     label: prix horaire HT de la formation
   codes_cpf:
@@ -1090,19 +1090,19 @@ financement:
     public: true
     label: texte des démarches
   remuneration:
-    type: integer
+    type: number
     format: float
     public: true
     nullable: true
     label: rémunération applicable
   remuneration_annee_2:
-    type: integer
+    type: number
     format: float
     public: true
     nullable: true
     label: rémunération applicable la deuxième année
   remuneration_annee_3:
-    type: integer
+    type: number
     format: float
     public: true
     nullable: true
@@ -1119,14 +1119,14 @@ financement:
     nullable: true
     label: indemnité compensatrice de congés payés
   plafond_remuneration:
-    type: integer
-    format: int32
+    type: number
+    format: money
     public: true
     nullable: true
     label: plafond de rémunération applicable
   prise_en_charge:
-    type: integer
-    format: int32
+    type: number
+    format: money
     public: true
     nullable: true
     label: montant de prise en charge
@@ -1137,15 +1137,15 @@ financement:
     nullable: true
     label: texte de la prise en charge
   plafond_prise_en_charge:
-    type: integer
-    format: int32
+    type: number
+    format: money
     public: true
     nullable: true
     label: plafond de prise en charge
     description: Ce champ est défini quand on ne connaît pas le prix horaire de la formation. C'est donc une prise en charge maximale théorique, la prise en charge réelle dépendra du prix exact de la formation.
   plafond_financier:
-    type: integer
-    format: float
+    type: number
+    format: money
     label: plafond financier applicable
   plafond_horaire:
     type: integer
@@ -1153,14 +1153,14 @@ financement:
     label: plafond horaire applicable
     description: nombre maximal d'heures prises en charge
   plafond_prix_horaire:
-    type: integer
-    format: float
+    type: number
+    format: money
     public: true
     label: prix horaire plafond applicable
     description: prix horaire maximum
   prix_horaire:
-    type: integer
-    format: float
+    type: number
+    format: money
     label: prix horaire applicable
   heures:
     type: integer

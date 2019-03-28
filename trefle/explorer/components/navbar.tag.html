@@ -2,13 +2,13 @@
   <progress style="display: none" id="progress" />
   <h1><a href=".">☘</a></h1>
   <nav>
-    <a href="#schema">Schéma</a>
-    <a href="#rules">Règles de gestion</a>
-    <a href="#simulate">Simuler</a>
-    <a href="#financements">Financements</a>
-    <a href="#scenarios">Scénarios</a>
-    <a href="#tools">Outils</a>
-    <a href="#glossary">Glossaire</a>
+    <a href="#schema" class="{selected: window.location.hash.startsWith('#schema')}">Schéma</a>
+    <a href="#rules" class="{selected: window.location.hash.startsWith('#rules')}">Règles de gestion</a>
+    <a href="#simulate" class="{selected: window.location.hash.startsWith('#simulate')}">Simuler</a>
+    <a href="#financements" class="{selected: window.location.hash.startsWith('#financements')}">Financements</a>
+    <a href="#scenarios" class="{selected: window.location.hash.startsWith('#scenarios')}">Scénarios</a>
+    <a href="#tools" class="{selected: window.location.hash.startsWith('#tools')}">Outils</a>
+    <a href="#glossary" class="{selected: window.location.hash.startsWith('#glossary')}">Glossaire</a>
   </nav>
 
   <style scoped>
@@ -27,8 +27,8 @@
       font-size: 1.4em;
       font-variant: small-caps;
     }
-    nav a:hover {
-      text-decoration: underline dotted;
+    nav a:hover, nav a.selected {
+      text-decoration: underline;
     }
     a + a {
       margin-left: 1em;
