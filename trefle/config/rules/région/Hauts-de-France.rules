@@ -30,7 +30,7 @@ Si l'intitulé du financement est «Aide individuelle à la formation»
     Si la liste des codes FORMACODE de la formation ne contient aucun code parmi [43441]
     Et la région du bénéficiaire vaut «Hauts-de-France»
     Et le code CERTIFINFO de la formation ne fait pas partie de [54913,54912]
-    Et c'est une formation éligible COPAREF de la région du bénéficiaire, ou c'est une formation éligible COPANEF
+    Et c'est une formation éligible CPF
         Alors appliquer les règles «AIF»
         Et le texte de la prise en charge vaut «Formation partiellement ou totalement financée dans la limite de 2500 €.»
         Et le plafond financier applicable vaut 2500

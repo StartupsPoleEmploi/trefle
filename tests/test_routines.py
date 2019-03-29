@@ -17,11 +17,10 @@ async def test_populate_formation_from_json():
         routine.extrapolate_context(context)
         routine.preprocess(context)
 
-        assert context['formation.eligible_copanef'] is False
+        assert context['formation.eligible_cpf'] is False
         assert context['formation.codes_naf'] == {'0162Z', '0520Z', '2361Z',
                                                   '4399E', '7820Z', '9604Z',
                                                   '9609Z'}
-        assert context['formation.regions_coparef_de'] == {'24'}
         assert context['formation.codes_formacode'] == {22403, 22402}
         assert context['formation.domaines_formacode'] == {224}
         assert context['formation.foad'] is False
@@ -70,8 +69,9 @@ async def test_populate_formation_from_json():
     ('heures_centre_empty', 'formation.heures_centre', 585),
     ('daeu', 'formation.daeu', True),
     ('daeu', 'formation.enseignement_superieur', True),
-    ('old_region', 'formation.regions_coparef_de', {'24', '27'}),
-    ('with_copanef', 'formation.eligible_copanef', True),
+    # deprecated use only for coparef region that doesn't exist anymore
+    # ('old_region', 'formation.regions_coparef_de', {'24', '27'}),
+    ('with_copanef', 'formation.eligible_cpf', True),
     ('with_codes_modalite_pedagogique', 'formation.foad', True),
 ])
 @pytest.mark.asyncio
@@ -107,10 +107,11 @@ def test_extrapolate_context_should_set_formation_old_region_to_new_region():
     assert context['formation.region'] == '27'  # Bourgogne-Franche-Comté
 
 
-def test_extrapolate_context_should_set_coparef_old_region_to_new_region():
-    context = {'formation.regions_coparef': {'26', '53'}}  # Bourgogne / Bretagne
-    routine.extrapolate_context(context)
-    assert context['formation.regions_coparef'] == {'27', '53'}  # Bourgogne-Franche-Comté
+# depracated since coparef doesn't exist anymore
+# def test_extrapolate_context_should_set_coparef_old_region_to_new_region():
+#     context = {'formation.regions_coparef': {'26', '53'}}  # Bourgogne / Bretagne
+#     routine.extrapolate_context(context)
+#     assert context['formation.regions_coparef'] == {'27', '53'}  # Bourgogne-Franche-Comté
 
 
 @pytest.mark.asyncio

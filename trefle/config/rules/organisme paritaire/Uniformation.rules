@@ -16,7 +16,7 @@ Si le financement est de type «CPF»
     #    Si la durée en heures de la formation est supérieure ou égale à 70
     #        Alors le prix horaire plafond applicable vaut 25
 
-    #Si c'est une formation éligible COPANEF
+    #Si c'est une formation éligible CPF
     #Et c'est un bilan de compétences
     #    Alors le prix horaire plafond applicable vaut 56
 

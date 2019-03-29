@@ -14,7 +14,7 @@ Scénario: Cas d'un permis B
     Et le code NAF de l'établissement du bénéficiaire vaut «5510Z»
     Et l'IDCC de l'établissement du bénéficiaire vaut 800
     Et la région de l'établissement du bénéficiaire vaut «Île-de-France»
-    Et c'est une formation éligible COPANEF
+    Et c'est une formation éligible CPF
     Et le niveau de sortie de la formation vaut «aucun»
     Et la durée en heures de la formation vaut 31.0
     Et c'est un permis B
@@ -42,7 +42,7 @@ Scénario: Cas d'un bilan de compétences
     Et le code NAF de l'établissement du bénéficiaire vaut «5510Z»
     Et l'IDCC de l'établissement du bénéficiaire vaut 800
     Et la région de l'établissement du bénéficiaire vaut «Île-de-France»
-    Et c'est une formation éligible COPANEF
+    Et c'est une formation éligible CPF
     Et le niveau de sortie de la formation vaut «aucun»
     Et la durée en heures de la formation vaut 24
     Et c'est un bilan de compétences

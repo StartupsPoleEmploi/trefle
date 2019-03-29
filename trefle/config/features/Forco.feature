@@ -13,9 +13,8 @@ Scénario: Formation CPF
     Et le code NAF de l'établissement du bénéficiaire vaut «9499Z»
     Et l'IDCC de l'établissement du bénéficiaire vaut «1406»
     Et la région de l'établissement du bénéficiaire vaut «Centre-Val de Loire»
-    Et c'est une formation éligible COPANEF
+    Et c'est une formation éligible CPF
     Et c'est une formation éligible région «Pays de la Loire»
-    Et la régions éligibles COPAREF vaut [«Pays de la Loire»]
     Et la liste des codes FORMACODE de la formation vaut [42752]
     Et la liste des domaines FORMACODE de la formation vaut [427]
     Et le code CERTIFINFO de la formation vaut 83257
@@ -50,9 +49,8 @@ Scénario: Formation CPF réservée
     Et l'IDCC de l'établissement du bénéficiaire vaut «1406»
     Et la région de l'établissement du bénéficiaire vaut «Centre-Val de Loire»
     Et les codes financeur de la formation valent [4,5,10,16,17]
-    Et c'est une formation éligible COPANEF
+    Et c'est une formation éligible CPF
     Et c'est une formation éligible région «Pays de la Loire»
-    Et la régions éligibles COPAREF vaut [«Pays de la Loire»]
     Et la liste des codes FORMACODE de la formation vaut [42752]
     Et la liste des domaines FORMACODE de la formation vaut [427]
     Et le code CERTIFINFO de la formation vaut 83257

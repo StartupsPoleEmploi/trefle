@@ -9,14 +9,14 @@ Scénario: Cas nominal aide individuelle régionale à la formation (formation c
     Et le niveau de sortie de la formation vaut «III»
     Et c'est une formation ouverte aux bénéficiaires individuels
     Et c'est une formation certifiante
-    Et c'est une formation éligible COPAREF de la région du bénéficiaire
+    Et c'est une formation éligible CPF
     Quand je demande un calcul de financement
     Quand je sélectionne le financement «Aide individuelle régionale à la formation»
     Alors la rémunération applicable vaut 0
     Et la plafond de prise en charge vaut 6000
 
 
-Scénario: Aide individuelle régionale à la formation exclue, non éligible COPAREF/COPANEF (formation certifiante)
+Scénario: Aide individuelle régionale à la formation exclue, non éligible CPF (formation certifiante)
     Soit un bénéficiaire et une formation
     Et c'est un demandeur d'emploi
     Et le montant de l'allocation du bénéficiaire vaut 1200
@@ -69,7 +69,6 @@ Scénario: Aide individuelle régionale à la formation avec mauvais niveau de s
     Et le niveau de sortie de la formation vaut «I»
     Et c'est une formation ouverte aux bénéficiaires individuels
     Et c'est une formation certifiante
-    Et c'est une formation éligible COPAREF de la région du bénéficiaire
     Quand je demande un calcul de financement
     Alors le financement «Aide individuelle régionale à la formation» n'est pas proposé
 

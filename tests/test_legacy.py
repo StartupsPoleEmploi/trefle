@@ -62,8 +62,6 @@ async def test_legacy_context(client):
         "formation.codes_rome": [],
         "formation.domaines_formacode": [],
         "formation.individuels": True,
-        "formation.regions_coparef": [],
-        "formation.regions_coparef_de": [],
         "formation.codes_modalite_pedagogique": [],
         "beneficiaire.allocation": 0,
         "beneficiaire.remuneration": 0,
@@ -85,8 +83,8 @@ async def test_legacy_context(client):
         "formation.codes_naf": ["4532Z"],
         "formation.contrat_apprentissage": False,
         "formation.contrat_professionnalisation": False,
-        "formation.eligible_copanef": False,
-        "formation.eligible_coparef": False,
+        "formation.eligible_cpf": False,
+        "formation.eligible_copanef": False,  # deprcated, useful for legacy tests
         "formation.professionnalisante": True,
     }
 
@@ -145,6 +143,10 @@ async def test_invalid_data(client):
             "case_15.json",  # TODO vérifier règle chèque formation (voir note sur règle LBF) et ordre des dispositifs inversés
             "case_17.json",  # TODO à voir : 3 pour Trefle et 5 pour LBF
             "case_29.json",  # TODO Pb: LBF no control for codes financeur individuel
+            "case_27.json",  # TODO deprecated, coparef doesn't exists anymore
+            "case_7.json",  # TODO deprecated, coparef doesn't exists anymore
+            "case_23.json",  # TODO deprecated, coparef doesn't exists anymore
+            "case_14.json",  # TODO deprecated, coparef doesn't exists anymore
         ]
     ],
 )

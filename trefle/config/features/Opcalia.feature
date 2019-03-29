@@ -13,7 +13,7 @@ Scénario: CPF intermittent
     Et le code NAF de l'établissement du bénéficiaire vaut «1411Z»
     Et l'IDCC de l'établissement du bénéficiaire vaut 247
     Et la région de l'établissement du bénéficiaire vaut «Auvergne-Rhône-Alpes»
-    Et c'est une formation éligible COPANEF
+    Et c'est une formation éligible CPF
     Et le niveau de sortie de la formation vaut «IV»
     Et la durée en heures de la formation vaut 1100.0
     Et ce n'est pas une formation ouverte à distance

@@ -38,7 +38,7 @@ Si l'intitulé du financement est «Aide individuelle régionale à la formation
     Et la durée en heures de la formation n'est pas inférieure à 140
 
         Si c'est une formation certifiante
-        Et c'est une formation éligible COPAREF de la région du bénéficiaire, ou c'est une formation éligible COPANEF
+        Et c'est une formation éligible CPF
         Et la durée en heures de la formation n'est pas supérieure à 1600
 
         Ou c'est une formation professionnalisante

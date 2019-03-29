@@ -4,7 +4,7 @@ Fonctionnalité: AGEFOS PME
 Scénario: cas nominal d'une formation COPANEF
     Soit un bénéficiaire et une formation
     Et c'est un bénéficiaire de droit privé
-    Et c'est une formation éligible COPANEF
+    Et c'est une formation éligible CPF
     Et le prix horaire de la formation vaut 25
     Et la durée en heures de la formation vaut 70
     Et le solde CPF du bénéficiaire vaut 50
@@ -24,7 +24,7 @@ Scénario: cas nominal d'une formation COPANEF
 Scénario: plafond horaire d'une formation VAE
     Soit un bénéficiaire et une formation
     Et c'est un bénéficiaire de droit privé
-    Et c'est une formation éligible COPANEF
+    Et c'est une formation éligible CPF
     Et le prix horaire de la formation vaut 25
     Et la durée en heures de la formation vaut 70
     Et le solde CPF du bénéficiaire vaut 50
@@ -46,7 +46,7 @@ Scénario: cas nominal d'une formation Région (Conseil régional)
     # https://labonneformation.pole-emploi.fr/annonce-formation/titre-professionnel-gestionnaire-de-paie-68434
     Soit un bénéficiaire et une formation
     Et c'est un bénéficiaire de droit privé
-    Et c'est une formation éligible région «Provence-Alpes-Côte d'Azur»
+    Et c'est une formation éligible CPF
     Et la région de l'établissement du bénéficiaire vaut «Provence-Alpes-Côte d'Azur»
     Et le prix horaire de la formation vaut 50
     Et la durée en heures de la formation vaut 910
@@ -77,8 +77,7 @@ Scénario: plafond horaire sur une formation simple
     Et le code NAF de l'établissement du bénéficiaire vaut «8891A»
     Et l'IDCC de l'établissement du bénéficiaire vaut 2395
     Et la région de l'établissement du bénéficiaire vaut «Provence-Alpes-Côte d'Azur»
-    Et ce n'est pas une formation éligible COPANEF
-    Et c'est une formation éligible région «Provence-Alpes-Côte d'Azur»
+    Et c'est une formation éligible CPF
     Et le niveau de sortie de la formation vaut «V»
     Et la durée en heures de la formation vaut 805.0
     Et ce n'est pas une formation ouverte à distance
@@ -102,7 +101,7 @@ Scénario: plafond horaire sur une formation simple
 Scénario: Agence Agefomat sur IDCC
     Soit un bénéficiaire et une formation
     Et c'est un bénéficiaire de droit privé
-    Et c'est une formation éligible COPANEF
+    Et c'est une formation éligible CPF
     Et le prix horaire de la formation vaut 25
     Et la durée en heures de la formation vaut 70
     Et le solde CPF du bénéficiaire vaut 50
@@ -118,7 +117,7 @@ Scénario: Agence Agefomat sur IDCC
 Scénario: Agence Agefomat sur NAF
     Soit un bénéficiaire et une formation
     Et c'est un bénéficiaire de droit privé
-    Et c'est une formation éligible COPANEF
+    Et c'est une formation éligible CPF
     Et le prix horaire de la formation vaut 25
     Et la durée en heures de la formation vaut 70
     Et le solde CPF du bénéficiaire vaut 50
@@ -146,9 +145,8 @@ Scénario: pas de financement pour une formation réservée Pôle Emploi
     Et l'IDCC de l'établissement du bénéficiaire vaut «2395»
     Et la région de l'établissement du bénéficiaire vaut «Provence-Alpes-Côte d'Azur»
     Et les codes financeur de la formation valent [«Pôle emploi»]
-    Et ce n'est pas une formation éligible COPANEF
+    Et ce n'est pas une formation éligible CPF
     Et c'est une formation éligible région «Provence-Alpes-Côte d'Azur»
-    Et la régions éligibles COPAREF vaut [«Provence-Alpes-Côte d'Azur»]
     Et la liste des codes FORMACODE de la formation vaut [44028]
     Et la liste des domaines FORMACODE de la formation vaut [440]
     Et le code CERTIFINFO de la formation vaut 30958

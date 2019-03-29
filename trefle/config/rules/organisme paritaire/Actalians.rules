@@ -1,7 +1,7 @@
 Si le financement est de type «CPF»
     Alors appliquer les règles «CPF»
 
-    # Si c'est une formation éligible COPANEF
+    # Si c'est une formation éligible CPF
     #     Alors le prix horaire plafond applicable vaut 60
 
     # Si c'est une formation VAE

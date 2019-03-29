@@ -1,6 +1,8 @@
 Si c'est un demandeur d'emploi
 Et la liste des codes CPF de la formation pour un demandeur d'emploi est définie
     Alors la liste des codes CPF de la formation est la liste des codes CPF de la formation pour un demandeur d'emploi
+Si c'est une formation éligible COPANEF
+    Alors c'est une formation éligible CPF
 Si la liste des codes FORMACODE de la formation contient au moins un des codes FORMACODE FIMO
     Alors c'est une formation FIMO
 Si le code CERTIFINFO de la formation fait partie des codes CERTIFINFO TOSA
@@ -75,11 +77,7 @@ Ou le niveau de sortie de la formation fait partie de [«III»,«II»,«I»]
     Alors c'est une formation de l'enseignement supérieur
 Si c'est un demandeur d'emploi
     Alors appliquer les règles «éligibilité RFF»
-    Si la région du bénéficiaire fait partie des régions éligibles COPAREF pour un demandeur d'emploi
-        Alors c'est une formation éligible COPAREF de la région du bénéficiaire
 Si c'est un bénéficiaire de droit privé
-Et la région de l'établissement du bénéficiaire fait partie des régions éligibles COPAREF
-    Alors c'est une formation éligible COPAREF de la région du bénéficiaire
 Si c'est une préparation opérationnelle à l'emploi collective
 Ou c'est une préparation opérationnelle à l'emploi individuelle
     Alors c'est une préparation opérationnelle à l'emploi

@@ -52,7 +52,7 @@ Scénario: Financement ESUP avec bon SIRET et FORMACODE
     Et le âge du bénéficiaire vaut 22
     Et la durée en heures de la formation vaut 120
     Et la région du bénéficiaire vaut «Auvergne-Rhône-Alpes»
-    Et la formation éligible COPAREF de la région du bénéficiaire vaut «True»
+    Et c'est une formation éligible CPF
     Et la région de la formation vaut «Auvergne-Rhône-Alpes»
     Et le SIRET de l'organisme de formation vaut 19691775100014
     Et la liste des codes FORMACODE de la formation vaut [15093]
@@ -67,7 +67,7 @@ Scénario: Financement ESUP avec bon SIRET et FORMACODE (2)
     Et le âge du bénéficiaire vaut 22
     Et la durée en heures de la formation vaut 120
     Et la région du bénéficiaire vaut «Auvergne-Rhône-Alpes»
-    Et la formation éligible COPAREF de la région du bénéficiaire vaut «True»
+    Et c'est une formation éligible CPF
     Et la région de la formation vaut «Auvergne-Rhône-Alpes»
     Et le SIRET de l'organisme de formation vaut 34040220500033
     Et la liste des codes FORMACODE de la formation vaut [13017]
@@ -82,7 +82,7 @@ Scénario: Mauvais SIRET pour financement ESUP
     Et le âge du bénéficiaire vaut 22
     Et la durée en heures de la formation vaut 120
     Et la région du bénéficiaire vaut «Auvergne-Rhône-Alpes»
-    Et la formation éligible COPAREF de la région du bénéficiaire vaut «True»
+    Et c'est une formation éligible CPF
     Et la région de la formation vaut «Auvergne-Rhône-Alpes»
     Et le SIRET de l'organisme de formation vaut 34040220501033
     Et la liste des codes FORMACODE de la formation vaut [13017]

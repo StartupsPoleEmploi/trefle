@@ -6,7 +6,7 @@ Ou c'est un demandeur d'emploi, et le type de contrat du bénéficiaire fait par
     Et c'est une formation ouverte aux bénéficiaires individuels
     Et ce n'est pas un contrat d'apprentissage
     Et ce n'est pas un contrat de professionnalisation
-    Et c'est une formation éligible COPANEF
+    Et c'est une formation éligible CPF
 
         Alors le texte de description vaut «Le projet de transition professionnelle permet au salarié de suivre, à son initiative et à titre individuel, une formation, dans le but de :⏎- se reconvertir⏎- ou acquérir un niveau supérieur de qualification ou une 1re qualification⏎- ou se perfectionner.⏎- ou changer de métier ou de profession par des formations certifiantes.»
 

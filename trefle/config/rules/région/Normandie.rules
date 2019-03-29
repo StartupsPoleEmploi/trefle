@@ -36,7 +36,7 @@ Si l'intitulé du financement est «Aide individuelle à la formation»
     Et le code CERTIFINFO de la formation ne fait pas partie de [49616,23710,55676,83419,96173]
     Et ce n'est pas une formation VAE
     Et la liste des domaines FORMACODE de la formation ne contient pas 150, ou la liste des codes FORMACODE de la formation contient au moins un code parmi [15009,15015]
-    Et c'est une formation éligible COPAREF de la région du bénéficiaire, ou c'est une formation éligible COPANEF
+    Et c'est une formation éligible CPF
         Alors le financement est éligible
         Et le texte des démarches vaut «Effectuez les démarches de validation de votre projet de formation et assurez-vous qu'il correspond aux emplois offerts sur votre secteur géographique. Contactez votre conseiller référent emploi (Pôle emploi, Mission Locale ou Cap emploi). Vous lui présenterez 2 devis minimum de 2 organismes différents. Votre projet de formation et son financement doivent être présentés au plus tard 3 semaines avant le début de la formation, pour pouvoir être validé au préalable par votre conseiller emploi.»
         Et le texte de la prise en charge vaut «Formation totalement ou partiellement financée⏎(avec mobilisation possible de vos heures CPF)»

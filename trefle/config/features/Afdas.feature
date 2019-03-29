@@ -4,7 +4,7 @@ Fonctionnalité: Afdas
 Scénario: plafond prix horaire d'une formation VAE
     Soit un bénéficiaire et une formation
     Et c'est un bénéficiaire de droit privé
-    Et c'est une formation éligible COPANEF
+    Et c'est une formation éligible CPF
     Et le prix horaire de la formation vaut 125
     Et la durée en heures de la formation vaut 70
     Et le solde CPF du bénéficiaire vaut 100
@@ -25,7 +25,7 @@ Scénario: plafond prix horaire d'une formation VAE
 Scénario: plafond horaire d'une formation VAE
     Soit un bénéficiaire et une formation
     Et c'est un bénéficiaire de droit privé
-    Et c'est une formation éligible COPANEF
+    Et c'est une formation éligible CPF
     Et le prix horaire de la formation vaut 50
     Et la durée en heures de la formation vaut 70
     Et le solde CPF du bénéficiaire vaut 50

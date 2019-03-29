@@ -7,7 +7,7 @@ Scénario: cas nominal d'une formation COPANEF
     Et la rémunération du bénéficiaire vaut 1400
     Et le type de contrat du bénéficiaire vaut «CDI»
     Et le solde CPF du bénéficiaire vaut 5000
-    Et c'est une formation éligible COPANEF
+    Et c'est une formation éligible CPF
     Et l'IDCC de l'établissement du bénéficiaire vaut 29
     Et le prix horaire de la formation vaut 25
     Et la durée en heures de la formation vaut 100
@@ -27,7 +27,7 @@ Scénario: formation COPANEF avec prix horaire supérieur au plafond
     Et la rémunération du bénéficiaire vaut 1400
     Et le type de contrat du bénéficiaire vaut «CDI»
     Et le solde CPF du bénéficiaire vaut 5000
-    Et c'est une formation éligible COPANEF
+    Et c'est une formation éligible CPF
     Et l'IDCC de l'établissement du bénéficiaire vaut 29
     Et le prix horaire de la formation vaut 100
     Et la durée en heures de la formation vaut 100
