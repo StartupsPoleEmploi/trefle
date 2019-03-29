@@ -7,7 +7,7 @@ Si le financement est de type «CPF»
     #     Alors le prix horaire plafond applicable vaut 60
 
     # Si la région de l'établissement du bénéficiaire fait partie des régions éligibles COPAREF
-    # Ou c'est une formation éligible COPANEF
+    # Ou c'est une formation éligible CPF
     # Ou le code NAF de l'établissement du bénéficiaire fait partie des codes NAF CPNE éligibles
     #     # maintenance et conduite engin
     #     Si la liste des codes FORMACODE de la formation contient 31717

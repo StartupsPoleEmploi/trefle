@@ -12,7 +12,7 @@ Scénario: Formation COPANEF
     Et l'ancienneté en mois du bénéficiaire dans son entreprise vaut 36
     Et le code NAF de l'établissement du bénéficiaire vaut «8130Z»
     Et l'IDCC de l'établissement du bénéficiaire vaut 2409
-    Et c'est une formation éligible COPANEF
+    Et c'est une formation éligible CPF
     Et le niveau de sortie de la formation vaut «IV»
     Et la durée en heures de la formation vaut 2320
     Et la durée en mois de la formation vaut 22

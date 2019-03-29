@@ -4,7 +4,7 @@ Fonctionnalité: Intergros
 Scénario: plafond financier Intergros sur formation VAE
     Soit un bénéficiaire et une formation
     Et c'est un bénéficiaire de droit privé
-    Et c'est une formation éligible COPANEF
+    Et c'est une formation éligible CPF
     Et le solde CPF du bénéficiaire vaut 1000
     Et l'IDCC de l'établissement du bénéficiaire vaut 2075
     Et la rémunération du bénéficiaire vaut 1400
@@ -25,7 +25,7 @@ Scénario: plafond financier Intergros sur formation VAE
 Scénario: plafond horaire Intergros sur formation VAE
     Soit un bénéficiaire et une formation
     Et c'est un bénéficiaire de droit privé
-    Et c'est une formation éligible COPANEF
+    Et c'est une formation éligible CPF
     Et le solde CPF du bénéficiaire vaut 1000
     Et l'IDCC de l'établissement du bénéficiaire vaut 2075
     Et la rémunération du bénéficiaire vaut 1400

@@ -652,6 +652,14 @@ formation:
     gender: masculine
     number: plural
     url: http://lheo.gouv.fr/langage#dict-financeurs
+  eligible_cpf:
+    description: cette formation est éligible au CPF
+    type: boolean
+    default: false
+    source: catalogue
+    path: sessions.0.eligibilite-cpf.copanef.0
+    label: formation éligible CPF
+  # depreacated - necessary only for legacy tests
   eligible_copanef:
     description: cette formation est au catalogue COPANEF
     type: boolean
@@ -659,32 +667,6 @@ formation:
     source: catalogue
     path: sessions.0.eligibilite-cpf.copanef.0
     label: formation éligible COPANEF
-  eligible_coparef:
-    description: cette formation est au catalogue COPAREF
-    type: boolean
-    default: false
-    source: catalogue
-    label: formation éligible COPAREF de la région du bénéficiaire
-  regions_coparef_de:
-    description: régions d'éligibilité si COPAREF dans les listes_eligibilite_cpf
-    type: array
-    format: set
-    items:
-      type: string
-      enum: *regions
-    source: catalogue
-    path: sessions.0.eligibilite-cpf.type=DE|TOUTPUBLIC.region-insee
-    label: régions éligibles COPAREF pour un demandeur d'emploi
-  regions_coparef:
-    description: régions d'éligibilité si COPAREF dans les listes_eligibilite_cpf
-    type: array
-    format: set
-    items:
-      type: string
-      enum: *regions
-    source: catalogue
-    path: sessions.0.eligibilite-cpf.type=SALARIE|TOUTPUBLIC.region-insee
-    label: régions éligibles COPAREF
   codes_rome:
     type: array
     format: set

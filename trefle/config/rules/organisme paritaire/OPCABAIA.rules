@@ -21,7 +21,7 @@ Si le financement est de type «CPF»
     # Si l'IDCC de l'établissement du bénéficiaire vaut «2120»
     #     Si c'est une formation langues
     #         Alors le prix horaire plafond applicable vaut 37
-    #     Si c'est une formation éligible COPANEF
+    #     Si c'est une formation éligible CPF
     #     Ou la région de l'établissement du bénéficiaire fait partie des régions éligibles COPAREF
     #         # 8500/an ?
     #         Alors le plafond financier applicable vaut 8500

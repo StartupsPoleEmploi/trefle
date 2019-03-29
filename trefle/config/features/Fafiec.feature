@@ -14,7 +14,7 @@ Scénario: cas nominal Fafiec
     Et le code NAF de l'établissement du bénéficiaire vaut «6202A»
     Et l'IDCC de l'établissement du bénéficiaire vaut 1486
     Et c'est une formation éligible région «Île-de-France»
-    Et c'est une formation éligible COPANEF
+    Et c'est une formation éligible CPF
     Et la durée en heures de la formation vaut 1384
     Et la liste des codes FORMACODE de la formation vaut [31094,31067,31084]
     Et le niveau de sortie de la formation vaut «III»
@@ -49,7 +49,7 @@ Scénario: CPF sur CPNE
     Et l'ancienneté en mois du bénéficiaire dans son entreprise vaut 12
     Et le code NAF de l'établissement du bénéficiaire vaut «6202A»
     Et l'IDCC de l'établissement du bénéficiaire vaut 1486
-    Et ce n'est pas une formation éligible COPANEF
+    Et ce n'est pas une formation éligible CPF
     Et les codes NAF CPNE éligibles valent [«6202A»]
     Et la durée en heures de la formation vaut 100
     Quand je demande un calcul de financement

@@ -111,7 +111,7 @@ Scénario: Formation totalement financée par l'AIF
     Et le âge du bénéficiaire vaut 45
     Et la région du bénéficiaire vaut «Bourgogne-Franche-Comté»
     Et la département de la formation vaut «Côte-d'Or»
-    Et ce n'est pas une formation éligible COPANEF
+    Et ce n'est pas une formation éligible CPF
     Et la liste des codes FORMACODE de la formation vaut [43425]
     Et la liste des domaines FORMACODE de la formation vaut [434]
     Et la durée en heures de la formation vaut 100

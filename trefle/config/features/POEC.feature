@@ -74,7 +74,7 @@ Scénario: Financement POEC
     Et la région du bénéficiaire vaut «Normandie»
     Et la département de la formation vaut «Manche»
     Et les codes financeur de la formation valent [16]
-    Et c'est une formation éligible COPANEF
+    Et c'est une formation éligible CPF
     Et la liste des codes ROME de la formation vaut [H3404]
     Et la liste des codes FORMACODE de la formation vaut [22472,23042,23053]
     Et la liste des domaines FORMACODE de la formation vaut [224,230]

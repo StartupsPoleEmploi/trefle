@@ -14,7 +14,7 @@ Si le financement est de type «CPF»
     #     Si c'est une formation VAE
     #         Alors le prix horaire plafond applicable est égal au prix horaire de la formation
     #         Alors le plafond financier applicable vaut 5000
-    #     Si c'est une formation éligible COPANEF
+    #     Si c'est une formation éligible CPF
     #         Alors le prix horaire plafond applicable vaut 35
     #         Si c'est une formation BEC
     #             Alors le prix horaire plafond applicable est égal au prix horaire de la formation
