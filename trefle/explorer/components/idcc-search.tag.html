@@ -8,18 +8,18 @@
   </section>
   <section class=results if={ this.refs.idcc.value }>
     <h2>Conventions collectives</h2>
-    <ul if={ this.results.length }>
-      <li each={ this.results }>{ name } <strong>({ code })</strong></li>
+    <ul if={ Object.keys(this.results).length }>
+      <li each={ idccdata, code in this.results }>{ idccdata['Convention collective'] } <strong>({ code })</strong></li>
     </ul>
-    <p if={ this.refs.idcc.value && !this.results.length }>Aucune convention collective trouvée pour la recherche «{ this.refs.idcc.value }».</p>
+    <p if={ this.refs.idcc.value && !Object.keys(this.results).length }>Aucune convention collective trouvée pour la recherche «{ this.refs.idcc.value }».</p>
   </section>
   <script>
     this.results = []
 
     this.search = (text) => {
-      request(`http://163.172.180.45/search/?q=${text}`)
+      request(`../idcc?q=${text}`)
       .then((data) => {
-        this.results = data.results
+        this.results = data
         this.update()
       })
     }
