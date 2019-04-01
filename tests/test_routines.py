@@ -4,6 +4,7 @@ from pathlib import Path
 
 import pytest
 
+from trefle.config import IDCC
 from trefle.context import Context
 from trefle import exceptions
 from trefle import routine
@@ -139,4 +140,4 @@ def test_build_catalog_url(monkeypatch):
 def test_search_idcc_code_by_word(term):
     data = {'2596': {'Convention collective': 'Coiffure', 'OPCA': 'AGEFOS PME',
                       'OPACIF': 'Fongecif'}}
-    assert routine.search_idcc(term) == data
+    assert routine.search_term(IDCC, term) == data

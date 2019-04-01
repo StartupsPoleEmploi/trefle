@@ -11,7 +11,7 @@ from .exceptions import DataError
 from .legacy import simulate_legacy
 from .loggers import log_simulate, logger
 from .openapis import OPENAPI
-from .routine import get_formation_json, search_idcc
+from .routine import get_formation_json, search_term
 
 app = Roll()
 cors(app)
@@ -79,12 +79,12 @@ async def schema(request, response):
 
 @app.route("/naf")
 async def naf(request, response):
-    response.json = NAF.get(request.query.get("q"), [])
+    response.json = search_term(NAF, request.query.get("q"))
 
 
 @app.route("/idcc")
 async def idcc(request, response):
-    response.json = search_idcc(request.query.get("q"))
+    response.json = search_term(IDCC, request.query.get("q"))
 
 
 @app.route("/explore/schema")

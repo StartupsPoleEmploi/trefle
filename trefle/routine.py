@@ -3,9 +3,10 @@ import hashlib
 import hmac
 import datetime
 from urllib.parse import urlencode
+from unidecode import unidecode
 
 from . import config  # allow to monkeypatch test
-from .config import CONSTANTS, LABELS, ORGANISMES, RULES, SCHEMA, Organisme, IDCC
+from .config import CONSTANTS, LABELS, ORGANISMES, RULES, SCHEMA, Organisme
 
 from .exceptions import DataError
 from .helpers import (
@@ -297,13 +298,13 @@ def check_financement(context, financement):
             del financement[key]
 
 
-def search_idcc(term):
+def search_term(list_, term):
     data = {}
-    for k in IDCC:
+    for k in list_:
         if k.startswith(term):
-            data[k] = IDCC[k]
-        else:
-            for v in IDCC[k]:
-                if IDCC[k][v].lower().startswith(term.lower()):
-                    data[k] = IDCC[k]
+            data[k] = list_[k]
+        elif isinstance(list_[k], (list, dict)):
+                for v in list_[k]:
+                    if unidecode(list_[k][v].lower()).startswith(unidecode(term.lower())):
+                        data[k] = list_[k]
     return data

@@ -443,11 +443,26 @@ async def test_glossary(client):
     assert 'OPCA' in json.loads(resp.body)
 
 
+async def test_idcc_search(client):
+    resp = await client.get('/idcc?q=1147')
+    assert resp.status == HTTPStatus.OK
+    assert json.loads(resp.body) == {"1147": {"Convention collective":
+                                              "Cabinets m\u00e9dicaux",
+                                              "OPCA": "Actalians",
+                                              "OPACIF": "Fongecif"}
+                                     }
+
+
 async def test_naf_search(client):
     resp = await client.get('/naf?q=620')
     assert resp.status == HTTPStatus.OK
-    assert json.loads(resp.body) == ['6201Z', '6202A', '6202B', '6203Z',
-                                     '6209Z']
+    assert json.loads(resp.body) == {
+        '6201Z': 'Programmation informatique',
+        '6202A': 'Conseil en systèmes et logiciels informatiques',
+        '6202B': 'Tierce maintenance de systèmes et d’applications informatiques',
+        '6203Z': "Gestion d'installations informatiques",
+        '6209Z': 'Autres activités informatiques'
+    }
 
 
 #async def test_rules_details(client):

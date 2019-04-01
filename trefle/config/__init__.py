@@ -71,14 +71,14 @@ def load_naf(data):
     # Data from https://www.insee.fr/fr/information/2406147
     from ..validators import format_naf
 
-    out = defaultdict(list)
+    out = {}
     reader = csv.DictReader(data.split("\n"), delimiter=";")
     for line in reader:
         if not line or len(line["code"]) != 6:
             continue
         code = format_naf(line["code"])
-        for i in range(2, len(code)):
-            out[code[:i]].append(code)
+        name = line["name"]
+        out[code] = name
     return out
 
 

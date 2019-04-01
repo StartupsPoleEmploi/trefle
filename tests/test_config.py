@@ -3,36 +3,16 @@ from trefle.config import Financement, Organisme, load_naf, load_schema
 
 def test_load_schema():
     data = {
-        'beneficiaire': {
-            'cpf': {
-                'type': 'bool',
-                'description': 'blah'
-            },
-            'age': {
-                'type': 'int',
-                'description': 'bleh'
-            },
-            'entreprise': {
-                'ace': {
-                    'type': 'str',
-                    'description': 'booh'
-                }
-            }
+        "beneficiaire": {
+            "cpf": {"type": "bool", "description": "blah"},
+            "age": {"type": "int", "description": "bleh"},
+            "entreprise": {"ace": {"type": "str", "description": "booh"}},
         }
     }
     assert load_schema(data) == {
-        'beneficiaire.cpf': {
-            'type': 'bool',
-            'description': 'blah'
-        },
-        'beneficiaire.age': {
-            'type': 'int',
-            'description': 'bleh'
-        },
-        'beneficiaire.entreprise.ace': {
-            'type': 'str',
-            'description': 'booh'
-        },
+        "beneficiaire.cpf": {"type": "bool", "description": "blah"},
+        "beneficiaire.age": {"type": "int", "description": "bleh"},
+        "beneficiaire.entreprise.ace": {"type": "str", "description": "booh"},
     }
 
 
@@ -50,20 +30,18 @@ SECTION A;AGRICULTURE, SYLVICULTURE ET PÊCHE
 1.14;Culture de la canne à sucre
 01.14Z;Culture de la canne à sucre"""
     assert load_naf(data) == {
-        '01': ['0111Z', '0112Z', '0113Z', '0114Z'],
-        '011': ['0111Z', '0112Z', '0113Z', '0114Z'],
-        '0111': ['0111Z'],
-        '0112': ['0112Z'],
-        '0113': ['0113Z'],
-        '0114': ['0114Z']
+        "0111Z": "Culture de céréales (à l'exception du riz), de légumineuses et de graines oléagineuses",
+        "0112Z": "Culture du riz",
+        "0113Z": "Culture de légumes, de melons, de racines et de tubercules",
+        "0114Z": "Culture de la canne à sucre",
     }
 
 
 def test_financement_format():
 
     financement = Financement(
-        remuneration=2000,
-        remuneration_texte="Rémunération de {remuneration} euros")
+        remuneration=2000, remuneration_texte="Rémunération de {remuneration} euros"
+    )
     financement.format()
     assert financement.remuneration_texte == "Rémunération de 2000 euros"
 
@@ -72,6 +50,7 @@ def test_financement_format_nested():
 
     financement = Financement(
         organisme=Organisme(nom="Foo"),
-        remuneration_texte="Renseignez-vous auprès de {organisme.nom}")
+        remuneration_texte="Renseignez-vous auprès de {organisme.nom}",
+    )
     financement.format()
     assert financement.remuneration_texte == "Renseignez-vous auprès de Foo"
