@@ -10,6 +10,12 @@ Si le financement est de type «CPF»
     Si c'est une formation VAE
         Alors le plafond financier applicable vaut 3500
 
+Si l'intitulé du financement est «plan de développement des compétences»
+	Alors appliquer les règles «plan de développement des compétences»
+	Et le prix horaire plafond applicable vaut 40
+	Et le texte de description vaut «Le financement de cette formation peut être réalisé dans le cadre du plan de développement de compétences de votre entreprise.»
+	Et le texte des démarches vaut «Si votre entreprise comprend moins de 50 salariés, le financement de cette formation peut se réaliser par votre OPCO. Pour les entreprises de plus de 50 salariés, contactez votre entreprise pour les conditions de prise en charge et les modalités de mise en œuvre.»
+
 Si la région de l'établissement du bénéficiaire est «Guadeloupe»
     Alors le nom de l'agence à contacter est «Opcalia Guadeloupe»
 Si la région de l'établissement du bénéficiaire est «Martinique»
