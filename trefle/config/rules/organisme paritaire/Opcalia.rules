@@ -1,14 +1,13 @@
 Si le financement est de type «CPF»
     Alors appliquer les règles «CPF»
-    Si c'est une formation éligible cpf
-    Alors le prix horaire plafond applicable vaut 15
-    Si c'est une formation Bilan de compétences
+
+Si c'est un bilan de compétences
     Alors le plafond financier applicable vaut 1750
-    Si c'est une formation VAE
+
+Si c'est une formation VAE
     Alors le plafond financier applicable vaut 3500
-Et le plafond financier applicable est égal au solde CPF du bénéficiaire
-Et la rémunération vaut la rémunération du salarié
-Et le plafond horaire de rémunération vaut 30
+    Et le plafond financier applicable est égal au solde CPF du bénéficiaire
+    Et le plafond horaire applicable vaut 30
 
 Si la région de l'établissement du bénéficiaire est «Guadeloupe»
     Alors le nom de l'agence à contacter est «Opcalia Guadeloupe»
