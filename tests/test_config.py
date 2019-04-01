@@ -30,10 +30,10 @@ SECTION A;AGRICULTURE, SYLVICULTURE ET PÊCHE
 1.14;Culture de la canne à sucre
 01.14Z;Culture de la canne à sucre"""
     assert load_naf(data) == {
-        "0111Z": "Culture de céréales (à l'exception du riz), de légumineuses et de graines oléagineuses",
-        "0112Z": "Culture du riz",
-        "0113Z": "Culture de légumes, de melons, de racines et de tubercules",
-        "0114Z": "Culture de la canne à sucre",
+        "0111Z": {"code":"0111Z", "name": "Culture de céréales (à l'exception du riz), de légumineuses et de graines oléagineuses"},
+        "0112Z": {"code":"0112Z", "name": "Culture du riz"},
+        "0113Z": {"code":"0113Z", "name": "Culture de légumes, de melons, de racines et de tubercules"},
+        "0114Z": {"code":"0114Z", "name": "Culture de la canne à sucre"},
     }
 
 

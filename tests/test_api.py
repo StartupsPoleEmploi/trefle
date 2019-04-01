@@ -443,8 +443,12 @@ async def test_glossary(client):
     assert 'OPCA' in json.loads(resp.body)
 
 
-async def test_idcc_search(client):
-    resp = await client.get('/idcc?q=1147')
+@pytest.mark.parametrize('search_term', [
+    1147,
+    'Cabine',
+])
+async def test_idcc_search(client, search_term):
+    resp = await client.get('/idcc?q=' + str(search_term))
     assert resp.status == HTTPStatus.OK
     assert json.loads(resp.body) == {"1147": {"Convention collective":
                                               "Cabinets m\u00e9dicaux",
@@ -453,15 +457,23 @@ async def test_idcc_search(client):
                                      }
 
 
-async def test_naf_search(client):
+async def test_naf_code_search(client):
     resp = await client.get('/naf?q=620')
     assert resp.status == HTTPStatus.OK
     assert json.loads(resp.body) == {
-        '6201Z': 'Programmation informatique',
-        '6202A': 'Conseil en systèmes et logiciels informatiques',
-        '6202B': 'Tierce maintenance de systèmes et d’applications informatiques',
-        '6203Z': "Gestion d'installations informatiques",
-        '6209Z': 'Autres activités informatiques'
+        '6201Z': {'code':'6201Z','name':'Programmation informatique'},
+        '6202A': {'code':'6202A','name':'Conseil en systèmes et logiciels informatiques'},
+        '6202B': {'code':'6202B','name':'Tierce maintenance de systèmes et d’applications informatiques'},
+        '6203Z': {'code':'6203Z','name':"Gestion d'installations informatiques"},
+        '6209Z': {'code':'6209Z','name':'Autres activités informatiques'},
+    }
+
+
+async def test_naf_term_search(client):
+    resp = await client.get('/naf?q=program')
+    assert resp.status == HTTPStatus.OK
+    assert json.loads(resp.body) == {
+        '6201Z': {'code':'6201Z','name':'Programmation informatique'},
     }
 
 

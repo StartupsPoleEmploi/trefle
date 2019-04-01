@@ -303,7 +303,7 @@ def search_term(list_, term):
     for k in list_:
         if k.startswith(term):
             data[k] = list_[k]
-        elif isinstance(list_[k], (list, dict)):
+        elif isinstance(list_[k], dict):
                 for v in list_[k]:
                     if unidecode(list_[k][v].lower()).startswith(unidecode(term.lower())):
                         data[k] = list_[k]

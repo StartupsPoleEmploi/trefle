@@ -78,7 +78,7 @@ def load_naf(data):
             continue
         code = format_naf(line["code"])
         name = line["name"]
-        out[code] = name
+        out[code] = {'code': code, 'name': name}
     return out
 
 
