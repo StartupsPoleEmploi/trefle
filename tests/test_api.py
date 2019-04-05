@@ -451,9 +451,8 @@ async def test_idcc_search(client, search_term):
     resp = await client.get('/idcc?q=' + str(search_term))
     assert resp.status == HTTPStatus.OK
     assert json.loads(resp.body) == {"1147": {"Convention collective":
-                                              "Cabinets m\u00e9dicaux",
-                                              "OPCA": "Actalians",
-                                              "OPACIF": "Fongecif"}
+                                              "Convention collective du personnel des cabinets médicaux (médecin)",
+                                              "OPCO": "Entreprise de proximité"}
                                      }
 
 
