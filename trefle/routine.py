@@ -305,6 +305,6 @@ def search_term(list_, term):
             data[k] = list_[k]
         elif isinstance(list_[k], dict):
                 for v in list_[k]:
-                    if fold_name(list_[k][v]).startswith(fold_name(term)):
+                    if fold_name(term) in fold_name(list_[k][v]):
                         data[k] = list_[k]
     return data
