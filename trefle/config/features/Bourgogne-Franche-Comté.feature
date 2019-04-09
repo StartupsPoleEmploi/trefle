@@ -178,7 +178,7 @@ Scénario: POEC Bourgogne
     Et le montant de l'allocation du bénéficiaire vaut 800.0
     Et la région du bénéficiaire vaut «Bourgogne-Franche-Comté»
     Et la région de la formation vaut «Bourgogne-Franche-Comté»
-    Et les codes financeur de la formation valent [«OPCA»]
+    Et les codes financeur de la formation valent [«OPCO»]
     Et c'est une préparation opérationnelle à l'emploi
     Quand je demande un calcul de financement
     Quand je sélectionne le financement «Préparation opérationnelle à l'emploi collective»

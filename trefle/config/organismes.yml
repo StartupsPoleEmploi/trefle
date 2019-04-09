@@ -2,47 +2,32 @@ Afdas:
   adresse: 66 rue Stendhal CS 32016 75990 Paris cedex 20
   telephone: 01 44 78 39 39
   web: http://www.afdas.com
-OPCO mobilités:
-  adresse: 43 bis, route de Vaugirard, 92190 Meudon
+OPCO Mobilité:
+  adresse: 43 bis route de Vaugirard 92190 Meudon
   telephone: 01 41 14 16 18
-  web: 
 OPCO Construction:
   adresse: 32 rue René Boulanger CS 60033 75483 Paris cedex 10
   telephone: 01 82 83 95 00
-  web:
-OPCAPIAT:
+OCAPIAT:
   adresse: 153 rue de la Pompe CS 60742 75179 Paris cedex 16
   telephone: 01 70 38 38 38
-  web: 
-OPCO santé:
+OPCO Santé:
   adresse: 31 rue Anatole France 92300 Levallois Perret
   telephone: 09 75 18 76 91
-  web: 
-OPCO Cohésion sociale:
+OPCO cohésion sociale:
   adresse: 43 boulevard Diderot 75012 Paris
   telephone: 01 53 02 13 13
-  web:
-OCPO entreprises de proximité:
-  adresse: 53, rue Ampère, 75017 Paris
-  telephone: 
-  web: 
-OPCO ESSFIMO: 
-  adresse : 53, rue Ampère, 75017 Paris.
-  telephone:
-  web:
-OPCO 2i:
-  adresse: 55, rue de Châteaudun, 75009 Paris
-  telephone: 
-  web: 
-OPCO Atlas:
-  adresse: 148, boulevard Haussmann, 75008 Paris
-  telephone:
-  web:
+OPCO Entreprises de proximité:
+  adresse: 53 rue Ampère 75017 Paris
+ESSFIMO:
+  adresse : 53 rue Ampère 75017 Paris.
+2I:
+  adresse: 55 rue de Châteaudun 75009 Paris
+Atlas:
+  adresse: 148 boulevard Haussmann 75008 Paris
 OPCO Commerce:
-  adresse: 251 boulevard Pereire, 75852 Paris Cedex 17
+  adresse: 251 boulevard Pereire 75852 Paris Cedex 17
   telephone: 01 55 37 41 51
-  web:
-
 AGEFOS PME Antilles Guyane:
   adresse: Immeuble Arno Sons Zac de Houëlbourg Sud II 97122 Baie Mahault
   telephone: 05 90 26 93 62/05 90 41 98 16
@@ -187,7 +172,7 @@ Opcalia Ile de France:
   telephone: 01 44 06 77 10
   web: http://www.opcalia.com
 Opcalia Martinique:
-  adresse: route Chateauboeuf, 97200 FORT DE FRANCE
+  adresse: route Chateauboeuf 97200 FORT DE FRANCE
   telephone: 05 96 50 79 31
   web: http://www.opcalia.com
 Opcalia Mayotte:
@@ -327,6 +312,6 @@ Fongecif Réunion:
   telephone : 02 62 94 03 84
   web: http://www.fongecif-reunion.com
 UNAGECIF:
-  adresse: 48, boulevard des Batignolles 75017 PARIS
+  adresse: 48 boulevard des Batignolles 75017 PARIS
   telephone: 01 44 70 74 74
   web: http://www.unagecif.fr/

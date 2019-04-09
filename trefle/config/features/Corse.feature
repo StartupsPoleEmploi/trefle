@@ -35,7 +35,7 @@ Scénario: Collective financée par la Collectivité territoriale de Corse avec 
     Et le montant de l'allocation du bénéficiaire vaut 1200
     Et la région de la formation vaut «Corse»
     Et la durée en heures de la formation vaut 500
-    Et les codes financeur de la formation valent [«OPCA»]
+    Et les codes financeur de la formation valent [«OPCO»]
     Et le prix horaire de la formation vaut 0.0
     Quand je demande un calcul de financement
     Alors le financement «Action collective financée par la Collectivité territoriale de Corse» n'est pas proposé

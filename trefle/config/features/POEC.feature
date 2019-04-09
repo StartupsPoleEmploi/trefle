@@ -47,7 +47,7 @@ Scénario: Formation POEC sans intitulé spécifique
     Et c'est un demandeur d'emploi
     Et le âge du bénéficiaire vaut 38
     Et la durée en heures de la formation vaut 120
-    Et les codes financeur de la formation valent [«OPCA»]
+    Et les codes financeur de la formation valent [«OPCO»]
     Et c'est une formation ouverte aux bénéficiaires individuels
     Et la région du bénéficiaire vaut «Normandie»
     Quand je demande un calcul de financement
@@ -60,7 +60,7 @@ Scénario: Formation trop longue pour POEC
     Et c'est un demandeur d'emploi
     Et le âge du bénéficiaire vaut 38
     Et la durée en heures de la formation vaut 500
-    Et les codes financeur de la formation valent [«OPCA»]
+    Et les codes financeur de la formation valent [«OPCO»]
     Et c'est une formation ouverte aux bénéficiaires individuels
     Et la région du bénéficiaire vaut «Normandie»
     Quand je demande un calcul de financement

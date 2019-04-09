@@ -55,7 +55,7 @@ def define_organisme(context):
         # case when this action is called)
         raise DataError(err.error, err.key)
     # Allow to force value in input data.
-    if "beneficiaire.entreprise.opca" not in context:
-        context["beneficiaire.entreprise.opca"] = IDCC[idcc]["OPCA"]
+    if "beneficiaire.entreprise.opco" not in context:
+        context["beneficiaire.entreprise.opco"] = IDCC[idcc]["OPCO"]
     if "beneficiaire.entreprise.opacif" not in context:
         context["beneficiaire.entreprise.opacif"] = IDCC[idcc]["OPACIF"]

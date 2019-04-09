@@ -23,7 +23,7 @@ Scénario: Cas nominal salarié - CDD
     Et c'est un bénéficiaire de droit privé
     Et le département du bénéficiaire vaut «Cantal»
     Et le type de contrat du bénéficiaire est «CDD»
-    Et l'IDCC de l'établissement du bénéficiaire vaut 800
+    Et l'IDCC de l'établissement du bénéficiaire vaut 1979
     Et le nombre de mois travaillés par le bénéficiaire dans la dernière année est 8
     Et l'expérience professionnelle du bénéficiaire dans les cinq dernières années est 36
     Et la durée en heures de la formation est 50
@@ -39,7 +39,7 @@ Scénario: Cas nominal salarié - CDI hors temps de travail
     Et c'est un bénéficiaire de droit privé
     Et le département du bénéficiaire vaut «Cantal»
     Et le type de contrat du bénéficiaire est «CDI»
-    Et l'IDCC de l'établissement du bénéficiaire vaut 800
+    Et l'IDCC de l'établissement du bénéficiaire vaut 1979
     Et l'ancienneté en mois du bénéficiaire dans son entreprise est 36
     Et l'expérience professionnelle du bénéficiaire est 48
     Et la durée en heures de la formation est 50
@@ -54,7 +54,7 @@ Scénario: Cas nominal salarié - CDI sur temps de travail
     Et c'est un bénéficiaire de droit privé
     Et le département du bénéficiaire vaut «Cantal»
     Et le type de contrat du bénéficiaire est «CDI»
-    Et l'IDCC de l'établissement du bénéficiaire vaut 800
+    Et l'IDCC de l'établissement du bénéficiaire vaut 1979
     Et l'ancienneté en mois du bénéficiaire dans son entreprise est 36
     Et l'expérience professionnelle du bénéficiaire est 48
     Et la durée en heures de la formation est 50
