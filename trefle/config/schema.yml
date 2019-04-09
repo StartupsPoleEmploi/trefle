@@ -32,7 +32,7 @@ constante:
         13: Etat - Autre
         14: Fonds européens - Autre
         15: Autre collectivé territoriale
-        16: OPCA
+        16: OPCO
         17: OPACIF
     value: [0, 5, 10]
     label: codes financeur individuel
@@ -576,13 +576,13 @@ beneficiaire:
       type: string
       label: région de l'établissement du bénéficiaire
       enum: *regions
-    opca:
-      description: l'OPCA auquel est rattaché l'établissement du bénéficiaire. Optionnel, habituellement déduit de l'IDCC.
+    opco:
+      description: l'OPCO auquel est rattaché l'établissement du bénéficiaire. Optionnel, habituellement déduit de l'IDCC.
       type: string
-      format: opca
+      format: opco
       public: true
       nullable: true
-      label: OPCA de l'établissement du bénéficiaire
+      label: OPCO de l'établissement du bénéficiaire
       gender: masculine
     opacif:
       description: l'OPACIF auquel est rattaché l'établissement du bénéficiaire. Optionnel, habituellement déduit de l'IDCC.

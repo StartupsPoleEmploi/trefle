@@ -1,79 +1,33 @@
-Actalians:
-  adresse: 4 rue du Colonel Driant 75046 Paris cedex 01
-  telephone: 01 53 00 86 00
-  web: http://www.actalians.fr
 Afdas:
   adresse: 66 rue Stendhal CS 32016 75990 Paris cedex 20
   telephone: 01 44 78 39 39
   web: http://www.afdas.com
-ANFA:
-  adresse: 41-49 rue de la Garenne 92315 Sèvres cedex
+OPCO Mobilité:
+  adresse: 43 bis route de Vaugirard 92190 Meudon
   telephone: 01 41 14 16 18
-  web: http://www.anfa-auto.fr
-Constructys:
+OPCO Construction:
   adresse: 32 rue René Boulanger CS 60033 75483 Paris cedex 10
   telephone: 01 82 83 95 00
-  web: http://www.constructys.fr
-FAF.TT:
-  adresse: 14 rue Riquet 75940 Paris cedex 19
-  telephone: 01 53 35 70 00
-  web: http://www.faftt.fr
-Fafiec:
-  adresse: 25 quai Panhard et Levassor 75013 Paris
-  telephone: 0811 021 112*
-  web: http://www.fafiec.fr
-Fafih:
-  adresse: 3 rue de la Ville l'Evêque 75008 Paris
-  telephone: 01 40 17 20 20
-  web: http://www.fafih.com
-FAFSEA:
+OCAPIAT:
   adresse: 153 rue de la Pompe CS 60742 75179 Paris cedex 16
   telephone: 01 70 38 38 38
-  web: http://www.fafsea.com
-Forco:
-  adresse: 251 boulevard Pereire 75852 Paris cedex 17
-  telephone: 01 55 37 41 51
-  web: http://www.forco.org
-Intergros:
-  adresse: Immeuble Le Mercure - Bâtiment C 13 boulevard du Mont d'Est CS 10022 93192 Noisy le Grand cedex
-  telephone: 01 78 37 14 00
-  web: http://www.intergros.com
-OPCA 3+:
-  adresse: 55 rue de Châteaudun 75009 Paris
-  telephone: 01 82 71 48 48
-  web: http://www.opca3plus.fr
-OPCA DEFI:
-  adresse: 5-7 avenue du Général de Gaulle 94166 Saint Mandé cedex
-  telephone: 01 58 64 18 30
-  web: http://www.opcadefi.fr
-OPCA Transports et Services:
-  adresse: 66 rue des Archives 75140 Paris cedex 3
-  telephone: 01 53 91 34 34
-  web: http://www.opca-transports.com
-OPCABAIA:
-  adresse: 14-18 rue Ballu 75009 Paris
-  telephone: 01 55 50 49 50
-  web: http://www.opcabaia.fr
-OPCAIM:
-  adresse: 120 boulevard de Courcelles 75849 Paris cedex 17
-  telephone: 01 40 54 22 73
-  web: http://www.opcaim.com
-OPCALIM:
-  adresse: 20 place des Vins de France CS 11240 75603 Paris cedex 12
-  telephone: 01 40 19 41 00
-  web: http://www.opcalim.org
-Unifaf:
+OPCO Santé:
   adresse: 31 rue Anatole France 92300 Levallois Perret
-  telephone: 01 49 68 10 10
-  web: http://www.unifaf.fr
-Uniformation:
+  telephone: 09 75 18 76 91
+OPCO cohésion sociale:
   adresse: 43 boulevard Diderot 75012 Paris
   telephone: 01 53 02 13 13
-  web: http://www.uniformation.fr
-AGEFOS PME:
-  adresse: 187 quai de Valmy 75010 Paris
-  telephone: 01 44 90 46 46
-  web: http://www.agefos-pme.com
+OPCO Entreprises de proximité:
+  adresse: 53 rue Ampère 75017 Paris
+ESSFIMO:
+  adresse : 53 rue Ampère 75017 Paris.
+2I:
+  adresse: 55 rue de Châteaudun 75009 Paris
+Atlas:
+  adresse: 148 boulevard Haussmann 75008 Paris
+OPCO Commerce:
+  adresse: 251 boulevard Pereire 75852 Paris Cedex 17
+  telephone: 01 55 37 41 51
 AGEFOS PME Antilles Guyane:
   adresse: Immeuble Arno Sons Zac de Houëlbourg Sud II 97122 Baie Mahault
   telephone: 05 90 26 93 62/05 90 41 98 16
@@ -165,10 +119,6 @@ SPP Pêche et cultures marines:
   adresse: c/o Agefos Pme 7 rue Félix Le Dantec CS 83039 29334 Quimper cedex
   telephone: 02 98 97 26 52
   web: http://www.spppcm.fr
-Opcalia:
-  adresse: 47 rue de la Victoire 75009 Paris
-  telephone: 01 44 71 99 00
-  web: http://www.opcalia.com
 Opcalia Auvergne Rhône Alpes:
   adresse: 66 avenue Jean Mermoz BP8048 69351 Lyon cedex 08
   telephone: 04 78 77 06 87
@@ -222,7 +172,7 @@ Opcalia Ile de France:
   telephone: 01 44 06 77 10
   web: http://www.opcalia.com
 Opcalia Martinique:
-  adresse: route Chateauboeuf, 97200 FORT DE FRANCE
+  adresse: route Chateauboeuf 97200 FORT DE FRANCE
   telephone: 05 96 50 79 31
   web: http://www.opcalia.com
 Opcalia Mayotte:
@@ -362,6 +312,6 @@ Fongecif Réunion:
   telephone : 02 62 94 03 84
   web: http://www.fongecif-reunion.com
 UNAGECIF:
-  adresse: 48, boulevard des Batignolles 75017 PARIS
+  adresse: 48 boulevard des Batignolles 75017 PARIS
   telephone: 01 44 70 74 74
   web: http://www.unagecif.fr/

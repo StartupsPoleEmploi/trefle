@@ -1,8 +1,10 @@
 Si le financement est de type «CPF»
     Alors appliquer les règles «CPF»
-    Et le plafond financier applicable est égal au solde CPF du bénéficiaire
-    Et le plafond horaire applicable vaut 30
     Et le texte de la rémunération vaut «Dans la limite de 30 euros de l'heure durant la formation»
+
+    Si le solde CPF du bénéficiaire est défini
+        Alors le plafond horaire applicable vaut 30
+        Et le plafond financier applicable est égal au solde CPF du bénéficiaire
 
     Si c'est un bilan de compétences
         Alors le plafond financier applicable vaut 1750

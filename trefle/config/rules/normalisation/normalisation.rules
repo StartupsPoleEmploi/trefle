@@ -50,7 +50,7 @@ Si ce n'est pas une formation certifiante
 Si les codes financeur de la formation ne contiennent aucun des codes financeur collectif
     Alors c'est une formation ouverte aux bénéficiaires individuels
 Si la durée en heures de la formation est inférieure ou égale à 400
-Et les codes financeur de la formation contiennent au moins un code parmi [«OPCA»], ou l'intitulé normé de la formation contient «POEC»
+Et les codes financeur de la formation contiennent au moins un code parmi [«OPCO»], ou l'intitulé normé de la formation contient «POEC»
     Alors c'est une préparation opérationnelle à l'emploi collective
 Si l'intitulé de la formation contient «POEI»
     Alors c'est une préparation opérationnelle à l'emploi individuelle

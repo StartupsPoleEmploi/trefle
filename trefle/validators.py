@@ -54,7 +54,7 @@ def format_idcc(value):
     return value
 
 
-@formatter("opca", "opacif")
+@formatter("opco", "opacif")
 def format_organisme(value):
     folded = fold_name(value)
     if folded not in ORGANISMES:

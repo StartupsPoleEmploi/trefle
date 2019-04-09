@@ -1,5 +1,6 @@
 import json
 import os
+import urllib.parse
 from http import HTTPStatus
 from pathlib import Path
 
@@ -445,14 +446,14 @@ async def test_glossary(client):
 
 @pytest.mark.parametrize('search_term', [
     1147,
-    'Cabine',
+    'cabinets médicaux',
 ])
 async def test_idcc_search(client, search_term):
-    resp = await client.get('/idcc?q=' + str(search_term))
+    resp = await client.get('/idcc?q=' + urllib.parse.quote_plus(str(search_term)))
     assert resp.status == HTTPStatus.OK
-    assert json.loads(resp.body) == {"1147": {"Convention collective":
-                                              "Cabinets m\u00e9dicaux",
-                                              "OPCA": "Actalians",
+    assert json.loads(resp.body) == {"1147": {"convention collective":
+                                              "Convention collective du personnel des cabinets médicaux (médecin)",
+                                              "OPCO": "OPCO Entreprises de proximité",
                                               "OPACIF": "Fongecif"}
                                      }
 
@@ -466,6 +467,11 @@ async def test_naf_code_search(client):
         '6202B': {'code':'6202B','name':'Tierce maintenance de systèmes et d’applications informatiques'},
         '6203Z': {'code':'6203Z','name':"Gestion d'installations informatiques"},
         '6209Z': {'code':'6209Z','name':'Autres activités informatiques'},
+        '0620Z': {'code': '0620Z', 'name': 'Extraction de gaz naturel'},
+        '2620Z': {'code': '2620Z',
+                  'name': "Fabrication d'ordinateurs et d'équipements périphériques"},
+
+
     }
 
 
@@ -473,7 +479,14 @@ async def test_naf_term_search(client):
     resp = await client.get('/naf?q=program')
     assert resp.status == HTTPStatus.OK
     assert json.loads(resp.body) == {
-        '6201Z': {'code':'6201Z','name':'Programmation informatique'},
+        '6201Z': {'code': '6201Z', 'name': 'Programmation informatique'},
+        '4110D': {'code': '4110D', 'name': 'Supports juridiques de programmes'},
+        '5911A': {'code': '5911A',
+                  'name': 'Production de films et de programmes pour la télévision'},
+        '5912Z': {'code': '5912Z',
+                  'name': 'Post-production de films cinématographiques, de vidéo et '
+                          'de programmes de télévision'},
+        '6010Z': {'code': '6010Z', 'name': 'Édition et diffusion de programmes radio'}
     }
 
 

@@ -38,7 +38,7 @@ def test_validate_missing_without_default(patch_schema):
 def test_validate_bad_integer(patch_schema):
     patch_schema({
         'beneficiaire.age': {'type': 'integer'},
-        'beneficiaire.solde_cpf': {'type': 'integer', 'required': True},
+        'beneficiaire.solde_cpf': {'type': 'integer'},
     })
     data = {
         'beneficiaire.age': 'foo',
@@ -128,8 +128,7 @@ def test_validate_pattern(patch_schema, input, valid):
 
 @pytest.mark.parametrize('input,output', [
     ('1412', '1412'),
-    ('0024', '24'),
-    ('1722A', '1722A'),
+    ('0003', '3'),
     ('unvalid', False),
 ])
 def test_validate_idcc(patch_schema, input, output):
@@ -159,20 +158,20 @@ def test_validate_naf(patch_schema, input, output):
 
 
 @pytest.mark.parametrize('input,output', [
-    ('AGEFOS PME', 'AGEFOS PME'),
-    ('Agefos PME', 'AGEFOS PME'),
-    ('AgéfosPME', 'AGEFOS PME'),
+    ('OPCO Santé', 'OPCO Santé'),
+    ('OPCOSanté', 'OPCO Santé'),
+    ('OPCOSante', 'OPCO Santé'),
     ('unknown', False),
 ])
 def test_validate_organisme(patch_schema, input, output):
     patch_schema({
-        'opca': {'type': 'string', 'format': 'opca'}})
-    data = {'opca': input}
+        'opco': {'type': 'string', 'format': 'opco'}})
+    data = {'opco': input}
     if not output:
         with pytest.raises(DataError):
-            validate_field('opca', data)
+            validate_field('opco', data)
     else:
-        assert validate_field('opca', data) == output
+        assert validate_field('opco', data) == output
 
 
 @pytest.mark.parametrize('input,output', [

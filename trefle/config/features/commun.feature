@@ -94,10 +94,10 @@ Scénario: le bénéficiaire n'a pas défini de rémunération
     Et la durée hebdomadaire de la formation vaut 35
     Quand je demande un calcul de financement
     Quand je sélectionne le financement «CPF sur son temps de travail»
-    Alors l'organisme à contacter est «AGEFOS PME Auvergne Rhône Alpes»
+    Alors l'organisme à contacter est «Afdas»
     Et le plafond de prise en charge vaut 1500
     Et la rémunération applicable vaut 0
     Quand je sélectionne le financement «CPF hors temps de travail»
-    Alors l'organisme à contacter est «AGEFOS PME Auvergne Rhône Alpes»
+    Alors l'organisme à contacter est «Afdas»
     Et le plafond de prise en charge vaut 1500
     Et la rémunération applicable vaut 0

@@ -1,8 +1,0 @@
-Si le financement est de type «CPF»
-    Alors appliquer les règles «CPF»
-    # Et le prix horaire plafond applicable est égal au prix horaire de la formation
-    # Et le plafond horaire applicable est égal au solde CPF du bénéficiaire
-
-    # Si c'est une formation VAE
-    #     Alors le plafond horaire applicable est égal à la durée en heures de la formation
-
