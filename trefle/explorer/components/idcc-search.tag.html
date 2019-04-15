@@ -9,7 +9,7 @@
   <section class=results if={ this.refs.idcc.value }>
     <h2>Conventions collectives</h2>
     <ul if={ Object.keys(this.results).length }>
-      <li each={ idccdata, code in this.results }>{ idccdata['Convention collective'] } <strong>({ code })</strong></li>
+      <li each={ idccdata, code in this.results }>{ idccdata['convention collective'] } <strong>({ code })</strong></li>
     </ul>
     <p if={ this.refs.idcc.value && !Object.keys(this.results).length }>Aucune convention collective trouvée pour la recherche «{ this.refs.idcc.value }».</p>
   </section>
