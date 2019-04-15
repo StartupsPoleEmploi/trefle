@@ -15,43 +15,6 @@ Si l'intitulé du financement est «plan de développement des compétences»
     Et le texte de description vaut «Le financement de cette formation peut être réalisé dans le cadre du plan de développement de compétences de votre entreprise.»
     Et le texte des démarches vaut «Si votre entreprise comprend moins de 50 salariés, le financement de cette formation peut se réaliser par votre OPCO. Pour les entreprises de plus de 50 salariés, contactez votre entreprise pour les conditions de prise en charge et les modalités de mise en œuvre.»
 
-# Si la région de l'établissement du bénéficiaire est «Guadeloupe»
-#     Alors le nom de l'agence à contacter est «Opcalia Guadeloupe»
-# Si la région de l'établissement du bénéficiaire est «Martinique»
-#     Alors le nom de l'agence à contacter est «Opcalia Martinique»
-# Si la région de l'établissement du bénéficiaire est «Guyane»
-#     Alors le nom de l'agence à contacter est «Opcalia Guyane»
-# Si la région de l'établissement du bénéficiaire est «Mayotte»
-#     Alors le nom de l'agence à contacter est «Opcalia Mayotte»
-# Si la région de l'établissement du bénéficiaire est «La Réunion»
-#     Alors le nom de l'agence à contacter est «Opcalia Réunion»
-# Si la région de l'établissement du bénéficiaire est «Île-de-France»
-#     Alors le nom de l'agence à contacter est «Opcalia Ile de France»
-# Si la région de l'établissement du bénéficiaire est «Centre-Val de Loire»
-#     Alors le nom de l'agence à contacter est «Opcalia Centre Val de Loire»
-# Si la région de l'établissement du bénéficiaire est «Pays de la Loire»
-#     Alors le nom de l'agence à contacter est «Opcalia Pays de la Loire»
-# Si la région de l'établissement du bénéficiaire est «Bourgogne-Franche-Comté»
-#     Alors le nom de l'agence à contacter est «Opcalia Bourgogne Franche Comté»
-# Si la région de l'établissement du bénéficiaire est «Normandie»
-#     Alors le nom de l'agence à contacter est «Opcalia Normandie»
-# Si la région de l'établissement du bénéficiaire est «Hauts-de-France»
-#     Alors le nom de l'agence à contacter est «Opcalia Hauts de France»
-# Si la région de l'établissement du bénéficiaire est «Grand-Est»
-#     Alors le nom de l'agence à contacter est «Opcalia Grand Est»
-# Si la région de l'établissement du bénéficiaire est «Bretagne»
-#     Alors le nom de l'agence à contacter est «Opcalia Bretagne»
-# Si la région de l'établissement du bénéficiaire est «Nouvelle-Aquitaine»
-#     Alors le nom de l'agence à contacter est «Opcalia Nouvelle Aquitaine»
-# Si la région de l'établissement du bénéficiaire est «Occitanie»
-#     Alors le nom de l'agence à contacter est «Opcalia Occitanie»
-# Si la région de l'établissement du bénéficiaire est «Auvergne-Rhône-Alpes»
-#     Alors le nom de l'agence à contacter est «Opcalia Auvergne Rhône Alpes»
-# Si la région de l'établissement du bénéficiaire est «Provence-Alpes-Côte d'Azur»
-#     Alors le nom de l'agence à contacter est «Opcalia Provence Alpes Côte d'Azur»
-# Si la région de l'établissement du bénéficiaire est «Corse»
-#     Alors le nom de l'agence à contacter est «Opcalia Corse»
-
 
 # TODO
 # Opcalia département enseignement privé
