@@ -515,6 +515,7 @@ beneficiaire:
       '83': Auvergne
   niveau_scolaire:
     alias: beneficiaire.niveauscolaire
+    description: Le niveau scolaire du bénéficiaire selon l'ancienne classification (voir https://www.service-public.fr/particuliers/vosdroits/F199)
     type: integer
     public: true
     label: niveau scolaire du bénéficiaire
@@ -530,16 +531,19 @@ beneficiaire:
       8: I
   th:
     alias: beneficiaire.situation_th
+    description: le demandeur est en situation d'handicape
     type: boolean
     public: true
     label: travailleur handicapé
   a_travaille_six_mois:
     alias: beneficiaire.situation_6moissur12
+    description: le bénéficiaire a déjà travaillé six mois sur une période de douze mois
     type: boolean
     public: true
     label: bénéficiaire qui a déjà travaillé six mois sur une période de douze mois
   a_travaille_douze_mois:
     alias: beneficiaire.situation_6moissur12
+    description: le bénéficiaire non salarié d'emploi a travaillé pendant douze mois dont au moins six mois consécutifs dans les trois ans qui précèdent l'entrée en formation
     type: boolean
     public: true
     label: bénéficiaire non salarié qui a travaillé pendant douze mois dont au moins six mois consécutifs dans les trois ans qui précèdent l'entrée en formation
@@ -598,6 +602,7 @@ beneficiaire:
       label: entreprise d'insertion par l'activité économique
 formation:
   intitule:
+    description: l'intitulé de la formation
     type: string
     label: intitulé de la formation
     path: intitule
@@ -633,6 +638,7 @@ formation:
     label: région de la formation
     enum: *regions
   siret_organisme:
+    description: le numéro SIRET de l'organisme de formation
     type: integer
     format: int32
     source: catalogue
@@ -668,6 +674,7 @@ formation:
     path: sessions.0.eligibilite-cpf.copanef.0
     label: formation éligible COPANEF
   codes_rome:
+    description: la liste des codes ROME de la formation
     type: array
     format: set
     items:
@@ -676,6 +683,7 @@ formation:
     path: codes-rome
     label: liste des codes ROME de la formation
   codes_formacode:
+    description: la liste des codes FORMACODE de la formation
     type: array
     format: set
     items:
@@ -694,6 +702,7 @@ formation:
     source: catalogue
     label: liste des domaines FORMACODE de la formation
   code_certifinfo:
+    description: le code CERTIFINFO de la formation
     type: integer
     format: int32
     source: catalogue
@@ -1024,11 +1033,11 @@ financement:
   type_lbf:
     type: string
     public: true
-    label: identifiant LBF d'un financement
+    label: identifiant LBF d'un financement (legacy)
   priorite_lbf:
     type: integer
     public: true
-    label: priorité LBF d'un financement
+    label: priorité LBF d'un financement (legacy)
   financee_pe:
     type: boolean
     public: true
