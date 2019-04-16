@@ -1027,6 +1027,7 @@ formation:
     label: formation ouverte aux bénéficiaires individuels
 financement:
   intitule:
+    description: le nom du financement
     type: string
     public: true
     label: intitulé du financement
@@ -1039,24 +1040,29 @@ financement:
     public: true
     label: priorité LBF d'un financement (legacy)
   financee_pe:
+    description: la formation est financée par Pôle emploi
     type: boolean
     public: true
     label: Formation financéee par Pôle emploi
   tags:
+    description: les catégories du financements
     type: array
     items:
       type: string
     public: true
     label: catégories du financement
   cpf_mobilisable:
+    description: le CPF est mobilisable pour le financement de la formation
     type: boolean
     public: true
     label: CPF mobilisable pour le financement
   cumulable:
+    description: le dispositif de financement est cumlable avec d'autres dispositifs
     type: boolean
     public: true
     label: dispositif cumulable avec un autre
   sigle:
+    description: le sigle du financement
     type: string
     public: true
     label: sigle du financement
@@ -1081,122 +1087,136 @@ financement:
     public: true
     label: texte des démarches
   remuneration:
+    description: rémunération applicable
     type: number
     format: float
     public: true
     nullable: true
     label: rémunération applicable
   remuneration_annee_2:
+    description: rémunération applicable la deuxième année
     type: number
     format: float
     public: true
     nullable: true
     label: rémunération applicable la deuxième année
   remuneration_annee_3:
+    description: rémunération applicable la troisième année
     type: number
     format: float
     public: true
     nullable: true
     label: rémunération applicable la troisième année
   remuneration_texte:
+    description: texte de la rémunération
     type: string
     public: true
     nullable: true
     label: texte de la rémunération
   indemnite_conges_payes:
+    description: indemnité compensatrice de congés payés
     type: integer
     format: int32
     public: true
     nullable: true
     label: indemnité compensatrice de congés payés
   plafond_remuneration:
+    description: plafond de rémunération applicable
     type: number
     format: money
     public: true
     nullable: true
     label: plafond de rémunération applicable
   prise_en_charge:
+    description: valeur définie seulement si le prix horaire de la formation est défini
     type: number
     format: money
     public: true
     nullable: true
     label: montant de prise en charge
-    description: valeur définie seulement si le prix horaire de la formation est défini
   prise_en_charge_texte:
+    description: texte de la prise en charge
     type: string
     public: true
     nullable: true
     label: texte de la prise en charge
   plafond_prise_en_charge:
+    description: Ce champ est défini quand on ne connaît pas le prix horaire de la formation. C'est donc une prise en charge maximale théorique, la prise en charge réelle dépendra du prix exact de la formation.
     type: number
     format: money
     public: true
     nullable: true
     label: plafond de prise en charge
-    description: Ce champ est défini quand on ne connaît pas le prix horaire de la formation. C'est donc une prise en charge maximale théorique, la prise en charge réelle dépendra du prix exact de la formation.
   plafond_financier:
+    description: plafond financier applicable
     type: number
     format: money
     label: plafond financier applicable
   plafond_horaire:
+    description: nombre maximal d'heures prises en charge
     type: integer
     format: int32
     label: plafond horaire applicable
-    description: nombre maximal d'heures prises en charge
   plafond_prix_horaire:
+    description: prix horaire maximum
     type: number
     format: money
     public: true
     label: prix horaire plafond applicable
-    description: prix horaire maximum
   prix_horaire:
+    description: prix horaire applicable
     type: number
     format: money
     label: prix horaire applicable
   heures:
+    description: nombre d'heures effectivement prises en charge
     type: integer
     format: int32
     label: heures financées
-    description: nombre d'heures effectivement prises en charge
     public: true
   reste_a_charge:
+    description: reste à charge applicable
     type: number
     format: float
     public: true
     label: reste à charge applicable
   rff:
+    description: montant de la RFF si applicable
     type: number
     format: float
     public: true
     nullable: true
     label: RFF applicable
-    description: montant de la RFF si applicable
   debut_rff:
+    description: date de début de la RFF applicable
     type: string
     format: date
     public: true
     nullable: true
     label: date de début de la RFF applicable
   fin_rff:
+    description: date de fin de la RFF applicable
     type: string
     format: date
     public: true
     nullable: true
     label: date de fin de la RFF applicable
   fin_remuneration:
+    description: date de fin de la rémunération applicable
     type: string
     format: date
     nullable: true
     public: true
     label: date de fin de la rémunération applicable
   ressources:
+    description: liste d'adresses Internet pour en savoir plus sur le sujet
     type: array
     public: true
     items:
       type: string
       format: url
-    description: liste d'adresses Internet pour en savoir plus sur le sujet
   explain:
+    description: liste de conditions nécessaires pour rendre ce financement éligible
     type: array
     public: true
     nullable: true
@@ -1204,20 +1224,26 @@ financement:
       type: object
       properties:
         condition:
+          description: texte de la condition à évaluer
           type: string
         status:
+          description: résultat de l'évaluation de la condition
           type: boolean
         connective:
+          description: dépendance logique avec la condition suivante
           type: string
         reason:
+          description: raison invoquée pour une condition fausse
           type: string
           nullable: true
         params:
+          description: paramètres identifiés de la condition
           type: object
           additionalProperties:
             type: string
             nullable: true
         terms:
+          description: liste des termes pour une condition composée
           # TODO dry me
           type: array
           items:
@@ -1227,6 +1253,7 @@ financement:
               type: string
               nullable: true
         children:
+          description: liste des conditions filles pour une condition
           # TODO dry me
           type: array
           items:
@@ -1235,9 +1262,9 @@ financement:
             additionalProperties:
               type: string
               nullable: true
-    description: liste de conditions nécessaires pour rendre ce financement éligible
   organisme:
     nom:
+      description: nom de l'organisme paritaire à contacter
       public: true
       type: string
       label: organisme paritaire
@@ -1246,14 +1273,17 @@ financement:
       type: string
       label: nom de l'agence à contacter
     adresse:
+      description: l'adresse postale de l'organisme
       public: true
       type: string
       label: adresse postale de l'organisme
     telephone:
+      description: le téléphone de l'organisme
       public: true
       type: string
       label: téléphone de l'organisme
     web:
+      description: le site web de l'organisme
       public: true
       type: string
       label: site web de l'organisme

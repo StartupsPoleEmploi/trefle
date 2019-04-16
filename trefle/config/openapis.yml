@@ -35,7 +35,7 @@ paths:
           'application/json':
             schema:
               $ref: '#/components/schemas/request'
-            example:
+            examples:
               compute-request:
                 $ref: '#/components/examples/compute-request'
       responses:
@@ -45,7 +45,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/collection'
-              example:
+              examples:
                 compute-success:
                   $ref: '#/components/examples/compute-success'
         422:
