@@ -305,6 +305,11 @@ beneficiaire:
     type: boolean
     public: true
     label: bénéficiaire ayant achevé un contrat aidé
+  detenu:
+    description: le bénéficiaire est un détenu
+    type: boolean
+    public: true
+    label: la bénéficiaire est un déténu
   experience_professionnelle:
     description: nombre de mois travaillés
     type: integer

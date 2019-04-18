@@ -152,7 +152,7 @@ Scénario: Action collective région
     Et les codes financeur de la formation valent [«Conseil régional»]
     Quand je demande un calcul de financement
     Quand je sélectionne le financement «Action collective financée par la Région»
-    Alors la rémunération applicable vaut 339.35
+    Alors la rémunération applicable vaut 652.18
 
 
 Scénario: Mauvais CERTIFINFO pour Action collective région
