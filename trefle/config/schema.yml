@@ -262,19 +262,26 @@ beneficiaire:
     gender: masculine
   parent_isole:
     description: vous êtes un parent isolé
-    alias: individu.parentIsole
+    alias:
+      - individu.parentIsole
+      - beneficiaire.situation_parentisole
     type: boolean
     public: true
     label: parent isolé
     gender: masculine
   mere_trois_enfants:
     description: vous êtes une  mère de famille ayant au moins trois enfants
-    alias: individu.mere3enfants
+    alias:
+      - individu.mere3enfants
+      - beneficiaire.situation_mere3enfants
     type: boolean
     public: true
     label: mère de famille ayant au moins trois enfants
   veuve_ou_divorcee:
-    description: vous êtes une femme divorcée, veuve ou séparée judiciairement depuis moins de trois ans
+    description: vous êtes une femme divorcée, veuve ou séparée judiciairement depuis moins trois ans
+    alias:
+      - individu.mereSeule
+      - beneficiaire.situation_divorceeveuve
     type: boolean
     public: true
     label: femme divorcée, veuve ou séparée judiciairement depuis moins de trois ans
@@ -542,7 +549,9 @@ beneficiaire:
     public: true
     label: bénéficiaire qui a déjà travaillé six mois sur une période de douze mois
   a_travaille_douze_mois:
-    alias: beneficiaire.situation_6moissur12
+    alias:
+      - individu.travNonSalariePrisEnCharge
+      - beneficiaire.situation_travailleurnonsal12dont6dans3ans
     description: le bénéficiaire non salarié d'emploi a travaillé pendant douze mois dont au moins six mois consécutifs dans les trois ans qui précèdent l'entrée en formation
     type: boolean
     public: true
