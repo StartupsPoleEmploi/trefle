@@ -274,3 +274,55 @@ Scénario: Cas nominal DAQ
     Quand je demande un calcul de financement
     Quand je sélectionne le financement «Dispositif accès à la qualification»
     Alors la rémunération applicable vaut 800.0
+
+Scénario: Cas parent isolé
+    Soit un bénéficiaire et une formation
+    Et c'est un demandeur d'emploi
+    Et l'âge du bénéficiaire vaut 38
+    Et les codes financeur de la formation valent [«Conseil régional»]
+    Et la durée en heures de la formation vaut 420
+    Et la région du bénéficiaire vaut «Bourgogne-Franche-Comté»
+    Et la région de la formation vaut «Bourgogne-Franche-Comté»
+    Et c'est un parent isolé
+    Quand je demande un calcul de financement
+    Quand je sélectionne le financement «Action collective financée par la Région»
+    Alors la rémunération applicable vaut 863.0
+
+Scénario: Cas non salarié ayant travaillé
+    Soit un bénéficiaire et une formation
+    Et c'est un demandeur d'emploi
+    Et l'âge du bénéficiaire vaut 38
+    Et les codes financeur de la formation valent [«Conseil régional»]
+    Et la durée en heures de la formation vaut 420
+    Et la région du bénéficiaire vaut «Bourgogne-Franche-Comté»
+    Et la région de la formation vaut «Bourgogne-Franche-Comté»
+    Et c'est une bénéficiaire non salarié qui a travaillé pendant douze mois dont au moins six mois consécutifs dans les trois ans qui précèdent l'entrée en formation
+    Quand je demande un calcul de financement
+    Quand je sélectionne le financement «Action collective financée par la Région»
+    Alors la rémunération applicable vaut 708.59
+
+Scénario: Cas bénéficiaire ayant travaillé six mois sur 12 mois
+    Soit un bénéficiaire et une formation
+    Et c'est un demandeur d'emploi
+    Et l'âge du bénéficiaire vaut 38
+    Et les codes financeur de la formation valent [«Conseil régional»]
+    Et la durée en heures de la formation vaut 420
+    Et la région du bénéficiaire vaut «Bourgogne-Franche-Comté»
+    Et la région de la formation vaut «Bourgogne-Franche-Comté»
+    Et c'est une bénéficiaire qui a déjà travaillé six mois sur une période de douze mois
+    Quand je demande un calcul de financement
+    Quand je sélectionne le financement «Action collective financée par la Région»
+    Alors la rémunération applicable vaut 863
+
+Scénario: Cas travailleur handicapé
+    Soit un bénéficiaire et une formation
+    Et c'est un demandeur d'emploi
+    Et l'âge du bénéficiaire vaut 38
+    Et les codes financeur de la formation valent [«Conseil régional»]
+    Et la durée en heures de la formation vaut 420
+    Et la région du bénéficiaire vaut «Bourgogne-Franche-Comté»
+    Et la région de la formation vaut «Bourgogne-Franche-Comté»
+    Et c'est un travailleur handicapé
+    Quand je demande un calcul de financement
+    Quand je sélectionne le financement «Action collective financée par la Région»
+    Alors la rémunération applicable vaut 910.02
