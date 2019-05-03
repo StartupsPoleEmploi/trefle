@@ -6,6 +6,9 @@ Si le financement est de type «CPF»
     #     Alors le prix horaire plafond applicable vaut 100
     #     Et le plafond horaire applicable est égal à la durée en heures de la formation
 
+Si l'intitulé du financement est «Projet de transition professionnelle»
+    Alors appliquer les règles «Projet de transition professionnelle»
+
 Si le financement est de type «plan de développement des compétences»
 
     Si le type de contrat du bénéficiaire fait partie de [«CDD»,«CDI»]
