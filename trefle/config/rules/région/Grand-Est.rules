@@ -28,6 +28,9 @@ Si l'intitulé du financement est «Formation en alternance : contrat d'apprenti
 Si l'intitulé du financement est «Aide individuelle à la formation artisan»
     Alors appliquer les règles «AIF artisan»
 
+Si l'intitulé du financement est «Aide individuelle à la formation»
+    Alors appliquer les règles «AIF»
+    
 Si l'intitulé du financement est «Aide individuelle régionale à la formation»
 
     Si le niveau de sortie de la formation n'est pas «I»
