@@ -8,6 +8,7 @@ Scénario: le bénéficiaire n'a pas d'heures CPF sur son compte
     Et la rémunération du bénéficiaire vaut 1400
     Et le type de contrat du bénéficiaire vaut «CDI»
     Et c'est une formation éligible CPF
+    Et la durée en heures de la formation vaut 100
     Et l'IDCC de l'établissement du bénéficiaire vaut 2706
     Quand je demande un calcul de financement
     Alors le financement «CPF sur son temps de travail» n'est pas proposé

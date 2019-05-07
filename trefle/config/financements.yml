@@ -775,12 +775,12 @@ AIF département:
   financee_pe: True
   cumulable: True
   racine: Guadeloupe.rules
-Plan de développement des compétences sur son temps de travail:
+Plan de développement des compétences:
   tags: [plan de développement des compétences, sur son temps de travail, salarié, privé, OPCO]
   cpf_mobilisable: True
   financee_pe: False
   cumulable: True
-  racine: organisme paritaire.rules
+  racine: plan de développement des compétences.rules
   ressources:
     - https://www.service-public.fr/particuliers/vosdroits/F11267
 Projet de transition professionnelle:
