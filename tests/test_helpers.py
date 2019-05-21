@@ -155,7 +155,7 @@ def test_insee_commune_to_departement(input, expected):
 @pytest.mark.parametrize(
     "input,expected",
     [
-        ((1999, 5, 20), 19),
+        ((1999, 5, 20), 20),
         ((1998, 10, 8), 20),
         ((1998, 1, 1), 21),
         ((1998, 12, 31), 20),
