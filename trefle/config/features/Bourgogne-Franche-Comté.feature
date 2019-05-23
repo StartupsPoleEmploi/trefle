@@ -326,3 +326,41 @@ Scénario: Cas travailleur handicapé
     Quand je demande un calcul de financement
     Quand je sélectionne le financement «Action collective financée par la Région»
     Alors la rémunération applicable vaut 910.02
+
+Scénario: Cas EFFISMO
+    Soit un bénéficiaire et une formation
+    Et c'est un bénéficiaire de droit privé
+    Et le solde CPF du bénéficiaire vaut 2300
+    Et la rémunération du bénéficiaire vaut 4000.0
+    Et l'âge du bénéficiaire vaut 39
+    Et l'expérience professionnelle du bénéficiaire vaut 48
+    Et le type de contrat du bénéficiaire vaut «CDI»
+    Et le code NAF de l'établissement du bénéficiaire vaut «2550A»
+    Et l'IDCC de l'établissement du bénéficiaire vaut «3043»
+    Et le code INSEE de la commune de l'établissement du bénéficiaire vaut «75056»
+    Et l'intitulé de la formation vaut «CAP ébéniste»
+    Et la commune de la formation vaut «75111»
+    Et le SIRET de l'organisme de formation vaut 78449047600032
+    Et c'est une formation éligible CPF
+    Et c'est une formation éligible COPANEF
+    Et la liste des codes ROME de la formation vaut [H2208,H2207]
+    Et la liste des codes FORMACODE de la formation vaut [45582]
+    Et la liste des domaines FORMACODE de la formation vaut [455]
+    Et le code CERTIFINFO de la formation vaut 94681
+    Et le code RNCP de la formation vaut 28297
+    Et la durée en heures de la formation vaut 1498
+    Et le nombre d'heures en entreprise vaut 1036
+    Et le nombre d'heures en centre vaut 462
+    Et la liste des codes CPF de la formation vaut [243417]
+    Et la liste des codes CPF de la formation pour un demandeur d'emploi vaut [243417]
+    Et la code AIS de la formation vaut «Certification»
+    Et c'est une formation certifiante
+    Et c'est une formation ouverte aux bénéficiaires individuels
+    Et c'est une formation RNCP
+    Et l'OPCO de l'établissement du bénéficiaire vaut «ESSFIMO»
+    Et l'OPACIF de l'établissement du bénéficiaire vaut «Fongecif»
+    Quand je demande un calcul de financement
+    Quand je sélectionne le financement «CPF sur son temps de travail»
+    Alors la rémunération applicable vaut 4000
+    Et le plafond de prise en charge vaut 2300
+    Et l'organisme à contacter est «ESSFIMO»
