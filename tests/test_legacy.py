@@ -72,6 +72,7 @@ async def test_legacy_context(client):
         "beneficiaire.mere_trois_enfants": True,
         "beneficiaire.inscrit_pe": True,
         "beneficiaire.th": True,
+        "beneficiaire.fongecif": "Fongecif Bretagne",
         "constante.minimum_aref": 616.2,
         "constante.smic": 1521.22,
         "formation.heures": 100,

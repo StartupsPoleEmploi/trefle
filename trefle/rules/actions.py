@@ -57,5 +57,5 @@ def define_organisme(context):
     # Allow to force value in input data.
     if "beneficiaire.entreprise.opco" not in context:
         context["beneficiaire.entreprise.opco"] = IDCC[idcc]["OPCO"]
-    if "beneficiaire.entreprise.opacif" not in context:
-        context["beneficiaire.entreprise.opacif"] = IDCC[idcc]["OPACIF"]
+    if "beneficiaire.fongecif" not in context:
+        context["beneficiaire.fongecif"] = "Fongecif " + context["beneficiaire.region"]

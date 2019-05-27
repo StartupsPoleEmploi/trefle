@@ -1,7 +1,8 @@
+#TODO faire des scénarios de tests et ajouter {orgnisme.nom} dans le texte des démarches
 #au 1er janvier 2019 le plan de formation devient plan de développement des compétences
 Si le financement est de type «plan de développement des compétences»
 Et c'est un bénéficiaire de droit privé
     Alors le financement est éligible
     Et la rémunération applicable est égale à la rémunération du bénéficiaire
     Et le texte de description vaut «Le financement de cette formation peut être réalisé dans le cadre du plan de développement de compétences de votre entreprise.»
-    Et le texte des démarches vaut «Si votre entreprise comprend moins de 50 salariés, le financement de cette formation peut se réaliser par votre OPCA/OPCO.Pour les entreprises de plus de 50 salariés, contactez votre entreprise pour les conditions de prise en charge et les modalités de mise en œuvre.»
+    Et le texte des démarches vaut «Si votre entreprise comprend moins de 50 salariés, le financement de cette formation peut se réaliser par votre OPCA/OPCO. Pour les entreprises de plus de 50 salariés, contactez votre entreprise pour les conditions de prise en charge et les modalités de mise en œuvre.»
