@@ -386,7 +386,7 @@ Scénario: "Programme régional sanitaire et social - ambulancier" dans la Drôm
     Quand je demande un calcul de financement
     Alors le financement «Programme régional sanitaire et social - ambulancier» n'est pas proposé
 
-Scénario: Aide à la VAE
+Scénario: Accompagnement à la VAE
     Soit un bénéficiaire et une formation
     Et c'est un demandeur d'emploi
     Et le âge du bénéficiaire vaut 38
@@ -395,11 +395,11 @@ Scénario: Aide à la VAE
     Et c'est une formation VAE
     Et c'est une formation ouverte aux bénéficiaires individuels
     Quand je demande un calcul de financement
-    Quand je sélectionne le financement «Aide à la VAE»
+    Quand je sélectionne le financement «Accompagnement à la VAE»
     Alors la rémunération applicable vaut 0
-    Et le plafond de prise en charge vaut 1400
+    Et le plafond de prise en charge vaut 1200
 
-Scénario: Aide à la VAE impossible si la formation n'est pas VAE
+Scénario: Accompagnement à la VAE impossible si la formation n'est pas VAE
     Soit un bénéficiaire et une formation
     Et c'est un demandeur d'emploi
     Et le âge du bénéficiaire vaut 38
@@ -407,4 +407,4 @@ Scénario: Aide à la VAE impossible si la formation n'est pas VAE
     Et la région du bénéficiaire vaut «Auvergne-Rhône-Alpes»
     Et c'est une formation ouverte aux bénéficiaires individuels
     Quand je demande un calcul de financement
-    Alors le financement «Aide à la VAE» n'est pas proposé
+    Alors le financement «Accompagnement à la VAE» n'est pas proposé

@@ -171,7 +171,7 @@ Programme régional sanitaire et social - ambulancier:
   racine: Auvergne-Rhône-Alpes.rules
   ressources:
     - https://www.auvergnerhonealpes.fr/aide/46/89-gratuite-des-frais-de-scolarite-pour-les-formations-d-aide-soignant-d-auxiliaire-de-puericulture-et-d-ambulancier-formations-apprentissage.htm
-Aide à la VAE:
+Accompagnement à la VAE:
   type_lbf: actioncollectiveregion
   priorite_lbf: 1
   tags: [DE, VAE, collectif, Auvergne-Rhône-Alpes, région]

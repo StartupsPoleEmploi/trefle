@@ -108,17 +108,16 @@ Si l'intitulé du financement est «Programme régional sanitaire et social - am
         Et le texte de description vaut «En ex-Rhône-Alpes, la formation d'ambulancier est finançable via des contrats d’aide et retour à l’emploi durable collectifs (CARED) et/ou des préparations opérationnelles à l'emploi collectives (POEC).»
         Et le texte de la prise en charge vaut «Formation totalement prise en charge par la Région et par l'OPCA, dans le cadre d'un CARED ou d'une POEC.»
 
-Si l'intitulé du financement est «Aide à la VAE»
+Si l'intitulé du financement est «Accompagnement à la VAE»
 
     Si c'est un demandeur d'emploi
     Et la région du bénéficiaire est «Auvergne-Rhône-Alpes»
     Et c'est une formation VAE
         Alors le financement est éligible
-        Et le plafond financier applicable vaut 1400
-        Et appliquer les règles «AREF»
-        Et le texte des démarches vaut «Prendre contact avec votre conseiller Pôle emploi.»
-        Et le texte de description vaut «Financement par Pôle emploi d'un accompagnement pour constituer un dossier VAE et préparer l'entretien de validation.»
-        Et le texte de la prise en charge vaut «Formation totalement ou partiellement financée dans la limite de 1400€.»
+        Et le plafond financier applicable vaut 1200
+        Et le texte des démarches vaut «1) Prendre contact avec votre conseiller Pôle emploi.⏎2)Pour plus d'informations sur la VAE, consultez le site de Pôle emploi https://avril.pole-emploi.fr/»
+        Et le texte de description vaut «Financement par Pôle emploi d'un accompagnement pour constituer un dossier VAE et préparer l'entretien de validation.Vous pouvez mobiliser le compte cpf pour financer votre VAE. Les frais annexes tels que les frais de jury peuvent être pris en charge. »
+        Et le texte de la prise en charge vaut «Accompagnement totalement ou partiellement financée dans la limite de 1200€.»
 
 Si la région du bénéficiaire est «Auvergne-Rhône-Alpes»
 Et la région de la formation est «Auvergne-Rhône-Alpes»
