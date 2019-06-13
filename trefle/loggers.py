@@ -16,8 +16,8 @@ request_logger.setLevel(logging.INFO)
 request_logger.addHandler(
     logging.handlers.TimedRotatingFileHandler(
         os.path.join(os.environ.get("TREFLE_LOG_DIR", "/tmp"), "trefle-simulate.log"),
-        when="midnight",
-        backupCount=10,
+        when="W0",
+        backupCount=52,
     )
 )
 
