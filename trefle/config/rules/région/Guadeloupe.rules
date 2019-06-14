@@ -38,7 +38,6 @@ Si l'intitulé du financement est «Aide individuelle à la formation»
     Et ce n'est pas une préparation opérationnelle à l'emploi collective
     Et le code CERTIFINFO de la formation ne fait pas partie de [84385]
     Et la liste des codes FORMACODE de la formation ne contient aucun code parmi [15081,13250]
-    Et ce n'est pas un stage de préparation à l'installation
     Et ce n'est pas un contrat d'apprentissage
     Et ce n'est pas un contrat de professionnalisation
     Et la durée en heures de la formation n'est pas supérieure à 300
