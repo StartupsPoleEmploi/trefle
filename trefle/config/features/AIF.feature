@@ -15,7 +15,6 @@ Scénario: Cas nominal national d'un financement AIF
     Et l'âge du bénéficiaire vaut 30
     Et la région du bénéficiaire vaut «Île-de-France»
     Quand je demande un calcul de financement
-    Alors le financement «Aide individuelle à la formation artisan» n'est pas proposé
     Quand je sélectionne le financement «Aide individuelle à la formation»
     Alors la rémunération applicable vaut 401.09
 
@@ -48,7 +47,6 @@ Scénario: AIF doit remonter s'il manque les infos d'heures en centre ou entrepr
     Et ce n'est pas une préparation opérationnelle à l'emploi collective
     Et la région du bénéficiaire vaut «Île-de-France»
     Quand je demande un calcul de financement
-    Alors le financement «Aide individuelle à la formation artisan» n'est pas proposé
     Quand je sélectionne le financement «Aide individuelle à la formation»
     Alors la rémunération applicable vaut 0
 
@@ -69,7 +67,7 @@ Scénario: AIF bilan de compétences
     Quand je sélectionne le financement «Aide individuelle à la formation»
     Alors la rémunération applicable vaut 0
 
-Scénario: AIF artisan
+Scénario: Ancien AIF artisan en AIF normal
     Soit un bénéficiaire et une formation
     Et c'est un demandeur d'emploi
     Et la durée en heures de la formation vaut 120
@@ -82,8 +80,7 @@ Scénario: AIF artisan
     Et ce n'est pas une préparation opérationnelle à l'emploi collective
     Et la région du bénéficiaire vaut «Île-de-France»
     Quand je demande un calcul de financement
-    Alors le financement «Aide individuelle à la formation» n'est pas proposé
-    Quand je sélectionne le financement «Aide individuelle à la formation artisan»
+    Quand je sélectionne le financement «Aide individuelle à la formation»
     Alors la rémunération applicable vaut 0
 
 
@@ -102,7 +99,6 @@ Scénario: AIF travailleur handicapé
     Et c'est un travailleur handicapé
     Et la région du bénéficiaire vaut «Île-de-France»
     Quand je demande un calcul de financement
-    Alors le financement «Aide individuelle à la formation artisan» n'est pas proposé
     Quand je sélectionne le financement «Aide individuelle à la formation»
     Alors la rémunération applicable vaut 652.02
 
@@ -124,7 +120,6 @@ Scénario: AIF travailleur handicapé ayant travaillé au moins six mois
     Et le montant de l'allocation du bénéficiaire vaut 758
     Et la région du bénéficiaire vaut «Île-de-France»
     Quand je demande un calcul de financement
-    Alors le financement «Aide individuelle à la formation artisan» n'est pas proposé
     Quand je sélectionne le financement «Aide individuelle à la formation»
     Alors la rémunération applicable vaut 758
 
@@ -146,7 +141,6 @@ Scénario: AIF avec ARE
     Et le montant de l'allocation du bénéficiaire vaut 758
     Et la région du bénéficiaire vaut «Île-de-France»
     Quand je demande un calcul de financement
-    Alors le financement «Aide individuelle à la formation artisan» n'est pas proposé
     Quand je sélectionne le financement «Aide individuelle à la formation»
     Alors la rémunération applicable vaut 758
 
@@ -165,7 +159,6 @@ Scénario: AIF moins de 18 ans
     Et l'âge du bénéficiaire vaut 17
     Et la région du bénéficiaire vaut «Île-de-France»
     Quand je demande un calcul de financement
-    Alors le financement «Aide individuelle à la formation artisan» n'est pas proposé
     Quand je sélectionne le financement «Aide individuelle à la formation»
     Alors la rémunération applicable vaut 130.34
 
@@ -190,7 +183,6 @@ Scénario: AIF avec ARE finissant avant la fin de la formation
     Et la liste des codes ROME de la formation vaut [«A1101»]
     Et la région du bénéficiaire vaut «Île-de-France»
     Quand je demande un calcul de financement
-    Alors le financement «Aide individuelle à la formation artisan» n'est pas proposé
     Quand je sélectionne le financement «Aide individuelle à la formation»
     Alors la rémunération applicable vaut 758
     Et la RFF applicable vaut 652.02

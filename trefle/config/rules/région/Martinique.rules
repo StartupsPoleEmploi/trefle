@@ -25,9 +25,6 @@ Si l'intitulé du financement est «Formation en alternance : contrat de profess
 Si l'intitulé du financement est «Formation en alternance : contrat d'apprentissage»
     Alors appliquer les règles «contrat d'apprentissage»
 
-Si l'intitulé du financement est «Aide individuelle à la formation artisan»
-    Alors appliquer les règles «AIF artisan»
-
 Si l'intitulé du financement est «Aide individuelle à la formation»
     Si la région du bénéficiaire est «Martinique»
     Et le code RNCP de la formation n'est pas 28414

@@ -147,6 +147,7 @@ async def test_invalid_data(client):
             "case_7.json",  # TODO deprecated, coparef doesn't exists anymore
             "case_23.json",  # TODO deprecated, coparef doesn't exists anymore
             "case_14.json",  # TODO deprecated, coparef doesn't exists anymore
+            "case_30.json",  # TODO deprecated, AIF artisan doesn't exist anymore
         ]
     ],
 )

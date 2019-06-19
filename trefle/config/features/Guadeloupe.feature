@@ -24,9 +24,8 @@ Scénario: cas nominal AIF artisan
     Et c'est une formation ouverte aux bénéficiaires individuels
     Et l'âge du bénéficiaire vaut 30
     Quand je demande un calcul de financement
-    Et je sélectionne le financement «Aide individuelle à la formation artisan»
+    Et je sélectionne le financement «Aide individuelle à la formation»
     Alors la rémunération applicable vaut 401.09
-    Et le financement «Aide individuelle à la formation» n'est pas proposé
 
 
 Scénario: Mauvais FORMACODE pour l'AIF

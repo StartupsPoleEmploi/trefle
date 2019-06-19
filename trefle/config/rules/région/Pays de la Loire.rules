@@ -22,9 +22,6 @@ Si l'intitulé du financement est «Formation en alternance : contrat de profess
 Si l'intitulé du financement est «Formation en alternance : contrat d'apprentissage»
     Alors appliquer les règles «contrat d'apprentissage.rules»
 
-Si l'intitulé du financement est «Aide individuelle à la formation artisan»
-    Alors appliquer les règles «AIF artisan»
-
 Si l'intitulé du financement est «Aide individuelle à la formation»
     Alors appliquer les règles «AIF»
 

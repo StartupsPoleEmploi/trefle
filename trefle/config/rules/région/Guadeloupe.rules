@@ -28,17 +28,12 @@ Si l'intitulé du financement est «Formation en alternance : contrat de profess
 Si l'intitulé du financement est «Formation en alternance : contrat d'apprentissage»
     Alors appliquer les règles «contrat d'apprentissage»
 
-Si l'intitulé du financement est «Aide individuelle à la formation artisan»
-    Alors appliquer les règles «AIF artisan»
-
 Si l'intitulé du financement est «Aide individuelle à la formation»
     Si c'est un demandeur d'emploi
     Et la région du bénéficiaire est «Guadeloupe»
     Et c'est une formation ouverte aux bénéficiaires individuels
     Et ce n'est pas une préparation opérationnelle à l'emploi collective
-    Et le code CERTIFINFO de la formation ne fait pas partie de [84385]
     Et la liste des codes FORMACODE de la formation ne contient aucun code parmi [15081,13250]
-    Et ce n'est pas un stage de préparation à l'installation
     Et ce n'est pas un contrat d'apprentissage
     Et ce n'est pas un contrat de professionnalisation
     Et la durée en heures de la formation n'est pas supérieure à 300
@@ -129,7 +124,6 @@ Si l'intitulé du financement est «AIF région»
     Et c'est une formation ouverte aux bénéficiaires individuels
     Et la liste des codes FORMACODE de la formation ne contient pas 13250
     Et ce n'est pas un bilan de compétences
-    Et ce n'est pas un stage de préparation à l'installation
     Et ce n'est pas un contrat d'apprentissage
     Et ce n'est pas un contrat de professionnalisation
     Et ce n'est pas un permis de conduire
@@ -149,7 +143,6 @@ Si l'intitulé du financement est «AIF département»
     Et la région du bénéficiaire est «Guadeloupe»
     Et la durée en heures de la formation est supérieure à 100
     Et c'est une formation ouverte aux bénéficiaires individuels
-    Et ce n'est pas un stage de préparation à l'installation
     Et ce n'est pas un contrat d'apprentissage
     Et ce n'est pas un contrat de professionnalisation
     Et la liste des codes FORMACODE de la formation ne contient pas 13250
