@@ -1,9 +1,0 @@
-#MAJ3janv2019
-Si c'est un demandeur d'emploi
-Et c'est un stage de préparation à l'installation
-    Alors le financement est éligible
-    Et appliquer les règles «AREF-RFPE-RPS»
-    Et le texte de la prise en charge vaut «Formation partiellement ou totalement financée si validée par Pôle emploi.»
-    Et le texte de description vaut «L'aide individuelle à la formation "artisan" permet de couvrir le coût du stage de préparation à l'installation (le SPI).⏎Le SPI est obligatoire pour toute personne sollicitant une immatriculation auprès d'une chambre de métiers et de l'artisanat dans le cadre d'un projet de création ou de reprise d'entreprise.»
-    Et le texte des démarches vaut «Assurez-vous auprès de la chambre des métiers et de l'artisanat (http://www.artisanat.fr/portals/0/annuaire/annuaire.html) que la formation est bien obligatoire et préalable à l'installation comme artisan.⏎Le financement par le biais de cette aide individuelle à la formation - Artisan (AIF Artisan) n'est possible que si le devis présenté à Pôle emploi du Stage préparatoire à l'installation d'une entreprise artisanale correspond précisément au montant exact de l'aide (199,07 € pour 2019).»
-    Et le plafond financier applicable vaut 199.07
