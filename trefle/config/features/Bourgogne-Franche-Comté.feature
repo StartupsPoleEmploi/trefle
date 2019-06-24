@@ -358,7 +358,6 @@ Scénario: Cas EFFISMO
     Et c'est une formation ouverte aux bénéficiaires individuels
     Et c'est une formation RNCP
     Et l'OPCO de l'établissement du bénéficiaire vaut «ESSFIMO»
-    Et l'OPACIF de l'établissement du bénéficiaire vaut «Fongecif»
     Quand je demande un calcul de financement
     Quand je sélectionne le financement «CPF sur son temps de travail»
     Alors la rémunération applicable vaut 4000

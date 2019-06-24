@@ -60,6 +60,9 @@ def extrapolate_context(context):
         context["beneficiaire.contrat_aide_actuel"] = True
     if context.get("individu.contratAide.termine"):
         context["beneficiaire.contrat_aide_passe"] = True
+    region = context.get("beneficiaire.region", context.get("beneficiaire.entreprise.region"))
+    if region:
+        context["beneficiaire.fongecif"] = "Fongecif " + str(SCHEMA["beneficiaire.region"]["enum"][region])
 
     _extrapolate_formation_context(context)
 

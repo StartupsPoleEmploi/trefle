@@ -780,43 +780,43 @@ Plan de développement des compétences:
   cpf_mobilisable: True
   financee_pe: False
   cumulable: True
-  racine: plan de développement des compétences.rules
   ressources:
     - https://www.service-public.fr/particuliers/vosdroits/F11267
+  racine: organisme paritaire.rules
 Projet de transition professionnelle:
   tags: [ptp, CDD, DE]
-  racine: projet de transition professionnelle.rules
+  racine: Projet de transition professionnelle.rules
 Projet de transition professionnelle CDI sur son temps de travail:
   tags: [ptp, CDI, sur son temps de travail, OPCO, privé]
-  racine: projet de transition professionnelle.rules
+  racine: Projet de transition professionnelle.rules
 Projet de transition professionnelle CDI hors temps de travail:
   tags: [ptp, CDI, hors temps de travail, OPCO, privé]
-  racine: projet de transition professionnelle.rules
+  racine: Projet de transition professionnelle.rules
 Projet de transition professionnelle CDD sur son temps de travail:
   tags: [ptp, CDD, sur son temps de travail, OPCO, privé]
   cpf_mobilisable: True
-  racine: projet de transition professionnelle.rules
+  racine: Projet de transition professionnelle.rules
 Projet de transition professionnelle CDD hors temps de travail:
   tags: [ptp, CDD, hors temps de travail, DE, privé]
   cpf_mobilisable: True
   financee_pe: False
   cumulable: False
-  racine: projet de transition professionnelle.rules
+  racine: Projet de transition professionnelle.rules
 Projet de transition professionnelle intérim sur son temps de travail:
   tags: [ptp, interim, sur son temps de travail, privé]
   cpf_mobilisable: True
   financee_pe: False
   cumulable: True
-  racine: projet de transition professionnelle.rules
+  racine: Projet de transition professionnelle.rules
 Projet de transition professionnelle intérim hors temps de travail:
   tags: [ptp, interim, hors temps de travail, DE, privé]
   cpf_mobilisable: True
   financee_pe: False
   cumulable: True
-  racine: projet de transition professionnelle.rules
+  racine: Projet de transition professionnelle.rules
 Projet de transition professionnelle intermittents hors temps de travail:
   tags: [ptp, intermittent, hors temps de travail, privé]
   cpf_mobilisable: True
   financee_pe: False
   cumulable: True
-  racine: projet de transition professionnelle.rules
+  racine: Projet de transition professionnelle.rules

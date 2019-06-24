@@ -16,6 +16,7 @@ Scénario: Cas nominal demandeur d'emploi - CDD
     Quand je sélectionne le financement «Projet de transition professionnelle»
     Alors le plafond de prise en charge vaut 0
     Et la rémunération applicable vaut 2790
+    Et l'organisme à contacter est «Fongecif Auvergne-Rhône-Alpes»
 
 Scénario: Cas nominal salarié - CDD
     Soit un bénéficiaire et une formation
