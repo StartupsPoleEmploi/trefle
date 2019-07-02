@@ -23,7 +23,7 @@ Et ce n'est pas un contrat de professionnalisation
     Si le financement est de type «PE»
 
         Si les codes financeur de la formation contiennent «Pôle emploi»
-        Et les codes financeur de la formation ne contiennent aucun code parmi [«Autre»,«Entreprise»,«Bénéficiaire de l'action»,«OPACIF»]
+        Et les codes financeur de la formation ne contiennent aucun code parmi [«Autre»,«Entreprise»,«Bénéficiaire de l'action»]
             Alors le financement est éligible
             Et appliquer les règles «AREF-RFPE-RPS»
             Et le texte des démarches vaut «Contactez votre conseiller emploi pour être sélectionné sur une des places financées par Pôle emploi.»
