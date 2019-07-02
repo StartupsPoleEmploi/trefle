@@ -11,7 +11,7 @@ pytestmark = pytest.mark.asyncio
 BODY = {
     # we don't request catalog so let's set this mandatory value
     "formation.heures": 100,
-    "formation.codes_financeur": [5, 10, 17],
+    "formation.codes_financeur": [5, 10],
     "formation.codes_naf": ["4532Z"],
     "individu": {
         "type": "DE",
@@ -55,7 +55,7 @@ async def test_legacy_context(client):
         "constante.codes_fimo": [31826],
         "constante.codes_financeur_collectif": [2, 4, 6, 7, 8, 9, 11, 12, 13, 15, 16],
         "constante.deux_smic": 3043,
-        "formation.codes_financeur": {5, 10, 17},
+        "formation.codes_financeur": {5, 10},
         "formation.codes_cpf": [],
         "formation.codes_cpf_de": [],
         "formation.codes_formacode": [],
@@ -113,7 +113,7 @@ async def test_legacy_call(client):
         "familleDispositif": "Financement individuel",
         "typeDispositif": "agefiph",
         "priorite": 6.1,
-        "codesFinanceur": {"5", "10", "17"},
+        "codesFinanceur": {"5", "10"},
         "cout": {
             "resteACharge": True,
             "financeePE": False,

@@ -138,8 +138,7 @@ def test_build_catalog_url(monkeypatch):
 
 @pytest.mark.parametrize('term', ['coiff', '2596'])
 def test_search_idcc_code_by_word(term):
-    data = {'2596': {'OPACIF': 'Fongecif',
-            'OPCO': 'OPCO Entreprises de proximité',
+    data = {'2596': {'OPCO': 'OPCO Entreprises de proximité',
             'convention collective': 'Convention collective nationale de la coiffure et des professions connexes'}}
 
     assert routine.search_term(IDCC, term) == data

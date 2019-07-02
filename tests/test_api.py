@@ -453,8 +453,7 @@ async def test_idcc_search(client, search_term):
     assert resp.status == HTTPStatus.OK
     assert json.loads(resp.body) == {"1147": {"convention collective":
                                               "Convention collective du personnel des cabinets médicaux (médecin)",
-                                              "OPCO": "OPCO Entreprises de proximité",
-                                              "OPACIF": "Fongecif"}
+                                              "OPCO": "OPCO Entreprises de proximité"}
                                      }
 
 
