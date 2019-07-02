@@ -105,7 +105,7 @@ def fold_name(s):
 
 
 def insee_departement_to_region(context, from_key, to_key):
-    if to_key in context:
+    if to_key in context and context.get(to_key) is not None:
         return
     try:
         dep = context[from_key]
@@ -120,7 +120,7 @@ def insee_departement_to_region(context, from_key, to_key):
 
 
 def insee_commune_to_departement(context, from_key, to_key):
-    if to_key in context:
+    if to_key in context and context.get(to_key) is not None:
         return
     try:
         commune = context[from_key]

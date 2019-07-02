@@ -31,7 +31,7 @@ def extrapolate_context(context):
     insee_commune_to_departement(
         context,
         "beneficiaire.entreprise.commune",
-        "beneficiaire.entreprise.departement",
+        "beneficiaire.entreprise.departement"
     )
     # FIXME remove me when LBF sends INSEE code even for DE.
     # (this is a postcode).

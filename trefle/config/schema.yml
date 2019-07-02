@@ -593,11 +593,13 @@ beneficiaire:
       type: string
       label: département de l'établissement du bénéficiaire
       enum: *departements
+      gender: masculine
     region:
       description: région de l'entreprise
       type: string
       label: région de l'établissement du bénéficiaire
       enum: *regions
+      gender: masculine
     opco:
       description: l'OPCO auquel est rattaché l'établissement du bénéficiaire. Optionnel, habituellement déduit de l'IDCC.
       type: string

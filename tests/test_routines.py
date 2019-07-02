@@ -97,7 +97,8 @@ async def test_preprocess_should_set_codes_cpf_of_de():
 
 
 def test_extrapolate_context_should_set_region():
-    context = {'beneficiaire.entreprise.commune': '93031'}
+    context = {'beneficiaire.entreprise.commune': '93031',
+               'beneficiaire.entreprise.region': None}
     routine.extrapolate_context(context)
     assert context['beneficiaire.entreprise.region'] == '11'  # IDF
 
