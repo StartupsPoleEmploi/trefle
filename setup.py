@@ -9,7 +9,7 @@ def is_pkg(line):
 with Path("requirements.txt").open() as reqs:
     install_requires = [l for l in reqs.read().split("\n") if is_pkg(l)]
 
-VERSION = (0, 7, 0)
+VERSION = (0, 7, 8)
 
 __author__ = "Yohan Boniface"
 __contact__ = "yohan.boniface@data.gouv.fr"
