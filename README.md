@@ -1,5 +1,19 @@
 # Trefle
 
+## Présentation du projet
+
+  Trèfle est un simulateur de dispositifs de financement qui, en fonction des données du demandeur et de la formation, va générer une liste de financements possibles.
+  Cette liste de financements proposées est accompagnée selon le dispositif de la rémunération dont pourrais bénéficier le demandeur. Les résultats sont donnés à titre informatif et nécessitent l'accompagnement d'un conseiller pour la suite des démarches.
+
+## Project overview
+
+  Trèfle is a simulator tool aim to propose a list of financial plans depending on buyer training courses data and training courses data itself. A renumeration can be proposed with the formation plan. Results are given as information only and must be accompanied by an adviser to engage the process of any plan.
+
+## Dependencies
+
+- LBF Url to simulation on the web interface explorer
+- LBF Catalog API key to retrieve training courses data
+
 ## Install
 
 - Create a venv
