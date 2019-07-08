@@ -14,7 +14,7 @@ Scénario: cas nominal AIF
     Alors le plafond de prise en charge vaut 4000
 
 
-Scénario: Durée hebdo trop courte pour l'AIF
+Scénario: Pas d'AIF à cause d'un code FORMACODE
     Soit un bénéficiaire et une formation
     Et c'est un demandeur d'emploi
     Et la durée en heures de la formation vaut 120
@@ -22,42 +22,10 @@ Scénario: Durée hebdo trop courte pour l'AIF
     Et le nombre d'heures en entreprise vaut 20
     Et la rémunération du bénéficiaire vaut 1000
     Et la région du bénéficiaire vaut «Nouvelle-Aquitaine»
-    Et la durée hebdomadaire de la formation vaut 20
+    Et la liste des codes FORMACODE de la formation vaut [44004]
     Et c'est une formation ouverte aux bénéficiaires individuels
     Quand je demande un calcul de financement
     Alors le financement «Aide individuelle à la formation» n'est pas proposé
-
-
-Scénario: Pas d'AIF à cause du domaine FORMACODE 150
-    Soit un bénéficiaire et une formation
-    Et c'est un demandeur d'emploi
-    Et la durée en heures de la formation vaut 120
-    Et le nombre d'heures en centre vaut 100
-    Et le nombre d'heures en entreprise vaut 20
-    Et la rémunération du bénéficiaire vaut 1000
-    Et la région du bénéficiaire vaut «Nouvelle-Aquitaine»
-    Et la liste des domaines FORMACODE de la formation vaut [150]
-    Et c'est une formation ouverte aux bénéficiaires individuels
-    Quand je demande un calcul de financement
-    Alors le financement «Aide individuelle à la formation» n'est pas proposé
-
-
-Scénario: AIF possible malgré un domaine FORMACODE 150 parce que le code CPF vaut 201
-    Soit un bénéficiaire et une formation
-    Et c'est un demandeur d'emploi
-    Et la durée en heures de la formation vaut 120
-    Et le nombre d'heures en centre vaut 100
-    Et le nombre d'heures en entreprise vaut 20
-    Et la rémunération du bénéficiaire vaut 1000
-    Et la région du bénéficiaire vaut «Nouvelle-Aquitaine»
-    Et la liste des domaines FORMACODE de la formation vaut [150]
-    Et la liste des codes CPF de la formation vaut [201]
-    Et c'est une formation CléA
-    Et c'est une formation ouverte aux bénéficiaires individuels
-    Quand je demande un calcul de financement
-    Quand je sélectionne le financement «Aide individuelle à la formation»
-    Alors la rémunération applicable vaut 0
-
 
 
 Scénario: AIF avec ARE finissant avant la fin de la formation
@@ -219,7 +187,7 @@ Scénario: «PREPA Métiers» pour un travailleur handicapé
     Alors le texte de la rémunération vaut «Pas de rémunération spécifique.»
 
 
-Scénario: Cas nominal "Aide individuelle Conseil régional"
+Scénario: Cas nominal "Aide individuelle Région"
     Soit un bénéficiaire et une formation
     Et c'est un demandeur d'emploi
     Et le âge du bénéficiaire vaut 18
@@ -228,24 +196,12 @@ Scénario: Cas nominal "Aide individuelle Conseil régional"
     Et la région de la formation vaut «Nouvelle-Aquitaine»
     Et c'est une formation ouverte aux bénéficiaires individuels
     Quand je demande un calcul de financement
-    Quand je sélectionne le financement «Aide individuelle Conseil régional»
+    Quand je sélectionne le financement «Aide individuelle Région»
     Alors la rémunération applicable vaut 310.39
     Et le plafond de prise en charge vaut 3000
 
 
-Scénario: Formation trop courte pour "Aide individuelle Conseil régional"
-    Soit un bénéficiaire et une formation
-    Et c'est un demandeur d'emploi
-    Et le âge du bénéficiaire vaut 18
-    Et la durée en heures de la formation vaut 350
-    Et la région du bénéficiaire vaut «Nouvelle-Aquitaine»
-    Et la région de la formation vaut «Nouvelle-Aquitaine»
-    Et c'est une formation ouverte aux bénéficiaires individuels
-    Quand je demande un calcul de financement
-    Alors le financement «Aide individuelle Conseil régional» n'est pas proposé
-
-
-Scénario: Formation trop longue (en mois) pour "Aide individuelle Conseil régional"
+Scénario: Formation trop longue (en mois) pour "Aide individuelle Région"
     Soit un bénéficiaire et une formation
     Et c'est un demandeur d'emploi
     Et le âge du bénéficiaire vaut 18
@@ -255,10 +211,10 @@ Scénario: Formation trop longue (en mois) pour "Aide individuelle Conseil régi
     Et la région de la formation vaut «Nouvelle-Aquitaine»
     Et c'est une formation ouverte aux bénéficiaires individuels
     Quand je demande un calcul de financement
-    Alors le financement «Aide individuelle Conseil régional» n'est pas proposé
+    Alors le financement «Aide individuelle Région» n'est pas proposé
 
 
-Scénario: Durée hebdomadaire trop courte pour "Aide individuelle Conseil régional"
+Scénario: Durée hebdomadaire trop courte pour "Aide individuelle Région"
     Soit un bénéficiaire et une formation
     Et c'est un demandeur d'emploi
     Et le âge du bénéficiaire vaut 18
@@ -269,10 +225,10 @@ Scénario: Durée hebdomadaire trop courte pour "Aide individuelle Conseil régi
     Et la région de la formation vaut «Nouvelle-Aquitaine»
     Et c'est une formation ouverte aux bénéficiaires individuels
     Quand je demande un calcul de financement
-    Alors le financement «Aide individuelle Conseil régional» n'est pas proposé
+    Alors le financement «Aide individuelle Région» n'est pas proposé
 
 
-Scénario: "Aide individuelle Conseil régional" pour travailleur handicapé
+Scénario: "Aide individuelle Région" pour travailleur handicapé
     Soit un bénéficiaire et une formation
     Et c'est un demandeur d'emploi
     Et le âge du bénéficiaire vaut 18
@@ -282,6 +238,5 @@ Scénario: "Aide individuelle Conseil régional" pour travailleur handicapé
     Et c'est une formation ouverte aux bénéficiaires individuels
     Et c'est un travailleur handicapé
     Quand je demande un calcul de financement
-    Quand je sélectionne le financement «Aide individuelle Conseil régional»
+    Quand je sélectionne le financement «Aide individuelle Région»
     Alors la rémunération applicable vaut 652.02
-    Et le plafond de prise en charge vaut 6000

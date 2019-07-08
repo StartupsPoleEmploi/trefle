@@ -725,7 +725,7 @@ Le chèque qualification:
   financee_pe: False
   cumulable: True
   racine: Guadeloupe.rules
-Aide individuelle Conseil régional:
+Aide individuelle Région:
   type_lbf: finindividuel
   priorite_lbf: 6.3
   tags: [DE, individuel, région, Nouvelle-Aquitaine]
