@@ -219,7 +219,7 @@ Scénario: «PREPA Métiers» pour un travailleur handicapé
     Alors le texte de la rémunération vaut «Pas de rémunération spécifique.»
 
 
-Scénario: Cas nominal "Aide individuelle Conseil régional"
+Scénario: Cas nominal "Aide individuelle Région"
     Soit un bénéficiaire et une formation
     Et c'est un demandeur d'emploi
     Et le âge du bénéficiaire vaut 18
@@ -233,7 +233,7 @@ Scénario: Cas nominal "Aide individuelle Conseil régional"
     Et le plafond de prise en charge vaut 3000
 
 
-Scénario: Formation trop courte pour "Aide individuelle Conseil régional"
+Scénario: Formation trop courte pour "Aide individuelle Région"
     Soit un bénéficiaire et une formation
     Et c'est un demandeur d'emploi
     Et le âge du bénéficiaire vaut 18
@@ -245,7 +245,7 @@ Scénario: Formation trop courte pour "Aide individuelle Conseil régional"
     Alors le financement «Aide individuelle Conseil régional» n'est pas proposé
 
 
-Scénario: Formation trop longue (en mois) pour "Aide individuelle Conseil régional"
+Scénario: Formation trop longue (en mois) pour "Aide individuelle Région"
     Soit un bénéficiaire et une formation
     Et c'est un demandeur d'emploi
     Et le âge du bénéficiaire vaut 18
@@ -258,7 +258,7 @@ Scénario: Formation trop longue (en mois) pour "Aide individuelle Conseil régi
     Alors le financement «Aide individuelle Conseil régional» n'est pas proposé
 
 
-Scénario: Durée hebdomadaire trop courte pour "Aide individuelle Conseil régional"
+Scénario: Durée hebdomadaire trop courte pour "Aide individuelle Région"
     Soit un bénéficiaire et une formation
     Et c'est un demandeur d'emploi
     Et le âge du bénéficiaire vaut 18
@@ -272,7 +272,7 @@ Scénario: Durée hebdomadaire trop courte pour "Aide individuelle Conseil régi
     Alors le financement «Aide individuelle Conseil régional» n'est pas proposé
 
 
-Scénario: "Aide individuelle Conseil régional" pour travailleur handicapé
+Scénario: "Aide individuelle Région" pour travailleur handicapé
     Soit un bénéficiaire et une formation
     Et c'est un demandeur d'emploi
     Et le âge du bénéficiaire vaut 18
