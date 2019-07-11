@@ -231,8 +231,10 @@ def compute_modalites(context, financement):
     if plafond_remuneration and plafond_remuneration < remuneration:
         remuneration = plafond_remuneration
     financement.remuneration = remuneration
-    financement.fin_remuneration = context.get("beneficiaire.fin_allocation")
-    +datetime.timedelta(days=1)
+    financement.fin_remuneration = context.get("financement.fin_remuneration", None)
+    if not financement.fin_remuneration:
+        financement.fin_remuneration = context.get("beneficiaire.fin_allocation")
+        +datetime.timedelta(days=1)
 
     financement.indemnite_conges_payes = indemnite_conges_payes
     financement.heures = heures
