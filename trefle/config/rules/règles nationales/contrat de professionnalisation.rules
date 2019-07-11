@@ -12,6 +12,9 @@ Si c'est un contrat de professionnalisation
         Alors le financement est éligible
         Et la rémunération applicable est égale au SMIC
 
+        Si la date de fin de la formation est définie
+            Alors la date de fin de la rémunération applicable est la date de fin de la formation
+
         Si l'âge du bénéficiaire est inférieur à 21
             Si le niveau scolaire du bénéficiaire n'est pas supérieur ou égal à «IV»
                 Alors la rémunération applicable est égale à 55% du SMIC
