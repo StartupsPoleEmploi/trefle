@@ -42,7 +42,7 @@ Scénario: OPCO entreprises de proximité
     Et la plafond de prise en charge vaut 1500.0
     Et l'organisme à contacter est «OPCO Entreprises de proximité»
 
-Scénario: OPCO Mobilité
+Scénario: OPCO Mobilités
     Soit un bénéficiaire et une formation
     Et c'est un bénéficiaire de droit privé
     Et le solde CPF du bénéficiaire vaut 1500
@@ -61,7 +61,7 @@ Scénario: OPCO Mobilité
     Quand je sélectionne le financement «CPF sur son temps de travail»
     Alors la rémunération applicable vaut 1400.0
     Et la plafond de prise en charge vaut 1500.0
-    Et l'organisme à contacter est «OPCO Mobilité»
+    Et l'organisme à contacter est «OPCO Mobilités»
 
 Scénario: OPCO Construction
     Soit un bénéficiaire et une formation
