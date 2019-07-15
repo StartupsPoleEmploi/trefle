@@ -1,5 +1,6 @@
 Si c'est un demandeur d'emploi
 Et c'est un contrat d'apprentissage
+Ou l'intitulé normé de la formation contient au moins une expression parmi [«APPRENTISSAGE», «CONTRAT D'APPRENTISSAGE»]
     Alors le texte de la prise en charge vaut «Formation totalement financée»
     Et le texte des démarches vaut «Il vous faut trouver un employeur pour pouvoir effectuer cette formation en alternance avec un emploi.⏎Prenez contact avec l'organisme de formation et⏎contactez les employeurs susceptibles de vous embaucher en contrat d’apprentissage»
     Et le texte de description vaut «Le contrat d'apprentissage est un contrat de travail qui permet de se former en vue d'acquérir un diplôme d'Etat ou un titre professionnel tout en étant salarié d’une entreprise.⏎L’avantage : la formation repose sur le principe de l’alternance entre enseignement théorique en centre de formation et mise en pratique chez l’employeur avec lequel l’apprenti a signé son contrat.»
