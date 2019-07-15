@@ -49,7 +49,7 @@ Si l'intitulé du financement est «Programme régional qualifiant»
     Et ce n'est pas une formation PCP
         Alors le financement est éligible
         Et appliquer les règles «AREF-RFPE-RPS»
-        Et le texte des démarches vaut «Contactez votre conseiller emploi (Pôle emploi, Mission locale, Cap emploi, CIDFF) pour valider votre projet et transmettre votre candidature à l'organisme de formation. Celui-ci reprendra contact avec vous pour que vous assistiez à une séance d’information collective et/ou à un entretien. Si besoin, vous passerez des tests de sélection.»
+        Et le texte des démarches vaut «Contactez votre conseiller emploi (Pôle emploi, Mission locale, Cap emploi) pour valider votre projet et transmettre votre candidature à l'organisme de formation. L'organisme reprendra contact avec vous pour une réunion d’information ou à un entretien. Si besoin, vous passerez des tests de sélection.»
         Et le texte de description vaut «Il s'agit de formations financées par la Région, parfois en cofinancement avec d'autres acteurs de la formation (Pôle emploi, Agefiph, PLIE, Etat, Conseil général, OPCA…).»
         Et le texte de la prise en charge vaut «Formation totalement prise en charge par la Région.»
 
@@ -62,7 +62,7 @@ Si l'intitulé du financement est «Projets collectifs régionaux»
     Et l'intitulé normé de la formation contient au moins une expression parmi [«ATELIERSECTORIEL»,«ATELIERMULTISECTORIEL»], ou la liste des codes FORMACODE de la formation contient au moins un code parmi [15031,15061,15062,15041]
         Alors le financement est éligible
         Et appliquer les règles «AREF-RFPE-RPS»
-        Et le texte des démarches vaut «Prenez contact avec votre conseiller Pôle emploi ou mission locale, Cap emploi ou CIDFF pour valider votre projet et monter le dossier.»
+        Et le texte des démarches vaut «Prenez contact avec votre conseiller Pôle emploi ou mission locale, Cap emploi pour valider votre projet et monter le dossier.»
         Et le texte de description vaut «Formations financées par la Région et concernant plusieurs dispositifs possibles:⏎— remise à niveau (préparer un examen ou un concours, accéder à une formation professionnalisante et/ou certifiante, préparer une reconversion professionnelle, réussir la validation des acquis de l’expérience);⏎— parcours préparatoire multisectoriel.»
         Et le texte de la prise en charge vaut «Formation totalement prise en charge par la Région.»
 
@@ -72,7 +72,7 @@ Si l'intitulé du financement est «Programme régional sanitaire et social»
     Et les codes financeur de la formation contiennent «Conseil régional»
 
         Alors le texte des démarches vaut «Si vous êtes suivi par un conseiller emploi, prenez contact avec lui (Pôle emploi, Mission Locale, Cap emploi) pour valider votre projet.⏎La demande de financement de la formation (et de la subvention si vous y êtes éligible) se fait sur le site régional https://www.aidesfss.auvergnerhonealpes.fr»
-        Et le texte de description vaut «Le coût pédagogique des formations du domaine «sanitaire et social» est pris en charge par la Région lorsqu'elles ont lieu dans l'un des instituts et/ou écoles agréés par la Région et situés sur le territoire Auvergne-Rhône-Alpes pour les formations d'aide-soignant, d'auxiliaire de puériculture ou, en Auvergne, d'ambulancier. Certaines autres formations sanitaires et sociales peuvent être financées par la Région.»
+        Et le texte de description vaut «Le coût des formations du domaine «sanitaire et social» est pris en charge par la Région lorsqu'elles ont lieu dans l'un des organismes agréés par la Région et situés sur le territoire Auvergne-Rhône-Alpes pour les formations d'aide-soignant, d'auxiliaire de puériculture ou, en Auvergne, d'ambulancier. Certaines autres formations sanitaires et sociales peuvent être financées par la Région.»
         Et le texte de la prise en charge vaut «Formation totalement prise en charge par la Région.»
         Et appliquer les règles «AREF»
 
@@ -139,7 +139,7 @@ Et la région de la formation est «Auvergne-Rhône-Alpes»
 
     Si l'intitulé du financement est «Programme Enseignement supérieur»
 
-        Alors le texte des démarches vaut «Prenez contact avec votre conseiller emploi (Mission locale, Cap emploi, Pôle emploi, CIDFF…) pour faire valider votre projet. Vous devrez ensuite effectuer votre inscription administrative auprès de l'université.»
+        Alors le texte des démarches vaut «Prenez contact avec votre conseiller emploi (Mission locale, Cap emploi, Pôle emploi) pour faire valider votre projet. Vous devrez ensuite effectuer votre inscription administrative auprès de l'université.»
         Et le texte de description vaut «Les actions concernées sont subventionnées par la Région pour une durée de 1 an.⏎Le coût pédagogique est gratuit pour le stagiaire, hors frais annexes à sa charge (droit d'inscription, frais de validation, transport, hébergement, restauration et matériels).⏎Un accompagnement du stagiaire est assuré par l'école.»
         Et le texte de la prise en charge vaut «Formation totalement financée par la Région, hors frais annexes.»
 
