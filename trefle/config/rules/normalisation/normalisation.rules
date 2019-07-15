@@ -104,4 +104,7 @@ Si le code RNCP de la formation est défini
     Alors c'est une formation RNCP
 Si la liste des codes des modalités pédagogiques contient au moins un code parmi [«96133»,«96131»,«96130»,«96129»]
     Alors c'est une formation ouverte à distance
+Si l'intitulé normé de la formation contient «APPRENTISSAGE»
+ou l'intitulé normé de la formation contient «CONTRATDAPPRENTISSAGE»
+    Alors c'est un contrat d'apprentissage
 
