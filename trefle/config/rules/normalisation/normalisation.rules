@@ -74,6 +74,7 @@ Ou c'est un BTS
 Ou c'est une licence
 Ou c'est un niveau ingénieur
 Ou le niveau de sortie de la formation fait partie de [«III»,«II»,«I»]
+Ou le niveau de sortie de la formation fait partie de [6]
     Alors c'est une formation de l'enseignement supérieur
 Si c'est un demandeur d'emploi
     Alors appliquer les règles «éligibilité RFF»
@@ -101,6 +102,7 @@ Ou l'intitulé normé de la formation contient «ELABORATIONDUPROJETPROFESSIONNE
 Ou l'intitulé normé de la formation contient «STABILISATIONDUPROJETPROFESSIONNEL»
     Alors c'est une formation PCP
 Si le code RNCP de la formation est défini
+Et le code RNCP de la formation est supérieur à 0
     Alors c'est une formation RNCP
 Si la liste des codes des modalités pédagogiques contient au moins un code parmi [«96133»,«96131»,«96130»,«96129»]
     Alors c'est une formation ouverte à distance

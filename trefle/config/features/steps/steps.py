@@ -51,8 +51,8 @@ async def when_simulate(context):
 
 @then(r"il y a (?P<expected>\d+) financements? proposés?")
 def then_check_count(context, expected):
-    found = len(context.passed)
     assert found == int(expected), f'Found {found}'
+    found = len(context.passed)
 
 
 @then(r"le financement «(?P<intitule>.+)» n'est pas proposé")
@@ -90,6 +90,20 @@ def then_check_output(context, label, value):
     assert context.result[key] == value, (f'{context.result[key]} '
                                           f'({type(context.result[key])}) != '
                                           f'{value} ({type(value)})')
+
+
+@then(r"ce n'est pas une? (?P<label>.+)")
+def then_check_item_not_present(context, label):
+    key = LABELS[label]
+    assert context.data.get(key) is None,\
+        f'{key} is None'
+
+
+@then(r"c'est une? (?P<label>.+)")
+def then_check_true_boolean_value(context, label):
+    key = LABELS[label]
+    assert context.data.get(key) is True,\
+        f'{key} is True'
 
 
 @then("aucun financement n'est proposé")
