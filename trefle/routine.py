@@ -50,7 +50,7 @@ def extrapolate_context(context):
         )
     if context.get("beneficiaire.allocation_type") == "non":
         del context["beneficiaire.allocation_type"]
-    if context.get("individu.type") == "DE":
+    if context.get("individu.type", '').upper() == "DE":
         context["beneficiaire.inscrit_pe"] = True
     if "beneficiaire.age" not in context and context.get("beneficiaire.naissance"):
         context["beneficiaire.age"] = calculate_age(context["beneficiaire.naissance"])
