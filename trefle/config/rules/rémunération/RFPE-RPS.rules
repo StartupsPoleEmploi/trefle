@@ -1,6 +1,6 @@
 # S'applique pour RFPE ou RPS
 Si l'allocation du bénéficiaire n'est pas définie
-Ou l'allocation du bénéficiaire fait partie de [«allocation de solidarité spécifique»,«allocation temporaire d'attente»,«revenu de solidarité active»]
+Ou l'allocation du bénéficiaire fait partie de [«allocation de solidarité spécifique»,«revenu de solidarité active»]
 
     # Par défaut
     Si l'âge du bénéficiaire est inférieur à 18
@@ -37,8 +37,7 @@ Ou l'allocation du bénéficiaire fait partie de [«allocation de solidarité sp
             Alors la rémunération applicable vaut 455.01
         Si l'âge du bénéficiaire est supérieur ou égal à 18
             Alors la rémunération applicable vaut 652.18
-        Si l'âge du bénéficiaire est supérieur ou égal à 18
-        Et c'est un bénéficiaire qui a déjà travaillé six mois sur une période de douze mois
+        Si c'est un bénéficiaire qui a déjà travaillé six mois sur une période de douze mois
             Alors la rémunération applicable vaut 863.00
 
         # Règles spécifiques
@@ -47,13 +46,10 @@ Ou l'allocation du bénéficiaire fait partie de [«allocation de solidarité sp
         Ou c'est une femme divorcée, veuve ou séparée judiciairement depuis moins de trois ans
             Alors la rémunération applicable vaut 863.00
 
-        # TODO ajouter la durée
         Si c'est un travailleur handicapé
+        Et la rémunération applicable est inférieure à 910.02
             Alors la rémunération applicable vaut 910.02
-            # Si c'est un bénéficiaire qui a travaillé six mois ou plus
-            #     Alors la rémunération applicable est égale au montant de l'allocation du bénéficiaire
-            Si la rémunération applicable est inférieure à 910.02
-                Alors la rémunération applicable vaut 910.02
+            Et le texte de la rémunération vaut «C'est une rémunération minimum en fonction de votre expérience»
 
         # TODO ajouter cas détenu
         # Si c'est un détenu

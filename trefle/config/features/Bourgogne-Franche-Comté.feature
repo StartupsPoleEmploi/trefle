@@ -327,7 +327,36 @@ Scénario: Cas travailleur handicapé
     Quand je sélectionne le financement «Action collective financée par la Région»
     Alors la rémunération applicable vaut 910.02
 
-Scénario: Cas EFFISMO
+Scénario: Cas travailleur handicapé rémunération > 910
+    Soit un bénéficiaire et une formation
+    Et c'est un demandeur d'emploi
+    Et l'âge du bénéficiaire vaut 38
+    Et l'allocation du bénéficiaire est «allocation d'aide au retour à l'emploi»
+    Et les codes financeur de la formation valent [«Conseil régional»]
+    Et le montant de l'allocation du bénéficiaire vaut 4000
+    Et la durée en heures de la formation vaut 420
+    Et la région du bénéficiaire vaut «Bourgogne-Franche-Comté»
+    Et la région de la formation vaut «Bourgogne-Franche-Comté»
+    Et c'est un travailleur handicapé
+    Quand je demande un calcul de financement
+    Quand je sélectionne le financement «Action collective financée par la Région»
+    Alors la rémunération applicable vaut 4000
+
+Scénario: Cas travailleur handicapé rémunération
+    Soit un bénéficiaire et une formation
+    Et c'est un demandeur d'emploi
+    Et l'âge du bénéficiaire vaut 38
+    Et l'allocation du bénéficiaire est «allocation de solidarité spécifique»
+    Et les codes financeur de la formation valent [«Conseil régional»]
+    Et la durée en heures de la formation vaut 420
+    Et la région du bénéficiaire vaut «Bourgogne-Franche-Comté»
+    Et la région de la formation vaut «Bourgogne-Franche-Comté»
+    Et c'est un travailleur handicapé
+    Quand je demande un calcul de financement
+    Quand je sélectionne le financement «Action collective financée par la Région»
+    Alors la rémunération applicable vaut 910.02
+
+Scénario: Cas ESSFIMO
     Soit un bénéficiaire et une formation
     Et c'est un bénéficiaire de droit privé
     Et le solde CPF du bénéficiaire vaut 2300
