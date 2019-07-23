@@ -124,7 +124,7 @@ Si l'intitulé du financement est «Aide individuelle Région»
     Et la durée hebdomadaire de la formation n'est pas inférieure à 20, et la durée hebdomadaire de la formation n'est pas supérieure à 35
     # TODO => développement personnel
     Et ce n'est pas une formation en développement professionnel
-    Et la liste des codes FORMACODE de la formation ne contient aucun code parmi [31815,43092,43405,43436,43439,43440,43441, 43448,43449,43457,43470,43476,43480,43484,43486,43490,43491,43493,43494,43495,43497,44002,44004,44007,44008,44009,44047,44050,44083,44084,44092,44092,43409,15073,13030,43437,15084,15094,15093,15041]
+    Et la liste des codes FORMACODE de la formation ne contient aucun code parmi [31815,31826,43092,43405,43436,43439,43440,43441, 43448,43449,43457,43470,43476,43480,43484,43486,43490,43491,43493,43494,43495,43497,44002,44004,44007,44008,44009,44047,44050,44083,44084,44092,44092,43409,15073,13030,43437,15084,15094,15093,15041]
     Et le code CERTIFINFO de la formation ne fait pas partie de [65960,87805,49616,23710,54660,81306,78281,54664,54662,81136]
         Alors le financement est éligible
         Et appliquer les règles «AREF-RFPE-RPS»
