@@ -223,9 +223,7 @@ async def test_simulate_triggers_log(client):
         "beneficiaire.entreprise.idcc": 2706,
     }
 
-    log_path = Path(os.environ["TREFLE_LOG_DIR"]) / "trefle-simulate-v{}.log".format(
-        os.environ.get("TREFLE_VERSION", VERSION)
-    )
+    log_path = Path(os.environ["TREFLE_LOG_DIR"]) / "trefle-simulate.log"
     log_path.write_text("")
     resp = await client.post("/financement", body=body)
     assert resp.status == 200
@@ -250,9 +248,7 @@ async def test_simulate_error_triggers_log(client):
         "beneficiaire.entreprise.idcc": 2706,
     }
 
-    log_path = Path(os.environ["TREFLE_LOG_DIR"]) / "trefle-simulate-v{}.log".format(
-        os.environ.get("TREFLE_VERSION", VERSION)
-    )
+    log_path = Path(os.environ["TREFLE_LOG_DIR"]) / "trefle-simulate.log"
     log_path.write_text("")
     resp = await client.post("/financement", body=body)
     assert resp.status == 422
