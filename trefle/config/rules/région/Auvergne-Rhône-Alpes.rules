@@ -38,7 +38,8 @@ Si l'intitulé du financement est «Aide individuelle à la formation»
         Alors appliquer les règles «AIF»
 
 Si l'intitulé du financement est «AIF permis B»
-    Et la région du bénéficiaire est «Auvergne-Rhône-Alpes»
+
+    Si la région du bénéficiaire est «Auvergne-Rhône-Alpes»
     Et c'est un demandeur d'emploi
     Et l'âge du bénéficiaire est supérieur ou égal à 18
     Et c'est un permis B
