@@ -45,7 +45,7 @@ Si l'intitulé du financement est «AIF permis B»
     Et c'est un permis B
     Et la durée en heures de la formation n'est pas supérieure à 40
         Alors le financement est éligible
-        Et appliquer les règles de financement «AIF»
+        Et appliquer les règles «AIF»
         Et le plafond de prise en charge vaut 1200
         Et  le texte des démarches vaut «Contactez votre conseiller référent emploi (Pôle emploi, Mission Locale ou Cap emploi) pour la demande de financement qui doit être en lien avec un accès à l'emploi .⏎ Les frais d'inscription et d'examen sont exclus du financement par Pôle emploi.»
         Et le texte de description vaut «Vous pouvez utiliser votre CPF pour financer tout ou partie de votre permis voiture.⏎Pôle emploi peut vous apporter un complément de financement.⏎Votre auto-école doit impérativement vous présenter à l'examen de conduite au plus tard six mois après votre inscription.⏎Vous devez être inscrit à Pôle emploi depuis plus de six mois.»
