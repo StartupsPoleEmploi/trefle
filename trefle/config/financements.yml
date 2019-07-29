@@ -181,6 +181,14 @@ Accompagnement à la VAE:
   racine: Auvergne-Rhône-Alpes.rules
   ressources:
     - https://avril.pole-emploi.fr/
+AIF permis B:
+  type_lbf: aif
+  priorite_lbf: 7
+  tags: [DE, individuel, région, Auvergne-Rhône-Alpes, AIF]
+  cpf_mobilisable: True
+  financee_pe: True
+  cumulable: True
+  racine: Auvergne-Rhône-Alpes.rules
 Action collective financée par la Collectivité territoriale de Corse:
   type_lbf: actioncollectiveregion
   priorite_lbf: 1
@@ -704,7 +712,7 @@ Pass emploi:
 Aide individuelle à la formation avec promesse d'embauche:
   type_lbf: finindividuel
   priorite_lbf: 6.3
-  tags: [DE, région, individuel, Centre-Val de Loire]
+  tags: [DE, AIF, région, individuel, Centre-Val de Loire]
   cpf_mobilisable: True
   financee_pe: False
   cumulable: True
