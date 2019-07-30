@@ -554,6 +554,12 @@ beneficiaire:
     public: true
     label: bénéficiaire qui a déjà travaillé six mois sur une période de douze mois
   a_travaille_douze_mois:
+    alias: beneficiaire.situation_12moissur24
+    description: le bénéficiaire a déjà travaillé douze mois sur une période de vingt-quatre mois
+    type: boolean
+    public: true
+    label: bénéficiaire qui a déjà travaillé douze mois sur une période de vingt-quatre mois
+  a_travaille_douze_mois:
     alias:
     - beneficiaire.situation_travailleurnonsal12dont6dans3ans
     - individu.travNonSalariePrisEnCharge
