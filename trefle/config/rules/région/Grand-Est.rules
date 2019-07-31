@@ -32,6 +32,7 @@ Si l'intitulé du financement est «Aide individuelle régionale à la formation
 
     Si le niveau de sortie de la formation n'est pas «I»
     Et la région du bénéficiaire vaut «Grand-Est»
+    Et c'est un demandeur d'emploi
     Et la liste des codes FORMACODE de la formation ne contient aucun code parmi [31816,31833,31854,31826,31805,31715,24049,13030,15073,43409,44002,15084,15094,15093,42032,42052,42040,32047,15054,15066,15075,15034,15067,15098,15096,15020,15097,15068,15078,15036,15069,15089,15099,15079,15091]
     Et la liste des domaines FORMACODE de la formation ne contient aucun code parmi [430,434,440]
     Et le code CERTIFINFO de la formation ne fait pas partie de [56072,49616,31056,31062]
