@@ -38,9 +38,10 @@ Si l'intitulé du financement est «Formation en alternance : contrat d'apprenti
 
 Si l'intitulé du financement est «Aide individuelle à la formation»
 
-    # TODO libellé contient "permis"
+    
     Si la liste des codes FORMACODE de la formation ne contient aucun code parmi [43448,43436,43441,43454,44004,44028,44054]
     Et la région du bénéficiaire vaut «Bourgogne-Franche-Comté»
+    Et c'est un demandeur d'emploi
     Et le code CERTIFINFO de la formation ne fait pas partie de [54912,54913,54917,87185,87187,25467]
     Et ce n'est pas un permis B
         Alors appliquer les règles «AIF»
