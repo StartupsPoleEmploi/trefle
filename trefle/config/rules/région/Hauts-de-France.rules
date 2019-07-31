@@ -26,6 +26,7 @@ Si l'intitulé du financement est «Aide individuelle à la formation»
 
     Si la liste des codes FORMACODE de la formation ne contient aucun code parmi [43441]
     Et la région du bénéficiaire vaut «Hauts-de-France»
+    Et c'est un demandeur d'emploi
     Et le code CERTIFINFO de la formation ne fait pas partie de [54913,54912]
     Et c'est une formation éligible CPF
         Alors appliquer les règles «AIF»
