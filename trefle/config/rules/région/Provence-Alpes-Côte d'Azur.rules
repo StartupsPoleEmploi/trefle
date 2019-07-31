@@ -26,7 +26,7 @@ Si l'intitulé du financement est «Formation en alternance : contrat d'apprenti
     Alors appliquer les règles «contrat d'apprentissage»
 
 Si l'intitulé du financement est «Aide individuelle à la formation»
-    Et c'est un demandeur d'emploi
+    Si c'est un demandeur d'emploi
     Alors le plafond financier applicable vaut 4500
 
     Si la durée en mois de la formation n'est pas supérieure à 12
