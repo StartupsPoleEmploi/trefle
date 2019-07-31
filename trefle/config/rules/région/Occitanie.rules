@@ -27,6 +27,7 @@ Si l'intitulé du financement est «Formation en alternance : contrat d'apprenti
 
 Si l'intitulé du financement est «Aide individuelle à la formation»
     Si la région du bénéficiaire est «Occitanie»
+    Et c'est un demandeur d'emploi
     Et le niveau scolaire du bénéficiaire ne fait pas partie de [«I»,«II»,«III»]
     Et ce n'est pas une formation en développement professionnel, ou la liste des codes CPF de la formation contient 201
     Et la liste des domaines FORMACODE de la formation ne contient pas 434, ou la liste des codes FORMACODE de la formation contient au moins un code parmi [43421,43429,43485,43401,43424,43415,43407,43426,43417,43486]
@@ -48,6 +49,7 @@ Si l'intitulé du financement est «Parcours Orientation Insertion»
     Et les codes financeur de la formation contiennent «Conseil régional»
     Et la liste des codes FORMACODE de la formation contient 15061
     Et l'intitulé normé de la formation contient «PARCOURSORIENTATIONINSERTION»
+    Et c'est un demandeur d'emploi
         Alors le financement est éligible
         Et appliquer les règles «AREF-RFPE-RPS»
         Et le texte des démarches vaut «Contactez votre conseiller référent emploi (Pôle emploi, mission locale ou Cap emploi).⏎Pour entrer en formation, votre projet doit être validé avant le début de la formation.»
@@ -60,6 +62,7 @@ Si l'intitulé du financement est «Parcours diplômants et actions préparatoir
     Et la liste des codes FORMACODE de la formation ne contient pas 15061
     Et les codes financeur de la formation contiennent «Conseil régional»
     Et la durée en heures de la formation n'est pas inférieure à 200
+    Et c'est un demandeur d'emploi
 
         Si le niveau scolaire du bénéficiaire n'est pas supérieur à «V», et le niveau de sortie de la formation n'est pas inférieur à «V»
         Ou le niveau scolaire du bénéficiaire n'est pas inférieur ou égal à «V», et le niveau de sortie de la formation n'est pas inférieur ou égal à «V»
@@ -175,6 +178,7 @@ Si l'intitulé du financement est «Formations des établissements d'enseignemen
 Si l'intitulé du financement est «École de l'apprentissage»
 
     Si l'âge du bénéficiaire n'est pas supérieur ou égal à 29
+    Et c'est un demandeur d'emploi
     Ou c'est un travailleur handicapé, et l'âge du bénéficiaire n'est pas supérieur ou égal à 30
 
         Si la région du bénéficiaire vaut «Occitanie»
