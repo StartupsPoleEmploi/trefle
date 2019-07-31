@@ -51,6 +51,7 @@ Si l'intitulé du financement est «Le chèque qualification»
     Si c'est un demandeur d'emploi
     Et la région du bénéficiaire est «Guadeloupe»
     Et la région de la formation est «Guadeloupe»
+    Et c'est un demandeur d'emploi
     Et c'est une formation ouverte aux bénéficiaires individuels
     Et la durée en heures de la formation est supérieure ou égale à 100
     Et la durée en heures de la formation est inférieure ou égale à 1200
@@ -120,6 +121,7 @@ Si l'intitulé du financement est «AIF région»
 
     Si la région de la formation est «Guadeloupe»
     Et la région du bénéficiaire est «Guadeloupe»
+    Et c'est un demandeur d'emploi
     Et la durée en heures de la formation est supérieur ou égal à 100
     Et c'est une formation ouverte aux bénéficiaires individuels
     Et la liste des codes FORMACODE de la formation ne contient pas 13250
