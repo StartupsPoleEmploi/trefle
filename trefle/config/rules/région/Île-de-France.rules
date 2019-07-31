@@ -28,6 +28,7 @@ Si l'intitulé du financement est «Formation en alternance : contrat d'apprenti
 Si l'intitulé du financement est «Aide individuelle à la formation»
 
     Si la région du bénéficiaire est «Île-de-France»
+    Et c'est un demandeur d'emploi
     Et la liste des codes FORMACODE de la formation ne contient aucun code parmi [43441,44041,44083,44084,44050,44092,44072,44008,43491,43448,43497,43490,43439,43493,43470,43092,43476,44004,44026,43436]
     Et le code CERTIFINFO de la formation ne fait pas partie de [54912,54913,54917,87189,87185,87187]
         Alors appliquer les règles «AIF»
