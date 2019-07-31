@@ -28,6 +28,7 @@ Si l'intitulé du financement est «Formation en alternance : contrat d'apprenti
 Si l'intitulé du financement est «Aide individuelle à la formation»
 
     Si la région du bénéficiaire est «La Réunion», ou la région du bénéficiaire est «Mayotte»
+    Et c'est un demandeur d'emploi
     Et la liste des codes FORMACODE de la formation ne contient aucun code parmi [13030,15073,43409,44002,42793]
     Et le code CERTIFINFO de la formation ne fait pas partie de [54912,87185,87187,87189]
     Et ce n'est pas une formation VAE
