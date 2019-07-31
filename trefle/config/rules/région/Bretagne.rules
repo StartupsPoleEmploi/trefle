@@ -67,6 +67,7 @@ Si le financement n'est pas de type «AIF»
 
             Si la liste des codes FORMACODE de la formation contient au moins un code parmi [31815,43448,43092,43439,43436,43441,43497,44038,44092,44008,44028,44084,44050], ou le code CERTIFINFO de la formation fait partie de [87185,87187,87189]
             Et les codes financeur de la formation contiennent «Conseil régional»
+            Et c'est un demandeur d'emploi
                 Alors le financement est éligible
                 Et appliquer les règles «AREF»
                 Et le texte des démarches vaut «Contacter l'organisme de formation qui vous fournira les codes d'accès au site de demande de bourse ainsi que les dates d'ouverture des inscriptions selon la formation choisie.»
@@ -76,6 +77,7 @@ Si le financement n'est pas de type «AIF»
         Si l'intitulé du financement est «Programme Bretagne Formation»
 
             Si les codes financeur de la formation contiennent «Conseil régional»
+            Et c'est un demandeur d'emploi
             Et le niveau de sortie de la formation ne fait pas partie de [«I»,«II»,«V bis»,«VI»]
             Et la liste des codes FORMACODE de la formation ne contient aucun code parmi [31815,43448,43092,43439,43436,43441,43497,44038,44092,44008,44028,44084,44050]
             Et le code CERTIFINFO de la formation ne fait pas partie de [87185,87187,87189]
