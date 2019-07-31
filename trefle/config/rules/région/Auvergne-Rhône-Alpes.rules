@@ -71,6 +71,7 @@ Si l'intitulé du financement est «Programme régional qualifiant»
 Si l'intitulé du financement est «Projets collectifs régionaux»
 
     Si la région du bénéficiaire est «Auvergne-Rhône-Alpes»
+    Et c'est un demandeur d'emploi
     Et le niveau scolaire du bénéficiaire n'est pas supérieur ou égal à «IV»
     Et le département de la formation fait partie de [«Cantal»,«Puy-de-Dôme»,«Haute-Loire»,«Allier»]
     Et les codes financeur de la formation contiennent «Conseil régional»
