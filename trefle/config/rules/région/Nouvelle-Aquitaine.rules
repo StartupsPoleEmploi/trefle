@@ -28,6 +28,7 @@ Si l'intitulé du financement est «Formation en alternance : contrat d'apprenti
 Si l'intitulé du financement est «Aide individuelle à la formation»
 
     Si la région du bénéficiaire est «Nouvelle-Aquitaine»
+    Et c'est un demandeur d'emploi
     Et la liste des codes FORMACODE de la formation ne contient aucun code parmi [13030,15073,15084, 15093,15094,43092,43405,43409,43439,43440,43448,43449,43470,43480,43484,43486,43490,43491,43493,43494,43494,43495,43497,44002,44004,44007,44008,44084,44009,44050,44083,44084,44092]
     Et le code CERTIFINFO de la formation ne fait pas partie de [49616,23710,78281]
     Et ce n'est pas une permis B
