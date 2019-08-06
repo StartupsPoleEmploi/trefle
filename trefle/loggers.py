@@ -19,7 +19,7 @@ request_logger.addHandler(
             os.environ.get("TREFLE_LOG_DIR", "/tmp"),
             "trefle-simulate.log",
         ),
-        when="midnight",
+        when="D",
         backupCount=365,
     )
 )
