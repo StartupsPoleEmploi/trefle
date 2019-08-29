@@ -136,7 +136,6 @@ class Financement(SmartDict):
             "remuneration_texte",
             "prise_en_charge_texte",
         ]:
-            print(self)
             setattr(self, key, (getattr(self, key) or "").format(**self))
 
 

@@ -1,6 +1,5 @@
 from datetime import datetime
 import logging
-import logging.handlers
 import os
 
 import ujson as json
@@ -14,13 +13,11 @@ logger.addHandler(logging.StreamHandler())
 request_logger = logging.getLogger("request_logger")
 request_logger.setLevel(logging.INFO)
 request_logger.addHandler(
-    logging.handlers.TimedRotatingFileHandler(
+    logging.FileHandler(
         os.path.join(
             os.environ.get("TREFLE_LOG_DIR", "/tmp"),
             "trefle-simulate.log",
         ),
-        when="D",
-        backupCount=365,
     )
 )
 
