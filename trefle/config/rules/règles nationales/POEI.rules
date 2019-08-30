@@ -1,10 +1,11 @@
 Si c'est une demandeur d'emploi
     Alors le texte des démarches vaut «Postulez sur une offre d'emploi déposée auprès de Pôle emploi pour un CDI ou un CDD d'au moins 6 mois. Si vous n'avez pas l'ensemble des compétences demandées, vous pouvez proposer à l'employeur de suivre une formation adaptée d'une durée maximale de 400h.⏎En cas de réponse positive de l'employeur, contactez votre conseiller Pôle emploi qui finalisera avec ce dernier le plan de formation.»
-    Et le texte de description vaut «L'Action de Formation Préalable au Recrutement (AFPR) et la Préparation Opérationnelle à l’Emploi Individuelle (POEI) sont des aides au financement de formations (de 400 heures maximum) préalable à un recrutement.⏎L'objectif est d'acquérir des compétences professionnelles requises pour occuper l'emploi correspondant à une offre déposée auprès de Pôle emploi, pour un CDD d'au moins 6 mois ou un CDI.⏎Cette aide est également mobilisable en préalable à un contrat en alternance d'au moins 12 mois (contrat de professionnaliisation ou contrat d'apprentissage)»
+    Et le texte de description vaut «L'Action de Formation Préalable au Recrutement (AFPR) et la Préparation Opérationnelle à l’Emploi Individuelle (POEI) sont des aides au financement de formations (de 400 heures maximum) préalable à un recrutement.⏎L'objectif est d'acquérir des compétences professionnelles requises pour occuper l'emploi correspondant à une offre déposée auprès de Pôle emploi, pour un CDD d'au moins 6 mois ou un CDI.⏎Cette aide est également mobilisable en préalable à un contrat en alternance d'au moins 12 mois (contrat de professionnalisation ou contrat d'apprentissage)»
     Et le prix horaire plafond applicable vaut 8
-
-    Si la durée en heures de la formation est supérieure à 400
+    
+    Si la durée en heures de la formation n'est pas inférieure à 400
         Alors le plafond financier applicable vaut 3200
+
 
     Si c'est un bénéficiaire ayant un contrat aidé en cours
         Alors le texte des démarches vaut «1-Postulez sur une offre d'emploi déposée auprès de Pôle emploi pour un CDI ou un CDD d'au moins 12 mois. Si vous n'avez pas l'ensemble des compétences demandées, vous pouvez proposer à l'employeur de suivre une formation adaptée d'une durée maximale de 400h.⏎2- En cas de réponse positive de l'employeur, contactez votre conseiller Pôle emploi qui finalisera avec ce dernier votre plan de formation.»
