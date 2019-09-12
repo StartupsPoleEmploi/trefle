@@ -33,7 +33,7 @@ Et c'est un demandeur d'emploi
         Si les codes financeur de la formation contiennent «Conseil régional»
         Et la liste des codes FORMACODE de la formation ne contient aucun code parmi [43436,43441,31815]
             Alors le financement est éligible
-            Et appliquer les règles «AREF-RFPE-RPS»
+            Et appliquer les règles «rémunérations applicables»
             Et le texte des démarches vaut «Vérifiez auprès de votre conseiller et/ou de l'organisme de formation que vous remplissez les conditions pour effectuer cette formation.»
 
             Si le niveau de sortie de la formation ne fait pas partie de [«I»,«II»,«III»]

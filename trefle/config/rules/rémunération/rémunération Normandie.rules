@@ -1,0 +1,19 @@
+Si les codes financeur de la formation contiennent «Conseil régional»
+
+    Si l'allocation du bénéficiaire n'est pas définie
+    Ou l'allocation du bénéficiaire fait partie de [«allocation de solidarité spécifique»,«revenu de solidarité active»]
+        Si la rémunération applicable est inférieure à 652.02
+            Alors la rémunération applicable vaut 652.02
+
+    Si c'est un bénéficiaire qui a déjà travaillé six mois sur une période de douze mois
+    #TODO ajouter la condition dans le formulaire LBF
+    Ou c'est un bénéficiaire qui a déjà travaillé douze mois sur une période de vingt-quatre mois
+    Si c'est un travailleur handicapé
+
+        Si la rémunération applicable est inférieure à 644.17
+            Alors la rémunération applicable vaut 644.17
+        Si la rémunération applicable est supérieure à 1932.52
+            Alors la rémunération applicable vaut 1932.52
+
+    Si c'est un bénéficiaire non salarié qui a travaillé pendant douze mois dont au moins six mois consécutifs dans les trois ans qui précèdent l'entrée en formation
+        Alors la rémunération applicable vaut 708.59

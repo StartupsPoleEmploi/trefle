@@ -92,7 +92,7 @@ Si l'intitulé du financement est «Programme régional de formation»
 
         Si l'allocation du bénéficiaire vaut «allocation d'aide au retour à l'emploi»
         Ou la durée en heures de la formation n'est pas inférieure à 150
-            Alors appliquer les règles «AREF-RFPE-RPS»
+            Alors appliquer les règles «rémunérations applicables»
 
 
 Si l'intitulé du financement est «Parcours régional de préparation à l'apprentissage»
@@ -127,7 +127,7 @@ Si l'intitulé du financement est «Aide individuelle Région»
     Et la liste des codes FORMACODE de la formation ne contient aucun code parmi [31815,31826,43092,43405,43436,43439,43440,43441, 43448,43449,43457,43470,43476,43480,43484,43486,43490,43491,43493,43494,43495,43497,44002,44004,44007,44008,44009,44047,44050,44083,44084,44092,44092,43409,15073,13030,43437,15084,15094,15093,15041]
     Et le code CERTIFINFO de la formation ne fait pas partie de [65960,87805,49616,23710,54660,81306,78281,54664,54662,81136]
         Alors le financement est éligible
-        Et appliquer les règles «AREF-RFPE-RPS»
+        Et appliquer les règles «rémunérations applicables»
         Et le texte des démarches vaut «Contactez votre conseiller référent emploi (Pôle emploi, Mission locale ou Operateur de placement spécialisés, ex-CAP Emploi) pour élaborer votre parcours de formation. Vous pouvez pour cela lui présenter 2 à 3 devis d'organismes de formation différents ainsi qu'une lettre de motivation.⏎Le projet professionnel doit être validé et le dossier complet pour être transmis au plus tard 4 semaines avant l'entrée en formation à la Région, qui décide ou non de l'attribution de l'aide.»
         Et le texte de description vaut «L’aide individuelle de la Région vise à financer certains besoins individuels de formation auxquels les achats d’action de formation collectifs ne peuvent répondre, ni les autres dispositifs de formation individuels.»
         Et le texte de la prise en charge vaut «Formation totalement ou partiellement financée dans la limite de 3000 €.»

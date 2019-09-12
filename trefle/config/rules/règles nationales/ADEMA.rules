@@ -1,7 +1,7 @@
 Si c'est un demandeur d'emploi
 Et l'intitulé normé de la formation contient «ADEMA»
     Alors le financement est éligible
-    Et appliquer les règles «AREF-RFPE-RPS»
+    Et appliquer les règles «rémunérations applicables»
     Et le texte des démarches vaut «Pour effectuer cette formation, contactez tout d'abord l'organisme de formation pour être sélectionné sur une des places financées par l'OPCO du secteur agricole, OCAPIAT.»
     Et le texte de description vaut «Le dispositif ADEMA s'adresse aux demandeurs d'emploi souhaitant découvrir les métiers de l’agriculture, n'ayant pas eu d'expérience de travail de plus de trois mois dans ce secteur.»
     Et le texte de la prise en charge vaut «Formation totalement financée.»

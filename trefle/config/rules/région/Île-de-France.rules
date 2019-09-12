@@ -44,7 +44,7 @@ Si l'intitulé du financement est «Formations sanitaire et social d'aide-soigna
     Et c'est un bénéficiaire ayant achevé un contrat aidé
     Et la liste des codes FORMACODE de la formation contient au moins un code parmi [43436,43441]
         Alors le financement est éligible
-        Et appliquer les règles «AREF-RFPE-RPS»
+        Et appliquer les règles «rémunérations applicables»
         Et le texte de description vaut «La prise en charge des frais pédagogiques d'aide-soignant ou d'auxiliaire de puériculture est assurée par le Conseil régional Île-de-France dans la limite du nombre de places allouées au centre de formation.⏎Pour tout renseignement sur les formations sanitaire et social du Conseil régional Île-de-France : 01.53.85.73.84»
         Et le texte des démarches vaut «Vous devez avoir réussi le concours d'entrée pour le diplôme d'Etat d'aide-soignant ou d'auxiliaire de puériculture dans l'un des centres financés par le Conseil régional.»
         Et le texte de la prise en charge vaut «Formation totalement financée dans la limite du nombre de places attribuées au centre de formation.»
@@ -59,7 +59,7 @@ Si l'intitulé du financement est «Formations sanitaire et social post-bac rég
     Et c'est une formation certifiante
     Et la liste des codes FORMACODE de la formation contient au moins un code parmi [44004,44083,44084,44050,44092,44072,44008,31815,43491,43448,43497,43490,43439,43493,43470,43092,43476,44004,44041,44026]
         Alors le financement est éligible
-        Et appliquer les règles «AREF-RFPE-RPS»
+        Et appliquer les règles «rémunérations applicables»
         Et le texte de description vaut «La prise en charge des frais pédagogiques est assuré par le Conseil régional dans la limite du nombre de places allouées au centre de formation,⏎Pour tout renseignement sur les formations sanitaire et social du conseil régional Île-de-France : 01.53.85.73.84»
         Et le texte des démarches vaut «Vous devez avoir réussi les tests d'admission pour intégrer cette formation.⏎Vous vous rapprocherez du centre de formation pour obtenir des informations sur la prise en charge des frais.»
         Et le texte de la prise en charge vaut «Formation totalement financée dans la limite du nombre de places attribuées au centre de formation.»
@@ -78,7 +78,7 @@ Si l'intitulé du financement est «Programme régional qualifiant compétences�
 
         Si la durée en heures de la formation n'est pas inférieure à 300
         Ou l'allocation du bénéficiaire est «allocation d'aide au retour à l'emploi»
-            Alors appliquer les règles «AREF-RFPE-RPS»
+            Alors appliquer les règles «rémunérations applicables»
 
 
 Si l'intitulé du financement est «Chéquier unique VAE Région Ile-de-France»
@@ -92,7 +92,7 @@ Si l'intitulé du financement est «Chéquier unique VAE Région Ile-de-France»
         Et le texte de description vaut «La région Ile-de-France finance des modules de formation pour :⏎- faciliter l'accès à la certification avant le jury : le bloc de compétences nécessaires est identifié par le certificateur⏎- vous permettre d'obtenir la certification après le passage devant le jury en cas de validation partielle : la décision du jury mentionne les modules non acquis pour lesquels une formation est nécessaire.⏎La Région finance les modules de formation avant ou après jury, dans la limite d'un plafond de 1 600 € TTC.⏎Pôle emploi complétera le financement des actions de formation post-jury si la Région ne couvre pas la totalité du coût de la formation.»
         Et le texte des démarches vaut «Le besoin de formation avant jury est examiné par le certificateur.⏎Le besoin de formation post jury est indiqué dans la décision du jury de validation.⏎Contacter le conseiller référent pour le montage du dossier.»
         Et le texte de la prise en charge vaut «Formation totalement financée.»
-        Et appliquer les règles «AREF-RFPE-RPS»
+        Et appliquer les règles «rémunérations applicables»
 
 
 Si l'intitulé du financement est «Paris formation pour l'emploi»

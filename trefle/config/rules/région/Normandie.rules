@@ -37,7 +37,7 @@ Si l'intitulé du financement est «Aide individuelle à la formation»
         Alors le financement est éligible
         Et le texte des démarches vaut «Effectuez les démarches de validation de votre projet de formation et assurez-vous qu'il correspond aux emplois offerts sur votre secteur géographique. Contactez votre conseiller référent emploi (Pôle emploi, Mission Locale ou Cap emploi). Vous lui présenterez 2 devis minimum de 2 organismes différents. Votre projet de formation et son financement doivent être présentés au plus tard 3 semaines avant le début de la formation, pour pouvoir être validé au préalable par votre conseiller emploi.»
         Et le texte de la prise en charge vaut «Formation totalement ou partiellement financée⏎(avec mobilisation possible de vos heures CPF)»
-        Et appliquer les règles «AREF-RFPE-RPS»
+        Et appliquer les règles «rémunérations applicables»
 
         Si c'est un travailleur handicapé
             Alors l'intitulé du financement vaut «Aide individuelle à la Formation financée par Pôle emploi et l'Agefiph»
@@ -60,7 +60,7 @@ Si l'intitulé du financement est «Programme de formations collectives financé
     Et la liste des codes FORMACODE de la formation ne contient aucun code parmi [43448,43436,31815,43441,44041,31815,43454,44054,43409]
     Et l'intitulé normé de la formation ne contient pas «UNEFORMATIONUNEMPLOI»
         Alors le financement est éligible
-        Et appliquer les règles «AREF-RFPE-RPS»
+        Et appliquer les règles «rémunérations applicables»
         Et le texte des démarches vaut «Contactez votre conseiller référent emploi (Pôle emploi, mission locale ou cap emploi).⏎Effectuez les démarches de validation de votre projet de formation et assurez-vous qu'elle corresponde aux emplois offerts sur votre secteur géographique.⏎Vous pouvez aussi contacter directement l'organisme de formation.»
         Et le texte de description vaut «La région Normandie propose des formations pour les jeunes et adultes demandeurs d’emploi et accompagne ceux qui souhaitent obtenir un diplôme, améliorer leurs compétences, changer de métier ou concrétiser leur projet d’entreprise.⏎Ces actions permettent aux demandeurs d'emploi d’obtenir une certification professionnelle pour optimiser leur accès à l’emploi.⏎Les formations proposées sont de tous niveaux (du Titre Professionnel de niveau V ou du CAP au diplôme d’ingénieur) et dans tous les domaines d’activité.⏎Ce dispositif s'adresse en priorité aux formations visant à l'accés à la premiere qualification, la reconversion des bénéficiaires de l'obligation d'emploi,⏎l'élévation du niveau de formation Elle ne peut bénéficier aux demadeurs d'emploi ayant déja suivi une formation qualifiante au cours des 12 derniers mois, pour laquelle un financement institutionnel (région,Pole emploi, Agefiph, Fongecif,...) avait été accordé.»
         Et le texte de la prise en charge vaut «Formation totalement financée par le Conseil régional de Normandie»
@@ -82,7 +82,7 @@ Si l'intitulé du financement est «Une formation, un emploi - individuel»
     Et ce n'est pas un contrat de professionnalisation
     Et ce n'est pas un contrat d'apprentissage
         Alors le financement est éligible
-        Et appliquer les règles «AREF-RFPE-RPS»
+        Et appliquer les règles «rémunérations applicables»
         Et le texte des démarches vaut «Contactez votre conseiller référent emploi (Pôle emploi, Mission Locale ou Cap emploi).⏎Effectuez les démarches de validation de votre projet de formation et assurez-vous qu'elle corresponde aux emplois offerts sur votre secteur géographique.⏎Vous pouvez aussi contacter directement l'organisme de formation.»
         Et le texte de description vaut «Ce dispositif s'adresse en priorité aux personnes ayant peu de qualifications.»
         Et le texte de la prise en charge vaut «Formation totalement financée par le Conseil régional de Normandie»
@@ -96,7 +96,7 @@ Si l'intitulé du financement est «Une formation, un emploi - collectif»
     Et les codes financeur de la formation contiennent «Conseil régional»
     Et l'intitulé normé de la formation contient «UNEFORMATIONUNEMPLOI»
         Alors le financement est éligible
-        Et appliquer les règles «AREF-RFPE-RPS»
+        Et appliquer les règles «rémunérations applicables»
         Et le texte de description vaut «Le dispositif \«Une formation un emploi\» du Conseil régional permet de financer des formations pour répondre aux besoins de recrutement des entreprises de la région.»
         Et le texte des démarches vaut «Contactez votre conseiller référent emploi (Pôle emploi, Mission Locale ou Cap emploi) pour valider votre projet de formation et prendre connaissance des propositions d'emploi possibles. Vous pouvez aussi contacter directement l'organisme de formation.»
         Et le texte de la prise en charge vaut «Formation totalement financée par le Conseil régional de Normandie»

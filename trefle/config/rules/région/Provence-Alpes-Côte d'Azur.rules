@@ -57,7 +57,7 @@ Si l'intitulé du financement est «Accès aux premiers savoirs»
     Et les codes financeur de la formation contiennent «Conseil régional»
     Et la liste des codes FORMACODE de la formation contient 15041
         Alors le financement est éligible
-        Et appliquer les règles «AREF-RFPE-RPS»
+        Et appliquer les règles «rémunérations applicables»
         Et le texte des démarches vaut «Pour pouvoir être sélectionné sur une des places financées par la Région PACA, faites valider tout d’abord votre projet de formation par un conseiller emploi (Pôle emploi, Mission Locale, Cap Emploi).»
         Et le texte de description vaut «Les ETAPS visent l’acquisition et la reconnaissance de savoirs, de connaissances et de compétences permettant aux personnes d’accéder à une formation qualifiante et/ou un emploi.⏎Ils permettent le développement de compétences mobilisables dans les différents contextes de la vie de tout individu : vie quotidienne, vie professionnelle, vie sociale et citoyenne, vie familiale...⏎La durée et le rythme du parcours de formation sont définis en fonction des besoins de chaque personne.⏎Le stagiaire bénéficie d’une couverture en matière d’accident du travail et de maladie professionnelle.»
         Et le texte de la prise en charge vaut «Formation totalement financée»
