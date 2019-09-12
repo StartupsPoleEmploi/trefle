@@ -77,7 +77,7 @@ Si l'intitulé du financement est «Programme régional de formation»
     Et les codes financeur de la formation contiennent «Conseil régional»
     Et le code CERTIFINFO de la formation ne fait pas partie de [54913,54917,54912,53865,21097]
         Alors le financement est éligible
-        Et appliquer les règles «AREF-RFPE-RPS»
+        Et appliquer les règles «rémunérations applicables»
         Et le texte de description vaut «Le plan régional de formation finance des formations diplômantes pour les demandeurs d'emploi.»
         Et le texte des démarches vaut «Contactez votre conseiller référent emploi (Pôle emploi, mission locale ou Cap emploi).»
         Et le texte de la prise en charge vaut «Formation totalement financée.»

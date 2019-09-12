@@ -3,3 +3,9 @@ Si l'allocation du bénéficiaire est «allocation d'aide au retour à l'emploi�
 
 Si l'allocation du bénéficiaire n'est pas «allocation d'aide au retour à l'emploi»
     Alors appliquer les règles «RFPE-RPS»
+
+Si la région de la formation vaut «Normandie»
+    Alors appliquer les règles «rémunération Normandie»
+
+Si la région de la formation vaut «Bourgogne-Franche-Comté»
+    Alors appliquer les règles «rémunération Bourgogne-Franche-Comté»

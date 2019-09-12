@@ -59,7 +59,7 @@ Si l'intitulé du financement est «Chèque formation réussite»
 
         Si la liste des codes FORMACODE de la formation ne contient aucun code parmi [15254,15287,15288,15299,15298,15289,15297,15234,15213,15214,15205,15206,15204,15203,15259,15228,15229,15219,15209,15207,15227,15274,15260,15290,15286,15247,15238,15239,15236,15237,15248,15233,15240,15278,15221,15212,15215,15220,15210,15202,15222,15201,15282,15291,15293,15292,15285,15284,15294,15283,15296,15295,15276,15277,15218,15208,15249]
             Alors le financement est éligible
-            Et appliquer les règles «AREF-RFPE-RPS»
+            Et appliquer les règles «rémunérations applicables»
 
             Si c'est une formation VAE
                 Alors l'intitulé du financement est «Chèque formation réussite VAE»
@@ -67,5 +67,5 @@ Si l'intitulé du financement est «Chèque formation réussite»
         Si la liste des codes FORMACODE de la formation contient au moins un code parmi [15254,15287,15288,15299,15298,15289,15297,15234,15213,15214,15205,15206,15204,15203,15259,15228,15229,15219,15209,15207,15227,15274,15260,15290,15286,15247,15238,15239,15236,15237,15248,15233,15240,15278,15221,15212,15215,15220,15210,15202,15222,15201,15282,15291,15293,15292,15285,15284,15294,15283,15296,15295,15276,15277,15218,15208,15249]
             Alors le financement est éligible
             Et l'intitulé du financement est «Chèque formation réussite - langue étrangère»
-            Et appliquer les règles «AREF-RFPE-RPS»
+            Et appliquer les règles «rémunérations applicables»
 

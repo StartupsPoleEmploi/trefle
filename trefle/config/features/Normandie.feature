@@ -128,3 +128,29 @@ Scénario: Une formation, un emploi - collectif avec mauvais code financeur
     Et le prix horaire de la formation vaut 0.0
     Quand je demande un calcul de financement
     Alors le financement «Une formation, un emploi - collectif» n'est pas proposé
+
+Scénario: La rémunération applicable pour un TH vaut 644,17
+    Soit un bénéficiaire et une formation
+    Et l'âge du bénéficiaire vaut 39
+    Et la commune du bénéficiaire vaut «14118»
+    Et c'est un demandeur d'emploi
+    Et la date de fin de l'allocation du bénéficiaire vaut «15/05/2020»
+    Et les codes financeur de la formation valent [«Conseil régional»]
+    Et la durée en heures de la formation vaut 735
+    Et le nombre d'heures en entreprise vaut 140
+    Et le nombre d'heures en centre vaut 595
+    Et la code AIS de la formation vaut «Certification»
+    Et la date de début de la formation vaut «30/09/2019»
+    Et la date de fin de la formation vaut «06/03/2020»
+    Et c'est une formation certifiante
+    Et la région de la formation vaut «Normandie»
+    Et c'est une formation RNCP
+    Et l'allocation du bénéficiaire vaut «allocation d'aide au retour à l'emploi»
+    Et le montant de l'allocation du bénéficiaire vaut 600.0
+    Et c'est un travailleur handicapé
+    Et c'est un bénéficiaire qui a déjà travaillé six mois sur une période de douze mois
+    Quand je demande un calcul de financement
+    Et je sélectionne le financement «Programme de formations collectives financées par le Conseil régional de Normandie»
+    Alors la rémunération applicable vaut 644.17
+    Et la plafond de prise en charge vaut 0
+    Et la date de fin de la rémunération applicable vaut «15/05/2020»
