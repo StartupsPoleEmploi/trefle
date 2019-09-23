@@ -29,6 +29,14 @@ CATALOG_URL = os.environ.get(
 
 
 def load_schema(data, output=None, namespace=None):
+    """Chargement du schéma de données, des constantes et des étiquettes
+
+    le schéma de donnée est le fichier ./config/schema.yml
+
+    :param data: données à charger
+    :param output: données formatées
+    :param namespace: clé unique d'entrée
+    """
     if output is None:
         output = {}
     if namespace is None:
@@ -59,6 +67,7 @@ def load_schema(data, output=None, namespace=None):
 
 
 def load_financements():
+    """Chargement des règles de financements"""
     with (ROOT / "financements.yml").open() as f:
         data = yaml.safe_load(f.read())
     for id_, props in data.items():
@@ -68,6 +77,10 @@ def load_financements():
 
 
 def load_naf(data):
+    """Chargement du fichier des codes NAF
+
+    :param data: données aux format CSV des codes NAF
+    """
     # Data from https://www.insee.fr/fr/information/2406147
     from ..validators import format_naf
 
@@ -82,7 +95,14 @@ def load_naf(data):
     return out
 
 
-def load_rules(path):
+def load_rules(path: Path):
+    """Chargement des règles de financements
+
+    le nom du fichier est utilisé comme nom et identifiant de règle
+
+    :param path: chemin du fichier de règle
+    :type root: Path
+    """
     with path.open() as rules_file:
         data = rules_file.read()
         # Don't use local path in rule id, so we can call it from a Pointer
@@ -104,13 +124,19 @@ def load_rules(path):
             raise
 
 
-def load_dir_rules(root):
+def load_dir_rules(root: Path):
+    """Chargement des dossiers de règles
+
+    :param root: objet path du chemin de base des règles
+    :type root: Path
+    """
     paths = (root).glob("**/*.rules")
     for path in sorted(paths, key=lambda p: fold_name(str(p))):
         yield load_rules(path)
 
 
 def load_features():
+    """Chargement des scénarios de tests"""
     paths = (ROOT / "features").glob("*.feature")
     for path in sorted(paths, key=lambda p: p.name.lower()):
         raw = path.read_text()
@@ -119,6 +145,7 @@ def load_features():
 
 
 class SmartDict(dict):
+    """Ajout de getter et setter pour un dictionnaire"""
     def __getattr__(self, key):
         return self.get(key)
 
@@ -127,6 +154,7 @@ class SmartDict(dict):
 
 
 class Financement(SmartDict):
+    """Classe de données des financemens"""
     def format(self):
         """Allow to use financement properties as vars in text values."""
         for key in [
@@ -140,6 +168,7 @@ class Financement(SmartDict):
 
 
 class Organisme(SmartDict):
+    """Classe de données des organismes"""
     ...
 
 
