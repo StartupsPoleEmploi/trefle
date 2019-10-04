@@ -8,4 +8,4 @@ async def last_modified(rulepath):
     commits = RepositoryMining(
         repo, filepath=rulepath, reversed_order=True
     ).traverse_commits()
-    return next(commits).committer_date
+    return next(commits).committer_date.date().isoformat()

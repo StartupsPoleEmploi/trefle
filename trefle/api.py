@@ -10,6 +10,7 @@ from .debugging import data_from_lbf_url, make_scenario, SCENARIOS
 from .exceptions import DataError
 from .legacy import simulate_legacy
 from .loggers import log_simulate, logger
+from .metadata import last_modified
 from .openapis import OPENAPI
 from .routine import get_formation_json, search_term
 
@@ -85,6 +86,11 @@ async def naf(request, response):
 @app.route("/idcc")
 async def idcc(request, response):
     response.json = search_term(IDCC, request.query.get("q"))
+
+
+@app.route("/metadata")
+async def metadata(request, response):
+    response.json = {"last_modified": await last_modified(request.query.get("path"))}
 
 
 @app.route("/explore/schema")

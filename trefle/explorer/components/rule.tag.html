@@ -1,4 +1,5 @@
 <rule>
+  <span ref=last_modified></span>
   <pre ref=pre></pre>
   <style scoped>
     pre strong {
@@ -55,6 +56,15 @@
     }
   </style>
   <script>
+    let metadata = []
+    this.rule_metadata = () => {
+        path = this.parent.rule.path
+        request(`../metadata?path=trefle/config/rules/${path}`)
+            .then((data) => {
+                this.refs.last_modified.innerHTML = `<i>Date de dernière modification : ${data.last_modified}</i></br>`
+                this.update()
+            })
+    }
     this.raw = opts.content.replace(/Si /g, '<strong>Si </strong>')
                       .replace(/Soit /g, '<strong>Soit </strong>')
                       .replace(/Quand /g, '<strong>Quand </strong>')
@@ -81,11 +91,11 @@
       }
     }
     const lines = this.raw.split('\n')
-    let raw = '', id, hash = window.location.hash.split('#')[1]
+    let raw = '', id, hash = window.location.hash.split('#')[1], last_modified = ''
     for (var i = 0; i < lines.length; i++) {
       id = hash.split('~')[0] + '~' + (i+1)
       raw += `<a href="#${id}" id="${id}" class=line>${i+1}</a><code>${lines[i]}</code>`
     }
-    this.on('mount', () => this.refs.pre.innerHTML = raw)
+    this.on('mount', () => {this.refs.pre.innerHTML = raw; this.rule_metadata()})
   </script>
 </rule>
