@@ -1,6 +1,6 @@
 import asyncio
+import datetime
 import re
-from datetime import date
 from math import ceil
 
 
@@ -39,7 +39,7 @@ EMPTY_VALUES = (None, "", set(), [])
 
 
 def calculate_age(born):
-    today = date.today()
+    today = datetime.date.today()
     return today.year - born.year - ((today.month, today.day) < (born.month, born.day))
 
 
