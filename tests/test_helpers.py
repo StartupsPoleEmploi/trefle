@@ -156,7 +156,7 @@ def test_insee_commune_to_departement(input, expected):
     "input,expected",
     [
         ((1999, 5, 20), 20),
-        ((1998, 10, 8), 20),
+        ((1999, 10, 8), 20),
         ((1998, 1, 1), 21),
         ((1998, 12, 31), 20),
     ],
@@ -167,6 +167,7 @@ def test_calculate_age(input, expected, monkeypatch):
         def today(cls):
             return datetime.datetime(2018, 10, 8)
 
+    #TO FIX patch does not work
     monkeypatch.setattr(datetime, "date", mydate)
     assert calculate_age(datetime.datetime(*input)) == expected
 

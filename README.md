@@ -16,7 +16,7 @@
 
 ## Install
 
-- Create a venv
+- Create a venv : `python3 -m venv trefle`
 - Then: `make develop`
 
 ## Run a simulation
@@ -36,6 +36,8 @@
 ## Run the dev server
 
     trefle serve
+    
+    and go to url : http://127.0.0.1:3579/explorer/index.html
 
 ## Run unittests
 
