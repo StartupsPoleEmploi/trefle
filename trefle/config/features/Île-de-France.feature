@@ -173,3 +173,27 @@ Scénario: Paris formation pour l'emploi avec mauvaise localisation pour le dema
     Et le prix horaire de la formation vaut 0.0
     Quand je demande un calcul de financement
     Alors le financement «Paris formation pour l'emploi» n'est pas proposé
+
+Scénario: RFF
+    Soit un bénéficiaire et une formation
+    Et l'âge du bénéficiaire vaut 38
+    Et c'est un demandeur d'emploi
+    Et la date de fin de l'allocation du bénéficiaire vaut «12/12/2019»
+    Et les codes financeur de la formation valent [«Conseil régional»]
+    Et la liste des codes ROME de la formation vaut [J1506]
+    Et la durée en heures de la formation vaut 4200
+    Et la date de début de la formation vaut «02/09/2019»
+    Et la date de fin de la formation vaut «08/07/2022»
+    Et la région du bénéficiaire vaut «Île-de-France»
+    Et la région de la formation vaut «Île-de-France»
+    Et c'est une formation éligible à la RFF
+    Et l'allocation du bénéficiaire vaut «allocation d'aide au retour à l'emploi»
+    Et le montant de l'allocation du bénéficiaire vaut 1200.0
+    Quand je demande un calcul de financement
+    Et je sélectionne le financement «Programme régional qualifiant compétences»
+    Alors la rémunération applicable vaut 1200.0
+    Et la plafond de prise en charge vaut 0
+    Et la RFF applicable vaut 652.02
+    Et la date de début de la RFF applicable vaut «13/12/2019»
+    Et la date de fin de la RFF applicable vaut «08/07/2022»
+    Et la date de fin de la rémunération applicable vaut «12/12/2019»
