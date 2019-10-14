@@ -154,7 +154,7 @@ input[type=submit]:hover,
   word-wrap: normal;
   direction: ltr;
   font-variant: normal;
-  vertical-align: middle;
+  vertical-align: baseline;
   /* Support for all WebKit browsers. */
   -webkit-font-smoothing: antialiased;
   /* Support for Safari and Chrome. */
@@ -176,7 +176,9 @@ textarea {
 /************** Tool Tip Styles ********************************/
 .tooltip {
   position: relative;
+  opacity:100;
   cursor: help;
+  display: inline;
 }
 .tooltip:hover {
   text-decoration: underline dotted;
@@ -227,3 +229,33 @@ dl:nth-child(even) {
   background: #f3f3f3;
 }
 
+/* Navbar stylesheet */
+
+.vertical-nav {
+  min-width: 14rem;
+  width: 14rem;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
+  transition: all 0.4s;
+}
+
+.nav-link {
+  min-width : 14rem;
+  width: 14rem;
+}
+
+/* Page content stylesheet */
+
+.page-content {
+  width: calc(100% - 15rem);
+  margin-left: 15rem;
+  transition: all 0.4s;
+}
+
+.page-title {
+  margin-bottom : 3rem;
+  font-variant: small-caps;
+}

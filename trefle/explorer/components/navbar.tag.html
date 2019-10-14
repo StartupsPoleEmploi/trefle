@@ -1,17 +1,56 @@
 <navbar>
   <progress style="display: none" id="progress" />
-  <h1><a href=".">☘</a></h1>
-  <nav>
-    <a href="#schema" class="{selected: window.location.hash.startsWith('#schema')}">Schéma</a>
-    <a href="#rules" class="{selected: window.location.hash.startsWith('#rules')}">Règles de gestion</a>
-    <a href="#simulate" class="{selected: window.location.hash.startsWith('#simulate')}">Simuler</a>
-    <a href="#financements" class="{selected: window.location.hash.startsWith('#financements')}">Financements</a>
-    <a href="#scenarios" class="{selected: window.location.hash.startsWith('#scenarios')}">Scénarios</a>
-    <a href="#tools" class="{selected: window.location.hash.startsWith('#tools')}">Outils</a>
-    <a href="#glossary" class="{selected: window.location.hash.startsWith('#glossary')}">Glossaire</a>
-  </nav>
+
+      <!-- Vertical navbar -->
+    <div class="vertical-nav bg-light" id="sidebar">
+
+      <ul class="nav flex-column bg-light mb-0">
+        <li class="nav-item bg-light" style="margin-bottom:4em">
+            <h1>
+              <a href="." class="nav-link text-dark">☘</a>
+            </h1>
+        </li>
+        <li class="nav-item">
+          <h4>
+            <a href="#schema" class="{selected: window.location.hash.startsWith('#schema')} nav-link text-dark bg-light">Schéma</a>
+          </h4>
+        </li>
+        <li class="nav-item">
+          <h4>
+            <a href="#rules" class="{selected: window.location.hash.startsWith('#rules')} nav-link text-dark bg-light">Règles de gestion</a>
+          </h4>
+        </li>
+        <li class="nav-item">
+          <h4>
+            <a href="#simulate" class="{selected: window.location.hash.startsWith('#simulate')} nav-link text-dark bg-light">Simuler</a>
+          </h4>
+        </li>
+        <li class="nav-item">
+          <h4>
+            <a href="#financements" class="{selected: window.location.hash.startsWith('#financements')} nav-link text-dark bg-light">Financements</a>
+          </h4>
+        </li>
+        <li class="nav-item">
+          <h4>
+            <a href="#scenarios" class="{selected: window.location.hash.startsWith('#scenarios')} nav-link text-dark bg-light">Scénarios</a>
+          </h4>
+        </li>
+        <li class="nav-item">
+          <h4>
+            <a href="#tools" class="{selected: window.location.hash.startsWith('#tools')} nav-link text-dark bg-light">Outils</a>
+          </h4>
+        </li>
+        <li class="nav-item">
+          <h4>
+            <a href="#glossary" class="{selected: window.location.hash.startsWith('#glossary')} nav-link text-dark bg-light">Glossaire</a>
+          </h4>
+        </li>
+      </ul>
+    </div>
+    <!-- End vertical navbar -->
 
   <style scoped>
+
     :scope {
       display: grid;
       grid-template-columns: 1fr 4fr;
@@ -49,6 +88,13 @@
 
   <script>
     this.on('mount', () => init())
+
+    $(function() {
+      // Sidebar toggle behavior
+      $('#sidebarCollapse').on('click', function() {
+        $('#sidebar, #content').toggleClass('active');
+      });
+    });
   </script>
 
 </navbar>
