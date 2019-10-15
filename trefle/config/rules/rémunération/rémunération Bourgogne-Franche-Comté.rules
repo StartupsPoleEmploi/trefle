@@ -8,6 +8,7 @@ Si les codes financeur de la formation contiennent «Conseil régional»
     Et la rémunération applicable est inférieure à 652.18
         Alors la rémunération applicable vaut 652.18
     Si c'est un bénéficiaire qui a déjà travaillé six mois sur une période de douze mois
+    Ou c'est un bénéficiiare qui a déjà travaillé douze mois sur une période de vingt-quatre mois
     Et la rémunération applicable est inférieure à 863.00
         Alors la rémunération applicable vaut 863.00
 
