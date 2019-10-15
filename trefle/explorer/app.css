@@ -76,7 +76,7 @@ html, body, a, p, div, li, dl {
   margin: 0;
   padding: 0;
   color: #222;
-  font-family: 'sans';
+  font-family: 'Lato', 'sans', sans-serif;
 }
 html, body {
   width: 100%;
@@ -245,6 +245,11 @@ dl:nth-child(even) {
 .nav-link {
   min-width : 14rem;
   width: 14rem;
+  font-size: 16px;
+}
+
+.nav-link > img {
+  margin-right: 10px;
 }
 
 /* Page content stylesheet */

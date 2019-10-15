@@ -12,39 +12,46 @@
         </li>
         <li class="nav-item">
           <h4>
-            <a href="#schema" class="{selected: window.location.hash.startsWith('#schema')} nav-link text-dark bg-light">Schéma</a>
+			  <a href="." class="{selected: window.location.hash.startsWith('')} nav-link text-dark bg-light"><img src="/explorer/images/Icone_Home.svg" width="18" height="18" class="d-inline-block" alt=""> Accueil</a>
           </h4>
         </li>
         <li class="nav-item">
           <h4>
-            <a href="#rules" class="{selected: window.location.hash.startsWith('#rules')} nav-link text-dark bg-light">Règles de gestion</a>
+            <a href="#rules" class="{selected: window.location.hash.startsWith('#rules')} nav-link text-dark bg-light"><img src="/explorer/images/Icone_Referentiel.svg" width="18" height="18" class="d-inline-block" alt=""> Référentiel</a>
           </h4>
         </li>
         <li class="nav-item">
           <h4>
-            <a href="#simulate" class="{selected: window.location.hash.startsWith('#simulate')} nav-link text-dark bg-light">Simuler</a>
+            <a href="#financements" class="{selected: window.location.hash.startsWith('#financements')} nav-link bg-light"><img src="/explorer/images/Icone_Financement.svg" width="18" height="18" class="d-inline-block" alt=""> Financements</a>
           </h4>
         </li>
         <li class="nav-item">
           <h4>
-            <a href="#financements" class="{selected: window.location.hash.startsWith('#financements')} nav-link text-dark bg-light">Financements</a>
+            <a href="#simulate" class="{selected: window.location.hash.startsWith('#simulate')} nav-link text-dark bg-light"><img src="/explorer/images/Icone_Simulateur.svg" width="18" height="18" class="d-inline-block" alt=""> Simulateur</a>
           </h4>
         </li>
         <li class="nav-item">
           <h4>
-            <a href="#scenarios" class="{selected: window.location.hash.startsWith('#scenarios')} nav-link text-dark bg-light">Scénarios</a>
+            <a href="#scenarios" class="{selected: window.location.hash.startsWith('#scenarios')} nav-link text-dark bg-light"><img src="/explorer/images/Icone_Scenarios.svg" width="18" height="18" class="d-inline-block" alt=""> Scénarios</a>
           </h4>
         </li>
         <li class="nav-item">
           <h4>
-            <a href="#tools" class="{selected: window.location.hash.startsWith('#tools')} nav-link text-dark bg-light">Outils</a>
+            <b href="#tools" class="{selected: window.location.hash.startsWith('#tools')} nav-link text-dark bg-light"><img src="/explorer/images/Icone_Outils.svg" width="18" height="18" class="d-inline-block" alt=""> Outils</a>
+          </h4>
+        </li>
+<!--
+        <li class="nav-item">
+          <h4>
+            <a href="#glossary" class="{selected: window.location.hash.startsWith('#glossary')} nav-link bg-light">Glossaire</a>
           </h4>
         </li>
         <li class="nav-item">
           <h4>
-            <a href="#glossary" class="{selected: window.location.hash.startsWith('#glossary')} nav-link text-dark bg-light">Glossaire</a>
+			  <a href="#schema" class="{selected: window.location.hash.startsWith('#schema')} nav-link bg-light">Schéma</a>
           </h4>
         </li>
+-->
       </ul>
     </div>
     <!-- End vertical navbar -->
@@ -71,10 +78,6 @@
     }
     a + a {
       margin-left: 1em;
-    }
-    * {
-      display: flex;
-      align-items: center;
     }
     progress {
       position: absolute;
