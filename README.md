@@ -13,6 +13,7 @@
 
 - LBF Url to simulation on the web interface explorer
 - LBF Catalog API key to retrieve training courses data
+- Python >= 3.6
 
 ## Install
 
