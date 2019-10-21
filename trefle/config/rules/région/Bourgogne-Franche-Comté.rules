@@ -50,7 +50,7 @@ Si l'intitulé du financement est «Action collective financée par la Région»
 
     Si les codes financeur de la formation contiennent «Conseil régional»
     Et le code CERTIFINFO de la formation ne fait pas partie de [54912,54913,54917,87185,87187]
-    Et c'est un demandeur d'emploi
+    Et ce n'est pas un bénéficiaire de droit privé
     Et la région de la formation vaut «Bourgogne-Franche-Comté»
         Alors le financement est éligible
         Et appliquer les règles «rémunérations applicables»
@@ -75,7 +75,7 @@ Si le financement est de type «POEC»
 Si l'intitulé du financement est «Formation sanitaire et social»
 
     Si la région de la formation vaut «Bourgogne-Franche-Comté»
-    Et c'est un demandeur d'emploi
+    Et ce n'est pas un bénéficiaire de droit privé
         Si le code CERTIFINFO de la formation vaut 54913, et le SIRET de l'organisme de formation fait partie de [26890005700061,26710079000059,26890025500012,26890023000072,26390003700080,26210007600286,26580008600018,20001120300037,26710033700034,26710076600117,26580007800015,20004782700056,26710028700130,26390004500109,26250462400012,13001406100019,26250176000082,26900129300118,26900129300167,26890015600103,77567227210495,77567227233851,19580050300037]
         Ou le code CERTIFINFO de la formation vaut 54917, et le SIRET de l'organisme de formation fait partie de [26250462400012,26250176000082,77567227233851,19250030400022]
         Ou le code CERTIFINFO de la formation vaut 54912, et le SIRET de l'organisme de formation fait partie de [26250176000082,26210007600310,26890015600103]
@@ -90,7 +90,7 @@ Si l'intitulé du financement est «Dispositif accès à la qualification»
     Si la région de la formation vaut «Bourgogne-Franche-Comté»
     Et les codes financeur de la formation contiennent «Conseil régional»
     Et l'intitulé normé de la formation contient «DAQ», ou l'intitulé normé de la formation contient «DISPOSITIFACCESALAQUALIFICATION»
-    Et c'est un demandeur d'emploi
+    Et ce n'est pas un bénéficiaire de droit privé
         Alors le financement est éligible
         Et appliquer les règles «rémunérations applicables»
         Et le texte des démarches vaut «Contactez votre conseiller référent emploi (Pôle emploi, mission locale ou Cap emploi).»
