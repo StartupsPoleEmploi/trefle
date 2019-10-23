@@ -174,11 +174,13 @@ textarea {
 
 
 /************** Tool Tip Styles ********************************/
+
 .tooltip {
   position: relative;
   opacity:100;
   cursor: help;
   display: inline;
+  z-index: 1;
 }
 .tooltip:hover {
   text-decoration: underline dotted;
@@ -193,7 +195,6 @@ textarea {
   left: 0;
   bottom: calc(100% + 10px);
   min-width: 300px;
-  z-index: 10;
   color: #222;
 }
 .tooltip .tooltip-content:after {
@@ -241,7 +242,7 @@ dl:nth-child(even) {
   left: 0;
   transition: all 0.4s;
   box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.1);
-  z-index: 0;
+  z-index: 2;
 }
 
 .vertical-nav {
@@ -253,6 +254,7 @@ dl:nth-child(even) {
   left: 0;
   box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
   transition: all 0.4s;
+  z-index: 3;
 }
 
 #nav-title {
