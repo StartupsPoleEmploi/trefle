@@ -259,27 +259,27 @@ dl:nth-child(even) {
 
 #nav-title {
   font-size: 3em;
-  margin-bottom:1rem;
-  margin-top:.5rem;
+  margin-bottom: 1rem;
+  margin-top: .5rem;
   padding: .3rem 3rem;
 }
 
 .vertical-nav .nav-link {
-  min-width : 14rem;
+  min-width: 14rem;
   width: 14rem;
   font-size: 16px;
   padding: 1rem 3rem;
 }
 
 .horizontal-nav .nav-link {
-  min-width : 1rem;
+  min-width: 1rem;
   width: 5rem;
   font-size: 16px;
   padding: .5rem 1rem;
 }
 
 .nav-icon {
-  padding-right:.4rem;
+  padding-right: .4rem;
   padding-bottom: .3rem;
 }
 
@@ -293,6 +293,6 @@ dl:nth-child(even) {
 }
 
 .page-title {
-  padding-bottom : 3rem;
+  padding-bottom: 3rem;
   font-variant: small-caps;
 }
