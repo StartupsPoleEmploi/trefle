@@ -1,6 +1,6 @@
 <scenarios>
-  <h2 class="page-title">Scénarios</h2>
   <ul>
+    <h2 class="page-title">Scénarios</h2>
     <li each={ filter in this.filters }><a href="#" onclick={ this.toggle } class='{ on: this.selected_filters && (this.selected_filters.indexOf(filter) != -1) }' title={ filter }>{ filter }</a></li>
   </ul>
   <div if={ this.selected_filters.length && this.active.length }>
