@@ -1,19 +1,98 @@
 <rules>
+  <div id="ref-main-div" class="bg-light">  
+    <div id="ref-header-row">
+      <div class="container">
+        <div class="row">
+          <div id="ref-count-financements" class="col-md-3">
+            <span id="ref-count-financements-number" class="ref-count-financements-text">{ this.count_financements }&nbsp;</span>
+            <span class="ref-count-financements-text" if={ this.lt_two }>financement</span>
+            <span class="ref-count-financements-text" if={ !this.lt_two }>financements</span>
+          </div>
+          <div id="ref-create-financement" class="col-md-3">
+            <button href="#" class="btn btn-outline-success" disabled>Créer un financement</button>
+          </div>
+          <div id="ref-search-financement" class="col-md-6">
+            <form class="form-inline pull-right">
+              <div class="form-group mx-sm-3 mb-2">
+                <input class="form-control" name="financement-search" placeholder="Rechercher" disabled>
+              </div>
+              <button class="btn btn-success mb-2" type="submit" disabled>OK</button>
+            </form>
+          </div>
+        </div>
+        <div class="row">
+          <div id="ref-last-update" class="col-md-12">
+            Dernière mise à jour le <> à <>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr class="ref-horizontal-separator">
+    <div id="ref-filter-row" class="container">
+      <label for="financement-filter-select">Filtrer par</label>
+      <select id="financement-filter-select" class="form-control" name="financement-filter-select" disabled>
+        <option>Tous les publics</option>
+      </select>
+    </div>
+    <hr class="ref-horizontal-separator">
+    <div id="ref-result-row" class="container">
+      <span class="ref-results-count" if={ this.lt_two }>
+          Résultat ({ this.count_financements })
+      </span>
+      <span class="ref-results-count" if={ !this.lt_two }>
+          Résultats ({ this.count_financements })
+      </span>
+      <div id="ref-results-list">
+        <ul each={ this.financements } class="container">
+          <li class="row">
+            <span class="col-md-3 col-sm-12">
+              <strong>{ intitule }</strong>
+            </span>
+            <span class="col-md-8 col-sm-11">
+              <button each={ tag in _tags} class="btn btn-outline-info" href="#" disabled>{ tag }</button>
+            </span>
+            <span class="col-md-1 col-sm-1 pull-right">              
+              <button href="https://framagit.org/ybon/trefle/tree/master/trefle/config/financements.yml" target="_blank" class="text-dark btn btn-outline-light" disabled>
+                <i class="icon" style="vertical-align: baseline;">edit</i>
+              </button>
+            </span>
+          </li>          
+          <hr class="ref-list-horizontal-separator">
+        </ul>
+      </div>
+
+    </div>
+  </div>
+<!--
   <aside>
     <h2 class="page-title">Règles de gestion</h2>
-    <rules-menu title="Règles régionales" namespace="région"></rules-menu>
-    <rules-menu title="Règles nationales" namespace="règles nationales"></rules-menu>
-    <rules-menu title="Règles des organismes paritaires" namespace="organisme paritaire"></rules-menu>
-    <rules-menu title="Règles de rémunérations" namespace="rémunération"></rules-menu>
-    <rules-menu title="Règles de normalisation" namespace="normalisation"></rules-menu>
+    <financements-menu title="Règles régionales" namespace="région"></financements-menu>
+    <financements-menu title="Règles nationales" namespace="règles nationales"></financements-menu>
+    <financements-menu title="Règles des organismes paritaires" namespace="organisme paritaire"></financements-menu>
+    <financements-menu title="Règles de rémunérations" namespace="rémunération"></financements-menu>
+    <financements-menu title="Règles de normalisation" namespace="normalisation"></financements-menu>
   </aside>
-  <div if={ this.rule }>
-    <h3>{ this.rule.path } <a href=https://framagit.org/ybon/trefle/tree/master/trefle/config/rules/{ this.rule.path } target=_blank> <i class="icon">edit</i></a></h3>
-    <rule content={ this.rule.data } class=with-lines></rule>
+  <div if={ this.financement }>
+    <h3>{ this.financement.path } <a href=https://framagit.org/ybon/trefle/tree/master/trefle/config/financements/{ this.financement.path } target=_blank> <i class="icon">edit</i></a></h3>
+    <financement content={ this.financement.data } class=with-lines></financement>
   </div>
-  <div if={ !this.rule }>
+  <div if={ !this.financement }>
     <p>Sélectionner une règle dans le menu.</p>
   </div>
+
+<financements-menu>
+<h4>{ this.opts.title }</h4>
+  <ul>
+    <li each={ props, id in this.parent.financements } if={ props.path.startsWith(this.opts.namespace) }>
+      <a href="#financements/{ id }" class='{ on: this.parent.parent.active && this.parent.parent.active.startsWith(id) }' title={ id }>
+          { props.name }
+      </a>
+    </li>
+  </ul>
+</financements-menu>
+-->
+
+
 
   <script>
     this.rules = []
@@ -41,14 +120,36 @@
       .then(this.load_data)
     }
 
+    this.financements = []
+    this.count_financements = 0
+    this.lt_two = false;
+
+    this.on('mount', () => this.load())
+
+    this.load = () => {
+      request('../explore/financements')
+      .then(data => {
+        this.financements = data
+        for (var i = 0; i < this.financements.length; i++) {
+          // Riot sucks on `tags`…
+          this.financements[i]['_tags'] = this.financements[i]['tags']
+          this.count_financements++
+        }
+        if (this.count_financements<2) this.lt_two=true;
+        this.update()
+      })
+    }
+
     this.mixin(View)
+
+    $(document).ready(function() {
+      $("#ref-main-div").css("height","100%");
+    })
+
+
   </script>
 
   <style scoped>
-    :scope.tools {
-      min-width: 1200px;
-      grid-template-columns: 1fr 4fr;
-    }
     h3 {
       font-variant: small-caps;
     }
@@ -56,9 +157,3 @@
 
 </rules>
 
-<rules-menu>
-<h4>{ this.opts.title }</h4>
-  <ul>
-    <li each={ props, id in this.parent.rules } if={ props.path.startsWith(this.opts.namespace) }><a href="#rules/{ id }" class='{ on: this.parent.parent.active && this.parent.parent.active.startsWith(id) }' title={ id }>{ props.name }</a></li>
-  </ul>
-</rules-menu>

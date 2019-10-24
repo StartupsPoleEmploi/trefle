@@ -118,7 +118,7 @@ p {
 }
 
 
-/*** FORMS ***/
+/*** FORMS ***//
 input[type=text],
 input[type=url] {
   line-height: 3em;
@@ -233,8 +233,8 @@ dl:nth-child(even) {
 /* Navbar stylesheet */
 
 .horizontal-nav {
-  min-width: 100%;
-  width: 100%;
+  min-width: 100vw;
+  width: 100vw;
   height: 5rem;
   min-height: 5rem;
   position: fixed;
@@ -248,6 +248,7 @@ dl:nth-child(even) {
 .vertical-nav {
   min-width: 14rem;
   width: 14rem;
+  min-height: 100vh;
   height: 100vh;
   position: fixed;
   top: 0;
@@ -286,13 +287,66 @@ dl:nth-child(even) {
 /* Page content stylesheet */
 
 .page-content {
-  width: calc(100% - 15rem);
-  margin-left: 15rem;
-  margin-top: 3rem;
+  width: 100vw;
+  position: absolute;
+  left: 15rem;
+  top: 6rem;
   transition: all 0.4s;
 }
 
 .page-title {
   padding-bottom: 3rem;
   font-variant: small-caps;
+}
+
+/* Référentiel page stylesheet */
+
+#ref-main-div {
+  border-radius: 5px;
+  width: 80vw;
+  height: 100vh;
+  margin: 1rem;
+  -webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.1);
+  -moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.1);
+  box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.1);
+}
+
+#ref-header-row {
+  padding-top: 3rem;
+}
+
+.ref-count-financements-text {
+  font-size: 1.5em;
+}
+#ref-count-financements-number {
+  font-size: 2.5em;
+  font-style: bolder;  
+}
+
+/*#ref-filter-row {
+}
+
+#ref-results-row {
+}*/
+
+.ref-results-count {
+  color: #000; /* Fallback for older browsers */
+  color: rgba(0, 0, 0, 0.5);
+}
+
+#ref-results-list {
+  padding-top: 2rem;
+}
+
+.ref-horizontal-separator {
+  border: none;
+  border-top: 1px solid #bfbfbf;
+  height: 1px;
+  width: 90%;
+  position:relative;
+}
+
+
+#financement-filter-select {
+  width: 15%;
 }
