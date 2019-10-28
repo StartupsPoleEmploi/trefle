@@ -14,13 +14,13 @@ Si le financement est de type «POEI»
     Alors appliquer les règles «POEI»
 
 Si l'intitulé du financement est «Financement individuel Agefiph»
-    Alors appliquer les règles «Agefiph.rules»
+    Alors appliquer les règles «Agefiph»
 
 Si l'intitulé du financement est «Formation en alternance : contrat de professionnalisation»
-    Alors appliquer les règles «contrat de professionnalisation.rules»
+    Alors appliquer les règles «contrat de professionnalisation»
 
 Si l'intitulé du financement est «Formation en alternance : contrat d'apprentissage»
-    Alors appliquer les règles «contrat d'apprentissage.rules»
+    Alors appliquer les règles «contrat d'apprentissage»
 
 Si l'intitulé du financement est «Aide individuelle à la formation»
     Alors appliquer les règles «AIF»
