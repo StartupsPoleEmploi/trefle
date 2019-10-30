@@ -1,12 +1,12 @@
 <rules>
-  <div id="ref-main-div" class="bg-light">  
+  <div id="ref-main-div" class="bg-white">  
     <div id="ref-header-row">
       <div class="container">
         <div class="row mb-4">
           <div id="ref-count-financements" class="col-md-3 col-sm-6 col-xs-12">
-            <span id="ref-count-financements-number" class="ref-count-financements-text">{ this.count_financements }&nbsp;</span>
-            <span class="ref-count-financements-text" if={ this.lt_two }>financement</span>
-            <span class="ref-count-financements-text" if={ !this.lt_two }>financements</span>
+            <span id="ref-count-financements-number" class="ref-results-count-number ref-count-financements-text">{ this.count_financements }</span>
+            <span class="ref-count-financements-text" if={ this.lt_two }>&nbsp;financement</span>
+            <span class="ref-count-financements-text" if={ !this.lt_two }>&nbsp;financements</span>
           </div>
           <div id="ref-create-financement" class="col-md-3 col-sm-6 col-xs-12 my-auto">
             <button href="#" class="btn btn-outline-success" disabled>Créer un financement</button>
@@ -16,7 +16,6 @@
               <div class="form-group mx-sm-3 mb-2">
                 <input class="form-control" id="financement-search-field" name="financement-search" type="search" placeholder="Rechercher">
               </div>
-              <button class="btn btn-success mb-2" id="financement-search-button">OK</button>
             </div>
           </div>
         </div>
@@ -37,16 +36,16 @@
     <hr class="ref-horizontal-separator">
     <div id="ref-result-row" class="container">
       <span class="ref-results-count" if={ this.lt_two }>
-          Résultat ({ this.count_financements })
+          Résultat (<span class="ref-results-count-number">{ this.count_financements }</span>)
       </span>
       <span class="ref-results-count" if={ !this.lt_two }>
-          Résultats ({ this.count_financements })
+          Résultats (<span class="ref-results-count-number">{ this.count_financements }</span>)
       </span>
       <div id="ref-results-list">
-        <ul each={ this.financements } class="container">
-          <li class="row">
+        <ul id="ul-ref-results-list" class="container">
+          <li each={ this.financements } class="mt-4 row">
             <span class="col-md-3 col-sm-12">
-              <strong>{ intitule }</strong>
+              <strong class="ref-fields">{ intitule }</strong>
             </span>
             <span class="col-md-8 col-sm-11">
               <button each={ tag in _tags} class="btn btn-outline-info" href="#" disabled>{ tag }</button>
@@ -63,39 +62,8 @@
 
     </div>
   </div>
-<!--
-  <aside>
-    <h2 class="page-title">Règles de gestion</h2>
-    <financements-menu title="Règles régionales" namespace="région"></financements-menu>
-    <financements-menu title="Règles nationales" namespace="règles nationales"></financements-menu>
-    <financements-menu title="Règles des organismes paritaires" namespace="organisme paritaire"></financements-menu>
-    <financements-menu title="Règles de rémunérations" namespace="rémunération"></financements-menu>
-    <financements-menu title="Règles de normalisation" namespace="normalisation"></financements-menu>
-  </aside>
-  <div if={ this.financement }>
-    <h3>{ this.financement.path } <a href=https://framagit.org/ybon/trefle/tree/master/trefle/config/financements/{ this.financement.path } target=_blank> <i class="icon">edit</i></a></h3>
-    <financement content={ this.financement.data } class=with-lines></financement>
-  </div>
-  <div if={ !this.financement }>
-    <p>Sélectionner une règle dans le menu.</p>
-  </div>
-
-<financements-menu>
-<h4>{ this.opts.title }</h4>
-  <ul>
-    <li each={ props, id in this.parent.financements } if={ props.path.startsWith(this.opts.namespace) }>
-      <a href="#financements/{ id }" class='{ on: this.parent.parent.active && this.parent.parent.active.startsWith(id) }' title={ id }>
-          { props.name }
-      </a>
-    </li>
-  </ul>
-</financements-menu>
--->
-
-
 
   <script>
-
     this.financements = []
     this.count_financements = 0
     this.lt_two = false;
@@ -113,14 +81,46 @@
         }
         if (this.count_financements<2) this.lt_two=true;
         this.update()
-      })
+      })      
     }
+    
     this.mixin(View)
 
     $(document).ready(function() {
       $("#ref-main-div").css("height","100%");
+      $("#ref-main-div").css("min-height","100vh");
+      $("#financement-search-field").focus().keyup(function(event){
+        var input = $(this);
+        var val = input.val();
+        if(val== ''){
+          $("#ul-ref-results-list li").show();
+          $(".ref-results-count-number").empty().text($("#ul-ref-results-list li:visible").length);   
+          return true;
+        }
+        var regexp = '\\b(.*)';
+        for (var i in val){
+            regexp += '('+val[i]+')';
+        }
+        regexp += '(.*)\\b';
+        $("#ul-ref-results-list li").show();
+        $("#ul-ref-results-list").find('li .ref-fields').each(function() {
+          var item = $(this);
+          var results = item.text().match(new RegExp(regexp,'i'));
+          if(results){
+            var string = '';
+            for(var i in results){
+              if(i > 0){  
+                string += results[i];
+              }
+            }
+            item.empty().append(string)
+          } else{
+            item.parent().parent().hide();
+          }
+        $(".ref-results-count-number").empty().append($("#ul-ref-results-list li:visible").length);  
+        }); 
+      });
     })
-
 
   </script>
 

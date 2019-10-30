@@ -289,8 +289,8 @@ dl:nth-child(even) {
 .page-content {
   width: 100vw;
   position: absolute;
-  left: 15rem;
-  top: 6rem;
+  left: 14rem;
+  top: 5rem;
   transition: all 0.4s;
 }
 
@@ -305,7 +305,7 @@ dl:nth-child(even) {
   border-radius: 5px;
   width: 80vw;
   height: 100vh;
-  margin: 1rem;
+  margin: 3rem;
   -webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.1);
   -moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.1);
   box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.1);
@@ -321,6 +321,12 @@ dl:nth-child(even) {
 #ref-count-financements-number {
   font-size: 2.5em;
   font-style: bolder;  
+}
+
+#ref-last-update {
+  font-size: 0.9em;
+  color: #000; /* Fallback for older browsers */
+  color: rgba(0, 0, 0, 0.5);
 }
 
 /*#ref-filter-row {
