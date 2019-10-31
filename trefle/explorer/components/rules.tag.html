@@ -48,7 +48,7 @@
               <strong class="ref-fields">{ intitule }</strong>
             </span>
             <span class="col-md-8 col-sm-11">
-              <button each={ tag in _tags} class="btn btn-outline-info" href="#" disabled>{ tag }</button>
+              <button each={ tag in _tags} class="ref-results-tags btn btn-outline-info" href="#" disabled>{ tag }</button>
             </span>
             <span class="col-md-1 col-sm-1 pull-right">              
               <button href="https://framagit.org/ybon/trefle/tree/master/trefle/config/financements.yml" target="_blank" class="text-dark btn btn-outline-light" disabled>
@@ -83,44 +83,83 @@
         this.update()
       })      
     }
-    
+
     this.mixin(View)
 
     $(document).ready(function() {
       $("#ref-main-div").css("height","100%");
       $("#ref-main-div").css("min-height","100vh");
       $("#financement-search-field").focus().keyup(function(event){
-        var input = $(this);
-        var val = input.val();
-        if(val== ''){
+        var search_field = $(this);
+        var search_field_value = search_field.val();
+        if(search_field_value== ''){
           $("#ul-ref-results-list li").show();
           $(".ref-results-count-number").empty().text($("#ul-ref-results-list li:visible").length);   
           return true;
         }
         var regexp = '\\b(.*)';
-        for (var i in val){
-            regexp += '('+val[i]+')';
+        for (var i in search_field_value){
+            regexp += '('+search_field_value[i]+')';
+        }
+        regexp += '(.*)';
+        $("#ul-ref-results-list li").show();
+        $("#ul-ref-results-list li").each(function() {
+          $(this).find(".ref-results-tags").each(function() {
+            var item = $(this);
+            var regexp_results = item.text().match(new RegExp(regexp,'i'));
+            if(regexp_results){
+              var matching_string = '';
+              for(var i in regexp_results){
+                if(i > 0){  
+                  matching_string += regexp_results[i];
+                }
+              }
+              item.parent().parent().show();
+              return false;
+            } else{
+              item.parent().parent().hide();
+            }
+            $(".ref-results-count-number").empty().append($("#ul-ref-results-list li:visible").length); 
+          })           
+        });
+      });
+    })
+
+    /*$(document).ready(function() {
+      $("#ref-main-div").css("height","100%");
+      $("#ref-main-div").css("min-height","100vh");
+      $("#financement-search-field").focus().keyup(function(event){
+        var search_field = $(this);
+        var search_field_value = search_field.val();
+        if(search_field_value== ''){
+          $("#ul-ref-results-list li").show();
+          $(".ref-results-count-number").empty().text($("#ul-ref-results-list li:visible").length);   
+          return true;
+        }
+        var regexp = '\\b(.*)';
+        for (var i in search_field_value){
+            regexp += '('+search_field_value[i]+')';
         }
         regexp += '(.*)\\b';
         $("#ul-ref-results-list li").show();
         $("#ul-ref-results-list").find('li .ref-fields').each(function() {
           var item = $(this);
-          var results = item.text().match(new RegExp(regexp,'i'));
+          var regexp_results = item.text().match(new RegExp(regexp,'i'));
           if(results){
-            var string = '';
-            for(var i in results){
+            var matching_string = '';
+            for(var i in regexp_results){
               if(i > 0){  
-                string += results[i];
+                matching_string += regexp_results[i];
               }
             }
-            item.empty().append(string)
+            item.empty().append(matching_string)
           } else{
             item.parent().parent().hide();
           }
-        $(".ref-results-count-number").empty().append($("#ul-ref-results-list li:visible").length);  
+          $(".ref-results-count-number").empty().append($("#ul-ref-results-list li:visible").length);  
         }); 
       });
-    })
+    })*/
 
   </script>
 
