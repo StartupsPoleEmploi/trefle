@@ -86,8 +86,13 @@ def then_check_organisme(context, name):
 @then(r"(?:le |la |l')(?P<label>.*) vaut (?P<value>.+)")
 def then_check_output(context, label, value):
     value = Pointer(value).get({})
-    key = LABELS[label][12:]  # Remove "financement." namespace.
-    assert context.result[key] == value, (f'{context.result[key]} '
+    if(LABELS[label].startswith("financement")):
+        key = LABELS[label][12:]  # Remove "financement." namespace.
+    if(LABELS[label].startswith("remuneration")):
+        key = LABELS[label][13:]  # Remove "remuneration." namespace.
+    assert context.result[key] == value, (f'key = {key} '
+                                          f'label = {LABELS[label]}'
+                                          f'{context.result[key]} '
                                           f'({type(context.result[key])}) != '
                                           f'{value} ({type(value)})')
 

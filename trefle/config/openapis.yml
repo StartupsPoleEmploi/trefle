@@ -61,6 +61,40 @@ paths:
               schema:
                 $ref: '#/components/schemas/errors'
   /api-moteur/0.7/financement: *baseendpoint
+  /remuneration: &baseremuendpoint
+    post:
+      summary: Lancer un calcul de remuneration
+      requestBody:
+        content:
+          'application/json':
+            schema:
+              $ref: '#/components/schemas/request'
+            examples:
+              compute-request:
+                $ref: '#/components/examples/compute-request'
+      responses:
+        200:
+          description: Calcul effectué avec succès
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/collection'
+              examples:
+                compute-success:
+                  $ref: '#/components/examples/compute-success'
+        422:
+          description: Les informations sont invalides
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errors'
+        400:
+          description: Le format de la requête est invalide
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errors'
+  /api-moteur/0.7/remuneration: *baseremuendpoint
 components:
   schemas:
     request:

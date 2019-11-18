@@ -331,7 +331,10 @@ class Condition(Step):
 
     def compile(self):
         super().compile()
+        # TODO add some context for knowing if financement or remuneration is the target
         keys = [pointer.key for pointer in self.params.values() if pointer.key]
+        # print(self.params.value())
+        # print(keys)
         for pointer in self.params.values():
             try:
                 pointer.resolve_labels(*keys)

@@ -204,7 +204,6 @@ def compute_modalites(context, financement):
     plafond_financier = context.get("financement.plafond_financier")
     reste_a_charge = context.get("financement.reste_a_charge", 0)
     plafond_prix_horaire = context.get("financement.plafond_prix_horaire", 0)
-    indemnite_conges_payes = context.get("financement.indemnite_conges_payes", 0)
     financement.reste_a_charge = reste_a_charge
     prise_en_charge = context.get("financement.prise_en_charge", None)
     if not prise_en_charge:
@@ -225,20 +224,28 @@ def compute_modalites(context, financement):
         plafond_financier = heures * plafond_prix_horaire
     financement.plafond_prix_horaire = plafond_prix_horaire
     financement.plafond_prise_en_charge = plafond_financier - reste_a_charge
+    financement.heures = heures
+    compute_remuneration(context, financement)
+
+
+def compute_remuneration(context, facility, facility_name="financement"):
     # FIXME: should we define default remuneration in common rules instead?
-    remuneration = context.get("financement.remuneration", 0)
-    plafond_remuneration = context.get("financement.plafond_remuneration", 0)
+    indemnite_conges_payes = context.get(facility_name + ".indemnite_conges_payes", 0)
+    remuneration = context.get(facility_name + ".remuneration", 0)
+    plafond_remuneration = context.get(facility_name + ".plafond_remuneration", 0)
     if plafond_remuneration and plafond_remuneration < remuneration:
         remuneration = plafond_remuneration
-    financement.remuneration = remuneration
-    financement.fin_remuneration = context.get("financement.fin_remuneration", None)
-    if not financement.fin_remuneration:
-        financement.fin_remuneration = context.get("beneficiaire.fin_allocation")
+    facility.remuneration = remuneration
+    facility.fin_remuneration = context.get(facility_name + ".fin_remuneration", None)
+    if not facility.fin_remuneration:
+        facility.fin_remuneration = context.get("beneficiaire.fin_allocation")
         +datetime.timedelta(days=1)
 
-    financement.indemnite_conges_payes = indemnite_conges_payes
-    financement.heures = heures
+    facility.indemnite_conges_payes = indemnite_conges_payes
+    # TODO: some keys are not remuneration topic, move these part away
     keys = [
+        "intitule",
+        "intitule_remuneration",
         "remuneration_texte",
         "prise_en_charge_texte",
         "demarches",
@@ -246,24 +253,23 @@ def compute_modalites(context, financement):
         "description",
         "remuneration_annee_2",
         "remuneration_annee_3",
-        "intitule",
         "en_savoir_plus",
     ]
     for key in keys:
-        name = f"financement.{key}"
+        name = facility_name + f".{key}"
         if name in context:
-            financement[key] = context[name]
-    if financement.get("demarches"):
-        financement.demarches = financement.demarches.replace("⏎", "\n")
-    if financement.get("rff"):
-        financement.debut_rff = financement.fin_remuneration + datetime.timedelta(
+            facility[key] = context[name]
+    if facility.get("demarches"):
+        facility.demarches = facility.demarches.replace("⏎", "\n")
+    if facility.get("rff"):
+        facility.debut_rff = facility.fin_remuneration + datetime.timedelta(
             days=1
         )
-        financement.fin_rff = context.get("formation.fin")
+        facility.fin_rff = context.get("formation.fin")
 
 
-def get_root_rule(context, financement):
-    name = financement.racine
+def get_root_rule(context, facility):
+    name = facility.racine
     if name.endswith(".rules"):
         return name
     name = LABELS.get(name, name)
@@ -301,6 +307,35 @@ def check_financement(context, financement):
         name = f"financement.{key}"
         if name not in SCHEMA or not SCHEMA[name].get("public"):
             del financement[key]
+
+
+def check_remuneration(context, remuneration):
+    statuses = []
+    remuneration.explain = []
+    context["remuneration.intitule_remuneration"] = remuneration.intitule
+    context["remuneration.tags"] = remuneration.tags
+    context["financement.remuneration"] = 0  # not nullable for remuneration
+    rule_name = get_root_rule(context, remuneration)
+    if not rule_name:
+        return
+    for rule in RULES[rule_name]:
+        # TODO: status only available for conditions before action ??
+        statuses.extend(Rule.process(rule, context))
+    remuneration.explain = statuses
+
+    # get value from financement context
+    for key in SCHEMA:
+        if key.startswith("remuneration"):
+            if(context.get("financement." + key[13:])):
+                context[key] = context.get("financement." + key[13:])
+
+    compute_remuneration(context, remuneration, facility_name="remuneration")
+    # load_organisme_contact_details(context, remuneration)
+    # remuneration.format()
+    for key in list(remuneration.keys()):
+        name = f"remuneration.{key}"
+        if name not in SCHEMA or not SCHEMA[name].get("public"):
+            del remuneration[key]
 
 
 def search_term(list_, term):

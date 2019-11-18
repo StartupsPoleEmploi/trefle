@@ -14,6 +14,7 @@ from ..rules import Rule, SCHEMA, LABELS, RULES, IDCC
 
 CONSTANTS = {}
 FINANCEMENTS = []
+REMUNERATIONS = []
 ORGANISMES = {}
 ROOT = Path(__file__).parent
 RAW_RULES = {}
@@ -65,6 +66,14 @@ def load_financements():
         props.setdefault("intitule", id_)
         props["eligible"] = False
         FINANCEMENTS.append(props)
+
+
+def load_remunerations():
+    with (ROOT / "remunerations.yml").open() as f:
+        data = yaml.safe_load(f.read())
+    for id_, props in data.items():
+        props.setdefault("intitule", id_)
+        REMUNERATIONS.append(props)
 
 
 def load_naf(data):
@@ -143,6 +152,10 @@ class Organisme(SmartDict):
     ...
 
 
+class Remuneration(SmartDict):
+    ...
+
+
 def init():
     print("Initializing config")
     with (ROOT / "schema.yml").open() as f:
@@ -150,6 +163,7 @@ def init():
     for id_, rules in load_dir_rules(ROOT / "rules"):
         RULES[id_] = rules
     load_financements()
+    load_remunerations()
     with (ROOT / "organismes.yml").open() as f:
         for name, data in yaml.safe_load(f.read()).items():
             organisme = data
