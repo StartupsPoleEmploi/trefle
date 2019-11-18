@@ -2,12 +2,16 @@ from http import HTTPStatus
 
 from roll import HttpError, Roll
 from roll.extensions import cors
+
 import ujson as json
 
-from . import VERSION, simulate, get_financements
-from .config import FINANCEMENTS, GLOSSARY, NAF, IDCC, RAW_RULES, SCHEMA
-from .debugging import data_from_lbf_url, make_scenario, SCENARIOS
+from . import VERSION, get_financements, get_remunerations, simulate
+from . import routine
+from .config import FINANCEMENTS, GLOSSARY, IDCC, NAF, RAW_RULES, SCHEMA
+from .context import Context
+from .debugging import SCENARIOS, data_from_lbf_url, make_scenario
 from .exceptions import DataError
+from .helpers import flatten
 from .legacy import simulate_legacy
 from .loggers import log_simulate, logger
 from .openapis import OPENAPI

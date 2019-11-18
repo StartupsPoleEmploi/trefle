@@ -1,7 +1,7 @@
+import datetime
 import json
 import hashlib
 import hmac
-import datetime
 from urllib.parse import urlencode
 from unidecode import unidecode
 
@@ -309,7 +309,7 @@ def search_term(list_, term):
         if k.startswith(term):
             data[k] = list_[k]
         elif isinstance(list_[k], dict):
-                for v in list_[k]:
-                    if fold_name(term) in fold_name(list_[k][v]):
-                        data[k] = list_[k]
+            for v in list_[k]:
+                if fold_name(term) in fold_name(list_[k][v]):
+                    data[k] = list_[k]
     return data
