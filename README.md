@@ -21,6 +21,8 @@
 
 ## Run a simulation
 
+  Swagger API DOC : https://app.swaggerhub.com/apis/labonneformation/moteur-financement-formation
+
     trefle simulate var=value var2=value2…
     # Or from an LBF URL
     trefle simulate --url=https://xxx?a=yyy
@@ -32,6 +34,9 @@
     trefle simulate var=value var2=value2… --show-context
     # Trace the rules to see which condition passed or failed
     trefle simulate var=value var2=value2… --trace
+
+    Exemple:
+    trefle simulate --context='{"beneficiaire":{"inscrit_pe":true,"age":40},"formation":{ "codes_financeur":[2],"region":27,"heures":4000}}' --trace
 
 ## Run the dev server
 
