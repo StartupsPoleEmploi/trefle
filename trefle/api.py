@@ -74,6 +74,7 @@ async def simulate_(request, response):
     log_simulate(context, financements=financements)
 
 
+# TODO : add pointer error for bad region number + test
 @app.route("/remuneration", methods=["POST"])
 async def remuneration_(request, response):
     data = request.json
