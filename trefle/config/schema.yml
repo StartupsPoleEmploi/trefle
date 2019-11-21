@@ -1043,6 +1043,81 @@ formation:
   individuels:
     type: boolean
     label: formation ouverte aux bénéficiaires individuels
+remuneration: &remuneration
+  intitule_remuneration: # add _remuneration to not overlap financement.intitule
+    description: le nom de la règle de rémuneration
+    type: string
+    public: true
+    label: intitulé de la régle de rémunération
+  remuneration:
+    description: rémunération applicable
+    type: number
+    format: float
+    public: true
+    nullable: true
+    label: rémunération applicable
+  remuneration_annee_2:
+    description: rémunération applicable la deuxième année
+    type: number
+    format: float
+    public: true
+    nullable: true
+    label: rémunération applicable la deuxième année
+  remuneration_annee_3:
+    description: rémunération applicable la troisième année
+    type: number
+    format: float
+    public: true
+    nullable: true
+    label: rémunération applicable la troisième année
+  remuneration_texte:
+    description: texte de la rémunération
+    type: string
+    public: true
+    nullable: true
+    label: texte de la rémunération
+  indemnite_conges_payes:
+    description: indemnité compensatrice de congés payés
+    type: integer
+    format: int32
+    public: true
+    nullable: true
+    label: indemnité compensatrice de congés payés
+  plafond_remuneration:
+    description: plafond de rémunération applicable
+    type: number
+    format: money
+    public: true
+    nullable: true
+    label: plafond de rémunération applicable
+  rff:
+    description: montant de la RFF si applicable
+    type: number
+    format: float
+    public: true
+    nullable: true
+    label: RFF applicable
+  debut_rff:
+    description: date de début de la RFF applicable
+    type: string
+    format: date
+    public: true
+    nullable: true
+    label: date de début de la RFF applicable
+  fin_rff:
+    description: date de fin de la RFF applicable
+    type: string
+    format: date
+    public: true
+    nullable: true
+    label: date de fin de la RFF applicable
+  fin_remuneration:
+    description: date de fin de la rémunération applicable
+    type: string
+    format: date
+    nullable: true
+    public: true
+    label: date de fin de la rémunération applicable
 financement:
   intitule:
     description: le nom du financement
@@ -1104,47 +1179,6 @@ financement:
     type: string
     public: true
     label: texte des démarches
-  remuneration:
-    description: rémunération applicable
-    type: number
-    format: float
-    public: true
-    nullable: true
-    label: rémunération applicable
-  remuneration_annee_2:
-    description: rémunération applicable la deuxième année
-    type: number
-    format: float
-    public: true
-    nullable: true
-    label: rémunération applicable la deuxième année
-  remuneration_annee_3:
-    description: rémunération applicable la troisième année
-    type: number
-    format: float
-    public: true
-    nullable: true
-    label: rémunération applicable la troisième année
-  remuneration_texte:
-    description: texte de la rémunération
-    type: string
-    public: true
-    nullable: true
-    label: texte de la rémunération
-  indemnite_conges_payes:
-    description: indemnité compensatrice de congés payés
-    type: integer
-    format: int32
-    public: true
-    nullable: true
-    label: indemnité compensatrice de congés payés
-  plafond_remuneration:
-    description: plafond de rémunération applicable
-    type: number
-    format: money
-    public: true
-    nullable: true
-    label: plafond de rémunération applicable
   prise_en_charge:
     description: valeur définie seulement si le prix horaire de la formation est défini
     type: number
@@ -1198,34 +1232,7 @@ financement:
     format: float
     public: true
     label: reste à charge applicable
-  rff:
-    description: montant de la RFF si applicable
-    type: number
-    format: float
-    public: true
-    nullable: true
-    label: RFF applicable
-  debut_rff:
-    description: date de début de la RFF applicable
-    type: string
-    format: date
-    public: true
-    nullable: true
-    label: date de début de la RFF applicable
-  fin_rff:
-    description: date de fin de la RFF applicable
-    type: string
-    format: date
-    public: true
-    nullable: true
-    label: date de fin de la RFF applicable
-  fin_remuneration:
-    description: date de fin de la rémunération applicable
-    type: string
-    format: date
-    nullable: true
-    public: true
-    label: date de fin de la rémunération applicable
+  <<: *remuneration
   ressources:
     description: liste d'adresses Internet pour en savoir plus sur le sujet
     type: array

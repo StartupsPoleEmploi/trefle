@@ -2,12 +2,16 @@ from http import HTTPStatus
 
 from roll import HttpError, Roll
 from roll.extensions import cors
+
 import ujson as json
 
-from . import VERSION, simulate, get_financements
-from .config import FINANCEMENTS, GLOSSARY, NAF, IDCC, RAW_RULES, SCHEMA
-from .debugging import data_from_lbf_url, make_scenario, SCENARIOS
+from . import VERSION, get_financements, get_remunerations, simulate
+from . import routine
+from .config import FINANCEMENTS, GLOSSARY, IDCC, NAF, RAW_RULES, SCHEMA
+from .context import Context
+from .debugging import SCENARIOS, data_from_lbf_url, make_scenario
 from .exceptions import DataError
+from .helpers import flatten
 from .legacy import simulate_legacy
 from .loggers import log_simulate, logger
 from .openapis import OPENAPI
@@ -49,6 +53,77 @@ async def simulate_(request, response):
     if eligible is not None:
         financements = [f for f in financements if f["eligible"] == eligible]
     else:
+        financements = sorted(
+            financements, key=lambda value: value["eligible"], reverse=True
+        )
+
+    explain = request.query.bool("explain", False)
+    for financement in financements:
+        financement["explain"] = (
+            [s.json for s in financement["explain"]] if explain else None
+        )
+    body = {"financements": financements}
+    if request.query.bool("context", False):
+        body["context"] = {
+            k: v for k, v in context.items()
+            if k in SCHEMA and "label" in SCHEMA[k]}
+    if request.query.bool("scenario", False):
+        body["scenario"] = make_scenario(context, financements)
+    response.json = body
+
+    log_simulate(context, financements=financements)
+
+
+@app.route("/remuneration", methods=["POST"])
+async def remuneration_(request, response):
+    data = request.json
+    remunerations = get_remunerations(tags=request.query.list("tags", []))
+    try:
+        flatten(data)
+        context = Context(data.copy())
+        routine.extrapolate_context(context)
+        routine.preprocess(context)
+        for remuneration in remunerations:
+            copy = context.copy()
+            routine.check_remuneration(context, remuneration)
+            data.update(copy.cleaned_data)
+
+        # FIXME (limits of the single-store-all context object)
+        # Clean keys not meant to be exposed
+        for key in list(data.keys()):
+            if key.startswith("remuneration"):
+                del data[key]
+
+    except DataError as err:
+        error = {err.key: err.error}
+        log_simulate(context, errors=error)
+        raise HttpError(HTTPStatus.UNPROCESSABLE_ENTITY, error)
+
+    # TODO: explain only for financement see routine.py check_remuneration
+    # explain = request.query.bool("explain", False)
+    # for remuneration in remunerations:
+    #     remuneration["explain"] = (
+    #         [s.json for s in remunerations["explain"]] if explain else None
+    #     )
+
+    body = {"remunerations": remunerations}
+    # if request.query.bool("context", False):
+    #     body["context"] = {
+    #         k: v for k, v in context.items()
+    #         if k in SCHEMA and "label" in SCHEMA[k]}
+    response.json = body
+    """
+    try:
+        await simulate(context, financements)
+    except DataError as err:
+        error = {err.key: err.error}
+        log_simulate(context, errors=error)
+        raise HttpError(HTTPStatus.UNPROCESSABLE_ENTITY, error)
+
+    eligible = request.query.bool("eligible", None)
+    if eligible is not None:
+        financements = [f for f in financements if f["eligible"] == eligible]
+    else:
         financements = sorted(financements, key=lambda value: value["eligible"],
                               reverse=True)
 
@@ -67,6 +142,7 @@ async def simulate_(request, response):
     response.json = body
 
     log_simulate(context, financements=financements)
+    """
 
 
 app.route("/legacy", methods=["POST"])(simulate_legacy)

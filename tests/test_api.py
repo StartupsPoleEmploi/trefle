@@ -12,6 +12,7 @@ from openapi_spec_validator import validate_spec
 
 
 from trefle.config import FINANCEMENTS
+from trefle.config import REMUNERATIONS
 from trefle import VERSION
 
 pytestmark = pytest.mark.asyncio
@@ -50,6 +51,33 @@ async def test_simulate_endpoint(client):
 
     validator = ResponseValidator(spec)
     request = MockRequest("http://trefle.pole-emploi.fr", "post", "/financement")
+    response = MockResponse(resp.body, resp.status.value)
+    result = validator.validate(request, response)
+    result.raise_for_errors()
+
+
+async def test_remuneration_endpoint(client):
+    resp = await client.get("/schema")
+    spec = create_spec(json.loads(resp.body))
+
+    resp = await client.post(
+        "/remuneration",
+        body={
+            "beneficiaire.age": 20,
+            "formation.region": 27,
+            "formation.codes_financeur": [2],
+        },
+    )
+    assert resp.status == HTTPStatus.OK
+    assert "remunerations" in json.loads(resp.body)
+    remunerations = json.loads(resp.body)["remunerations"]
+    assert remunerations
+    print(remunerations[0])
+    assert "remuneration" in remunerations[0]
+    assert "Version" in resp.headers
+
+    validator = ResponseValidator(spec)
+    request = MockRequest("http://trefle.pole-emploi.fr", "post", "/remuneration")
     response = MockResponse(resp.body, resp.status.value)
     result = validator.validate(request, response)
     result.raise_for_errors()

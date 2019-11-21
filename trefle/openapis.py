@@ -53,3 +53,4 @@ def add_schema(name, data=None):
 add_schema("beneficiaire")
 add_schema("formation")
 add_schema("financement")
+add_schema("remuneration")

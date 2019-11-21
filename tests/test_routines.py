@@ -4,10 +4,10 @@ from pathlib import Path
 
 import pytest
 
-from trefle.config import IDCC
-from trefle.context import Context
 from trefle import exceptions
 from trefle import routine
+from trefle.config import IDCC
+from trefle.context import Context
 
 
 @pytest.mark.asyncio

@@ -1,5 +1,8 @@
 Si les codes financeur de la formation contiennent «Conseil régional»
 
+    Si l'allocation du bénéficiaire est définie
+        Alors la rémunération applicable est égale au montant de l'allocation du bénéficiaire
+
     # Par défaut
     Si l'âge du bénéficiaire est inférieur à 18
     Et la rémunération applicable est inférieure à 455.01

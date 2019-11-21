@@ -37,3 +37,10 @@ def get_financements(tags=None):
     for tag in tags or []:
         financements = [f for f in financements if tag in f["tags"]]
     return financements
+
+
+def get_remunerations(tags=None):
+    remunerations = [config.Remuneration(f) for f in config.REMUNERATIONS]
+    for tag in tags or []:
+        remunerations = [f for f in remunerations if tag in f["tags"]]
+    return remunerations
