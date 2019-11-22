@@ -7,7 +7,7 @@
     <rules-menu title="Règles de normalisation" namespace="normalisation"></rules-menu>
   </aside>
   <div if={ this.rule }>
-    <h3>{ this.rule.path } <a href=https://framagit.org/ybon/trefle/tree/master/trefle/config/rules/{ this.rule.path } target=_blank> <i class="icon">edit</i></a></h3>
+    <h3>{ this.rule.path } <a href=https://git.beta.pole-emploi.fr/open-source/trefle/tree/master/trefle/config/rules/{ this.rule.path } target=_blank> <i class="icon">edit</i></a></h3>
     <rule content={ this.rule.data } class=with-lines></rule>
   </div>
   <div if={ !this.rule }>

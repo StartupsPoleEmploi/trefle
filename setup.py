@@ -9,11 +9,11 @@ def is_pkg(line):
 with Path("requirements.txt").open() as reqs:
     install_requires = [l for l in reqs.read().split("\n") if is_pkg(l)]
 
-VERSION = (0, 7, 15)
+VERSION = (0, 7, 16)
 
 __author__ = "Yohan Boniface"
 __contact__ = "yohan.boniface@data.gouv.fr"
-__homepage__ = "https://framagit.org/ybon/trefle"
+__homepage__ = "https://git.beta.pole-emploi.fr/open-source/trefle"
 __version__ = ".".join(map(str, VERSION))
 
 setup(
