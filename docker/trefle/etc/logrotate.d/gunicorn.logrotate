@@ -1,0 +1,11 @@
+/srv/log/* {
+    weekly
+    rotate 52
+    missingok
+    notifempty
+    compress
+    sharedscripts
+    postrotate
+        killall -s USR1 gunicorn
+    endscript
+}

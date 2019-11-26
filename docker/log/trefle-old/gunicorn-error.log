@@ -1,0 +1,35 @@
+[2019-11-25 17:11:59 +0000] [8] [INFO] Starting gunicorn 20.0.2
+[2019-11-25 17:11:59 +0000] [8] [INFO] Listening at: http://0.0.0.0:8000 (8)
+[2019-11-25 17:11:59 +0000] [8] [INFO] Using worker: roll.worker.Worker
+[2019-11-25 17:11:59 +0000] [12] [INFO] Booting worker with pid: 12
+[2019-11-25 17:11:59 +0000] [13] [INFO] Booting worker with pid: 13
+[2019-11-25 17:11:59 +0000] [14] [INFO] Booting worker with pid: 14
+[2019-11-25 17:11:59 +0000] [15] [INFO] Booting worker with pid: 15
+[2019-11-25 17:43:14 +0000] [8] [INFO] Starting gunicorn 20.0.2
+[2019-11-25 17:43:14 +0000] [8] [INFO] Listening at: http://0.0.0.0:8000 (8)
+[2019-11-25 17:43:14 +0000] [8] [INFO] Using worker: roll.worker.Worker
+[2019-11-25 17:43:14 +0000] [12] [INFO] Booting worker with pid: 12
+[2019-11-25 17:43:14 +0000] [13] [INFO] Booting worker with pid: 13
+[2019-11-25 17:43:14 +0000] [14] [INFO] Booting worker with pid: 14
+[2019-11-25 17:43:14 +0000] [15] [INFO] Booting worker with pid: 15
+[2019-11-25 18:15:37 +0000] [8] [INFO] Starting gunicorn 20.0.2
+[2019-11-25 18:15:37 +0000] [8] [INFO] Listening at: http://0.0.0.0:8000 (8)
+[2019-11-25 18:15:37 +0000] [8] [INFO] Using worker: roll.worker.Worker
+[2019-11-25 18:15:37 +0000] [12] [INFO] Booting worker with pid: 12
+[2019-11-25 18:15:37 +0000] [13] [INFO] Booting worker with pid: 13
+[2019-11-25 18:15:37 +0000] [14] [INFO] Booting worker with pid: 14
+[2019-11-25 18:15:37 +0000] [15] [INFO] Booting worker with pid: 15
+[2019-11-25 18:32:20 +0000] [9] [INFO] Starting gunicorn 20.0.2
+[2019-11-25 18:32:20 +0000] [9] [INFO] Listening at: http://0.0.0.0:8000 (9)
+[2019-11-25 18:32:20 +0000] [9] [INFO] Using worker: roll.worker.Worker
+[2019-11-25 18:32:20 +0000] [13] [INFO] Booting worker with pid: 13
+[2019-11-25 18:32:20 +0000] [14] [INFO] Booting worker with pid: 14
+[2019-11-25 18:32:20 +0000] [15] [INFO] Booting worker with pid: 15
+[2019-11-25 18:32:20 +0000] [16] [INFO] Booting worker with pid: 16
+[2019-12-02 17:06:03 +0000] [8] [INFO] Starting gunicorn 20.0.4
+[2019-12-02 17:06:03 +0000] [8] [INFO] Listening at: http://0.0.0.0:8000 (8)
+[2019-12-02 17:06:03 +0000] [8] [INFO] Using worker: roll.worker.Worker
+[2019-12-02 17:06:03 +0000] [11] [INFO] Booting worker with pid: 11
+[2019-12-02 17:06:03 +0000] [12] [INFO] Booting worker with pid: 12
+[2019-12-02 17:06:03 +0000] [13] [INFO] Booting worker with pid: 13
+[2019-12-02 17:06:03 +0000] [14] [INFO] Booting worker with pid: 14
