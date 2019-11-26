@@ -1,4 +1,6 @@
-#TODO : test and replace hard URL GIT and hard OLD_VERSION
+# TODO : test and replace hard URL GIT and hard OLD_VERSION
+# doc for use kaniko in gitlab env : https://docs.gitlab.com/ee/ci/docker/using_kaniko.html
+# for registry and env var in general : https://docs.gitlab.com/ee/ci/variables/README.html#predefined-environment-variables
 build:
   image:
     name: gcr.io/kaniko-project/executor:debug
