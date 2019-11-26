@@ -1,0 +1,22 @@
+Si le financement est de type «CPF»
+    Alors appliquer les règles «CPF»
+    Et le texte de la rémunération vaut «Dans la limite de 30 euros de l'heure durant la formation»
+    Et le prix horaire plafond applicable vaut 15
+
+    Si c'est un bilan de compétences
+        Alors le plafond financier applicable vaut 1750
+
+    Si c'est une formation VAE
+        Alors le plafond financier applicable vaut 3500
+
+Si l'intitulé du financement est «Projet de transition professionnelle»
+    Alors appliquer les règles «Projet de transition professionnelle»
+
+Si l'intitulé du financement est «plan de développement des compétences»
+    Alors appliquer les règles «plan de développement des compétences»
+    Et le prix horaire plafond applicable vaut 40
+    Et le texte de description vaut «Le financement de cette formation peut être réalisé dans le cadre du plan de développement de compétences de votre entreprise.»
+    Et le texte des démarches vaut «Si votre entreprise comprend moins de 50 salariés, le financement de cette formation peut se réaliser par votre OPCO. Pour les entreprises de plus de 50 salariés, contactez votre entreprise pour les conditions de prise en charge et les modalités de mise en œuvre.»
+
+
+

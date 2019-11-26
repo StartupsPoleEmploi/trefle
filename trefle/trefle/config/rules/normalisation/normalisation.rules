@@ -1,0 +1,112 @@
+Si c'est un demandeur d'emploi
+Et la liste des codes CPF de la formation pour un demandeur d'emploi est définie
+    Alors la liste des codes CPF de la formation est la liste des codes CPF de la formation pour un demandeur d'emploi
+Si c'est une formation éligible COPANEF
+    Alors c'est une formation éligible CPF
+Si la liste des codes FORMACODE de la formation contient au moins un des codes FORMACODE FIMO
+    Alors c'est une formation FIMO
+Si le code CERTIFINFO de la formation fait partie des codes CERTIFINFO TOSA
+    Alors c'est une formation TOSA
+Si le code CERTIFINFO de la formation fait partie des codes CERTIFINFO TOEFL
+    Alors c'est une formation TOEFL
+Si le code CERTIFINFO de la formation fait partie des codes CERTIFINFO TOEIC
+    Alors c'est une formation TOEIC
+Si le code CERTIFINFO de la formation fait partie des codes CERTIFINFO BULATS
+    Alors c'est une formation BULATS
+Si le code CERTIFINFO de la formation fait partie des codes CERTIFINFO CACES
+    Alors c'est une formation CACES
+Si le code CERTIFINFO de la formation fait partie des codes CERTIFINFO BEC
+    Alors c'est une formation BEC
+Si le code CERTIFINFO de la formation fait partie des codes CERTIFINFO pour un SPI
+    Alors c'est un stage de préparation à l'installation
+Si le code CERTIFINFO de la formation fait partie des codes CERTIFINFO pour les permis de conduire
+    Alors c'est un permis de conduire
+Si le code CERTIFINFO de la formation fait partie des codes CERTIFINFO pour un permis B
+    Alors c'est un permis B
+Si le code CERTIFINFO de la formation fait partie des codes CERTIFINFO pour des capacités de transport lourd
+    Alors c'est une capacité de transport lourd
+Si le code CERTIFINFO de la formation fait partie des codes CERTIFINFO pour un bilan de compétences
+    Alors c'est un bilan de compétences
+Si la liste des codes CPF de la formation contient au moins un des codes CPF CléA
+    Alors c'est une formation CléA
+Si la liste des codes CPF de la formation contient au moins un des codes CPF VAE
+Ou la liste des codes FORMACODE de la formation contient au moins un code parmi [15064,44591]
+Ou le code CERTIFINFO de la formation vaut 83899
+    Alors c'est une formation VAE
+Si la liste des domaines FORMACODE de la formation contient 152
+    Alors c'est une formation langues
+    Si la liste des codes FORMACODE de la formation contient au moins un code parmi [15235,15226]
+        Alors c'est une formation FLE
+    Si la liste des codes FORMACODE de la formation ne contient aucun code parmi [15235,15226]
+        Alors c'est une formation langues étrangères
+Si la liste des domaines FORMACODE de la formation contient 150
+    Alors c'est une formation en développement professionnel
+# http://lheo.gouv.fr/langage#dict-AIS
+# TODO verifier si présence de code certifinfo == certifiante
+Si le code AIS de la formation fait partie des codes AIS certifiants
+    Alors c'est une formation certifiante
+Si ce n'est pas une formation certifiante
+    Alors c'est une formation professionnalisante
+Si les codes financeur de la formation ne contiennent aucun des codes financeur collectif
+    Alors c'est une formation ouverte aux bénéficiaires individuels
+Si la durée en heures de la formation est inférieure ou égale à 400
+Et les codes financeur de la formation contiennent au moins un code parmi [«OPCO»], ou l'intitulé normé de la formation contient «POEC»
+    Alors c'est une préparation opérationnelle à l'emploi collective
+Si l'intitulé de la formation contient «POEI»
+    Alors c'est une préparation opérationnelle à l'emploi individuelle
+Si la liste des codes FORMACODE de la formation contient au moins un code parmi [50205,50229,50250]
+    Alors c'est une licence
+Si la liste des codes FORMACODE de la formation contient au moins un code parmi [50170,50171,32062,34024,23613,22257,21054,21059,22024,24054,22211,45554,31606,31654,34030,46348,46236,24231]
+    Alors c'est un niveau ingénieur
+Si la liste des codes FORMACODE de la formation contient au moins un code parmi [50139,50105,50132]
+    Alors c'est un master
+Si le code CERTIFINFO de la formation fait partie des codes CERTIFINFO BTS
+Ou la liste des codes FORMACODE de la formation contient au moins un code parmi [50320,50323]
+    Alors c'est un BTS
+Si l'intitulé normé de la formation contient «BACHELOR»
+Ou l'intitulé normé de la formation contient «CAPACITE»
+Ou l'intitulé normé de la formation contient «DAEU»
+Ou l'intitulé normé de la formation contient «DEUST»
+Ou l'intitulé normé de la formation contient «DIPLOMEDACCESAUXETUDESUNIVERSITAIRES»
+Ou l'intitulé normé de la formation contient «MASTERE»
+Ou c'est un master
+Ou c'est un BTS
+Ou c'est une licence
+Ou c'est un niveau ingénieur
+Ou le niveau de sortie de la formation fait partie de [«III»,«II»,«I»]
+Ou le niveau de sortie de la formation fait partie de [6]
+    Alors c'est une formation de l'enseignement supérieur
+Si c'est un demandeur d'emploi
+    Alors appliquer les règles «éligibilité RFF»
+Si c'est un bénéficiaire de droit privé
+Si c'est une préparation opérationnelle à l'emploi collective
+Ou c'est une préparation opérationnelle à l'emploi individuelle
+    Alors c'est une préparation opérationnelle à l'emploi
+Si l'intitulé normé de la formation contient «E2C»
+Ou l'intitulé normé de la formation contient «DEUXIEMECHANCE»
+Ou l'intitulé normé de la formation contient «2ECHANCE»
+Ou l'intitulé normé de la formation contient «2EMECHANCE»
+Ou l'intitulé normé de la formation contient «ER2C»
+Ou la liste des codes FORMACODE de la formation contient au moins un code parmi [98808,15041,38808,15041,15061,15062]
+    Alors c'est une formation E2C
+Si l'intitulé normé de la formation contient «DAEU»
+Ou l'intitulé normé de la formation contient «DIPLOMEDACCESAUXETUDESUNIVERSITAIRES»
+    Alors c'est un diplôme d'accès aux études universitaires
+Si l'intitulé normé de la formation contient «CARED»
+    Alors c'est une formation CARED
+Si l'intitulé normé de la formation contient «PCP»
+Ou l'intitulé normé de la formation contient «SEGMENT»
+Ou l'intitulé normé de la formation contient «ETAPE»
+Ou l'intitulé normé de la formation contient «EXPLORATIONDUPROJETPROFESSIONNEL»
+Ou l'intitulé normé de la formation contient «ELABORATIONDUPROJETPROFESSIONNEL»
+Ou l'intitulé normé de la formation contient «STABILISATIONDUPROJETPROFESSIONNEL»
+    Alors c'est une formation PCP
+Si le code RNCP de la formation est défini
+Et le code RNCP de la formation est supérieur à 0
+    Alors c'est une formation RNCP
+Si la liste des codes des modalités pédagogiques contient au moins un code parmi [«96133»,«96131»,«96130»,«96129»]
+    Alors c'est une formation ouverte à distance
+Si l'intitulé normé de la formation contient «APPRENTISSAGE»
+ou l'intitulé normé de la formation contient «CONTRATDAPPRENTISSAGE»
+    Alors c'est un contrat d'apprentissage
+

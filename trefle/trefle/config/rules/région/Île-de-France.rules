@@ -1,0 +1,109 @@
+Si le financement est de type «E2C»
+    Alors appliquer les règles «E2C»
+
+Si l'intitulé du financement est «Accès des demandeurs d’emploi aux métiers agricoles»
+    Alors appliquer les règles «ADEMA»
+
+Si le financement est de type «AFC»
+    Alors appliquer les règles «action collective»
+
+Si le financement est de type «FAJ»
+    Alors appliquer les règles «FAJ»
+
+Si le financement est de type «POEC»
+    Alors appliquer les règles «POEC»
+
+Si le financement est de type «POEI»
+    Alors appliquer les règles «POEI»
+
+Si l'intitulé du financement est «Financement individuel Agefiph»
+    Alors appliquer les règles «Agefiph»
+
+Si l'intitulé du financement est «Formation en alternance : contrat de professionnalisation»
+    Alors appliquer les règles «contrat de professionnalisation»
+
+Si l'intitulé du financement est «Formation en alternance : contrat d'apprentissage»
+    Alors appliquer les règles «contrat d'apprentissage»
+
+Si l'intitulé du financement est «Aide individuelle à la formation»
+
+    Si la région du bénéficiaire est «Île-de-France»
+    Et la liste des codes FORMACODE de la formation ne contient aucun code parmi [43441,44041,44083,44084,44050,44092,44072,44008,43491,43448,43497,43490,43439,43493,43470,43092,43476,44004,44026,43436]
+    Et le code CERTIFINFO de la formation ne fait pas partie de [54912,54913,54917,87189,87185,87187]
+        Alors appliquer les règles «AIF»
+        Et le texte de la prise en charge vaut «Formation totalement prise en charge, sous réserve d'acceptation par Pôle emploi»
+
+
+Si l'intitulé du financement est «Formations sanitaire et social d'aide-soignant ou d'auxiliaire de puériculture région Île-de-France»
+
+    Si c'est un demandeur d'emploi
+    Et la région du bénéficiaire est «Île-de-France»
+    Et la région de la formation est «Île-de-France»
+    Et les codes financeur de la formation contiennent «Conseil régional»
+    Et c'est une formation certifiante
+    Et c'est un bénéficiaire ayant achevé un contrat aidé
+    Et la liste des codes FORMACODE de la formation contient au moins un code parmi [43436,43441]
+        Alors le financement est éligible
+        Et appliquer les règles «rémunérations applicables»
+        Et le texte de description vaut «La prise en charge des frais pédagogiques d'aide-soignant ou d'auxiliaire de puériculture est assurée par le Conseil régional Île-de-France dans la limite du nombre de places allouées au centre de formation.⏎Pour tout renseignement sur les formations sanitaire et social du Conseil régional Île-de-France : 01.53.85.73.84»
+        Et le texte des démarches vaut «Vous devez avoir réussi le concours d'entrée pour le diplôme d'Etat d'aide-soignant ou d'auxiliaire de puériculture dans l'un des centres financés par le Conseil régional.»
+        Et le texte de la prise en charge vaut «Formation totalement financée dans la limite du nombre de places attribuées au centre de formation.»
+
+
+Si l'intitulé du financement est «Formations sanitaire et social post-bac région Île-de-France»
+
+    Si c'est un demandeur d'emploi
+    Et la région du bénéficiaire est «Île-de-France»
+    Et la région de la formation est «Île-de-France»
+    Et les codes financeur de la formation contiennent «Conseil régional»
+    Et c'est une formation certifiante
+    Et la liste des codes FORMACODE de la formation contient au moins un code parmi [44004,44083,44084,44050,44092,44072,44008,31815,43491,43448,43497,43490,43439,43493,43470,43092,43476,44004,44041,44026]
+        Alors le financement est éligible
+        Et appliquer les règles «rémunérations applicables»
+        Et le texte de description vaut «La prise en charge des frais pédagogiques est assuré par le Conseil régional dans la limite du nombre de places allouées au centre de formation,⏎Pour tout renseignement sur les formations sanitaire et social du conseil régional Île-de-France : 01.53.85.73.84»
+        Et le texte des démarches vaut «Vous devez avoir réussi les tests d'admission pour intégrer cette formation.⏎Vous vous rapprocherez du centre de formation pour obtenir des informations sur la prise en charge des frais.»
+        Et le texte de la prise en charge vaut «Formation totalement financée dans la limite du nombre de places attribuées au centre de formation.»
+
+
+Si l'intitulé du financement est «Programme régional qualifiant compétences»
+
+    Si c'est un demandeur d'emploi
+    Et la région de la formation est «Île-de-France»
+    Et les codes financeur de la formation contiennent «Conseil régional»
+    Et la liste des codes FORMACODE de la formation ne contient aucun code parmi [44004,44083,44084,44050,44092,44072,44008,31815,43491,43448,43497,43490,43439,43493,43470,43092,43476,44004,44041,44026,43436,43441]
+        Alors le financement est éligible
+        Et le texte de description vaut «La région Île-de-France finance un programme de formations visant à qualifier les actifs (demandeurs d'emploi, jeunes, salariés) sur le territoire francilien.»
+        Et le texte des démarches vaut «Contactez votre conseiller référent (Pôle emploi, mission locale ou Cap emploi) avant le début de la formation ou contactez l'organisme de formation.»
+        Et le texte de la prise en charge vaut «Formation totalement financée. Il peut être demandé un maximum de 150 euros au titre des frais d'inscription.»
+
+        Si la durée en heures de la formation n'est pas inférieure à 300
+        Ou l'allocation du bénéficiaire est «allocation d'aide au retour à l'emploi»
+            Alors appliquer les règles «rémunérations applicables»
+
+
+Si l'intitulé du financement est «Chéquier unique VAE Région Ile-de-France»
+
+    Si c'est un demandeur d'emploi
+    Et la région de la formation est «Île-de-France»
+    Et la région du bénéficiaire est «Île-de-France»
+    Et c'est une formation ouverte aux bénéficiaires individuels
+    Et c'est une formation VAE
+        Alors le financement est éligible
+        Et le texte de description vaut «La région Ile-de-France finance des modules de formation pour :⏎- faciliter l'accès à la certification avant le jury : le bloc de compétences nécessaires est identifié par le certificateur⏎- vous permettre d'obtenir la certification après le passage devant le jury en cas de validation partielle : la décision du jury mentionne les modules non acquis pour lesquels une formation est nécessaire.⏎La Région finance les modules de formation avant ou après jury, dans la limite d'un plafond de 1 600 € TTC.⏎Pôle emploi complétera le financement des actions de formation post-jury si la Région ne couvre pas la totalité du coût de la formation.»
+        Et le texte des démarches vaut «Le besoin de formation avant jury est examiné par le certificateur.⏎Le besoin de formation post jury est indiqué dans la décision du jury de validation.⏎Contacter le conseiller référent pour le montage du dossier.»
+        Et le texte de la prise en charge vaut «Formation totalement financée.»
+        Et appliquer les règles «rémunérations applicables»
+
+
+Si l'intitulé du financement est «Paris formation pour l'emploi»
+
+    Si c'est un demandeur d'emploi
+    Et le département de la formation est «Paris»
+    Et le département du bénéficiaire est «Paris»
+    Et les codes financeur de la formation contiennent «Conseil départemental»
+        Alors le financement est éligible
+        Et le texte de description vaut «La ville de Paris finance un programme de formations pour les demandeurs d'emploi résidant à Paris.»
+        Et le texte des démarches vaut «Contactez votre conseiller référent (Pôle emploi, mission locale ou Cap emploi) au moins 15 jours avant le début de la formation ou contactez l'organisme de formation.»
+        Et le texte de la prise en charge vaut «Formation totalement financée.»
+        Et appliquer les règles «AREF»
+

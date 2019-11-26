@@ -1,0 +1,146 @@
+Si le financement est de type «E2C»
+    Alors appliquer les règles «E2C»
+
+Si l'intitulé du financement est «Accès des demandeurs d’emploi aux métiers agricoles»
+    Alors appliquer les règles «ADEMA»
+
+Si le financement est de type «AFC»
+    Alors appliquer les règles «action collective»
+
+Si le financement est de type «FAJ»
+    Alors appliquer les règles «FAJ»
+
+Si le financement est de type «POEC»
+    Alors appliquer les règles «POEC»
+
+Si le financement est de type «POEI»
+    Alors appliquer les règles «POEI»
+
+Si l'intitulé du financement est «Financement individuel Agefiph»
+    Alors appliquer les règles «Agefiph»
+
+Si l'intitulé du financement est «Formation en alternance : contrat de professionnalisation»
+    Alors appliquer les règles «contrat de professionnalisation»
+
+Si l'intitulé du financement est «Formation en alternance : contrat d'apprentissage»
+    Alors appliquer les règles «contrat d'apprentissage»
+
+Si l'intitulé du financement est «Aide individuelle à la formation»
+
+    Si la région du bénéficiaire est «Normandie»
+    Et c'est un demandeur d'emploi
+    Et la liste des codes FORMACODE de la formation ne contient aucun code parmi [43448,43436,31815,43441,44041,31815,43454,44054,43409,44041,31802,31854,31805,31827,31833,31815,43454,44054,43409,31734,32050,43438,43438,43438,42003,42030,42050,42060,46061,43445,43425,14449,42020,42093]
+    Et le code CERTIFINFO de la formation ne fait pas partie de [49616,23710,55676,83419,96173]
+    Et ce n'est pas une formation VAE
+    Et la liste des domaines FORMACODE de la formation ne contient pas 150, ou la liste des codes FORMACODE de la formation contient au moins un code parmi [15009,15015]
+    Et c'est une formation éligible CPF
+        Alors le financement est éligible
+        Et le texte des démarches vaut «Effectuez les démarches de validation de votre projet de formation et assurez-vous qu'il correspond aux emplois offerts sur votre secteur géographique. Contactez votre conseiller référent emploi (Pôle emploi, Mission Locale ou Cap emploi). Vous lui présenterez 2 devis minimum de 2 organismes différents. Votre projet de formation et son financement doivent être présentés au plus tard 3 semaines avant le début de la formation, pour pouvoir être validé au préalable par votre conseiller emploi.»
+        Et le texte de la prise en charge vaut «Formation totalement ou partiellement financée⏎(avec mobilisation possible de vos heures CPF)»
+        Et appliquer les règles «rémunérations applicables»
+
+        Si c'est un travailleur handicapé
+            Alors l'intitulé du financement vaut «Aide individuelle à la Formation financée par Pôle emploi et l'Agefiph»
+            Et le texte de description vaut «L'aide individuelle à la formation professionnelle (AIF) est une aide de Pôle emploi et de l'Agefiph qui vise à financer certains besoins individuels de formation auxquels les achats d'action de formation collectives ne peuvent répondre. L'AIF est réservée à des projets de formation dont la pertinence et la faisabilité sont partagées avecvotre conseiller Pôle emploi, par rapport au marché du travail. Il vérifiera aussi si les conditions du financement sont réunies. Si vous possédez des heures CPF, un complément de financement pourra être possible grâce à l'AIF.⏎L'AIF est réservée à des projets de formation dont la pertinence et la faisabilité sont partagées avec le conseiller référent Pôle emploi ou votre conseiller Cap Emploi.⏎Il partagera avec vous la pertinence de ce projet de formation par rapport au marché du travail. Il vérifiiera aussi si les conditions du financement sont réunies.»
+
+    Si c'est un bilan de compétences
+        Alors le plafond horaire applicable vaut 24
+        Et le prix horaire plafond applicable vaut 35
+        Et le texte de la prise en charge vaut «35€/h sur une durée maximale de 24 heures.»
+
+
+Si l'intitulé du financement est «Programme de formations collectives financées par le Conseil régional de Normandie»
+
+    Si c'est un demandeur d'emploi
+    Et la région du bénéficiaire est «Normandie»
+    Et la région de la formation est «Normandie»
+    Et l'allocation du bénéficiaire n'est pas «allocation de sécurisation professionnelle»
+    Et les codes financeur de la formation contiennent «Conseil régional»
+    Et ce n'est pas une formation VAE
+    Et la liste des codes FORMACODE de la formation ne contient aucun code parmi [43448,43436,31815,43441,44041,31815,43454,44054,43409]
+    Et l'intitulé normé de la formation ne contient pas «UNEFORMATIONUNEMPLOI»
+        Alors le financement est éligible
+        Et appliquer les règles «rémunérations applicables»
+        Et le texte des démarches vaut «Contactez votre conseiller référent emploi (Pôle emploi, mission locale ou cap emploi).⏎Effectuez les démarches de validation de votre projet de formation et assurez-vous qu'elle corresponde aux emplois offerts sur votre secteur géographique.⏎Vous pouvez aussi contacter directement l'organisme de formation.»
+        Et le texte de description vaut «La région Normandie propose des formations pour les jeunes et adultes demandeurs d’emploi et accompagne ceux qui souhaitent obtenir un diplôme, améliorer leurs compétences, changer de métier ou concrétiser leur projet d’entreprise.⏎Ces actions permettent aux demandeurs d'emploi d’obtenir une certification professionnelle pour optimiser leur accès à l’emploi.⏎Les formations proposées sont de tous niveaux (du Titre Professionnel de niveau V ou du CAP au diplôme d’ingénieur) et dans tous les domaines d’activité.⏎Ce dispositif s'adresse en priorité aux formations visant à l'accés à la premiere qualification, la reconversion des bénéficiaires de l'obligation d'emploi,⏎l'élévation du niveau de formation Elle ne peut bénéficier aux demadeurs d'emploi ayant déja suivi une formation qualifiante au cours des 12 derniers mois, pour laquelle un financement institutionnel (région,Pole emploi, Agefiph, Fongecif,...) avait été accordé.»
+        Et le texte de la prise en charge vaut «Formation totalement financée par le Conseil régional de Normandie»
+
+
+Si l'intitulé du financement est «Une formation, un emploi - individuel»
+
+    Si c'est un demandeur d'emploi
+    Et la région de la formation est «Normandie»
+    Et c'est une formation ouverte aux bénéficiaires individuels
+    Et l'allocation du bénéficiaire n'est pas «allocation de sécurisation professionnelle»
+    Et le niveau de sortie de la formation ne fait pas partie de [«IV»,«V»]
+    Et ce n'est pas une formation de l'enseignement supérieur
+    Et la durée en heures de la formation n'est pas inférieure à 400
+    Et la durée en heures de la formation n'est pas supérieure à 1400
+    Et la liste des codes ROME de la formation contient au moins un code parmi [«G1204»,«L1401»]
+    Et la liste des codes FORMACODE de la formation contient au moins un code parmi [44067,15447,15448,15457,15458], ou la liste des domaines FORMACODE de la formation ne contient aucun code parmi [430,434,440,150,154]
+    Et la liste des codes FORMACODE de la formation ne contient aucun code parmi [13030,13250,31802,31815,50245,50445,50145,50349,50249]
+    Et ce n'est pas un contrat de professionnalisation
+    Et ce n'est pas un contrat d'apprentissage
+        Alors le financement est éligible
+        Et appliquer les règles «rémunérations applicables»
+        Et le texte des démarches vaut «Contactez votre conseiller référent emploi (Pôle emploi, Mission Locale ou Cap emploi).⏎Effectuez les démarches de validation de votre projet de formation et assurez-vous qu'elle corresponde aux emplois offerts sur votre secteur géographique.⏎Vous pouvez aussi contacter directement l'organisme de formation.»
+        Et le texte de description vaut «Ce dispositif s'adresse en priorité aux personnes ayant peu de qualifications.»
+        Et le texte de la prise en charge vaut «Formation totalement financée par le Conseil régional de Normandie»
+
+
+Si l'intitulé du financement est «Une formation, un emploi - collectif»
+
+    Si c'est un demandeur d'emploi
+    Et la région de la formation est «Normandie»
+    Et l'allocation du bénéficiaire n'est pas «allocation de sécurisation professionnelle»
+    Et les codes financeur de la formation contiennent «Conseil régional»
+    Et l'intitulé normé de la formation contient «UNEFORMATIONUNEMPLOI»
+        Alors le financement est éligible
+        Et appliquer les règles «rémunérations applicables»
+        Et le texte de description vaut «Le dispositif \«Une formation un emploi\» du Conseil régional permet de financer des formations pour répondre aux besoins de recrutement des entreprises de la région.»
+        Et le texte des démarches vaut «Contactez votre conseiller référent emploi (Pôle emploi, Mission Locale ou Cap emploi) pour valider votre projet de formation et prendre connaissance des propositions d'emploi possibles. Vous pouvez aussi contacter directement l'organisme de formation.»
+        Et le texte de la prise en charge vaut «Formation totalement financée par le Conseil régional de Normandie»
+
+
+Si l'intitulé du financement est «Qualif individuel»
+
+    Si c'est un demandeur d'emploi
+    Et la région de la formation est «Normandie»
+    Et la région du bénéficiaire est «Normandie»
+    Et c'est une formation ouverte aux bénéficiaires individuels
+    Et l'allocation du bénéficiaire n'est pas «allocation de sécurisation professionnelle»
+    Et la durée en heures de la formation n'est pas inférieure à 300
+    Et la durée en mois de la formation n'est pas supérieure à 12
+    Et la liste des codes FORMACODE de la formation ne contient aucun code parmi [43448,43436,31815,43441,44041,31815,43454,44054,43409]
+    Et ce n'est pas un contrat de professionnalisation
+    Et ce n'est pas un contrat d'apprentissage
+    Et ce n'est pas une formation VAE
+    Et le nombre d'heures en entreprise n'est pas supérieur à 50% de la durée en heures de la formation
+        Alors le financement est éligible
+        Et le texte de description vaut «La région compléte l'offre de formation collective en finançant des formations individuelles répondant aux besoins des Normands.⏎Elle ne peut béneficier aux demandeurs d'emploi ayant déja suivi une formation qualifiante au cours des 12 derniers mois, pour laquelle un financement (Région,Pôle emploi, Agefiph, Fongecif) avait été accordé.»
+        Et le texte des démarches vaut «Contactez votre conseiller référent emploi (Pôle emploi, Mission Locale ou Cap emploi) pour effectuer les démarches de validation de votre projet de formation. Assurez-vous qu'elle corresponde aux emplois offerts sur votre secteur géographique.⏎Completez le dossier de demande de financement.⏎Faites compléter par l'organisme de formation la seconde partie de la demande.⏎Votre conseiller fera parvenir à la région votre dossier.»
+        Et le texte de la prise en charge vaut «Formation totalement financée par le Conseil régional de Normandie.»
+
+        Si le niveau de sortie de la formation fait partie de [«I»,«II»,«III»]
+        Et la durée en heures de la formation n'est pas inférieure à 300
+        Et la durée en mois de la formation n'est pas supérieure à 24
+            Alors le texte de la prise en charge vaut «Formation partiellement financée par le Conseil régional de Normandie.»
+
+
+Si le financement est de type «POEC»
+
+    Si l'intitulé normé de la formation contient «POEC»
+        Alors le financement est éligible
+
+
+Si l'intitulé du financement est «VAE Normandie»
+
+    Si c'est un demandeur d'emploi
+    Et la région du bénéficiaire est «Normandie»
+    Et la liste des codes FORMACODE de la formation contient au moins un code parmi [15064,44591], ou le code CERTIFINFO de la formation vaut 83899
+        Alors le financement est éligible
+        Et le texte de description vaut «Financement par la Région d'un accompagnement de 20h maximum pour constituer votre dossier VAE et préparer l'entretien avec le jury de validation.»
+        Et le texte des démarches vaut «Contactez le Point relais conseil le plus proche de votre domicile. Trouvez les coordonnées des Points relais en Normandie sur https://vae.normandie.fr/les-points-relais-conseil.»
+        Et le texte de la prise en charge vaut «Formation totalement ou partiellement financée»
+        Et le plafond financier applicable vaut 1400
+

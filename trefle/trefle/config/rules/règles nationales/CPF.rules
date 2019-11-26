@@ -1,0 +1,19 @@
+Si c'est une formation éligible CPF
+Ou le code NAF de l'établissement du bénéficiaire fait partie des codes NAF CPNE éligibles
+Et ce n'est pas un contrat de professionnalisation
+Et ce n'est pas un contrat d'apprentissage
+
+    Si le solde CPF du bénéficiaire est supérieur à 0
+    Ou le solde CPF du bénéficiaire n'est pas défini
+        Alors le financement est éligible
+        Et le texte de description vaut «Le compte personnel de formation (CPF) permet à toute personne active d’acquérir des droits pour financer totalement ou partiellement une formation certifiante.»
+
+        Si le solde CPF du bénéficiaire est supérieur à 0
+            Alors le plafond financier applicable est égal au solde CPF du bénéficiaire
+
+        Si le financement est de type «hors temps de travail»
+            Alors le texte des démarches vaut «Pour une formation se déroulant en dehors du temps de travail, il n'est pas nécessaire de demander l'accord de l'employeur.⏎Assurez-vous que votre compte personnel de formation est activé sur http://www.moncompteformation.gouv.fr/.⏎Contactez directement votre organisme {organisme.nom} pour bénéficier gratuitement d’un conseil en évolution professionnelle et valider votre projet de formation et son financement CPF.»
+
+        Si le financement est de type «sur son temps de travail»
+            Alors la rémunération applicable est égale à la rémunération du bénéficiaire
+            Et le texte des démarches vaut «Pour une formation se déroulant sur le temps de travail, il est nécessaire de demander l'accord de l'employeur selon un délai défini:⏎Si la formation se déroule en tout ou partie sur le temps de travail : l' accord est requis sur les dates de la formation et sur son contenu.⏎Vous devez adresser votre demande de formation :⏎- au moins 60 jours calendaires avant le début de la formation, lorsque la durée de celle-ci est inférieure à 6 mois,⏎- au moins 120 jours calendaires avant le début de la formation, lorsque la durée de celle-ci est supérieure ou égale à 6 mois.⏎Assurez-vous que votre compte personnel de formation est activé sur http://www.moncompteformation.gouv.fr/.⏎Contactez votre employeur pour bénéficier gratuitement d’un conseil en évolution professionnelle et valider votre projet de formation et son financement CPF.»

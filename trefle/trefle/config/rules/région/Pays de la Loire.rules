@@ -1,0 +1,77 @@
+Si le financement est de type «E2C»
+    Alors appliquer les règles «E2C»
+
+Si le financement est de type «AFC»
+    Alors appliquer les règles «action collective»
+
+Si le financement est de type «FAJ»
+    Alors appliquer les règles «FAJ»
+
+Si le financement est de type «POEC»
+    Alors appliquer les règles «POEC»
+
+Si le financement est de type «POEI»
+    Alors appliquer les règles «POEI»
+
+Si l'intitulé du financement est «Financement individuel Agefiph»
+    Alors appliquer les règles «Agefiph»
+
+Si l'intitulé du financement est «Formation en alternance : contrat de professionnalisation»
+    Alors appliquer les règles «contrat de professionnalisation»
+
+Si l'intitulé du financement est «Formation en alternance : contrat d'apprentissage»
+    Alors appliquer les règles «contrat d'apprentissage»
+
+Si l'intitulé du financement est «Aide individuelle à la formation»
+    Alors appliquer les règles «AIF»
+
+Si la région de la formation est «Pays de la Loire»
+Et c'est un demandeur d'emploi
+
+    Si l'intitulé du financement est «Action collective financée par la région»
+
+        Si les codes financeur de la formation contiennent «Conseil régional»
+        Et la liste des codes FORMACODE de la formation ne contient aucun code parmi [43436,43441,31815]
+            Alors le financement est éligible
+            Et appliquer les règles «rémunérations applicables»
+            Et le texte des démarches vaut «Vérifiez auprès de votre conseiller et/ou de l'organisme de formation que vous remplissez les conditions pour effectuer cette formation.»
+
+            Si le niveau de sortie de la formation ne fait pas partie de [«I»,«II»,«III»]
+                Alors le texte de description vaut «Cette action de formation est financée par votre Région - gratuite pour les demandeurs d'emploi»
+                Et le texte de la prise en charge vaut «Formation totalement financée»
+
+            Si le niveau de sortie de la formation ne fait pas partie de [«IV»,«V»,«V bis»,«VI»]
+                Alors le texte de description vaut «Cette action de formation est partiellement financée par votre Région»
+                Et le texte de la prise en charge vaut «Formation partiellement financée»
+
+    Si l'intitulé du financement est «Action collective sanitaire et social financée par la région et Pôle Emploi»
+
+        Si la liste des codes FORMACODE de la formation contient au moins un code parmi [43436,43441,31815]
+        Et les codes financeur de la formation contiennent «Conseil régional»
+        Et les codes financeur de la formation contiennent «Pôle emploi»
+            Alors le financement est éligible
+            Et le texte des démarches vaut «Pour effectuer cette formation, il vous faut tout d'abord réussir le concours d'entrée. Contactez l'organisme de formation.»
+            Et le texte de description vaut «Cette action de formation est financée par la Région et Pôle emploi»
+            Et le texte de la prise en charge vaut «Formation totalement financée»
+
+            Si l'allocation du bénéficiaire est «allocation d'aide au retour à l'emploi»
+                Alors appliquer les règles «AREF»
+
+            Si l'allocation du bénéficiaire n'est pas «allocation d'aide au retour à l'emploi»
+                Alors le texte de la rémunération est «Demande de bourse régionale à effectuer sur http://www.paysdelaloire.fr/services-en-ligne/aides-regionales/aides-regionales-themes/formation/actu-detaillee/n/formations-sanitaires-et-sociales-demande-de-bourses-en-ligne-2/»
+
+    Si l'intitulé du financement est «Parcours TPME vers l'emploi»
+    Et la durée en heures de la formation est supérieur à 401
+    Et la durée en heures de la formation est inférieur ou égal à 800
+    Et les codes financeur de la formation contiennent «Conseil régional»
+        Alors le financement est éligible
+        Et le prix horaire applicable vaut 18
+        Et le texte de description vaut «Dispositif expérimental financé par la région Pays de Loire visant à former des candidats en lien avec une future embauche dans une entreprise de moins de 20 salariés. La formation a un lien avec le poste proposé et l'employeur s'engage à embaucher pour au moins 6 mois de contrat à durée déterminée et de 20 heures minimum par semaine.»
+        Et le texte des démarches vaut «Contactez votre conseiller Pôle emploi des Pays de la Loire pour vous renseigner sur les modalités de prise en charge de la formation.»
+        Et le texte de la prise en charge vaut «Formation totalement ou partiellement»
+
+        Si l'allocation du bénéficiaire est «allocation d'aide au retour à l'emploi»
+            Alors la rémunération applicable est égale à 80% du SMIC
+
+            Si le montant de l'allocation du bénéficiaire n'est pas supérieur à 80% du SMIC
+                Alors appliquer les règles «AREF»

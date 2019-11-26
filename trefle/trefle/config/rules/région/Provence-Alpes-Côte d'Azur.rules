@@ -1,0 +1,83 @@
+Si le financement est de type «E2C»
+    Alors appliquer les règles «E2C»
+
+Si l'intitulé du financement est «Accès des demandeurs d’emploi aux métiers agricoles»
+    Alors appliquer les règles «ADEMA»
+
+Si le financement est de type «AFC»
+    Alors appliquer les règles «action collective»
+
+Si le financement est de type «FAJ»
+    Alors appliquer les règles «FAJ»
+
+Si le financement est de type «POEC»
+    Alors appliquer les règles «POEC»
+
+Si le financement est de type «POEI»
+    Alors appliquer les règles «POEI»
+
+Si l'intitulé du financement est «Financement individuel Agefiph»
+    Alors appliquer les règles «Agefiph»
+
+Si l'intitulé du financement est «Formation en alternance : contrat de professionnalisation»
+    Alors appliquer les règles «contrat de professionnalisation»
+
+Si l'intitulé du financement est «Formation en alternance : contrat d'apprentissage»
+    Alors appliquer les règles «contrat d'apprentissage»
+
+Si l'intitulé du financement est «Aide individuelle à la formation»
+    Alors le plafond financier applicable vaut 4500
+
+    Si la durée en mois de la formation n'est pas supérieure à 12
+    Et la liste des codes FORMACODE de la formation ne contient aucun code parmi [15041,43448,43457]
+    Et le code CERTIFINFO de la formation ne fait pas partie de [54912,54913,54917,87189,87185,87187]
+    Et la durée hebdomadaire de la formation n'est pas inférieure à 20
+    Et la durée hebdomadaire de la formation n'est pas supérieure à 35
+        Alors appliquer les règles «AIF»
+        Et le prix horaire plafond applicable vaut 15
+
+        Si la liste des codes FORMACODE de la formation contient au moins un code parmi [31667,24454,22821,11557,31620,31606,11504,31686,11503,13245,12576,24099,45006,22612,22605,12592,46054,21527,31058,31624,34091,23053,24491,31664,46084,31304,46098,31304,46098,23615,24439,42884,11567,11559,22307,22622,21631,34024,12560,11504,11547,21592,22633,45006,24422,12081,12560,24439,22630,11534,12592,31676,31336,12592,22307,31604,42884,22851,31606,13245,42884,31652,12526]
+        Ou la liste des domaines FORMACODE de la formation contient au moins un code parmi [222,318]
+            Alors le prix horaire plafond applicable vaut 25
+
+    Si c'est une formation langues
+        Alors appliquer les règles «AIF»
+        Et le prix horaire plafond applicable vaut 10
+
+    Si c'est un bilan de compétences
+        Alors appliquer les règles «AIF»
+        Et le prix horaire plafond applicable vaut 35
+
+
+Si l'intitulé du financement est «Accès aux premiers savoirs»
+
+    Si la région du bénéficiaire vaut «Provence-Alpes-Côte d'Azur»
+    Et la région de la formation vaut «Provence-Alpes-Côte d'Azur»
+    Et c'est un demandeur d'emploi
+    Et les codes financeur de la formation contiennent «Conseil régional»
+    Et la liste des codes FORMACODE de la formation contient 15041
+        Alors le financement est éligible
+        Et appliquer les règles «rémunérations applicables»
+        Et le texte des démarches vaut «Pour pouvoir être sélectionné sur une des places financées par la Région PACA, faites valider tout d’abord votre projet de formation par un conseiller emploi (Pôle emploi, Mission Locale, Cap Emploi).»
+        Et le texte de description vaut «Les ETAPS visent l’acquisition et la reconnaissance de savoirs, de connaissances et de compétences permettant aux personnes d’accéder à une formation qualifiante et/ou un emploi.⏎Ils permettent le développement de compétences mobilisables dans les différents contextes de la vie de tout individu : vie quotidienne, vie professionnelle, vie sociale et citoyenne, vie familiale...⏎La durée et le rythme du parcours de formation sont définis en fonction des besoins de chaque personne.⏎Le stagiaire bénéficie d’une couverture en matière d’accident du travail et de maladie professionnelle.»
+        Et le texte de la prise en charge vaut «Formation totalement financée»
+
+Si l'intitulé du financement est «Espaces territoriaux à la qualification»
+
+    Si la région de la formation vaut «Provence-Alpes-Côte d'Azur»
+    Et c'est un demandeur d'emploi
+    Et les codes financeur de la formation contiennent «Conseil régional»
+    Et la liste des codes FORMACODE de la formation ne contient pas 15041
+        Alors le financement est éligible
+        Et le texte des démarches vaut «Pour pouvoir être sélectionné sur une des places financées par la Région PACA, faites valider tout d’abord votre projet de formation par un conseiller emploi (Pôle emploi, Mission Locale, Cap emploi).»
+        Et le texte de description vaut «Les ETAQ visent la préparation à une certification reconnue, l'acquisition d'un premier niveau de qualification, l'acquisition d'une nouvelle qualification ou le développement de compétences professionnelles complémentaires en vue d'une intégration professionnelle durable.⏎Le stagiaire bénéficie d’une couverture en matière d’accident du travail et de maladie professionnelle.»
+        Et le texte de la prise en charge vaut «Formation totalement financée par la Région, comprenant la mobilisation éventuelle de votre CPF»
+
+        Si l'allocation du bénéficiaire n'est pas «allocation d'aide au retour à l'emploi»
+            Alors le texte de la rémunération est «Rapprochez-vous de votre conseiller emploi pour connaître les possibilités de rémunération.»
+
+            Si la liste des codes FORMACODE de la formation contient au moins un code parmi [43448,43457], ou le code CERTIFINFO de la formation fait partie de [54912,54913,54917,87189,87185,87187]
+                Alors le texte de la rémunération est «Indemnité régionale d'études (téléprocédure sur https://www.regionpaca.fr). Attention : si vous avez démissionné depuis moins d'un an d'un contrat de plus de 110h/mois, vous ne toucherez pas de rémunération.»
+
+        Si l'allocation du bénéficiaire est «allocation d'aide au retour à l'emploi»
+            Alors appliquer les règles «AREF»

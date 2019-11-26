@@ -1,0 +1,108 @@
+Si le financement est de type «E2C»
+    Alors appliquer les règles «E2C»
+
+Si l'intitulé du financement est «Accès des demandeurs d’emploi aux métiers agricoles»
+    Alors appliquer les règles «ADEMA»
+
+Si le financement est de type «AFC»
+    Alors appliquer les règles «action collective»
+
+Si le financement est de type «FAJ»
+    Alors appliquer les règles «FAJ»
+
+Si le financement est de type «POEC»
+    Alors appliquer les règles «POEC»
+
+Si le financement est de type «POEI»
+    Alors appliquer les règles «POEI»
+
+Si l'intitulé du financement est «Financement individuel Agefiph»
+    Alors appliquer les règles «Agefiph»
+
+Si l'intitulé du financement est «Formation en alternance : contrat de professionnalisation»
+    Alors appliquer les règles «contrat de professionnalisation»
+
+Si l'intitulé du financement est «Formation en alternance : contrat d'apprentissage»
+    Alors appliquer les règles «contrat d'apprentissage»
+
+Si l'intitulé du financement est «Aide individuelle à la formation»
+
+    Si la région du bénéficiaire est «Centre-Val de Loire»
+    Et la liste des codes FORMACODE de la formation ne contient aucun code parmi [14406,14407,14426,14428,14447,14449,14477,15450,15452,43425,43428,43438,43442,43444,43445,14403,14405,14406,14407,14411,14414,14420,14423,14426,14428,14435,14441,14447,14450,14454,14456,14475,14477,14484,14489,14490,14496,14497,14498,42001,42020,42030,42032,42034,42052,43418,42101,31812,31816,31804,31805,31811,31795,31826,42811,24049,24130,23603,50545,43454,44054,31801,31812,43409,44002,15094,15073,13030,31795,31768,31706,31715,31747,31826,42811,24049,24130,22603,42101,42102,42103,42105,42106,42108,42108,42109,42110,44067,23014,23015,23016,31828,21546,72412,71954,71909,71905,71906,71904,71908,71907,71901,71903,71902,71910,70154,70254,70201,70202,70203,70204,72554,72501,72503,72502,72754,72740,72742,72741,72710,72713,72712,72714,72711,72730,72720,72721,71854,71803,71802,71804,70354,70310,70311,70312,70313,70320,70321,70322,70323,70330,70332,70333,70454,70401,70402,71454,71401,71402,71408,71404,71410,71403,71409,71405,71407,71406,70554,70501,70502,70503,70504,72854,70654,70601,70602,70604,70603,72254,72201,72202,70754,70701,70702,70710,70712,70711,70703,70704,70705,70706,70707,70854,70801,70954,70901,71054,71001,71002,71154,71110,71111,71115,71113,71114,71140,71141,71142,71143,71144,71120,71121,71123,71125,71126,71127,71130,71131,71135,71132,71134,71133,71754,71701,71254,71201,71202,71203,71204,71205,71354,71301,71302,71303,71304,71305,71554,71501,71502,71503,71504,71505,71506,71507,72054,72001,72002,72154,72101,72102,71654,71630,71632,71631,71633,71670,71620,71660,71661,71640,71610,71613,71614,71611,71612,71616,71615,72654,72601,72603,72602,72354,72310,72311,72313,72312,72320,72321,72330,72331,49616,65960,31801,31812,43409,44002,15094,15073,13030]
+    Et le code CERTIFINFO de la formation ne fait pas partie de [49616,65960,55673,55674,55675,55676,55677,55803,55804,55805,55806,55807,55808,55809,55810,55811,55812,55813,55814,55815,55816,55817,55818,55819,55820,55822,55821,55823,55824,55825,55826,55827,84700,84449,84700,84715,85312,85338]
+    Et la durée en heures de la formation n'est pas inférieure à 20, ou ce n'est pas une formation ouverte à distance
+    Et le code AIS de la formation n'est pas «Création d'entreprise»
+        Alors appliquer les règles «AIF»
+        Et le texte de la prise en charge vaut «Formation totalement ou partiellement financée.»
+
+Si l'intitulé du financement est «Aide individuelle à la formation avec promesse d'embauche»
+
+    Si la région du bénéficiaire est «Centre-Val de Loire»
+    Et la liste des codes FORMACODE de la formation contient au moins un code parmi [14406,14407,14426,14428,14447,14449,14477,15450,15452,43425,43428,43438,43442,43444,43445,14403,14405,14406,14407,14411,14414,14420,14423,14426,14428,14435,14441,14447,14450,14454,14456,14475,14477,14484,14489,14490,14496,14497,14498,42001,42020,42030,42032,42034,42052,43418,42101,31812,31816,31804,31805,31811,31795,31826,42811,24049,24130,23603,50545,43454,44054,31801,31812,43409,44002,15094,15073,13030,31795,31768,31706,31715,31747,31826,42811,24049,24130,22603,42101,42102,42103,42105,42106,42108,42108,42109,42110,44067,23014,23015,23016,31828,21546,72412,71954,71909,71905,71906,71904,71908,71907,71901,71903,71902,71910,70154,70254,70201,70202,70203,70204,72554,72501,72503,72502,72754,72740,72742,72741,72710,72713,72712,72714,72711,72730,72720,72721,71854,71803,71802,71804,70354,70310,70311,70312,70313,70320,70321,70322,70323,70330,70332,70333,70454,70401,70402,71454,71401,71402,71408,71404,71410,71403,71409,71405,71407,71406,70554,70501,70502,70503,70504,72854,70654,70601,70602,70604,70603,72254,72201,72202,70754,70701,70702,70710,70712,70711,70703,70704,70705,70706,70707,70854,70801,70954,70901,71054,71001,71002,71154,71110,71111,71115,71113,71114,71140,71141,71142,71143,71144,71120,71121,71123,71125,71126,71127,71130,71131,71135,71132,71134,71133,71754,71701,71254,71201,71202,71203,71204,71205,71354,71301,71302,71303,71304,71305,71554,71501,71502,71503,71504,71505,71506,71507,72054,72001,72002,72154,72101,72102,71654,71630,71632,71631,71633,71670,71620,71660,71661,71640,71610,71613,71614,71611,71612,71616,71615,72654,72601,72603,72602,72354,72310,72311,72313,72312,72320,72321,72330,72331,49616,65960,31801,31812,43409,44002,15094,15073,13030], ou le code CERTIFINFO de la formation fait partie de [49616,65960,55673,55674,55675,55676,55677,55803,55804,55805,55806,55807,55808,55809,55810,55811,55812,55813,55814,55815,55816,55817,55818,55819,55820,55822,55821,55823,55824,55825,55826,55827,84700,84449,84700,84715,85312,85338]
+    Et la région de la formation vaut «Centre-Val de Loire»
+    Et le code AIS de la formation n'est pas «Création d'entreprise»
+        Alors appliquer les règles «AIF»
+        Et le texte de description vaut «Pour cette formation, l'aide individuelle de Pôle emploi n'est possible que si vous avez une promesse d'embauche ferme. Votre conseiller emploi vérifiera si les conditions du financement sont réunies. L’AIF est réservée à des projets de formation dont la pertinence est partagée par le conseiller référent Pôle emploi.»
+        Et le texte de la prise en charge vaut «Formation totalement ou partiellement financée.»
+
+
+# Financement en cours de révision
+# Si l'intitulé du financement est «Chèque formation Conseil régional Centre-Val de Loire»
+
+    # Si la région du bénéficiaire vaut «Centre-Val de Loire»
+    # Et c'est un demandeur d'emploi
+    # Et c'est une formation RNCP, ou c'est une formation VAE
+    # Et les codes financeur de la formation contiennent «Conseil régional»
+    # Et la durée en heures de la formation n'est pas supérieure à 1600
+    # Et la durée en mois de la formation n'est pas supérieure à 18
+    # Et la liste des codes FORMACODE de la formation ne contient aucun code parmi [42001,42020,42030,42032,42034,42052,43418,14406,14407,14426,14428,14447,14449,14477,15450,15452,43425,43428,43438,43442,43444,43445,43438,14403,14405,14406,14407,14411,14414,14420,14423,14426,14428,14435,14441,14447,14450,14454,14456,14475,14477,14484,14489,14490,14496,14497,14498,42003,43024,42056,43441,44030,44041,44042,15009,42056,42075,42076,42078,42080,42081,43437,44028,15094,15093,15073,13030,43409,44002,42837,42814,42880,13275,13254,42022,43054,43042,50150,42025,31801,44575,91502,96129,43070,43440,43486,31826,31795,42811,42854,43409,44002,15084,15094,15093,15073,13030,15073,42814,42837,42880,31812,31816]
+        # Alors le financement est éligible
+        # Et appliquer les règles «rémunérations applicables»
+        # Et le texte de description vaut «Ce dispositif individuel permet la prise en charge par le Conseil régional Centre-Val de Loire des coûts de formation, lorsque aucune action collective (financement Conseil régional ou Pôle emploi) qualifiante ne peut être mobilisée.⏎Cette formation doit être inscrite au Répertoire National des Certifications Professionnelles (RNCP). Elle se traduit par la remise d'un diplôme, d'un certificat de qualification professionnelle, d'un titre professionnel du ministère du travail ou d'un titre homologué.»
+        # Et le texte des démarches vaut «Contacter votre conseiller référent emploi (Pôle emploi, mission locale ou Cap emploi).⏎Vous lui présenterez deux devis minimum de deux organismes différents ainsi qu'une lettre de motivation.⏎Votre projet de formation et la demande de financement par un chèque formation doivent être présentés au plus tard deux semaines avant le début de la formation.»
+        # Et le texte de la prise en charge vaut «Formation totalement ou partiellement financée.»
+
+
+Si l'intitulé du financement est «Programme Régional de Formation»
+
+   
+    Si la région de la formation est «Centre-Val de Loire»
+    Et c'est un demandeur d'emploi
+    Et les codes financeur de la formation contiennent «Conseil régional»
+    Et la liste des codes FORMACODE de la formation ne contient aucun code parmi [43436,43448,43441,43409,44002,44004,44092,44050,43497,44083,44008,43491,43470,43476,43092,43490,31815,43006,43439,43456]
+    Et ce n'est pas une formation VAE
+    Et l'intitulé normé de la formation ne contient pas «VISA»
+        Alors le financement est éligible
+        Et appliquer les règles «rémunérations applicables»
+        Et le texte de description vaut «La région Centre-Val de Loire finance des actions de formation qualifiante, permettant d'obtenir un titre ou un diplome, des découvertes de métiers. Le Conseil Régional finance également des actions d'élaboration de projets professionnels...»
+        Et le texte des démarches vaut «Contacter votre conseiller référent emploi (Pôle emploi, mission locale ou Cap emploi) ou l'organisme de formation.»
+        Et le texte de la prise en charge vaut «Formation totalement financée.»
+
+
+Si l'intitulé du financement est «Programme Régional de Formation Visa»
+
+    Si la région du bénéficiaire est «Centre-Val de Loire»
+    Et la région de la formation est «Centre-Val de Loire»
+    Et c'est un demandeur d'emploi
+    Et les codes financeur de la formation contiennent «Conseil régional»
+    Et l'intitulé normé de la formation contient «VISA»
+        Alors le financement est éligible
+        Et appliquer les règles «AREF»
+        Et le texte de description vaut «Les Visas sont des formations personnalisées, gratuites et ouvertes à tous les habitants de la région Centre-Val de Loire, en français, maths, langues vivantes, Internet, bureautique, accès à l’emploi... Ces actions, financées par la Région Centre-Val de Loire, sont de courte durée et permettent de mettre à jour vos compétences essentielles et savoirs fondamentaux pour favoriser l’autonomie et l’accès à l’emploi. Elles sont adaptées au niveau et au besoin de chacun.»
+        Et le texte des démarches vaut «Contactez directement l'organisme de formation pour évaluer votre besoin et accéder à la formation.»
+        Et le texte de la prise en charge vaut «Formation totalement financée.»
+
+
+Si l'intitulé du financement est «Formations sanitaire et sociale subventionnées par le Conseil régional Centre-Val de Loire»
+
+    Si la région de la formation est «Centre-Val de Loire»
+    Et les codes financeur de la formation contiennent «Conseil régional»
+    Et la liste des codes FORMACODE de la formation contient au moins un code parmi [43436,43448,43441,43409,44002,44004,44092,44050,43497,44083,44008,43491,43470,43476,43092,43490,31815,43006,43439,43456]
+        Alors le financement est éligible
+        Et appliquer les règles «AREF»
+        Et le texte de description vaut «La région Centre-Val de Loire finance quasiment toutes les formations sanitaires et sociales. Ainsi la région peut prendre en charge leur coût pédagogique.⏎Seuls les droits d'inscription et les frais de sécurité sociale fixés par arrêté ministériel restent à la charge des inscrits.»
+        Et le texte des démarches vaut «Renseignez-vous directement auprès de l'institut de formation choisi.»
+        Et le texte de la prise en charge vaut «Formation totalement financée.»
+#Et le texte pour en savoir plus vaut «Principales conditions pour bénéficier de ce financement : avoir réussi le concours d'entrée dans l'un des 22 instituts de formation agréés par la région Centre-Val de Loire, être étudiant issu du cursus scolaire, demandeur d'emploi, salarié en CDD ou en reconversion professionnelle. L'aide est versée directement à l'école par le Conseil régional, sans avance de frais de la part de l'élève.»
+        Si l'allocation du bénéficiaire n'est pas «allocation d'aide au retour à l'emploi»
+            Alors le texte de la rémunération vaut «Bourses d'études.⏎Demande à faire sur le site https://www.aress.regioncentre.fr/basscep/»

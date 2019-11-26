@@ -1,0 +1,1314 @@
+constante:
+  minimum_aref:
+    type: number
+    format: float
+    value: 616.2
+    label: minimum AREF
+  rff:
+    type: number
+    format: float
+    value: 652.02
+    label: montant de la RFF en vigueur
+    description: montant de la RFF (net)
+  codes_financeur_individuel:
+    description: ensemble des codes financeur individuel
+    type: array
+    items:
+      type: integer
+      enum: &codes_financeur
+        0: Autre
+        1: Code(s) obsolète(s)
+        2: Conseil régional
+        3: Fonds européens - FSE
+        4: Pôle emploi
+        5: Entreprise
+        6: ACSÉ (anciennement FASILD)
+        7: Agefiph
+        8: Conseil départemental
+        9: Commune
+        10: Bénéficiaire de l'action
+        11: Etat - Ministère chargé de l'emploi
+        12: Etat - Ministère de l'éducation nationale
+        13: Etat - Autre
+        14: Fonds européens - Autre
+        15: Autre collectivé territoriale
+        16: OPCO
+        17: OPACIF
+    value: [0, 5, 10]
+    label: codes financeur individuel
+    url: http://lheo.gouv.fr/langage#dict-financeurs
+  codes_financeur_collectif:
+    description: ensemble des codes financeur collectif
+    type: array
+    items:
+      type: integer
+      enum: *codes_financeur
+    value: [2, 4, 6, 7, 8, 9, 11, 12, 13, 15, 16]
+    label: codes financeur collectif
+    url: http://lheo.gouv.fr/langage#dict-financeurs
+  idcc_artisanat:
+    description: ensemble des codes IDCC de l'artisanat
+    type: array
+    items:
+      type: string
+      format: idcc
+    value: ["1596", "1638", "1722A", "1758", "1779", "2032", "2194", "2195", "2267", "2585"]
+    label: codes IDCC de l'artisanat
+  codes_cpf_vae:
+    description: liste des codes CPF identifiant une formation VAE
+    type: array
+    items:
+      type: integer
+    value: [200]
+    label: codes CPF VAE
+  codes_cpf_clea:
+    description: liste des codes CPF identifiant une formation CleA
+    type: array
+    items:
+      type: integer
+    value: [201, 207, 208]
+    label: codes CPF CléA
+  # https://www.service-public.fr/particuliers/vosdroits/F2300
+  smic:
+    type: number
+    format: float
+    value: 1521.22
+    label: SMIC
+  # TODO: move to preprocess
+  deux_smic:
+    type: number
+    format: float
+    value: 3043
+    label: deux fois le SMIC
+  trois_smic:
+    type: number
+    format: float
+    value: 4065
+    label: trois fois le SMIC
+  quatre_smic:
+    type: number
+    format: int32
+    value: 6086
+    label: quatre fois le SMIC
+  codes_permis:
+    type: array
+    items:
+      type: integer
+    value: [54664, 78281, 81308, 81306, 54662, 54665, 97711, 66300]
+    label: codes CERTIFINFO pour les permis de conduire
+  codes_permis_b:
+    type: array
+    items:
+      type: integer
+    value: [54664]
+    label: codes CERTIFINFO pour un permis B
+  codes_capacites_transport_lourd:
+    type: array
+    items:
+      type: integer
+    value: [55535, 55534, 76874, 55518, 89259]
+    label: codes CERTIFINFO pour des capacités de transport lourd
+  codes_spi:
+    type: array
+    items:
+      type: integer
+    value: [84385]
+    label: codes CERTIFINFO pour un SPI
+  codes_bilan_de_competences:
+    type: array
+    items:
+      type: integer
+    value: [93559]
+    label: codes CERTIFINFO pour un bilan de compétences
+  codes_bulats:
+    type: array
+    items:
+      type: integer
+    value: [95271, 84165, 84384]
+    label: codes CERTIFINFO BULATS
+  codes_bec:
+    type: array
+    items:
+      type: integer
+    value: [84166, 98623]
+    label: codes CERTIFINFO BEC
+  codes_toeic:
+    type: array
+    items:
+      type: integer
+    value: [84168]
+    label: codes CERTIFINFO TOEIC
+  codes_toefl:
+    type: array
+    items:
+      type: integer
+    value: [84167]
+    label: codes CERTIFINFO TOEFL
+  codes_fimo:
+    type: array
+    items:
+      type: integer
+    value: [31826]
+    label: codes FORMACODE FIMO
+  codes_tosa:
+    type: array
+    items:
+      type: integer
+    value: [84517]
+    label: codes CERTIFINFO TOSA
+  codes_caces:
+    type: array
+    items:
+      type: integer
+    value: [55673, 55674, 55675, 55676, 55677, 55803, 55804, 55805, 55806,55807, 55808, 55809,55810, 55811, 55812, 55813, 55814, 55815, 55816, 55817, 55818, 55819, 55820, 55822, 55821, 55823, 55824, 55825, 55826, 55827, 84700, 84449, 84700, 84715, 85312, 85338]
+    label: codes CERTIFINFO CACES
+  codes_BTS:
+    type: array
+    items:
+      type: integer
+    value: [18807, 54459, 100355, 18817, 63193, 57473, 53656, 94419, 63417, 82776, 18838, 18840, 75789, 55086, 63656, 83602, 63122, 94413, 87965, 87967, 87933, 94417, 18869, 81072, 75791, 63194, 100329, 52838, 18877, 87937, 18882, 59361, 46605, 46606, 53178, 77616, 77617, 18883, 69042, 94751, 87865, 75792, 88275, 88277, 82783, 82786, 82787, 87929, 87927, 100367, 104237, 18935, 18945, 18946, 52853, 46615, 83108, 83109, 94415, 82779, 100561, 82784, 100563, 82785, 100565, 87941, 87957, 87959, 104239, 18990, 100359, 100361, 100363, 83222, 83223, 88017, 81472, 81473, 81476, 81474, 81475, 18998, 80278, 80279, 80280, 87931, 82792, 77194, 77192, 81074, 87935, 53825, 100357, 19004, 19005, 19007, 68699, 87961, 19015, 77615, 79115, 19041, 19042, 19045, 53410, 76575, 76576, 100365, 82695, 82403, 82402, 84989, 55794, 55786, 55783, 55787, 55791, 55793, 55796, 55790, 55784, 55797, 55795, 55782, 55788, 55785, 55792, 55789, 81073, 19072, 77618, 89377, 89379, 74872, 75787, 64218, 81071, 18894, 87939, 89751, 89753, 8910]
+    label: codes CERTIFINFO BTS
+  codes_ais_certifiants:
+    value: [6, 7]
+    label: codes AIS certifiants
+    type: array
+    gender: masculine
+    number: plural
+    items:
+      type: integer
+      enum: &codes_ais
+        1: Code(s) obsolète(s)
+        2: Perfectionnement, élargissement des compétences
+        4: Création d'entreprise
+        5: Remise à niveau, maîtrise des savoirs de base, initiation
+        6: Certification
+        7: Professionnalisation
+        8: Préparation à la qualification
+        9: (Re)mobilisation, aide à l'élaboration de projet professionnel
+beneficiaire:
+  droit_prive:
+    description: le bénéficiaire est salarié d'une entreprise de droit privé
+    type: boolean
+    public: true
+    label: bénéficiaire de droit privé
+    gender: masculine
+  inscrit_pe:
+    alias: beneficiaire.inscritDE
+    description: le bénéficiaire est inscrit à Pôle emploi commme demandeur d'emploi
+    type: boolean
+    public: true
+    label: demandeur d'emploi
+    gender: masculine
+  solde_cpf:
+    alias: individu.montantCPF
+    description: solde du compte CPF du bénéficiaire
+    type: integer
+    format: int32
+    public: true
+    label: solde CPF du bénéficiaire
+    gender: masculine
+  remuneration:
+    description: rémunération actuelle en euros
+    type: number
+    format: money
+    default: 0
+    public: true
+    label: rémunération du bénéficiaire
+  allocation:
+    alias: beneficiaire.allocation_cost
+    description: montant de l'allocation en euros
+    type: number
+    format: money
+    default: 0
+    public: true
+    label: montant de l'allocation du bénéficiaire
+    gender: masculine
+  type_allocation:
+    description: le type d'allocation du bénéficiaire
+    alias: beneficiaire.allocation_type
+    type: string
+    public: true
+    enum:
+      are: allocation d'aide au retour à l'emploi
+      ass: allocation de solidarité spécifique
+      rsa: revenu de solidarité active
+      ata: allocation temporaire d'attente
+      asr: allocation spécifique de reclassement
+      atp: allocation de transition professionnelle
+      asp: allocation de sécurisation professionnelle
+      aex: allocation ex-employeur secteur public
+    label: allocation du bénéficiaire
+  fin_allocation:
+    description: la date de fin de l'allocation du bénéficiaire
+    alias: beneficiaire.allocation_dateend
+    type: string
+    format: date
+    public: true
+    label: date de fin de l'allocation du bénéficiaire
+  naissance:
+    alias:
+    - individu.dateNaissance
+    - beneficiaire.birthdate
+    type: string
+    format: date
+    public: true
+    label: date de naissance du bénéficiaire
+  age:
+    description: âge du beneficiaire
+    type: integer
+    format: int32
+    public: true
+    label: âge du bénéficiaire
+    gender: masculine
+  parent_isole:
+    description: vous êtes un parent isolé
+    alias:
+    - beneficiaire.situation_parentisole
+    - individu.parentIsole
+    type: boolean
+    public: true
+    label: parent isolé
+    gender: masculine
+  mere_trois_enfants:
+    description: vous êtes une  mère de famille ayant au moins trois enfants
+    alias:
+    - beneficiaire.situation_mere3enfants
+    - individu.mere3enfants
+    type: boolean
+    public: true
+    label: mère de famille ayant au moins trois enfants
+  veuve_ou_divorcee:
+    description: vous êtes une femme divorcée, veuve ou séparée judiciairement depuis moins trois ans
+    alias:
+    - beneficiaire.situation_divorceeveuve
+    - individu.mereSeule
+    type: boolean
+    public: true
+    label: femme divorcée, veuve ou séparée judiciairement depuis moins de trois ans
+  creation_entreprise:
+    description: le bénéficiaire est en situation de création d'entreprise
+    alias:
+    - beneficiaire.situation_projetcreationentreprise
+    - individu.projetCreationEntreprise
+    type: boolean
+    public: true
+    label: bénéficiaire en situation de création d'entreprise nécessitant cette formation
+  contrat_aide_actuel:
+    description: le bénéficiaire a un contrat aidé en cours
+    alias: beneficiaire.situation_personneencourscontrataide
+    type: boolean
+    public: true
+    label: bénéficiaire ayant un contrat aidé en cours
+  contrat_aide_passe:
+    description: le bénéficiaire a achevé un contrat aidé
+    alias: beneficiaire.situation_personnesortantcontrataide
+    type: boolean
+    public: true
+    label: bénéficiaire ayant achevé un contrat aidé
+  detenu:
+    description: le bénéficiaire est un détenu
+    type: boolean
+    public: true
+    label: la bénéficiaire est un déténu
+  experience_professionnelle:
+    description: nombre de mois travaillés
+    type: integer
+    format: int32
+    public: true
+    label: expérience professionnelle du bénéficiaire
+  experience_professionnelle_5_dernieres_annees:
+    description: nombre de mois travaillés dans les cinq dernières années
+    type: integer
+    format: int32
+    public: true
+    label: expérience professionnelle du bénéficiaire dans les cinq dernières années
+  mois_travailles_en_cdd:
+    description: nombre de mois travaillés sur un contrat CDD sur les 12 derniers mois
+    type: integer
+    format: int32
+    public: true
+    label: nombre de mois travaillés par le bénéficiaire dans la dernière année
+    gender: masculine
+  jours_travailles:
+    description: nombre de jours travaillés dans les cinq dernières années (pour les intermittents)
+    type: integer
+    format: int32
+    public: true
+    label: nombre de jours travaillés par le bénéficiaire dans les cinq dernières années
+    gender: masculine
+  heures_travaillees:
+    description: nombre d'heures travaillées dans les 18 derniers mois (pour les intérimaires)
+    type: integer
+    format: int32
+    public: true
+    label: nombre d'heures travaillées par le bénéficiaire dans les dix-huit derniers mois
+    gender: masculine
+  contrat:
+    description: type de contrat du bénéficiaire
+    type: string
+    public: true
+    enum:
+      cdd: CDD
+      cdi: CDI
+      intermittent: intermittent
+      interim: intérimaire
+    label: type de contrat du bénéficiaire
+    gender: masculine
+  mois_entreprise:
+    description: ancienneté en mois dans l'entreprise actuelle
+    alias: beneficiaire.anciennete_entreprise_actuelle
+    type: integer
+    format: int32
+    public: true
+    label: ancienneté en mois du bénéficiaire dans son entreprise
+  heures_entreprise:
+    description: ancienneté en heures dans l'entreprise
+    type: integer
+    format: int32
+    public: true
+    label: ancienneté en heures du bénéficiaire dans son entreprise
+  commune:
+    alias: beneficiaire.communeinsee
+    description: code INSEE de la commune où réside le bénéficiaire
+    type: string
+    public: true
+    pattern: ^(2[AB]|[0-9]{2})[0-9]{3}$
+    label: commune du bénéficiaire
+  departement:
+    alias: individu.departementHabitation
+    description: code INSEE du département où réside le bénéficiaire
+    type: string
+    public: true
+    pattern: ^(2[AB]|[0-9]{2,3})$
+    label: département du bénéficiaire
+    gender: masculine
+    enum: &departements
+      '01': Ain
+      '02': Aisne
+      '03': Allier
+      '04': Alpes-de-Haute-Provence
+      '05': Hautes-Alpes
+      '06': Alpes-Maritimes
+      '07': Ardèche
+      '08': Ardennes
+      '09': Ariège
+      '10': Aube
+      '11': Aude
+      '12': Aveyron
+      '13': Bouches-du-Rhône
+      '14': Calvados
+      '15': Cantal
+      '16': Charente
+      '17': Charente-Maritime
+      '18': Cher
+      '19': Corrèze
+      '2A': Corse-du-Sud
+      '2B': Haute-Corse
+      '21': Côte-d'Or
+      '22': Côtes-d'Armor
+      '23': Creuse
+      '24': Dordogne
+      '25': Doubs
+      '26': Drôme
+      '27': Eure
+      '28': Eure-et-Loir
+      '29': Finistère
+      '30': Gard
+      '31': Haute-Garonne
+      '32': Gers
+      '33': Gironde
+      '34': Hérault
+      '35': Ille-et-Vilaine
+      '36': Indre
+      '37': Indre-et-Loire
+      '38': Isère
+      '39': Jura
+      '40': Landes
+      '41': Loir-et-Cher
+      '42': Loire
+      '43': Haute-Loire
+      '44': Loire-Atlantique
+      '45': Loiret
+      '46': Lot
+      '47': Lot-et-Garonne
+      '48': Lozère
+      '49': Maine-et-Loire
+      '50': Manche
+      '51': Marne
+      '52': Haute-Marne
+      '53': Mayenne
+      '54': Meurthe-et-Moselle
+      '55': Meuse
+      '56': Morbihan
+      '57': Moselle
+      '58': Nièvre
+      '59': Nord
+      '60': Oise
+      '61': Orne
+      '62': Pas-de-Calais
+      '63': Puy-de-Dôme
+      '64': Pyrénées-Atlantiques
+      '65': Hautes-Pyrénées
+      '66': Pyrénées-Orientales
+      '67': Bas-Rhin
+      '68': Haut-Rhin
+      '69': Rhône
+      '70': Haute-Saône
+      '71': Saône-et-Loire
+      '72': Sarthe
+      '73': Savoie
+      '74': Haute-Savoie
+      '75': Paris
+      '76': Seine-Maritime
+      '77': Seine-et-Marne
+      '78': Yvelines
+      '79': Deux-Sèvres
+      '80': Somme
+      '81': Tarn
+      '82': Tarn-et-Garonne
+      '83': Var
+      '84': Vaucluse
+      '85': Vendée
+      '86': Vienne
+      '87': Haute-Vienne
+      '88': Vosges
+      '89': Yonne
+      '90': Territoire de Belfort
+      '91': Essonne
+      '92': Hauts-de-Seine
+      '93': Seine-Saint-Denis
+      '94': Val-de-Marne
+      '95': Val-d'Oise
+      '971': Guadeloupe
+      '972': Martinique
+      '973': Guyane
+      '974': La Réunion
+      '975': Saint-Pierre-et-Miquelon
+      '976': Mayotte
+  region:
+    description: région où réside le bénéficiaire
+    type: string
+    label: région du bénéficiaire
+    enum: &regions
+      '01': Guadeloupe
+      '02': Martinique
+      '03': Guyane
+      '04': La Réunion
+      '06': Mayotte
+      '11': Île-de-France
+      '24': Centre-Val de Loire
+      '27': Bourgogne-Franche-Comté
+      '28': Normandie
+      '32': Hauts-de-France
+      '44': Grand-Est
+      '52': Pays de la Loire
+      '53': Bretagne
+      '75': Nouvelle-Aquitaine
+      '76': Occitanie
+      '84': Auvergne-Rhône-Alpes
+      '93': Provence-Alpes-Côte d'Azur
+      '94': Corse
+      # TODO remove old regions when we switch to API catalog
+      '26': Bourgogne
+      '43': Franche-Comté
+      '23': Haute-Normandie
+      '25': Basse-Normandie
+      '31': Nord-Pas-de-Calais
+      '22': Picardie
+      '41': Lorraine
+      '42': Alsace
+      '21': Champagne-Ardenne
+      '72': Aquitaine
+      '54': Poitou-Charentes
+      '74': Limousin
+      '73': Midi-Pyrénées
+      '91': Languedoc-Roussillon
+      '82': Rhône-Alpes
+      '83': Auvergne
+  niveau_scolaire:
+    alias: beneficiaire.niveauscolaire
+    description: Le niveau scolaire du bénéficiaire selon l'ancienne classification (voir https://www.service-public.fr/particuliers/vosdroits/F199)
+    type: integer
+    public: true
+    label: niveau scolaire du bénéficiaire
+    enum: &niveau_scolaire
+      0: inconnu
+      1: aucun
+      2: VI
+      3: V bis
+      4: V
+      5: IV
+      6: III
+      7: II
+      8: I
+  th:
+    alias: beneficiaire.situation_th
+    description: le demandeur est en situation d'handicape
+    type: boolean
+    public: true
+    label: travailleur handicapé
+  a_travaille_six_mois:
+    alias: beneficiaire.situation_6moissur12
+    description: le bénéficiaire a déjà travaillé six mois sur une période de douze mois
+    type: boolean
+    public: true
+    label: bénéficiaire qui a déjà travaillé six mois sur une période de douze mois
+  a_travaille_douze_mois_sur_24_mois:
+    alias: beneficiaire.situation_12moissur24
+    description: le bénéficiaire a déjà travaillé douze mois sur une période de vingt-quatre mois
+    type: boolean
+    public: true
+    label: bénéficiaire qui a déjà travaillé douze mois sur une période de vingt-quatre mois
+  a_travaille_douze_mois:
+    alias:
+    - beneficiaire.situation_travailleurnonsal12dont6dans3ans
+    - individu.travNonSalariePrisEnCharge
+    description: le bénéficiaire non salarié d'emploi a travaillé pendant douze mois dont au moins six mois consécutifs dans les trois ans qui précèdent l'entrée en formation
+    type: boolean
+    public: true
+    label: bénéficiaire non salarié qui a travaillé pendant douze mois dont au moins six mois consécutifs dans les trois ans qui précèdent l'entrée en formation
+  fongecif:
+    description: Fongecif de la région du bénéficiaire
+    type: string
+    label: Fongecif de la région du bénéficiaire
+  entreprise:
+    naf:
+      description: l'identifiant NAF/APE de l'entreprise
+      type: string
+      format: naf
+      pattern: ^\d{2}\.?\d{2}[a-zA-Z]$
+      public: true
+      label: code NAF de l'établissement du bénéficiaire
+      gender: masculine
+    idcc:
+      description: l'identifiant de convention collective de l'établissement
+      type: string
+      format: idcc
+      public: true
+      label: IDCC de l'établissement du bénéficiaire
+      gender: masculine
+    commune:
+      description: code INSEE de la commune de l'établissement du bénéficiaire
+      type: string
+      public: true
+      pattern: ^(2[AB]|[0-9]{2})[0-9]{3}$
+      label: code INSEE de la commune de l'établissement du bénéficiaire
+      gender: masculine
+    departement:
+      description: département de l'entreprise
+      type: string
+      label: département de l'établissement du bénéficiaire
+      enum: *departements
+      gender: masculine
+    region:
+      description: région de l'entreprise
+      type: string
+      label: région de l'établissement du bénéficiaire
+      enum: *regions
+      gender: masculine
+    opco:
+      description: l'OPCO auquel est rattaché l'établissement du bénéficiaire. Optionnel, habituellement déduit de l'IDCC.
+      type: string
+      format: opco
+      public: true
+      nullable: true
+      label: OPCO de l'établissement du bénéficiaire
+      gender: masculine
+    iae:
+      description: définit si c'est une entreprise d'insertion par l'activité économique
+      type: boolean
+      label: entreprise d'insertion par l'activité économique
+formation:
+  intitule:
+    description: l'intitulé de la formation
+    type: string
+    label: intitulé de la formation
+    path: intitule
+    source: catalogue
+  intitule_norme:
+    description: intitulé de la formation sans accent ni signes diacritiques et tout en minuscules
+    type: string
+    label: intitulé normé de la formation
+    # Allow to set an empty intitule_norme (occurs when the intitule itself is an empty string).
+    default: ""
+  numero:
+    alias: formationVisee.codeFormation
+    description: identifiant INTERCARIF de la formation
+    type: string
+    public: true
+    label: identifiant de la formation
+  commune:
+    description: code INSEE de la commune où se déroule la formation
+    type: string
+    pattern: ^(2[AB]|[0-9]{2})[0-9]{3}$
+    label: commune de la formation
+    path: sessions.0.localisation.formation.commune-insee
+    source: catalogue
+  departement:
+    description: code INSEE du département où se passe la formation
+    type: string
+    label: département de la formation
+    enum: *departements
+    gender: masculine
+  region:
+    description: code INSEE du département où se passe la formation
+    type: string
+    label: région de la formation
+    enum: *regions
+  siret_organisme:
+    description: le numéro SIRET de l'organisme de formation
+    type: integer
+    format: int32
+    source: catalogue
+    path: organisme.siret
+    label: SIRET de l'organisme de formation
+    gender: masculine
+  codes_financeur:
+    description: codes des organismes financeurs de la formation
+    type: array
+    format: set
+    items:
+      type: integer
+      enum: *codes_financeur
+    source: catalogue
+    path: sessions.0.financeurs.code
+    label: codes financeur de la formation
+    gender: masculine
+    number: plural
+    url: http://lheo.gouv.fr/langage#dict-financeurs
+  eligible_cpf:
+    description: cette formation est éligible au CPF
+    type: boolean
+    default: false
+    source: catalogue
+    path: sessions.0.eligibilite-cpf.copanef.0
+    label: formation éligible CPF
+  # depreacated - necessary only for legacy tests
+  eligible_copanef:
+    description: cette formation est au catalogue COPANEF
+    type: boolean
+    default: false
+    source: catalogue
+    path: sessions.0.eligibilite-cpf.copanef.0
+    label: formation éligible COPANEF
+  codes_rome:
+    description: la liste des codes ROME de la formation
+    type: array
+    format: set
+    items:
+      type: string
+    source: catalogue
+    path: codes-rome
+    label: liste des codes ROME de la formation
+  codes_formacode:
+    description: la liste des codes FORMACODE de la formation
+    type: array
+    format: set
+    items:
+      type: integer
+      format: formacode
+    source: catalogue
+    path: codes-formacode
+    label: liste des codes FORMACODE de la formation
+  domaines_formacode:
+    description: domaines (trois premiers caractères des codes) FORMACODE de la formation
+    type: array
+    format: set
+    items:
+      type: integer
+    path: domaines-formacode
+    source: catalogue
+    label: liste des domaines FORMACODE de la formation
+  code_certifinfo:
+    description: le code CERTIFINFO de la formation
+    type: integer
+    format: int32
+    source: catalogue
+    path: code-certifinfo
+    label: code CERTIFINFO de la formation
+    gender: masculine
+  code_rncp:
+    type: integer
+    format: int32
+    source: catalogue
+    path: code-rncp
+    label: code RNCP de la formation
+    gender: masculine
+  heures:
+    type: integer
+    format: int32
+    source: catalogue
+    path: sessions.0.nombre-heures-total
+    label: durée en heures de la formation
+  heures_entreprise:
+    type: integer
+    format: int32
+    source: catalogue
+    path: sessions.0.nombre-heures-entreprise
+    label: nombre d'heures en entreprise
+    gender: masculine
+  heures_centre:
+    type: integer
+    format: int32
+    source: catalogue
+    path: sessions.0.nombre-heures-centre
+    label: nombre d'heures en centre
+    gender: masculine
+  mois:
+    type: integer
+    format: int32
+    label: durée en mois de la formation
+  semaines:
+    type: integer
+    format: int32
+    label: durée en semaines de la formation
+  duree_hebdo:
+    type: integer
+    format: int32
+    source: catalogue
+    path: duree-hebdomadaire
+    label: durée hebdomadaire de la formation
+  prix_horaire:
+    type: number
+    format: float
+    default: 0
+    source: catalogue
+    path: prix-horaire-TTC
+    label: prix horaire de la formation
+    description: prix horaire TTC de la formation
+    gender: masculine
+  prix_total:
+    type: number
+    format: float
+    source: catalogue
+    path: prix-total-TTC
+    label: prix total de la formation
+    description: prix total TTC de la formation
+    gender: masculine
+  prix_horaire_ht:
+    type: number
+    format: float
+    label: prix horaire HT de la formation
+  codes_cpf:
+    description: codes CPF de la formation
+    type: array
+    format: set
+    items:
+      type: integer
+      format: int32
+    source: catalogue
+    path: sessions.0.eligibilite-cpf.type=SALARIE|TOUTPUBLIC.code
+    label: liste des codes CPF de la formation
+  codes_cpf_de:
+    description: codes CPF de la formation pour un demandeur d'emploi
+    type: array
+    format: set
+    items:
+      type: integer
+      format: int32
+    source: catalogue
+    path: sessions.0.eligibilite-cpf.type=DE|TOUTPUBLIC.code
+    label: liste des codes CPF de la formation pour un demandeur d'emploi
+  codes_naf:
+    description: codes NAF des différents CPNE
+    type: array
+    format: set
+    items:
+      type: string
+      format: naf
+    source: catalogue
+    path: sessions.0.eligibilite-cpf.type=SALARIE.branches.[]
+    label: codes NAF CPNE éligibles
+    number: plural
+  objectif_general_formation:
+    description: code AIS de la formation (http://lheo.gouv.fr/langage#dict-AIS)
+    label: code AIS de la formation
+    type: integer
+    formation: int32
+    source: catalogue
+    path: objectif-general-formation
+    enum: *codes_ais
+  debut:
+    description: date de début de la formation
+    label: date de début de la formation
+    type: string
+    format: date
+    source: catalogue
+    path: sessions.0.debut
+  fin:
+    description: date de fin de la formation
+    label: date de fin de la formation
+    type: string
+    format: date
+    source: catalogue
+    path: sessions.0.fin
+  rff:
+    type: boolean
+    label: formation éligible à la RFF
+  foad:
+    type: boolean
+    source: catalogue
+    path: modalites-enseignement=2
+    label: formation ouverte à distance
+  codes_modalite_pedagogique:
+    type: array
+    format: set
+    items:
+      type: string
+    source: catalogue
+    path: code-modalite-pedagogique
+    label: liste des codes des modalités pédagogiques
+  langues:
+    type: boolean
+    source: catalogue
+    label: formation langues
+  langues_etrangeres:
+    type: boolean
+    source: catalogue
+    label: formation langues étrangères
+  fle:
+    type: boolean
+    source: catalogue
+    label: formation FLE
+  toeic:
+    type: boolean
+    source: catalogue
+    label: formation TOEIC
+  toefl:
+    type: boolean
+    source: catalogue
+    label: formation TOEFL
+  tosa:
+    type: boolean
+    source: catalogue
+    label: formation TOSA
+  fimo:
+    type: boolean
+    source: catalogue
+    label: formation FIMO
+  bulats:
+    type: boolean
+    source: catalogue
+    label: formation BULATS
+  caces:
+    type: boolean
+    source: catalogue
+    label: formation CACES
+  pcp:
+    type: boolean
+    source: catalogue
+    label: formation PCP
+  cared:
+    type: boolean
+    source: catalogue
+    label: formation CARED
+  e2c:
+    type: boolean
+    source: catalogue
+    label: formation E2C
+  bec:
+    type: boolean
+    source: catalogue
+    label: formation BEC
+  pfb:
+    type: boolean
+    source: catalogue
+    label: formation PFB
+  pic:
+    type: boolean
+    source: catalogue
+    label: formation PIC
+    path: pic
+  bilan_de_competences:
+    type: boolean
+    source: catalogue
+    label: bilan de compétences
+    gender: masculine
+  bts:
+    type: boolean
+    source: catalogue
+    label: BTS
+    gender: masculine
+  licence:
+    type: boolean
+    source: catalogue
+    label: licence
+  master:
+    type: boolean
+    source: catalogue
+    label: master
+    gender: masculine
+  ingenieur:
+    type: boolean
+    source: catalogue
+    label: niveau ingénieur
+    gender: masculine
+  permis:
+    type: boolean
+    source: catalogue
+    label: permis de conduire
+    gender: masculine
+  permis_b:
+    type: boolean
+    source: catalogue
+    label: permis B
+    gender: masculine
+  capacite_transport_lourd:
+    type: boolean
+    source: catalogue
+    label: capacité de transport lourd
+  spi:
+    type: boolean
+    source: catalogue
+    label: stage de préparation à l'installation
+    gender: masculine
+  certifiante:
+    type: boolean
+    source: catalogue
+    path: certifiante
+    label: formation certifiante
+  professionnalisante:
+    default: false
+    type: boolean
+    label: formation professionnalisante
+  enseignement_superieur:
+    type: boolean
+    source: catalogue
+    label: formation de l'enseignement supérieur
+  vae:
+    type: boolean
+    source: catalogue
+    label: formation VAE
+  clea:
+    type: boolean
+    source: catalogue
+    label: formation CléA
+  poec:
+    type: boolean
+    source: catalogue
+    path: programme-financeur=POEC
+    label: préparation opérationnelle à l'emploi collective
+  poei:
+    type: boolean
+    source: catalogue
+    path: programme-financeur=POEI
+    label: préparation opérationnelle à l'emploi individuelle
+  poe:
+    type: boolean
+    source: catalogue
+    label: préparation opérationnelle à l'emploi
+  daeu:
+    type: boolean
+    source: catalogue
+    label: diplôme d'accès aux études universitaires
+    gender: masculine
+  rncp:
+    type: boolean
+    default: false
+    label: formation RNCP
+    description: cette formation est inscrite au RNCP
+  contrat_apprentissage:
+    type: boolean
+    default: false
+    source: catalogue
+    path: contrat-apprentissage
+    label: contrat d'apprentissage
+    gender: masculine
+  contrat_professionnalisation:
+    type: boolean
+    default: false
+    source: catalogue
+    path: contrat-professionnalisation
+    label: contrat de professionnalisation
+    gender: masculine
+  developpement_professionnel:
+    type: boolean
+    label: formation en développement professionnel
+  niveau_sortie:
+    description: le niveau du diplôme de sortie (licence, master…)
+    type: integer
+    format: int32
+    label: niveau de sortie de la formation
+    source: catalogue
+    path: niveau-sortie
+    gender: masculine
+    url: http://lheo.gouv.fr/langage#dict-niveaux
+    enum: *niveau_scolaire
+  entrees_sorties_permanentes:
+    type: boolean
+    default: false
+    source: catalogue
+    path: entrees-sorties-permanentes
+    label: formation à entrées-sorties permanentes
+  individuels:
+    type: boolean
+    label: formation ouverte aux bénéficiaires individuels
+remuneration: &remuneration
+  intitule_remuneration: # add _remuneration to not overlap financement.intitule
+    description: le nom de la règle de rémuneration
+    type: string
+    public: true
+    label: intitulé de la régle de rémunération
+  remuneration:
+    description: rémunération applicable
+    type: number
+    format: float
+    public: true
+    nullable: true
+    label: rémunération applicable
+  remuneration_annee_2:
+    description: rémunération applicable la deuxième année
+    type: number
+    format: float
+    public: true
+    nullable: true
+    label: rémunération applicable la deuxième année
+  remuneration_annee_3:
+    description: rémunération applicable la troisième année
+    type: number
+    format: float
+    public: true
+    nullable: true
+    label: rémunération applicable la troisième année
+  remuneration_texte:
+    description: texte de la rémunération
+    type: string
+    public: true
+    nullable: true
+    label: texte de la rémunération
+  indemnite_conges_payes:
+    description: indemnité compensatrice de congés payés
+    type: integer
+    format: int32
+    public: true
+    nullable: true
+    label: indemnité compensatrice de congés payés
+  plafond_remuneration:
+    description: plafond de rémunération applicable
+    type: number
+    format: money
+    public: true
+    nullable: true
+    label: plafond de rémunération applicable
+  rff:
+    description: montant de la RFF si applicable
+    type: number
+    format: float
+    public: true
+    nullable: true
+    label: RFF applicable
+  debut_rff:
+    description: date de début de la RFF applicable
+    type: string
+    format: date
+    public: true
+    nullable: true
+    label: date de début de la RFF applicable
+  fin_rff:
+    description: date de fin de la RFF applicable
+    type: string
+    format: date
+    public: true
+    nullable: true
+    label: date de fin de la RFF applicable
+  fin_remuneration:
+    description: date de fin de la rémunération applicable
+    type: string
+    format: date
+    nullable: true
+    public: true
+    label: date de fin de la rémunération applicable
+financement:
+  intitule:
+    description: le nom du financement
+    type: string
+    public: true
+    label: intitulé du financement
+  type_lbf:
+    type: string
+    public: true
+    label: identifiant LBF d'un financement (legacy)
+  priorite_lbf:
+    type: integer
+    public: true
+    label: priorité LBF d'un financement (legacy)
+  financee_pe:
+    description: la formation est financée par Pôle emploi
+    type: boolean
+    public: true
+    label: Formation financéee par Pôle emploi
+  tags:
+    description: les catégories du financements
+    type: array
+    items:
+      type: string
+    public: true
+    label: catégories du financement
+  cpf_mobilisable:
+    description: le CPF est mobilisable pour le financement de la formation
+    type: boolean
+    public: true
+    label: CPF mobilisable pour le financement
+  cumulable:
+    description: le dispositif de financement est cumlable avec d'autres dispositifs
+    type: boolean
+    public: true
+    label: dispositif cumulable avec un autre
+  sigle:
+    description: le sigle du financement
+    type: string
+    public: true
+    label: sigle du financement
+  eligible:
+    description: définit si le financement est éligible
+    type: boolean
+    public: true
+    label: financement éligible
+  description:
+    description: description du financement
+    type: string
+    public: true
+    label: texte de description
+  en_savoir_plus:
+    description: description du financement
+    type: string
+    public: true
+    label: texte pour en savoir plus
+  demarches:
+    description: démarches à accomplir pour obtenir le financement
+    type: string
+    public: true
+    label: texte des démarches
+  prise_en_charge:
+    description: valeur définie seulement si le prix horaire de la formation est défini
+    type: number
+    format: money
+    public: true
+    nullable: true
+    label: montant de prise en charge
+  prise_en_charge_texte:
+    description: texte de la prise en charge
+    type: string
+    public: true
+    nullable: true
+    label: texte de la prise en charge
+  plafond_prise_en_charge:
+    description: Ce champ est défini quand on ne connaît pas le prix horaire de la formation. C'est donc une prise en charge maximale théorique, la prise en charge réelle dépendra du prix exact de la formation.
+    type: number
+    format: money
+    public: true
+    nullable: true
+    label: plafond de prise en charge
+  plafond_financier:
+    description: plafond financier applicable
+    type: number
+    format: money
+    label: plafond financier applicable
+  plafond_horaire:
+    description: nombre maximal d'heures prises en charge
+    type: integer
+    format: int32
+    label: plafond horaire applicable
+  plafond_prix_horaire:
+    description: prix horaire maximum
+    type: number
+    format: money
+    public: true
+    label: prix horaire plafond applicable
+  prix_horaire:
+    description: prix horaire applicable
+    type: number
+    format: money
+    label: prix horaire applicable
+  heures:
+    description: nombre d'heures effectivement prises en charge
+    type: integer
+    format: int32
+    label: heures financées
+    public: true
+  reste_a_charge:
+    description: reste à charge applicable
+    type: number
+    format: float
+    public: true
+    label: reste à charge applicable
+  <<: *remuneration
+  ressources:
+    description: liste d'adresses Internet pour en savoir plus sur le sujet
+    type: array
+    public: true
+    items:
+      type: string
+      format: url
+  explain:
+    description: liste de conditions nécessaires pour rendre ce financement éligible
+    type: array
+    public: true
+    nullable: true
+    items:
+      type: object
+      properties:
+        condition:
+          description: texte de la condition à évaluer
+          type: string
+        status:
+          description: résultat de l'évaluation de la condition
+          type: boolean
+        connective:
+          description: dépendance logique avec la condition suivante
+          type: string
+        reason:
+          description: raison invoquée pour une condition fausse
+          type: string
+          nullable: true
+        params:
+          description: paramètres identifiés de la condition
+          type: object
+          additionalProperties:
+            type: string
+            nullable: true
+        terms:
+          description: liste des termes pour une condition composée
+          # TODO dry me
+          type: array
+          items:
+            type: object
+            # See https://github.com/p1c2u/openapi-core/issues/33#issuecomment-403022629
+            additionalProperties:
+              type: string
+              nullable: true
+        children:
+          description: liste des conditions filles pour une condition
+          # TODO dry me
+          type: array
+          items:
+            type: object
+            # See https://github.com/p1c2u/openapi-core/issues/33#issuecomment-403022629
+            additionalProperties:
+              type: string
+              nullable: true
+  organisme:
+    nom:
+      description: nom de l'organisme paritaire à contacter
+      public: true
+      type: string
+      label: organisme paritaire
+    agence:
+      description: le nom de l'antenne locale à contacter le cas échéant
+      type: string
+      label: nom de l'agence à contacter
+    adresse:
+      description: l'adresse postale de l'organisme
+      public: true
+      type: string
+      label: adresse postale de l'organisme
+    telephone:
+      description: le téléphone de l'organisme
+      public: true
+      type: string
+      label: téléphone de l'organisme
+    web:
+      description: le site web de l'organisme
+      public: true
+      type: string
+      label: site web de l'organisme

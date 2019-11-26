@@ -1,0 +1,12 @@
+idcc2ape:
+  entree: beneficiaire.entreprise.idcc
+  sortie: beneficiaire.entreprise.ape
+  description: table de correspondance
+code_insee:
+  entree: beneficiaire.entreprise.commune.cp
+  sortie: beneficiaire.entreprise.commune.insee
+  description: cp => insee (attention aux edge cases)
+organisme_financeur:
+  entree: beneficiaire.entreprise.ape
+  sortie: organisme_financeur
+  description: table de correspondance en dur

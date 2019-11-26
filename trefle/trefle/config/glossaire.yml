@@ -1,0 +1,59 @@
+APE:
+  description: activité principale exercée. Toute entreprise et chacun de ses établissements se voit attribuer par l'Insee, lors de son inscription au répertoire SIRENE, un code caractérisant son activité principale par référence à la nomenclature d'activités française (NAF rév. 2). Plus précisément, on distingue le code APEN pour l'entreprise et le code APET pour les établissements. Voir NAF.
+  ressources:
+    - https://www.insee.fr/fr/metadonnees/definition/c1507
+    - http://site2.fpspp.org/FPSPP9/
+ARE:
+  description: Allocation chômage d'aide au retour à l'emploi
+  ressources:
+    - https://www.service-public.fr/particuliers/vosdroits/N178
+AREF:
+  description: Allocation d'aide au retour à l'emploi formation
+  ressources:
+    - https://www.service-public.fr/particuliers/vosdroits/F291
+BEC: Business English Certificates, aussi appelé Cambridge English Business Certificates
+BULATS: Business Language Testing Service
+CACES: Certificat d'aptitude à la conduite en sécurité
+CIF: Compte individuel de formation, formation longue
+CPF: Compte personnel de formation, formation courte
+CQP:
+  description: certificat de qualification professionnelle
+  ressources:
+    - http://travail-emploi.gouv.fr/formation-professionnelle/evoluer-professionnellement/article/certificat-de-qualification-professionnelle-cqp
+CQPI: certificat de qualification professionnelle inter-branches
+COPANEF: Conseil paritaire interprofessionnel national pour l’emploi et la formation; gère les formations nationales (accessibles à tout le monde)
+COPAREF: Conseils paritaires interprofessionnels régionaux pour l’emploi et la formation; gèrent les formations régionales (accessibles aux salariés travaillant dans la région)
+CPNE: Commissions paritaires nationales de l’emploi; gèrent les formations de la branche (accessibles aux salariés de la branche)
+ESA: Enquête Sectorielle Annuelle
+IDCC:
+  description: "identifiant de convention collective; Le code IDCC numéro séquentiel croissant (exemple : 787) est la clé d’accès privilégiée à chaque convention ; il s’agit d’un code unique attribué par le ministère chargé du travail  à chaque convention. L’exemple 787 concerne la convention relative aux cabinet d’experts-comptables et commissaires aux comptes."
+  ressources:
+    - https://www.legifrance.gouv.fr/Aide/Utilisation/Conventions-collectives-recherche-simple
+    - https://www.elections-professionnelles.travail.gouv.fr/rechercheIdcc
+    - http://travail-emploi.gouv.fr/dialogue-social/negociation-collective/conventions-collectives/article/conventions-collectives-nomenclatures
+    - http://www.maconvention.fr/trouver-convention-collective
+    - https://www.legifrance.gouv.fr/initRechConvColl.do
+    - http://travail-emploi.gouv.fr/dialogue-social/negociation-collective/conventions-collectives/article/table-de-passage-entre-secteur-d-activite-et-convention-collective
+NAF:
+  description: nomenclature d'activités française; Le code NAF ou Nomenclature des Activités Françaises est un code attribué par l’INSEE à chaque entreprise (société ou association). Il est composé de quatre chiffres et d’une lettre. Ce code est attribué à l’entreprise à partir de ce que qui a été inscrit dans le formulaire de création de l’entreprise. Il n’a aucune valeur juridique mais uniquement une valeur statistique; voir APE
+  ressources:
+    - https://www.service-public.fr/professionnels-entreprises/vosdroits/F33050
+    - https://www.insee.fr/fr/information/2406147
+OPCA:
+  description: Un OPCA est un "organisme paritaire collecteur agréé" en charge de collecter les obligations financières des entreprises en matière de formation professionnelle. Il constitue également un interlocuteur privilégié pour les salariés qui souhaitent se former. Chaque OPCA est en charge d'une ou plusieurs conventions collectives, déterminées par voie législative.
+  ressources:
+    - http://travail-emploi.gouv.fr/ministere/acteurs/partenaires/article/opca-organismes-paritaires-collecteurs-agrees
+    - https://www.maformation.fr/droits/quest-ce-quun-opca-et-a-quoi-sert-il-24279
+    - https://www.fongecif-idf.fr/conseiller/les-employeurs-dans-leur-gestion-des-ressources-humaines/les-opca/
+    - http://site2.fpspp.org/FPSPP9/
+    - https://www.arftlv.org/TELECHARGEMENT/2553/_liste_opca__pdf_.pdf
+    - https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000024909327&categorieLien=id
+RFPE:
+  description: Régime public de rémunération des demandeurs d'emploi en formation
+  ressources:
+    - https://www.service-public.fr/particuliers/vosdroits/F760
+TOEIC: Test of English for International Communication
+VAE:
+  description: validation des acquis de l'expérience
+  ressources:
+    - http://www.vae.gouv.fr/

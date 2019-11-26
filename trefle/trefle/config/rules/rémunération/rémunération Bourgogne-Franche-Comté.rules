@@ -1,0 +1,32 @@
+Si les codes financeur de la formation contiennent «Conseil régional»
+
+    Si l'allocation du bénéficiaire est définie
+        Alors la rémunération applicable est égale au montant de l'allocation du bénéficiaire
+
+    # Par défaut
+    Si l'âge du bénéficiaire est inférieur à 18
+    Et la rémunération applicable est inférieure à 455.01
+        Alors la rémunération applicable vaut 455.01
+    Si l'âge du bénéficiaire est supérieur ou égal à 18
+    Et la rémunération applicable est inférieure à 652.18
+        Alors la rémunération applicable vaut 652.18
+    Si c'est un bénéficiaire qui a déjà travaillé six mois sur une période de douze mois
+    Ou c'est un bénéficiaire qui a déjà travaillé douze mois sur une période de vingt-quatre mois
+    Et la rémunération applicable est inférieure à 863.00
+        Alors la rémunération applicable vaut 863.00
+
+    # Règles spécifiques
+    Si c'est un parent isolé
+    Ou c'est une mère de famille ayant au moins trois enfants
+    Ou c'est une femme divorcée, veuve ou séparée judiciairement depuis moins de trois ans
+    Et la rémunération applicable est inférieure à 863.00
+        Alors la rémunération applicable vaut 863.00
+
+    Si c'est un travailleur handicapé
+    Et la rémunération applicable est inférieure à 910.02
+        Alors la rémunération applicable vaut 910.02
+        Et le texte de la rémunération vaut «C'est une rémunération minimum en fonction de votre expérience»
+
+    # TODO ajouter cas détenu
+    # Si c'est un détenu
+    #     Alors la rémunération applicable vaut 3.3 € x durée de la formation en h
