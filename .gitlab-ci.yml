@@ -1,14 +1,41 @@
-image: python:3.6
+#TODO test docker image with https://github.com/aelsabbahy/goss
 
-cache:
-  paths:
-  - ~/.cache/pip/
+api publish:
+  image:
+    name: gcr.io/kaniko-project/executor:debug
+    entrypoint: [""]
+  stage: build
+  script:
+    - echo "{\"auths\":{\"$CI_REGISTRY\":{\"username\":\"$CI_REGISTRY_USER\",\"password\":\"$CI_REGISTRY_PASSWORD\"}}}" > /kaniko/.docker/config.json
+    - /kaniko/executor --context ${CI_PROJECT_DIR}/docker --dockerfile $CI_PROJECT_DIR/docker/dockerfile_trefle --build-arg TREFLE_VERSION=$CI_COMMIT_TAG --build-arg TREFLE_GIT=${CI_PROJECT_URL} --destination ${CI_REGISTRY_IMAGE}:${CI_COMMIT_TAG}
+  only:
+    - /^api-v[0-9.]+$/
 
-before_script:
-  - python setup.py develop
-  - pip install -r requirements-dev.txt
+backoffice publish:
+  variables:
+    TREFLE_OLD_VERSION: "api-v0.6.1"
+  image:
+    name: gcr.io/kaniko-project/executor:debug
+    entrypoint: [""]
+  stage: build
+  script:
+    - echo "{\"auths\":{\"$CI_REGISTRY\":{\"username\":\"$CI_REGISTRY_USER\",\"password\":\"$CI_REGISTRY_PASSWORD\"}}}" > /kaniko/.docker/config.json
+    - /kaniko/executor --context ${CI_PROJECT_DIR}/docker --dockerfile ${CI_PROJECT_DIR}/docker/dockerfile_backoffice --build-arg TREFLE_BACK_VERSION=${CI_COMMIT_TAG} --build-arg TREFLE_OLD_VERSION=${TREFLE_OLD_VERSION} --build-arg TREFLE_GIT=${CI_PROJECT_URL} --destination ${CI_REGISTRY_IMAGE}:${CI_COMMIT_TAG}
+  only:
+    - /^backoffice-v[0-9.]+$/
 
 test:
+  image: python:3.6
+  cache:
+    paths:
+    - ~/.cache/pip/
+  before_script:
+    - python setup.py develop
+    - pip install -r requirements-dev.txt
+  stage: test
   script:
-  - py.test -v --cov
-  - behave -D coverage-format=long
+    - py.test -v --cov
+    - behave -D coverage-format=long
+  only:
+    - branches
+    - master
