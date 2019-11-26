@@ -314,19 +314,6 @@ Scénario: Cas bénéficiaire ayant travaillé six mois sur 12 mois
     Quand je sélectionne le financement «Action collective financée par la Région»
     Alors la rémunération applicable vaut 863
 
-Scénario: Cas bénéficiaire ayant travaillé 12 mois sur 24 mois
-    Soit un bénéficiaire et une formation
-    Et c'est un demandeur d'emploi
-    Et l'âge du bénéficiaire vaut 38
-    Et les codes financeur de la formation valent [«Conseil régional»]
-    Et la durée en heures de la formation vaut 420
-    Et la région du bénéficiaire vaut «Bourgogne-Franche-Comté»
-    Et la région de la formation vaut «Bourgogne-Franche-Comté»
-    Et c'est une bénéficiaire qui a déjà travaillé douze mois sur une période de vingt-quatre mois
-    Quand je demande un calcul de financement
-    Quand je sélectionne le financement «Action collective financée par la Région»
-    Alors la rémunération applicable vaut 863
-
 Scénario: Cas travailleur handicapé
     Soit un bénéficiaire et une formation
     Et c'est un demandeur d'emploi

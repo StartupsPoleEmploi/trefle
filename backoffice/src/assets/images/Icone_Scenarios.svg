@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="20px" height="16px" viewBox="0 0 20 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 57.1 (83088) - https://sketch.com -->
+    <title>Icone_Scenarios</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <polygon id="path-1" points="0 0.0002 20 0.0002 20 16 0 16"></polygon>
+    </defs>
+    <g id="Welcome" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Ecran_Ref_1_Hover" transform="translate(-35.000000, -305.000000)">
+            <g id="Navigation" transform="translate(0.000000, 65.000000)">
+                <g id="Icone_Scenarios" transform="translate(35.000000, 240.000000)">
+                    <g id="Group-3">
+                        <mask id="mask-2" fill="white">
+                            <use xlink:href="#path-1"></use>
+                        </mask>
+                        <g id="Clip-2"></g>
+                        <path d="M17,14.0002 L3,14.0002 C2.45,14.0002 2,13.5502 2,13.0002 L2,5.0002 C2,4.4502 2.45,4.0002 3,4.0002 L17,4.0002 C17.55,4.0002 18,4.4502 18,5.0002 L18,13.0002 C18,13.5502 17.55,14.0002 17,14.0002 M18,2.0002 L10,2.0002 L8.59,0.5902 C8.21,0.2102 7.7,0.0002 7.17,0.0002 L2,0.0002 C0.9,0.0002 0.01,0.9002 0.01,2.0002 L0,14.0002 C0,15.1002 0.9,16.0002 2,16.0002 L18,16.0002 C19.1,16.0002 20,15.1002 20,14.0002 L20,4.0002 C20,2.9002 19.1,2.0002 18,2.0002" id="Fill-1" fill="#000000" mask="url(#mask-2)"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
