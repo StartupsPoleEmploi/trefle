@@ -1,4 +1,0 @@
-recursive-include trefle/config *
-recursive-include trefle/explorer *
-recursive-exclude * __pycache__
-recursive-exclude * *.py[co]

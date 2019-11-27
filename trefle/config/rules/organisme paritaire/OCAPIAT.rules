@@ -1,8 +1,0 @@
-Si le financement est de type «CPF»
-    Alors appliquer les règles «CPF»
-    
-Si l'intitulé du financement est «Projet de transition professionnelle»
-    Alors appliquer les règles «Projet de transition professionnelle»
-
-Si l'intitulé du financement est «Plan de développement des compétences»
-    Alors appliquer les règles «Plan de développement des compétences»

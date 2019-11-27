@@ -1,9 +1,0 @@
-hupper
-minicli
-openapi-core==0.8.0
-openapi-spec-validator==0.2.6
-pytest
-pytest-asyncio
-pytest-cov
-# See https://github.com/p1c2u/openapi-core/issues/17
-werkzeug
