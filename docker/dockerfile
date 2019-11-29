@@ -16,7 +16,6 @@ RUN apt-get update && apt-get -y install \
                                     git\
                                     pkg-config\
                                     logrotate\
-                                    rsync\
                                     cron
 
 # setup system
