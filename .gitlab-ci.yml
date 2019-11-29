@@ -1,6 +1,3 @@
-# TODO : test and replace hard URL GIT and hard OLD_VERSION
-# doc for use kaniko in gitlab env : https://docs.gitlab.com/ee/ci/docker/using_kaniko.html
-# for registry and env var in general : https://docs.gitlab.com/ee/ci/variables/README.html#predefined-environment-variables
 build:
   image:
     name: gcr.io/kaniko-project/executor:debug
@@ -8,10 +5,10 @@ build:
   stage: build
   script:
     - echo "{\"auths\":{\"$CI_REGISTRY\":{\"username\":\"$CI_REGISTRY_USER\",\"password\":\"$CI_REGISTRY_PASSWORD\"}}}" > /kaniko/.docker/config.json
-    - /kaniko/executor --context $CI_PROJECT_DIR --dockerfile $CI_PROJECT_DIR/dockerfile_trefle --build-arg TREFLE_VERSION=$CI_COMMIT_TAG --build-arg TREFLE_GIT=https://git.beta.pole-emploi.fr/open-source/trefle.git --destination ${CI_REGISTRY_IMAGE}-trefle:$CI_COMMIT_TAG
-    - /kaniko/executor --context $CI_PROJECT_DIR --dockerfile $CI_PROJECT_DIR/dockerfile_web --build-arg TREFLE_VERSION=$CI_COMMIT_TAG --build-arg TREFLE_OLD_VERSION=0.6.1 --build-arg TREFLE_GIT=https://git.beta.pole-emploi.fr/open-source/trefle.git --destination ${CI_REGISTRY_IMAGE}-web:$CI_COMMIT_TAG
+    - /kaniko/executor --context $CI_PROJECT_DIR --dockerfile $CI_PROJECT_DIR/dockerfile_trefle --build-arg TREFLE_VERSION=$CI_COMMIT_TAG --build-arg TREFLE_GIT=${CI_PROJECT_URL} --destination ${CI_REGISTRY_IMAGE}:$CI_COMMIT_TAG
   only:
     - tags
+    - master
 
 test:
   image: python:3.6
@@ -29,3 +26,6 @@ test:
   script:
     - py.test -v --cov
     - behave -D coverage-format=long
+  only:
+    - branches
+    - master
