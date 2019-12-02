@@ -7,7 +7,7 @@ build:
   stage: build
   script:
     - echo "{\"auths\":{\"$CI_REGISTRY\":{\"username\":\"$CI_REGISTRY_USER\",\"password\":\"$CI_REGISTRY_PASSWORD\"}}}" > /kaniko/.docker/config.json
-    - /kaniko/executor --context ${CI_PROJECT_DIR}/docker --dockerfile $CI_PROJECT_DIR/docker/dockerfile --build-arg TREFLE_VERSION=$CI_COMMIT_TAG --build-arg TREFLE_GIT=${CI_PROJECT_URL} --destination ${CI_REGISTRY_IMAGE}:$CI_COMMIT_TAG
+    - /kaniko/executor --context ${CI_PROJECT_DIR}/docker --dockerfile $CI_PROJECT_DIR/docker/dockerfile --build-arg TREFLE_VERSION=$CI_COMMIT_TAG --build-arg TREFLE_GIT=${CI_PROJECT_URL} --destination ${CI_REGISTRY_IMAGE}:trefle-${CI_COMMIT_TAG}
   only:
     - tags
     - master
