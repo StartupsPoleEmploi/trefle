@@ -9,4 +9,5 @@ dist/
 .coverage
 htmlcov/
 .envrc
-/web/node_modules/.cache/*
+backoffice/node_modules/
+backoffice/dist/
