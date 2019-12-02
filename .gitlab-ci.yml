@@ -1,25 +1,28 @@
 #TODO test docker image with https://github.com/aelsabbahy/goss
 
-build-trefle:
+api publish:
   image:
     name: gcr.io/kaniko-project/executor:debug
     entrypoint: [""]
   stage: build
   script:
     - echo "{\"auths\":{\"$CI_REGISTRY\":{\"username\":\"$CI_REGISTRY_USER\",\"password\":\"$CI_REGISTRY_PASSWORD\"}}}" > /kaniko/.docker/config.json
-    - /kaniko/executor --context ${CI_PROJECT_DIR}/docker --dockerfile $CI_PROJECT_DIR/docker/dockerfile_trefle --build-arg TREFLE_VERSION=$CI_COMMIT_TAG --build-arg TREFLE_GIT=${CI_PROJECT_URL} --destination ${CI_REGISTRY_IMAGE}:trefle-${CI_COMMIT_TAG}
+    - /kaniko/executor --context ${CI_PROJECT_DIR}/docker --dockerfile $CI_PROJECT_DIR/docker/dockerfile_trefle --build-arg TREFLE_VERSION=$CI_COMMIT_TAG --build-arg TREFLE_GIT=${CI_PROJECT_URL} --destination ${CI_REGISTRY_IMAGE}:${CI_COMMIT_TAG}
   only:
-    - /^trefle-v[0-9.]+$/
-#build-web:
-#  image:
-#    name: gcr.io/kaniko-project/executor:debug
-#    entrypoint: [""]
-#  stage: build
-#  script:
-#    - echo "{\"auths\":{\"$CI_REGISTRY\":{\"username\":\"$CI_REGISTRY_USER\",\"password\":\"$CI_REGISTRY_PASSWORD\"}}}" > /kaniko/.docker/config.json
-#    - /kaniko/executor --context ${CI_PROJECT_DIR}/docker --dockerfile $CI_PROJECT_DIR/docker/dockerfile_web --build-arg TREFLE_VERSION=$CI_COMMIT_TAG --build-arg TREFLE_GIT=${CI_PROJECT_URL} --destination ${CI_REGISTRY_IMAGE}:web-${CI_COMMIT_TAG}
-#  only:
-#    - tags
+    - /^api-v[0-9.]+$/
+
+backoffice publish:
+  variables:
+    TREFLE_OLD_VERSION: "api-v0.6.1"
+  image:
+    name: gcr.io/kaniko-project/executor:debug
+    entrypoint: [""]
+  stage: build
+  script:
+    - echo "{\"auths\":{\"$CI_REGISTRY\":{\"username\":\"$CI_REGISTRY_USER\",\"password\":\"$CI_REGISTRY_PASSWORD\"}}}" > /kaniko/.docker/config.json
+    - /kaniko/executor --context ${CI_PROJECT_DIR}/docker --dockerfile ${CI_PROJECT_DIR}/docker/dockerfile_web --build-arg TREFLE_VERSION=${CI_COMMIT_TAG} --build-arg TREFLE_OLD_VERSION=${TREFLE_OLD_VERSION} --build-arg TREFLE_GIT=${CI_PROJECT_URL} --destination ${CI_REGISTRY_IMAGE}:${CI_COMMIT_TAG}
+  only:
+    - /^backoffice-v[0-9.]+$/
 
 test:
   image: python:3.6

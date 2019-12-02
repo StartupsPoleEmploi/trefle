@@ -1,0 +1,35 @@
+FROM ubuntu:xenial
+
+LABEL maintainer="labonneformation@pole-emploi.fr"
+
+ENV LANG C.UTF-8
+ENV DEBIAN_FRONTEND noninteractive
+
+RUN apt-get update && apt-get -y install \
+                                 apt-utils\
+                                 software-properties-common\
+                                 unzip \
+                                 nginx \
+                                 vim \
+                                 bzip2 \
+                                 cron \
+                                 logrotate \
+                                 iptables \
+                                 git \
+                                 dnsutils
+
+
+ARG TREFLE_GIT
+
+ARG TREFLE_VERSION
+RUN git clone -b ${TREFLE_VERSION} ${TREFLE_GIT} /srv/trefle && \
+    chown -R www-data: /srv/trefle && \
+    chmod -R u+rwx /srv/trefle
+
+ARG TREFLE_OLD_VERSION
+RUN git clone -b ${TREFLE_OLD_VERSION} ${TREFLE_GIT} /srv/trefle-old && \
+    chown -R www-data: /srv/trefle-old && \
+    chmod -R u+rwx /srv/trefle-old
+
+CMD service nginx start; \
+    cron -f

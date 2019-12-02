@@ -21,10 +21,10 @@ RUN apt-get update && apt-get -y install \
 # setup system
 RUN mkdir -p ${TREFLE_LOG_DIR}
 WORKDIR /srv
-COPY etc/logrotate.d/gunicorn.logrotate /etc/logrotate.d/gunicorn
+COPY trefle/etc/logrotate.d/gunicorn.logrotate /etc/logrotate.d/gunicorn
 
 #deploy
-COPY srv/gunicorn.conf.py ./gunicorn.conf.py
+COPY trefle/srv/gunicorn.conf.py ./gunicorn.conf.py
 
 
 # setup virtualenv
@@ -33,5 +33,5 @@ RUN pip install pip -U && \
     pip install git+${TREFLE_GIT}@${TREFLE_VERSION}
 
 #start
-COPY start.sh .
+COPY trefle/start.sh .
 ENTRYPOINT ./start.sh
