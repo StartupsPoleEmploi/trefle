@@ -1,4 +1,4 @@
-
+#TODO test docker image with https://github.com/aelsabbahy/goss
 
 build:
   image:
@@ -17,13 +17,9 @@ test:
   cache:
     paths:
     - ~/.cache/pip/
-
   before_script:
     - python setup.py develop
     - pip install -r requirements-dev.txt
-
-  tags:
-    - python
   stage: test
   script:
     - py.test -v --cov
