@@ -65,7 +65,9 @@
 						<ul id="ul-financement-results-list">
 							<li v-for="financement in this.filteredFinancements" :key="financement.id" class="mt-4 row">
 							<span class="col-md-3 col-sm-12">
-								<strong class="financement-fields">{{ financement.intitule }}</strong>
+								<a :href="'/referentiel#'+financement.racine">
+									<strong class="financement-fields">{{ financement.intitule }}</strong>
+								</a>
 							</span>
 							<span class="col-md-8 col-sm-11">
 								<span v-for="tag in financement.tags" :key="tag.id" class="financement-results-tags" >
