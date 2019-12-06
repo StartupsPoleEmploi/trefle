@@ -2,7 +2,7 @@
     <div id="Scenarios"></div>
 </template>
 <script>
-	export default {
-		name: 'Scenarios'
-	}
+  export default {
+    name: 'Scenarios'
+  }
 </script>

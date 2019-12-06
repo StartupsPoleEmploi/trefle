@@ -7,11 +7,11 @@
                 <a :href="'#'+decodeURI(id)" :title="rule.id">{{ rule.name }}</a>
             </li>
         </ul>
-	</div>
+  </div>
 </template>
 <script>
-	export default {
-		name: 'RulesMenu',
+  export default {
+    name: 'RulesMenu',
         props: ['title', 'namespace'],
         data: function() {
             return {
@@ -34,6 +34,5 @@
                 this.toggled = !this.toggled
             }
         }
-
-	}
+  }
 </script>

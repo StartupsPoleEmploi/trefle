@@ -3,7 +3,7 @@
     </div>
 </template>
 <script>
-	export default {
-		name: 'Simulateur'
-	}
+  export default {
+    name: 'Simulateur'
+  }
 </script>
