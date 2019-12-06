@@ -38,6 +38,7 @@ services:
       dockerfile: dockerfile_backoffice
       args:
           - TREFLE_GIT=${TREFLE_GIT:-https://git.beta.pole-emploi.fr/open-source/trefle.git}
+          - TREFLE_BACK_VERSION=${BACK_VERSION}
           - TREFLE_VERSION=${VERSION}
           - TREFLE_OLD_VERSION=${OLD_VERSION}
     depends_on:

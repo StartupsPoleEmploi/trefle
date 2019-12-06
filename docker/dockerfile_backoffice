@@ -1,3 +1,16 @@
+FROM node:10 AS back_app_node
+
+ARG TREFLE_GIT
+
+ARG TREFLE_BACK_VERSION
+RUN git clone -b ${TREFLE_BACK_VERSION} ${TREFLE_GIT} /srv/trefle && \
+    chown -R www-data: /srv/trefle && \
+    chmod -R u+rwx /srv/trefle && \
+    cd /srv/trefle/backoffice && \
+    npm install && \
+    npm run build
+
+
 FROM ubuntu:xenial
 
 LABEL maintainer="labonneformation@pole-emploi.fr"
@@ -19,13 +32,10 @@ RUN apt-get update && apt-get -y install \
                                  dnsutils
 
 
+
+COPY --from=back_app_node /srv/trefle/backoffice/dist /srv/trefle/backoffice
+
 ARG TREFLE_GIT
-
-ARG TREFLE_VERSION
-RUN git clone -b ${TREFLE_VERSION} ${TREFLE_GIT} /srv/trefle && \
-    chown -R www-data: /srv/trefle && \
-    chmod -R u+rwx /srv/trefle
-
 ARG TREFLE_OLD_VERSION
 RUN git clone -b ${TREFLE_OLD_VERSION} ${TREFLE_GIT} /srv/trefle-old && \
     chown -R www-data: /srv/trefle-old && \
