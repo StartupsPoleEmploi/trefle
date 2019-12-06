@@ -65,7 +65,7 @@
             <ul id="ul-financement-results-list">
               <li v-for="financement in this.filteredFinancements" :key="financement.id" class="mt-4 row">
               <span class="col-md-3 col-sm-12">
-                <a :href="'/referentiel#'+financement.racine">
+                <a :href="'/0.7/explorer/referentiel#'+financement.racine">
                   <strong class="financement-fields">{{ financement.intitule }}</strong>
                 </a>
               </span>
@@ -77,7 +77,7 @@
                 </span>
               </span>
               <span class="col-md-1 col-sm-1 pull-right">
-                <button href="https://framagit.org/ybon/trefle/tree/master/trefle/config/financements.yml" target="_blank" class="text-dark btn btn-outline-light" disabled>
+                <button href="https://git.beta.pole-emploi.fr/open-source/trefle/edit/master/trefle/config/financements.yml" target="_blank" class="text-dark btn btn-outline-light" disabled>
                   <i class="icon" style="vertical-align: baseline;">edit</i>
                 </button>
               </span>
