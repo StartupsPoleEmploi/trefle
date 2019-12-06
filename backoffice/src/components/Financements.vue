@@ -94,7 +94,7 @@
 		name: 'Financements',
 		methods: {
 			load: function () {
-				this.$http.get(process.env.VUE_APP_TREFLE_URL+process.env.VUE_APP_API_VERSION+'/explore/financements').then(response => {
+				this.$http.get('/explore/financements').then(response => {
 					this.financements = response.body;
 					this.isLoading = false;
 				}).created;
