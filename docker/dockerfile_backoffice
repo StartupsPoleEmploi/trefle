@@ -3,10 +3,10 @@ FROM node:10 AS back_app_node
 ARG TREFLE_GIT
 
 ARG TREFLE_BACK_VERSION
-RUN git clone -b ${TREFLE_BACK_VERSION} ${TREFLE_GIT} trefle && \
-    chown -R www-data: trefle && \
-    chmod -R u+rwx trefle && \
-    cd trefle/backoffice && \
+RUN git clone -b ${TREFLE_BACK_VERSION} ${TREFLE_GIT} /srv/trefle && \
+    chown -R www-data: /srv/trefle && \
+    chmod -R u+rwx /srv/trefle && \
+    cd /srv/trefle/backoffice && \
     npm install && \
     npm run build
 
