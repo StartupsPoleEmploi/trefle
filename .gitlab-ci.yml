@@ -24,24 +24,6 @@ backoffice publish:
   only:
     - /^backoffice-v[0-9.]+$/
 
-test backoffice image:
-  variables:
-    TREFLE_BACK_VERSION: backoffice-v0.0.2
-  image:
-    name: docker/compose
-  stage: test
-  script:
-    - cd ${CI_PROJECT_DIR}/docker
-    - docker-compose up -d --build trefle
-    - docker ps
-    - docker network
-    - curl -fsSL https://goss.rocks/install | sh
-    - GOSS_FILES_PATH=`pwd`/backoffice dgoss run -p 8888:80 -e "TREFLE_BACK_VERSION=$TREFLE_BACK_VERSION" -e "OLD_VERSION=$TREFLE_OLD_VERSION" -v `pwd`/backoffice/etc/nginx/sites-enabled:/etc/nginx/sites-enabled --link docker_trefle_1 --network docker_default ${CI_REGISTRY_IMAGE}:${TREFLE_BACK_VERSION}
-  only:
-    - /^test$/
-
-
-
 test:
   image: python:3.6
   cache:
