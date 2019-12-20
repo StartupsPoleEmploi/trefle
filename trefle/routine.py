@@ -254,6 +254,12 @@ def compute_remuneration(context, facility, facility_name="financement"):
         "remuneration_annee_2",
         "remuneration_annee_3",
         "en_savoir_plus",
+        "droit_aide_transport",
+        "montant_aide_transport",
+        "description_aide_transport",
+        "droit_aide_logement",
+        "montant_aide_logement",
+        "description_aide_logement",
     ]
     for key in keys:
         name = facility_name + f".{key}"
@@ -328,6 +334,9 @@ def check_remuneration(context, remuneration):
         if key.startswith("remuneration"):
             if(context.get("financement." + key[13:])):
                 context[key] = context.get("financement." + key[13:])
+        if key.startswith("aide"):
+            if(context.get("financement." + key[5:])):
+                context[key] = context.get("financement." + key[5:])
 
     compute_remuneration(context, remuneration, facility_name="remuneration")
     # load_organisme_contact_details(context, remuneration)
