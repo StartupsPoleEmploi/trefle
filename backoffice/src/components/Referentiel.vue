@@ -1,29 +1,30 @@
 <template>
   <div id="Referentiel">
-    <div id="ref-main-div">
+    <div id="referentiel-main-div">
       <div v-if="!this.isLoading">
-        <div id="ref-header-row">
+        <div id="referentiel-main-row">
           <div class="container">
             <div class="row">
               <div class="col-md-4">
+                <h2>MENU</h2>
                 <br>
-                <RulesMenu title="Règles régionales" namespace="région"></RulesMenu>
-                <RulesMenu title="Règles nationales" namespace="règles nationales"></RulesMenu>
-                <RulesMenu title="Règles des organismes paritaires" namespace="organisme paritaire"></RulesMenu>
-                <RulesMenu title="Règles de rémunérations" namespace="rémunération"></RulesMenu>
-                <RulesMenu title="Règles de normalisation" namespace="normalisation"></RulesMenu>
+                <RulesMenu title="Règles régionales" namespace="région" class="rules-menu"></RulesMenu>
+                <RulesMenu title="Règles nationales" namespace="règles nationales" class="rules-menu"></RulesMenu>
+                <RulesMenu title="Règles des organismes paritaires" namespace="organisme paritaire" class="rules-menu"></RulesMenu>
+                <RulesMenu title="Règles de rémunérations" namespace="rémunération" class="rules-menu"></RulesMenu>
+                <RulesMenu title="Règles de normalisation" namespace="normalisation" class="rules-menu"></RulesMenu>
               </div>
-              <div class="col-md-8">
+              <div class="col-md-1">
+                <hr class="referentiel-vertical-separator">
+              </div>
+              <div class="col-md-7">
                 <div v-if="this.show">
-                  <br>
-                  <h4> {{ this.ruleToShow.name }}</h4>
+                  <h2> {{ this.ruleToShow.name.toUpperCase() }}</h2>
                   <br>
                   <pre>{{ this.ruleToShow.data }}</pre>
                 </div>
                 <div v-else>
-                  <br>
-                  <h4>Sélectionnez une règle.</h4>
-                  <br>
+                  <h2>Sélectionnez une règle.</h2>
                 </div>
               </div>
             </div>
@@ -78,11 +79,20 @@
   }
 </script>
 <style>
-    :scope.tools {
-      min-width: 1200px;
-      grid-template-columns: 1fr 4fr;
-    }
-    h3 {
-      font-variant: small-caps;
-    }
+  :scope.tools {
+    min-width: 1200px;
+    grid-template-columns: 1fr 4fr;
+  }
+  h3 {
+    font-variant: small-caps;
+  }
+  #referentiel-main-row {
+    padding-top: 3rem;
+  }
+  .referentiel-vertical-separator {
+    border:         none;
+    border-left:    1px solid #bfbfbf;
+    height:         100%;
+    width:          1px;
+  }
 </style>
