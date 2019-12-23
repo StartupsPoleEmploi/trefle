@@ -21,15 +21,15 @@ const routes = [
     { path: '/referentiel', name: 'referentiel', component: Referentiel },
     { path: '/financements', name: 'financements', component: Financements },
     { path: '/simulateur', name: 'simulateur', component: Simulateur },
-    { path: '/scenarios', name: 'scenarios', component: Scenarios },
+    { path: '/scenarios/:filters?', name: 'scenarios', component: Scenarios },
     { path: '/outils', name: 'outils', component: Outils},
     { path: '*', redirect: '/'}
 ];
 
-const router = new VueRouter({  
+const router = new VueRouter({
     mode: 'history',
     base: '0.7/explorer',
-    routes:routes  
+    routes:routes
 });
 
 new Vue({
