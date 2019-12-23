@@ -1,5 +1,6 @@
 import json
 import pprint
+from datetime import datetime
 from pathlib import Path
 
 import pytest
@@ -23,7 +24,7 @@ BODY = {
             "dateFinIndemnisation": "2018-11-10",
         },
         "departementHabitation": "35",
-        "dateNaissance": "2000-12-12",
+        "dateNaissance": f"{int(datetime.now().__format__('%Y')) - 18}-01-01",
         "niveauEtude": "1",
         "montantCPF": "100",
         "contratApprentissage": "true",
@@ -80,7 +81,7 @@ async def test_legacy_context(client):
         "beneficiaire.creation_entreprise": True,
         "formation.intitule_norme": "",
         "beneficiaire.age": 18,
-        "beneficiaire.naissance": 976_579_200,
+        "beneficiaire.naissance": 978307200,
         "formation.codes_naf": ["4532Z"],
         "formation.contrat_apprentissage": False,
         "formation.contrat_professionnalisation": False,
