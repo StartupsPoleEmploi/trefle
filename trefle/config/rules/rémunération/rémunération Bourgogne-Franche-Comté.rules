@@ -19,8 +19,16 @@ Si les codes financeur de la formation contiennent «Conseil régional»
     Si c'est un parent isolé
     Ou c'est une mère de famille ayant au moins trois enfants
     Ou c'est une femme divorcée, veuve ou séparée judiciairement depuis moins de trois ans
-    Et la rémunération applicable est inférieure à 863.00
-        Alors la rémunération applicable vaut 863.00
+    Ou c'est une femme seule et enceinte
+    #Ou c'est un demandeur d'emploi # A confirmer
+        Alors l'aide au transport est éligible
+        Et le montant de l'aide au transport vaut «98,79€ par mois (sous condition)»
+        Et le texte de l'aide au transport vaut «Si la distance vers le lieu de votre formation est supérieure à 16km. Alors vous pouvez bénéficier d'une aide au transport.»
+        Et l'aide au logement est éligible
+        Et le montant de l'aide au logement vaut «101,84€ par mois (sous condition)»
+        Et le texte de l'aide au logement vaut «Si la distance vers le lieu de votre formation est supérieure à 250km. Alors vous pouvez bénéficier d'une aide à l'hébergement. Cette aide est non cumulable avec l'aide au transport.»
+        Si la rémunération applicable est inférieure à 863.00
+            Alors la rémunération applicable vaut 863.00
 
     Si c'est un travailleur handicapé
     Et la rémunération applicable est inférieure à 910.02
