@@ -35,12 +35,13 @@ services:
         - CATALOG_URL=${CATALOG_URL}
   backoffice:
     restart: unless-stopped
+    image: registry.beta.pole-emploi.fr/open-source/trefle:${VERSION}
     build:
       context: .
       dockerfile: dockerfile_backoffice
       args:
           - TREFLE_GIT=${TREFLE_GIT:-https://git.beta.pole-emploi.fr/open-source/trefle.git}
-          - TREFLE_VERSION=${VERSION}
+          - TREFLE_BACK_VERSION=${VERSION}
           - TREFLE_OLD_VERSION=${OLD_VERSION}
     depends_on:
       - trefle

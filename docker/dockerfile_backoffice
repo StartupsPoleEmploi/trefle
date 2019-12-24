@@ -21,8 +21,8 @@ RUN apt-get update && apt-get -y install \
 
 
 ARG TREFLE_GIT
-ARG TREFLE_VERSION
-RUN git clone -b ${TREFLE_VERSION} ${TREFLE_GIT} /srv/trefle && \
+ARG TREFLE_BACK_VERSION
+RUN git clone -b ${TREFLE_BACK_VERSION} ${TREFLE_GIT} /srv/trefle && \
     chown -R www-data: /srv/trefle && \
     chmod -R u+rwx /srv/trefle
 
