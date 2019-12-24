@@ -2,6 +2,7 @@ version: "3.3"
 services:
   trefle:
     restart: unless-stopped
+    image: registry.beta.pole-emploi.fr/open-source/trefle:${VERSION}
     build:
       context: .
       dockerfile: dockerfile_trefle
@@ -18,6 +19,7 @@ services:
   #version majeur précédente
   trefle-old:
     restart: unless-stopped
+    image: registry.beta.pole-emploi.fr/open-source/trefle:${OLD_VERSION}
     build:
       context: .
       dockerfile: dockerfile_trefle
