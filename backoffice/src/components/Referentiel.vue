@@ -19,9 +19,7 @@
               </div>
               <div class="col-md-7">
                 <div v-if="this.show">
-                  <h2> {{ this.ruleToShow.name.toUpperCase() }}</h2>
-                  <br>
-                  <pre>{{ this.ruleToShow.data }}</pre>
+                  <Rule v-bind:data="this.ruleToShow.data" v-bind:name="this.ruleToShow.name" />
                 </div>
                 <div v-else>
                   <h2>Sélectionnez une règle.</h2>
@@ -39,11 +37,13 @@
 </template>
 <script>
   import RulesMenu from './RulesMenu.vue'
+  import Rule from './Rule.vue'
 
   export default {
     name: 'Referentiel',
     components: {
-      RulesMenu
+      RulesMenu,
+      Rule
     },
     methods: {
       load: function () {
@@ -79,13 +79,6 @@
   }
 </script>
 <style>
-  :scope.tools {
-    min-width: 1200px;
-    grid-template-columns: 1fr 4fr;
-  }
-  h3 {
-    font-variant: small-caps;
-  }
   #referentiel-main-row {
     padding-top: 3rem;
   }
