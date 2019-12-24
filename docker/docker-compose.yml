@@ -1,0 +1,57 @@
+version: "3.3"
+services:
+  trefle:
+    restart: unless-stopped
+    build:
+      context: .
+      dockerfile: dockerfile_trefle
+      args:
+          - TREFLE_VERSION=${VERSION}
+          - TREFLE_GIT=${TREFLE_GIT:-https://git.beta.pole-emploi.fr/open-source/trefle.git}
+    volumes:
+      - ./log/trefle:/srv/log
+    environment:
+        - LBF_CHARMAP=${LBF_CHARMAP}
+        - CATALOG_USER=${CATALOG_USER}
+        - CATALOG_KEY=${CATALOG_KEY}
+        - CATALOG_URL=${CATALOG_URL}
+  #version majeur précédente
+  trefle-old:
+    restart: unless-stopped
+    build:
+      context: .
+      dockerfile: dockerfile_trefle
+      args:
+          - TREFLE_VERSION=${OLD_VERSION}
+          - TREFLE_GIT=${TREFLE_GIT:-https://git.beta.pole-emploi.fr/open-source/trefle.git}
+    volumes:
+      - ./log/trefle-old:/srv/log
+    environment:
+        - LBF_CHARMAP=${LBF_CHARMAP}
+        - CATALOG_USER=${CATALOG_USER}
+        - CATALOG_KEY=${CATALOG_KEY}
+        - CATALOG_URL=${CATALOG_URL}
+  backoffice:
+    restart: unless-stopped
+    build:
+      context: .
+      dockerfile: dockerfile_backoffice
+      args:
+          - TREFLE_GIT=${TREFLE_GIT:-https://git.beta.pole-emploi.fr/open-source/trefle.git}
+          - TREFLE_VERSION=${VERSION}
+          - TREFLE_OLD_VERSION=${OLD_VERSION}
+    depends_on:
+      - trefle
+      - trefle-old
+    volumes:
+      - ./backoffice/etc/nginx/sites-enabled:/etc/nginx/sites-enabled
+      - ./log/nginx:/var/log/nginx
+    dns:
+      - 1.1.1.1
+    ports:
+      - ${PORT:-80}:80
+    environment:
+      - VERSION=${VERSION}
+      - HOST=trefle
+      - OLD_VERSION=${OLD_VERSION}
+      - OLD_HOST=trefle-old
