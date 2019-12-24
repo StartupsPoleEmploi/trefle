@@ -59,3 +59,24 @@ Get a detailed coverage report:
 Get a more detailed coverage report:
 
     behave -D coverage-format=long
+## Build project in PROD mode
+
+Go to docker file
+
+Add this env var:
+
+    VERSION api-vX.X.X
+    OLD_VERSION api-vX.X.X
+    BACK_VERSION backoffice-vX.X.X
+    LBF_CHARMAP "sA,4B,RC,cD,oE,gF,yG,wH,mI,HJ,7K,EL,aM,YN,XO,8P,GQ,BR,kS,iT,IU,AV,TW,DX,pY,JZ,2a,Lb,Mc, d,de,Cf,Qg,fh,ri,Pj,Nk,Vl,vm,0n,Ko,ep,jq,Zr,9s,ht,Fu,tv,-w,Ux,1y,xz,30,u1,52,q3,W4,S5,66,n7,b8,O9,_+,l/,z "
+    CATALOG_USER {ASK-YOUR-LBF-CATALOG-API-USER}
+    CATALOG_KEY {ASK-YOUR-LBF-CATALOG-API-KEY}
+    CATALOG_URL https://labonneformation.pole-emploi.fr/api/v1/detail
+    TREFLE_GIT https://git.beta.pole-emploi.fr/open-source/trefle.git
+
+where X.X.X is a tag of the TREFLE_GIT
+OLD_VERSION and BACK_VERSION must be compatible
+
+    docker-compose up --build -d
+
+logs are in docker/logs

@@ -9,3 +9,6 @@ dist/
 .coverage
 htmlcov/
 .envrc
+backoffice/node_modules/
+backoffice/dist/
+*.log
