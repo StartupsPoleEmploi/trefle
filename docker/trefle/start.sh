@@ -1,6 +1,9 @@
 #!/bin/sh
 set -e
 
+#start cron for logrotate
+service cron start
+
 #start or reload gunicorn
 if pgrep -x "gunicorn" > /dev/null
 then
