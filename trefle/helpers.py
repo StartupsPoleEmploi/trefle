@@ -140,6 +140,10 @@ def revert_dict(d):
     return {v: k for k, v in d.items()}
 
 
+def remove_namespace(s):
+    return s[(s.find('.') + 1):]
+
+
 def json_path(pattern, data):
 
     steps = pattern.split(".")
