@@ -18,7 +18,7 @@
                   <br>
                   <h4> {{ this.ruleToShow.name }}</h4>
                   <br>
-                  <pre>{{ this.ruleToShow.data }}</pre>
+                  <!-- pre>{{ this.ruleToShow.data }}</pre -->
 
 					<!-- the demo root element -->
 					<ul id="demo">

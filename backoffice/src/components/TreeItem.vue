@@ -16,7 +16,7 @@
         @make-folder="$emit('make-folder', $event)"
         @add-item="$emit('add-item', $event)"
       ></tree-item>
-      <li class="add" @click="$emit('add-item', item)">+</li>
+      <!-- li class="add" @click="$emit('add-item', item)">+</li -->
     </ul>
   </li>
 </template>
@@ -56,7 +56,7 @@ export default {
     }
   },
   created: function() {
-  } 
+  }
 }
 
 </script>
