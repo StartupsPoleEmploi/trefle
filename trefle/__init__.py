@@ -31,6 +31,23 @@ async def simulate(data, financements):
         if key.startswith("financement"):
             del data[key]
 
+async def simulate_remuneration(data, remunerations):
+    # Prepare context
+    flatten(data)
+    context = Context(data.copy())
+    routine.extrapolate_context(context)
+    routine.preprocess(context)
+    for remuneration in remunerations:
+        copy = context.copy()
+        routine.check_remuneration(context, remuneration)
+        data.update(copy.cleaned_data)
+
+    # FIXME (limits of the single-store-all context object)
+    # Clean keys not meant to be exposed
+    for key in list(data.keys()):
+        if key.startswith("remuneration"):
+            del data[key]
+
 
 def get_financements(tags=None):
     financements = [config.Financement(f) for f in config.FINANCEMENTS]
