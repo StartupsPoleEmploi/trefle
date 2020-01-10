@@ -22,18 +22,23 @@
                   <br>
                   <h4> {{ this.ruleToShow.name }}</h4>
                   <br>
-                  <!-- pre>{{ this.ruleToShow.data }}</pre -->
-
-          <!-- the demo root element -->
-          <ul id="demo">
-          <tree-item
-                      class="item"
-                      :item="ruleTree"
-                      @make-folder="makeFolder"
-                      @add-item="addItem"
-          ></tree-item>
-          </ul>
-
+                  <div v-show="this.isEditMode">
+                    <rule-editor ref="editor" :rawRule="ruleToEdit"></rule-editor>
+                    <button @click="save">Enregistrer</button>
+                    <!-- pre>{{ this.ruleToShow.data }}</pre -->
+                  </div>
+                  <div v-show="!this.isEditMode">
+                    <button @click="edit">Edit</button>
+                    <!-- the demo root element -->
+                    <ul id="demo">
+                    <tree-item
+                                class="item"
+                                :item="ruleTree"
+                                @make-folder="makeFolder"
+                                @add-item="addItem"
+                    ></tree-item>
+                    </ul>
+                  </div>
                 </div>
                 <div v-else>
                   <h2>Sélectionnez une règle.</h2>
@@ -53,6 +58,7 @@
 <script>
   import RulesMenu from './RulesMenu.vue'
   import TreeItem from './TreeItem.vue';
+  import RuleEditor from './RuleEditor.vue';
 
   function Node(name) {
     this.name = name;
@@ -123,7 +129,8 @@ function toTree(lines) { // eslint-disable-line no-unused-vars
     name: 'Referentiel',
     components: {
       RulesMenu,
-      TreeItem
+      TreeItem,
+      RuleEditor
     },
     methods: {
       load: function () {
@@ -133,15 +140,26 @@ function toTree(lines) { // eslint-disable-line no-unused-vars
         }).created;
       },
       toTree: toTree,
-      makeFolder: function (item) {
-        this.$set(item, 'children', [])
-        this.addItem(item)
+      edit: function () {
+        return this.isEditMode=!this.isEditMode
       },
-      addItem: function (item) {
-        item.children.push({
-          name: 'new rule'
-        });
+      save: function() {
+        this.currentRuleContent = this.$refs.editor.content
+        this.rules[this.getActiveRuleName()]['data'] = this.currentRuleContent
+        return this.isEditMode=!this.isEditMode
+      },
+      getActiveRuleName: function() {
+        return this.windowLocationHash.split('#')[1]
       }
+      //makeFolder: function (item) {
+      //  this.$set(item, 'children', [])
+      //  this.addItem(item)
+      //},
+      //addItem: function (item) {
+      //  item.children.push({
+      //    name: 'new rule'
+      //  });
+      //}
     },
     computed: {
       show: function () {
@@ -149,19 +167,27 @@ function toTree(lines) { // eslint-disable-line no-unused-vars
       },
       ruleToShow: function() {
         if(this.show) {
-          return this.rules[this.windowLocationHash.split('#')[1]];
+          return this.rules[this.getActiveRuleName()];
         } return null;
       },
       ruleTree: function() {
         if(this.show) {
-          return this.toTree(this.rules[this.windowLocationHash.split('#')[1]]['data'].split('\n'));
+          return this.toTree(this.currentRuleContent.split('\n'));
+        } return null;
+      },
+      ruleToEdit: function() {
+        if(this.show) {
+          return this.currentRuleContent;
         } return null;
       }
     },
     data: function(){
       return {
-        rules:[],
+        rules: [],
+        currentRuleContent: '',
+        updatedRule: '',
         isLoading: true,
+        isEditMode: false,
         windowLocationHash: decodeURI(window.location.hash)
       }
     },
@@ -169,6 +195,9 @@ function toTree(lines) { // eslint-disable-line no-unused-vars
       this.load();
       window.addEventListener('popstate', () => {
         this.windowLocationHash = decodeURI(window.location.hash);
+        if(this.windowLocationHash !== '')
+          this.currentRuleContent = this.rules[this.getActiveRuleName()]['data']
+          this.isEditMode = false
       })
     },
   }

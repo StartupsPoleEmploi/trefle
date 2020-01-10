@@ -1,5 +1,5 @@
 <template>
-  <div id="Rule">      
+  <div id="Rule">
     <h2> {{ this.name.toUpperCase() }}</h2>
     <br>
     <pre v-html="transform(this.data)"/>
