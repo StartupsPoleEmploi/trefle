@@ -19,7 +19,21 @@
               </div>
               <div class="col-md-7">
                 <div v-if="this.show">
-                  <Rule v-bind:data="this.ruleToShow.data" v-bind:name="this.ruleToShow.name" />
+                  <br>
+                  <h4> {{ this.ruleToShow.name }}</h4>
+                  <br>
+                  <!-- pre>{{ this.ruleToShow.data }}</pre -->
+
+          <!-- the demo root element -->
+          <ul id="demo">
+          <tree-item
+                      class="item"
+                      :item="ruleTree"
+                      @make-folder="makeFolder"
+                      @add-item="addItem"
+          ></tree-item>
+          </ul>
+
                 </div>
                 <div v-else>
                   <h2>Sélectionnez une règle.</h2>
@@ -35,15 +49,81 @@
     </div>
   </div>
 </template>
+
 <script>
   import RulesMenu from './RulesMenu.vue'
-  import Rule from './Rule.vue'
+  import TreeItem from './TreeItem.vue';
+
+  function Node(name) {
+    this.name = name;
+    this.parent = null;
+    this.children = [];
+  }
+
+function toTree(lines) { // eslint-disable-line no-unused-vars
+  //var lines=rules['Guyane.rules']['data'].split('\n');
+  //var lines=rules['Auvergne-Rhône-Alpes.rules']['data'].split('\n');
+  var root= new Node('Règle');
+
+  var currentIndent=-1;
+  var currentNode=root;
+
+  // we scan the rules line by line
+  for (var i=0;i<lines.length;i++) {
+    var line=lines[i];
+
+    if (line.match(/^\s*$/)) continue; // Empty line, skip
+
+    var indent=line.search(/\S|$/); // number of indenting spaces
+    //debugger;
+
+    var newNode= new Node(line.trim());
+
+    if (indent>currentIndent) { // New child
+      // Set the new node parent
+      newNode.parent=currentNode;
+
+      // attach the new node to its parent
+      currentNode.children.push(newNode);
+
+      // Set the new current node
+      currentNode=newNode;
+
+      currentIndent=indent;
+      //debugger;
+    } else if (indent<currentIndent){
+      // Move up in the tree
+      var level=currentIndent-indent;
+
+      for (var j=0;j<level/4;j++) {
+        // up one level
+        //debugger;
+        currentNode=currentNode.parent;
+        //debugger;
+        currentIndent=currentIndent-4;
+        //debugger;
+      }
+
+      newNode.parent=currentNode.parent;
+      currentNode.parent.children.push(newNode); // Add a sibbling
+      currentNode=newNode;
+      //debugger;
+    } else {
+      // Add as sibbling
+      newNode.parent=currentNode.parent;
+      currentNode.parent.children.push(newNode);
+      currentNode=newNode;
+      //debugger;
+    }
+  }
+  return root;
+}
 
   export default {
     name: 'Referentiel',
     components: {
       RulesMenu,
-      Rule
+      TreeItem
     },
     methods: {
       load: function () {
@@ -51,6 +131,16 @@
           this.rules = response.body;
           this.isLoading = false;
         }).created;
+      },
+      toTree: toTree,
+      makeFolder: function (item) {
+        this.$set(item, 'children', [])
+        this.addItem(item)
+      },
+      addItem: function (item) {
+        item.children.push({
+          name: 'new rule'
+        });
       }
     },
     computed: {
@@ -60,6 +150,11 @@
       ruleToShow: function() {
         if(this.show) {
           return this.rules[this.windowLocationHash.split('#')[1]];
+        } return null;
+      },
+      ruleTree: function() {
+        if(this.show) {
+          return this.toTree(this.rules[this.windowLocationHash.split('#')[1]]['data'].split('\n'));
         } return null;
       }
     },
@@ -77,7 +172,9 @@
       })
     },
   }
+
 </script>
+
 <style>
   #referentiel-main-row {
     padding-top: 3rem;
