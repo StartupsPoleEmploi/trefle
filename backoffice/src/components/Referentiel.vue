@@ -20,15 +20,15 @@
                   <br>
                   <!-- pre>{{ this.ruleToShow.data }}</pre -->
 
-					<!-- the demo root element -->
-					<ul id="demo">
-					<tree-item
+          <!-- the demo root element -->
+          <ul id="demo">
+          <tree-item
                       class="item"
                       :item="ruleTree"
                       @make-folder="makeFolder"
                       @add-item="addItem"
-					></tree-item>
-					</ul>
+          ></tree-item>
+          </ul>
 
                 </div>
                 <div v-else>
@@ -59,62 +59,62 @@
   }
 
 function toTree(lines) { // eslint-disable-line no-unused-vars
-	//var lines=rules['Guyane.rules']['data'].split('\n');
-	//var lines=rules['Auvergne-Rhône-Alpes.rules']['data'].split('\n');
-	var root= new Node('Règle');
+  //var lines=rules['Guyane.rules']['data'].split('\n');
+  //var lines=rules['Auvergne-Rhône-Alpes.rules']['data'].split('\n');
+  var root= new Node('Règle');
 
-	var currentIndent=-1;
-	var currentNode=root;
+  var currentIndent=-1;
+  var currentNode=root;
 
-	// we scan the rules line by line
-	for (var i=0;i<lines.length;i++) {
-		var line=lines[i];
+  // we scan the rules line by line
+  for (var i=0;i<lines.length;i++) {
+    var line=lines[i];
 
-		if (line.match(/^\s*$/)) continue; // Empty line, skip
+    if (line.match(/^\s*$/)) continue; // Empty line, skip
 
-		var indent=line.search(/\S|$/); // number of indenting spaces
-		//debugger;
+    var indent=line.search(/\S|$/); // number of indenting spaces
+    //debugger;
 
-		var newNode= new Node(line.trim());
+    var newNode= new Node(line.trim());
 
-		if (indent>currentIndent) { // New child
-			// Set the new node parent
-			newNode.parent=currentNode;
+    if (indent>currentIndent) { // New child
+      // Set the new node parent
+      newNode.parent=currentNode;
 
-			// attach the new node to its parent
-			currentNode.children.push(newNode);
+      // attach the new node to its parent
+      currentNode.children.push(newNode);
 
-			// Set the new current node
-			currentNode=newNode;
+      // Set the new current node
+      currentNode=newNode;
 
-			currentIndent=indent;
-			//debugger;
-		} else if (indent<currentIndent){
-			// Move up in the tree
-			var level=currentIndent-indent;
+      currentIndent=indent;
+      //debugger;
+    } else if (indent<currentIndent){
+      // Move up in the tree
+      var level=currentIndent-indent;
 
-			for (var j=0;j<level/4;j++) {
-				// up one level
-				//debugger;
-				currentNode=currentNode.parent;
-				//debugger;
-				currentIndent=currentIndent-4;
-				//debugger;
-			}
+      for (var j=0;j<level/4;j++) {
+        // up one level
+        //debugger;
+        currentNode=currentNode.parent;
+        //debugger;
+        currentIndent=currentIndent-4;
+        //debugger;
+      }
 
-			newNode.parent=currentNode.parent;
-			currentNode.parent.children.push(newNode); // Add a sibbling
-			currentNode=newNode;
-			//debugger;
-		} else {
-			// Add as sibbling
-			newNode.parent=currentNode.parent;
-			currentNode.parent.children.push(newNode);
-			currentNode=newNode;
-			//debugger;
-		}
-	}
-	return root;
+      newNode.parent=currentNode.parent;
+      currentNode.parent.children.push(newNode); // Add a sibbling
+      currentNode=newNode;
+      //debugger;
+    } else {
+      // Add as sibbling
+      newNode.parent=currentNode.parent;
+      currentNode.parent.children.push(newNode);
+      currentNode=newNode;
+      //debugger;
+    }
+  }
+  return root;
 }
 
   export default {
