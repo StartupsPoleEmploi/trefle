@@ -23,7 +23,8 @@
                   <h4> {{ this.ruleToShow.name }}</h4>
                   <br>
                   <div v-show="this.isEditMode">
-                    <rule-editor ref="editor" :rawRule="ruleToEdit"></rule-editor>
+                    <!-- rule-editor ref="editor" :rawRule="ruleToEdit"></rule-editor -->
+                    <textarea v-model="updatedRule"></textarea>
                     <button @click="save">Enregistrer</button>
                     <!-- pre>{{ this.ruleToShow.data }}</pre -->
                   </div>
@@ -34,9 +35,13 @@
                     <tree-item
                                 class="item"
                                 :item="ruleTree"
+                    ></tree-item>
+                    <!--tree-item
+                                class="item"
+                                :item="ruleTree"
                                 @make-folder="makeFolder"
                                 @add-item="addItem"
-                    ></tree-item>
+                    ></tree-item-->
                     </ul>
                   </div>
                 </div>
@@ -58,7 +63,7 @@
 <script>
   import RulesMenu from './RulesMenu.vue'
   import TreeItem from './TreeItem.vue';
-  import RuleEditor from './RuleEditor.vue';
+  //import RuleEditor from './RuleEditor.vue';
 
   function Node(name) {
     this.name = name;
@@ -130,7 +135,7 @@ function toTree(lines) { // eslint-disable-line no-unused-vars
     components: {
       RulesMenu,
       TreeItem,
-      RuleEditor
+      //RuleEditor
     },
     methods: {
       load: function () {
@@ -141,10 +146,11 @@ function toTree(lines) { // eslint-disable-line no-unused-vars
       },
       toTree: toTree,
       edit: function () {
+        this.updatedRule = this.ruleToEdit
         return this.isEditMode=!this.isEditMode
       },
       save: function() {
-        this.currentRuleContent = this.$refs.editor.content
+        this.currentRuleContent = this.updatedRule
         this.rules[this.getActiveRuleName()]['data'] = this.currentRuleContent
         return this.isEditMode=!this.isEditMode
       },
