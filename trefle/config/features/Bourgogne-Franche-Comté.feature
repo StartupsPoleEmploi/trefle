@@ -288,7 +288,7 @@ Scénario: Cas parent isolé
     Quand je sélectionne le financement «Action collective financée par la Région»
     Alors la rémunération applicable vaut 863.0
     Et le montant de l'aide au transport vaut «98,79€ par mois (sous condition)»
-    Et le montant de l'aide au logement vaut «101,84€ par mois (sous condition)»
+    Et le montant de l'aide à l'hébergement vaut «101,84€ par mois (sous condition)»
 
 
 Scénario: Cas non salarié ayant travaillé
@@ -341,7 +341,7 @@ Scénario: Cas travailleur handicapé
     Et c'est un travailleur handicapé
     Quand je demande un calcul de financement
     Quand je sélectionne le financement «Action collective financée par la Région»
-    Alors la rémunération applicable vaut 910.02
+    Alors la rémunération applicable vaut 1001.02
 
 Scénario: Cas travailleur handicapé rémunération > 910
     Soit un bénéficiaire et une formation
@@ -370,7 +370,7 @@ Scénario: Cas travailleur handicapé rémunération
     Et c'est un travailleur handicapé
     Quand je demande un calcul de financement
     Quand je sélectionne le financement «Action collective financée par la Région»
-    Alors la rémunération applicable vaut 910.02
+    Alors la rémunération applicable vaut 1001.02
 
 Scénario: Cas ESSFIMO
     Soit un bénéficiaire et une formation
