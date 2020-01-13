@@ -1,9 +1,9 @@
 from behave import given, when, then, use_step_matcher
 from behave.api.async_step import async_run_until_complete
 
-from trefle import simulate, get_financements
+from trefle import simulate, simulate_remuneration, get_financements, get_remunerations
 from trefle.config import FINANCEMENTS
-from trefle.helpers import revert_dict
+from trefle.helpers import revert_dict, remove_namespace
 from trefle.rules import LABELS, SCHEMA, Pointer
 
 INTITULES_FINANCEMENTS = set(f["intitule"] for f in FINANCEMENTS)
@@ -49,6 +49,20 @@ async def when_simulate(context):
     context.passed = [f for f in financements if f['eligible']]
 
 
+@when('je demande un calcul de rémunération')
+@async_run_until_complete
+async def when_remunerate(context):
+    remunerations = get_remunerations()
+    await simulate_remuneration(context.data, remunerations)
+    context.passed = [r for r in remunerations if r['remuneration']]
+    for result in context.passed:
+        if result['remuneration']:
+            context.result = result
+            break
+    else:
+        raise AssertionError(f'No result found')
+
+
 @then(r"il y a (?P<expected>\d+) financements? proposés?")
 def then_check_count(context, expected):
     assert found == int(expected), f'Found {found}'
@@ -86,10 +100,7 @@ def then_check_organisme(context, name):
 @then(r"(?:le |la |l')(?P<label>.*) vaut (?P<value>.+)")
 def then_check_output(context, label, value):
     value = Pointer(value).get({})
-    if(LABELS[label].startswith("financement")):
-        key = LABELS[label][12:]  # Remove "financement." namespace.
-    if(LABELS[label].startswith("remuneration")):
-        key = LABELS[label][13:]  # Remove "remuneration." namespace.
+    key = remove_namespace(LABELS[label])
     assert context.result[key] == value, (f'key = {key} '
                                           f'label = {LABELS[label]}'
                                           f'{context.result[key]} '
@@ -109,6 +120,21 @@ def then_check_true_boolean_value(context, label):
     key = LABELS[label]
     assert context.data.get(key) is True,\
         f'{key} is True'
+
+
+@then(r"une? (?P<label>.+) est éligible")
+def then_check_true_eligibility(context, label):
+    key = LABELS[label]
+    assert context.result.get(remove_namespace(key)) \
+        and context.result[remove_namespace(key)] is True,\
+        f'{label} is True'
+
+
+@then(r"aucune? (?P<label>.+) n'est éligible")
+def then_check_false_eligibility(context, label):
+    key = LABELS[label]
+    assert context.result.get(remove_namespace(key)) is None,\
+        f'{label} is False'
 
 
 @then("aucun financement n'est proposé")

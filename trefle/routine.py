@@ -257,9 +257,9 @@ def compute_remuneration(context, facility, facility_name="financement"):
         "droit_aide_transport",
         "montant_aide_transport",
         "description_aide_transport",
-        "droit_aide_logement",
-        "montant_aide_logement",
-        "description_aide_logement",
+        "droit_aide_hebergement",
+        "montant_aide_hebergement",
+        "description_aide_hebergement",
     ]
     for key in keys:
         name = facility_name + f".{key}"
