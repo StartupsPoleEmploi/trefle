@@ -1,6 +1,6 @@
 import json
 import pprint
-from datetime import datetime
+from datetime import datetime, timezone
 from pathlib import Path
 
 import pytest
@@ -8,6 +8,7 @@ import pytest
 
 pytestmark = pytest.mark.asyncio
 
+BIRTHYEAR = int(datetime.now().__format__('%Y')) - 18
 
 BODY = {
     # we don't request catalog so let's set this mandatory value
@@ -24,7 +25,7 @@ BODY = {
             "dateFinIndemnisation": "2018-11-10",
         },
         "departementHabitation": "35",
-        "dateNaissance": f"{int(datetime.now().__format__('%Y')) - 18}-01-01",
+        "dateNaissance": f"{BIRTHYEAR}-01-01",
         "niveauEtude": "1",
         "montantCPF": "100",
         "contratApprentissage": "true",
@@ -50,6 +51,7 @@ async def test_legacy_context(client):
     data = json.loads(resp.body)
     context = data["context"]
     context["formation.codes_financeur"] = set(context["formation.codes_financeur"])
+    beneficiairenaissance = datetime(BIRTHYEAR, 1, 1, 0, 0, 0, tzinfo=timezone.utc).timestamp()
     assert context == {
         "constante.codes_cpf_clea": [201, 207, 208],
         "constante.codes_cpf_vae": [200],
@@ -81,7 +83,7 @@ async def test_legacy_context(client):
         "beneficiaire.creation_entreprise": True,
         "formation.intitule_norme": "",
         "beneficiaire.age": 18,
-        "beneficiaire.naissance": 978307200,
+        "beneficiaire.naissance": beneficiairenaissance,
         "formation.codes_naf": ["4532Z"],
         "formation.contrat_apprentissage": False,
         "formation.contrat_professionnalisation": False,
