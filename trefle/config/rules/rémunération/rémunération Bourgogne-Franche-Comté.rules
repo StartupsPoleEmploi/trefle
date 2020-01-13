@@ -3,20 +3,57 @@ Si les codes financeur de la formation contiennent «Conseil régional»
     Si l'allocation du bénéficiaire est définie
         Alors la rémunération applicable est égale au montant de l'allocation du bénéficiaire
 
-    # Par défaut
-    Si ce n'est pas un bénéficiaire qui a déjà travaillé six mois sur une période de douze mois
-    Et ce n'est pas un bénéficiaire qui a déjà travaillé douze mois sur une période de vingt-quatre mois
-    Et ce n'est pas un bénéficiaire non salarié qui a travaillé pendant douze mois dont au moins six mois consécutifs dans les trois ans qui précèdent l'entrée en formation
+    #####################
+    # Aide au transport #
+    #####################
+    Si c'est un travailleur handicapé
+        Alors l'aide au transport est éligible
+        Et le texte de l'aide au transport vaut «L'indemnité de transport est limitée à un aller/retour sur la durée de la formation.»
+    Si ce n'est pas un travailleur handicapé
         Alors l'aide au transport est éligible
         Et le montant de l'aide au transport vaut «98,79€ par mois (sous condition)»
         Et le texte de l'aide au transport vaut «Si la distance vers le lieu de votre formation est supérieure ou égale à 16km. Alors vous pouvez bénéficier d'une aide au transport.»
+    # Ligne 45 46
+    Si c'est un bénéficiaire non salarié qui a travaillé pendant douze mois dont au moins six mois consécutifs dans les trois ans qui précèdent l'entrée en formation
+    Et ce n'est pas un parent isolé
+    Et ce n'est pas une mère de famille ayant au moins trois enfants
+    Et ce n'est pas une femme divorcée, veuve ou séparée judiciairement depuis moins de trois ans
+    Et ce n'est pas une femme seule et enceinte
+        Alors l'aide au transport est éligible
+        Et le texte de l'aide au transport vaut «L'indemnité de transport est limitée à un aller/retour sur la durée de la formation.»
+
+    ####################
+    # Aide à l'hébergement #
+    ####################
+    Si c'est un bénéficiaire qui a déjà travaillé six mois sur une période de douze mois
+    Ou c'est un bénéficiaire qui a déjà travaillé douze mois sur une période de vingt-quatre mois
+    Ou c'est un parent isolé
+    Ou c'est une mère de famille ayant au moins trois enfants
+    Ou c'est une femme divorcée, veuve ou séparée judiciairement depuis moins de trois ans
+    Ou c'est une femme seule et enceinte
+        Alors l'aide à l'hébergement est éligible
+        Et le montant de l'aide à l'hébergement vaut «101,84€ par mois (sous condition)»
+        Et le texte de l'aide à l'hébergement vaut «Si la distance vers le lieu de votre formation est supérieure à 250km. Alors vous pouvez bénéficier d'une aide à l'hébergement. Cette aide est non cumulable avec l'aide au transport.»
+
+    # Tableau de regles: ligne 24
+    Si l'âge du bénéficiaire est inférieur à 18
+    Et ce n'est pas un bénéficiaire qui a déjà travaillé six mois sur une période de douze mois
+    Et ce n'est pas un bénéficiaire qui a déjà travaillé douze mois sur une période de vingt-quatre mois
+    Et ce n'est pas un bénéficiaire non salarié qui a travaillé pendant douze mois dont au moins six mois consécutifs dans les trois ans qui précèdent l'entrée en formation
+        Alors l'aide à l'hébergement est éligible
+        Et le montant de l'aide à l'hébergement vaut «37,20€ par mois (sous condition)»
+        Et le texte de l'aide à l'hébergement vaut «Si la distance vers le lieu de votre formation est inférieure ou égale à 15km. Alors vous pouvez bénéficier d'une aide à l'hébergement.»
+
+
+    ################
+    # Rémunération #
+    ################
+    Si ce n'est pas un bénéficiaire qui a déjà travaillé six mois sur une période de douze mois
+    Et ce n'est pas un bénéficiaire qui a déjà travaillé douze mois sur une période de vingt-quatre mois
+    Et ce n'est pas un bénéficiaire non salarié qui a travaillé pendant douze mois dont au moins six mois consécutifs dans les trois ans qui précèdent l'entrée en formation
 
         Si l'âge du bénéficiaire est inférieur à 18
-            Alors l'aide à l'hébergement est éligible
-            Et le montant de l'aide au logement vaut «37,20€ par mois (sous condition)»
-            Et le texte de l'aide au transport vaut «Si la distance vers le lieu de votre formation est inférieure ou égale à 15km. Alors vous pouvez bénéficier d'une aide au logement.»
-
-            Si la rémunération applicable est inférieure à 455.01
+        Et la rémunération applicable est inférieure à 455.01
                 Alors la rémunération applicable vaut 455.01
 
         Si l'âge du bénéficiaire est supérieur ou égal à 18
@@ -27,37 +64,31 @@ Si les codes financeur de la formation contiennent «Conseil régional»
         Et la rémunération applicable est inférieure à 1001.02
             Alors la rémunération applicable vaut 1001.02
 
-    Si c'est un bénéficiaire qui a déjà travaillé six mois sur une période de douze mois
-    Ou c'est un bénéficiaire qui a déjà travaillé douze mois sur une période de vingt-quatre mois
-    Et c'est un travailleur handicapé
-        Alors l'aide au transport est éligible
-        Et le texte de l'aide au transport vaut «l'indemnité de transport est limitée à un aller-retour sur la durée du stage»
-        Si la rémunération applicable est inférieure à 910.02
-            Alors la rémunération applicable vaut 910.02
-            Et le texte de la rémunération vaut «C'est une rémunération minimum en fonction de votre expérience»
+    # Tableau de regles: ligne 4 et 7
+    Si c'est un travailleur handicapé
+    Et la rémunération applicable est inférieure à 910.02
 
+        Si c'est un bénéficiaire qui a déjà travaillé six mois sur une période de douze mois
+        Ou c'est un bénéficiaire qui a déjà travaillé douze mois sur une période de vingt-quatre mois
+        Ou c'est un bénéficiaire non salarié qui a travaillé pendant douze mois dont au moins six mois consécutifs dans les trois ans qui précèdent l'entrée en formation
+        Alors la rémunération applicable vaut 910.02
+        Et le texte de la rémunération vaut «C'est une rémunération minimum en fonction de votre expérience»
+
+    # Tableau de regles: ligne 4 et 8 à 13
     Si c'est un bénéficiaire qui a déjà travaillé six mois sur une période de douze mois
     Ou c'est un bénéficiaire qui a déjà travaillé douze mois sur une période de vingt-quatre mois
         Si la rémunération applicable est inférieure à 863.0
             Alors la rémunération applicable vaut 863.00
 
+    # Tableau de regles: ligne 38 à 44
     Si c'est un bénéficiaire non salarié qui a travaillé pendant douze mois dont au moins six mois consécutifs dans les trois ans qui précèdent l'entrée en formation
-        Alors l'aide au transport est éligible
-        Et le montant de l'aide au transport vaut «98,79€ par mois (sous condition)»
-        Et le texte de l'aide au transport vaut «Si la distance vers le lieu de votre formation est supérieure ou égale à 16km. Alors vous pouvez bénéficier d'une aide au transport.»
-        Si la rémunération applicable est inférieure à 708.59
-            Alors la rémunération applicable vaut 708.59
+    Et la rémunération applicable est inférieure à 708.59
+        Alors la rémunération applicable vaut 708.59
 
     Si c'est un parent isolé
     Ou c'est une mère de famille ayant au moins trois enfants
     Ou c'est une femme divorcée, veuve ou séparée judiciairement depuis moins de trois ans
     Ou c'est une femme seule et enceinte
-        Alors l'aide au transport est éligible
-        Et le montant de l'aide au transport vaut «98,79€ par mois (sous condition)»
-        Et le texte de l'aide au transport vaut «Si la distance vers le lieu de votre formation est supérieure ou égale à 16km. Alors vous pouvez bénéficier d'une aide au transport.»
-        Et l'aide au logement est éligible
-        Et le montant de l'aide au logement vaut «101,84€ par mois (sous condition)»
-        Et le texte de l'aide au logement vaut «Si la distance vers le lieu de votre formation est supérieure à 250km. Alors vous pouvez bénéficier d'une aide à l'hébergement. Cette aide est non cumulable avec l'aide au transport.»
         Si la rémunération applicable est inférieure à 863.00
             Alors la rémunération applicable vaut 863.00
 

@@ -1066,7 +1066,7 @@ aide: &aide
     public: true
     label: texte de l'aide complémentaire
   droit_aide_transport:
-    description: le bénéficiaire a droit a une aide au transport
+    description: le bénéficiaire a droit à une aide au transport
     type: boolean
     public: true
     label: aide au transport
@@ -1080,21 +1080,21 @@ aide: &aide
     type: string
     public: true
     label: texte de l'aide au transport
-  droit_aide_logement:
-    description: le bénéficiaire a droit a une aide au logement
+  droit_aide_hebergement:
+    description: le bénéficiaire a droit a une aide à l'hébergement
     type: boolean
     public: true
-    label: aide au logement
-  montant_aide_logement:
-    description: le montant de l'aide au logement
+    label: aide à l'hébergement
+  montant_aide_hebergement:
+    description: le montant de l'aide à l'hébergement
     type: string
     public: true
-    label: montant de l'aide au logement
-  description_aide_logement:
+    label: montant de l'aide à l'hébergement
+  description_aide_hebergement:
     description: texte de description de l'aide au transport
     type: string
     public: true
-    label: texte de l'aide au logement
+    label: texte de l'aide à l'hébergement
 remuneration: &remuneration
   intitule_remuneration: # add _remuneration to not overlap financement.intitule
     description: le nom de la règle de rémuneration
