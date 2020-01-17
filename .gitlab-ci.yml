@@ -39,3 +39,5 @@ test:
   only:
     - branches
     - master
+  except:
+    - /^WIP-.*$/
