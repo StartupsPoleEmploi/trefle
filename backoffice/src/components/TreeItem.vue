@@ -2,11 +2,11 @@
   <li>
     <div
       :class="{bold: isFolder}"
-      @click="toggle"
       @dblclick="makeFolder">
       {{ item.name }}
-      <span v-if="isFolder">[{{ isOpen ? '-' : '+' }}]</span>
+      <span v-if="isFolder" @click="toggle">[{{ isOpen ? '-' : '+' }}]</span>
     </div>
+    <hr class="">
     <ul v-show="isOpen" v-if="isFolder">
       <tree-item
         class="item"
@@ -52,7 +52,7 @@ export default {
   },
   data: function() {
     return {
-      isOpen: true
+      isOpen: false
     }
   },
   created: function() {
@@ -72,5 +72,8 @@ export default {
     padding-left: 1em;
     line-height: 1.5em;
     list-style-type: dot;
+  }
+  .rule-separator {
+    width: 100vh;
   }
 </style>
