@@ -19,34 +19,40 @@
               </div>
               <div class="col-md-7">
                 <div v-if="this.show">
+                  <!--<Rule :data="this.ruleToShow.data"></Rule>-->                  
                   <br>
-                  <h4> {{ this.ruleToShow.name }}</h4>
-                  <br>
-                  <div v-show="this.isEditMode">
-                    <!-- rule-editor ref="editor" :rawRule="ruleToEdit"></rule-editor -->
-                    <label for="comment">Résumé de la modification</label>
-                    <textarea v-model="comment"></textarea>
-                    <label for="content">contenu de la règle</label>
-                    <textarea v-model="content"></textarea>
-                    <button @click="save">Enregistrer</button>
-                    <!-- pre>{{ this.ruleToShow.data }}</pre -->
+                  <div class="container">
+                    <div class="row mb-4">
+                      <div  class="col-md-6 col-sm-12 col-xs-12">
+                        <h4>{{ this.ruleToShow.name }}</h4>
+                      </div>
+                      <div class="col-md-6 col-sm-12 col-xs-12 my-auto">
+                        <div v-show="!this.isEditMode" class="form-inline pull-right">
+                          <div class="form-group mx-sm-3 mb-2">
+                            <input @click="edit" type="button" class="btn btn-outline-success form-control" value="Soumettre une modification"/>
+                            <!-- TODO: show gitlab link of modification if exists -->                            
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                   <div v-show="!this.isEditMode">
-                    <button @click="edit">Edit</button>
-                    <!-- TODO: show gitlab link of modification if exists -->
                     <!-- the demo root element -->
                     <ul id="demo">
-                    <tree-item
-                                class="item"
-                                :item="ruleTree"
-                    ></tree-item>
-                    <!--tree-item
-                                class="item"
-                                :item="ruleTree"
-                                @make-folder="makeFolder"
-                                @add-item="addItem"
-                    ></tree-item-->
+                      <tree-item class="item" :item="this.ruleTree"></tree-item>
                     </ul>
+                  </div>
+                  <div v-show="this.isEditMode">
+                    <!-- rule-editor ref="editor" :rawRule="ruleToEdit"></rule-editor -->
+                    <label for="comment" class="mb-2"><u>Résumé de la modification</u></label>
+                    <textarea v-model="this.comment"></textarea>
+                    <label for="content"><u>Contenu de la règle</u></label>
+                    <textarea v-model="this.content" class="mb-2"></textarea>
+                    <div class="form-inline pull-right">
+                      <div class="form-group mx-sm-3 mb-2">
+                        <input @click="save" type="button" class="btn btn-outline-success form-control" value="Enregistrer"/>
+                      </div>
+                    </div>
                   </div>
                 </div>
                 <div v-else>
@@ -67,7 +73,6 @@
 <script>
   import RulesMenu from './RulesMenu.vue'
   import TreeItem from './TreeItem.vue';
-  //import RuleEditor from './RuleEditor.vue';
 
   function Node(name) {
     this.name = name;
@@ -75,71 +80,54 @@
     this.children = [];
   }
 
-function toTree(lines) { // eslint-disable-line no-unused-vars
-  //var lines=rules['Guyane.rules']['data'].split('\n');
-  //var lines=rules['Auvergne-Rhône-Alpes.rules']['data'].split('\n');
-  var root= new Node('Règle');
-
-  var currentIndent=-1;
-  var currentNode=root;
-
-  // we scan the rules line by line
-  for (var i=0;i<lines.length;i++) {
-    var line=lines[i];
-
-    if (line.match(/^\s*$/)) continue; // Empty line, skip
-
-    var indent=line.search(/\S|$/); // number of indenting spaces
-    //debugger;
-
-    var newNode= new Node(line.trim());
-
-    if (indent>currentIndent) { // New child
-      // Set the new node parent
-      newNode.parent=currentNode;
-
-      // attach the new node to its parent
-      currentNode.children.push(newNode);
-
-      // Set the new current node
-      currentNode=newNode;
-
-      currentIndent=indent;
-      //debugger;
-    } else if (indent<currentIndent){
-      // Move up in the tree
-      var level=currentIndent-indent;
-
-      for (var j=0;j<level/4;j++) {
-        // up one level
-        //debugger;
-        currentNode=currentNode.parent;
-        //debugger;
-        currentIndent=currentIndent-4;
-        //debugger;
-      }
-
-      newNode.parent=currentNode.parent;
-      currentNode.parent.children.push(newNode); // Add a sibbling
-      currentNode=newNode;
-      //debugger;
-    } else {
-      // Add as sibbling
-      newNode.parent=currentNode.parent;
-      currentNode.parent.children.push(newNode);
-      currentNode=newNode;
-      //debugger;
-    }
-  }
-  return root;
-}
-
   export default {
     name: 'Referentiel',
     components: {
       RulesMenu,
       TreeItem,
-      //RuleEditor
+    },
+    data: function(){
+      return {
+        rules: [],
+        currentRuleContent: '',
+        isLoading: true,
+        content: '',
+        comment: '',
+        isEditMode: false,
+        windowLocationHash: decodeURI(window.location.hash),
+      }
+    },
+    computed: {
+      show: function () {
+        return (this.windowLocationHash !== '')
+      },
+      ruleToShow: function() {
+        if(this.show) {
+          return this.rules[this.activeRuleName];
+        } return null;
+      },
+      ruleTree: function() {
+        if(this.show) {
+          return this.toTree(this.currentRuleContent.split('\n'));
+        } return null;
+      },
+      ruleToEdit: function() {
+        if(this.show) {
+          return this.currentRuleContent;
+        } return null;
+      },
+      activeRuleName: function() {
+        return this.windowLocationHash.split('#')[1]
+      },
+    },
+    mounted: function () {
+      this.load();
+      window.addEventListener('popstate', () => {
+        this.windowLocationHash = decodeURI(window.location.hash);
+        if(this.windowLocationHash !== '')
+          this.currentRuleContent = this.rules[this.activeRuleName]['data']
+          this.isEditMode = false
+      })
     },
     methods: {
       load: function () {
@@ -148,7 +136,6 @@ function toTree(lines) { // eslint-disable-line no-unused-vars
           this.isLoading = false;
         }).created;
       },
-      toTree: toTree,
       edit: function () {
         this.content = this.ruleToEdit
         return this.isEditMode=!this.isEditMode
@@ -168,13 +155,48 @@ function toTree(lines) { // eslint-disable-line no-unused-vars
               var commit = {}
               commit.url = 'https://beta.pole-emploi.fr/open-source/trefle/commit/' + response.id
               commit.title = response.title
-              this.rules[this.getActiveRuleName()]['data'] = this.currentRuleContent
-              this.rules[this.getActiveRuleName()]['gitlab'] = {'commit': commit}
+              this.rules[this.activeRuleName]['data'] = this.currentRuleContent
+              this.rules[this.activeRuleName]['gitlab'] = {'commit': commit}
               return this.isEditMode=!this.isEditMode
           });
       },
-      getActiveRuleName: function() {
-        return this.windowLocationHash.split('#')[1]
+      toTree: function (lines) { // eslint-disable-line no-unused-vars
+        var root= new Node('Règle');
+        var currentIndent=-1;
+        var currentNode=root;
+        // we scan the rules line by line
+        for (var i=0;i<lines.length;i++) {
+          var line=lines[i];
+          if (line.match(/^\s*$/)) continue; // Empty line, skip
+          var indent=line.search(/\S|$/); // number of indenting spaces
+          var newNode= new Node(line.trim());
+          if (indent>currentIndent) { // New child
+            // Set the new node parent
+            newNode.parent=currentNode;
+            // attach the new node to its parent
+            currentNode.children.push(newNode);
+            // Set the new current node
+            currentNode=newNode;
+            currentIndent=indent;
+          } else if (indent<currentIndent){
+            // Move up in the tree
+            var level=currentIndent-indent;
+            for (var j=0;j<level/4;j++) {
+              // up one level
+              currentNode=currentNode.parent;
+              currentIndent=currentIndent-4;
+            }
+            newNode.parent=currentNode.parent;
+            currentNode.parent.children.push(newNode); // Add a sibbling
+            currentNode=newNode;
+          } else {
+            // Add as sibbling
+            newNode.parent=currentNode.parent;
+            currentNode.parent.children.push(newNode);
+            currentNode=newNode;
+          }
+        }
+        return root;
       },
       //makeFolder: function (item) {
       //  this.$set(item, 'children', [])
@@ -185,45 +207,6 @@ function toTree(lines) { // eslint-disable-line no-unused-vars
       //    name: 'new rule'
       //  });
       //}
-    },
-    computed: {
-      show: function () {
-        return (this.windowLocationHash !== '')
-      },
-      ruleToShow: function() {
-        if(this.show) {
-          return this.rules[this.getActiveRuleName()];
-        } return null;
-      },
-      ruleTree: function() {
-        if(this.show) {
-          return this.toTree(this.currentRuleContent.split('\n'));
-        } return null;
-      },
-      ruleToEdit: function() {
-        if(this.show) {
-          return this.currentRuleContent;
-        } return null;
-      }
-    },
-    data: function(){
-      return {
-        rules: [],
-        currentRuleContent: '',
-        content: '',
-        isLoading: true,
-        isEditMode: false,
-        windowLocationHash: decodeURI(window.location.hash)
-      }
-    },
-    created: function () {
-      this.load();
-      window.addEventListener('popstate', () => {
-        this.windowLocationHash = decodeURI(window.location.hash);
-        if(this.windowLocationHash !== '')
-          this.currentRuleContent = this.rules[this.getActiveRuleName()]['data']
-          this.isEditMode = false
-      })
     },
   }
 
