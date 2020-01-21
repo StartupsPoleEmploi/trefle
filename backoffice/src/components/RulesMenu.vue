@@ -16,7 +16,7 @@
           <br>
         <ul v-show="this.toggled">
             <li v-for="(rule, id) in rules" :key="rule.id">
-                <a :href="'#'+decodeURI(id)" :title="rule.id">{{ rule.name }}</a>
+                <a :href="'#'+decodeURI(id)" :title="rule.id" @click="$parent.forceRerender()">{{ rule.name }}</a>
             </li>
         </ul>
   </div>
