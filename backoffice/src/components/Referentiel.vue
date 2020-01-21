@@ -6,9 +6,8 @@
           <div class="container">
             <div class="row">
               <div class="col-md-4">
-                <h2>MENU</h2>
-                <br>
-                <RulesMenu title="Règles régionales" namespace="région" class="rules-menu"></RulesMenu>
+                <h2 class="mb-5">MENU</h2>
+                <RulesMenu title="Règles régionales" namespace="région" class="rules-menu" @click="this.forceRerender()"></RulesMenu>
                 <RulesMenu title="Règles nationales" namespace="règles nationales" class="rules-menu"></RulesMenu>
                 <RulesMenu title="Règles des organismes paritaires" namespace="organisme paritaire" class="rules-menu"></RulesMenu>
                 <RulesMenu title="Règles de rémunérations" namespace="rémunération" class="rules-menu"></RulesMenu>
@@ -19,41 +18,7 @@
               </div>
               <div class="col-md-7">
                 <div v-if="this.show">
-                  <!--<Rule :data="this.ruleToShow.data"></Rule>-->                  
-                  <br>
-                  <div class="container">
-                    <div class="row mb-4">
-                      <div  class="col-md-6 col-sm-12 col-xs-12">
-                        <h4>{{ this.ruleToShow.name }}</h4>
-                      </div>
-                      <div class="col-md-6 col-sm-12 col-xs-12 my-auto">
-                        <div v-show="!this.isEditMode" class="form-inline pull-right">
-                          <div class="form-group mx-sm-3 mb-2">
-                            <input @click="edit" type="button" class="btn btn-outline-success form-control" value="Soumettre une modification"/>
-                            <!-- TODO: show gitlab link of modification if exists -->                            
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div v-show="!this.isEditMode">
-                    <!-- the demo root element -->
-                    <ul id="demo">
-                      <tree-item class="item" :item="this.ruleTree"></tree-item>
-                    </ul>
-                  </div>
-                  <div v-show="this.isEditMode">
-                    <!-- rule-editor ref="editor" :rawRule="ruleToEdit"></rule-editor -->
-                    <label for="comment" class="mb-2"><u>Résumé de la modification</u></label>
-                    <textarea v-model="this.comment"></textarea>
-                    <label for="content"><u>Contenu de la règle</u></label>
-                    <textarea v-model="this.content" class="mb-2"></textarea>
-                    <div class="form-inline pull-right">
-                      <div class="form-group mx-sm-3 mb-2">
-                        <input @click="save" type="button" class="btn btn-outline-success form-control" value="Enregistrer"/>
-                      </div>
-                    </div>
-                  </div>
+                  <Rule :data="this.currentRuleContent" :name="this.currentRuleName" :key="this.rerenderKey"></Rule>
                 </div>
                 <div v-else>
                   <h2>Sélectionnez une règle.</h2>
@@ -71,142 +36,51 @@
 </template>
 
 <script>
-  import RulesMenu from './RulesMenu.vue'
-  import TreeItem from './TreeItem.vue';
-
-  function Node(name) {
-    this.name = name;
-    this.parent = null;
-    this.children = [];
-  }
+  import RulesMenu from './RulesMenu.vue';
+  import Rule from './Rule.vue';
 
   export default {
     name: 'Referentiel',
     components: {
       RulesMenu,
-      TreeItem,
+      Rule,
     },
     data: function(){
       return {
         rules: [],
-        currentRuleContent: '',
         isLoading: true,
-        content: '',
-        comment: '',
-        isEditMode: false,
         windowLocationHash: decodeURI(window.location.hash),
+        rerenderKey: 0
       }
     },
     computed: {
       show: function () {
         return (this.windowLocationHash !== '')
       },
-      ruleToShow: function() {
-        if(this.show) {
-          return this.rules[this.activeRuleName];
-        } return null;
+      currentRuleContent: function() {
+        if(this.windowLocationHash !== '') return this.rules[this.currentRuleName]['data'];
+        else return null;
       },
-      ruleTree: function() {
-        if(this.show) {
-          return this.toTree(this.currentRuleContent.split('\n'));
-        } return null;
-      },
-      ruleToEdit: function() {
-        if(this.show) {
-          return this.currentRuleContent;
-        } return null;
-      },
-      activeRuleName: function() {
+      currentRuleName: function() {
         return this.windowLocationHash.split('#')[1]
       },
     },
     mounted: function () {
-      this.load();
+      this.loadRules();
       window.addEventListener('popstate', () => {
         this.windowLocationHash = decodeURI(window.location.hash);
-        if(this.windowLocationHash !== '')
-          this.currentRuleContent = this.rules[this.activeRuleName]['data']
-          this.isEditMode = false
       })
     },
     methods: {
-      load: function () {
+      loadRules: function () {
         this.$http.get('/explore/rules').then(response => {
           this.rules = response.body;
           this.isLoading = false;
         }).created;
       },
-      edit: function () {
-        this.content = this.ruleToEdit
-        return this.isEditMode=!this.isEditMode
-      },
-      save: function() {
-        this.currentRuleContent = this.content
-        const postData = {
-          title: this.ruleToShow.name,
-          comment: this.comment,
-          content: this.content,
-          filename: 'trefle/config/rules/' + this.ruleToShow.path
-        }
-
-        this.$http
-          .post('/source/save', postData)
-          .then(response => {
-              var commit = {}
-              commit.url = 'https://beta.pole-emploi.fr/open-source/trefle/commit/' + response.id
-              commit.title = response.title
-              this.rules[this.activeRuleName]['data'] = this.currentRuleContent
-              this.rules[this.activeRuleName]['gitlab'] = {'commit': commit}
-              return this.isEditMode=!this.isEditMode
-          });
-      },
-      toTree: function (lines) { // eslint-disable-line no-unused-vars
-        var root= new Node('Règle');
-        var currentIndent=-1;
-        var currentNode=root;
-        // we scan the rules line by line
-        for (var i=0;i<lines.length;i++) {
-          var line=lines[i];
-          if (line.match(/^\s*$/)) continue; // Empty line, skip
-          var indent=line.search(/\S|$/); // number of indenting spaces
-          var newNode= new Node(line.trim());
-          if (indent>currentIndent) { // New child
-            // Set the new node parent
-            newNode.parent=currentNode;
-            // attach the new node to its parent
-            currentNode.children.push(newNode);
-            // Set the new current node
-            currentNode=newNode;
-            currentIndent=indent;
-          } else if (indent<currentIndent){
-            // Move up in the tree
-            var level=currentIndent-indent;
-            for (var j=0;j<level/4;j++) {
-              // up one level
-              currentNode=currentNode.parent;
-              currentIndent=currentIndent-4;
-            }
-            newNode.parent=currentNode.parent;
-            currentNode.parent.children.push(newNode); // Add a sibbling
-            currentNode=newNode;
-          } else {
-            // Add as sibbling
-            newNode.parent=currentNode.parent;
-            currentNode.parent.children.push(newNode);
-            currentNode=newNode;
-          }
-        }
-        return root;
-      },
-      //makeFolder: function (item) {
-      //  this.$set(item, 'children', [])
-      //  this.addItem(item)
-      //},
-      //addItem: function (item) {
-      //  item.children.push({
-      //    name: 'new rule'
-      //  });
-      //}
+      forceRerender: function () {
+        this.rerenderKey +=1;
+      }
     },
   }
 

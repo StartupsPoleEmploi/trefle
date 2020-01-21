@@ -11,11 +11,11 @@
 
     <!-- Vertical navbar -->
     <div class="vertical-nav bg-white" id="sidebar">
-      <ul class="nav flex-column bg-white mb-0">
+      <ul class="nav flex-column bg-white mt-4">
         <li class="nav-item bg-white">
           <a href="" id="nav-title" class="nav-link text-dark">☘</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item mt-5">
           <router-link to="/" name="accueil" class="nav-link text-dark bg-white">
             <img src="./../assets/images/Icone_Home.svg" width="23" height="23" class="d-inline-block nav-icon" alt="">
             Accueil
