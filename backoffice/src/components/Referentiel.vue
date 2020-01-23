@@ -22,7 +22,7 @@
               </div>
               <div class="col-md-8 col-sm-12 col-xs-12">
                 <div v-if="this.show">
-                  <Rule :data="this.currentRuleContent" :name="this.currentRuleName" :key="this.rerenderKey"></Rule>
+                  <Rule :data="this.currentRuleContent" :name="this.currentRuleName" :printRulePath="this.printRulePath" :rulePath="this.rulePath" :key="this.rerenderKey"></Rule>
                 </div>
                 <div v-else>
                   <h2>Sélectionnez une règle.</h2>
@@ -66,8 +66,27 @@
         if(this.windowLocationHash !== '') return this.rules[this.currentRuleName]['data'];
         else return null;
       },
-      currentRuleName: function() {
-        return this.windowLocationHash.split('#')[1]
+      currentRuleName: function () {
+        return this.windowLocationHash.split('#').pop();
+      },
+      printRulePath: function () {
+        var path = "";
+        var printpath = "(";
+        if(this.windowLocationHash.split('#').length -1 > 1) {
+          for(var i=1; i <= this.windowLocationHash.split('#').length -1; i++) {
+            path += "#"+ this.windowLocationHash.split('#')[i];
+            if (i == this.windowLocationHash.split('#').length - 1) printpath += "<a href='"+ path + "'>" + this.windowLocationHash.split('#')[i] + "</a>"
+            else printpath += "<a href='"+ path + "'>" + this.windowLocationHash.split('#')[i] + "</a> > ";
+          }
+          return printpath+")";
+        } else return "";
+      },
+      rulePath: function () {
+        var path = "";
+        for(var i=1; i <= this.windowLocationHash.split('#').length -1; i++) {
+          path += "#"+ this.windowLocationHash.split('#')[i];
+        }
+        return path;
       },
     },
     mounted: function () {

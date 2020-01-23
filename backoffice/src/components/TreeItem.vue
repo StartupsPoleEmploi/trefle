@@ -2,18 +2,22 @@
   <li>
     <div :class="{bold: isFolder}"  @dblclick="makeFolder">
       <div v-if="isFolder" @click="toggle">
-        <span>{{ item.name }}</span>
-        <span class="btn btn-outline-info pull-right" style="width:5%"><strong>{{ isOpen ? '-' : '+' }}</strong></span>
+        <div v-if="!rootElement">
+          <span>{{ item.name }}</span>
+          <span class="btn btn-outline-info pull-right" style="width:5%"><strong>{{ isOpen ? '-' : '+' }}</strong></span>
+        </div>
       </div>
-      <span v-else v-html="transform(item.name)"></span>
+      <span v-else v-html="transform(item.name)" class="text-muted"></span>
     </div>
-    <hr class="">
-    <ul v-show="isOpen" v-if="isFolder">
+    <hr v-show="!rootElement">
+    <ul v-show="isOpen || rootElement" v-if="isFolder">
       <TreeItem
         class="item"
         v-for="(child, index) in item.children"
         :key="index"
         :item="child"
+        :rootElement="false"
+        :rulePath="rulePath"
         @make-folder="$emit('make-folder', $event)"
         @add-item="$emit('add-item', $event)"
       ></TreeItem>
@@ -27,11 +31,7 @@
 
 export default {
   name: 'TreeItem',
-  props: {
-    item: Object
-  },
-  components: {
-  },
+  props: ['item','rootElement', 'rulePath'],
   methods: {
     toggle: function () {
       if (this.isFolder) {
@@ -45,17 +45,17 @@ export default {
       }
     },
     transform: function(data) {
-      return data.replace(/Si /g, '<span class="text-muted font-weight-light">Si </span>')
-        .replace(/Soit /g, '<span class="text-muted font-weight-light">Soit </span>')
-        .replace(/Quand /g, '<span class="text-muted font-weight-light">Quand </span>')
-        .replace(/Scénario: /g, '<span class="text-muted font-weight-light">Scénario: </span>')
-        .replace(/Ou /g, '<span class="text-muted font-weight-light">Ou </span>')
-        .replace(/, ou /g, '<span class="text-muted font-weight-light">, ou </span>')
-        .replace(/Et /g, '<span class="text-muted font-weight-light">Et </span>')
-        .replace(/, et /g, '<span class="text-muted font-weight-light">, et </span>')
-        .replace(/Alors /g, '<span class="text-muted font-weight-light">Alors </span>')
+      return data.replace(/Si /g, '<span class="bold text-dark">Si </span>')
+        .replace(/Soit /g, '<span class="bold text-dark">Soit </span>')
+        .replace(/Quand /g, '<span class="bold text-dark">Quand </span>')
+        .replace(/Scénario: /g, '<span class="bold text-dark">Scénario: </span>')
+        .replace(/Ou /g, '<span class="bold text-dark">Ou </span>')
+        .replace(/, ou /g, '<span class="bold text-dark">, ou </span>')
+        .replace(/Et /g, '<span class="bold text-dark">Et </span>')
+        .replace(/, et /g, '<span class="bold text-dark">, et </span>')
+        .replace(/Alors /g, '<span class="bold text-dark">Alors </span>')
         .replace(/(#.+)/g, "<em class=\"comment\">$1</em>")
-        .replace(/appliquer les règles «([^»]+?)(.rules)?»/g, 'appliquer les règles « <a href="#$1.rules" class="btn btn-outline-info" title="Ouvrir les règles" style="display:inline-block">$1</a> »')
+        .replace(/appliquer les règles «([^»]+?)(.rules)?»/g, 'appliquer les règles « <a href="'+this.rulePath+'#$1.rules" class="btn btn-outline-info" title="Ouvrir les règles" style="display:inline-block">$1</a> »')
         .replace(/(«.+»)/g, "<span class=\"string\">$1</span>")
         .replace(/,([^ ])/g, ", $1");
     },
