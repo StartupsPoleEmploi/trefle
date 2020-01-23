@@ -3,20 +3,24 @@
     <div id="referentiel-main-div">
       <div v-if="!this.isLoading">
         <div id="referentiel-main-row">
-          <div class="container">
+          <div class="container ml-5 mr-5">
             <div class="row">
-              <div class="col-md-4">
-                <h2 class="mb-5">MENU</h2>
-                <RulesMenu title="Règles régionales" namespace="région" class="rules-menu" @click="this.forceRerender()"></RulesMenu>
-                <RulesMenu title="Règles nationales" namespace="règles nationales" class="rules-menu"></RulesMenu>
-                <RulesMenu title="Règles des organismes paritaires" namespace="organisme paritaire" class="rules-menu"></RulesMenu>
-                <RulesMenu title="Règles de rémunérations" namespace="rémunération" class="rules-menu"></RulesMenu>
-                <RulesMenu title="Règles de normalisation" namespace="normalisation" class="rules-menu"></RulesMenu>
+              <div class="col-md-4 col-sm-12 col-xs-12">
+                <div class="row">
+                  <div class="col-md-11 col-sm-11 col-xs-11">
+                    <h2 class="mb-5">MENU</h2>
+                    <RulesMenu title="Règles régionales" namespace="région" class="rules-menu" @click="this.forceRerender()"></RulesMenu>
+                    <RulesMenu title="Règles nationales" namespace="règles nationales" class="rules-menu"></RulesMenu>
+                    <RulesMenu title="Règles des organismes paritaires" namespace="organisme paritaire" class="rules-menu"></RulesMenu>
+                    <RulesMenu title="Règles de rémunérations" namespace="rémunération" class="rules-menu"></RulesMenu>
+                    <RulesMenu title="Règles de normalisation" namespace="normalisation" class="rules-menu"></RulesMenu>
+                  </div>
+                  <div class="col-md-1 col-sm-1 col-xs-1">
+                    <hr class="referentiel-vertical-separator">
+                  </div>
+                </div>
               </div>
-              <div class="col-md-1">
-                <hr class="referentiel-vertical-separator">
-              </div>
-              <div class="col-md-7">
+              <div class="col-md-8 col-sm-12 col-xs-12">
                 <div v-if="this.show">
                   <Rule :data="this.currentRuleContent" :name="this.currentRuleName" :key="this.rerenderKey"></Rule>
                 </div>
@@ -58,6 +62,7 @@
         return (this.windowLocationHash !== '')
       },
       currentRuleContent: function() {
+        this.forceRerender();
         if(this.windowLocationHash !== '') return this.rules[this.currentRuleName]['data'];
         else return null;
       },

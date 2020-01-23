@@ -1,17 +1,16 @@
 <template>
   <div id="Rule">
-    <div class="container mb-5">
+    <div class="mb-5">
       <div class="row">
         <div  class="col-md-6 col-sm-12 col-xs-12">
-          <h4>{{ this.name }}</h4>
+          <h4>
+            <span>{{ this.name }}</span>
+          </h4>
         </div>
-        <div class="col-md-6 col-sm-12 col-xs-12 my-auto">
-          <div v-show="!isEditMode" class="form-inline pull-right">
-            <div class="form-group mx-sm-3">
-              <input @click="edit" type="button" class="btn btn-outline-success form-control" value="Soumettre une modification"/>
-              <!-- TODO: show gitlab link of modification if exists -->                            
-            </div>
-          </div>
+        <div class="col-md-6 col-sm-12 col-xs-12">
+          <h4 v-show="isEditMode" class="pull-right"><em>Édition de la règle</em></h4>
+          <input  v-show="!isEditMode" @click="edit" type="button" class="btn btn-outline-success pull-right" value="Soumettre une modification"/>
+          <!-- TODO: show gitlab link of modification if exists -->
         </div>
       </div>
     </div>
@@ -23,18 +22,22 @@
     </div>
     <div v-show="isEditMode">
       <!-- rule-editor ref="editor" :rawRule="ruleToEdit"></rule-editor -->
-      <label for="comment" class="mb-2"><u>Résumé de la modification</u></label>
-      <textarea v-model="comment"></textarea>
-      <label for="content"><u>Contenu de la règle</u></label>
-      <textarea v-model="content" class="mb-2"></textarea>
-      <div class="form-inline pull-left">
-        <div class="form-group mx-sm-3 mb-2">
-          <input @click="closeEdit" type="button" class="btn btn-outline-danger form-control" value="Annuler"/>
+      <div class="container">
+        <div class="row mb-3">
+          <label for="comment" class="mb-2"><u>Résumé de la modification</u></label>
+          <textarea v-model="comment"></textarea>
         </div>
-      </div>
-      <div class="form-inline pull-right">
-        <div class="form-group mx-sm-3 mb-2">
-          <input @click="save" type="button" class="btn btn-outline-success form-control" value="Enregistrer"/>
+        <div class="row mb-3">
+          <label for="content"><u>Contenu de la règle</u></label>
+          <textarea v-model="content" class="mb-3"></textarea>
+        </div>
+        <div class="row mb-3">
+          <div class="col-md-6 pl-0">
+            <input @click="closeEdit" type="button" class="btn btn-outline-danger pull-left" value="Annuler"/>
+          </div>
+          <div class="col-md-6 pr-0">
+            <input @click="save" type="button" class="btn btn-outline-success pull-right" value="Enregistrer"/>
+          </div>
         </div>
       </div>
     </div>
