@@ -24,12 +24,16 @@
                   <br>
                   <div v-show="this.isEditMode">
                     <!-- rule-editor ref="editor" :rawRule="ruleToEdit"></rule-editor -->
-                    <textarea v-model="updatedRule"></textarea>
+                    <label for="comment">Résumé de la modification</label>
+                    <textarea v-model="comment"></textarea>
+                    <label for="content">contenu de la règle</label>
+                    <textarea v-model="content"></textarea>
                     <button @click="save">Enregistrer</button>
                     <!-- pre>{{ this.ruleToShow.data }}</pre -->
                   </div>
                   <div v-show="!this.isEditMode">
                     <button @click="edit">Edit</button>
+                    <!-- TODO: show gitlab link of modification if exists -->
                     <!-- the demo root element -->
                     <ul id="demo">
                     <tree-item
@@ -146,17 +150,32 @@ function toTree(lines) { // eslint-disable-line no-unused-vars
       },
       toTree: toTree,
       edit: function () {
-        this.updatedRule = this.ruleToEdit
+        this.content = this.ruleToEdit
         return this.isEditMode=!this.isEditMode
       },
       save: function() {
-        this.currentRuleContent = this.updatedRule
-        this.rules[this.getActiveRuleName()]['data'] = this.currentRuleContent
-        return this.isEditMode=!this.isEditMode
+        this.currentRuleContent = this.content
+        const postData = {
+          title: this.ruleToShow.name,
+          comment: this.comment,
+          content: this.content,
+          filename: 'trefle/config/rules/' + this.ruleToShow.path
+        }
+
+        this.$http
+          .post('/source/save', postData)
+          .then(response => {
+              var commit = {}
+              commit.url = 'https://beta.pole-emploi.fr/open-source/trefle/commit/' + response.id
+              commit.title = response.title
+              this.rules[this.getActiveRuleName()]['data'] = this.currentRuleContent
+              this.rules[this.getActiveRuleName()]['gitlab'] = {'commit': commit}
+              return this.isEditMode=!this.isEditMode
+          });
       },
       getActiveRuleName: function() {
         return this.windowLocationHash.split('#')[1]
-      }
+      },
       //makeFolder: function (item) {
       //  this.$set(item, 'children', [])
       //  this.addItem(item)
@@ -191,7 +210,7 @@ function toTree(lines) { // eslint-disable-line no-unused-vars
       return {
         rules: [],
         currentRuleContent: '',
-        updatedRule: '',
+        content: '',
         isLoading: true,
         isEditMode: false,
         windowLocationHash: decodeURI(window.location.hash)
