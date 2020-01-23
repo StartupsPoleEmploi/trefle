@@ -1,27 +1,30 @@
 <template>
   <div id="Rule">
     <div class="mb-5">
-      <div class="row">
+      <div class="row mb-3">
         <div  class="col-md-6 col-sm-12 col-xs-12">
-          <h4>
-            <span>{{ this.name }}</span>
-          </h4>
+          <h5>
+            <span  style="vertical-align:-30%" >{{ this.name }}</span>
+          </h5>
         </div>
         <div class="col-md-6 col-sm-12 col-xs-12">
-          <h4 v-show="isEditMode" class="pull-right"><em>Édition de la règle</em></h4>
-          <input  v-show="!isEditMode" @click="edit" type="button" class="btn btn-outline-success pull-right" value="Soumettre une modification"/>
+          <h4 v-if="isEditMode" class="pull-right"><em>Modification de la règle</em></h4>
+          <input  v-else @click="edit" type="button" class="btn btn-outline-success pull-right" value="Soumettre une modification"/>
           <!-- TODO: show gitlab link of modification if exists -->
+        </div>
+      </div>
+      <div v-show="!isEditMode" class="row">
+        <div class="col-md-12">
+          <span v-html="printRulePath"></span>
         </div>
       </div>
     </div>
     <div v-show="!isEditMode">
-      <!-- the demo root element -->
-      <ul id="demo">
-        <TreeItem class="item" :item="this.ruleTree"></TreeItem>
+      <ul>
+        <TreeItem class="item" :item="this.ruleTree" :rootElement="true" :rulePath="this.rulePath"></TreeItem>
       </ul>
     </div>
     <div v-show="isEditMode">
-      <!-- rule-editor ref="editor" :rawRule="ruleToEdit"></rule-editor -->
       <div class="container">
         <div class="row mb-3">
           <label for="comment" class="mb-2"><u>Résumé de la modification</u></label>
@@ -58,7 +61,7 @@
     components: {
       TreeItem,
     },
-    props: ['name', 'data'],
+    props: ['name', 'data', 'printRulePath', 'rulePath'],
     data: function(){
       return {
         ruleData: this.data,
@@ -106,7 +109,7 @@
           });
       },
       toTree: function (lines) { // eslint-disable-line no-unused-vars
-        var root= new Node('Règle');
+        var root= new Node(this.name.split('.')[0]);
         var currentIndent=-1;
         var currentNode=root;
         // we scan the rules line by line
@@ -147,57 +150,4 @@
   }
 </script>
 <style scoped>
-
-  pre strong {
-    font-family: 'mono';
-    font-weight: bold;
-  }
-  pre .comment {
-    font-family: 'mono';
-    font-style: italic;
-    color: #666;
-  }
-  pre .keyword {
-    font-family: 'mono';
-    font-weight: 600;
-  }
-  pre .constant {
-    font-family: 'mono';
-    font-weight: 600;
-    text-decoration: underline dotted;
-    cursor: help;
-  }
-  pre a,
-  pre .string,
-  pre .number {
-    font-family: 'mono';
-    font-weight: 600;
-  }
-  pre code {
-    display: block;
-    padding-left: 1em;
-    font-family: mono;
-  }
-  a.line {
-    display: none;
-  }
-  :scope.with-lines a.line {
-    display: inline-block;
-    background-color: #ddd;
-    cursor: pointer;
-    text-align: center;
-    vertical-align: middle;
-  }
-  :scope.with-lines a:target, :scope.with-lines a:target + code {
-    font-weight: bold;
-    background-color: #ccc;
-  }
-  :scope.with-lines pre {
-    display: grid;
-    grid-template-columns: 2em auto;
-  }
-  .tooltip .tooltip-content:after {
-    /* Why? */
-    bottom: -27px;
-  }
 </style>
