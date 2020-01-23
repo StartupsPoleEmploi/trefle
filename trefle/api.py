@@ -1,5 +1,7 @@
 from http import HTTPStatus
 
+import gitlab
+
 from roll import HttpError, Roll
 from roll.extensions import cors
 
@@ -7,11 +9,11 @@ import ujson as json
 
 from . import VERSION, get_financements, get_remunerations, simulate
 from . import routine
-from .config import FINANCEMENTS, GLOSSARY, IDCC, NAF, RAW_RULES, SCHEMA
+from .config import FINANCEMENTS, GLOSSARY, IDCC, NAF, RAW_RULES, SCHEMA, GITLAB_TOKEN
 from .context import Context
 from .debugging import SCENARIOS, data_from_lbf_url, make_scenario
 from .exceptions import DataError
-from .helpers import flatten
+from .helpers import flatten, fold_name
 from .legacy import simulate_legacy
 from .loggers import log_simulate, logger
 from .openapis import OPENAPI
@@ -34,7 +36,7 @@ async def json_error_response(request, response, error):
     if error.status != HTTPStatus.NOT_FOUND:
         logger.debug(
             f"HttpError: status={error.status}, version={VERSION}, "
-            f"message={response.body}, request={request.body}"
+            f"message={response.body}, request={request.body}, url={request.url}"
         )
 
 
@@ -198,3 +200,30 @@ async def explore_catalog(request, response):
 @app.route("/explore/decode-lbf-url")
 async def decode_lbf_url(request, response):
     response.json = data_from_lbf_url(request.query.get("url"))
+
+
+@app.route("/source/save", ['POST'])
+async def source_save(request, response):
+    # TODO set author_name / mail commiter_name / mail
+    request_data = request.json
+    branch = f"modification-{fold_name(request_data.get('title')).lower()}"
+    commit_message = request_data.get('comment')
+    filename = request_data.get('filename')
+    content = request_data.get('content')
+    gl = gitlab.Gitlab('https://git.beta.pole-emploi.fr', private_token=GITLAB_TOKEN)
+    project = gl.projects.get('open-source/trefle', lazy=True)
+    data = {
+        'branch': f'WIP-{branch}',
+        'start_branch':  'vue-editor',
+        'commit_message': commit_message,
+        'actions': [
+            {
+                'action': 'update',
+                'file_path': filename,
+                'content': content,
+            }
+        ]
+    }
+
+    commit = project.commits.create(data)
+    response.json = commit.attributes

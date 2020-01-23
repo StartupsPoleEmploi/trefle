@@ -6,3 +6,4 @@ requests==2.19.1
 roll==0.9.1
 ujson==1.35
 unidecode==1.0.22
+python-gitlab==1.15.0
