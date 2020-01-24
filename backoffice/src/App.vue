@@ -189,64 +189,13 @@
     border: 1px solid #f3f3f3;
     padding: 10px;
     min-height: 200px;
+  }  
+  .main-button {
+    border: 1px solid #384EAA;
   }
-
-
-  /************** Tool Tip Styles ********************************/
-
-  .tooltip {
-    position: relative;
-    opacity:100;
-    cursor: help;
-    display: inline;
-    z-index: 1;
-  }
-  .tooltip:hover {
-    text-decoration: underline dotted;
-  }
-  .tooltip .tooltip-content {
-    display: none;
-    background: #eee;
-    border: 1px solid #68c3a3;
-    font-size: 0.875em;
-    padding: 1em;
-    position: absolute;
-    left: 0;
-    bottom: calc(100% + 10px);
-    min-width: 300px;
-    color: #222;
-  }
-  .tooltip .tooltip-content:after {
-    content: "";
-    position: absolute;
-    left: -1px;
-    bottom: -11px;
-    border-left: 10px solid transparent;
-    border-right: 10px solid transparent;
-    border-top: 10px solid #68c3a3;
-  }
-  .tooltip:hover .tooltip-content {
-    display: inline-block;
-  }
-  /* Workaround bad pattern to insert tooltip in raw rule parsing. */
-  .tooltip .tooltip .tooltip-content {
-    display: none;
-  }
-
-  /* Glossary like list */
-  dt {
-    font-weight: bolder;
-  }
-  dt em {
-    font-variant: normal;
-  }
-  dl {
-    margin-top: 10px;
-    font-size: 1.1em;
-    padding: 5px;
-  }
-  dl:nth-child(even) {
-    background: #f3f3f3;
-  }
+  .main-button:hover {
+    background-color : #384EAA;
+    color: white;
+  }  
 
 </style>

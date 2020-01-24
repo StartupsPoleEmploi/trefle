@@ -4,7 +4,7 @@
       <div v-if="isFolder" @click="toggle">
         <div v-if="!rootElement">
           <span>{{ item.name }}</span>
-          <span class="btn btn-outline-info pull-right" style="width:5%"><strong>{{ isOpen ? '-' : '+' }}</strong></span>
+          <span class="main-button btn pull-right" style="width:5%"><strong>{{ isOpen ? '-' : '+' }}</strong></span>
         </div>
       </div>
       <span v-else v-html="transform(item.name)" class="text-muted"></span>
@@ -55,7 +55,7 @@ export default {
         .replace(/, et /g, '<span class="bold text-dark">, et </span>')
         .replace(/Alors /g, '<span class="bold text-dark">Alors </span>')
         .replace(/(#.+)/g, "<em class=\"comment\">$1</em>")
-        .replace(/appliquer les règles «([^»]+?)(.rules)?»/g, 'appliquer les règles « <a href="'+this.rulePath+'#$1.rules" class="btn btn-outline-info" title="Ouvrir les règles" style="display:inline-block">$1</a> »')
+        .replace(/appliquer les règles «([^»]+?)(.rules)?»/g, 'appliquer les règles « <a href="'+this.rulePath+'#$1.rules" class="btn main-button" title="Ouvrir les règles" style="display:inline-block">$1</a> »')
         .replace(/(«.+»)/g, "<span class=\"string\">$1</span>")
         .replace(/,([^ ])/g, ", $1");
     },

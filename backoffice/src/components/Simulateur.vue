@@ -22,7 +22,7 @@
 						<p>Vous devez faire une simulation sur LBF et cliquer sur le bouton "simuler sur trèfle"</p>
 						<p> 
 							Pour voir le bouton sur le site de production glisser/déposer ce lien dans votre bookmark
-							<a class=button :href="href()">
+							<a class="btn main-button ml-2" :href="href()">
 								LBF mode expert
 							</a>
 						</p>

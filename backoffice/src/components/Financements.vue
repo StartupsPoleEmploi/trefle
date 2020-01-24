@@ -71,7 +71,7 @@
               </span>
               <span class="col-md-8 col-sm-11">
                 <span v-for="tag in financement.tags" :key="tag.id" class="financement-results-tags" >
-                  <span class="btn btn-outline-info">
+                  <span class="btn main-button">
                     {{ tag }}
                   </span>
                 </span>

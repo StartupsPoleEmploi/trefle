@@ -1,8 +1,8 @@
 <template>
   <div id="Outils">
-          <IDCCSearch class="section-outil"></IDCCSearch>
-        <hr class="outil-horizontal-separator">
-          <Catalogue class="section-outil"></Catalogue>
+    <IDCCSearch class="section-outil"></IDCCSearch>
+      <hr class="outil-horizontal-separator">
+    <Catalogue class="section-outil"></Catalogue>
   </div>
 </template>
 <script>
@@ -24,8 +24,5 @@
         padding-top: 3rem;
         padding-bottom: 3rem;
         margin-left: 2rem;
-    }
-    .btn-info {
-        padding: 1rem;
     }
 </style>

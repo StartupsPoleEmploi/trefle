@@ -9,7 +9,7 @@
         </div>
         <div class="col-md-6 col-sm-12 col-xs-12">
           <h4 v-if="isEditMode" class="pull-right"><em>Modification de la règle</em></h4>
-          <input  v-else @click="edit" type="button" class="btn btn-outline-success pull-right" value="Soumettre une modification"/>
+          <input  v-else @click="edit" type="button" class="main-button btn pull-right" value="Soumettre une modification"/>
           <!-- TODO: show gitlab link of modification if exists -->
         </div>
       </div>
@@ -27,12 +27,12 @@
     <div v-show="isEditMode">
       <div class="container">
         <div class="row mb-3">
-          <label for="comment" class="mb-2"><u>Résumé de la modification</u></label>
-          <textarea v-model="comment"></textarea>
+          <label for="content"><u>Contenu de la règle</u></label>
+          <textarea v-model="content" rows="15" class="mb-3"></textarea>
         </div>
         <div class="row mb-3">
-          <label for="content"><u>Contenu de la règle</u></label>
-          <textarea v-model="content" class="mb-3"></textarea>
+          <label for="comment" class="mb-2"><u>Résumé de la modification</u></label>
+          <textarea v-model="comment" rows="3"></textarea>
         </div>
         <div class="row mb-3">
           <div class="col-md-6 pl-0">

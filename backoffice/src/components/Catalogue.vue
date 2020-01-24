@@ -5,7 +5,7 @@
         <div class="col-md-6">
             <h2>Catalogue</h2>
             <input type="text" ref="intercarif" placeholder="Identifiant INTERCARIF" v-model="intercarif">
-            <input @click="search()" type="button" class="btn btn-info" value="Chercher">
+            <input @click="search()" type="button" class="btn main-button ml-4" value="Chercher">
             <p>Plus d'info sur le format du catalogue: <a href="http://lheo.gouv.fr/langage">http://lheo.gouv.fr/langage</a>.</p>
         </div>
         <div class="col-md-6">

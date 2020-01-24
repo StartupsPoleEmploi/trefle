@@ -5,7 +5,7 @@
         <div class="col-md-6">
 					<h2>Recherche IDCC</h2>
 						<input type="text" ref="idcc" placeholder="Chercher une convention collective" v-model="idcc">
-						<input @click="search()" type="button" class="btn btn-info" value="Chercher">
+						<input @click="search()" type="button" class="btn main-button ml-4" value="Chercher">
         </div>
         <div class="col-md-6">
           <div class="results" v-if="Object.keys(this.results).length">

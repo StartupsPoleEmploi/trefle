@@ -8,7 +8,7 @@
               <div class="col-md-4 col-sm-12 col-xs-12">
                 <div class="row">
                   <div class="col-md-11 col-sm-11 col-xs-11">
-                    <h2 class="mb-5">MENU</h2>
+                    <h2 class="mb-5">Dispositifs de financement :</h2>
                     <RulesMenu title="Règles régionales" namespace="région" class="rules-menu" @click="this.forceRerender()"></RulesMenu>
                     <RulesMenu title="Règles nationales" namespace="règles nationales" class="rules-menu"></RulesMenu>
                     <RulesMenu title="Règles des organismes paritaires" namespace="organisme paritaire" class="rules-menu"></RulesMenu>
