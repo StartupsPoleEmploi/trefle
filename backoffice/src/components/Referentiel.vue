@@ -3,24 +3,28 @@
     <div id="referentiel-main-div">
       <div v-if="!this.isLoading">
         <div id="referentiel-main-row">
-          <div class="container ml-5 mr-5">
+          <div class="container ml-5 mr-2">
             <div class="row">
-              <div class="col-md-4 col-sm-12 col-xs-12">
-                <div class="row">
-                  <div class="col-md-11 col-sm-11 col-xs-11">
-                    <h2 class="mb-5">Dispositifs de financement :</h2>
-                    <RulesMenu title="Règles régionales" namespace="région" class="rules-menu" @click="this.forceRerender()"></RulesMenu>
-                    <RulesMenu title="Règles nationales" namespace="règles nationales" class="rules-menu"></RulesMenu>
-                    <RulesMenu title="Règles des organismes paritaires" namespace="organisme paritaire" class="rules-menu"></RulesMenu>
-                    <RulesMenu title="Règles de rémunérations" namespace="rémunération" class="rules-menu"></RulesMenu>
-                    <RulesMenu title="Règles de normalisation" namespace="normalisation" class="rules-menu"></RulesMenu>
+              <div :class="classCollapsedMenu">
+                  <div class="mb-3 pull-right">
+                    <button @click="collapsed = !collapsed" type="button" class="btn main-button mb-5">
+                      <span v-show="collapsed"><span class="chevron-toggle">&#8594;</span>  Ouvrir le panneau</span>
+                      <span v-show="!collapsed"><span class="chevron-toggle">&#8592;</span>  Fermer le panneau</span>
+                    </button>
                   </div>
-                  <div class="col-md-1 col-sm-1 col-xs-1">
-                    <hr class="referentiel-vertical-separator">
+                  <div v-show="!collapsed">
+                    <h2 class="mb-5">Dispositifs de financement</h2>
+                    <RulesMenu title="Régionaux" namespace="région" class="rules-menu" @click="this.forceRerender()"></RulesMenu>
+                    <RulesMenu title="Nationaux" namespace="règles nationales" class="rules-menu"></RulesMenu>
+                    <RulesMenu title="Organismes paritaires" namespace="organisme paritaire" class="rules-menu"></RulesMenu>
+                    <RulesMenu title="Rémunérations" namespace="rémunération" class="rules-menu"></RulesMenu>
+                    <RulesMenu title="Normalisations" namespace="normalisation" class="rules-menu"></RulesMenu>
                   </div>
-                </div>
               </div>
-              <div class="col-md-8 col-sm-12 col-xs-12">
+              <div v-show="!collapsed" :class="classCollapsedSeparator">
+                <hr class="referentiel-vertical-separator">
+              </div>
+              <div :class="classCollapsedContent">
                 <div v-if="this.show">
                   <Rule :data="this.currentRuleContent" :name="this.currentRuleName" :path="this.currentRuleFilePath" :printRulePath="this.printRulePath" :rulePath="this.rulePath" :key="this.rerenderKey"></Rule>
                 </div>
@@ -54,7 +58,8 @@
         rules: [],
         isLoading: true,
         windowLocationHash: decodeURI(window.location.hash),
-        rerenderKey: 0
+        rerenderKey: 0,
+        collapsed: false,
       }
     },
     computed: {
@@ -92,8 +97,20 @@
         }
         return path;
       },
+      classCollapsedContent: function () {
+        if(this.collapsed) return "col-md-12 col-sm-12 col-xs-12";
+        return "col-md-8 col-sm-12 col-xs-12";
+      },
+      classCollapsedMenu: function () {
+        if(this.collapsed) return "col-md-0 col-sm-0 col-xs-0";
+        return "col-md-3 col-sm-12 col-xs-12";
+      },
+      classCollapsedSeparator: function () {
+        if(this.collapsed) return "col-md-0 col-sm-0 col-xs-0";
+        return "col-md-1 col-sm-0 col-xs-0";
+      }
     },
-    mounted: function () {
+    created: function () {
       this.loadRules();
       window.addEventListener('popstate', () => {
         this.windowLocationHash = decodeURI(window.location.hash);
@@ -123,5 +140,8 @@
     border-left:    1px solid #bfbfbf;
     height:         100%;
     width:          1px;
+  }
+  .chevron-toggle {
+    font-weight: bold;
   }
 </style>
