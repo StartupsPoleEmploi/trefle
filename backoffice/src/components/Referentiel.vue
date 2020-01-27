@@ -22,7 +22,7 @@
               </div>
               <div class="col-md-8 col-sm-12 col-xs-12">
                 <div v-if="this.show">
-                  <Rule :data="this.currentRuleContent" :name="this.currentRuleName" :printRulePath="this.printRulePath" :rulePath="this.rulePath" :key="this.rerenderKey"></Rule>
+                  <Rule :data="this.currentRuleContent" :name="this.currentRuleName" :path="this.currentRuleFilePath" :printRulePath="this.printRulePath" :rulePath="this.rulePath" :key="this.rerenderKey"></Rule>
                 </div>
                 <div v-else>
                   <h2>Sélectionnez une règle.</h2>
@@ -68,6 +68,10 @@
       },
       currentRuleName: function () {
         return this.windowLocationHash.split('#').pop();
+      },
+      currentRuleFilePath: function () {
+        if(this.windowLocationHash !== '') return this.rules[this.currentRuleName]['path'];
+        else return null;
       },
       printRulePath: function () {
         var path = "";
