@@ -61,7 +61,7 @@
     components: {
       TreeItem,
     },
-    props: ['name', 'data', 'printRulePath', 'rulePath'],
+    props: ['name', 'data', 'path', 'printRulePath', 'rulePath'],
     data: function(){
       return {
         ruleData: this.data,
@@ -94,7 +94,7 @@
           title: this.name,
           comment: this.comment,
           content: this.content,
-          filename: 'trefle/config/rules/' + this.data.path
+          filename: 'trefle/config/rules/' + this.path
         }
 
         this.$http
