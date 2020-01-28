@@ -1,0 +1,120 @@
+#liste des champs possibles pour obtenir une rémunération et les aides en BFC
+
+beneficiaire:
+    age:
+      description: âge du bénéficiaire
+      type: integer
+      obligatoire: oui si champ naissance non renseigné
+    naissance:
+      description: date de naissance
+      type: string
+      format: YYYY-MM-DD
+      obligatoire: oui si champ age non renseigné
+    allocation:
+      description: montant de l'allacation du bénéficiaire
+      type: integer
+      obligatoire: non
+    type_allocation:
+      description: type de l'allacation du bénéficiaire
+      type: string
+      valeur possible:
+        are: allocation d'aide au retour à l'emploi
+        ass: allocation de solidarité spécifique
+        rsa: revenu de solidarité active
+        ata: allocation temporaire d'attente
+        asr: allocation spécifique de reclassement
+        atp: allocation de transition professionnelle
+        asp: allocation de sécurisation professionnelle
+        aex: allocation ex-employeur secteur public
+      obligatoire: non
+    th:
+      description: le bénéficiaire est-il handicapé ?
+      type: boolean
+      obligatoire: non
+    a_travaille_douze_mois_sur_24_mois:
+      description: le bénéficiaire a déjà travaillé douze mois sur une période de vingt-quatre mois
+      type: boolean
+      obligatoire: non
+    a_travaille_douze_mois:
+      description: le bénéficiaire non salarié a travaillé pendant douze mois dont au moins six mois consécutifs dans les trois ans qui précèdent l'entrée en formation
+      type: boolean
+      obligatoire: non
+    a_travaille_six_mois:
+      description: le bénéficiaire a déjà travaillé six mois sur une période de douze mois
+      type: boolean
+      obligatoire: non
+    parent_isole:
+      description: le bénéficiaire est  un parent isolé
+      type: boolean
+      obligatoire: non
+    mere_trois_enfant:
+      description: mère de famille ayant au moins trois enfants
+      type: boolean
+      obligatoire: non
+    veuve_ou_divorcee:
+      description: femme divorcée, veuve ou séparée judiciairement depuis moins trois ans
+      type: boolean
+      obligatoire: non
+    seule_et_enceinte:
+      description: femme isolée et enceinte
+      type: boolean
+      obligatoire: non
+formation:
+    codes_financeur:
+      description: code financeur de la formation (2 => code région)
+      obligatoire: oui
+    region:
+      desciption: code INSEE de la région (27 => BFC)
+      obligatoire: oui
+
+---
+Example d'une requète:
+  url:
+    recette: http://trefle.beta.pole-emploi.fr/remuneration
+    production: http://trefle.pole-emploi.fr/remuneration
+  POST:
+    JSON: |
+      {
+        "beneficiaire": {
+                "age": 40,
+                "naissance": "1980-01-01",
+                "allocation": 300,
+                "type_allocation": "ass",
+                "th": true,
+                "a_travaille_douze_mois_sur_24_mois": true,
+                "a_travaille_douze_mois": true,
+                "a_travaille_six_mois": true,
+                "parent_isole": false,
+                "mere_trois_enfant": false,
+                "veuve_ou_divorcee": false,
+                "seule_et_enceinte": false,
+                },
+          "formation": {
+                         "codes_financeur": [2],
+                         "region": 27,
+                      }
+      }
+  curl: |
+      curl -s -L --header "Content-Type: application/json" --request POST --data '{"beneficiaire":{"age":40,"naissance":"1980-01-01","allocation":300,"type_allocation":"ass","th":true,"a_travaille_douze_mois_sur_24_mois":true,"a_travaille_douze_mois":true,"a_travaille_six_mois":true,"parent_isole":false,"mere_trois_enfant":false,"veuve_ou_divorcee":false,"seule_et_enceinte":false},"formation":{"codes_financeur":[2],"region":27}}' https://trefle.beta.pole-emploi.fr
+
+
+---
+Exemple de retour:
+  HTTP:
+    code 200: |
+      {"remunerations":
+        [
+          {
+            "remuneration":910.02,
+            "fin_remuneration":null,
+            "indemnite_conges_payes":0,
+            "intitule_remuneration":"R\u00e9mun\u00e9rations applicables",
+            "droit_aide_transport":true,
+            "description_aide_transport":"L'indemnit\u00e9 de transport est limit\u00e9e \u00e0 un aller\/retour sur la dur\u00e9e de la formation.",
+            "droit_aide_hebergement":true,
+            "montant_aide_hebergement":"101,
+            84\u20ac par mois (sous condition)",
+            "description_aide_hebergement":"Si la distance vers le lieu de votre formation est sup\u00e9rieure \u00e0 250km. Alors vous pouvez b\u00e9n\u00e9ficier d'une aide \u00e0 l'h\u00e9bergement. Cette aide est non cumulable avec l'aide au transport."
+          }
+        ]
+    }
