@@ -1,3 +1,4 @@
+import datetime
 from http import HTTPStatus
 
 import gitlab
@@ -9,7 +10,7 @@ import ujson as json
 
 from . import VERSION, get_financements, get_remunerations, simulate
 from . import routine
-from .config import FINANCEMENTS, GLOSSARY, IDCC, NAF, RAW_RULES, SCHEMA, GITLAB_TOKEN
+from .config import FINANCEMENTS, COMMIT_AUTHORIZATION, GLOSSARY, IDCC, NAF, RAW_RULES, SCHEMA, GITLAB_TOKEN
 from .context import Context
 from .debugging import SCENARIOS, data_from_lbf_url, make_scenario
 from .exceptions import DataError
@@ -202,19 +203,30 @@ async def decode_lbf_url(request, response):
     response.json = data_from_lbf_url(request.query.get("url"))
 
 
+@app.route("/source/modified")
+async def source_modified(request, response):
+    gl = gitlab.Gitlab('https://git.beta.pole-emploi.fr', private_token=GITLAB_TOKEN)
+    project = gl.projects.get('open-source/trefle', lazy=True)
+    branches = project.branches.list(search='^RULE-')
+    response.json = [b.name for b in branches]
+
+
 @app.route("/source/save", ['POST'])
 async def source_save(request, response):
     # TODO set author_name / mail commiter_name / mail
+    now = datetime.datetime.today().strftime('%y%m%d%H%M')
     request_data = request.json
-    branch = f"modification-{fold_name(request_data.get('title')).lower()}"
     commit_message = request_data.get('comment')
     filename = request_data.get('filename')
     content = request_data.get('content')
+    authorization_code = request_data.get('auth')
     gl = gitlab.Gitlab('https://git.beta.pole-emploi.fr', private_token=GITLAB_TOKEN)
     project = gl.projects.get('open-source/trefle', lazy=True)
+    branch = f"modification-{fold_name(request_data.get('title')).lower()}"
+
     data = {
-        'branch': f'WIP-{branch}',
-        'start_branch':  'vue-editor',
+        'branch': f'RULE-{branch}-{now}',
+        'start_branch': 'master',
         'commit_message': commit_message,
         'actions': [
             {
@@ -225,5 +237,9 @@ async def source_save(request, response):
         ]
     }
 
-    commit = project.commits.create(data)
+    if(authorization_code == COMMIT_AUTHORIZATION):
+        commit = project.commits.create(data)
+    else:
+        raise HttpError(HTTPStatus.UNAUTHORIZED, 'Code vide ou invalide')
+
     response.json = commit.attributes
