@@ -28,11 +28,30 @@
       <div class="container">
         <div class="row mb-3">
           <label for="content"><u>Contenu de la règle</u></label>
-          <textarea v-model="content" rows="15" class="mb-3"></textarea>
+          <textarea id="content" v-model="content" rows="15" class="mb-3"></textarea>
         </div>
         <div class="row mb-3">
-          <label for="comment" class="mb-2"><u>Résumé de la modification</u></label>
-          <textarea v-model="comment" rows="3"></textarea>
+          <label for="comment" class="mb-2"><u>Résumé de la modification</u> * </label>
+          <textarea id="comment" v-model="comment" rows="3"></textarea>
+        </div>
+        <div class="row mb-3">
+          <div class="col-md-12 pl-0">
+            <label for="contributor_email" class="pb-2"><u>Votre email</u> *</label>
+          </div>
+          <div class="col-md-12 pl-0">
+            <input id="contributor_email" v-model="contributor_email" type="text"/>
+          </div>
+        </div>
+        <div class="row mb-3">
+          <div class="col-md-12 pl-0">
+            <label for="modification_key" class="mb-2">
+              <u>Clé de modification</u> * 
+            </label>
+          </div>
+          <div class="col-md-12 pl-0">
+            <input id="modification_key" v-model="user_modification_key" type="text" class="form-input" :class="{badKeyClass: badKey}"/><br>
+            <span v-if="badKey" class="text-danger font-weight-light">Mauvaise clé de modification, veuillez rééssayer</span>
+          </div>
         </div>
         <div class="row mb-3">
           <div class="col-md-6 pl-0">
@@ -67,10 +86,17 @@
         ruleData: this.data,
         content: '',
         comment: '',
+        contributor_email: '',
+        user_modification_key: '',
         isEditMode: false,
+        badKey: false,
       }
     },
     computed: {
+      modification_key: function() {
+        // TODO récupération de la clé niveau serveur
+        return "clé";
+      },
       ruleTree: function() {
         return this.toTree(this.ruleData.split('\n'));
       },
@@ -89,8 +115,11 @@
         this.isEditMode=!this.isEditMode;
       },
       save: function() {
+        if(this.user_modification_key != this.modification_key) return this.badKey = true;
         this.ruleData = this.content
         const postData = {
+          author_email:this.contributor_email,
+          author_name:this.contributor_email.split("@")[0],
           title: this.name,
           comment: this.comment,
           content: this.content,
@@ -103,8 +132,8 @@
               var commit = {}
               commit.url = 'https://beta.pole-emploi.fr/open-source/trefle/commit/' + response.id
               commit.title = response.title
-              this.rules[this.activeRuleName]['data'] = this.data
-              this.rules[this.activeRuleName]['gitlab'] = {'commit': commit}
+              this.$parent.rules[this.name]['data'] = this.data
+              this.$parent.rules[this.name]['gitlab'] = {'commit': commit}
               return this.isEditMode=!this.isEditMode
           });
       },
@@ -150,4 +179,9 @@
   }
 </script>
 <style scoped>
+.badKeyClass {
+  color: red;
+  border: 1px solid red;
+  border-radius:3px;
+}
 </style>
