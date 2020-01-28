@@ -36,8 +36,8 @@
           </div>
         </div>
       </div>
-      <div v-else class="text-center">
-        <img src="./../assets/images/loading.gif" align="center" alt="loading...">
+      <div v-else class="text-center loading-gif">
+        <img src="./../assets/images/loading.gif" alt="loading...">
       </div>
     </div>
   </div>
@@ -138,7 +138,7 @@
   .referentiel-vertical-separator {
     border:         none;
     border-left:    1px solid #bfbfbf;
-    height:         100%;
+    height:         95%;
     width:          1px;
   }
   .chevron-toggle {

@@ -5,6 +5,10 @@
   </div>
 </template>
 <script>
+
+  // loading font awesome icons before rendering anything else
+  (function() { var css = document.createElement('link'); css.href = 'https://use.fontawesome.com/releases/v5.1.0/css/all.css'; css.rel = 'stylesheet'; css.type = 'text/css'; document.getElementsByTagName('head')[0].appendChild(css); })();
+
   import Navbar from './components/Navbar.vue'
   import MainContent from './components/MainContent.vue'
 
@@ -196,6 +200,9 @@
   .main-button:hover {
     background-color : #384EAA;
     color: white;
-  }  
+  }
+  .loading-gif {
+    padding-top: 8rem;
+  }
 
 </style>
