@@ -54,6 +54,10 @@
           </div>
         </div>
         <div class="row mb-3">
+          <label for="auth" class="mb-2"><u>Code pour soumettre le modification</u></label>
+          <input type="text" v-model="auth"  />
+        </div>
+        <div class="row mb-3">
           <div class="col-md-6 pl-0">
             <input @click="closeEdit" type="button" class="btn btn-outline-danger pull-left" value="Annuler"/>
           </div>
@@ -86,8 +90,7 @@
         ruleData: this.data,
         content: '',
         comment: '',
-        contributor_email: '',
-        user_modification_key: '',
+        auth: '',
         isEditMode: false,
         badKey: false,
       }
@@ -112,6 +115,7 @@
       closeEdit: function () {
         this.content = this.ruleToEdit;
         this.comment = "";
+        this.auth = "";
         this.isEditMode=!this.isEditMode;
       },
       save: function() {
@@ -122,6 +126,7 @@
           author_name:this.contributor_email.split("@")[0],
           title: this.name,
           comment: this.comment,
+          auth: this.auth,
           content: this.content,
           filename: 'trefle/config/rules/' + this.path
         }
