@@ -28,7 +28,7 @@ CATALOG_URL = os.environ.get(
     "CATALOG_URL", "https://labonneformation.beta.pole-emploi.fr/api/v1/detail"
 )
 GITLAB_TOKEN = os.environ.get("GITLAB_TOKEN", "need-private-access-token")
-COMMIT_AUTHORIZATION = os.environ.get("COMMIT_AUTHORIZATION", "formation")
+COMMIT_AUTHORIZED = os.environ.get("COMMIT_AUTHORIZED", "contributeur@trefle.beta.pole-emploi.fr").split(', ')
 
 
 def load_schema(data, output=None, namespace=None):
