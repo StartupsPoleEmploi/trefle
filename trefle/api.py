@@ -11,7 +11,7 @@ import ujson as json
 
 from . import VERSION, get_financements, get_remunerations, simulate
 from . import routine
-from .config import FINANCEMENTS, COMMIT_AUTHORIZATION, GLOSSARY, IDCC, NAF, RAW_RULES, SCHEMA, GITLAB_TOKEN
+from .config import FINANCEMENTS, COMMIT_AUTHORIZED, GLOSSARY, IDCC, NAF, RAW_RULES, SCHEMA, GITLAB_TOKEN
 from .context import Context
 from .debugging import SCENARIOS, data_from_lbf_url, make_scenario
 from .exceptions import DataError
@@ -233,7 +233,8 @@ async def source_save(request, response):
     commit_message = request_data.get('comment')
     filename = request_data.get('filename')
     content = request_data.get('content')
-    authorization_code = request_data.get('auth')
+    mail = request_data.get('author_email')
+    name = request_data.get('author_name')
     gl = gitlab.Gitlab('https://git.beta.pole-emploi.fr', private_token=GITLAB_TOKEN)
     project = gl.projects.get('open-source/trefle', lazy=True)
     branch = f"modification-{fold_name(request_data.get('title')).lower()}"
@@ -247,6 +248,8 @@ async def source_save(request, response):
         'branch': f'RULE-{branch}-{now}',
         'start_branch': 'master',
         'commit_message': commit_message,
+        'author_email': mail,
+        'author_name': name,
         'actions': [
             {
                 'action': 'update',
@@ -259,7 +262,7 @@ async def source_save(request, response):
     if not is_modified:
         raise HttpError(HTTPStatus.NOT_MODIFIED, message="Aucune modification apportée")
 
-    if authorization_code == COMMIT_AUTHORIZATION:
+    if mail in COMMIT_AUTHORIZED:
         commit = project.commits.create(data)
     else:
         raise HttpError(HTTPStatus.UNAUTHORIZED, 'Code vide ou invalide')
