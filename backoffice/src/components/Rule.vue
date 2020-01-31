@@ -86,16 +86,15 @@
         notModified: false,
       }
     },
+    mounted: function() {
+      this.loadInProgressModification();
+    },
     computed: {
       displayedName: function () {
         return this.name.split('.')[0];
       },
       modification_count: function () {
-        return this.modification_list.length;
-      },
-      modification_key: function() {
-        // TODO récupération de la clé niveau serveur
-        return "clé";
+        return Object.keys(this.modification_list).length;
       },
       ruleTree: function() {
         return this.toTree(this.ruleData.split('\n'));
@@ -105,6 +104,13 @@
       },
     },
     methods: {
+      loadInProgressModification: function () {
+        this.$http
+          .get('/source/modified?branch='+decodeURIComponent('Auvergne-Rhône-Alpes'))
+          .then(response => {
+            return this.modification_list = response.body;
+          })
+      },
       edit: function () {
         this.content = this.ruleToEdit;
         this.isEditMode=!this.isEditMode;
