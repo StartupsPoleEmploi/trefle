@@ -208,7 +208,8 @@ async def decode_lbf_url(request, response):
 async def source_modified(request, response):
     gl = gitlab.Gitlab('https://git.beta.pole-emploi.fr', private_token=GITLAB_TOKEN)
     project = gl.projects.get('open-source/trefle', lazy=True)
-    branches = project.branches.list(search='^RULE-')
+    branch = f"modification-{fold_name(request.query.get('branch','')).lower()}"
+    branches = project.branches.list(search=f'^RULE-{branch}')
     modified = {}
     for branch in branches:
         commit = project.commits.get(branch.get_id()).diff()
@@ -227,7 +228,6 @@ async def source_modified(request, response):
 
 @app.route("/source/save", ['POST'])
 async def source_save(request, response):
-    # TODO set author_name / mail commiter_name / mail
     now = datetime.datetime.today().strftime('%y%m%d%H%M')
     request_data = request.json
     commit_message = request_data.get('comment')
