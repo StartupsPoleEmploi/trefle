@@ -4,8 +4,9 @@
       <div class="row mb-3">
         <div  class="col-md-6 col-sm-12 col-xs-12">
           <h5>
-            <span  style="vertical-align:-30%" >{{ this.name }}</span>
+            <span  style="vertical-align:-30%" >{{ this.displayedName }}</span>
           </h5>
+          <span v-if="this.modification_count">({{ this.modification_count }} modification<span v-if="this.modification_count > 1">s</span> en cours)</span>
         </div>
         <div class="col-md-6 col-sm-12 col-xs-12">
           <h4 v-if="isEditMode" class="pull-right"><em>Modification de la règle</em></h4>
@@ -28,7 +29,8 @@
       <div class="container">
         <div class="row mb-3">
           <label for="content"><u>Contenu de la règle</u></label>
-          <textarea id="content" v-model="content" rows="15" class="mb-3"></textarea>
+          <textarea id="content" v-model="content" rows="15" class="rule-modification-text" :class="{editErrorClass: notModified}"></textarea>
+          <span v-if="notModified" class="text-danger font-weight-light">Aucune modification n'a été renseignée</span>
         </div>
         <div class="row mb-3">
           <label for="comment" class="mb-2"><u>Résumé de la modification</u> * </label>
@@ -39,23 +41,9 @@
             <label for="contributor_email" class="pb-2"><u>Votre email</u> *</label>
           </div>
           <div class="col-md-12 pl-0">
-            <input id="contributor_email" v-model="contributor_email" type="text"/>
+            <input id="contributor_email" v-model="contributor_email" type="text" :class="{editErrorClass: badUser}"/><br>
+            <span v-if="badUser" class="text-danger font-weight-light">Cet utilisateur n'est pas autorisé à soumettre des modifications</span>
           </div>
-        </div>
-        <div class="row mb-3">
-          <div class="col-md-12 pl-0">
-            <label for="modification_key" class="mb-2">
-              <u>Clé de modification</u> * 
-            </label>
-          </div>
-          <div class="col-md-12 pl-0">
-            <input id="modification_key" v-model="user_modification_key" type="text" class="form-input" :class="{badKeyClass: badKey}"/><br>
-            <span v-if="badKey" class="text-danger font-weight-light">Mauvaise clé de modification, veuillez rééssayer</span>
-          </div>
-        </div>
-        <div class="row mb-3">
-          <label for="auth" class="mb-2"><u>Code pour soumettre le modification</u></label>
-          <input type="text" v-model="auth"  />
         </div>
         <div class="row mb-3">
           <div class="col-md-6 pl-0">
@@ -90,12 +78,21 @@
         ruleData: this.data,
         content: '',
         comment: '',
+        contributor_email: '',
         auth: '',
-        isEditMode: false,
-        badKey: false,
+        isEditMode: '',
+        modification_list: [],
+        badUser: false,
+        notModified: false,
       }
     },
     computed: {
+      displayedName: function () {
+        return this.name.split('.')[0];
+      },
+      modification_count: function () {
+        return this.modification_list.length;
+      },
       modification_key: function() {
         // TODO récupération de la clé niveau serveur
         return "clé";
@@ -119,14 +116,12 @@
         this.isEditMode=!this.isEditMode;
       },
       save: function() {
-        if(this.user_modification_key != this.modification_key) return this.badKey = true;
         this.ruleData = this.content
         const postData = {
           author_email:this.contributor_email,
           author_name:this.contributor_email.split("@")[0],
-          title: this.name,
+          title: this.displayedName,
           comment: this.comment,
-          auth: this.auth,
           content: this.content,
           filename: 'trefle/config/rules/' + this.path
         }
@@ -134,12 +129,22 @@
         this.$http
           .post('/source/save', postData)
           .then(response => {
-              var commit = {}
-              commit.url = 'https://beta.pole-emploi.fr/open-source/trefle/commit/' + response.id
-              commit.title = response.title
-              this.$parent.rules[this.name]['data'] = this.data
-              this.$parent.rules[this.name]['gitlab'] = {'commit': commit}
-              return this.isEditMode=!this.isEditMode
+            var commit = {}
+            commit.url = 'https://beta.pole-emploi.fr/open-source/trefle/commit/' + response.id
+            commit.title = response.title
+            this.$parent.rules[this.name]['data'] = this.data
+            this.$parent.rules[this.name]['gitlab'] = {'commit': commit}
+            return this.isEditMode=!this.isEditMode
+          }, response => {
+              if(response.status == 304){
+                this.notModified = true;
+                this.badUser = false;
+              } 
+              else if (response.status == 401) {
+                this.badUser = true;
+                this.notModified = false;
+              }
+              return false;
           });
       },
       toTree: function (lines) { // eslint-disable-line no-unused-vars
@@ -184,9 +189,12 @@
   }
 </script>
 <style scoped>
-.badKeyClass {
-  color: red;
-  border: 1px solid red;
+.editErrorClass {
+  color: #dc3545;
+  border: 1px solid #dc3545;
   border-radius:3px;
+}
+.rule-modification-text {
+  font-family: 'Courier New', Courier, monospace;
 }
 </style>
