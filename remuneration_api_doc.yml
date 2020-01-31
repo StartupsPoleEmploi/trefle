@@ -66,6 +66,9 @@ formation:
     region:
       desciption: code INSEE de la région (27 => BFC)
       obligatoire: oui
+    code_dispositif:
+      description: code du dispositif de la formation
+      type: A DEFINIR
 
 ---
 Example d'une requète:
@@ -92,6 +95,7 @@ Example d'une requète:
           "formation": {
                          "codes_financeur": [2],
                          "region": 27,
+                         "code_dispositif": ?????
                       }
       }
   curl: |
