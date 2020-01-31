@@ -2,6 +2,7 @@ import datetime
 from http import HTTPStatus
 
 import gitlab
+import hashlib
 
 from roll import HttpError, Roll
 from roll.extensions import cors
@@ -208,7 +209,20 @@ async def source_modified(request, response):
     gl = gitlab.Gitlab('https://git.beta.pole-emploi.fr', private_token=GITLAB_TOKEN)
     project = gl.projects.get('open-source/trefle', lazy=True)
     branches = project.branches.list(search='^RULE-')
-    response.json = [b.name for b in branches]
+    modified = {}
+    for branch in branches:
+        commit = project.commits.get(branch.get_id()).diff()
+        modified[branch.attributes.get('commit').get('short_id')] = {
+            'id': branch.attributes.get('commit').get('id'),
+            'branch': branch.name,
+            'title': branch.attributes.get('commit').get('title'),
+            'message': branch.attributes.get('commit').get('message'),
+            'author_name': branch.attributes.get('commit').get('author_name'),
+            'date': branch.attributes.get('commit').get('author_date'),
+            'file': commit[0].get('new_path'),  # NOTE: only one commit per branch
+            'diff': commit[0].get('diff')
+            }
+    response.json = modified
 
 
 @app.route("/source/save", ['POST'])
@@ -224,6 +238,11 @@ async def source_save(request, response):
     project = gl.projects.get('open-source/trefle', lazy=True)
     branch = f"modification-{fold_name(request_data.get('title')).lower()}"
 
+    original_fingerprint = hash(project.files.get(filename,
+                                                  ref='master').decode().decode())
+    modified_fingerprint = hash(content)
+    is_modified = original_fingerprint != modified_fingerprint
+
     data = {
         'branch': f'RULE-{branch}-{now}',
         'start_branch': 'master',
@@ -237,7 +256,10 @@ async def source_save(request, response):
         ]
     }
 
-    if(authorization_code == COMMIT_AUTHORIZATION):
+    if not is_modified:
+        raise HttpError(HTTPStatus.NOT_MODIFIED, message="Aucune modification apportée")
+
+    if authorization_code == COMMIT_AUTHORIZATION:
         commit = project.commits.create(data)
     else:
         raise HttpError(HTTPStatus.UNAUTHORIZED, 'Code vide ou invalide')
