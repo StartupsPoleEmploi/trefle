@@ -86,7 +86,7 @@
         notModified: false,
       }
     },
-    mounted: function() {
+    beforeMount: function() {
       this.loadInProgressModification();
     },
     computed: {
@@ -106,9 +106,13 @@
     methods: {
       loadInProgressModification: function () {
         this.$http
-          .get('/source/modified?branch='+decodeURIComponent('Auvergne-Rhône-Alpes'))
+          .get('/source/modified?branch='+encodeURIComponent(this.displayedName))
           .then(response => {
-            return this.modification_list = response.body;
+            this.modification_list = response.body;
+            return true;
+          }, response => {
+            if(response.status == 500) this.modification_list = {};
+            return false;
           })
       },
       edit: function () {
