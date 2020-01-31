@@ -11,7 +11,7 @@ Si le financement est de type «FAJ»
     Alors appliquer les règles «FAJ»
 
 Si le financement est de type «POEC»
-    Alors appliquer les règles «POEC»
+    Alors appliquer les règles «POEC» 
 
 Si le financement est de type «POEI»
     Alors appliquer les règles «POEI»
