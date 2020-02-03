@@ -14,12 +14,13 @@ from . import routine
 from .config import FINANCEMENTS, COMMIT_AUTHORIZED, GLOSSARY, IDCC, NAF, RAW_RULES, SCHEMA, GITLAB_TOKEN
 from .context import Context
 from .debugging import SCENARIOS, data_from_lbf_url, make_scenario
-from .exceptions import DataError
+from .exceptions import DataError, UnauthorizedAccess, NotModifiedError
 from .helpers import flatten, fold_name
 from .legacy import simulate_legacy
 from .loggers import log_simulate, logger
 from .openapis import OPENAPI
 from .routine import get_formation_json, search_term
+from .source import submit_modification
 
 app = Roll()
 cors(app)
@@ -228,43 +229,53 @@ async def source_modified(request, response):
 
 @app.route("/source/save", ['POST'])
 async def source_save(request, response):
-    now = datetime.datetime.today().strftime('%y%m%d%H%M')
-    request_data = request.json
-    commit_message = request_data.get('comment')
-    filename = request_data.get('filename')
-    content = request_data.get('content')
-    mail = request_data.get('author_email')
-    name = request_data.get('author_name')
-    gl = gitlab.Gitlab('https://git.beta.pole-emploi.fr', private_token=GITLAB_TOKEN)
-    project = gl.projects.get('open-source/trefle', lazy=True)
-    branch = f"modification-{fold_name(request_data.get('title')).lower()}"
-
-    original_fingerprint = hash(project.files.get(filename,
-                                                  ref='master').decode().decode())
-    modified_fingerprint = hash(content)
-    is_modified = original_fingerprint != modified_fingerprint
-
-    data = {
-        'branch': f'RULE-{branch}-{now}',
-        'start_branch': 'master',
-        'commit_message': commit_message,
-        'author_email': mail,
-        'author_name': name,
-        'actions': [
-            {
-                'action': 'update',
-                'file_path': filename,
-                'content': content,
-            }
-        ]
-    }
-
-    if not is_modified:
+    # TODO los error
+    try:
+        response.json = await submit_modification(request.json)
+    except UnauthorizedAccess:
+        raise HttpError(HTTPStatus.UNAUTHORIZED, 'Mail non authorisé à soumettre une modification')
+    except NotModifiedError:
         raise HttpError(HTTPStatus.NOT_MODIFIED, message="Aucune modification apportée")
+    except ValueError as err:
+        raise HttpError(HTTPStatus.UNPROCESSABLE_ENTITY, message=err)
+    # now = datetime.datetime.today().strftime('%y%m%d%H%M')
+    # request_data = request.json
+    # commit_message = request_data.get('comment')
+    # filename = request_data.get('filename')
+    # content = request_data.get('content')
+    # mail = request_data.get('author_email')
+    # name = request_data.get('author_name')
 
-    if mail in COMMIT_AUTHORIZED:
-        commit = project.commits.create(data)
-    else:
-        raise HttpError(HTTPStatus.UNAUTHORIZED, 'Code vide ou invalide')
+    # gl = gitlab.Gitlab('https://git.beta.pole-emploi.fr', private_token=GITLAB_TOKEN)
+    # project = gl.projects.get('open-source/trefle', lazy=True)
+    # branch = f"modification-{fold_name(request_data.get('title')).lower()}"
 
-    response.json = commit.attributes
+    # original_fingerprint = hash(project.files.get(filename,
+    #                                               ref='master').decode().decode())
+    # modified_fingerprint = hash(content)
+    # is_modified = original_fingerprint != modified_fingerprint
+
+    # data = {
+    #     'branch': f'RULE-{branch}-{now}',
+    #     'start_branch': 'master',
+    #     'commit_message': commit_message,
+    #     'author_email': mail,
+    #     'author_name': name,
+    #     'actions': [
+    #         {
+    #             'action': 'update',
+    #             'file_path': filename,
+    #             'content': content,
+    #         }
+    #     ]
+    # }
+
+    # if not is_modified:
+    #     raise HttpError(HTTPStatus.NOT_MODIFIED, message="Aucune modification apportée")
+
+    # if mail in COMMIT_AUTHORIZED:
+    #     commit = project.commits.create(data)
+    # else:
+    #     raise HttpError(HTTPStatus.UNAUTHORIZED, 'Code vide ou invalide')
+
+    # response.json = commit.attributes

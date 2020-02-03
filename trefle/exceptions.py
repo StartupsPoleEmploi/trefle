@@ -23,6 +23,14 @@ class NoStepError(Exception):
     ...
 
 
+class UnauthorizedAccess(Exception):
+    ...
+
+
+class NotModifiedError(Exception):
+    ...
+
+
 class ParsingError(Exception):
     def __init__(self, msg, rule, line):
         super().__init__(f"{rule}:{line.index}: {msg} in `{line.sentence}`")

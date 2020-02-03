@@ -27,6 +27,8 @@ CATALOG_KEY = os.environ.get("CATALOG_KEY", "toto")
 CATALOG_URL = os.environ.get(
     "CATALOG_URL", "https://labonneformation.beta.pole-emploi.fr/api/v1/detail"
 )
+GITLAB_URL = os.environ.get("GITLAB_URL", "https://git.beta.pole-emploi.fr")
+GITLAB_PROJECT = os.environ.get("GITLAB_PROJECT", "open-source/trefle")
 GITLAB_TOKEN = os.environ.get("GITLAB_TOKEN", "need-private-access-token")
 COMMIT_AUTHORIZED = os.environ.get("COMMIT_AUTHORIZED", "contributeur@trefle.beta.pole-emploi.fr").split(', ')
 
