@@ -14,6 +14,7 @@ Si les codes financeur de la formation contiennent «Conseil régional»
         Et le montant de l'aide au transport vaut «98,79€ par mois (sous condition)»
         Et le texte de l'aide au transport vaut «Si la distance vers le lieu de votre formation est supérieure ou égale à 16km. Alors vous pouvez bénéficier d'une aide au transport.»
     # Ligne 45 46
+    # TODO l'intitulé ne correspond à la question du tableau 46
     Si c'est un bénéficiaire non salarié qui a travaillé pendant douze mois dont au moins six mois consécutifs dans les trois ans qui précèdent l'entrée en formation
     Et ce n'est pas un parent isolé
     Et ce n'est pas une mère de famille ayant au moins trois enfants
