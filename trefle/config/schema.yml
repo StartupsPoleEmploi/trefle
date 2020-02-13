@@ -1048,6 +1048,10 @@ formation:
   individuels:
     type: boolean
     label: formation ouverte aux bénéficiaires individuels
+  code_dispositif:
+    description: code du dispositif désignant le regroupement de formations par la région (hors LHEO, uniquement pour BFC)
+    label: code du dispositif
+    type: integer
 aide: &aide
   droit_aide_complementaire:
     description: le bénéficiaire a droit a une aide complémentaire

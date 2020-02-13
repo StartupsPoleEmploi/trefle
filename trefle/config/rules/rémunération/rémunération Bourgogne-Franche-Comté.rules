@@ -7,12 +7,12 @@ Si les codes financeur de la formation contiennent «Conseil régional»
     # Aide complémentaire #
     #######################
 
-    Si le code de dispositif fait partie de [1,2,3,4,5,6,8]
+    Si le code du dispositif fait partie de [1,2,3,4,5,6,8]
         Alors l'aide complémentaire est éligible
         Et le montant de l'aide complémentaire vaut «200€»
 
-    Si le code de dispositif ne fait pas partie de [1,7,10,12]
-    Et vous n'êtes pas salariés
+    Si le code du dispositif ne fait pas partie de [1,7,10,12]
+    Et ce n'est pas un bénéficiaire de droit privé
 
         #####################
         # Aide au transport #
@@ -77,10 +77,10 @@ Si les codes financeur de la formation contiennent «Conseil régional»
                 Alors la rémunération applicable vaut 1001.02
 
 
-        Si le code du dipositif fait partie [1,10,12,7]
+        Si le code du dispositif fait partie de [1,10,12,7]
             Alors le texte de la rémunération vaut «Aucune rémunération Région n'est possible.»
 
-        Si le code du dipositif ne fait partie de [1,10,12,7]
+        Si le code du dispositif ne fait pas partie de [1,10,12,7]
             # Tableau de regles: ligne 4 et 7
             Si c'est un travailleur handicapé
             Et la rémunération applicable est inférieure à 910.02
