@@ -25,6 +25,7 @@ async def source_modified(project, data):
 
 async def submit_modification(data):
     project = await load_project()
+    mr_title = data.get('title')
     data = modification_data(data)
 
     if not await source_modified(project, data):
@@ -34,11 +35,29 @@ async def submit_modification(data):
             f"Your emai is not authorized to modify the rule {data.get('branch')}"
         )
     else:
-        try:
-            commit = project.commits.create(data)
-            return commit.attributes
-        except Exception as err:
-            print(f"Source code commit failed on rule {data.get('branch')}: {err!r}")
+        commit = await create_commit(project, data)
+        mr = await create_mr(project, data.get("branch"), mr_title)
+        commit["merge_request"] = mr
+        return commit
+
+
+async def create_commit(project, data):
+    try:
+        commit = project.commits.create(data)
+        return commit.attributes
+    except Exception as err:
+        print(f"Source code commit failed on rule {data.get('branch')}: {err!r}")
+
+
+async def create_mr(project, source_branch, title):
+    try:
+        mr = project.mergerequests.create({'source_branch': source_branch,
+           'target_branch': 'master',
+           'title': title,
+           'labels': ['RULE']})
+        return mr.attributes
+    except Exception as err:
+        print(f"Merge request creation failed on rule {source_branch}: {err!r}")
 
 
 def validate(func):
