@@ -57,7 +57,7 @@ def test_modification_data():
         "actions": [
             {
                 "action": "update",
-                "file_path": 'test.rule',
+                "file_path": 'test.rules',
                 "content": 'test',
             }
         ],
