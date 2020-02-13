@@ -3,6 +3,7 @@ Si les codes financeur de la formation contiennent «Conseil régional»
     Si l'allocation du bénéficiaire est définie
         Alors la rémunération applicable est égale au montant de l'allocation du bénéficiaire
 
+
     #######################
     # Aide complémentaire #
     #######################
@@ -14,9 +15,11 @@ Si les codes financeur de la formation contiennent «Conseil régional»
     Si le code du dispositif ne fait pas partie de [1,7,10,12]
     Et ce n'est pas un bénéficiaire de droit privé
 
-        #####################
-        # Aide au transport #
-        #####################
+
+    #####################
+    # Aide au transport #
+    #####################
+
         Si c'est un travailleur handicapé
             Alors l'aide au transport est éligible
             Et le texte de l'aide au transport vaut «L'indemnité de transport est limitée à un aller/retour sur la durée de la formation.»
@@ -34,9 +37,11 @@ Si les codes financeur de la formation contiennent «Conseil régional»
             Alors l'aide au transport est éligible
             Et le texte de l'aide au transport vaut «L'indemnité de transport est limitée à un aller/retour sur la durée de la formation.»
 
-        ########################
-        # Aide à l'hébergement #
-        ########################
+
+    ########################
+    # Aide à l'hébergement #
+    ########################
+
         Si c'est un bénéficiaire qui a déjà travaillé six mois sur une période de douze mois
         Ou c'est un bénéficiaire qui a déjà travaillé douze mois sur une période de vingt-quatre mois
         Ou c'est un parent isolé
@@ -57,9 +62,10 @@ Si les codes financeur de la formation contiennent «Conseil régional»
             Et le texte de l'aide à l'hébergement vaut «Si la distance vers le lieu de votre formation est inférieure ou égale à 15km. Alors vous pouvez bénéficier d'une aide à l'hébergement.»
 
 
-        ################
-        # Rémunération #
-        ################
+    ################
+    # Rémunération #
+    ################
+
         Si ce n'est pas un bénéficiaire qui a déjà travaillé six mois sur une période de douze mois
         Et ce n'est pas un bénéficiaire qui a déjà travaillé douze mois sur une période de vingt-quatre mois
         Et ce n'est pas un bénéficiaire non salarié qui a travaillé pendant douze mois dont au moins six mois consécutifs dans les trois ans qui précèdent l'entrée en formation
@@ -110,6 +116,19 @@ Si les codes financeur de la formation contiennent «Conseil régional»
                     Alors la rémunération applicable vaut 863.00
 
 
-    # TODO ajouter cas détenu
-    # Si c'est un détenu
-    #     Alors la rémunération applicable vaut 3.3 € x durée de la formation en h
+    ##################################
+    # Codes et dispositifs associés #
+    ################################
+
+    # 1: Approfondir ma maîtrise de la langue Française (écrite et orale): DFL Dispositif de formation linguistique
+    # 2: Me remobiliser et définir mon projet de formation: « Une Formation pour Moi ? C’est Possible ! »
+    # 3: Construire mon projet d’insertion sociale et professionnelle – jeunes adultes jusqu’à 30 ans : Les écoles de la 2ème chance (E2C)
+    # 4: Me préparer pour accéder à une formation ou un emploi: Le Dispositif amont de la qualification (DAQ)
+    # 5: Me former à un métier : Le programme qualifiant
+    # 6: Me former aux métiers du sanitaire et social: formations niveau infra BAC
+    # 7: Me former aux métiers du sanitaire et social: formations niveau BAC et plus
+    # 8: Me former pour développer un projet de création / reprise d’entreprise
+    # 9: Me former pour développer un projet de création / reprise d’entreprise: PROFOREA / START AGRI
+    # 10: Répondre rapidement aux besoins en recrutement des entreprises : Le FRAP (Fonds d’Appui Régional à la professionnalisation)
+    # 11: Formation secrétaires de mairie en région BFC
+    # 12: VAE
