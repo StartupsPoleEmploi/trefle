@@ -16,4 +16,4 @@ Et ce n'est pas un contrat d'apprentissage
             Et le plafond financier applicable est égale au solde CPF du bénéficiaire
 
             Si le solde CPF du bénéficiaire est supérieur ou égal au montant de prise en charge
-                Alors le texte des démarches vaut «1. Vous pouvez directement faire la demande de financement sur https://www.moncompteactivite.gouv.fr et prendre contact avec l'organisme de formation pour vous inscrire à la formation.»
+                Alors le texte des démarches vaut «1. Vous pouvez directement faire la demande de financement sur https://www.moncompteformation.gouv.fr et prendre contact avec l'organisme de formation pour vous inscrire à la formation.»
