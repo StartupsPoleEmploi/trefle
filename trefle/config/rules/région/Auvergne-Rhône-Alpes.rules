@@ -9,7 +9,7 @@ Si le financement est de type «AFC»
 
 Si le financement est de type «FAJ»
     Alors appliquer les règles «FAJ»
-
+ 
 Si le financement est de type «POEC»
     Alors appliquer les règles «POEC»
 
