@@ -101,7 +101,7 @@ def count_indent(s):
 
 
 def fold_name(s):
-    return NON_ALPHA.sub("", unidecode(s).upper())
+    return NON_ALPHA.sub("", unidecode(str(s)).upper())
 
 
 def insee_departement_to_region(context, from_key, to_key):

@@ -11,7 +11,7 @@ import ujson as json
 
 from . import VERSION, get_financements, get_remunerations, simulate
 from . import routine
-from .config import FINANCEMENTS, COMMIT_AUTHORIZED, GLOSSARY, IDCC, NAF, RAW_RULES, SCHEMA, GITLAB_TOKEN
+from .config import FINANCEMENTS, COMMIT_AUTHORIZED, GLOSSARY, IDCC, NAF, CERTIFINFO, RAW_RULES, SCHEMA, GITLAB_TOKEN
 from .context import Context
 from .debugging import SCENARIOS, data_from_lbf_url, make_scenario
 from .exceptions import DataError, UnauthorizedAccess, NotModifiedError
@@ -167,6 +167,11 @@ async def naf(request, response):
 @app.route("/idcc")
 async def idcc(request, response):
     response.json = search_term(IDCC, request.query.get("q"))
+
+
+@app.route("/certifinfo")
+async def certifinfo(request, response):
+    response.json = search_term(CERTIFINFO, request.query.get("q"))
 
 
 @app.route("/explore/schema")
