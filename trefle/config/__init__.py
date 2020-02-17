@@ -183,7 +183,7 @@ def init():
         GLOSSARY.update(yaml.safe_load(f.read()))
     with (ROOT / "naf.csv").open() as f:
         NAF.update(load_naf(f.read()))
-    with (ROOT / "certifinfo.yaml").open() as f:
-        CERTIFINFO.update(yaml.safe_load(f.read()))
+    with (ROOT / "certifinfo.json").open() as f:
+        CERTIFINFO.update(json.loads(f.read()))
     load_features()
     print("Done initializing config")
