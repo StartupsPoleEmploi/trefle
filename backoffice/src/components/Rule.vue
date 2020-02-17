@@ -33,26 +33,25 @@
           <span v-if="notModified" class="text-danger font-weight-light">Aucune modification n'a été renseignée</span>
         </div>
         <div class="row mb-3">
-          <label for="comment" class="mb-2"><u>Résumé de la modification</u> * </label>
-          <textarea id="comment" v-model="comment" rows="3"></textarea>
-        </div>
-        <div class="row mb-3">
-          <div class="col-md-12 pl-0">
-            <label for="contributor_email" class="pb-2"><u>Votre email</u> *</label>
-          </div>
-          <div class="col-md-12 pl-0">
-            <input id="contributor_email" v-model="contributor_email" type="text" :class="{editErrorClass: badUser}"/><br>
-            <span v-if="badUser" class="text-danger font-weight-light">Cet utilisateur n'est pas autorisé à soumettre des modifications</span>
-          </div>
-        </div>
-        <div class="row mb-3">
           <div class="col-md-6 pl-0">
             <input @click="closeEdit" type="button" class="btn btn-outline-danger pull-left" value="Annuler"/>
           </div>
           <div class="col-md-6 pr-0">
-            <input @click="save" type="button" class="btn btn-outline-success pull-right" value="Enregistrer"/>
+            <button v-b-modal.mail-modal class="btn btn-outline-success pull-right">Enregistrer</button>
           </div>
         </div>
+
+        <b-modal id="mail-modal" title="Soumettre votre modification">
+          <label for="comment" class="mb-2"><u>Résumé de la modification</u> * </label>
+          <textarea id="comment" v-model="comment" rows="3"></textarea>
+          <label for="contributor_email" class="pb-2"><u>Votre email</u> *</label><br>
+          <input id="contributor_email" v-model="contributor_email" type="text" :class="{editErrorClass: badUser}" class="form-control" style="border: 1px solid #bfbfbf; border-radius: 2px;"/><br>
+          <span v-if="badUser" class="text-danger font-weight-light">Cet utilisateur n'est pas autorisé à soumettre des modifications</span>
+          <template v-slot:modal-footer>       
+            <input @click="save" type="button" class="btn btn-outline-success pull-right" value="Enregistrer"/>
+          </template>
+        </b-modal>
+
       </div>
     </div>
   </div>
@@ -144,11 +143,13 @@
             commit.title = response.title
             this.$parent.rules[this.name]['data'] = this.data
             this.$parent.rules[this.name]['gitlab'] = {'commit': commit}
-            return this.isEditMode=!this.isEditMode
+            this.$bvModal.hide("mail-modal");
+            return this.isEditMode=!this.isEditMode            
           }, response => {
               if(response.status == 304){
                 this.notModified = true;
                 this.badUser = false;
+                this.$bvModal.hide("mail-modal");
               } 
               else if (response.status == 401) {
                 this.badUser = true;
@@ -206,5 +207,10 @@
 }
 .rule-modification-text {
   font-family: 'Courier New', Courier, monospace;
+}
+
+textarea {
+  border: 1px solid #bfbfbf;
+  border-radius: 2px;
 }
 </style>
