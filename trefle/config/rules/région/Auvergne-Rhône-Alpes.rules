@@ -37,7 +37,7 @@ Si l'intitulé du financement est «Aide individuelle à la formation»
     Et la liste des codes CPF de la formation ne contient pas 201
         Alors appliquer les règles «AIF»
 
-Si l'intitulé du financement est «AIF permis B»
+Si l'intitulé du financement est «AIF permis A»
 
     Si la région du bénéficiaire est «Auvergne-Rhône-Alpes»
     Et c'est un demandeur d'emploi
