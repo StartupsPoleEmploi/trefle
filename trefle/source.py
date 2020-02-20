@@ -32,7 +32,7 @@ async def submit_modification(data):
         raise NotModifiedError(f"Content not modified in rule {data.get('branch')}")
     elif data.get("author_email") not in COMMIT_AUTHORIZED:
         raise UnauthorizedAccess(
-            f"Your emai is not authorized to modify the rule {data.get('branch')}"
+            f"Your email is not authorized to modify the rule {data.get('branch')}"
         )
     else:
         commit = await create_commit(project, data)

@@ -225,7 +225,7 @@ async def source_modified(request, response):
             'title': branch.attributes.get('commit').get('title'),
             'message': branch.attributes.get('commit').get('message'),
             'author_name': branch.attributes.get('commit').get('author_name'),
-            'date': branch.attributes.get('commit').get('author_date'),
+            'date': branch.attributes.get('commit').get('authored_date'),
             'file': commit[0].get('new_path'),  # NOTE: only one commit per branch
             'diff': commit[0].get('diff')
             }
@@ -234,7 +234,7 @@ async def source_modified(request, response):
 
 @app.route("/source/save", ['POST'])
 async def source_save(request, response):
-    # TODO los error
+    # TODO log errors
     try:
         response.json = await submit_modification(request.json)
     except UnauthorizedAccess:
