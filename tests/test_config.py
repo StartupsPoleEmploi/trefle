@@ -1,4 +1,4 @@
-from trefle.config import Financement, Organisme, load_naf, load_schema
+from trefle.config import Financement, Organisme, load_naf, load_schema, load_authorisations
 
 
 def test_load_schema():
@@ -35,6 +35,14 @@ SECTION A;AGRICULTURE, SYLVICULTURE ET PÊCHE
         "0113Z": {"code":"0113Z", "name": "Culture de légumes, de melons, de racines et de tubercules"},
         "0114Z": {"code":"0114Z", "name": "Culture de la canne à sucre"},
     }
+
+
+def test_load_authorisations():
+    data = """email,password,file
+test@test.fr,test,.*"""
+    assert load_authorisations(data) == [
+        {'email': 'test@test.fr', 'password': 'test', 'file': '.*'}
+    ]
 
 
 def test_financement_format():

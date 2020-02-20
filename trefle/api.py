@@ -1,4 +1,5 @@
 import datetime
+import re
 from http import HTTPStatus
 
 import gitlab
@@ -11,7 +12,7 @@ import ujson as json
 
 from . import VERSION, get_financements, get_remunerations, simulate
 from . import routine
-from .config import FINANCEMENTS, COMMIT_AUTHORIZED, GLOSSARY, IDCC, NAF, CERTIFINFO, RAW_RULES, SCHEMA, GITLAB_TOKEN
+from .config import AUTHORIZED, FINANCEMENTS, COMMIT_AUTHORIZED, GLOSSARY, IDCC, NAF, CERTIFINFO, RAW_RULES, SCHEMA, GITLAB_TOKEN
 from .context import Context
 from .debugging import SCENARIOS, data_from_lbf_url, make_scenario
 from .exceptions import DataError, UnauthorizedAccess, NotModifiedError
@@ -210,6 +211,31 @@ async def decode_lbf_url(request, response):
     response.json = data_from_lbf_url(request.query.get("url"))
 
 
+@app.route("/authentification", ['POST'])
+async def authent(request, response):
+    data = request.json
+    date = datetime.datetime.today().strftime('%y%m%d')
+    for authorized in AUTHORIZED:
+        aemail = authorized['email']
+        apassword = authorized['password']
+        afile = authorized['file']
+        atoken = hash(f"{aemail}.{apassword}.{date}")
+        if data.get('email') == aemail and data.get('password') == apassword:
+            if re.match(afile, data.get('file')):
+                response.json = {'token': atoken}
+            else:
+                raise HttpError(HTTPStatus.UNAUTHORIZED,
+                                'Non authorisé à modifier le fichier.')
+        elif data.get('token', '') == '':
+            raise HttpError(HTTPStatus.UNAUTHORIZED,
+                            'Email ou mot de passe non reconnu.')
+        elif data.get('token') != atoken:
+            raise HttpError(HTTPStatus.UNAUTHORIZED,
+                            'Le token n\'est pas reconnu.')
+        else:
+            response.json = {'token': atoken}
+
+
 @app.route("/source/modified")
 async def source_modified(request, response):
     gl = gitlab.Gitlab('https://git.beta.pole-emploi.fr', private_token=GITLAB_TOKEN)
@@ -225,7 +251,7 @@ async def source_modified(request, response):
             'title': branch.attributes.get('commit').get('title'),
             'message': branch.attributes.get('commit').get('message'),
             'author_name': branch.attributes.get('commit').get('author_name'),
-            'date': branch.attributes.get('commit').get('author_date'),
+            'date': branch.attributes.get('commit').get('authored_date'),
             'file': commit[0].get('new_path'),  # NOTE: only one commit per branch
             'diff': commit[0].get('diff')
             }
@@ -234,7 +260,7 @@ async def source_modified(request, response):
 
 @app.route("/source/save", ['POST'])
 async def source_save(request, response):
-    # TODO los error
+    # TODO log errors
     try:
         response.json = await submit_modification(request.json)
     except UnauthorizedAccess:
