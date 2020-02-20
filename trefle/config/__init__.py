@@ -32,7 +32,11 @@ CATALOG_URL = os.environ.get(
 GITLAB_URL = os.environ.get("GITLAB_URL", "https://git.beta.pole-emploi.fr")
 GITLAB_PROJECT = os.environ.get("GITLAB_PROJECT", "open-source/trefle")
 GITLAB_TOKEN = os.environ.get("GITLAB_TOKEN", "need-private-access-token")
-COMMIT_AUTHORIZED = os.environ.get("COMMIT_AUTHORIZED", "contributeur@trefle.beta.pole-emploi.fr").split(', ')
+COMMIT_AUTHORIZED = set(os.environ.get(
+                                       "COMMIT_AUTHORIZED",
+                                       "contributeur@trefle.beta.pole-emploi.fr"
+                                       ).split(', '))
+AUTHORIZED = []
 
 
 def load_schema(data, output=None, namespace=None):
@@ -94,6 +98,17 @@ def load_naf(data):
         code = format_naf(line["code"])
         name = line["name"]
         out[code] = {'code': code, 'name': name}
+    return out
+
+
+def load_authorisations(data):
+    out = []
+    reader = csv.DictReader(data.split("\n"), delimiter=",", skipinitialspace=True)
+    for line in reader:
+        email = line["email"]
+        password = line["password"]
+        _file = line["file"]
+        out.append({'email': email, 'password': password, 'file': _file})
     return out
 
 
@@ -185,5 +200,11 @@ def init():
         NAF.update(load_naf(f.read()))
     with (ROOT / "certifinfo.json").open() as f:
         CERTIFINFO.update(json.loads(f.read()))
+    with (ROOT / "authorisations.csv").open('a+') as f:
+        f.seek(0)
+        AUTHORIZED.extend(load_authorisations(f.read()))
+    for auth in AUTHORIZED:
+        COMMIT_AUTHORIZED.add(auth.get('email', ''))
+
     load_features()
     print("Done initializing config")

@@ -13,3 +13,4 @@ backoffice/node_modules/
 backoffice/dist/
 *.log
 .DS_Store
+authorisations.csv
