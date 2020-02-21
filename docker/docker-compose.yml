@@ -31,6 +31,8 @@ services:
         - CATALOG_USER=${CATALOG_USER}
         - CATALOG_KEY=${CATALOG_KEY}
         - CATALOG_URL=${CATALOG_URL}
+        - GITLAB_TOKEN=${GITLAB_TOKEN}
+        - COMMIT_AUTHORIZED=${COMMIT_AUTHORIZED}
   backoffice:
     restart: unless-stopped
     build:
