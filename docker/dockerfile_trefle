@@ -25,6 +25,8 @@ COPY trefle/etc/logrotate.d/gunicorn.logrotate /etc/logrotate.d/gunicorn
 
 #deploy
 COPY trefle/srv/gunicorn.conf.py ./gunicorn.conf.py
+COPY trefle/srv/authorisations.csv ./authorisations.csv
+COPY trefle/start.sh .
 
 
 # setup virtualenv
@@ -33,5 +35,4 @@ RUN pip install pip -U && \
     pip install git+${TREFLE_GIT}@${TREFLE_VERSION}
 
 #start
-COPY trefle/start.sh .
 ENTRYPOINT ./start.sh
