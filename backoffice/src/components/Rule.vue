@@ -4,32 +4,46 @@
       <div class="row mb-3">
         <div  class="col-md-6 col-sm-12 col-xs-12">
           <h5>
-            <span  style="vertical-align:-30%" >{{ this.displayedName }}</span>
+            <span style="vertical-align:-30%" >{{ displayedName }}</span>
           </h5>
-          <span v-if="this.modification_count">({{ this.modification_count }} modification<span v-if="this.modification_count > 1">s</span> en cours)</span>
+          <span v-if="this.modification_count" @click="displayModification()" style="cursor:pointer">({{ this.modification_count }} modification<span v-if="this.modification_count > 1">s</span> en cours)</span>
         </div>
         <div class="col-md-6 col-sm-12 col-xs-12">
           <h4 v-if="isEditMode" class="pull-right"><em>Modification de la règle</em></h4>
-          <input  v-else @click="edit" type="button" class="main-button btn pull-right" value="Soumettre une modification"/>
+          <input v-else v-b-modal.auth-modal type="button" class="main-button btn pull-right" value="Soumettre une modification"/>
           <!-- TODO: show gitlab link of modification if exists -->
         </div>
       </div>
+
       <div v-show="!isEditMode" class="row">
         <div class="col-md-12">
           <span v-html="printRulePath"></span>
         </div>
       </div>
     </div>
-    <div v-show="!isEditMode">
+    <div v-if="viewModification">
+      <div v-for="modification in modification_list" :key="modification.id">
+        <Modification :modification="modification"/>
+      </div>
+    </div>
+    <div v-show="!isEditMode && !viewModification">
       <ul>
         <TreeItem class="item" :item="this.ruleTree" :rootElement="true" :rulePath="this.rulePath"></TreeItem>
       </ul>
     </div>
     <div v-show="isEditMode">
+      <div class="row mb-3">
+        <div class="col-md-6 pl-0">
+          <input @click="closeEdit" type="button" class="btn btn-outline-danger pull-left" value="Annuler"/>
+        </div>
+        <div class="col-md-6 pr-0">
+          <button v-b-modal.mail-modal class="btn btn-outline-success pull-right">Enregistrer</button>
+        </div>
+      </div>
       <div class="container">
         <div class="row mb-3">
           <label for="content"><u>Contenu de la règle</u></label>
-          <textarea id="content" v-model="content" rows="15" class="rule-modification-text" :class="{editErrorClass: notModified}"></textarea>
+          <textarea-autosize id="content" v-model="content" class="rule-modification-text" :class="{editErrorClass: notModified}"></textarea-autosize>
           <span v-if="notModified" class="text-danger font-weight-light">Aucune modification n'a été renseignée</span>
         </div>
         <div class="row mb-3">
@@ -41,12 +55,25 @@
           </div>
         </div>
 
+        <b-modal id="auth-modal" title="Authentifiez-vous pour soumettre une modification">
+          <label for="contributor_email" class="pb-2"><u>Votre email</u> *</label><br>
+          <input id="contributor_email" v-model="auth.user" type="text" :class="{editErrorClass: (badUser || noUser)}" class="form-control" style="border: 1px solid #bfbfbf; border-radius: 2px;"/><br>
+          <span v-if="noUser" class="mt-0 text-danger font-weight-light">Ce champ est obligatoire</span><br>
+          <label for="contributor_passwd" class="pb-2"><u>Votre mot de passe</u> *</label><br>
+          <input id="contributor_passwd" v-model="auth.pass" type="password" :class="{editErrorClass: (badUser || noPass)}" class="form-control" style="border: 1px solid #bfbfbf; border-radius: 2px;"/><br>
+          <span v-if="badUser" class="text-danger font-weight-light">Cet utilisateur n'est pas autorisé à soumettre des modifications</span>
+          <span v-if="noPass" class="text-danger font-weight-light">Ce champ est obligatoire</span>
+          <span v-if="!noUser && !noPass" class="font-weight-light">* Champs obligatoires</span>
+          <template v-slot:modal-footer>       
+            <input @click="auth_to_edit" type="button" class="btn btn-outline-success pull-right" value="Suivant"/>
+          </template>
+        </b-modal>
+
         <b-modal id="mail-modal" title="Soumettre votre modification">
           <label for="comment" class="mb-2"><u>Résumé de la modification</u> * </label>
-          <textarea id="comment" v-model="comment" rows="3"></textarea>
-          <label for="contributor_email" class="pb-2"><u>Votre email</u> *</label><br>
-          <input id="contributor_email" v-model="contributor_email" type="text" :class="{editErrorClass: badUser}" class="form-control" style="border: 1px solid #bfbfbf; border-radius: 2px;"/><br>
-          <span v-if="badUser" class="text-danger font-weight-light">Cet utilisateur n'est pas autorisé à soumettre des modifications</span>
+          <textarea id="comment" v-model="comment" :class="{editErrorClass: noResume}" rows="3"></textarea>
+          <span v-if="noResume" class="text-danger font-weight-light">Ce champ est obligatoire</span>
+          <span v-if="!noUser && !noResume" class="font-weight-light">* Champ obligatoire</span>
           <template v-slot:modal-footer>       
             <input @click="save" type="button" class="btn btn-outline-success pull-right" value="Enregistrer"/>
           </template>
@@ -59,6 +86,7 @@
 </template>
 <script>
   import TreeItem from './TreeItem.vue';
+  import Modification from './Modification.vue';
 
   function Node(name) {
     this.name = name;
@@ -70,6 +98,7 @@
     name: 'Rule',
     components: {
       TreeItem,
+      Modification
     },
     props: ['name', 'data', 'path', 'printRulePath', 'rulePath'],
     data: function(){
@@ -77,12 +106,18 @@
         ruleData: this.data,
         content: '',
         comment: '',
-        contributor_email: '',
-        auth: '',
+        auth: {
+          user: '',
+          pass: ''
+        },
         isEditMode: '',
         modification_list: [],
         badUser: false,
         notModified: false,
+        noUser: false,
+        noPass: false,
+        noResume: false,
+        viewModification: false,
       }
     },
     beforeMount: function() {
@@ -114,9 +149,45 @@
             return false;
           })
       },
-      edit: function () {
-        this.content = this.ruleToEdit;
-        this.isEditMode=!this.isEditMode;
+      auth_to_edit: function () {
+        this.noUser = false;
+        this.noPass = false;
+
+        if (this.auth.user== '' ) {
+          this.noUser = true;
+        }
+        if (this.auth.pass== '' ) {
+          this.noPass = true;
+          return false;
+        }
+        /*this.$http
+          .post('/source/authentification', this.auth)
+          .then(() => {
+            this.content = this.ruleToEdit;
+            this.isEditMode=!this.isEditMode;
+            this.$bvModal.hide("auth-modal");
+          }, error => { 
+            if (error.status == 401) {
+              this.badUser = true;
+              this.noUser = false;
+              this.noResume = false;
+            }
+            else if (error.status == 422) {
+              if (error.body.args == "`user` est vide") {
+                this.noUser = true;
+                this.badUser = false;
+              } else if (error.body.args == "`pass` est vide") {
+                this.noResume = true;
+                this.noUser = false;
+              }
+              this.badUser = false;
+            }
+          });*/
+
+          this.$parent.collapsed = true;
+          this.content = this.ruleToEdit;
+          this.isEditMode=!this.isEditMode;
+          this.$bvModal.hide("auth-modal");
       },
       closeEdit: function () {
         this.content = this.ruleToEdit;
@@ -126,9 +197,13 @@
       },
       save: function() {
         this.ruleData = this.content
+        if (this.comment == '') {
+          this.noResume = true;
+          return false;
+        }
         const postData = {
-          author_email:this.contributor_email,
-          author_name:this.contributor_email.split("@")[0],
+          author_email:this.auth.user,
+          author_name:this.auth.user.split("@")[0],
           title: this.displayedName,
           comment: this.comment,
           content: this.content,
@@ -145,14 +220,29 @@
             this.$parent.rules[this.name]['gitlab'] = {'commit': commit}
             this.$bvModal.hide("mail-modal");
             return this.isEditMode=!this.isEditMode            
-          }, response => {
-              if(response.status == 304){
+          }, error => {
+              if(error.status == 304){
                 this.notModified = true;
+                this.noUser = false;
+                this.noResume = false;
                 this.badUser = false;
                 this.$bvModal.hide("mail-modal");
               } 
-              else if (response.status == 401) {
+              else if (error.status == 401) {
                 this.badUser = true;
+                this.noUser = false;
+                this.notModified = false;
+                this.noResume = false;
+              }
+              else if (error.status == 422) {
+                if (error.body.args == "`author_email` est vide") {
+                  this.noUser = true;
+                  this.badUser = false;
+                } else if (error.body.args == "`comment` est vide") {
+                  this.noResume = true;
+                  this.noUser = false;
+                }
+                this.badUser = false;
                 this.notModified = false;
               }
               return false;
@@ -195,6 +285,10 @@
           }
         }
         return root;
+      },
+      displayModification: function () {
+        this.viewModification = !this.viewModification;
+        this.$parent.collapsed = true;
       }
     },
   }
@@ -213,4 +307,5 @@ textarea {
   border: 1px solid #bfbfbf;
   border-radius: 2px;
 }
+
 </style>
