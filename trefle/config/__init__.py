@@ -1,4 +1,5 @@
 import csv
+import json
 import os
 import re
 import sys
@@ -20,6 +21,7 @@ ROOT = Path(__file__).parent
 RAW_RULES = {}
 GLOSSARY = {}
 NAF = {}
+CERTIFINFO = {}
 FEATURES = {}
 
 CATALOG_USER = os.environ.get("CATALOG_USER", "tata")
@@ -181,5 +183,7 @@ def init():
         GLOSSARY.update(yaml.safe_load(f.read()))
     with (ROOT / "naf.csv").open() as f:
         NAF.update(load_naf(f.read()))
+    with (ROOT / "certifinfo.json").open() as f:
+        CERTIFINFO.update(json.loads(f.read()))
     load_features()
     print("Done initializing config")

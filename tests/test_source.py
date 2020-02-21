@@ -12,6 +12,7 @@ DATA = {
         'author_email': 'test@test.com',
         'author_name': 'test',
     }
+# TODO: minutes can be different so fix minute to 00 (mock)
 NOW = datetime.datetime.today().strftime("%y%m%d%H%M")
 
 

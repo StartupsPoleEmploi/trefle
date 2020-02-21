@@ -11,7 +11,7 @@ import ujson as json
 
 from . import VERSION, get_financements, get_remunerations, simulate
 from . import routine
-from .config import FINANCEMENTS, COMMIT_AUTHORIZED, GLOSSARY, IDCC, NAF, RAW_RULES, SCHEMA, GITLAB_TOKEN
+from .config import FINANCEMENTS, COMMIT_AUTHORIZED, GLOSSARY, IDCC, NAF, CERTIFINFO, RAW_RULES, SCHEMA, GITLAB_TOKEN
 from .context import Context
 from .debugging import SCENARIOS, data_from_lbf_url, make_scenario
 from .exceptions import DataError, UnauthorizedAccess, NotModifiedError
@@ -169,6 +169,11 @@ async def idcc(request, response):
     response.json = search_term(IDCC, request.query.get("q"))
 
 
+@app.route("/certifinfo")
+async def certifinfo(request, response):
+    response.json = search_term(CERTIFINFO, request.query.get("q"))
+
+
 @app.route("/explore/schema")
 async def explore_schema(request, response):
     response.json = SCHEMA
@@ -220,7 +225,7 @@ async def source_modified(request, response):
             'title': branch.attributes.get('commit').get('title'),
             'message': branch.attributes.get('commit').get('message'),
             'author_name': branch.attributes.get('commit').get('author_name'),
-            'date': branch.attributes.get('commit').get('author_date'),
+            'date': branch.attributes.get('commit').get('authored_date'),
             'file': commit[0].get('new_path'),  # NOTE: only one commit per branch
             'diff': commit[0].get('diff')
             }
@@ -229,7 +234,7 @@ async def source_modified(request, response):
 
 @app.route("/source/save", ['POST'])
 async def source_save(request, response):
-    # TODO los error
+    # TODO log errors
     try:
         response.json = await submit_modification(request.json)
     except UnauthorizedAccess:
