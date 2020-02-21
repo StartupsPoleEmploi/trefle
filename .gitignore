@@ -12,3 +12,4 @@ htmlcov/
 backoffice/node_modules/
 backoffice/dist/
 *.log
+*.gz
