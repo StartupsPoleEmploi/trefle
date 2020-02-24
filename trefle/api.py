@@ -1,3 +1,4 @@
+import os
 from http import HTTPStatus
 
 from roll import HttpError, Roll
@@ -36,6 +37,16 @@ async def json_error_response(request, response, error):
             f"HttpError: status={error.status}, version={VERSION}, "
             f"message={response.body}, request={request.body}"
         )
+
+
+@app.route("/healthcheck")
+async def healthcheck(request, response):
+    response.json = {
+        "status": "running",
+        "version": f"{VERSION}",
+        "last version": f"{os.environ.get('VERSION', 'NaN')}",
+        "back version": f"{os.environ.get('OLD_VERSION', 'NaN')}",
+    }
 
 
 @app.route("/financement", methods=["POST"])
