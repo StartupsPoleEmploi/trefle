@@ -1,0 +1,25 @@
+version: "3.3"
+services:
+  trefle:
+    build:
+      context: .
+      dockerfile: dockerfile_trefle
+      args:
+          - TREFLE_VERSION=${VERSION}
+          - TREFLE_GIT=${TREFLE_GIT:-https://git.beta.pole-emploi.fr/open-source/trefle.git}
+  trefle-old:
+    build:
+      context: .
+      dockerfile: dockerfile_trefle
+      args:
+          - TREFLE_VERSION=${OLD_VERSION}
+          - TREFLE_GIT=${TREFLE_GIT:-https://git.beta.pole-emploi.fr/open-source/trefle.git}
+  web:
+    build:
+      context: .
+      dockerfile: dockerfile_web
+      args:
+          - TREFLE_GIT=${TREFLE_GIT:-https://git.beta.pole-emploi.fr/open-source/trefle.git}
+          - TREFLE_BACK_VERSION=${BACK_VERSION}
+          - TREFLE_VERSION=${VERSION}
+          - TREFLE_OLD_VERSION=${OLD_VERSION}
