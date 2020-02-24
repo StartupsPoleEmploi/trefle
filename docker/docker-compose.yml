@@ -11,7 +11,7 @@ services:
         - CATALOG_KEY=${CATALOG_KEY}
         - CATALOG_URL=${CATALOG_URL}
     healthcheck:
-      test: curl -sFS http://localhost:8000/ || exit 1
+      test: curl -sFS http://trefle:8000/schema || exit 1
       interval: 5s
       timeout: 3s
       retries: 3
@@ -30,7 +30,7 @@ services:
         - GITLAB_TOKEN=${GITLAB_TOKEN}
         - COMMIT_AUTHORIZED=${COMMIT_AUTHORIZED}
     healthcheck:
-      test: curl -sFS http://localhost:8000/ || exit 1
+      test: curl -sFS http://trefle:8000/schema || exit 1
       interval: 5s
       timeout: 3s
       retries: 3
