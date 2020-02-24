@@ -2,12 +2,7 @@ version: "3.3"
 services:
   trefle:
     restart: unless-stopped
-    build:
-      context: .
-      dockerfile: dockerfile_trefle
-      args:
-          - TREFLE_VERSION=${VERSION}
-          - TREFLE_GIT=${TREFLE_GIT:-https://git.beta.pole-emploi.fr/open-source/trefle.git}
+    image: registry.beta.pole-emploi.fr/open-source/trefle:${VERSION}
     volumes:
       - ./log/trefle:/srv/log
     environment:
@@ -18,12 +13,7 @@ services:
   #version majeur précédente
   trefle-old:
     restart: unless-stopped
-    build:
-      context: .
-      dockerfile: dockerfile_trefle
-      args:
-          - TREFLE_VERSION=${OLD_VERSION}
-          - TREFLE_GIT=${TREFLE_GIT:-https://git.beta.pole-emploi.fr/open-source/trefle.git}
+    image: registry.beta.pole-emploi.fr/open-source/trefle:${OLD_VERSION}
     volumes:
       - ./log/trefle-old:/srv/log
     environment:
@@ -31,16 +21,11 @@ services:
         - CATALOG_USER=${CATALOG_USER}
         - CATALOG_KEY=${CATALOG_KEY}
         - CATALOG_URL=${CATALOG_URL}
+        - GITLAB_TOKEN=${GITLAB_TOKEN}
+        - COMMIT_AUTHORIZED=${COMMIT_AUTHORIZED}
   web:
     restart: unless-stopped
-    build:
-      context: .
-      dockerfile: dockerfile_web
-      args:
-          - TREFLE_GIT=${TREFLE_GIT:-https://git.beta.pole-emploi.fr/open-source/trefle.git}
-          - TREFLE_BACK_VERSION=${BACK_VERSION}
-          - TREFLE_VERSION=${VERSION}
-          - TREFLE_OLD_VERSION=${OLD_VERSION}
+    image:  registry.beta.pole-emploi.fr/open-source/trefle:${BACK_VERSION}
     depends_on:
       - trefle
       - trefle-old
