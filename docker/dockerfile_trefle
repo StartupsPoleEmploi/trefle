@@ -22,6 +22,7 @@ RUN apt-get update && apt-get -y install \
 RUN mkdir -p ${TREFLE_LOG_DIR}
 WORKDIR /srv
 COPY trefle/etc/logrotate.d/gunicorn.logrotate /etc/logrotate.d/gunicorn
+COPY trefle/healthcheck.sh ./healthcheck.sh
 
 #deploy
 COPY trefle/srv/gunicorn.conf.py ./gunicorn.conf.py
