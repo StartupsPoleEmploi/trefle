@@ -30,7 +30,7 @@ services:
         - GITLAB_TOKEN=${GITLAB_TOKEN}
         - COMMIT_AUTHORIZED=${COMMIT_AUTHORIZED}
     healthcheck:
-      test: curl -sfS http://trefle:8000/schema || exit 1
+      test: curl -sfS http://trefle-old:8000/schema || exit 1
       interval: 5s
       timeout: 3s
       retries: 3
