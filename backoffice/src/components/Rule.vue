@@ -6,7 +6,7 @@
           <h5>
             <span style="vertical-align:-30%" >{{ displayedName }}</span>
           </h5>
-          <span v-if="this.modification_count" @click="displayModification()" style="cursor:pointer">({{ this.modification_count }} modification<span v-if="this.modification_count > 1">s</span> en cours)</span>
+          <span v-if="this.modification_count" @click="displayModification()" id="modification_link">({{ this.modification_count }} modification<span v-if="this.modification_count > 1">s</span> en cours)</span>
         </div>
         <div class="col-md-6 col-sm-12 col-xs-12">
           <h4 v-if="isEditMode" class="pull-right"><em>Modification de la règle</em></h4>
@@ -22,9 +22,9 @@
       </div>
     </div>
     <div v-if="viewModification">
-      <div v-for="modification in modification_list" :key="modification.id">
+      <ul v-for="modification in modification_list" :key="modification.id">
         <Modification :modification="modification"/>
-      </div>
+      </ul>
     </div>
     <div v-show="!isEditMode && !viewModification">
       <ul>
@@ -184,6 +184,7 @@
             }
           });*/
 
+          this.viewModification = false;
           this.$parent.collapsed = true;
           this.content = this.ruleToEdit;
           this.isEditMode=!this.isEditMode;
@@ -289,6 +290,7 @@
       displayModification: function () {
         this.viewModification = !this.viewModification;
         this.$parent.collapsed = true;
+        this.isEditMode = false;
       }
     },
   }
@@ -306,6 +308,15 @@
 textarea {
   border: 1px solid #bfbfbf;
   border-radius: 2px;
+}
+
+#modification_link {
+  cursor:pointer;
+  color:blue;
+}
+
+#modification_link:hover {
+  text-decoration: underline;
 }
 
 </style>
