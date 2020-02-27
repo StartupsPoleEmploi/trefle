@@ -1,23 +1,22 @@
 <template>
-  <div id="IDCCSearch">
+  <div id="CertifInfo">
     <div class="container">
       <div class="row">
         <div class="col-md-6">
-					<h2>Recherche IDCC</h2>
-						<input type="text" ref="idcc" placeholder="Chercher une convention collective" v-model="idcc">
+					<h2>Recherche Certif Info</h2>
+						<input type="text" ref="certifinfo" placeholder="Code Certif Info" v-model="certifinfo">
 						<input @click="search()" type="button" class="btn main-button ml-4" value="Chercher">
         </div>
         <div class="col-md-6 results">
-          <div v-if="this.idcc && Object.keys(this.results).length">
+          <div v-if="this.certifinfo && Object.keys(this.results).length">
             <ul class="dash">
               <li v-for="(result,code) in this.results" :key="code">
-                {{ result['convention collective'] }}
-                <strong>({{ code }})</strong>
+                {{ result.text }}
               </li>
             </ul>
           </div>
-          <div v-if="this.idcc && this.resultsIsEmpty">
-              <p>Aucune convention collective trouvée avec l'identifiant «{{ this.idcc }}».</p>
+          <div v-if="this.certifinfo && this.resultsIsEmpty">
+            <p> Aucune certification trouvée avec l'identifiant «{{ this.certifinfo }}».</p>
           </div>
         </div>
       </div>
@@ -26,21 +25,23 @@
 </template>
 <script>
   export default {
-		name: 'IDCCSearch',
+		name: 'CertifInfo',
 		data: function () {
 			return {
-        idcc: "",
+        certifinfo: "",
         results: {},
-        resultsIsEmpty: false
+        resultsIsEmpty: false,
 			}
+		},
+    computed: {
     },
 		methods: {
 			search: function () {
-        this.$http.get('/idcc?q='+this.idcc).then(response => {
+        this.$http.get('/certifinfo?q='+this.certifinfo).then(response => {
           this.results = response.body;
           this.resultsIsEmpty = this.isEmpty(this.results);
         }).created;
-      },
+			},
       isEmpty: function (obj) {
         for(var key in obj) {
             if(obj.hasOwnProperty(key))
@@ -51,6 +52,3 @@
 		}    
   }
 </script>
-
-<style scoped>
-</style>
