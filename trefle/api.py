@@ -44,6 +44,16 @@ async def json_error_response(request, response, error):
         )
 
 
+@app.route("/healthcheck")
+async def healthcheck(request, response):
+    response.json = {
+        "status": "running",
+        "version": f"{VERSION}",
+        "last version": f"{os.environ.get('VERSION', 'NaN')}",
+        "back version": f"{os.environ.get('OLD_VERSION', 'NaN')}",
+    }
+
+
 @app.route("/financement", methods=["POST"])
 async def simulate_(request, response):
     context = request.json

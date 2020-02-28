@@ -1,7 +1,7 @@
 __pycache__/
 .mypy_cache/
 .pytest_cache/
-docs/
+**/*/docs/
 tmp/
 *.egg-info
 build/
