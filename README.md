@@ -41,7 +41,7 @@
 ## Run the backoffce in dev mode
 
     cd backoffice
-    
+
     npm install
     npm run serve
 
@@ -65,9 +65,9 @@ Get a more detailed coverage report:
 
 ## Build project in PROD mode
 
-Go to docker file
+1. Go to docker folder
 
-Add this env var:
+2. Add this env var:
 
     VERSION api-vX.X.X
     OLD_VERSION api-vX.X.X
@@ -81,6 +81,8 @@ Add this env var:
 where X.X.X is a tag of the TREFLE_GIT
 OLD_VERSION and BACK_VERSION must be compatible
 
-    docker-compose up --build -d
+3. Add email, password, and rule file authorized to be modified in trefle/srv/authorisations.csv
+
+4. docker-compose up --build -d
 
 logs are in docker/logs
