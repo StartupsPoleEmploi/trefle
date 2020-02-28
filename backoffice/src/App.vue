@@ -204,5 +204,16 @@
   .loading-gif {
     padding-top: 8rem;
   }
+  ul.dash {
+    list-style: none;
+    margin-left: 0;
+    padding-left: 1em;
+  }
+  ul.dash > li:before {
+      display: inline-block;
+      content: "-";
+      width: 1em;
+      margin-left: -1em;
+  }
 
 </style>
