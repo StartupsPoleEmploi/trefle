@@ -14,3 +14,4 @@ backoffice/dist/
 *.log
 .DS_Store
 authorisations.csv
+*.gz
