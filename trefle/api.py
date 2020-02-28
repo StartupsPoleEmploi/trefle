@@ -225,25 +225,36 @@ async def decode_lbf_url(request, response):
 async def authent(request, response):
     data = request.json
     date = datetime.datetime.today().strftime('%y%m%d')
+    authsuccess = False
     for authorized in AUTHORIZED:
         aemail = authorized['email']
         apassword = authorized['password']
         afile = authorized['file']
         atoken = hash(f"{aemail}.{apassword}.{date}")
         if data.get('email') == aemail and data.get('password') == apassword:
-            if re.match(afile, data.get('file')):
-                response.json = {'token': atoken}
-            else:
-                raise HttpError(HTTPStatus.UNAUTHORIZED,
-                                'Non authorisé à modifier le fichier.')
-        elif data.get('token', '') == '':
-            raise HttpError(HTTPStatus.UNAUTHORIZED,
-                            'Email ou mot de passe non reconnu.')
-        elif data.get('token') != atoken:
-            raise HttpError(HTTPStatus.UNAUTHORIZED,
-                            'Le token n\'est pas reconnu.')
+            try:
+                if re.match(afile, data.get('file')):
+                    authsuccess = True
+                    logger.debug(f"authentification succeed for {data.get('file')} modification")
+                    break
+                else:
+                    raise HttpError(HTTPStatus.UNAUTHORIZED,
+                                    'Non authorisé à modifier le fichier.')
+            except re.error:
+                raise HttpError(HTTPStatus.UNPROCESSABLE_ENTITY,
+                                'Le motif de fichier autorisé est invalide.')
         else:
-            response.json = {'token': atoken}
+            continue
+
+    if data.get('token') != atoken and not authsuccess:
+        raise HttpError(HTTPStatus.UNAUTHORIZED,
+                        'Le token n\'est pas reconnu.')
+    elif data.get('token','') == '' and not authsuccess:
+        raise HttpError(HTTPStatus.UNAUTHORIZED,
+                        'Email ou mot de passe non reconnu.')
+    else:
+        response.json = {'token': atoken}
+        logger.debug(f"authentification succeed for {data.get('file')} modification")
 
 
 @app.route("/source/modified")
