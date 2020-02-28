@@ -12,7 +12,7 @@ require('moment/locale/fr')
 Vue.use(require('vue-moment'), {
   moment
 });
-Vue.use(TextareaAutosize)
+Vue.use(TextareaAutosize);
 Vue.use(VueResource);
 Vue.use(VueRouter);
 Vue.use(BootstrapVue);
