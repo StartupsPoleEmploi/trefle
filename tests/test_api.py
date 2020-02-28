@@ -534,6 +534,43 @@ async def test_authentification(patch_authorisations, client, mock_get):
     }
 
 
+async def test_authentification_with_2_records(patch_authorisations, client, mock_get):
+    body = {
+        "email": "test@test.fr",
+        "password": "test",
+        "file": "/règles nationales/CPF.rules"
+    }
+    auth = [{"email": "test2@test.fr",
+             "password": "test",
+             "file": "/règles nationales/CPF.rules"}]
+    auth.append(body.copy())
+    patch_authorisations(auth)
+    mock_get(status_code=200)
+    date = datetime.datetime.today().strftime('%y%m%d')
+    token = hash(f"{body['email']}.{body['password']}.{date}")
+    resp = await client.post("/authentification", body=body)
+
+    assert resp.status == HTTPStatus.OK
+    assert json.loads(resp.body) == {
+        "token": token
+    }
+
+
+async def test_authentification_with_bad_matching_pattern(patch_authorisations, client, mock_get):
+    body = {
+        "email": "test@test.fr",
+        "password": "test",
+        "file": "/règles nationales/CPF.rules"
+    }
+    auth = body.copy()
+    auth['file'] = "*"
+    patch_authorisations([auth])
+    mock_get(status_code=200)
+    resp = await client.post("/authentification", body=body)
+
+    assert resp.status == HTTPStatus.UNPROCESSABLE_ENTITY
+
+
 async def test_authentification_with_bad_email(patch_authorisations, client, mock_get):
     body = {
         "email": "bademail@test.com",
