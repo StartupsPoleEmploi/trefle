@@ -60,22 +60,20 @@
         windowLocationHash: decodeURI(window.location.hash),
         rerenderKey: 0,
         collapsed: false,
+        currentRuleName: decodeURI(window.location.hash).split('#').pop() == "modified" ? decodeURI(window.location.hash).split('#')[1]:decodeURI(window.location.hash).split('#').pop(),
       }
     },
     computed: {
       show: function () {
-        return (this.windowLocationHash !== '')
+        return (this.currentRuleName !== '')
       },
       currentRuleContent: function() {
         this.forceRerender();
-        if(this.windowLocationHash !== '') return this.rules[this.currentRuleName]['data'];
+        if(this.currentRuleName !== '') return this.rules[this.currentRuleName]['data'];
         else return null;
       },
-      currentRuleName: function () {
-        return this.windowLocationHash.split('#').pop();
-      },
       currentRuleFilePath: function () {
-        if(this.windowLocationHash !== '') return this.rules[this.currentRuleName]['path'];
+        if(this.currentRuleName !== '') return this.rules[this.currentRuleName]['path'];
         else return null;
       },
       printRulePath: function () {
@@ -83,11 +81,11 @@
         var printpath = "(";
         if(this.windowLocationHash.split('#').length -1 > 1) {
           for(var i=1; i <= this.windowLocationHash.split('#').length -1; i++) {
+            if (this.windowLocationHash.split('#').pop() == 'modified') return "";
             path += "#"+ this.windowLocationHash.split('#')[i];
             if (i == this.windowLocationHash.split('#').length - 1) printpath += "<a href='"+ path + "'>" + this.windowLocationHash.split('#')[i] + "</a>"
             else printpath += "<a href='"+ path + "'>" + this.windowLocationHash.split('#')[i] + "</a> > ";
-          }
-          return printpath+")";
+          } return printpath+")";
         } else return "";
       },
       rulePath: function () {
@@ -114,6 +112,7 @@
       this.loadRules();
       window.addEventListener('popstate', () => {
         this.windowLocationHash = decodeURI(window.location.hash);
+        this.currentRuleName = decodeURI(window.location.hash).split('#').pop() == "modified" ? decodeURI(window.location.hash).split('#')[1]:decodeURI(window.location.hash).split('#').pop();
       })
     },
     methods: {
