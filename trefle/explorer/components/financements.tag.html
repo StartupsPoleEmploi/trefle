@@ -1,0 +1,42 @@
+<financements>
+  <h2>Liste des types de financements <a href=https://git.beta.pole-emploi.fr/open-source/trefle/tree/master/trefle/config/financements.yml target=_blank><i class="icon">edit</i></a></h2>
+  <dl each={ this.financements }>
+    <dt>{ intitule }</dt>
+    <dd if={ racine.endsWith('.rules') }><strong>Règles racine</strong>: <a href="#/rules/{ racine }">{ racine } <i class="icon">arrow_forward</i></a></dd>
+    <dd if={ !racine.endsWith('.rules') }><strong>Règles racine</strong>: { racine }</dd>
+    <dd><strong>Catégories</strong>: { _tags }</dd>
+    <dd if={ type_lbf }><strong>Type LBF</strong>: { type_lbf }</dd>
+    <dd if={ ressources }><strong>Ressources</strong>:
+      <ul>
+        <li each={ ressource in ressources }><a href="{ ressource }">{ ressource }</a></li>
+      </ul>
+    </dd>
+  </dl>
+
+  <script>
+    this.financements = []
+
+    this.on('mount', () => this.load())
+
+    this.load = () => {
+      request('../explore/financements')
+      .then(data => {
+        this.financements = data
+        for (var i = 0; i < this.financements.length; i++) {
+          // Riot sucks on `tags`…
+          this.financements[i]['_tags'] = this.financements[i]['tags'].toString()
+        }
+        this.update()
+      })
+    }
+
+    this.mixin(View)
+  </script>
+
+  <style scoped>
+    dt {
+      font-variant: small-caps;
+    }
+  </style>
+
+</financements>

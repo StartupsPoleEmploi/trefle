@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<title>Trèfle feuille à feuille</title>
+<script src="vendor/riot/riot%2Bcompiler.js"></script>
+<script src="vendor/riot/route%2Btag.min.js"></script>
+<link rel="stylesheet" type="text/css" href="app.css">
+<script type="text/javascript" src="mixin/view.mixin.js"></script>
+<script type="text/javascript" src="app.js"></script>
+<script src="components/navbar.tag.html" type="riot/tag"></script>
+<script src="components/schema.tag.html" type="riot/tag"></script>
+<script src="components/glossary.tag.html" type="riot/tag"></script>
+<script src="components/rule.tag.html" type="riot/tag"></script>
+<script src="components/rules.tag.html" type="riot/tag"></script>
+<script src="components/scenarios.tag.html" type="riot/tag"></script>
+<script src="components/simulate.tag.html" type="riot/tag"></script>
+<script src="components/tools.tag.html" type="riot/tag"></script>
+<script src="components/financements.tag.html" type="riot/tag"></script>
+<script src="components/idcc-search.tag.html" type="riot/tag"></script>
+<script src="components/catalog.tag.html" type="riot/tag"></script>
+<script src="components/context.tag.html" type="riot/tag"></script>
+
+<header data-is=navbar></header>
+<main>
+  <schema class=tools></schema>
+  <glossary class=full></glossary>
+  <rules class=tools></rules>
+  <simulate class=tools></simulate>
+  <financements class=full></financements>
+  <scenarios class=tools></scenarios>
+  <tools></tools>
+</main>
+
+<script>
+  function page() {
+    riot.mount.apply(null, arguments)
+    document.querySelector('header')._tag.update()
+  }
+  riot.mount('navbar')
+  route('/schema/(.+)', (id) => page('schema', {id: id}))
+  route('/schema', () => page('schema'))
+  route('/rules/(.+)', (id) => page('rules', {id: id}))
+  route('/rules', () => page('rules'))
+  route('/scenarios/(.+)', (filters) => page('scenarios', {filters: decodeURIComponent(filters).split(',')}))
+  route('/scenarios', () => page('scenarios'))
+  route('/simulate', () => page('simulate'))
+  route('/simulate/(.+)', (url) => page('simulate', {url: url}))
+  route('/tools', () => page('tools'))
+  route('/financements', () => page('financements'))
+  route('/glossary', () => page('glossary'))
+</script>

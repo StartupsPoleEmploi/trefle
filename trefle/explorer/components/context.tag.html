@@ -1,0 +1,36 @@
+<context>
+  <context-group category='beneficiaire' title='Propriétés du bénéficiaire' data={ this.opts.data }></context-group>
+  <context-group category='formation' title='Propriétés de la formation' data={ this.opts.data }></context-group>
+
+  <style scoped>
+      table {
+        table-layout: fixed;
+        width: 100%;
+        overflow: hidden;
+      }
+      th {
+        text-align: left;
+        width: 40%;
+      }
+      td {
+        width: 50%;
+      }
+      tr:nth-child(even) {
+        background: #f3f3f3;
+      }
+      caption {
+        margin-top: 20px;
+        font-variant: small-caps;
+        padding-bottom: 5px;
+        border-bottom: 1px solid #f3f3f3;
+      }
+  </style>
+
+</context>
+
+<context-group>
+  <table>
+    <caption>{ this.opts.title }</caption>
+    <tr each={ value, key in this.opts.data } if={ key.startsWith(this.opts.category) }><th>{ renderLabel(key, value) }</th><td>{ renderValue(key, value) }</td></tr>
+  </table>
+</context-group>

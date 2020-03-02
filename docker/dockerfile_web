@@ -34,6 +34,7 @@ RUN apt-get update && apt-get -y install \
 
 
 COPY --from=back_app_node /srv/trefle/backoffice/dist /srv/trefle/backoffice
+COPY --from=back_app_node /srv/trefle/trefle/explorer /srv/trefle/legacy-backoffice
 
 ARG TREFLE_GIT
 ARG TREFLE_OLD_VERSION
