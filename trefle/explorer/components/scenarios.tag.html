@@ -1,0 +1,74 @@
+<scenarios>
+  <ul>
+    <li each={ filter in this.filters }><a href="#" onclick={ this.toggle } class='{ on: this.selected_filters && (this.selected_filters.indexOf(filter) != -1) }' title={ filter }>{ filter }</a></li>
+  </ul>
+  <div if={ this.selected_filters.length && this.active.length }>
+    <!-- <h3>{ this.feature.path } <a href=https://git.beta.pole-emploi.fr/open-source/trefle/tree/master/trefle/config/{ this.feature.path } target=_blank> <i class="icon">edit</i></a></h3> -->
+    <ul>
+        <li each={ this.active }><h4>{ name } <a href=https://git.beta.pole-emploi.fr/open-source/trefle/tree/master/{ filename }#L{ line } target=_blank><i class=icon>edit</i></a></h4>
+        <rule content={ raw }></rule>
+        <!-- <pre><div each={ steps }>{ keyword } { name }</div></pre> -->
+      </li>
+    </ul>
+  </div>
+  <div if={ !this.selected_filters.length }>
+    <p>Sélectionner au moins une catégorie dans le menu.</p>
+  </div>
+
+  <script>
+    this.data = []
+    this.active = []
+    this.selected_filters = []
+      this.filters = []
+
+    this.on('mount', () => this.load())
+
+    this.load_data = (data) => {
+      SCENARIOS = data
+      this.data = data
+      if (this.opts.filters) {
+        this.selected_filters = this.opts.filters
+        this.active = []
+      }
+      main: for (var i = 0, scenario; i < this.data.length; i++) {
+        scenario = this.data[i]
+        for (var j = 0; j < this.selected_filters.length; j++) {
+          if (scenario.tags.indexOf(this.selected_filters[j]) === -1) continue main;
+        }
+        for (var j = 0; j < scenario.tags.length; j++) {
+          if (this.filters.indexOf(scenario.tags[j]) === -1) this.filters.push(scenario.tags[j])
+        }
+        this.active.push(scenario)
+      }
+      this.filters.sort((a, b) => a.localeCompare(b))
+      this.update()
+    }
+
+    this.toggle = (e) => {
+      var index = this.selected_filters.indexOf(e.item.filter)
+      if (index > -1) this.selected_filters.splice(index, 1)
+      else this.selected_filters.push(e.item.filter)
+      e.preventDefault()
+      route(`scenarios/${this.selected_filters.join(',')}`)
+    }
+
+    this.load = () => {
+      if (SCENARIOS) return this.load_data(SCENARIOS)
+      request('../explore/scenarios')
+      .then(this.load_data)
+    }
+
+    this.mixin(View)
+  </script>
+
+  <style scoped>
+    :scope.tools {
+      min-width: 1200px;
+      grid-template-columns: 1fr 4fr;
+    }
+    h3 {
+      font-variant: small-caps;
+    }
+  </style>
+
+</scenarios>

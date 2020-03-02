@@ -1,0 +1,36 @@
+<catalog>
+  <section>
+    <h2>Catalogue</h2>
+    <form onsubmit={ this.submit }>
+      <input type="text" ref="intercarif" placeholder="Identifiant INTERCARIF" name="intercarif">
+      <input type="submit" value="Chercher">
+    </form>
+    <p>Plus d'info sur le format du catalogue: <a href="http://lheo.gouv.fr/langage">http://lheo.gouv.fr/langage</a>.</p>
+  </section>
+  <section class=results if={ this.refs.intercarif.value }>
+    <h2>Formation</h2>
+    <pre if={ this.xml }>{ this.xml }</pre>
+    <p if={ this.refs.intercarif.value && !this.xml }>Aucune formation trouvée avec l'identifiant «{ this.refs.intercarif.value }».</p>
+  </section>
+  <script>
+    this.results = []
+
+    this.get = (id) => {
+      fetch(`../explore/catalog?id=${id}`)
+      .then((response) => response.text())
+      .then((data) => {
+        this.xml = data
+        this.update()
+      })
+    }
+
+    this.submit = (e) => {
+      e.preventDefault();
+      const id = this.refs.intercarif.value
+      if (!id) return
+      this.get(id)
+    }
+
+  </script>
+
+</catalog>
