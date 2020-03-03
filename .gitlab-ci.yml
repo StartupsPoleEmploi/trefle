@@ -2,16 +2,6 @@
 variables:
   TREFLE_OLD_VERSION: "api-v0.6.1"
 
-before_script:
-  - apt-get update -qq
-  - apt-get install -qq git
-  # Setup SSH deploy keys
-  - 'which ssh-agent || ( apt-get install -qq openssh-client )'
-  - eval $(ssh-agent -s)
-  - ssh-add <(echo "$SSH_PRIVATE_KEY")
-  - mkdir -p ~/.ssh
-  - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
-
 test:
   image: python:3.6
   cache:
@@ -47,6 +37,15 @@ deploy API to staging:
   environment:
     name: recette
     url: http://trefle.beta.pole-emploi.fr
+  before_script:
+    - apt-get update -qq
+    - apt-get install -qq git
+    # Setup SSH deploy keys
+    - 'which ssh-agent || ( apt-get install -qq openssh-client )'
+    - eval $(ssh-agent -s)
+    - ssh-add <(echo "$SSH_PRIVATE_KEY")
+    - mkdir -p ~/.ssh
+    - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
   script:
     - ssh gitlab@trefle.beta.pole-emploi.fr "cd /home/docker && VERSION=${CI_COMMIT_TAG} /bin/bash update.sh trefle && echo \"VERSION=${CI_COMMIT_TAG}\" >> update.log"
   only:
