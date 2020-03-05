@@ -19,6 +19,11 @@ from trefle import VERSION
 pytestmark = pytest.mark.asyncio
 
 
+async def test_healthcheck(client):
+    resp = await client.get("/healthcheck")
+    assert resp.status == HTTPStatus.OK
+
+
 async def test_schema(client):
     resp = await client.get("/schema")
     assert resp.status == HTTPStatus.OK

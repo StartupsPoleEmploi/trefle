@@ -1,9 +1,9 @@
 import datetime
+import os
 import re
 from http import HTTPStatus
 
 import gitlab
-import hashlib
 
 from roll import HttpError, Roll
 from roll.extensions import cors
@@ -15,7 +15,7 @@ from . import routine
 from .config import AUTHORIZED, FINANCEMENTS, COMMIT_AUTHORIZED, GLOSSARY, IDCC, NAF, CERTIFINFO, RAW_RULES, SCHEMA, GITLAB_TOKEN
 from .context import Context
 from .debugging import SCENARIOS, data_from_lbf_url, make_scenario
-from .exceptions import DataError, UnauthorizedAccess, NotModifiedError
+from .exceptions import DataError, NotModifiedError, UnauthorizedAccess
 from .helpers import flatten, fold_name
 from .legacy import simulate_legacy
 from .loggers import log_simulate, logger
