@@ -47,7 +47,7 @@ deploy API to staging:
     - mkdir -p ~/.ssh
     - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
   script:
-    - ssh gitlab@trefle.beta.pole-emploi.fr "cd /home/docker && VERSION=${CI_COMMIT_TAG} /bin/bash update.sh trefle && echo \"VERSION=${CI_COMMIT_TAG}\" >> update.log"
+    - ssh gitlab@192.168.4.119 "cd /home/docker && VERSION=${CI_COMMIT_TAG} /bin/bash update.sh trefle && echo \"VERSION=${CI_COMMIT_TAG}\" >> update.log"
   only:
     - /^api-v[0-9.]+$/
     - /^testing$/
@@ -62,3 +62,23 @@ backoffice publish:
     - /kaniko/executor --context ${CI_PROJECT_DIR}/docker --dockerfile ${CI_PROJECT_DIR}/docker/dockerfile_web --build-arg TREFLE_BACK_VERSION=${CI_COMMIT_TAG} --build-arg TREFLE_OLD_VERSION=${TREFLE_OLD_VERSION} --build-arg TREFLE_GIT=${CI_PROJECT_URL} --destination ${CI_REGISTRY_IMAGE}:${CI_COMMIT_TAG}
   only:
     - /^backoffice-v[0-9.]+$/
+
+deploy Backoffice to staging:
+  type: deploy
+  environment:
+    name: recette
+    url: http://trefle.beta.pole-emploi.fr
+  before_script:
+    - apt-get update -qq
+    - apt-get install -qq git
+    # Setup SSH deploy keys
+    - 'which ssh-agent || ( apt-get install -qq openssh-client )'
+    - eval $(ssh-agent -s)
+    - ssh-add <(echo "$SSH_PRIVATE_KEY")
+    - mkdir -p ~/.ssh
+    - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+  script:
+    - ssh gitlab@trefle.beta.pole-emploi.fr "cd /home/docker && VERSION=${CI_COMMIT_TAG} docker-compose up -d --no-deps web && echo \"VERSION=${CI_COMMIT_TAG}\" >> update.log"
+  only:
+    - /^backoffice-v[0-9.]+$/
+    - /^testing$/
