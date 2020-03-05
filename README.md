@@ -38,7 +38,7 @@
     Exemple:
     trefle simulate --context='{"beneficiaire":{"inscrit_pe":true,"age":40},"formation":{ "codes_financeur":[2],"region":27,"heures":4000}}' --trace
 
-## Run the backoffce in dev mode
+## Run the backoffice in dev mode
 
     cd backoffice
 
@@ -82,6 +82,7 @@ where X.X.X is a tag of the TREFLE_GIT
 OLD_VERSION and BACK_VERSION must be compatible
 
 3. Add email, password, and rule file authorized to be modified in trefle/srv/authorisations.csv
+    i.e: `myname@email.com, mypassord, Occitanie.rules`
 
 4. docker-compose up --build -d
 
