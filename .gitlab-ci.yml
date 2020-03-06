@@ -47,7 +47,7 @@ deploy API to staging:
     - mkdir -p ~/.ssh
     - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
   script:
-    - ssh gitlab@192.168.4.119 "cd /home/docker && VERSION=${CI_COMMIT_TAG} /bin/bash update.sh trefle && echo \"VERSION=${CI_COMMIT_TAG}\" | tee -a update.log >> .env"
+    - ssh gitlab@${STAGING_SERVEUR_IP} "cd /home/docker && VERSION=${CI_COMMIT_TAG} /bin/bash update.sh trefle && echo \"VERSION=${CI_COMMIT_TAG}\" | tee -a update.log >> .env"
   only:
     - /^api-v[0-9.]+$/
     - /^testing$/
@@ -78,7 +78,7 @@ deploy Backoffice to staging:
     - mkdir -p ~/.ssh
     - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
   script:
-    - ssh gitlab@trefle.beta.pole-emploi.fr "cd /home/docker && BACK_VERSION=${CI_COMMIT_TAG} docker-compose up -d --no-deps web && echo \"BACK_VERSION=${CI_COMMIT_TAG}\" | tee -a .env >> update.log"
+    - ssh gitlab@${STAGING_SERVEUR_IP} "cd /home/docker && BACK_VERSION=${CI_COMMIT_TAG} docker-compose up -d --no-deps web && echo \"BACK_VERSION=${CI_COMMIT_TAG}\" | tee -a .env >> update.log"
   only:
     - /^backoffice-v[0-9.]+$/
     - /^testing$/
