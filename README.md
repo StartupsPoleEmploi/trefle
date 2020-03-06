@@ -81,9 +81,14 @@ Get a more detailed coverage report:
 where X.X.X is a tag of the TREFLE_GIT
 OLD_VERSION and BACK_VERSION must be compatible
 
-3. Add email, password, and rule file authorized to be modified in trefle/srv/authorisations.csv
+3. Add email, password, and rule file authorized to be modified in docker/authorisations.csv
     i.e: `myname@email.com, mypassord, Occitanie.rules`
 
 4. docker-compose up --build -d
 
+
+## Update acces
+
+1. Update file authorisations.csv in docker/authorisations.csv
+2. in docker folder do `sh update_access`
 logs are in docker/logs
