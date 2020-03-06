@@ -6,13 +6,13 @@ date >> update.log
 echo $* >> update.log
 
 echo "[INIT] Scaling $SERVICE_NAME up"
-docker-compose up -d --scale $SERVICE_NAME=2 --no-recreate trefle \
-	|| { echo "[FAILED] Can't scale $SERVICE_NAME" | tee -a update.log; exit 1; } \
-	&& LAST_DOCKERID=$(docker ps -ql)
+docker-compose up -d --scale $SERVICE_NAME=2 --no-recreate $SERVICE_NAME \
+    || { echo "[FAILED] Can't scale $SERVICE_NAME" | tee -a update.log; exit 1; } \
+    && LAST_DOCKERID=$(docker ps -ql)
 
 until [[ $(docker ps -q -f "health=healthy" -f "id=$LAST_DOCKERID") ]]; do
-	echo "[WAIT] New instance is healthy"
-	sleep 1;
+    echo "[WAIT] New instance is healthy"
+    sleep 1;
 done
 echo "[DONE] New container healthy" | tee -a update.log
 
@@ -22,4 +22,5 @@ echo "[DONE] Remove older container" | tee -a update.log
 
 echo "[INIT] Scaling $SERVICE_NAME down"
 docker-compose up -d --scale $SERVICE_NAME=1 --no-recreate $SERVICE_NAME
-echo "[DONE] Scaling down" | tee -a update.log
+echo "[DONE] Scaling down" | tee -a update.log \
+    && exit 0
