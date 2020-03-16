@@ -13,7 +13,7 @@
               <div id="financement-create-financement" class="col-md-6 col-sm-12 col-xs-12 my-auto">
                 <div class="form-inline pull-right">
                   <div class="form-group mx-sm-3 mb-2">
-                    <input type="button" href="#" class="btn btn-outline-success form-control" value="Créer un financement"  disabled />
+                    <input type="button" href="#" class="btn main-button form-control" value="Créer un financement"  disabled />
                   </div>
                 </div>
               </div>
