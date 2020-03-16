@@ -81,9 +81,9 @@ Si le financement n'est pas de type «AIF»
             Et le code CERTIFINFO de la formation ne fait pas partie de [87185,87187,87189]
                 Alors le financement est éligible
                 Et appliquer les règles «rémunérations applicables»
-                Et le texte des démarches vaut «Vous devez être inscrit à Pôle emploi et conctacter votre conseiller référent Pôle emploi car c'est lui qui validera votre projet. En effet, votre besoin de formation doit avoir été identifié dans un plan de sécurisation et être en cohérence avec votre projet professionnel. Votre conseiller peut vous inviter à assister à une information collective. Vous pouvez également contacter directement les organismes de formation.»
+                Et le texte des démarches vaut «Vous devez être inscrit à Pôle emploi et contacter votre conseiller référent Pôle emploi car c'est lui qui validera votre projet. En effet, votre besoin de formation doit avoir été identifié dans un plan de sécurisation et être en cohérence avec votre projet professionnel. Votre conseiller peut vous inviter à assister à une information collective. Vous pouvez également contacter directement les organismes de formation.»
                 Et le texte de description vaut «La région finance des formations certifiantes (diplômantes) correspondant à des qualifications professionnelles de niveau V à III, recherchées sur l'ensemble du territoire breton (BP, BPJEPS, Titre Professionnel, CAP, BAC Pro, Bepecaser, Brevet, Brevet Professionnel, BTS, Diplôme Universitaire, CQP).»
                 Et le texte de la prise en charge vaut «Formation totalement financée.»
 
                 Si le niveau de sortie de la formation est «III»
-                    Alors le texte de la prise en charge vaut «Formation totalement financée (une participation maximum de 200 € peut être demandée).»
+                    Alors le texte de la prise en charge vaut «Formation totalement financée (une participation maximum de 300 € peut être demandée).»
