@@ -133,19 +133,12 @@
         },
       }
     },
-    beforeMount: function() {
+    created: function() {
       this.loadInProgressModification();
+      this.updateLayout();
 
       window.addEventListener('popstate', () => {
-        this.windowLocationHash = decodeURI(window.location.hash);
-        this.modifiedHashFlag = decodeURI(window.location.hash).split('#').pop() == "modified";
-        if (this.modifiedHashFlag) {
-          this.currentRuleName = decodeURI(window.location.hash).split('#')[1];
-          this.displayModification();
-        } else {
-          this.currentRuleName = decodeURI(window.location.hash).split('#').pop();
-          this.viewModification = false;
-        }      
+        this.updateLayout();             
       })
     },
     computed: {
@@ -163,6 +156,18 @@
       },
     },
     methods: {
+      updateLayout: function() {
+        this.windowLocationHash = decodeURI(window.location.hash);
+        this.modifiedHashFlag = decodeURI(window.location.hash).split('#').pop() == "modified";
+        if (this.modifiedHashFlag) {
+          console.log("test");
+          this.currentRuleName = decodeURI(window.location.hash).split('#')[1];
+          this.displayModification();
+        } else {
+          this.currentRuleName = decodeURI(window.location.hash).split('#').pop();
+          this.viewModification = false;
+        }  
+      },
       loadInProgressModification: function () {
         this.$http
           .get('/source/modified?branch='+encodeURIComponent(this.displayedName))
