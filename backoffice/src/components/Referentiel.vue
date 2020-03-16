@@ -78,14 +78,14 @@
       },
       printRulePath: function () {
         var path = "";
-        var printpath = "(";
+        var printpath = "";
         if(this.windowLocationHash.split('#').length -1 > 1) {
           for(var i=1; i <= this.windowLocationHash.split('#').length -1; i++) {
             if (this.windowLocationHash.split('#').pop() == 'modified') return "";
             path += "#"+ this.windowLocationHash.split('#')[i];
-            if (i == this.windowLocationHash.split('#').length - 1) printpath += "<a href='"+ path + "'>" + this.windowLocationHash.split('#')[i] + "</a>"
-            else printpath += "<a href='"+ path + "'>" + this.windowLocationHash.split('#')[i] + "</a> > ";
-          } return printpath+")";
+            if (i == this.windowLocationHash.split('#').length - 1) printpath += "<a class='btn main-button' href='"+ path + "'>" + this.windowLocationHash.split('#')[i] + "</a>"
+            else printpath += "<a class='btn main-button' href='"+ path + "'>" + this.windowLocationHash.split('#')[i] + "</a> <b>></b> ";
+          } return printpath;
         } else return "";
       },
       rulePath: function () {

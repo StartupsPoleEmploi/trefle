@@ -201,6 +201,19 @@
     background-color : #384EAA;
     color: white;
   }
+  .main-button:hover:disabled {
+    border: 1px solid #384EAA;
+    background-color : #BDBADE;
+    color: black;
+  }
+  .main-button-primary {
+    background-color : #384EAA;
+    color: white;
+  }
+  .main-button-primary:hover {
+    background-color : #0D0850;
+    color: white;
+  }
   .loading-gif {
     padding-top: 8rem;
   }

@@ -7,11 +7,16 @@
             <h5>
               <span style="vertical-align:-30%" >{{ displayedName }}</span>
             </h5>
-            <a :href="'#'+name+'#modified'" v-if="this.modification_count" @click="displayModification()" id="modification_link">({{ this.modification_count }} modification<span v-if="this.modification_count > 1">s</span> en cours)</a>
+            <div v-if="this.modifiedHashFlag">
+              <a :href="'#'+name" v-if="this.modification_count" @click="displayList()" id="modification_link">Retour à la liste</a>
+            </div>
+            <div v-else>
+              <a :href="'#'+name+'#modified'" v-if="this.modification_count" @click="displayModification()" id="modification_link">({{ this.modification_count }} modification<span v-if="this.modification_count > 1">s</span> en cours)</a>
+            </div>
           </div>
           <div class="col-md-6 col-sm-12 col-xs-12">
             <h4 v-if="isEditMode" class="pull-right"><em>Modification de la règle</em></h4>
-            <input v-else v-b-modal.auth-modal type="button" class="main-button btn pull-right" value="Soumettre une modification"/>
+            <input v-else v-b-modal.auth-modal type="button" class="main-button-primary btn pull-right" value="Soumettre une modification"/>
             <!-- TODO: show gitlab link of modification if exists -->
           </div>
         </div>
@@ -32,15 +37,15 @@
         </ul>
       </div>
       <div v-show="isEditMode">
-        <div class="row mb-3">
-          <div class="col-md-6 pl-0">
-            <input @click="closeEdit" type="button" class="btn btn-outline-danger pull-left" value="Annuler"/>
-          </div>
-          <div class="col-md-6 pr-0">
-            <button v-b-modal.mail-modal class="btn btn-outline-success pull-right">Enregistrer</button>
-          </div>
-        </div>
         <div class="container">
+          <div class="row mb-3">
+            <div class="col-md-6 pl-0">
+              <input @click="closeEdit" type="button" class="btn btn-outline-danger pull-left" value="Annuler"/>
+            </div>
+            <div class="col-md-6 pr-0">
+              <button v-b-modal.mail-modal class="btn main-button-primary pull-right">Enregistrer</button>
+            </div>
+          </div>
           <div class="row mb-3">
             <label for="content"><u>Contenu de la règle</u></label>
             <textarea-autosize id="content" v-model="content" class="rule-modification-text" :class="{editErrorClass: error_flags.notModified }"></textarea-autosize>
@@ -51,7 +56,7 @@
               <input @click="closeEdit" type="button" class="btn btn-outline-danger pull-left" value="Annuler"/>
             </div>
             <div class="col-md-6 pr-0">
-              <button v-b-modal.mail-modal class="btn btn-outline-success pull-right">Enregistrer</button>
+              <button v-b-modal.mail-modal class="btn main-button-primary pull-right">Enregistrer</button>
             </div>
           </div>
         </div>
@@ -65,7 +70,7 @@
           <span v-if="error_flags.noPass" class="text-danger font-weight-light">Ce champ est obligatoire<br></span>
           <span v-if="!error_flags.noUser && !error_flags.noPass" class="font-weight-light">* Champs obligatoires<br></span>
           <template v-slot:modal-footer>       
-            <input @click="auth_to_edit" type="button" class="btn btn-outline-success pull-right" value="Suivant"/>
+            <input @click="auth_to_edit" type="button" class="btn main-button-primary pull-right" value="Suivant"/>
           </template>
         </b-modal>
 
@@ -105,6 +110,8 @@
     props: ['name', 'data', 'path', 'printRulePath', 'rulePath'],
     data: function(){
       return {
+        windowLocationHash: '',
+        modifiedHashFlag: decodeURI(window.location.hash).split('#').pop() == "modified",
         isLoading: true,
         ruleData: this.data,
         modification_list: [],
@@ -128,9 +135,18 @@
     },
     beforeMount: function() {
       this.loadInProgressModification();
-      if (decodeURI(window.location.hash).split('#').pop() == "modified") { 
-        this.displayModification();
-      }
+
+      window.addEventListener('popstate', () => {
+        this.windowLocationHash = decodeURI(window.location.hash);
+        this.modifiedHashFlag = decodeURI(window.location.hash).split('#').pop() == "modified";
+        if (this.modifiedHashFlag) {
+          this.currentRuleName = decodeURI(window.location.hash).split('#')[1];
+          this.displayModification();
+        } else {
+          this.currentRuleName = decodeURI(window.location.hash).split('#').pop();
+          this.viewModification = false;
+        }      
+      })
     },
     computed: {
       displayedName: function () {
@@ -210,7 +226,6 @@
         };
       },
       save: function() {
-        console.log('test');
         this.ruleData = this.content
         if (this.comment == '') {
           this.error_flags.noResume = true;
@@ -302,7 +317,12 @@
         return root;
       },
       displayModification: function () {
-        this.viewModification = !this.viewModification;
+        this.viewModification = true;
+        this.$parent.collapsed = true;
+        this.isEditMode = false;
+      },
+      displayList: function () {
+        this.viewModification = false;
         this.$parent.collapsed = true;
         this.isEditMode = false;
       }
