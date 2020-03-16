@@ -160,7 +160,6 @@
         this.windowLocationHash = decodeURI(window.location.hash);
         this.modifiedHashFlag = decodeURI(window.location.hash).split('#').pop() == "modified";
         if (this.modifiedHashFlag) {
-          console.log("test");
           this.currentRuleName = decodeURI(window.location.hash).split('#')[1];
           this.displayModification();
         } else {

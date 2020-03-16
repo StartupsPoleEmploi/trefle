@@ -31,7 +31,9 @@
                 <div v-else>
                   <h5> Toutes les modifications en cours de validation ({{ Object.keys(modification_list).length }})</h5>
                   <ul v-for="modification in modification_list" :key="modification.id" class="dash">
-                    <li> {{ modification.title }} - ({{ modification.file.split('/').pop().split('.')[0] }})</li>
+                    <li>
+                      <a :href="'referentiel#'+modification.file.split('/').pop().split('.')[0]+'.rules#modified'"> {{ modification.title }} - ({{ modification.file.split('/').pop().split('.')[0] }})</a>
+                    </li>
                   </ul>
                 </div>
               </div>
