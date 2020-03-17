@@ -12,28 +12,35 @@
           </div>
         </div>
         <div class="row mt-3">
-          <div class="col-md-4">
+          <div class="col-md-4 col-sm-12">
             <div id="chart-container">
               <ModificationChart  @on-receive="update" :values="modification_chart_datas.datasets" :labels="modification_chart_datas.labels"></ModificationChart>
             </div>
           </div>
-          <div class="col-md-8">
-            <div id="modification_list">
-              <div v-if="selected_rule">
-                <h5> Modification(s) de la règle {{ selected_rule }} ({{ Object.keys(selected_modification_list).length }}) </h5> 
-                <ul v-for="modification in selected_modification_list" :key="modification.id" class="dash">
-                  <li>
-                    <a :href="'referentiel#'+selected_rule+'.rules#modified'"> {{ modification.title }} </a>
-                  </li>
-                </ul>
-              </div>
-              <div v-else>
-                <h5> Toutes les modifications ({{ Object.keys(modification_list).length }})</h5>
-                <ul v-for="modification in modification_list" :key="modification.id" class="dash">
-                  <li> {{ modification.title }} </li>
-                </ul>
+          <div v-if="!isLoading">
+            <div class="col-md-8 col-sm-12">
+              <div id="modification_list">
+                <div v-if="selected_rule">
+                  <h5> Modification(s) de la règle en cours de validation {{ selected_rule }} ({{ Object.keys(selected_modification_list).length }}) </h5> 
+                  <ul v-for="modification in selected_modification_list" :key="modification.id" class="dash">
+                    <li>
+                      <a :href="'referentiel#'+selected_rule+'.rules#modified'"> {{ modification.title }} </a>
+                    </li>
+                  </ul>
+                </div>
+                <div v-else>
+                  <h5> Toutes les modifications en cours de validation ({{ Object.keys(modification_list).length }})</h5>
+                  <ul v-for="modification in modification_list" :key="modification.id" class="dash">
+                    <li>
+                      <a :href="'referentiel#'+modification.file.split('/').pop().split('.')[0]+'.rules#modified'"> {{ modification.title }} - ({{ modification.file.split('/').pop().split('.')[0] }})</a>
+                    </li>
+                  </ul>
+                </div>
               </div>
             </div>
+          </div>
+          <div v-else class="text-center loading-gif">
+            <img src="./../assets/images/loading.gif" alt="loading...">
           </div>
         </div>
       </div>
@@ -54,6 +61,7 @@
         selected_modification_list: {},
         selected_rule: '',
         test:0,
+        isLoading: true,
       }
     },
     beforeMount: function() {
@@ -65,9 +73,11 @@
           .get('/source/modified')
           .then(response => {
             this.modification_list = response.body;
+            this.isLoading = false;
             return true;
           }, response => {
             if(response.status == 500) this.modification_list = {};
+            this.isLoading = false;
             return false;
           })
       },

@@ -53,7 +53,8 @@
             'tag-file-renamed': '<span class="d2h-tag d2h-moved d2h-moved-tag">RENOMMÉ</span>',
             'tag-file-added': '<span class="d2h-tag d2h-added d2h-added-tag">AJOUTÉ</span>',
             'file-summary-wrapper': '<div class="d2h-file-list-wrapper"><div class="d2h-file-list-header"><span class="d2h-file-list-title">Fichiers modifiés ({{filesNumber}})</span><a class="d2h-file-switch d2h-hide">cacher</a><a class="d2h-file-switch d2h-show">show</a></div><ol class="d2h-file-list">{{{files}}}</ol></div>',
-            'generic-wrapper': '<div class="d2h-wrapper">{{{content}}}</div>'
+            'generic-wrapper': '<div class="d2h-wrapper">{{{content}}}</div>',
+            'file-summary-line':'<li class="d2h-file-list-line"><span class="d2h-file-name-wrapper">{{>fileIcon}}<a href="#'+this.modification.file.split('/').pop()+'" class="d2h-file-name">{{fileName}}</a><span class="d2h-file-stats"><span class="d2h-lines-added">{{addedLines}}</span><span class="d2h-lines-deleted">{{deletedLines}}</span></span></span></li>'
           }
         });
       },
