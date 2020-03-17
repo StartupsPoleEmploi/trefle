@@ -80,7 +80,7 @@
           <span v-if="error_flags.noResume" class="text-danger font-weight-light">Ce champ est obligatoire</span>
           <span v-if="!error_flags.noUser && !error_flags.noResume" class="font-weight-light">* Champ obligatoire</span>
           <template v-slot:modal-footer>       
-            <input @click="save" type="button" class="btn btn-outline-success pull-right" value="Enregistrer"/>
+            <input @click="save" type="button" class="btn main-button-primary pull-right" value="Enregistrer"/>
           </template>
         </b-modal>
 
