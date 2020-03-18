@@ -8,7 +8,7 @@
               <span style="vertical-align:-30%" >{{ displayedName }}</span>
             </h5>
             <div v-if="this.modifiedHashFlag">
-              <a :href="'#'+name" v-if="this.modification_count" @click="displayList()" id="modification_link">Retour à la liste</a>
+              <a :href="'#'+name" v-if="this.modification_count" @click="displayList()" id="modification_link">Voir la règle</a>
             </div>
             <div v-else>
               <a :href="'#'+name+'#modified'" v-if="this.modification_count" @click="displayModification()" id="modification_link">({{ this.modification_count }} modification<span v-if="this.modification_count > 1">s</span> en cours)</a>
