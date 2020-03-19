@@ -11,7 +11,9 @@
             <svg class="nav-icon">
               <use xlink:href="#accueil_icon" />
             </svg>
-            Accueil
+            <span class="nav-label">
+              Accueil
+            </span>
           </router-link>
         </li>
         <li class="nav-item">
@@ -19,7 +21,9 @@
             <svg class="nav-icon">
               <use xlink:href="#referentiel_icon" />
             </svg>
-            Référentiel
+            <span class="nav-label">
+              Référentiel
+            </span>
           </router-link>
         </li>
         <li class="nav-item">
@@ -27,23 +31,30 @@
             <svg class="nav-icon">
               <use xlink:href="#financements_icon" />
             </svg>
-            Financements
+            <span class="nav-label">
+              Financements
+            </span>
         </router-link>
         </li>
-        <!--<li class="nav-item">
+        <li class="nav-item">
           <router-link to="/simulateur" name="simulateur" class="nav-link">            
             <svg class="nav-icon">
               <use xlink:href="#simulateur_icon" />
             </svg>
-            Simulateur
+            <span class="nav-label">
+              Simulateur
+            </span>
           </router-link>
         </li>
+        <!--
         <li class="nav-item">
           <router-link to="/scenarios" name="scenarios" class="nav-link">            
             <svg class="nav-icon">
               <use xlink:href="#scenarios_icon" />
             </svg>
-            Scénarios
+            <span class="nav-label">
+              Scénarios
+            </span>
           </router-link>
         </li>-->
         <li class="nav-item">
@@ -51,7 +62,9 @@
             <svg class="nav-icon">
               <use xlink:href="#outils_icon" />
             </svg>
-            Outils
+            <span class="nav-label">
+              Outils
+            </span>
           </router-link>
         </li>
       </ul>
@@ -166,4 +179,15 @@
   .router-link-active:hover {
     color:white;
   }
+
+  @media screen and (max-width: 1024px) {
+    .nav-label {
+        display: none !important;
+    }
+    .nav-icon {
+      width: 23px !important;
+      height:23px !important;
+      align-content: center;
+    }
+}
 </style>
