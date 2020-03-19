@@ -1,26 +1,25 @@
 <template>
-  <div id="IDCCSearch">
+  <div id="NAFSearch">
     <div class="container">
       <div class="row">
         <div class="col-md-12">
-					<h2>IDCC</h2>
-          <input type="text" ref="idcc" placeholder="Chercher une convention collective" v-model="idcc" class="form-control"><br>
+					<h2>NAF</h2>
+          <input type="text" ref="naf" placeholder="Code NAF" v-model="naf" class="form-control"><br>
           <input @click="search()" type="button" class="btn main-button pull-right" value="Chercher">
         </div>
       </div>
       <br>
       <div class="row">
         <div class="col-md-12 results">
-          <div v-if="this.idcc && Object.keys(this.results).length">
+          <div v-if="this.naf && Object.keys(this.results).length">
             <ul class="dash">
               <li v-for="(result,code) in this.results" :key="code">
-                {{ result['convention collective'] }}
-                <strong>({{ code }})</strong>
+                {{ result.name }}
               </li>
             </ul>
           </div>
-          <div v-if="this.idcc && this.resultsIsEmpty">
-              <p>Aucune convention collective trouvée avec l'identifiant «{{ this.idcc }}».</p>
+          <div v-if="this.naf && this.resultsIsEmpty">
+            <p> Aucune activité principale trouvée avec l'identifiant «{{ this.naf }}».</p>
           </div>
         </div>
       </div>
@@ -29,21 +28,23 @@
 </template>
 <script>
   export default {
-		name: 'IDCCSearch',
+		name: 'NAFSearch',
 		data: function () {
 			return {
-        idcc: "",
+        naf: "",
         results: {},
-        resultsIsEmpty: false
+        resultsIsEmpty: false,
 			}
+		},
+    computed: {
     },
 		methods: {
 			search: function () {
-        this.$http.get('/idcc?q='+this.idcc).then(response => {
+        this.$http.get('/naf?q='+this.naf).then(response => {
           this.results = response.body;
           this.resultsIsEmpty = this.isEmpty(this.results);
         }).created;
-      },
+			},
       isEmpty: function (obj) {
         for(var key in obj) {
             if(obj.hasOwnProperty(key))
@@ -54,6 +55,3 @@
 		}    
   }
 </script>
-
-<style scoped>
-</style>

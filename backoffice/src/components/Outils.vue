@@ -1,32 +1,51 @@
 <template>
   <div id="Outils">
-    <IDCCSearch class="section-outil"></IDCCSearch>
-      <hr class="outil-horizontal-separator">
-    <Catalogue class="section-outil"></Catalogue>
-      <hr class="outil-horizontal-separator">
-    <CertifInfo class="section-outil"></CertifInfo>
+    <div class="container ml-3 mr-3 mt-5">
+      <div class="row outils-row">
+        <div class="col-md-6 col-sm-12">
+          <IDCCSearch class="section-outil"></IDCCSearch>
+        </div>
+        <div class="col-md-6 col-sm-12">
+          <CatalogueSearch class="section-outil"></CatalogueSearch>
+        </div>
+      </div>
+      <div class="col-md-12 pb-3">
+        <hr class="outil-horizontal-separator">
+      </div>
+      <div class="row">
+        <div class="col-md-6 col-sm-12">
+          <CertifInfoSearch class="section-outil"></CertifInfoSearch>
+        </div>
+        <div class="col-md-6 col-sm-12">
+          <NAFSearch class="section-outil"></NAFSearch>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 <script>
 
   import IDCCSearch from './IDCCSearch.vue'
-  import Catalogue from './Catalogue.vue'
-  import CertifInfo from './CertifInfo.vue'
+  import CatalogueSearch from './CatalogueSearch.vue'
+  import CertifInfoSearch from './CertifInfoSearch.vue'
+  import NAFSearch from './NAFSearch.vue'
 
   export default {
     name: 'Outils',
     components: {
       IDCCSearch,
-      Catalogue,
-      CertifInfo
+      CatalogueSearch,
+      CertifInfoSearch,
+      NAFSearch
     }
     
   }
 </script>
 <style scoped>
-  .section-outil {
-    padding-top: 1.5rem;
-    padding-bottom: 1.5rem;
-    margin-left: 2rem;
+  #Outils {
+    padding-top: 2vh;
+  }
+  .outils-row {
+    min-height:30vh;
   }
 </style>

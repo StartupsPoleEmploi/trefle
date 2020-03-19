@@ -1,13 +1,16 @@
 <template>
-  <div id="CertifInfo">
+  <div id="CertifInfoSearch">
     <div class="container">
       <div class="row">
-        <div class="col-md-6">
-					<h2>Recherche Certif Info</h2>
-						<input type="text" ref="certifinfo" placeholder="Code Certif Info" v-model="certifinfo">
-						<input @click="search()" type="button" class="btn main-button ml-4" value="Chercher">
+        <div class="col-md-12">
+					<h2>Certif Info</h2>
+          <input type="text" ref="certifinfo" placeholder="Code Certif Info" v-model="certifinfo" class="form-control"><br>
+          <input @click="search()" type="button" class="btn main-button pull-right" value="Chercher">            
         </div>
-        <div class="col-md-6 results">
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-md-12 results">
           <div v-if="this.certifinfo && Object.keys(this.results).length">
             <ul class="dash">
               <li v-for="(result,code) in this.results" :key="code">
@@ -25,7 +28,7 @@
 </template>
 <script>
   export default {
-		name: 'CertifInfo',
+		name: 'CertifInfoSearch',
 		data: function () {
 			return {
         certifinfo: "",
