@@ -1,14 +1,16 @@
 <template>
-  <div id="Catalogue">
+  <div id="CatalogueSearch">
     <div class="container mb-0 mt-0">
       <div class="row">
-        <div class="col-md-6">
-            <h2>Recherche Catalogue</h2>
-            <input type="text" ref="intercarif" placeholder="Identifiant INTERCARIF" v-model="intercarif">
-            <input @click="search()" type="button" class="btn main-button ml-4" value="Chercher">
-            <p>Plus d'info sur le format du catalogue: <a href="http://lheo.gouv.fr/langage">http://lheo.gouv.fr/langage</a>.</p>
+        <div class="col-md-12">
+          <h2>Catalogue</h2>            
+          <input type="text" ref="intercarif" placeholder="Identifiant INTERCARIF" v-model="intercarif" class="form-control"><br>
+          <input @click="search()" type="button" class="btn main-button pull-right" value="Chercher">
         </div>
-        <div class="col-md-6 results">
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-md-12 results">
           <div v-if="this.intercarif && Object.keys(this.results).length">
             <pre>{{ this.results }}</pre>
           </div>
@@ -24,6 +26,7 @@
 </template>
 <script>
   export default {
+    name: 'CatalogueSearch',
     data: function () {
 			return {
         intercarif: "",
