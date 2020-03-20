@@ -75,7 +75,7 @@ Si le financement est de type «POEC»
 
 
 # dispositif 6
-* Si l'intitulé du financement est «Formation sanitaire et social»
+Si l'intitulé du financement est «Formation sanitaire et social»
 
     Si la région de la formation vaut «Bourgogne-Franche-Comté»
     Et les codes financeur de la formation contiennent «Conseil régional»
