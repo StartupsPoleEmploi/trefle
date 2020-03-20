@@ -37,7 +37,10 @@
         </div>
       </div>
       <div v-else class="text-center loading-gif">
-        <img src="./../assets/images/loading.gif" alt="loading...">
+        <div v-if="modificationInProgress" class="mt-5">
+          <h2>Modification en cours...</h2>
+        </div>
+        <img src="./../assets/images/loading.gif" alt="loading...">        
       </div>
     </div>
   </div>
@@ -61,6 +64,7 @@
         rerenderKey: 0,
         collapsed: false,
         currentRuleName: decodeURI(window.location.hash).split('#').pop() == "modified" ? decodeURI(window.location.hash).split('#')[1]:decodeURI(window.location.hash).split('#').pop(),
+        inProgressModification : false,
       }
     },
     computed: {
