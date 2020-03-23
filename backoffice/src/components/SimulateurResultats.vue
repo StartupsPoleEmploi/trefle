@@ -2,8 +2,12 @@
   <div id="SimulateurResultats">
     <div class="row">
       <div class="col-md-12">
-        <h2>Résultats de simulation de financement </h2>
+        <h2>
+          Résultats de simulation de financement
+          <button v-on:click="newSimulation();" class="btn main-button-primary pull-right"><span class="mr-1">Nouvelle simulation</span><i class="ml-1 fas fa-redo"></i></button>
+        </h2>
       </div>
+      
     </div>
     <hr class="simulateur-horizontal-separator">
     <div class="row">
@@ -108,6 +112,11 @@
       SimulateurExplain,
     },
     props: ['financements', 'scenario', 'isLoading'],
+    methods: {
+      newSimulation : function () {
+        location.reload();
+      }
+    }
 
   }
 </script>
