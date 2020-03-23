@@ -122,7 +122,7 @@
       <div v-if="$parent.situation_cdd == true">
         <div class="row">
           <div class="col-md-12 group-indent1">
-            <input v-model="situation_cdd5years" name="situation_cdd5years" id="situation_cdd5years" type="checkbox" class="form-check-input"/>&nbsp;
+            <input v-model="$parent.situation_cdd5years" name="situation_cdd5years" id="situation_cdd5years" type="checkbox" class="form-check-input"/>&nbsp;
               <label for="situation_cdd5years" class="form-check-label">
                 ...et vous totalisez au moins 24 mois de travail depuis le 30/01/2015
               </label>

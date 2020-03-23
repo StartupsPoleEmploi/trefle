@@ -86,11 +86,28 @@
       </div>
       <hr class="simulateur-horizontal-separator">
     </div>
+    <span data-toggle="collapse" data-target="#explain" aria-expanded="false" aria-controls="explain" style="cursor:pointer;">
+      <button class="btn main-button-primary">Voir le scénario de simulation</button>
+    </span>
+    <div id="explain" class="collapse">
+      <div class="row">
+        <div class="col-md-12">
+          <SimulateurExplain :scenario="scenario"></SimulateurExplain>
+        </div>
+      </div>
+    </div>    
   </div>
 </template>
 <script>
+
+  import SimulateurExplain from './SimulateurExplain.vue';
+
   export default {
-		name: 'SimulateurResultats',		
-    props: ['financements', 'isLoading'],
+    name: 'SimulateurResultats',
+    components: {
+      SimulateurExplain,
+    },
+    props: ['financements', 'scenario', 'isLoading'],
+
   }
 </script>

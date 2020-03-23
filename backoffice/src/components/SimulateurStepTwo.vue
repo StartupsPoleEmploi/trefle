@@ -22,7 +22,7 @@
         </div>
         <div class="row">
           <div class="col-md-12 autocomplete">           
-            <b-form-input v-model="$parent.commune_beneficiaire_autocomplete" list="commune-beneficiaire-list" placeholder="Rentrez votre code postal"></b-form-input>
+            <b-form-input v-model="$parent.commune_beneficiaire_autocomplete" list="commune-beneficiaire-list" placeholder="Rentrez votre code postal" ></b-form-input>
             <datalist id="commune-beneficiaire-list">
               <option v-for="commune in this.commune_beneficiaire_list" :key="commune.codeCommune">
                 {{ commune.nomCommune }} | {{ commune.codePostal }} ({{ commune.codeCommune }})

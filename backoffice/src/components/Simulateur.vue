@@ -10,32 +10,32 @@
         <hr class="simulateur-horizontal-separator">
         <!---------------- STEP FORMATION ---------------->
         <div class="formation-step step" :class="{step_completed_class: formation_step_completed}">
-          <SimulateurStepFormation></SimulateurStepFormation>
+          <SimulateurStepFormation/>
         </div>
         <hr v-if="formation_step_completed" class="simulateur-horizontal-separator">
         <!---------------- STEP ONE ---------------->
         <div v-if="formation_step_completed" class="form-step step-one" :class="{step_completed_class: step_one_completed}">
-          <SimulateurStepOne></SimulateurStepOne>
+          <SimulateurStepOne id="SimulateurStepOne"/>
         </div>
         <hr v-if="step_one_completed" class="simulateur-horizontal-separator">
         <!---------------- STEP TWO ---------------->
         <div v-if="step_one_completed" class="form-step step-two" :class="{step_completed_class: step_two_completed}">
-          <SimulateurStepTwo></SimulateurStepTwo>
+          <SimulateurStepTwo id="SimulateurStepTwo"/>
         </div>
         <hr v-if="step_two_completed" class="simulateur-horizontal-separator">
         <!---------------- STEP THREE ---------------->
         <div v-if="step_two_completed" class="form-step step-three" :class="{step_completed_class: step_three_completed}">
-          <SimulateurStepThree></SimulateurStepThree>
+          <SimulateurStepThree id="SimulateurStepThree"/>
         </div>
         <hr v-if="step_three_completed" class="simulateur-horizontal-separator">
         <!---------------- STEP FOUR ---------------->
         <div v-if="step_three_completed" class="form-step step-four" :class="{step_completed_class: step_four_completed}">
-          <SimulateurStepFour></SimulateurStepFour>
+          <SimulateurStepFour id="SimulateurStepFour"/>
         </div>
         <hr v-if="step_four_completed" class="simulateur-horizontal-separator">
         <!---------------- STEP FIVE ---------------->
         <div v-if="step_four_completed" class="form-step step-five" :class="{step_completed_class: step_five_completed}">
-          <SimulateurStepFive></SimulateurStepFive>          
+          <SimulateurStepFive id="SimulateurStepFive"/>         
         </div>
         <!---------------- STEP FIVE ---------------->
         <div v-if="step_five_completed" class="form-step">
@@ -45,7 +45,7 @@
       <!------------------- RESULTATS --------------->
       <div v-else id="simulate-results">
         <div v-if="!isLoading" class="mt-5">
-          <SimulateurResultats :financements="financements"></SimulateurResultats>
+          <SimulateurResultats :financements="financements" :scenario="scenario"></SimulateurResultats>
         </div>
         <div v-else class="text-center loading-gif">
           <img src="./../assets/images/loading.gif" alt="loading...">
@@ -147,6 +147,7 @@
             commune_entreprise_autocomplete: '',
         // TO DO input formation
         financements : [],
+        scenario: '',
         resultats: false,
         isLoading: true,
         test: [],
@@ -154,7 +155,7 @@
     },
     computed: {
       formation_step_completed: function () {
-        return this.formation.numero != null
+        return this.formation.numero != null;
       },
       step_one_completed: function () {
         if (this.situation_inscrit == 1) {
@@ -330,17 +331,19 @@
         if (this.situation_cpfconnu != 'cpfconnu') this.situation_creditheurescpf = null;
 
 
-        this.$http.post('/financement?eligible=true&explain=true', this.request).then(response => {
+        this.$http.post('/financement?eligible=true&context=1&explain=true&scenario=1', this.request).then(response => {
           if(this.situation_cpfconnu=='cpfempty') {
             if(this.objectIsEmpty(response.body)) {
               this.financements = [];
             } else {
               this.financements = [];
               for(var i=0; i<response.body.financements.length; i++){
-                if(response.body.financements[i].type_lbf!='cpf') this.financements.push(response.body.financements[i])
+                if(response.body.financements[i].type_lbf!='cpf') this.financements.push(response.body.financements[i]);
               }
             }
           } else this.financements = response.body.financements;
+
+          this.scenario = response.body.scenario;
           this.isLoading = false;
         }).created
         this.resultats = true;
@@ -357,6 +360,9 @@
 </script>
 
 <style>
+  html {
+    scroll-behavior: smooth;
+  }
   .row {
     margin-bottom: 1rem;
   }
