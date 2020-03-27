@@ -246,10 +246,13 @@ async def authent(request, response):
         else:
             continue
 
-    if data.get('token') != atoken and not authsuccess:
+    if not bool(AUTHORIZED):
+        raise ValueError("Il n'existe pas encore d'autorisations (fichier"
+                         + " authorisations.csv vide ou inexistant).")
+    elif data.get('token') != atoken and not authsuccess:
         raise HttpError(HTTPStatus.UNAUTHORIZED,
                         'Le token n\'est pas reconnu.')
-    elif data.get('token','') == '' and not authsuccess:
+    elif data.get('token', '') == '' and not authsuccess:
         raise HttpError(HTTPStatus.UNAUTHORIZED,
                         'Email ou mot de passe non reconnu.')
     else:
@@ -290,44 +293,3 @@ async def source_save(request, response):
         raise HttpError(HTTPStatus.NOT_MODIFIED, message="Aucune modification apportée")
     except ValueError as err:
         raise HttpError(HTTPStatus.UNPROCESSABLE_ENTITY, message=err)
-    # now = datetime.datetime.today().strftime('%y%m%d%H%M')
-    # request_data = request.json
-    # commit_message = request_data.get('comment')
-    # filename = request_data.get('filename')
-    # content = request_data.get('content')
-    # mail = request_data.get('author_email')
-    # name = request_data.get('author_name')
-
-    # gl = gitlab.Gitlab('https://git.beta.pole-emploi.fr', private_token=GITLAB_TOKEN)
-    # project = gl.projects.get('open-source/trefle', lazy=True)
-    # branch = f"modification-{fold_name(request_data.get('title')).lower()}"
-
-    # original_fingerprint = hash(project.files.get(filename,
-    #                                               ref='master').decode().decode())
-    # modified_fingerprint = hash(content)
-    # is_modified = original_fingerprint != modified_fingerprint
-
-    # data = {
-    #     'branch': f'RULE-{branch}-{now}',
-    #     'start_branch': 'master',
-    #     'commit_message': commit_message,
-    #     'author_email': mail,
-    #     'author_name': name,
-    #     'actions': [
-    #         {
-    #             'action': 'update',
-    #             'file_path': filename,
-    #             'content': content,
-    #         }
-    #     ]
-    # }
-
-    # if not is_modified:
-    #     raise HttpError(HTTPStatus.NOT_MODIFIED, message="Aucune modification apportée")
-
-    # if mail in COMMIT_AUTHORIZED:
-    #     commit = project.commits.create(data)
-    # else:
-    #     raise HttpError(HTTPStatus.UNAUTHORIZED, 'Code vide ou invalide')
-
-    # response.json = commit.attributes

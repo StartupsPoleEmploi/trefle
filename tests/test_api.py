@@ -539,6 +539,20 @@ async def test_authentification(patch_authorisations, client, mock_get):
     }
 
 
+async def test_authentification_with_no_authorisation(patch_authorisations, client, mock_get):
+    body = {
+        "email": "test@test.fr",
+        "password": "test",
+        "file": "/règles nationales/CPF.rules"
+    }
+    auth = []
+    patch_authorisations(auth)
+    mock_get(status_code=500)
+    resp = await client.post("/authentification", body=body)
+
+    assert resp.status == HTTPStatus.INTERNAL_SERVER_ERROR
+
+
 async def test_authentification_with_2_records(patch_authorisations, client, mock_get):
     body = {
         "email": "test@test.fr",
