@@ -230,6 +230,8 @@
         };
       },
       save: function() {
+        this.$parent.isLoading = true;
+        this.$parent.modificationInProgress = true;
         this.ruleData = this.content
         if (this.comment == '') {
           this.error_flags.noResume = true;
@@ -280,6 +282,10 @@
                 this.error_flags.notModified = false;
               }
               return false;
+          }).then(()=> {
+            this.$parent.isLoading = false;
+            this.$parent.modificationInProgress = false;
+            location.reload();
           });
       },
       toTree: function (lines) { // eslint-disable-line no-unused-vars
