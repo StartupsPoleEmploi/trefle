@@ -1,7 +1,5 @@
 import pytest
 
-import datetime
-
 from trefle.source import modification_data
 
 DATA = {
@@ -12,8 +10,6 @@ DATA = {
         'author_email': 'test@test.com',
         'author_name': 'test',
     }
-# TODO: minutes can be different so fix minute to 00 (mock)
-NOW = datetime.datetime.today().strftime("%y%m%d%H%M")
 
 
 def test_modification_data_mail_error():
@@ -22,6 +18,15 @@ def test_modification_data_mail_error():
     with pytest.raises(ValueError) as err:
         modification_data(data)
     assert "pas un mail valide" in str(err.value)
+
+
+# TODO: mok gitlab api
+# def test_modification_with_last_commit_id():
+#     data = DATA.copy()
+#     data["last_commit_id"] = 'test'
+#     with pytest.raises(ValueError) as err:
+#         modification_data(data)
+#     assert "pas un identifiant de commit valide" in str(err.value)
 
 
 def test_modification_data_filename_error():
@@ -48,18 +53,27 @@ def test_modification_data_title_not_provided():
     assert "doit être renseigné" in str(err.value)
 
 
-def test_modification_data():
+def test_modification_data_with_new_branch_is_valid():
     assert modification_data(DATA) == {
-        "branch": f"RULE-modification-test-{NOW}",
+        "branch": f"RULE-modification-test",
         "start_branch": "master",
         "commit_message": 'test',
         "author_email": 'test@test.com',
         "author_name": 'test',
-        "actions": [
-            {
-                "action": "update",
-                "file_path": 'test.rules',
-                "content": 'test',
-            }
-        ],
+        "file_path": "test.rules",
+        "content": "test",
+    }
+
+
+def test_modification_data_with_existing_branch_is_valid():
+    data = DATA.copy()
+    data["last_commit_id"] = "7cfa6c27"
+    assert modification_data(data) == {
+        "branch": f"RULE-modification-test",
+        "commit_message": 'test',
+        "author_email": 'test@test.com',
+        "author_name": 'test',
+        "file_path": "test.rules",
+        "content": "test",
+        "last_commit_id": "7cfa6c27"
     }
