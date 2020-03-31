@@ -265,6 +265,7 @@ async def source_modified(request, response):
     gl = gitlab.Gitlab('https://git.beta.pole-emploi.fr', private_token=GITLAB_TOKEN)
     project = gl.projects.get('open-source/trefle', lazy=True)
     merges = project.mergerequests.list(state="opened", labels=["RULE"])
+    branch_filter = ''
     if(request.query.get('branch', '')):
         branch_filter = f"modification-{fold_name(request.query.get('branch','')).lower()}"
     modified = {}
@@ -285,6 +286,17 @@ async def source_modified(request, response):
                     'diff': diff.get('diff')
                     }
     response.json = modified
+
+
+@app.route("/source/file")
+async def source_file(request, response):
+    gl = gitlab.Gitlab('https://git.beta.pole-emploi.fr', private_token=GITLAB_TOKEN)
+    project = gl.projects.get('open-source/trefle', lazy=True)
+    commit_id = request.query.get('commit_id', '')
+    file_name = request.query.get('file', '')
+    if(commit_id and file_name):
+        response.json = project.files.get(file_path=file_name,
+                                          ref=commit_id).decode().decode()
 
 
 @app.route("/source/save", ['POST'])

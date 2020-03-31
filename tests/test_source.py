@@ -67,7 +67,7 @@ def test_modification_data_with_new_branch_is_valid():
 
 def test_modification_data_with_existing_branch_is_valid():
     data = DATA.copy()
-    data["last_commit_id"] = "7cfa6c27"
+    data["commit_id"] = "7cfa6c27"
     assert modification_data(data) == {
         "branch": f"RULE-modification-test",
         "commit_message": 'test',
