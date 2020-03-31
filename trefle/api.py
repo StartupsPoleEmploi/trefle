@@ -264,21 +264,26 @@ async def authent(request, response):
 async def source_modified(request, response):
     gl = gitlab.Gitlab('https://git.beta.pole-emploi.fr', private_token=GITLAB_TOKEN)
     project = gl.projects.get('open-source/trefle', lazy=True)
-    branch = f"modification-{fold_name(request.query.get('branch','')).lower()}"
-    branches = project.branches.list(search=f'^RULE-{branch}')
+    merges = project.mergerequests.list(state="opened", labels=["RULE"])
+    if(request.query.get('branch', '')):
+        branch_filter = f"modification-{fold_name(request.query.get('branch','')).lower()}"
     modified = {}
-    for branch in branches:
-        commit = project.commits.get(branch.get_id()).diff()
-        modified[branch.attributes.get('commit').get('short_id')] = {
-            'id': branch.attributes.get('commit').get('id'),
-            'branch': branch.name,
-            'title': branch.attributes.get('commit').get('title'),
-            'message': branch.attributes.get('commit').get('message'),
-            'author_name': branch.attributes.get('commit').get('author_name'),
-            'date': branch.attributes.get('commit').get('authored_date'),
-            'file': commit[0].get('new_path'),  # NOTE: only one commit per branch
-            'diff': commit[0].get('diff')
-            }
+    for merge in merges:
+        commits = merge.commits()
+        branch_name = f"modification-{fold_name(merge.title).lower()}"
+        if(not branch_filter or branch_filter == branch_name):
+            for commit in commits:
+                diff = commit.diff()[-1]
+                modified[commit.attributes.get('short_id')] = {
+                    'id': commit.attributes.get('id'),
+                    'branch': f"RULE-{branch_name}",
+                    'title': commit.attributes.get('title'),
+                    'message': commit.attributes.get('message'),
+                    'author_name': commit.attributes.get('author_name'),
+                    'date': commit.attributes.get('authored_date'),
+                    'file': diff.get('new_path'),
+                    'diff': diff.get('diff')
+                    }
     response.json = modified
 
 
