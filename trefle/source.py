@@ -16,9 +16,9 @@ async def load_project():
 async def source_modified(project, data):
     filename = data["file_path"]
     content = data["content"]
-    branch = data["start_branch"] if "start_branch" in data.keys() else data["branch"]
+    reference = data["start_branch"] if "start_branch" in data.keys() else data["last_commit_id"]
     original_fingerprint = hash(
-        project.files.get(filename, ref=branch).decode().decode()
+        project.files.get(filename, ref=reference).decode().decode()
     )
     modified_fingerprint = hash(content)
     return original_fingerprint != modified_fingerprint
@@ -27,7 +27,7 @@ async def source_modified(project, data):
 async def submit_modification(data):
     project = await load_project()
     mr_title = data.get("title")
-    data = modification_data(data)
+    data = await modification_data(data)
 
     if not await source_modified(project, data):
         raise NotModifiedError(f"Content not modified in rule {data.get('branch')}")
@@ -43,12 +43,26 @@ async def submit_modification(data):
         return commit
 
 
+async def get_branch(commit_id, default_branch):
+    # if the branch name changed make sure to get the new one
+    project = await load_project()
+    if commit_id:
+        refs = project.commits.get(commit_id).refs('branch')
+        for ref in refs:
+            if ref.get('name') == default_branch:
+                return default_branch
+            else:
+                return ref.get('name')
+    else:
+        return default_branch
+
+
 async def create_commit(project, data):
-    branch = data["start_branch"] if "start_branch" in data.keys() else data["branch"]
+    reference = data["start_branch"] if "start_branch" in data.keys() else data["last_commit_id"]
     try:
-        _file = project.files.get(file_path=data["file_path"], ref=branch)
+        _file = project.files.get(file_path=data["file_path"], ref=reference)
     except Exception as err:
-        print(f"Source code loading failed on rule {data.get('branch')}: {err!r}")
+        print(f"Source code loading failed on rule {data['file_path']}: {err!r}")
 
     _file.content = data["content"]
 
@@ -114,12 +128,13 @@ def validate(func):
 
 
 @validate
-def modification_data(data):
-    branch = f"modification-{fold_name(data.get('title')).lower()}"
-    last_commit_id = data.get('commit_id', {})
+async def modification_data(data):
+    default_branch = f"RULE-modification-{fold_name(data.get('title')).lower()}"
+    last_commit_id = data.get('commit_id', '')
     start_branch = {"start_branch":  "master"} if not bool(last_commit_id) else {}
+    branch = await get_branch(last_commit_id, default_branch)
     data = {
-        "branch": f"RULE-{branch}",
+        "branch": branch,
         "commit_message": data.get("comment"),
         "author_email": data.get("author_email"),
         "author_name": data.get("author_name"),

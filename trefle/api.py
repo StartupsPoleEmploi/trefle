@@ -223,7 +223,12 @@ async def decode_lbf_url(request, response):
 
 @app.route("/authentification", ['POST'])
 async def authent(request, response):
-    data = request.json
+    # TODO check mail format
+    try:
+        data = request.json
+    except ValueError as err:
+        raise HttpError(HTTPStatus.UNPROCESSABLE_ENTITY, message=err)
+
     date = datetime.datetime.today().strftime('%y%m%d')
     authsuccess = False
     for authorized in AUTHORIZED:
@@ -239,7 +244,9 @@ async def authent(request, response):
                     break
                 else:
                     raise HttpError(HTTPStatus.UNAUTHORIZED,
-                                    'Non authorisé à modifier le fichier.')
+                                    f'Authorisé à modifier le fichier \'{afile}\' mais '
+                                    + 'non authorisé à modifier le fichier \''
+                                    + data.get('file') + '\'.')
             except re.error:
                 raise HttpError(HTTPStatus.UNPROCESSABLE_ENTITY,
                                 'Le motif de fichier autorisé est invalide.')
@@ -249,12 +256,12 @@ async def authent(request, response):
     if not bool(AUTHORIZED):
         raise ValueError("Il n'existe pas encore d'autorisations (fichier"
                          + " authorisations.csv vide ou inexistant).")
-    elif data.get('token') != atoken and not authsuccess:
-        raise HttpError(HTTPStatus.UNAUTHORIZED,
-                        'Le token n\'est pas reconnu.')
     elif data.get('token', '') == '' and not authsuccess:
         raise HttpError(HTTPStatus.UNAUTHORIZED,
                         'Email ou mot de passe non reconnu.')
+    elif data.get('token') != atoken and not authsuccess:
+        raise HttpError(HTTPStatus.UNAUTHORIZED,
+                        'Le token n\'est pas reconnu.')
     else:
         response.json = {'token': atoken}
         logger.debug(f"authentification succeed for {data.get('file')} modification")
