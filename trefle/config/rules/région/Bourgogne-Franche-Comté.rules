@@ -114,9 +114,10 @@ Si l'intitulé du financement est «DFL / SPRF Dispositif formation linguistique
     Et ce n'est pas un bénéficiaire de droit privé
         Alors le financement est éligible
         Et appliquer les règles «rémunérations applicables»
-        Et le texte des démarches vaut «»
-        Et le texte de description vaut «»
-
+        Et le texte des démarches vaut «Contactez votre conseiller référent: pôle emploi , mission locale, CAP emploi, SIAE, travailleurs sociaux, PLIE, PJJ, SPIP… ou se présenter spontanément auprès des prestataires retenus par la Région.»
+        Et le texte de description vaut «Favoriser l’insertion professionnelle des personnes rencontrant des difficultés de maîtrise de la langue française (Illettrisme, FLE, analphabétisme francophone) à travers un parcours comprenant un positionnement et une formation personnalisée et adaptée afin de développer leur maîtrise du français.»
+        Et le texte pour en savoir plus vaut «L’entrée sur le dispositif est ouverte à toute personne, en recherche d’emploi, inscrite ou non à Pole emploi, sortie du système scolaire visant une insertion professionnelle ainsi qu’aux salariés hors temps de travail.»
+.
 # TODO contenu texte et vérification règles
 # dispositif 9
 Si l'intitulé du financement est «Création reprise entreprise»
