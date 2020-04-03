@@ -31,6 +31,7 @@ async def simulate(data, financements):
         if key.startswith("financement"):
             del data[key]
 
+
 async def simulate_remuneration(data, remunerations):
     # Prepare context
     flatten(data)
