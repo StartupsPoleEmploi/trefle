@@ -124,7 +124,7 @@
         auth: {
           email: '',
           password: '',
-          file: this.rulePath
+          file: this.path
         },
         error_flags: {
           badUser: false,
