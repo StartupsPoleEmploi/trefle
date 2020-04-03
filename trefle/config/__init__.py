@@ -114,7 +114,9 @@ def load_authorisations(data):
 
 def load_rules(path):
     with path.open() as rules_file:
-        data = rules_file.read()
+        datas = rules_file.read().split('---\n', 1)
+        data = datas[0]
+        comment = data[1] if len(data) == 2 else ''
         # Don't use local path in rule id, so we can call it from a Pointer
         # value.
         id_ = path.name
@@ -124,6 +126,7 @@ def load_rules(path):
             "data": data,
             "path": str(path.relative_to(ROOT / "rules")),
             "name": path.stem,
+            "comment": comment,
         }
         try:
             return id_, Rule.load(data.splitlines(), id_)
