@@ -74,6 +74,23 @@ Si le financement est de type «POEC»
         Et le texte de la prise en charge vaut «Formation totalement financée.»
 
 
+# dispositif 6
+Si l'intitulé du financement est «Formation sanitaire et social»
+
+    Si la région de la formation vaut «Bourgogne-Franche-Comté»
+    Et les codes financeur de la formation contiennent «Conseil régional»
+    Et ce n'est pas un bénéficiaire de droit privé
+
+        Si le code CERTIFINFO de la formation vaut 54913
+        Ou le code CERTIFINFO de la formation vaut 54917
+        Ou le code CERTIFINFO de la formation vaut 54912
+            Alors le financement est éligible
+            Et appliquer les règles «rémunérations applicables»
+            Et le texte des démarches vaut « 1) Renseignez vous auprès de l'organisme de formation pour vérifier les conditions d'admission ⏎2) Retirer un dossier auprès de l'organisme concerné pour s'inscrire au concours.⏎3) Le projet doit être validé par le conseiller référent emploi.⏎Un délai de carence de 2 ans entre deux qualifications professionnelles obtenues est exigé.»
+            Et le texte de description vaut «Formation débouchant sur un diplôme d'État, prise en charge et rémunérée pour les demandeurs d'emploi par la Région et par Pôle emploi.»
+            Et le texte de la prise en charge vaut «Formation totalement prise en charge en dehors de frais d'inscription.»
+
+
 # dispositif 7
 Si l'intitulé du financement est «Formation sanitaire et social»
 
@@ -83,7 +100,6 @@ Si l'intitulé du financement est «Formation sanitaire et social»
 
         Si le code CERTIFINFO de la formation fait partie de [64144, 18734, 20103, 23715, 20120, 53277, 53865, 21097, 31062, 31056]
         ou le code CERTIFINFO de la formation vaut 73378 et le lieu de la formation est «Besançon»
-
             Alors le financement est éligible
             Et appliquer les règles «rémunérations applicables»
             Et le texte des démarches vaut « 1) Renseignez vous auprès de l'organisme de formation pour vérifier les conditions d'admission ⏎2) Retirer un dossier auprès de l'organisme concerné pour s'inscrire au concours.⏎3) Le projet doit être validé par le conseiller référent emploi.⏎Un délai de carence de 2 ans entre deux qualifications professionnelles obtenues est exigé.»
@@ -218,4 +234,5 @@ Je pense que les actions ne sont pas visibles actuellement. Elles pourraient le 
 Laurence : 
 Il faut prévoir de filtrer sur  le code certifinfo 83899, le territoire BFC et le financeur Région.
 Pour autant ces formations ne sont pas rémunérées. Y at-il nécessité de compléter les éléments suivants
+
 
