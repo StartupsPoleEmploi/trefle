@@ -131,7 +131,6 @@ Si l'intitulé du financement est «Création reprise entreprise»
         Et appliquer les règles «rémunérations applicables»
         Et le texte des démarches vaut «Contactez l’organisme en charge de la formation qui met en place un jury de sélection chargé de vérifier l’adéquation entre le candidat et son projet, la faisabilité économique du projet, le lieu d’implantation du projet sur le territoire régional.»
         Et le texte de description vaut «Permettre au porteur/porteuse d’un projet de création ou de reprise d’entreprise en Bourgogne-Franche-Comté de construire concrètement leurs projets tant dans la forme que dans le contenu grâce à l’acquisition de connaissances directement applicables à leurs projets, d’utiliser les outils nécessaires à la création ou à la reprise d’une entreprise, d’acquérir les compétences nécessaires à la bonne gestion et à la pérennité de la future entreprise.»
-
 # dispositif 8
 Si l'intitulé du financement est «Création reprise entreprise»
 
@@ -144,8 +143,9 @@ Si l'intitulé du financement est «Création reprise entreprise»
         Et appliquer les règles «rémunérations applicables»
         Et le texte des démarches vaut «Contacter l’organisme en charge de la formation la chambre régionale des métiers et de l’artisanat pour le programme proforeart et la chambre régionale d’agriculture pour le programme start agri»
         Et le texte de description vaut «Accompagner et sécuriser la création et la reprise d’installations agricoles ou d’entreprises artisanales hors cadre familial en permettant au créateur/repreneur de tester son projet en situation réelle tout en bénéficiant d’un accompagnement individuel et collectif.»
+ 
 
-# TODO contenu texte et vérification règles
+# TODO vérification règles
 # dispositif 2
 Si l'intitulé du financement est «Une formation pour moi c'est possible»
 
@@ -156,15 +156,16 @@ Si l'intitulé du financement est «Une formation pour moi c'est possible»
     Et le niveau est inférieur à IV # TODO revoir la formulation
         Alors le financement est éligible
         Et appliquer les règles «rémunérations applicables»
-        Et le texte des démarches vaut «»
-        Et le texte de description vaut «»
-
+        Et le texte des démarches vaut «Contactez votre conseiller référent : pôle emploi , mission locale, CAP emploi, SIAE, travailleurs sociaux, PLIE, PJJ, SPIP…
+»
+        Et le texte de description vaut «Donner la possibilité à toute personne n’ayant pas de projet professionnel ou ne connaissant pas la formation professionnelle d’identifier les étapes nécessaires à la réalisation d’un projet de formation professionnelle en permettant l’identification des compétences détenues, la levée d’éventuels freins à l’entrée dans un parcours de formation et d’envisager un parcours de formation afin de compléter ses compétences.»
+ Texte de description vaut : donner la possibilité à toute personne n’ayant pas de projet professionnel ou ne connaissant pas la formation professionnelle d’identifier les étapes nécessaires à la réalisation d’un projet de formation professionnelle en permettant l’identification des compétences détenues, la levée d’éventuels freins à l’entrée dans un parcours de formation et d’envisager un parcours de formation afin de compléter ses compétences.
+        Et le texte pour en savoir plus vaut «L’entrée sur le dispositif est ouverte à toute personne, en recherche d’emploi, inscrite ou non à Pole emploi, sortie du système scolaire visant une insertion professionnelle.»
 
 # TODO contenu texte et vérification règles
 # dispositif 12
 Si l'intitulé du financement est «VAE»
 
-    # TODO voir si toutes les formation VAE de la région peuvent bénéficier d'un financement sinon restraindre aux SIRET des organismes agréés pas la région
     Si la région de la formation vaut «Bourgogne-Franche-Comté»
     Et le CERTIFINFO vaut 83899
     Et c'est un demandeur d'emploi
@@ -209,4 +210,8 @@ Mettre les textes en savoirs plus
 
 -12 VAE
 Préciser : les éléments qui permettent d'identifier les dispositifs d'accompagnement VAE (Certifinfo 83899 + localisation) sinon la liste des organsime de formations éléigibles pour avoir les SIRETS.
+Je pense que les actions ne sont pas visibles actuellement. Elles pourraient le devenir ultérieurement.
+Laurence : 
+Il faut prévoir de filtrer sur  le code certifinfo 83899, le territoire BFC et le financeur Région.
+Pour autant ces formations ne sont pas rémunérées. Y at-il nécessité de compléter les éléments suivants
 
