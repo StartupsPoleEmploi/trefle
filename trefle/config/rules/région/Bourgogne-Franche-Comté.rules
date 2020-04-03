@@ -118,18 +118,31 @@ Si l'intitulé du financement est «DFL / SPRF Dispositif formation linguistique
         Et le texte de description vaut «»
 
 # TODO contenu texte et vérification règles
-# dispositif 8/9
+# dispositif 9
 Si l'intitulé du financement est «Création reprise entreprise»
 
     Si la région de la formation vaut «Bourgogne-Franche-Comté»
     Et les codes financeur de la formation contiennent «Conseil régional»
     Et le certifinfo vaut 93561
+    Et l'intitulé normé de la formation ne contient pas «PROFOREA»
     Et ce n'est pas un bénéficiaire de droit privé
         Alors le financement est éligible
         Et appliquer les règles «rémunérations applicables»
-        Et le texte des démarches vaut «»
-        Et le texte de description vaut «»
+        Et le texte des démarches vaut «Contactez l’organisme en charge de la formation qui met en place un jury de sélection chargé de vérifier l’adéquation entre le candidat et son projet, la faisabilité économique du projet, le lieu d’implantation du projet sur le territoire régional.»
+        Et le texte de description vaut «Permettre au porteur/porteuse d’un projet de création ou de reprise d’entreprise en Bourgogne-Franche-Comté de construire concrètement leurs projets tant dans la forme que dans le contenu grâce à l’acquisition de connaissances directement applicables à leurs projets, d’utiliser les outils nécessaires à la création ou à la reprise d’une entreprise, d’acquérir les compétences nécessaires à la bonne gestion et à la pérennité de la future entreprise.»
 
+# dispositif 8
+Si l'intitulé du financement est «Création reprise entreprise»
+
+    Si la région de la formation vaut «Bourgogne-Franche-Comté»
+    Et les codes financeur de la formation contiennent «Conseil régional»
+    Et le certifinfo vaut 93561
+    Et l'intitulé normé de la formation contient «PROFOREA»
+    Et ce n'est pas un bénéficiaire de droit privé
+        Alors le financement est éligible
+        Et appliquer les règles «rémunérations applicables»
+        Et le texte des démarches vaut «Contacter l’organisme en charge de la formation la chambre régionale des métiers et de l’artisanat pour le programme proforeart et la chambre régionale d’agriculture pour le programme start agri»
+        Et le texte de description vaut «Accompagner et sécuriser la création et la reprise d’installations agricoles ou d’entreprises artisanales hors cadre familial en permettant au créateur/repreneur de tester son projet en situation réelle tout en bénéficiant d’un accompagnement individuel et collectif.»
 
 # TODO contenu texte et vérification règles
 # dispositif 2
@@ -188,7 +201,11 @@ Quelle est la liste des diplomes préparés ?
 
 - 8 Création reprise entreprise hors PROFOREA /PROFOREART
 - 9 Création reprise entreprise PROFOREA /PROFOREART
-Différence entre non et PROFOREA.... est-ce qu'on peut ne faire qu'une seule règle ?
+Différenciation avec le titre
+Ajout des texte description et démarche
+Mettre les textes en savoirs plus
+
 
 -12 VAE
 Préciser : les éléments qui permettent d'identifier les dispositifs d'accompagnement VAE (Certifinfo 83899 + localisation) sinon la liste des organsime de formations éléigibles pour avoir les SIRETS.
+
