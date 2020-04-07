@@ -1,7 +1,14 @@
 Si les codes financeur de la formation contiennent «Conseil régional»
 
-    Si l'allocation du bénéficiaire est définie
-        Alors la rémunération applicable est égale au montant de l'allocation du bénéficiaire
+    #######################
+    # Aide complémentaire #
+    #######################
+    Si l'intitulé du financement n'est pas «VAE»
+    Et l'intitulé du financement n'est pas «Création reprise entreprise PROFOREA / START AGRI»
+    Et l'intitulé du financement n'est pas «Formation sanitaire et social niveau Bac et plus»
+        Alors l'aide complémentaire est éligible
+        Et le montant de l'aide complémentaire vaut 200
+
 
     #####################
     # Aide au transport #
@@ -48,9 +55,15 @@ Si les codes financeur de la formation contiennent «Conseil régional»
     ################
     # Rémunération #
     ################
+    #Si l'allocation du bénéficiaire est définie
+    Si le montant de l'allocation du bénéficiaire est définie
+        Alors la rémunération applicable est égale au montant de l'allocation du bénéficiaire
+
     Si ce n'est pas un bénéficiaire qui a déjà travaillé six mois sur une période de douze mois
     Et ce n'est pas un bénéficiaire qui a déjà travaillé douze mois sur une période de vingt-quatre mois
     Et ce n'est pas un bénéficiaire non salarié qui a travaillé pendant douze mois dont au moins six mois consécutifs dans les trois ans qui précèdent l'entrée en formation
+    #Et l'intitulé du financement n'est pas «Formation sanitaire et social»
+    Et l'intitulé du financement n'est pas «DFL / SPRF Dispositif formation linguistique»
 
         Si l'âge du bénéficiaire est inférieur à 18
         Et la rémunération applicable est inférieure à 455.01

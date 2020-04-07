@@ -228,7 +228,7 @@ Scénario: Mauvais CERTIFINFO pour Action collective PE Bourgogne
     Alors le financement «Action de formation collective financée par Pôle emploi» n'est pas proposé
 
 
-Scénario: Formation sanitaire et social
+Scénario: Formation sanitaire et social niveau infra Bac
     Soit un bénéficiaire et une formation
     Et c'est un demandeur d'emploi
     Et l'âge du bénéficiaire vaut 38
@@ -237,15 +237,54 @@ Scénario: Formation sanitaire et social
     Et le montant de l'allocation du bénéficiaire vaut 800.0
     Et la région du bénéficiaire vaut «Bourgogne-Franche-Comté»
     Et la région de la formation vaut «Bourgogne-Franche-Comté»
+    Et les codes financeur de la formation valent [«Conseil régional»]
     Et le code CERTIFINFO de la formation vaut 54913
     Et le SIRET de l'organisme de formation vaut 26890005700061
     Et c'est une formation ouverte aux bénéficiaires individuels
     Quand je demande un calcul de financement
-    Quand je sélectionne le financement «Formation sanitaire et social»
+    Quand je sélectionne le financement «Formation sanitaire et social niveau infra Bac»
     Alors la rémunération applicable vaut 800.0
+    Et une aide complémentaire est éligible
+    Et le montant de l'aide complémentaire vaut 200
+    Et une aide au transport est éligible
 
 
-Scénario: Mauvais SIRET pour formation sanitaire et social
+Scénario: Formation sanitaire et social niveau infra Bac  sans ARE
+    Soit un bénéficiaire et une formation
+    Et c'est un demandeur d'emploi
+    Et l'âge du bénéficiaire vaut 38
+    Et la durée en heures de la formation vaut 120
+    Et la région du bénéficiaire vaut «Bourgogne-Franche-Comté»
+    Et la région de la formation vaut «Bourgogne-Franche-Comté»
+    Et les codes financeur de la formation valent [«Conseil régional»]
+    Et le code CERTIFINFO de la formation vaut 54913
+    Et le SIRET de l'organisme de formation vaut 26890005700061
+    Et c'est une formation ouverte aux bénéficiaires individuels
+    Quand je demande un calcul de financement
+    Quand je sélectionne le financement «Formation sanitaire et social niveau infra Bac»
+    Alors la rémunération applicable vaut 652.18
+
+
+Scénario: Formation sanitaire et social niveau Bac et plus
+    Soit un bénéficiaire et une formation
+    Et c'est un demandeur d'emploi
+    Et l'âge du bénéficiaire vaut 38
+    Et la durée en heures de la formation vaut 120
+    Et l'allocation du bénéficiaire vaut «allocation d'aide au retour à l'emploi»
+    Et le montant de l'allocation du bénéficiaire vaut 800.0
+    Et la région du bénéficiaire vaut «Bourgogne-Franche-Comté»
+    Et la région de la formation vaut «Bourgogne-Franche-Comté»
+    Et les codes financeur de la formation valent [«Conseil régional»]
+    Et le code CERTIFINFO de la formation vaut 64144
+    Et le SIRET de l'organisme de formation vaut 26890005700061
+    Et c'est une formation ouverte aux bénéficiaires individuels
+    Quand je demande un calcul de financement
+    Quand je sélectionne le financement «Formation sanitaire et social niveau Bac et plus»
+    Alors la rémunération applicable vaut 800.0
+    Et aucune aide complémentaire n'est éligible
+
+
+Scénario: Mauvais SIRET pour formation sanitaire niveau infra Bac et social
     Soit un bénéficiaire et une formation
     Et c'est un demandeur d'emploi
     Et l'âge du bénéficiaire vaut 38
@@ -258,7 +297,7 @@ Scénario: Mauvais SIRET pour formation sanitaire et social
     Et le SIRET de l'organisme de formation vaut 26890005700063
     Et c'est une formation ouverte aux bénéficiaires individuels
     Quand je demande un calcul de financement
-    Alors le financement «Formation sanitaire et social» n'est pas proposé
+    Alors le financement «Formation sanitaire et social niveau infra Bac» n'est pas proposé
 
 Scénario: Cas nominal DAQ
     Soit un bénéficiaire et une formation
@@ -395,3 +434,47 @@ Scénario: Cas ESSFIMO
     Alors la rémunération applicable vaut 4000
     Et le plafond de prise en charge vaut 2300
     Et l'organisme à contacter est «ESSFIMO»
+
+Scénario: Cas nominal - une formation pour moi c est possible
+    Soit un bénéficiaire et une formation
+    Et c'est un demandeur d'emploi
+    Et l'âge du bénéficiaire vaut 38
+    Et le montant de l'allocation du bénéficiaire vaut 4000
+    Et le niveau scolaire du bénéficiaire vaut «VI»
+    Et les codes financeur de la formation valent [«Conseil régional»]
+    Et la durée en heures de la formation vaut 36
+    Et la liste des codes FORMACODE de la formation vaut [15084]
+    Et la région du bénéficiaire vaut «Bourgogne-Franche-Comté»
+    Et la région de la formation vaut «Bourgogne-Franche-Comté»
+    Quand je demande un calcul de financement
+    Quand je sélectionne le financement «Une formation pour moi c'est possible»
+    Alors la rémunération applicable vaut 4000
+
+Scénario: Cas sans montant d'allocation - une formation pour moi c est possible
+    Soit un bénéficiaire et une formation
+    Et c'est un demandeur d'emploi
+    Et l'âge du bénéficiaire vaut 38
+    Et le niveau scolaire du bénéficiaire vaut «VI»
+    Et les codes financeur de la formation valent [«Conseil régional»]
+    Et la durée en heures de la formation vaut 36
+    Et la liste des codes FORMACODE de la formation vaut [15084]
+    Et la région du bénéficiaire vaut «Bourgogne-Franche-Comté»
+    Et la région de la formation vaut «Bourgogne-Franche-Comté»
+    Quand je demande un calcul de financement
+    Quand je sélectionne le financement «Une formation pour moi c'est possible»
+    Alors la rémunération applicable vaut 652.18
+
+Scénario: Cas nominal - DFL / SPRF Dispositif formation linguistique
+    Soit un bénéficiaire et une formation
+    Et c'est un demandeur d'emploi
+    Et l'âge du bénéficiaire vaut 38
+    Et le niveau scolaire du bénéficiaire vaut «VI»
+    Et l'intitulé de la formation vaut «Dispositif de Formation Linguistique (DFL)»
+    Et les codes financeur de la formation valent [«Conseil régional»]
+    Et la durée en heures de la formation vaut 36
+    Et la liste des codes FORMACODE de la formation vaut [15084]
+    Et la région du bénéficiaire vaut «Bourgogne-Franche-Comté»
+    Et la région de la formation vaut «Bourgogne-Franche-Comté»
+    Quand je demande un calcul de financement
+    Quand je sélectionne le financement «DFL / SPRF Dispositif formation linguistique»
+    Alors la rémunération applicable vaut 0
