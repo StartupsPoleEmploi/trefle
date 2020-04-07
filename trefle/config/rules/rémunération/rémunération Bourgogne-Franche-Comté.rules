@@ -1,11 +1,13 @@
 Si les codes financeur de la formation contiennent «Conseil régional»
+Et l'intitulé du financement n'est pas «VAE»
+Et l'intitulé du financement n'est pas «Répondre rapidement aux besoins en recrutement des entreprises : Le FRAP (Fonds d’Appui Régional à la professionnalisation)»
+Et l'intitulé du financement n'est pas «Formation sanitaire et social niveau BAC et plus»
 
     #######################
     # Aide complémentaire #
     #######################
-    Si l'intitulé du financement n'est pas «VAE»
-    Et l'intitulé du financement n'est pas «Création reprise entreprise PROFOREA / START AGRI»
-    Et l'intitulé du financement n'est pas «Formation sanitaire et social niveau Bac et plus»
+    Si l'intitulé du financement n'est pas «Création reprise entreprise PROFOREA / START AGRI»
+    Et l'intitulé du financement n'est pas «Formation secrétaires de mairie en région BFC»
         Alors l'aide complémentaire est éligible
         Et le montant de l'aide complémentaire vaut 200
 
@@ -13,21 +15,22 @@ Si les codes financeur de la formation contiennent «Conseil régional»
     #####################
     # Aide au transport #
     #####################
-    Si c'est un travailleur handicapé
-        Alors l'aide au transport est éligible
-        Et le texte de l'aide au transport vaut «L'indemnité de transport est limitée à un aller/retour sur la durée de la formation.»
-    Si ce n'est pas un travailleur handicapé
-        Alors l'aide au transport est éligible
-        Et le montant de l'aide au transport vaut «98,79€ par mois (sous condition)»
-        Et le texte de l'aide au transport vaut «Si la distance vers le lieu de votre formation est supérieure ou égale à 16km. Alors vous pouvez bénéficier d'une aide au transport.»
-    # Ligne 45 46
-    Si c'est un bénéficiaire non salarié qui a travaillé pendant douze mois dont au moins six mois consécutifs dans les trois ans qui précèdent l'entrée en formation
-    Et ce n'est pas un parent isolé
-    Et ce n'est pas une mère de famille ayant au moins trois enfants
-    Et ce n'est pas une femme divorcée, veuve ou séparée judiciairement depuis moins de trois ans
-    Et ce n'est pas une femme seule et enceinte
-        Alors l'aide au transport est éligible
-        Et le texte de l'aide au transport vaut «L'indemnité de transport est limitée à un aller/retour sur la durée de la formation.»
+    Si l'intitulé du financement n'est pas «DFL / SPRF Dispositif formation linguistique»
+        Si c'est un travailleur handicapé
+            Alors l'aide au transport est éligible
+            Et le texte de l'aide au transport vaut «L'indemnité de transport est limitée à un aller/retour sur la durée de la formation.»
+        Si ce n'est pas un travailleur handicapé
+            Alors l'aide au transport est éligible
+            Et le montant de l'aide au transport vaut «98,79€ par mois (sous condition)»
+            Et le texte de l'aide au transport vaut «Si la distance vers le lieu de votre formation est supérieure ou égale à 16km. Alors vous pouvez bénéficier d'une aide au transport.»
+        # Ligne 45 46
+        Si c'est un bénéficiaire non salarié qui a travaillé pendant douze mois dont au moins six mois consécutifs dans les trois ans qui précèdent l'entrée en formation
+        Et ce n'est pas un parent isolé
+        Et ce n'est pas une mère de famille ayant au moins trois enfants
+        Et ce n'est pas une femme divorcée, veuve ou séparée judiciairement depuis moins de trois ans
+        Et ce n'est pas une femme seule et enceinte
+            Alors l'aide au transport est éligible
+            Et le texte de l'aide au transport vaut «L'indemnité de transport est limitée à un aller/retour sur la durée de la formation.»
 
     ########################
     # Aide à l'hébergement #
@@ -56,7 +59,6 @@ Si les codes financeur de la formation contiennent «Conseil régional»
     # Rémunération #
     ################
     Si l'intitulé du financement n'est pas «DFL / SPRF Dispositif formation linguistique»
-    Et l'intitulé du financement n'est pas «Formation sanitaire et social niveau Bac et plus»
 
         #Si l'allocation du bénéficiaire est définie
         Si le montant de l'allocation du bénéficiaire est définie
