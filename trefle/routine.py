@@ -324,6 +324,8 @@ def check_remuneration(context, remuneration):
     context["remuneration.intitule_remuneration"] = remuneration.intitule
     context["remuneration.tags"] = remuneration.tags
     context["financement.remuneration"] = 0  # not nullable for remuneration
+    if(not context.get("financement.intitule")):
+        context["financement.intitule"] = "none"  # no financement targeted by default
     rule_name = get_root_rule(context, remuneration)
     if not rule_name:
         return
