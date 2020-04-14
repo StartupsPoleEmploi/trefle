@@ -45,7 +45,7 @@
       <!------------------- RESULTATS --------------->
       <div v-else id="simulate-results">
         <div v-if="!isLoading" class="mt-5">
-          <SimulateurResultats :financements="financements" :scenario="scenario"></SimulateurResultats>
+          <SimulateurResultats :schema="schema" :financements="financements" :financements_eligibles="financements_eligibles" :scenario="scenario" :context="context"></SimulateurResultats>
         </div>
         <div v-else class="text-center loading-gif">
           <img src="./../assets/images/loading.gif" alt="loading...">
@@ -56,13 +56,13 @@
 </template>
 <script>
 
-  import SimulateurResultats from './SimulateurResultats.vue';
   import SimulateurStepFormation from './SimulateurStepFormation.vue';
   import SimulateurStepOne from './SimulateurStepOne.vue';
   import SimulateurStepTwo from './SimulateurStepTwo.vue';
   import SimulateurStepThree from './SimulateurStepThree.vue';
   import SimulateurStepFour from './SimulateurStepFour.vue';
   import SimulateurStepFive from './SimulateurStepFive';
+  import SimulateurResultats from './SimulateurResultats.vue';
 
 	export default {
     name: 'Simulateur',
@@ -83,7 +83,7 @@
         formationNotExists: null,
         intitule_formation : null,
         //flag permettant de detecter si la formation est eligible à un financement en cas de profil de salarié
-        financement__accessible_salarie_formation: null,
+        financement_accessible_salarie_formation: null,
         formation : {
           numero : null,
         },
@@ -146,12 +146,17 @@
             idcc: '',
             commune_entreprise_autocomplete: '',
         // TO DO input formation
-        financements : [],
+        financements: [],
+        financements_eligibles: [],
         scenario: '',
         resultats: false,
         isLoading: true,
         test: [],
+        schema: {},
 			}
+    },
+    mounted: function () {
+      this.loadSchema();
     },
     computed: {
       formation_step_completed: function () {
@@ -172,7 +177,7 @@
         if (this.step_one_completed) {
           if (this.birthdate.match(/^\s*(3[01]|[12][0-9]|0?[1-9])\/(1[012]|0?[1-9])\/((?:19|20)\d{2})\s*$/gi) != null) {
             if (this.situation_inscrit == 1) {
-              if (this.commune_beneficiaire != undefined && this.niveauscolaire != '') {
+              if (this.commune_beneficiaire != undefined && this.niveauscolaire != '' && this.niveauscolaire != '-') {
                 return true;
               }
             } else if (this.situation_inscrit == 2) {
@@ -287,6 +292,13 @@
 
     },
 		methods: {
+      loadSchema: function () {
+        fetch('/explore/schema')
+        .then((response) => response.json())
+        .then((data) => {
+          this.schema = data
+        })
+      },
       simulate: function () {
         this.isLoading = true;
         if (this.situation_inscrit == 1) {      
@@ -331,19 +343,22 @@
         if (this.situation_cpfconnu != 'cpfconnu') this.situation_creditheurescpf = null;
 
 
-        this.$http.post('/financement?eligible=true&context=1&explain=true&scenario=1', this.request).then(response => {
-          if(this.situation_cpfconnu=='cpfempty') {
-            if(this.objectIsEmpty(response.body)) {
-              this.financements = [];
-            } else {
-              this.financements = [];
-              for(var i=0; i<response.body.financements.length; i++){
-                if(response.body.financements[i].type_lbf!='cpf') this.financements.push(response.body.financements[i]);
+        this.$http.post('/financement?context=1&explain=true&scenario=1', this.request).then(response => {
+          if(this.objectIsEmpty(response.body) == false) {
+            for(var i=0; i<response.body.financements.length-1; i++) {
+              if(this.situation_cpfconnu=='cpfempty') {
+                if(response.body.financements[i].type_lbf!='cpf') {
+                  this.financements.push(response.body.financements[i])
+                  if (response.body.financements[i].eligible) this.financements_eligibles.push(response.body.financements[i]);
+                }
+              } else {
+                this.financements = response.body.financements;
+                if (response.body.financements[i].eligible) this.financements_eligibles.push(response.body.financements[i]);
               }
             }
-          } else this.financements = response.body.financements;
-
+          } 
           this.scenario = response.body.scenario;
+          this.context = response.body.context;
           this.isLoading = false;
         }).created
         this.resultats = true;

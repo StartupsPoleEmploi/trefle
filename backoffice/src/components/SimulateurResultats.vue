@@ -13,16 +13,16 @@
     <div class="row">
       <div class="col-md-12 text-center mb-3">
         <h3>
-          <span v-if="this.financements.length == 0">
+          <span v-if="this.financements_eligibles.length == 0">
             Aucun financement n'est disponible pour ce profil
           </span>
           <span v-else>
-            Nous avons trouvé {{this.financements.length }} financement<span v-if="this.financements.length > 1">s</span> pour réaliser votre formation
+            Nous avons trouvé {{this.financements_eligibles.length }} financement<span v-if="this.financements_eligibles.length > 1">s</span> pour réaliser votre formation
           </span>
         </h3>
       </div>
     </div>
-    <div v-for="(financement, id) in this.financements" :key="id" class="mb-5">
+    <div v-for="(financement, id) in this.financements_eligibles" :key="id" class="mb-5">
       <div id="financements" class="row">
         <div class="col-md-12 col-sm-12 droits">
           <div data-type="FORMATION FINANCEE" class="row">
@@ -90,28 +90,62 @@
       </div>
       <hr class="simulateur-horizontal-separator">
     </div>
-    <span data-toggle="collapse" data-target="#explain" aria-expanded="false" aria-controls="explain" style="cursor:pointer;">
-      <button class="btn main-button-primary">Voir le scénario de simulation</button>
-    </span>
-    <div id="explain" class="collapse">
-      <div class="row">
-        <div class="col-md-12">
-          <SimulateurExplain :scenario="scenario"></SimulateurExplain>
-        </div>
+    <div class="row">
+      <div class="col-md-4">
+        <span data-toggle="collapse" data-target="#scenario" aria-expanded="false" aria-controls="scenario" style="cursor:pointer;">
+          <button class="btn main-button-primary">Voir le scénario de simulation</button>
+        </span>
       </div>
-    </div>    
+      <div class="col-md-4">
+        <span data-toggle="collapse" data-target="#context" aria-expanded="false" aria-controls="context" style="cursor:pointer;">
+          <button class="btn main-button-primary">Voir le contexte de simulation</button>
+        </span>
+      </div>
+      <div class="col-md-4">
+        <span data-toggle="collapse" data-target="#explain" aria-expanded="false" aria-controls="explain" style="cursor:pointer;">
+          <button class="btn main-button-primary">Voir l'explication de simulation</button>
+        </span>
+      </div>
+      <div class="row">
+        <div id="scenario" class="collapse">
+          <div class="row">
+            <div class="col-md-12">
+              <SimulateurScenario :scenario="scenario"></SimulateurScenario>
+            </div>
+          </div>
+        </div>
+        <div id="context" class="collapse">
+          <div class="row">
+            <div class="col-md-12">
+              <SimulateurContext :schema="schema" :context="context"></SimulateurContext>
+            </div>
+          </div>
+        </div>
+        <div id="explain" class="collapse">
+          <div class="row">
+            <div class="col-md-12">
+              <SimulateurExplain :financements="financements"></SimulateurExplain>
+            </div>
+          </div>
+        </div>    
+      </div>
+    </div>
   </div>
 </template>
 <script>
 
+  import SimulateurScenario from './SimulateurScenario.vue';
   import SimulateurExplain from './SimulateurExplain.vue';
+  import SimulateurContext from './SimulateurContext.vue';
 
   export default {
     name: 'SimulateurResultats',
     components: {
+      SimulateurScenario,
       SimulateurExplain,
+      SimulateurContext
     },
-    props: ['financements', 'scenario', 'isLoading'],
+    props: ['schema','financements', 'financements_eligibles', 'scenario', 'context', 'isLoading'],
     methods: {
       newSimulation : function () {
         location.reload();
