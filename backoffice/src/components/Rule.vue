@@ -16,7 +16,7 @@
           </div>
           <div class="col-md-6 col-sm-12 col-xs-12">
             <h4 v-if="isEditMode" class="pull-right"><em>Modification de la règle</em></h4>
-            <input v-else v-b-modal.auth-modal type="button" class="main-button-primary btn pull-right" value="Soumettre une modification"/>
+            <input v-else-if="this.modifiedHashFlag | this.newModification" v-b-modal.auth-modal type="button" class="main-button-primary btn pull-right" value="Soumettre une modification"/>
             <!-- TODO: show gitlab link of modification if exists -->
           </div>
         </div>
@@ -46,7 +46,7 @@
               <button v-b-modal.mail-modal class="btn main-button-primary pull-right">Enregistrer</button>
             </div>
           </div>
-          <div class="row mb-3">
+          <div v-if="content" class="row mb-3">
             <label for="content"><u>Contenu de la règle</u></label>
             <textarea-autosize id="content" v-model="content" class="rule-modification-text" :class="{editErrorClass: error_flags.notModified }"></textarea-autosize>
             <span v-if="error_flags.notModified" class="text-danger font-weight-light">Aucune modification n'a été renseignée</span>
@@ -114,15 +114,17 @@
         modifiedHashFlag: decodeURI(window.location.hash).split('#').pop() == "modified",
         isLoading: true,
         ruleData: this.data,
-        modification_list: [],
+        modification_list: {},
+        commit_id: '',
         content: '',
         comment: '',
+        filename: 'trefle/config/rules/' + this.path,
         isEditMode: '',
         viewModification: false,
         auth: {
           email: '',
           password: '',
-          file: this.rulePath
+          file: this.path
         },
         error_flags: {
           badUser: false,
@@ -138,7 +140,7 @@
       this.updateLayout();
 
       window.addEventListener('popstate', () => {
-        this.updateLayout();             
+        this.updateLayout();
       })
     },
     computed: {
@@ -154,6 +156,9 @@
       ruleToEdit: function() {
         return this.ruleData;
       },
+      newModification: function() {
+        return Boolean(!this.modification_count)
+      }
     },
     methods: {
       updateLayout: function() {
@@ -172,12 +177,34 @@
           .get('/source/modified?branch='+encodeURIComponent(this.displayedName))
           .then(response => {
             this.modification_list = response.body;
+            if(Object.keys(this.modification_list).length) {
+              this.commit_id = this.modification_list[Object.keys(this.modification_list)[0]].id;
+            }
             this.isLoading = false;
             return true;
           }, response => {
             if(response.status == 500) this.modification_list = {};
             return false;
           })
+      },
+      getContentRule: function(){
+        if(this.commit_id) {
+          let data_param = {
+            'file': this.filename,
+            'commit_id': this.commit_id,
+          }
+          this.$http
+            .get('/source/file', {params: data_param})
+            .then(response => {
+              this.content = response.body;
+              return true;
+            }, response => {
+              if(response.status == 500) this.content = '';
+              return false;
+            })
+         } else {
+           this.content = this.ruleData
+         }
       },
       auth_to_edit: function () {
         this.error_flags.noUser = false;
@@ -195,7 +222,7 @@
           .then(() => {
             this.viewModification = false;
             this.$parent.collapsed = true;
-            this.content = this.ruleToEdit;
+            this.getContentRule();
             this.isEditMode=!this.isEditMode;
             this.$bvModal.hide("auth-modal");
           }, error => { 
@@ -237,14 +264,17 @@
           this.error_flags.noResume = true;
           return false;
         }
-        const postData = {
+        let commitId = (this.commit_id != '') ? {"commit_id" : this.commit_id} : {}
+        const prePostData = {
           author_email:this.auth.email,
           author_name:this.auth.email.split("@")[0],
           title: this.displayedName,
           comment: this.comment,
           content: this.content,
-          filename: 'trefle/config/rules/' + this.path
+          filename: this.filename
         }
+        let postData = {...prePostData, ...commitId}
+
 
         this.$http
           .post('/source/save', postData)

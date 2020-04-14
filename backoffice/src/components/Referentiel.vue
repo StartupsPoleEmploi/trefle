@@ -40,7 +40,7 @@
         <div v-if="modificationInProgress" class="mt-5">
           <h2>Modification en cours...</h2>
         </div>
-        <img src="./../assets/images/loading.gif" alt="loading...">        
+        <img src="./../assets/images/loading.gif" alt="loading...">
       </div>
     </div>
   </div>
@@ -61,6 +61,7 @@
         rules: [],
         isLoading: true,
         windowLocationHash: decodeURI(window.location.hash),
+        modificationInProgress: false,
         rerenderKey: 0,
         collapsed: false,
         currentRuleName: decodeURI(window.location.hash).split('#').pop() == "modified" ? decodeURI(window.location.hash).split('#')[1]:decodeURI(window.location.hash).split('#').pop(),

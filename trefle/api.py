@@ -223,7 +223,12 @@ async def decode_lbf_url(request, response):
 
 @app.route("/authentification", ['POST'])
 async def authent(request, response):
-    data = request.json
+    # TODO check mail format
+    try:
+        data = request.json
+    except ValueError as err:
+        raise HttpError(HTTPStatus.UNPROCESSABLE_ENTITY, message=err)
+
     date = datetime.datetime.today().strftime('%y%m%d')
     authsuccess = False
     for authorized in AUTHORIZED:
@@ -239,19 +244,24 @@ async def authent(request, response):
                     break
                 else:
                     raise HttpError(HTTPStatus.UNAUTHORIZED,
-                                    'Non authorisé à modifier le fichier.')
+                                    f'Authorisé à modifier le fichier \'{afile}\' mais '
+                                    + 'non authorisé à modifier le fichier \''
+                                    + data.get('file') + '\'.')
             except re.error:
                 raise HttpError(HTTPStatus.UNPROCESSABLE_ENTITY,
                                 'Le motif de fichier autorisé est invalide.')
         else:
             continue
 
-    if data.get('token') != atoken and not authsuccess:
-        raise HttpError(HTTPStatus.UNAUTHORIZED,
-                        'Le token n\'est pas reconnu.')
-    elif data.get('token','') == '' and not authsuccess:
+    if not bool(AUTHORIZED):
+        raise ValueError("Il n'existe pas encore d'autorisations (fichier"
+                         + " authorisations.csv vide ou inexistant).")
+    elif data.get('token', '') == '' and not authsuccess:
         raise HttpError(HTTPStatus.UNAUTHORIZED,
                         'Email ou mot de passe non reconnu.')
+    elif data.get('token') != atoken and not authsuccess:
+        raise HttpError(HTTPStatus.UNAUTHORIZED,
+                        'Le token n\'est pas reconnu.')
     else:
         response.json = {'token': atoken}
         logger.debug(f"authentification succeed for {data.get('file')} modification")
@@ -261,22 +271,39 @@ async def authent(request, response):
 async def source_modified(request, response):
     gl = gitlab.Gitlab('https://git.beta.pole-emploi.fr', private_token=GITLAB_TOKEN)
     project = gl.projects.get('open-source/trefle', lazy=True)
-    branch = f"modification-{fold_name(request.query.get('branch','')).lower()}"
-    branches = project.branches.list(search=f'^RULE-{branch}')
+    merges = project.mergerequests.list(state="opened", labels=["RULE"])
+    branch_filter = ''
+    if(request.query.get('branch', '')):
+        branch_filter = f"modification-{fold_name(request.query.get('branch','')).lower()}"
     modified = {}
-    for branch in branches:
-        commit = project.commits.get(branch.get_id()).diff()
-        modified[branch.attributes.get('commit').get('short_id')] = {
-            'id': branch.attributes.get('commit').get('id'),
-            'branch': branch.name,
-            'title': branch.attributes.get('commit').get('title'),
-            'message': branch.attributes.get('commit').get('message'),
-            'author_name': branch.attributes.get('commit').get('author_name'),
-            'date': branch.attributes.get('commit').get('authored_date'),
-            'file': commit[0].get('new_path'),  # NOTE: only one commit per branch
-            'diff': commit[0].get('diff')
-            }
+    for merge in merges:
+        commits = merge.commits()
+        branch_name = f"modification-{fold_name(merge.title).lower()}"
+        if(not branch_filter or branch_filter == branch_name):
+            for commit in commits:
+                diff = commit.diff()[-1]
+                modified[commit.attributes.get('short_id')] = {
+                    'id': commit.attributes.get('id'),
+                    'branch': f"RULE-{branch_name}",
+                    'title': commit.attributes.get('title'),
+                    'message': commit.attributes.get('message'),
+                    'author_name': commit.attributes.get('author_name'),
+                    'date': commit.attributes.get('authored_date'),
+                    'file': diff.get('new_path'),
+                    'diff': diff.get('diff')
+                    }
     response.json = modified
+
+
+@app.route("/source/file")
+async def source_file(request, response):
+    gl = gitlab.Gitlab('https://git.beta.pole-emploi.fr', private_token=GITLAB_TOKEN)
+    project = gl.projects.get('open-source/trefle', lazy=True)
+    commit_id = request.query.get('commit_id', '')
+    file_name = request.query.get('file', '')
+    if(commit_id and file_name):
+        response.json = project.files.get(file_path=file_name,
+                                          ref=commit_id).decode().decode()
 
 
 @app.route("/source/save", ['POST'])
@@ -290,44 +317,3 @@ async def source_save(request, response):
         raise HttpError(HTTPStatus.NOT_MODIFIED, message="Aucune modification apportée")
     except ValueError as err:
         raise HttpError(HTTPStatus.UNPROCESSABLE_ENTITY, message=err)
-    # now = datetime.datetime.today().strftime('%y%m%d%H%M')
-    # request_data = request.json
-    # commit_message = request_data.get('comment')
-    # filename = request_data.get('filename')
-    # content = request_data.get('content')
-    # mail = request_data.get('author_email')
-    # name = request_data.get('author_name')
-
-    # gl = gitlab.Gitlab('https://git.beta.pole-emploi.fr', private_token=GITLAB_TOKEN)
-    # project = gl.projects.get('open-source/trefle', lazy=True)
-    # branch = f"modification-{fold_name(request_data.get('title')).lower()}"
-
-    # original_fingerprint = hash(project.files.get(filename,
-    #                                               ref='master').decode().decode())
-    # modified_fingerprint = hash(content)
-    # is_modified = original_fingerprint != modified_fingerprint
-
-    # data = {
-    #     'branch': f'RULE-{branch}-{now}',
-    #     'start_branch': 'master',
-    #     'commit_message': commit_message,
-    #     'author_email': mail,
-    #     'author_name': name,
-    #     'actions': [
-    #         {
-    #             'action': 'update',
-    #             'file_path': filename,
-    #             'content': content,
-    #         }
-    #     ]
-    # }
-
-    # if not is_modified:
-    #     raise HttpError(HTTPStatus.NOT_MODIFIED, message="Aucune modification apportée")
-
-    # if mail in COMMIT_AUTHORIZED:
-    #     commit = project.commits.create(data)
-    # else:
-    #     raise HttpError(HTTPStatus.UNAUTHORIZED, 'Code vide ou invalide')
-
-    # response.json = commit.attributes
