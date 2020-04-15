@@ -37,7 +37,7 @@
         </ul>
       </div>
       <div v-show="isEditMode">
-        <div v-if="content">
+        <div v-if="content!=null">
           <div class="container">
             <div class="row mb-3">
               <div class="col-md-6 pl-0">
@@ -121,7 +121,7 @@
         ruleData: this.data,
         modification_list: {},
         commit_id: '',
-        content: '',
+        content: null,
         comment: '',
         filename: 'trefle/config/rules/' + this.path,
         isEditMode: '',
