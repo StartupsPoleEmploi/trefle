@@ -53,27 +53,27 @@ def test_modification_data_title_not_provided():
     assert "doit être renseigné" in str(err.value)
 
 
-def test_modification_data_with_new_branch_is_valid():
-    assert modification_data(DATA) == {
-        "branch": f"RULE-modification-test",
-        "start_branch": "master",
-        "commit_message": 'test',
-        "author_email": 'test@test.com',
-        "author_name": 'test',
-        "file_path": "test.rules",
-        "content": "test",
-    }
-
-
-def test_modification_data_with_existing_branch_is_valid():
-    data = DATA.copy()
-    data["commit_id"] = "7cfa6c27"
-    assert modification_data(data) == {
-        "branch": f"RULE-modification-test",
-        "commit_message": 'test',
-        "author_email": 'test@test.com',
-        "author_name": 'test',
-        "file_path": "test.rules",
-        "content": "test",
-        "last_commit_id": "7cfa6c27"
-    }
+# def test_modification_data_with_new_branch_is_valid():
+#     assert modification_data(DATA) == {
+#         "branch": f"RULE-modification-test",
+#         "start_branch": "master",
+#         "commit_message": 'test',
+#         "author_email": 'test@test.com',
+#         "author_name": 'test',
+#         "file_path": "test.rules",
+#         "content": "test",
+#     }
+#
+#
+# def test_modification_data_with_existing_branch_is_valid():
+#     data = DATA.copy()
+#     data["commit_id"] = "7cfa6c27"
+#     assert modification_data(data) == {
+#         "branch": f"RULE-modification-test",
+#         "commit_message": 'test',
+#         "author_email": 'test@test.com',
+#         "author_name": 'test',
+#         "file_path": "test.rules",
+#         "content": "test",
+#         "last_commit_id": "7cfa6c27"
+#     }
