@@ -37,7 +37,7 @@
         </ul>
       </div>
       <div v-show="isEditMode">
-        <div v-if="content">
+        <div v-if="content!=null">
           <div class="container">
             <div class="row mb-3">
               <div class="col-md-6 pl-0">
@@ -49,7 +49,7 @@
             </div>
             <div class="row mb-3">
               <label for="content"><u>Contenu de la règle</u></label>
-              <textarea-autosize id="content" v-model="content" class="rule-modification-text" :class="{editErrorClass: error_flags.notModified }"></textarea-autosize>
+              <textarea-autosize id="content" v-model="content" class="rule-modification-text" :class="{editErrorClass: error_flags.notModified }" autofocus></textarea-autosize>
               <span v-if="error_flags.notModified" class="text-danger font-weight-light">Aucune modification n'a été renseignée</span>
             </div>
             <div class="row mb-3">
@@ -121,7 +121,7 @@
         ruleData: this.data,
         modification_list: {},
         commit_id: '',
-        content: '',
+        content: null,
         comment: '',
         filename: 'trefle/config/rules/' + this.path,
         isEditMode: '',
@@ -251,9 +251,13 @@
       closeEdit: function () {
         this.content = this.ruleToEdit;
         this.comment = "";
-        this.auth = "";
+        this.auth = {
+          email: '',
+          password: '',
+          file: this.path
+        },
         this.isEditMode=!this.isEditMode;
-        this.viewModification = true;
+        if(this.modification_count!=0) this.viewModification = true;
         this.error_flags = {
           badUser: false,
           notModified: false,
