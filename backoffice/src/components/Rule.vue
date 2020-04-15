@@ -251,7 +251,11 @@
       closeEdit: function () {
         this.content = this.ruleToEdit;
         this.comment = "";
-        this.auth = "";
+        this.auth = {
+          email: '',
+          password: '',
+          file: this.path
+        },
         this.isEditMode=!this.isEditMode;
         this.viewModification = true;
         this.error_flags = {
