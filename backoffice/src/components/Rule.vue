@@ -49,7 +49,7 @@
             </div>
             <div class="row mb-3">
               <label for="content"><u>Contenu de la règle</u></label>
-              <textarea-autosize id="content" v-model="content" class="rule-modification-text" :class="{editErrorClass: error_flags.notModified }" autofocus></textarea-autosize>
+              <textarea-autosize id="content" v-model="content" class="rule-modification-text" :class="{editErrorClass: error_flags.notModified }" v-focus v-on:click="this.el.focus();"/>
               <span v-if="error_flags.notModified" class="text-danger font-weight-light">Aucune modification n'a été renseignée</span>
             </div>
             <div class="row mb-3">
@@ -372,11 +372,19 @@
         this.isEditMode = false;
       },
       displayList: function () {
-        this.viewModification = false;
-        this.$parent.collapsed = true;
-        this.isEditMode = false;
+        this.closeEdit();
       }
     },
+    directives: {
+      focus: {
+        inserted: function (el) {
+          el.focus();
+        },
+        componentUpdated: function (el) {
+          el.focus();
+        },
+      }
+    }
   }
 </script>
 <style scoped>
