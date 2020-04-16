@@ -37,28 +37,33 @@
         </ul>
       </div>
       <div v-show="isEditMode">
-        <div class="container">
-          <div class="row mb-3">
-            <div class="col-md-6 pl-0">
-              <input @click="closeEdit" type="button" class="btn btn-outline-danger pull-left" value="Annuler"/>
+        <div v-if="content!=null">
+          <div class="container">
+            <div class="row mb-3">
+              <div class="col-md-6 pl-0">
+                <input @click="closeEdit" type="button" class="btn btn-outline-danger pull-left" value="Annuler"/>
+              </div>
+              <div class="col-md-6 pr-0">
+                <button v-b-modal.mail-modal class="btn main-button-primary pull-right">Enregistrer</button>
+              </div>
             </div>
-            <div class="col-md-6 pr-0">
-              <button v-b-modal.mail-modal class="btn main-button-primary pull-right">Enregistrer</button>
+            <div class="row mb-3">
+              <label for="content"><u>Contenu de la règle</u></label>
+              <textarea-autosize id="content" v-model="content" class="rule-modification-text" :class="{editErrorClass: error_flags.notModified }" autofocus></textarea-autosize>
+              <span v-if="error_flags.notModified" class="text-danger font-weight-light">Aucune modification n'a été renseignée</span>
+            </div>
+            <div class="row mb-3">
+              <div class="col-md-6 pl-0">
+                <input @click="closeEdit" type="button" class="btn btn-outline-danger pull-left" value="Annuler"/>
+              </div>
+              <div class="col-md-6 pr-0">
+                <button v-b-modal.mail-modal class="btn main-button-primary pull-right">Enregistrer</button>
+              </div>
             </div>
           </div>
-          <div v-if="content" class="row mb-3">
-            <label for="content"><u>Contenu de la règle</u></label>
-            <textarea-autosize id="content" v-model="content" class="rule-modification-text" :class="{editErrorClass: error_flags.notModified }"></textarea-autosize>
-            <span v-if="error_flags.notModified" class="text-danger font-weight-light">Aucune modification n'a été renseignée</span>
-          </div>
-          <div class="row mb-3">
-            <div class="col-md-6 pl-0">
-              <input @click="closeEdit" type="button" class="btn btn-outline-danger pull-left" value="Annuler"/>
-            </div>
-            <div class="col-md-6 pr-0">
-              <button v-b-modal.mail-modal class="btn main-button-primary pull-right">Enregistrer</button>
-            </div>
-          </div>
+        </div>
+        <div v-else class="text-center loading-gif">
+          <img src="./../assets/images/loading.gif" alt="loading...">
         </div>
         <b-modal id="auth-modal" title="Authentifiez-vous pour soumettre une modification">
           <label for="contributor_email" class="pb-2"><u>Votre email</u> *</label><br>
@@ -116,7 +121,7 @@
         ruleData: this.data,
         modification_list: {},
         commit_id: '',
-        content: '',
+        content: null,
         comment: '',
         filename: 'trefle/config/rules/' + this.path,
         isEditMode: '',
@@ -246,8 +251,13 @@
       closeEdit: function () {
         this.content = this.ruleToEdit;
         this.comment = "";
-        this.auth = "";
+        this.auth = {
+          email: '',
+          password: '',
+          file: this.path
+        },
         this.isEditMode=!this.isEditMode;
+        if(this.modification_count!=0) this.viewModification = true;
         this.error_flags = {
           badUser: false,
           notModified: false,

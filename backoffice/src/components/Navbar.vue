@@ -58,7 +58,7 @@
           </router-link>
         </li>-->
         <li class="nav-item">
-          <router-link to="/outils" name="outils" class="nav-link">            
+          <router-link to="/outils" name="outils" target="_blank" class="nav-link">            
             <svg class="nav-icon">
               <use xlink:href="#outils_icon" />
             </svg>
