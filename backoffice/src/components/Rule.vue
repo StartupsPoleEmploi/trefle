@@ -230,7 +230,7 @@
         this.error_flags.noUser = false;
         this.error_flags.noPass = false;
 
-        if (this.auth.email== '' ) his.error_flags.noUser = true;
+        if (this.auth.email== '' ) this.error_flags.noUser = true;
         if (this.auth.password== '' ) {
           this.error_flags.noPass = true;
           return false;
