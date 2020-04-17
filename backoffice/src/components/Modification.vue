@@ -10,7 +10,7 @@
       </span>
       <span v-if="!this.toggled" @click="toggled = !toggled" style="cursor:pointer">
         <h5>
-          {{ modification.title }} - {{ modification.date | moment("DD/MM/YYYY") }} 
+          {{ modification.title }} - {{ modification.date | moment("DD/MM/YYYY") }}
           <h6 class="text-muted font-weight-light" style="display:inline">({{ modification.date | moment("from", "now") }})</h6>
           &nbsp;
           <span class="fas fa-chevron-down modification-menu-chevron fa-sm"></span>
@@ -19,17 +19,16 @@
     </div>
     <div id="modification-content">
       <div v-show="this.toggled" class="ml-5">
-        <div v-html="prettyHtml" /> 
+        <div v-html="prettyHtml" />
       </div>
     </div>
-  </div>  
+  </div>
 </template>
 <script>
   import * as Diff2Html from 'diff2html';
   import 'diff2html/bundles/css/diff2html.min.css';
 
   export default {
-    
     name: 'Modification',
     props: ['modification'],
     data: function() {
@@ -47,7 +46,7 @@
         return Diff2Html.html(this.formated_diff, {
           matching: 'lines',
           outputFormat: 'side-by-side',
-          rawTemplates: { 
+          rawTemplates: {
             'tag-file-changed': '<span class="d2h-tag d2h-changed d2h-changed-tag">MODIFIÉ</span>',
             'tag-file-deleted': '<span class="d2h-tag d2h-deleted d2h-deleted-tag">SUPPRIMÉ</span>',
             'tag-file-renamed': '<span class="d2h-tag d2h-moved d2h-moved-tag">RENOMMÉ</span>',
@@ -73,5 +72,4 @@
     width: 100%;
     position:relative;
   }
-
 </style>

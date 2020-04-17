@@ -118,7 +118,7 @@
                 </div>
               </div>
               <div class="row">
-                <div class="col-md-12 autocomplete">           
+                <div class="col-md-12 autocomplete">
                   <b-form-input v-model="commune_beneficiaire_autocomplete" list="commune-beneficiaire-list" placeholder="Rentrez votre code postal"></b-form-input>
                   <datalist id="commune-beneficiaire-list">
                     <option v-for="commune in this.commune_beneficiaire_list" :key="commune.codeCommune">
@@ -185,10 +185,10 @@
           <div v-if="situation_creditheurescpf != ''" class="row">
             <div class="col-md-12 group-indent1">
               <span id="situation_cpfconnu_label" class="text-muted">
-                Attention : assurez-vous bien d'avoir 
+                Attention : assurez-vous bien d'avoir
                 <a href="https://www.moncompteformation.gouv.fr/espace-prive/html/#/compte-utilisateur/connexion" target="_blank" class="text-muted" rel="noopener noreferrer">
                   <u>activé votre Compte Personnel Formation</u>
-                </a> 
+                </a>
                 pour pouvoir mobiliser vos heures CPF
               </span>
             </div>
@@ -202,7 +202,7 @@
           <div v-if="situation_cpfconnu == 'cpfinconnu'" class="row">
             <div class="col-md-12">
               <span id="situation_creditheurescpfconnu_label" class="text-muted">
-                Activez votre 
+                Activez votre
                 <a href="https://www.moncompteformation.gouv.fr/espace-prive/html/#/compte-utilisateur/connexion" target="_blank" class="text-muted" rel="noopener noreferrer">
                   <u>Compte Personnel Formation (CPF)</u>
                 </a>.
@@ -418,7 +418,7 @@
                   Vous avez déjà travaillé pendant 6 mois sur une période de 12 mois ou pendant 12 mois sur 24 mois
                 </label>
               </div>
-            </div>      
+            </div>
           </div>
         </div>
         <hr v-if="step_four_completed" class="simulateur-horizontal-separator">
@@ -478,7 +478,7 @@
                 <label for="situation_vaepartiellemoins5ans" class="label-after">Vous souhaitez terminer cette formation pour laquelle vous avez obtenu, il y a moins de 5 ans, une certification partielle par un jury VAE</label>
               </div>
             </div>
-          </div>        
+          </div>
           <div v-if="situation_inscrit == 2">
             <div class="row">
               <div class="col-md-12">
@@ -506,12 +506,12 @@
                 <button class="btn main-button mr-5" v-on:click="searchIDCC()">Chercher</button>
                 <strong v-if="idccNotExists===false">{{ intitule_idcc }}</strong>
                 <span v-if="idccNotExists===true" style="color:red">Aucune convention collective trouvée avec l'identifiant {{ id_idcc }} </span><br>
-                
+
               </div>
             </div>
             <div class="row">
               <div class="col-md-12 autocomplete">
-                <label for="commune_entreprise">Commune de votre entreprise</label>&nbsp;          
+                <label for="commune_entreprise">Commune de votre entreprise</label>&nbsp;
                 <b-form-input v-model="commune_entreprise_autocomplete" list="commune-entreprise-list" placeholder="Rentrez le code postal de votre entreprise"></b-form-input>
                 <datalist id="commune-entreprise-list" v-show="autocomplete_entreprise_opened">
                   <option v-for="commune in this.commune_entreprise_list" :key="commune.codeCommune">
@@ -581,7 +581,7 @@
                         </div>
                       </div>
                     </div>
-                  </div>                
+                  </div>
                   <div class="col-md-4 block-cout-remu">
                     <div class="mt-3">
                       <div class="cout"></div>
@@ -667,7 +667,7 @@
             //cdi
             experienceannee: '',
             ancienneteentrepriseactuelle: '',
-        
+
           // DE
           situation_contratapprentissage: false,
             // apprentissage
@@ -763,7 +763,7 @@
             if (this.situation_cpfconnu == 'cpfconnu') {
               if (this.situation_creditheurescpf) return true;
             } else return true;
-          } 
+          }
         }
         return false
       },
@@ -774,9 +774,9 @@
             if (this.contrat == 'cdd') {
               if (this.moistravailleencdd != '' && this.experience != '') return true;
             } else if (this.contrat == 'cdi') {
-              if (this.ancienneteentrepriseactuelle != '' && this.experienceannee != '') return true;              
+              if (this.ancienneteentrepriseactuelle != '' && this.experienceannee != '') return true;
             }
-          } 
+          }
         }
         return false
       },
@@ -792,8 +792,8 @@
       age_beneficiaire : function () {
         if(this.birthdate.match(/^\s*(3[01]|[12][0-9]|0?[1-9])\/(1[012]|0?[1-9])\/((?:19|20)\d{2})\s*$/gi) == null) {
           return null;
-        } else { 
-         // birthday is a date            
+        } else {
+         // birthday is a date
           var today = new Date(),
           birthdate_reformat = new Date(this.birthdate.replace(/(\d{2})[-/](\d{2})[-/](\d+)/, "$2/$1/$3"));
           if(today.getMonth - birthdate_reformat.getMonth < 0) {
@@ -801,7 +801,7 @@
           } else if(today.getMonth() - birthdate_reformat.getMonth() == 0) {
             if (today.getDate() - birthdate_reformat.getDate() < 0) {
               return today.getFullYear() - birthdate_reformat.getFullYear() - 1;
-            } 
+            }
           }
           return today.getFullYear() - birthdate_reformat.getFullYear();
         }
@@ -863,7 +863,7 @@
               idcc: this.idcc,
               commune: this.commune_entreprise,
               opco: null,
-              opacif: null             
+              opacif: null
             }
           },
           formation : this.formation
@@ -873,41 +873,50 @@
     },
 		methods: {
 			searchCatalogue: function () {
-        this.$http.get('/explore/catalog?id='+this.id_formation).then(response => {
-          this.formation.numero = response.body.uid;
-          this.intitule_formation  = response.status != 200 ? null:response.body.intitule;
-          if(response.status != 200) {
-            this.financement__accessible_salarie_formation = null
-          } else {
-            for(var i=0; i<response.body.sessions.length; i++) {
-              var session = response.body.sessions[i]
-              for (var j=0; j<session.financeurs.length; j++) {
-                this.financement__accessible_salarie_formation = (session.financeurs[j].code == 0 || session.financeurs[j].code == 5 || session.financeurs[j].code == 10)
+        this.$http
+          .get('/explore/catalog?id='+this.id_formation)
+          .then(response => {
+            this.formation.numero = response.body.uid;
+            this.intitule_formation  = response.status != 200 ? null:response.body.intitule;
+            if(response.status != 200) {
+              this.financement__accessible_salarie_formation = null
+            } else {
+              for(var i=0; i<response.body.sessions.length; i++) {
+                var session = response.body.sessions[i]
+                for (var j=0; j<session.financeurs.length; j++) {
+                  this.financement__accessible_salarie_formation = (session.financeurs[j].code == 0 || session.financeurs[j].code == 5 || session.financeurs[j].code == 10)
+                }
               }
             }
-          }
-          this.formationNotExists = response.status != 200;
-        }, (response) => {
-          this.formationNotExists = response.status != 200;
-        }).created;
-      },      
+            this.formationNotExists = response.status != 200;
+          }, (response) => {
+            this.formationNotExists = response.status != 200;
+          })
+          .created;
+      },
 			searchIDCC: function () {
-        this.$http.get('/idcc?q='+this.id_idcc).then(response => {
-          this.idcc = response.body;
-          this.intitule_idcc = response.status != 200 ? null:response.body['convention collective'];
-          this.idccNotExists = response.status != 200;
-        }, (response) => {
-          this.idccNotExists = response.status != 200;
-        }).created;
-      },      
+        this.$http
+          .get('/idcc?q='+this.id_idcc)
+          .then(response => {
+            this.idcc = response.body;
+            this.intitule_idcc = response.status != 200 ? null:response.body['convention collective'];
+            this.idccNotExists = response.status != 200;
+          }, (response) => {
+            this.idccNotExists = response.status != 200;
+          })
+          .created;
+      },
 			searchNAF: function () {
-        this.$http.get('/naf?q='+this.id_naf).then(response => {
-          this.naf = response.body.code;
-          this.intitule_naf = this.objectIsEmpty(response.body) ? null:response.body[this.id_naf].name;
-          this.nafNotExists = this.objectIsEmpty(response.body);
-        }, (response) => {
-          this.nafNotExists = response.status != 200;
-        }).created;
+        this.$http
+          .get('/naf?q='+this.id_naf)
+          .then(response => {
+            this.naf = response.body.code;
+            this.intitule_naf = this.objectIsEmpty(response.body) ? null:response.body[this.id_naf].name;
+            this.nafNotExists = this.objectIsEmpty(response.body);
+          }, (response) => {
+            this.nafNotExists = response.status != 200;
+          })
+          .created;
       },
       objectIsEmpty: function (obj) {
         for(var key in obj) {
@@ -921,11 +930,11 @@
       },
       simulate: function () {
         this.isLoading = true;
-        if (this.situation_inscrit == 1) {      
+        if (this.situation_inscrit == 1) {
           if (this.allocation_type == 'non') {
             this.allocation_type = null;
             this.allocation_dateend = null;
-          }   
+          }
           this.salaire = null;
           this.moistravailleencdd = null;
           this.ancienneteentrepriseactuelle = null;
@@ -1006,7 +1015,6 @@
     width: 100%;
     position:relative;
   }
-
   .autocomplete {
     /*the container must be positioned relative:*/
     position: relative;
@@ -1023,19 +1031,16 @@
     left: 0;
     right: 0;
   }
-
   .autocomplete-items div {
     padding: 10px;
     cursor: pointer;
-    background-color: #fff; 
-    border-bottom: 1px solid #d4d4d4; 
+    background-color: #fff;
+    border-bottom: 1px solid #d4d4d4;
   }
-
   .autocomplete-items div:hover {
     /*when hovering an item:*/
-    background-color: #e9e9e9; 
+    background-color: #e9e9e9;
   }
- 
   .block-description {
     background-color: #F1F1F1;
     border-radius: 5px 0px 0px 5px;
@@ -1044,13 +1049,11 @@
     background-color: #CAD6E6;
     border-radius: 0px 5px 5px 0px;
   }
-
   .form-step {
     padding-right: 1vw;
     padding-left: 2vw;
     transition: padding 0.2s 0s ease;
   }
-
   .step_completed_class {
     background-color: rgba(153, 255, 102, 0.1);
     padding-right: 3vw;
@@ -1060,13 +1063,10 @@
     border-radius: 10px;
     transition: padding 0.2s 0s linear;
   }
-
   .input_format_error {
     background-color: rgba(215, 44, 44, 0.2);
   }
-
   .input_format_valid {
     background-color: rgba(153, 255, 102, 0.1);
   }
-
 </style>

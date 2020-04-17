@@ -142,13 +142,10 @@
         },
       }
     },
-    created: function() {
-      this.loadInProgressModification();
-      this.updateLayout();
-
-      window.addEventListener('popstate', () => {
-        this.updateLayout();
-      })
+    watch: {
+      isEditMode: function () {
+        this.$parent.isEditMode=this.isEditMode;
+      }
     },
     computed: {
       displayedName: function () {
@@ -167,10 +164,22 @@
         return Boolean(!this.modification_count)
       }
     },
-    watch: {
-      isEditMode: function () {
-        this.$parent.isEditMode=this.isEditMode;
+    directives: {
+      focus: {
+        inserted: function (el) {
+          el.focus();
+        },
+        componentUpdated: function (el) {
+          el.focus();
+        },
       }
+    },
+    created: function() {
+      this.loadInProgressModification();
+      this.updateLayout();
+      window.addEventListener('popstate', () => {
+        this.updateLayout();
+      })
     },
     methods: {
       preventScrolling: function (e) {
@@ -192,9 +201,7 @@
           .get('/source/modified?branch='+encodeURIComponent(this.displayedName))
           .then(response => {
             this.modification_list = response.body;
-            if(Object.keys(this.modification_list).length) {
-              this.commit_id = this.modification_list[Object.keys(this.modification_list)[0]].id;
-            }
+            if(Object.keys(this.modification_list).length) this.commit_id = this.modification_list[Object.keys(this.modification_list)[0]].id;
             this.isLoading = false;
             return true;
           }, response => {
@@ -217,17 +224,13 @@
               if(response.status == 500) this.content = '';
               return false;
             })
-         } else {
-           this.content = this.ruleData
-         }
+         } else this.content = this.ruleData;
       },
       auth_to_edit: function () {
         this.error_flags.noUser = false;
         this.error_flags.noPass = false;
 
-        if (this.auth.email== '' ) {
-          this.error_flags.noUser = true;
-        }
+        if (this.auth.email== '' ) this.error_flags.noUser = true;
         if (this.auth.password== '' ) {
           this.error_flags.noPass = true;
           return false;
@@ -307,7 +310,7 @@
             this.$bvModal.hide("mail-modal");
             return this.isEditMode=!this.isEditMode
           }, error => {
-              if(error.status == 304){
+              if(error.status == 304) {
                 this.error_flags.notModified = true;
                 this.error_flags.noUser = false;
                 this.error_flags.noResume = false;
@@ -332,7 +335,8 @@
                 this.error_flags.notModified = false;
               }
               return false;
-          }).then(()=> {
+          })
+          .then(()=> {
             this.$parent.isLoading = false;
             this.$parent.modificationInProgress = false;
             location.reload();
@@ -385,16 +389,6 @@
         this.closeEdit();
       }
     },
-    directives: {
-      focus: {
-        inserted: function (el) {
-          el.focus();
-        },
-        componentUpdated: function (el) {
-          el.focus();
-        },
-      }
-    }
   }
 </script>
 <style scoped>
