@@ -5,7 +5,7 @@
         <div id="referentiel-main-row">
           <div class="container ml-5 mr-2">
             <div class="row">
-              <div :class="classCollapsedMenu">
+              <div v-if="!isEditMode" :class="classCollapsedMenu">
                   <div class="mb-3 pull-right">
                     <button @click="collapsed = !collapsed" type="button" class="btn main-button mb-5">
                       <span v-show="collapsed"><span class="chevron-toggle">&#8594;</span>  Ouvrir le panneau</span>
@@ -66,6 +66,7 @@
         collapsed: false,
         currentRuleName: decodeURI(window.location.hash).split('#').pop() == "modified" ? decodeURI(window.location.hash).split('#')[1]:decodeURI(window.location.hash).split('#').pop(),
         inProgressModification : false,
+        isEditMode: false,
       }
     },
     computed: {
