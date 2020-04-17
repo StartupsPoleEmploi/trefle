@@ -8,7 +8,18 @@
         </div>
         <div class="row mt-3">
           <div class="col-md-12">
-            <p>Vide, quantum, inquam, fallare, Torquate. oratio me istius philosophi non offendit; nam et complectitur verbis, quod vult, et dicit plane, quod intellegam; et tamen ego a philosopho, si afferat eloquentiam, non asperner, si non habeat, non admodum flagitem. re mihi non aeque satisfacit, et quidem locis pluribus. sed quot homines, tot sententiae; falli igitur possumus.</p>
+            <p>
+              Trèfle est un outil dédié aux dispositifs de financement des formations.
+            </p>
+            <p>
+              Il recense région par région tous les dispositifs applicables.
+            </p>
+            <p>
+              Trèfle vous permet de consulter ou de modifier un dispositif de financement existant.
+            </p>
+            <p>
+              Les règles enregistrées dans Trèfle alimentent le simulateur de financement de formation disponible sur <a href="https://labonneformation.pole-emploi.fr/" target="_blank">La Bonne Formation</a> et <a href="https://candidat.pole-emploi.fr/formations/accueil" target="_blank">Pole Emploi.fr</a>
+            </p>
           </div>
         </div>
         <div class="row mt-3">
@@ -21,7 +32,7 @@
             <div class="col-md-8 col-sm-12">
               <div id="modification_list">
                 <div v-if="selected_rule">
-                  <h5> Modification(s) de la règle en cours de validation {{ selected_rule }} ({{ Object.keys(selected_modification_list).length }}) </h5> 
+                  <h5> Modification(s) de la règle en cours de validation {{ selected_rule }} ({{ Object.keys(selected_modification_list).length }}) </h5>
                   <ul v-for="modification in selected_modification_list" :key="modification.id" class="dash">
                     <li>
                       <a :href="'referentiel#'+selected_rule+'.rules#modified'"> {{ modification.title }} </a>
@@ -67,7 +78,7 @@
     beforeMount: function() {
       this.loadInProgressModification();
     },
-    methods: {      
+    methods: {
       loadInProgressModification: function () {
         this.$http
           .get('/source/modified')
@@ -121,7 +132,7 @@
               }
               return acc;
             }, {}))
-        
+
         return {
           labels: keys,
           datasets: [
@@ -140,5 +151,5 @@
     width: 20rem;
     height: 20rem;
   }
-  
+
 </style>
