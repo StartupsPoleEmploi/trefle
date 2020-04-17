@@ -13,22 +13,24 @@
               <div id="financement-create-financement" class="col-md-6 col-sm-12 col-xs-12 my-auto">
                 <div class="form-inline pull-right">
                   <div class="form-group mx-sm-3 mb-2">
-                    <input type="button" href="#" class="btn main-button form-control" value="Créer un financement"  disabled />
+                    <!--<input type="button" href="#" class="btn main-button form-control" value="Créer un financement"  disabled />-->
                   </div>
                 </div>
               </div>
             </div>
+            <!--
             <div class="row">
               <div id="financement-last-update" class="col-md-12">
                 Dernière mise à jour le __ à __
               </div>
             </div>
+            -->
           </div>
         </div>
         <hr class="financement-horizontal-separator">
         <div id="financement-filter-row" class="container">
           <label for="financement-filter-select">Filtrer par</label>
-          <select id="financement-filter-select" class="form-control" name="financement-filter-select" v-model="search">
+          <select id="financement-filter-select" class="form-control" name="financement-filter-select" v-model="searchSelect">
             <option value="" selected>Tous les financements</option>
             <optgroup label="Champ d'action">
               <option value="national">Financements nationaux</option>
@@ -56,7 +58,7 @@
             <div id="financement-search-financement" class="col-md-6 col-sm-12 col-xs-12 my-auto">
               <div class="form-inline pull-right">
                 <div class="form-group mx-sm-3 mb-2">
-                  <input class="form-control" id="financement-search-field" name="financement-search" placeholder="Rechercher" v-model="search">
+                  <input class="form-control" id="financement-search-field" name="financement-search" placeholder="Rechercher" v-model="searchInput">
                 </div>
               </div>
             </div>
@@ -70,17 +72,19 @@
                 </a>
               </span>
               <span class="col-md-8 col-sm-11">
-                <span v-for="tag in financement.tags" :key="tag.id" class="financement-results-tags" >
-                  <span class="btn main-button">
+                <span v-for="tag in financement.tags" v-on:click="setSearchTag(tag)" :key="tag.id" class="financement-results-tags" >
+                  <span class="btn main-button" :class="{'main-button-primary': tag==search}">
                     {{ tag }}
                   </span>
                 </span>
               </span>
+              <!--
               <span class="col-md-1 col-sm-1 pull-right">
                 <button href="https://git.beta.pole-emploi.fr/open-source/trefle/edit/master/trefle/config/financements.yml" target="_blank" class="text-dark btn btn-outline-light" disabled>
                   <i class="icon" style="vertical-align: baseline;">edit</i>
                 </button>
               </span>
+              -->
               </li>
             </ul>
           </div>
@@ -95,47 +99,66 @@
 <script>
   export default {
     name: 'Financements',
-    methods: {
-      load: function () {
-        this.$http.get('/explore/financements').then(response => {
-          this.financements = response.body;
-          this.isLoading = false;
-        }).created;
-      },
-      filterable: function (intitule,tags) {
-        //replace all accents characters in the search string by their non-accented equivalent
-        return intitule.concat(tags.join("")).normalize('NFD').replace(/[\u0300-\u036f]/g, "");
-      }
-    },
     data: function(){
       return {
         financements:[],
+        filteredFinancements:[],
         search: "",
+        searchInput: "",
+        searchSelect: "",
         isLoading: true,
       }
     },
-    created: function () {
-      this.load();
+    watch: {
+      searchInput: function () {
+        this.search = this.searchInput;
+        this.filteredFinancements = this.filterFinancements(this.search,"input", false);
+      },
+      searchSelect: function() {
+        this.search = this.searchSelect;
+        this.filteredFinancements = this.filterFinancements(this.search,"select", true);
+      },
     },
     computed: {
-      filteredFinancements() {
-        return this.financements.filter(financement => {
-          if (this.search != "") {
-            //replace all accents characters in the search string by their non-accented equivalent
-            var searchWithoutAccents = this.search.normalize('NFD').replace(/[\u0300-\u036f]/g, "")
-            //create a RegExp for the search string to be case-insensitive
-            var searchRegExp = new RegExp(searchWithoutAccents,'i')
-            return this.filterable(financement.intitule, financement.tags).match(searchRegExp)
-          }
-          return true
-        })
-      },
       countResultats() {
         return this.filteredFinancements.length;
       },
       countFinancements() {
         return this.financements.length;
       }
+    },
+    created: function () {
+      this.load();
+    },
+    methods: {
+      load: function () {
+        this.$http.get('/explore/financements').then(response => {
+          this.financements = response.body;
+          this.filteredFinancements = response.body;
+          this.isLoading = false;
+        }).created;
+      },
+      setSearchTag: function (tag) {
+        this.search = tag;
+        this.filteredFinancements = this.filterFinancements(this.search,"tag", true);
+      },
+      filterFinancements: function (search, searchType, isCaseSensitive) {
+        return this.financements.filter(financement => {
+          if (search != "") {
+            //replace all accents characters in the search string by their non-accented equivalent
+            var searchWithoutAccents = search.normalize('NFD').replace(/[\u0300-\u036f]/g, "")
+            //create a RegExp for the search string to be case-insensitive
+            var searchRegExp;
+            isCaseSensitive ? searchRegExp = new RegExp(searchWithoutAccents,"g") : searchRegExp = new RegExp(searchWithoutAccents,'ig')
+            return searchType != "input" ? this.filterable("", financement.tags).match(searchRegExp) : this.filterable(financement.intitule, financement.tags).match(searchRegExp)
+          }
+          return true
+        })
+      },
+      filterable: function (intitule,tags) {
+        //replace all accents characters in the search string by their non-accented equivalent
+        return intitule.concat(tags.join(",")).normalize('NFD').replace(/[\u0300-\u036f]/g, "");
+      },
     },
   }
 </script>
