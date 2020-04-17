@@ -42,6 +42,24 @@ export default {
       height: 'auto'
     }
   },
+  watch: {
+    value (val) {
+      this.val = val
+    },
+    val (val) {
+      this.$nextTick(this.resize)
+      this.$emit('input', val)
+    },
+    minHeight () {
+      this.$nextTick(this.resize)
+    },
+    maxHeight () {
+      this.$nextTick(this.resize)
+    },
+    autosize (val) {
+      if (val) this.resize()
+    }
+  },
   computed: {
     computedStyles () {
       if (!this.autosize) return {}
@@ -64,23 +82,12 @@ export default {
       return imp === true || (Array.isArray(imp) && imp.includes('height'))
     }
   },
-  watch: {
-    value (val) {
-      this.val = val
-    },
-    val (val) {
-      this.$nextTick(this.resize)
-      this.$emit('input', val)
-    },
-    minHeight () {
-      this.$nextTick(this.resize)
-    },
-    maxHeight () {
-      this.$nextTick(this.resize)
-    },
-    autosize (val) {
-      if (val) this.resize()
-    }
+  mounted () {
+    this.resize()
+  },
+  created () {
+    this.val = this.value
+    this.$el.focus();
   },
   methods: {
     resize () {
@@ -89,11 +96,7 @@ export default {
       //this.height = `auto${important ? ' !important' : ''}`
       this.$nextTick(() => {
         let contentHeight = this.$el.scrollHeight + 1
-
-        if (this.minHeight) {
-          contentHeight = contentHeight < this.minHeight ? this.minHeight : contentHeight
-        }
-
+        if (this.minHeight) contentHeight = contentHeight < this.minHeight ? this.minHeight : contentHeight
         if (this.maxHeight) {
           if (contentHeight > this.maxHeight) {
             contentHeight = this.maxHeight
@@ -102,20 +105,11 @@ export default {
             this.maxHeightScroll = false
           }
         }
-
         const heightVal = contentHeight + 'px'
         this.height = `${heightVal}${important ? ' !important' : ''}`
       })
-
       return this
     }
-  },
-  created () {
-    this.val = this.value
-    this.$el.focus();
-  },
-  mounted () {
-    this.resize()
   }
 }
 </script>

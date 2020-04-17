@@ -5,7 +5,7 @@
         <div class="col-md-12">
 					<h2>Certif Info</h2>
           <input type="text" ref="certifinfo" placeholder="Code Certif Info" v-model="certifinfo" class="form-control"><br>
-          <input @click="search()" type="button" class="btn main-button pull-right" value="Chercher">            
+          <input @click="search()" type="button" class="btn main-button pull-right" value="Chercher">
         </div>
       </div>
       <br>
@@ -36,22 +36,22 @@
         resultsIsEmpty: false,
 			}
 		},
-    computed: {
-    },
 		methods: {
 			search: function () {
-        this.$http.get('/certifinfo?q='+this.certifinfo).then(response => {
-          this.results = response.body;
-          this.resultsIsEmpty = this.isEmpty(this.results);
-        }).created;
+        this.$http
+          .get('/certifinfo?q='+this.certifinfo)
+          .then(response => {
+            this.results = response.body;
+            this.resultsIsEmpty = this.isEmpty(this.results);
+          })
+          .created;
 			},
       isEmpty: function (obj) {
         for(var key in obj) {
-            if(obj.hasOwnProperty(key))
-                return false;
+          if(obj.hasOwnProperty(key)) return false;
         }
         return true;
       }
-		}    
+		}
   }
 </script>

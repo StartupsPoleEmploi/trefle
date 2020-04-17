@@ -132,11 +132,14 @@
     },
     methods: {
       load: function () {
-        this.$http.get('/explore/financements').then(response => {
-          this.financements = response.body;
-          this.filteredFinancements = response.body;
-          this.isLoading = false;
-        }).created;
+        this.$http
+          .get('/explore/financements')
+          .then(response => {
+            this.financements = response.body;
+            this.filteredFinancements = response.body;
+            this.isLoading = false;
+          })
+          .created;
       },
       setSearchTag: function (tag) {
         this.search = tag;
@@ -171,7 +174,6 @@
   #financement-header-row {
     padding-top: 3rem;
   }
-
   .financement-count-financements-text {
     font-size: 1.5em;
   }
@@ -179,26 +181,21 @@
     font-size: 2.5em;
     font-style: bolder;
   }
-
   #financement-last-update {
     font-size: 0.9em;
     color: #000; /* Fallback for older browsers */
     color: rgba(0, 0, 0, 0.5);
   }
-
   .financement-results-count {
     color: #000; /* Fallback for older browsers */
     color: rgba(0, 0, 0, 0.5);
   }
-
   #financement-results-list {
     padding-top: 0.5rem;
   }
-
   .financement-results-tags {
     margin-right: 5px;
   }
-
   .financement-horizontal-separator {
     border: none;
     border-top: 1px solid #bfbfbf;
@@ -206,8 +203,6 @@
     width: 90%;
     position:relative;
   }
-
-
   #financement-filter-select {
     width : auto;
   }

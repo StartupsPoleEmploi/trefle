@@ -7,7 +7,7 @@
           <a href="" id="nav-title" class="nav-link text-dark">☘</a>
         </li>
         <li class="nav-item mt-5">
-          <router-link to="/" name="accueil" class="nav-link" exact>            
+          <router-link to="/" name="accueil" class="nav-link" exact>
             <svg class="nav-icon">
               <use xlink:href="#accueil_icon" />
             </svg>
@@ -17,7 +17,7 @@
           </router-link>
         </li>
         <li class="nav-item">
-          <router-link to="/referentiel" name="referentiel" class="nav-link">            
+          <router-link to="/referentiel" name="referentiel" class="nav-link">
             <svg class="nav-icon">
               <use xlink:href="#referentiel_icon" />
             </svg>
@@ -27,7 +27,7 @@
           </router-link>
         </li>
         <li class="nav-item">
-        <router-link to="/financements" name="financements" class="nav-link">            
+        <router-link to="/financements" name="financements" class="nav-link">
             <svg class="nav-icon">
               <use xlink:href="#financements_icon" />
             </svg>
@@ -37,7 +37,7 @@
         </router-link>
         </li>
         <li class="nav-item">
-          <router-link to="/simulateur" name="simulateur" class="nav-link">            
+          <router-link to="/simulateur" name="simulateur" class="nav-link">
             <svg class="nav-icon">
               <use xlink:href="#simulateur_icon" />
             </svg>
@@ -48,7 +48,7 @@
         </li>
         <!--
         <li class="nav-item">
-          <router-link to="/scenarios" name="scenarios" class="nav-link">            
+          <router-link to="/scenarios" name="scenarios" class="nav-link">
             <svg class="nav-icon">
               <use xlink:href="#scenarios_icon" />
             </svg>
@@ -58,7 +58,7 @@
           </router-link>
         </li>-->
         <li class="nav-item">
-          <router-link to="/outils" name="outils" target="_blank" class="nav-link">            
+          <router-link to="/outils" name="outils" target="_blank" class="nav-link">
             <svg class="nav-icon">
               <use xlink:href="#outils_icon" />
             </svg>
@@ -83,7 +83,7 @@
           <path d="M15,0C6.729,0,0,6.729,0,15c0,8.271,6.729,15,15,15c8.271,0,15-6.729,15-15C30,6.729,23.271,0,15,0z M15,27.777 C7.956,27.777,2.223,22.046,2.223,15S7.956,2.223,15,2.223S27.777,7.954,27.777,15S22.044,27.777,15,27.777z"/><path d="M15,3.5C8.66,3.5,3.5,8.659,3.5,15S8.66,26.5,15,26.5S26.5,21.341,26.5,15S21.34,3.5,15,3.5z M19.145,10.677 c-0.754-0.593-1.61-0.89-2.568-0.89c-0.741,0-1.395,0.239-1.957,0.718c-0.563,0.479-0.963,1.116-1.199,1.912h4.309v1.891h-4.611 c-0.027,0.397-0.041,0.674-0.041,0.829c0,0.184,0.007,0.381,0.02,0.598h4.63v1.922h-4.328c0.506,1.699,1.514,2.548,3.024,2.548 c0.95,0,1.856-0.304,2.72-0.911v2.488c-0.795,0.484-1.832,0.728-3.115,0.728c-1.516,0-2.753-0.42-3.71-1.259 s-1.591-2.038-1.901-3.595H9.182v-1.923h0.971c-0.014-0.168-0.021-0.367-0.021-0.597c0-0.12,0.014-0.396,0.041-0.829H9.182v-1.891 h1.285c0.37-1.558,1.072-2.768,2.103-3.63c1.032-0.863,2.316-1.295,3.853-1.295c1.126,0,2.032,0.186,2.72,0.557v2.629H19.145z"/>
         </symbol>
 
-        <symbol id="simulateur_icon" width="17px" height="13px" viewBox="0 0 17 13">  
+        <symbol id="simulateur_icon" width="17px" height="13px" viewBox="0 0 17 13">
           <path d="M5.1725,10.1626 L1.7025,6.6926 C1.3125,6.3026 0.6825,6.3026 0.2925,6.6926 C-0.0975,7.0826 -0.0975,7.7126 0.2925,8.1016 L4.4725,12.2826 C4.8625,12.6726 5.4925,12.6726 5.8825,12.2826 L16.4625,1.7026 C16.8525,1.3126 16.8525,0.6826 16.4625,0.2926 C16.0725,-0.0974 15.4425,-0.0974 15.0525,0.2926 L5.1725,10.1626 Z"></path>
         </symbol>
 

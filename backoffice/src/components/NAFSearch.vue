@@ -36,22 +36,22 @@
         resultsIsEmpty: false,
 			}
 		},
-    computed: {
-    },
 		methods: {
 			search: function () {
-        this.$http.get('/naf?q='+this.naf).then(response => {
-          this.results = response.body;
-          this.resultsIsEmpty = this.isEmpty(this.results);
-        }).created;
+        this.$http
+          .get('/naf?q='+this.naf)
+          .then(response => {
+            this.results = response.body;
+            this.resultsIsEmpty = this.isEmpty(this.results);
+          })
+          .created;
 			},
       isEmpty: function (obj) {
         for(var key in obj) {
-            if(obj.hasOwnProperty(key))
-                return false;
+          if(obj.hasOwnProperty(key)) return false;
         }
         return true;
       }
-		}    
+		}
   }
 </script>
