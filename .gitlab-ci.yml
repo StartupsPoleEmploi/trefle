@@ -17,6 +17,7 @@ test:
   only:
     - branches
     - master
+    - /^api-v[0-9.ab]+$/
   except:
     - /^WIP-.*$/
 
