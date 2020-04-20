@@ -78,6 +78,7 @@ Get a more detailed coverage report:
     CATALOG_KEY {ASK-YOUR-LBF-CATALOG-API-KEY}
     CATALOG_URL https://labonneformation.pole-emploi.fr/api/v1/detail
     TREFLE_GIT https://git.beta.pole-emploi.fr/open-source/trefle.git
+    GITLAB_TOKEN {ASK-GITLAB-TOKEN}
     ```
 
 
