@@ -69,6 +69,7 @@ Get a more detailed coverage report:
 
 2. Add this env var:
 
+    ```
     VERSION api-vX.X.X
     OLD_VERSION api-vX.X.X
     BACK_VERSION backoffice-vX.X.X
@@ -77,6 +78,8 @@ Get a more detailed coverage report:
     CATALOG_KEY {ASK-YOUR-LBF-CATALOG-API-KEY}
     CATALOG_URL https://labonneformation.pole-emploi.fr/api/v1/detail
     TREFLE_GIT https://git.beta.pole-emploi.fr/open-source/trefle.git
+    ```
+
 
 where X.X.X is a tag of the TREFLE_GIT
 OLD_VERSION and BACK_VERSION must be compatible

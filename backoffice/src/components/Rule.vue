@@ -49,7 +49,7 @@
             </div>
             <div class="row mb-3">
               <label for="content"><u>Contenu de la règle</u></label>
-              <textarea-autosize id="content" v-model="content" class="rule-modification-text" :class="{editErrorClass: error_flags.notModified }" autofocus></textarea-autosize>
+              <TextAreaAutosize id="content" :value="content" class="rule-modification-text" :class="{editErrorClass: error_flags.notModified }" v-focus/>
               <span v-if="error_flags.notModified" class="text-danger font-weight-light">Aucune modification n'a été renseignée</span>
             </div>
             <div class="row mb-3">
@@ -74,7 +74,7 @@
           <span v-if="error_flags.badUser" class="text-danger font-weight-light">Cet utilisateur n'est pas autorisé à soumettre des modifications<br></span>
           <span v-if="error_flags.noPass" class="text-danger font-weight-light">Ce champ est obligatoire<br></span>
           <span v-if="!error_flags.noUser && !error_flags.noPass" class="font-weight-light">* Champs obligatoires<br></span>
-          <template v-slot:modal-footer>       
+          <template v-slot:modal-footer>
             <input @click="auth_to_edit" type="button" class="btn main-button-primary pull-right" value="Suivant"/>
           </template>
         </b-modal>
@@ -84,7 +84,7 @@
           <textarea id="comment" v-model="comment" :class="{editErrorClass: error_flags.noResume}" rows="3"></textarea>
           <span v-if="error_flags.noResume" class="text-danger font-weight-light">Ce champ est obligatoire</span>
           <span v-if="!error_flags.noUser && !error_flags.noResume" class="font-weight-light">* Champ obligatoire</span>
-          <template v-slot:modal-footer>       
+          <template v-slot:modal-footer>
             <input @click="save" type="button" class="btn main-button-primary pull-right" value="Enregistrer"/>
           </template>
         </b-modal>
@@ -93,12 +93,13 @@
     </div>
     <div v-else class="text-center loading-gif">
       <img src="./../assets/images/loading.gif" alt="loading...">
-    </div>    
+    </div>
   </div>
 </template>
 <script>
   import TreeItem from './TreeItem.vue';
   import Modification from './Modification.vue';
+  import TextAreaAutosize from "./TextAreaAutosize.vue";
 
   function Node(name) {
     this.name = name;
@@ -110,7 +111,8 @@
     name: 'Rule',
     components: {
       TreeItem,
-      Modification
+      Modification,
+      TextAreaAutosize
     },
     props: ['name', 'data', 'path', 'printRulePath', 'rulePath'],
     data: function(){
@@ -140,13 +142,10 @@
         },
       }
     },
-    created: function() {
-      this.loadInProgressModification();
-      this.updateLayout();
-
-      window.addEventListener('popstate', () => {
-        this.updateLayout();
-      })
+    watch: {
+      isEditMode: function () {
+        this.$parent.isEditMode=this.isEditMode;
+      }
     },
     computed: {
       displayedName: function () {
@@ -165,7 +164,27 @@
         return Boolean(!this.modification_count)
       }
     },
+    directives: {
+      focus: {
+        inserted: function (el) {
+          el.focus();
+        },
+        componentUpdated: function (el) {
+          el.focus();
+        },
+      }
+    },
+    created: function() {
+      this.loadInProgressModification();
+      this.updateLayout();
+      window.addEventListener('popstate', () => {
+        this.updateLayout();
+      })
+    },
     methods: {
+      preventScrolling: function (e) {
+        e.preventDefault();
+      },
       updateLayout: function() {
         this.windowLocationHash = decodeURI(window.location.hash);
         this.modifiedHashFlag = decodeURI(window.location.hash).split('#').pop() == "modified";
@@ -175,16 +194,14 @@
         } else {
           this.currentRuleName = decodeURI(window.location.hash).split('#').pop();
           this.viewModification = false;
-        }  
+        }
       },
       loadInProgressModification: function () {
         this.$http
           .get('/source/modified?branch='+encodeURIComponent(this.displayedName))
           .then(response => {
             this.modification_list = response.body;
-            if(Object.keys(this.modification_list).length) {
-              this.commit_id = this.modification_list[Object.keys(this.modification_list)[0]].id;
-            }
+            if(Object.keys(this.modification_list).length) this.commit_id = this.modification_list[Object.keys(this.modification_list)[0]].id;
             this.isLoading = false;
             return true;
           }, response => {
@@ -207,17 +224,13 @@
               if(response.status == 500) this.content = '';
               return false;
             })
-         } else {
-           this.content = this.ruleData
-         }
+         } else this.content = this.ruleData;
       },
       auth_to_edit: function () {
         this.error_flags.noUser = false;
         this.error_flags.noPass = false;
 
-        if (this.auth.email== '' ) {
-          this.error_flags.noUser = true;
-        }
+        if (this.auth.email== '' ) this.error_flags.noUser = true;
         if (this.auth.password== '' ) {
           this.error_flags.noPass = true;
           return false;
@@ -230,7 +243,7 @@
             this.getContentRule();
             this.isEditMode=!this.isEditMode;
             this.$bvModal.hide("auth-modal");
-          }, error => { 
+          }, error => {
             if (error.status == 401) {
               this.error_flags.badUser = true;
               this.error_flags.noUser = false;
@@ -295,15 +308,15 @@
             this.$parent.rules[this.name]['data'] = this.data
             this.$parent.rules[this.name]['gitlab'] = {'commit': commit}
             this.$bvModal.hide("mail-modal");
-            return this.isEditMode=!this.isEditMode            
+            return this.isEditMode=!this.isEditMode
           }, error => {
-              if(error.status == 304){
+              if(error.status == 304) {
                 this.error_flags.notModified = true;
                 this.error_flags.noUser = false;
                 this.error_flags.noResume = false;
                 this.error_flags.badUser = false;
                 this.$bvModal.hide("mail-modal");
-              } 
+              }
               else if (error.status == 401) {
                 this.error_flags.badUser = true;
                 this.error_flags.noUser = false;
@@ -322,7 +335,8 @@
                 this.error_flags.notModified = false;
               }
               return false;
-          }).then(()=> {
+          })
+          .then(()=> {
             this.$parent.isLoading = false;
             this.$parent.modificationInProgress = false;
             location.reload();
@@ -372,9 +386,7 @@
         this.isEditMode = false;
       },
       displayList: function () {
-        this.viewModification = false;
-        this.$parent.collapsed = true;
-        this.isEditMode = false;
+        this.closeEdit();
       }
     },
   }
@@ -387,6 +399,7 @@
 }
 .rule-modification-text {
   font-family: 'Courier New', Courier, monospace;
+  font-size: 12px;
 }
 
 textarea {
@@ -403,4 +416,8 @@ textarea {
   text-decoration: underline;
 }
 
+#content {
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+}
 </style>

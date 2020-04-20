@@ -35,7 +35,7 @@
         <hr v-if="step_four_completed" class="simulateur-horizontal-separator">
         <!---------------- STEP FIVE ---------------->
         <div v-if="step_four_completed" class="form-step step-five" :class="{step_completed_class: step_five_completed}">
-          <SimulateurStepFive id="SimulateurStepFive"/>         
+          <SimulateurStepFive id="SimulateurStepFive"/>
         </div>
         <!---------------- STEP FIVE ---------------->
         <div v-if="step_five_completed" class="form-step">
@@ -115,7 +115,7 @@
             //cdi
             experienceannee: '',
             ancienneteentrepriseactuelle: '',
-        
+
           // DE
           situation_contratapprentissage: false,
             // apprentissage
@@ -193,7 +193,7 @@
             if (this.situation_cpfconnu == 'cpfconnu') {
               if (this.situation_creditheurescpf) return true;
             } else return true;
-          } 
+          }
         }
         return false
       },
@@ -204,9 +204,9 @@
             if (this.contrat == 'cdd') {
               if (this.moistravailleencdd != '' && this.experience != '') return true;
             } else if (this.contrat == 'cdi') {
-              if (this.ancienneteentrepriseactuelle != '' && this.experienceannee != '') return true;              
+              if (this.ancienneteentrepriseactuelle != '' && this.experienceannee != '') return true;
             }
-          } 
+          }
         }
         return false
       },
@@ -222,8 +222,8 @@
       age_beneficiaire : function () {
         if(this.birthdate.match(/^\s*(3[01]|[12][0-9]|0?[1-9])\/(1[012]|0?[1-9])\/((?:19|20)\d{2})\s*$/gi) == null) {
           return null;
-        } else { 
-         // birthday is a date    
+        } else {
+          // birthday is a date
           var today = new Date(),
           birthdate_reformat = new Date(this.birthdate.replace(/(\d{2})[-/](\d{2})[-/](\d+)/, "$2/$1/$3"));
           if(today.getMonth - birthdate_reformat.getMonth < 0) {
@@ -231,7 +231,7 @@
           } else if(today.getMonth() - birthdate_reformat.getMonth() == 0) {
             if (today.getDate() - birthdate_reformat.getDate() < 0) {
               return today.getFullYear() - birthdate_reformat.getFullYear() - 1;
-            } 
+            }
           }
           return today.getFullYear() - birthdate_reformat.getFullYear();
         }
@@ -283,7 +283,7 @@
               idcc: this.idcc,
               commune: this.commune_entreprise,
               opco: null,
-              opacif: null             
+              opacif: null
             }
           },
           formation : this.formation
@@ -301,11 +301,11 @@
       },
       simulate: function () {
         this.isLoading = true;
-        if (this.situation_inscrit == 1) {      
+        if (this.situation_inscrit == 1) {
           if (this.allocation_type == 'non') {
             this.allocation_type = null;
             this.allocation_dateend = null;
-          }   
+          }
           this.salaire = null;
           this.moistravailleencdd = null;
           this.ancienneteentrepriseactuelle = null;
@@ -356,7 +356,7 @@
                 if (response.body.financements[i].eligible) this.financements_eligibles.push(response.body.financements[i]);
               }
             }
-          } 
+          }
           this.scenario = response.body.scenario;
           this.context = response.body.context;
           this.isLoading = false;
@@ -369,7 +369,7 @@
             return false;
         }
         return true;
-      },  
+      },
 		}
 	}
 </script>
@@ -400,7 +400,6 @@
     width: 100%;
     position:relative;
   }
-
   .autocomplete {
     /*the container must be positioned relative:*/
     position: relative;
@@ -417,19 +416,16 @@
     left: 0;
     right: 0;
   }
-
   .autocomplete-items div {
     padding: 10px;
     cursor: pointer;
-    background-color: #fff; 
-    border-bottom: 1px solid #d4d4d4; 
+    background-color: #fff;
+    border-bottom: 1px solid #d4d4d4;
   }
-
   .autocomplete-items div:hover {
     /*when hovering an item:*/
-    background-color: #e9e9e9; 
+    background-color: #e9e9e9;
   }
- 
   .block-description {
     background-color: #F1F1F1;
     border-radius: 5px 0px 0px 5px;
@@ -438,13 +434,11 @@
     background-color: #CAD6E6;
     border-radius: 0px 5px 5px 0px;
   }
-
   .form-step {
     padding-right: 1vw;
     padding-left: 2vw;
     transition: padding 0.2s 0s ease;
   }
-
   .step_completed_class {
     background-color: rgba(153, 255, 102, 0.1);
     padding-right: 3vw;
@@ -454,13 +448,10 @@
     border-radius: 10px;
     transition: padding 0.2s 0s linear;
   }
-
   .input_format_error {
     background-color: rgba(215, 44, 44, 0.2);
   }
-
   .input_format_valid {
     background-color: rgba(153, 255, 102, 0.1);
   }
-
 </style>

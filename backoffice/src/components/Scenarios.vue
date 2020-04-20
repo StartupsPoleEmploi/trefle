@@ -44,49 +44,14 @@
         toggled: "",
       }
     },
-    methods: {
-      load: function () {
-        this.$http.get('/explore/scenarios').then(response => {
-            this.scenarios = response.body
-            this.selected_filters = decodeURIComponent(this.$route.params.filters).split(',')
-            if(this.filters) {
-              this.active = []
-            }
-            for (var i = 0, scenario; i < this.scenarios.length; i++) {
-              scenario = this.scenarios[i]
-              if (scenario.tags.length>0) {
-                for (var k = 0; k < scenario.tags.length; k++) {
-                  if (this.filters.indexOf(scenario.tags[k]) === -1)
-                  {
-                    var isSelected=(this.selected_filters.indexOf(scenario.tags[k]) > -1)
-                    this.filters.push({tag:scenario.tags[k], selected:isSelected})
-                  }
-                }
-              }
-              this.active.push(scenario)
-            }
-            this.filters.sort((a, b) => a.tag.localeCompare(b.tag))
-            this.filters = this.filters.reduce(function(filters, item){ filters[item.tag]=item; return filters }, {})
-        }).created;
-      },
-      selectToggle: function(item){
-          item.selected = !item.selected
-          this.$router.append('test')
-      }
-    },
-    created: function () {
-      this.load();
-    },
     computed: {
       activeScenario: function(){
         var activeScenario = []
         var scenarios = this.scenarios
         this.filterList.forEach(function(tag){
           scenarios.forEach(function(scenario){
-          var idx = scenario.tags.indexOf(tag)
-            if(idx > -1 && !(idx in activeScenario)){
-              activeScenario[idx]=scenario
-            }
+            var idx = scenario.tags.indexOf(tag)
+            if(idx > -1 && !(idx in activeScenario)) activeScenario[idx]=scenario
           })
         })
         return activeScenario
@@ -123,6 +88,39 @@
      //active: function(){
      //   return Object.values(this.filters).reduce(function(cnt, item){ if(item.selected) cnt=cnt+1; return cnt},0);
      //}
-    }
+    },
+    created: function () {
+      this.load();
+    },
+    methods: {
+      load: function () {
+        this.$http.get('/explore/scenarios').then(response => {
+            this.scenarios = response.body
+            this.selected_filters = decodeURIComponent(this.$route.params.filters).split(',')
+            if(this.filters) {
+              this.active = []
+            }
+            for (var i = 0, scenario; i < this.scenarios.length; i++) {
+              scenario = this.scenarios[i]
+              if (scenario.tags.length>0) {
+                for (var k = 0; k < scenario.tags.length; k++) {
+                  if (this.filters.indexOf(scenario.tags[k]) === -1)
+                  {
+                    var isSelected=(this.selected_filters.indexOf(scenario.tags[k]) > -1)
+                    this.filters.push({tag:scenario.tags[k], selected:isSelected})
+                  }
+                }
+              }
+              this.active.push(scenario)
+            }
+            this.filters.sort((a, b) => a.tag.localeCompare(b.tag))
+            this.filters = this.filters.reduce(function(filters, item){ filters[item.tag]=item; return filters }, {})
+        }).created;
+      },
+      selectToggle: function(item){
+          item.selected = !item.selected
+          this.$router.append('test')
+      }
+    },
   }
 </script>

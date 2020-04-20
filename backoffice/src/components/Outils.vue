@@ -24,7 +24,6 @@
   </div>
 </template>
 <script>
-
   import IDCCSearch from './IDCCSearch.vue'
   import CatalogueSearch from './CatalogueSearch.vue'
   import CertifInfoSearch from './CertifInfoSearch.vue'
@@ -38,7 +37,6 @@
       CertifInfoSearch,
       NAFSearch
     }
-    
   }
 </script>
 <style scoped>

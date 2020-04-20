@@ -5,7 +5,6 @@
   </div>
 </template>
 <script>
-
   // loading font awesome icons before rendering anything else
   (function() { var css = document.createElement('link'); css.href = 'https://use.fontawesome.com/releases/v5.1.0/css/all.css'; css.rel = 'stylesheet'; css.type = 'text/css'; document.getElementsByTagName('head')[0].appendChild(css); })();
 
@@ -193,7 +192,7 @@
     border: 1px solid #f3f3f3;
     padding: 10px;
     min-height: 200px;
-  }  
+  }
   .main-button {
     border: 1px solid #384EAA;
   }
