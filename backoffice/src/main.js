@@ -41,7 +41,7 @@ const routes = [
 
 const router = new VueRouter({
     mode: 'history',
-    base: '0.7/explorer',
+    base: '/0.8/explorer',
     routes:routes
 });
 
