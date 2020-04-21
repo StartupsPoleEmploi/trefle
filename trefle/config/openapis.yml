@@ -37,7 +37,7 @@ paths:
               $ref: '#/components/schemas/request'
             examples:
               compute-request:
-                $ref: '#/components/examples/compute-request'
+                $ref: '#/components/examples/compute-financement-request'
       responses:
         200:
           description: Calcul effectué avec succès
@@ -47,7 +47,7 @@ paths:
                 $ref: '#/components/schemas/collection'
               examples:
                 compute-success:
-                  $ref: '#/components/examples/compute-success'
+                  $ref: '#/components/examples/compute-financement-success'
         422:
           description: Les informations sont invalides
           content:
@@ -61,6 +61,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/errors'
   /api-moteur/0.7/financement: *baseendpoint
+  /api-moteur/0.8/financement: *baseendpoint
   /remuneration: &baseremuendpoint
     post:
       summary: Lancer un calcul de remuneration
@@ -71,17 +72,17 @@ paths:
               $ref: '#/components/schemas/request'
             examples:
               compute-request:
-                $ref: '#/components/examples/compute-request'
+                $ref: '#/components/examples/compute-remuneration-request'
       responses:
         200:
           description: Calcul effectué avec succès
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/collection'
+                $ref: '#/components/schemas/remuneration'
               examples:
                 compute-success:
-                  $ref: '#/components/examples/compute-success'
+                  $ref: '#/components/examples/compute-remuneration-success'
         422:
           description: Les informations sont invalides
           content:
@@ -94,7 +95,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/errors'
-  /api-moteur/0.7/remuneration: *baseremuendpoint
+  /api-moteur/0.8/remuneration: *baseremuendpoint
 components:
   schemas:
     request:
@@ -113,12 +114,16 @@ components:
       type: array
       items:
         $ref: "#/components/schemas/financement"
+    remuneration:
+      type: array
+      items:
+        $ref: "#/components/schemas/remuneration"
     errors:
       type: object
       additionalProperties:
         type: string
   examples:
-    compute-request:
+    compute-financement-request:
       summary: Données du bénéfiaire et formation
       value:
         {
@@ -131,7 +136,7 @@ components:
             "numero": "03_1702030F"
           }
         }
-    compute-success:
+    compute-financement-success:
       summary: Liste des financements éligible
       value:
         {
@@ -166,5 +171,38 @@ components:
               "remuneration_texte": ""
             }
           ]
+        }
+    compute-remuneration-request:
+      summary: Données du bénéfiaire et formation
+      value:
+        {
+          "beneficiaire": {
+                  "age": 40,
+                  "naissance": "1980-01-01",
+                  "allocation": 300,
+                  "type_allocation": "ass",
+                  "th": true,
+                  "a_travaille_douze_mois_sur_24_mois": true,
+                  "a_travaille_douze_mois": true,
+                  "a_travaille_six_mois": true,
+                  "parent_isole": false,
+                  "mere_trois_enfant": false,
+                  "veuve_ou_divorcee": false,
+                  "seule_et_enceinte": false,
+                  },
+            "formation": {
+                           "codes_financeur": [2],
+                           "region": 27,
+                        }
+          }
+    compute-remuneration-success:
+      summary: Rémunération et aides éligibles
+      value:
+        {
+          "remuneration":910.02,
+          "fin_remuneration":null,
+          "indemnite_conges_payes":0,
+          "intitule_remuneration":"Rémunérations applicables",
+          "remuneration_texte":"C'est une rémunération minimum en fonction de votre expérience"
         }
 
