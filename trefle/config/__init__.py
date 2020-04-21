@@ -1,4 +1,5 @@
 import csv
+import json
 import os
 import re
 import sys
@@ -20,6 +21,7 @@ ROOT = Path(__file__).parent
 RAW_RULES = {}
 GLOSSARY = {}
 NAF = {}
+CERTIFINFO = {}
 FEATURES = {}
 
 CATALOG_USER = os.environ.get("CATALOG_USER", "tata")
@@ -27,6 +29,15 @@ CATALOG_KEY = os.environ.get("CATALOG_KEY", "toto")
 CATALOG_URL = os.environ.get(
     "CATALOG_URL", "https://labonneformation.beta.pole-emploi.fr/api/v1/detail"
 )
+GITLAB_URL = os.environ.get("GITLAB_URL", "https://git.beta.pole-emploi.fr")
+GITLAB_PROJECT = os.environ.get("GITLAB_PROJECT", "open-source/trefle")
+GITLAB_TOKEN = os.environ.get("GITLAB_TOKEN", "need-private-access-token")
+# TODO remove COMMIT_AUTHORIZED env var hence AUTHORIZED replaced it
+COMMIT_AUTHORIZED = set(os.environ.get(
+                                       "COMMIT_AUTHORIZED",
+                                       "contributeur@trefle.beta.pole-emploi.fr"
+                                       ).split(', '))
+AUTHORIZED = []
 
 
 def load_schema(data, output=None, namespace=None):
@@ -91,11 +102,22 @@ def load_naf(data):
     return out
 
 
+def load_authorisations(data):
+    out = []
+    reader = csv.DictReader(data.split("\n"), delimiter=",", skipinitialspace=True)
+    for line in reader:
+        email = line["email"]
+        password = line["password"]
+        _file = line["file"]
+        out.append({'email': email, 'password': password, 'file': _file})
+    return out
+
+
 def load_rules(path):
     with path.open() as rules_file:
         datas = rules_file.read().split('---\n', 1)
         data = datas[0]
-        comment = datas[1] if len(datas) == 2 else ''
+        comment = data[1] if len(data) == 2 else ''
         # Don't use local path in rule id, so we can call it from a Pointer
         # value.
         id_ = path.name
@@ -180,5 +202,13 @@ def init():
         GLOSSARY.update(yaml.safe_load(f.read()))
     with (ROOT / "naf.csv").open() as f:
         NAF.update(load_naf(f.read()))
+    with (ROOT / "certifinfo.json").open() as f:
+        CERTIFINFO.update(json.loads(f.read()))
+    with (ROOT / "authorisations.csv").open('a+') as f:
+        f.seek(0)
+        AUTHORIZED.extend(load_authorisations(f.read()))
+    for auth in AUTHORIZED:
+        COMMIT_AUTHORIZED.add(auth.get('email', ''))
+
     load_features()
     print("Done initializing config")

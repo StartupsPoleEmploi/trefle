@@ -1,3 +1,4 @@
+import datetime
 import json
 import os
 import urllib.parse
@@ -16,6 +17,11 @@ from trefle.config import REMUNERATIONS
 from trefle import VERSION
 
 pytestmark = pytest.mark.asyncio
+
+
+async def test_healthcheck(client):
+    resp = await client.get("/healthcheck")
+    assert resp.status == HTTPStatus.OK
 
 
 async def test_schema(client):
@@ -513,6 +519,109 @@ async def test_remuneration_parsing_should_be_liberal(client):
         },
     )
     assert resp.status == HTTPStatus.OK
+
+
+async def test_authentification(patch_authorisations, client, mock_get):
+    body = {
+        "email": "test@test.fr",
+        "password": "test",
+        "file": "/règles nationales/CPF.rules"
+    }
+    patch_authorisations([body])
+    mock_get(status_code=200)
+    date = datetime.datetime.today().strftime('%y%m%d')
+    token = hash(f"{body['email']}.{body['password']}.{date}")
+    resp = await client.post("/authentification", body=body)
+
+    assert resp.status == HTTPStatus.OK
+    assert json.loads(resp.body) == {
+        "token": token
+    }
+
+
+async def test_authentification_with_no_authorisation(patch_authorisations, client, mock_get):
+    body = {
+        "email": "test@test.fr",
+        "password": "test",
+        "file": "/règles nationales/CPF.rules"
+    }
+    auth = []
+    patch_authorisations(auth)
+    mock_get(status_code=500)
+    resp = await client.post("/authentification", body=body)
+
+    assert resp.status == HTTPStatus.INTERNAL_SERVER_ERROR
+
+
+async def test_authentification_with_2_records(patch_authorisations, client, mock_get):
+    body = {
+        "email": "test@test.fr",
+        "password": "test",
+        "file": "/règles nationales/CPF.rules"
+    }
+    auth = [{"email": "test2@test.fr",
+             "password": "test",
+             "file": "/règles nationales/CPF.rules"}]
+    auth.append(body.copy())
+    patch_authorisations(auth)
+    mock_get(status_code=200)
+    date = datetime.datetime.today().strftime('%y%m%d')
+    token = hash(f"{body['email']}.{body['password']}.{date}")
+    resp = await client.post("/authentification", body=body)
+
+    assert resp.status == HTTPStatus.OK
+    assert json.loads(resp.body) == {
+        "token": token
+    }
+
+
+async def test_authentification_with_bad_matching_pattern(patch_authorisations, client, mock_get):
+    body = {
+        "email": "test@test.fr",
+        "password": "test",
+        "file": "/règles nationales/CPF.rules"
+    }
+    auth = body.copy()
+    auth['file'] = "*"
+    patch_authorisations([auth])
+    mock_get(status_code=200)
+    resp = await client.post("/authentification", body=body)
+
+    assert resp.status == HTTPStatus.UNPROCESSABLE_ENTITY
+
+
+async def test_authentification_with_bad_email(patch_authorisations, client, mock_get):
+    body = {
+        "email": "bademail@test.com",
+        "password": "test",
+        "file": "/règles nationales/CPF.rules"
+    }
+    auth = body.copy()
+    auth['email'] = 'test@test.fr'
+    patch_authorisations([auth])
+    mock_get(status_code=401)
+    resp = await client.post("/authentification", body=body)
+
+    assert resp.status == HTTPStatus.UNAUTHORIZED
+
+
+async def test_authentification_with_token(patch_authorisations, client, mock_get):
+    auth = {
+        "email": "test@test.fr",
+        "password": "test",
+        "file": "/règles nationales/CPF.rules"
+    }
+    date = datetime.datetime.today().strftime('%y%m%d')
+    token = hash(f"{auth['email']}.{auth['password']}.{date}")
+    body = {
+        "token": token
+    }
+    patch_authorisations([auth])
+    mock_get(status_code=200)
+    resp = await client.post("/authentification", body=body)
+
+    assert resp.status == HTTPStatus.OK
+    assert json.loads(resp.body) == body
 
 
 async def test_glossary(client):

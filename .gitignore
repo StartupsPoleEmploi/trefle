@@ -1,7 +1,6 @@
 __pycache__/
 .mypy_cache/
 .pytest_cache/
-docs/
 tmp/
 *.egg-info
 build/
@@ -12,4 +11,6 @@ htmlcov/
 backoffice/node_modules/
 backoffice/dist/
 *.log
+.DS_Store
+authorisations.csv
 *.gz

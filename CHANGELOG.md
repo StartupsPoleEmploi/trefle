@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.8.0
+
+- new explorer in VueJS with iso fonctionalty with old one
+- new explorer: possibility to modifiy rules
+- api: new authentification endpoint, be authentify to process rules modification
+- api: new remuneration endpoint /remuneration
+- api: new source code endpoint, possibility to interact with gitlab to modifiy rules
+- api: new certifinfo endpoint, to get label of one or more certifinfo
+- api: new healthcheck endpoint
+- change repo from framagit to gitlab PE
+
+
 ## 0.7.0
 
 - switch to LBF json catalog instead of Intercarif XML

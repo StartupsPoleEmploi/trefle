@@ -1,0 +1,25 @@
+file:
+  /etc/nginx/sites-enabled/trefle.conf:
+    exists: true
+    mode: "0644"
+    size: 1758
+    filetype: file
+    contains: []
+package:
+  file:
+    installed: true
+    versions:
+    - 1:5.25-2ubuntu1.3
+http:
+  http://127.0.0.1/:
+    status: 200
+    allow-insecure: false
+    no-follow-redirects: false
+    timeout: 5000
+    body: []
+  http://trefle:8000/schema:
+    status: 200
+    allow-insecure: false
+    no-follow-redirects: false
+    timeout: 5000
+    body: []

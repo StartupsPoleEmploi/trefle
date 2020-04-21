@@ -1,28 +1,6 @@
 #TODO test docker image with https://github.com/aelsabbahy/goss
-
-api publish:
-  image:
-    name: gcr.io/kaniko-project/executor:debug
-    entrypoint: [""]
-  stage: build
-  script:
-    - echo "{\"auths\":{\"$CI_REGISTRY\":{\"username\":\"$CI_REGISTRY_USER\",\"password\":\"$CI_REGISTRY_PASSWORD\"}}}" > /kaniko/.docker/config.json
-    - /kaniko/executor --context ${CI_PROJECT_DIR}/docker --dockerfile $CI_PROJECT_DIR/docker/dockerfile_trefle --build-arg TREFLE_VERSION=$CI_COMMIT_TAG --build-arg TREFLE_GIT=${CI_PROJECT_URL} --destination ${CI_REGISTRY_IMAGE}:${CI_COMMIT_TAG}
-  only:
-    - /^api-v[0-9.ab]+$/
-
-backoffice publish:
-  variables:
-    TREFLE_OLD_VERSION: "api-v0.6.1"
-  image:
-    name: gcr.io/kaniko-project/executor:debug
-    entrypoint: [""]
-  stage: build
-  script:
-    - echo "{\"auths\":{\"$CI_REGISTRY\":{\"username\":\"$CI_REGISTRY_USER\",\"password\":\"$CI_REGISTRY_PASSWORD\"}}}" > /kaniko/.docker/config.json
-    - /kaniko/executor --context ${CI_PROJECT_DIR}/docker --dockerfile ${CI_PROJECT_DIR}/docker/dockerfile_backoffice --build-arg TREFLE_BACK_VERSION=${CI_COMMIT_TAG} --build-arg TREFLE_OLD_VERSION=${TREFLE_OLD_VERSION} --build-arg TREFLE_GIT=${CI_PROJECT_URL} --destination ${CI_REGISTRY_IMAGE}:${CI_COMMIT_TAG}
-  only:
-    - /^backoffice-v[0-9.ab]+$/
+variables:
+  TREFLE_OLD_VERSION: "api-v0.6.1"
 
 test:
   image: python:3.6
@@ -39,3 +17,68 @@ test:
   only:
     - branches
     - master
+    - /^api-v[0-9.ab]+$/
+  except:
+    - /^WIP-.*$/
+
+api publish:
+  image:
+    name: gcr.io/kaniko-project/executor:debug
+    entrypoint: [""]
+  stage: build
+  script:
+    - echo "{\"auths\":{\"$CI_REGISTRY\":{\"username\":\"$CI_REGISTRY_USER\",\"password\":\"$CI_REGISTRY_PASSWORD\"}}}" > /kaniko/.docker/config.json
+    - /kaniko/executor --context ${CI_PROJECT_DIR}/docker --dockerfile $CI_PROJECT_DIR/docker/dockerfile_trefle --build-arg TREFLE_VERSION=$CI_COMMIT_TAG --build-arg TREFLE_GIT=${CI_PROJECT_URL} --destination ${CI_REGISTRY_IMAGE}:${CI_COMMIT_TAG}
+  only:
+    - /^api-v[0-9.ab]+$/
+    - /^testing$/
+
+deploy API to staging:
+  type: deploy
+  environment:
+    name: recette
+    url: http://trefle.beta.pole-emploi.fr
+  before_script:
+    - apt-get update -qq
+    - apt-get install -qq git
+    # Setup SSH deploy keys
+    - 'which ssh-agent || ( apt-get install -qq openssh-client )'
+    - eval $(ssh-agent -s)
+    - ssh-add <(echo "$SSH_PRIVATE_KEY")
+    - mkdir -p ~/.ssh
+    - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+  script:
+    - ssh gitlab@${STAGING_SERVEUR_IP} "cd /home/docker && VERSION=${CI_COMMIT_TAG} /bin/bash update.sh trefle && echo \"VERSION=${CI_COMMIT_TAG}\" | tee -a update.log >> .env"
+  only:
+    - /^api-v[0-9.ab]+$/
+    - /^testing$/
+
+backoffice publish:
+  image:
+    name: gcr.io/kaniko-project/executor:debug
+    entrypoint: [""]
+  stage: build
+  script:
+    - echo "{\"auths\":{\"$CI_REGISTRY\":{\"username\":\"$CI_REGISTRY_USER\",\"password\":\"$CI_REGISTRY_PASSWORD\"}}}" > /kaniko/.docker/config.json
+    - /kaniko/executor --context ${CI_PROJECT_DIR}/docker --dockerfile ${CI_PROJECT_DIR}/docker/dockerfile_web --build-arg TREFLE_BACK_VERSION=${CI_COMMIT_TAG} --build-arg TREFLE_OLD_VERSION=${TREFLE_OLD_VERSION} --build-arg TREFLE_GIT=${CI_PROJECT_URL} --destination ${CI_REGISTRY_IMAGE}:${CI_COMMIT_TAG}
+  only:
+    - /^backoffice-v[0-9.ab]+$/
+
+deploy Backoffice to staging:
+  type: deploy
+  environment:
+    name: recette
+    url: http://trefle.beta.pole-emploi.fr
+  before_script:
+    - apt-get update -qq
+    - apt-get install -qq git
+    # Setup SSH deploy keys
+    - 'which ssh-agent || ( apt-get install -qq openssh-client )'
+    - eval $(ssh-agent -s)
+    - ssh-add <(echo "$SSH_PRIVATE_KEY")
+    - mkdir -p ~/.ssh
+  script:
+    - ssh gitlab@${STAGING_SERVEUR_IP} "cd /home/docker && BACK_VERSION=${CI_COMMIT_TAG} docker-compose up -d --no-deps web && echo \"BACK_VERSION=${CI_COMMIT_TAG}\" | tee -a .env >> update.log"
+  only:
+    - /^backoffice-v[0-9.ab]+$/
+    - /^testing$/

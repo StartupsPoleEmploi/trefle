@@ -1,13 +1,8 @@
-version: "3.3"
+version: "3.7"
 services:
   trefle:
     restart: unless-stopped
-    build:
-      context: .
-      dockerfile: dockerfile_trefle
-      args:
-          - TREFLE_VERSION=${VERSION}
-          - TREFLE_GIT=${TREFLE_GIT:-https://git.beta.pole-emploi.fr/open-source/trefle.git}
+    image: registry.beta.pole-emploi.fr/open-source/trefle:${VERSION}
     volumes:
       - ./log/trefle:/srv/log
     environment:
@@ -15,15 +10,18 @@ services:
         - CATALOG_USER=${CATALOG_USER}
         - CATALOG_KEY=${CATALOG_KEY}
         - CATALOG_URL=${CATALOG_URL}
+        - GITLAB_TOKEN=${GITLAB_TOKEN}
+        - COMMIT_AUTHORIZED=${COMMIT_AUTHORIZED}
+    healthcheck:
+      test: curl -sfS http://127.0.0.1:8000/healthcheck || exit 1
+      interval: 5s
+      timeout: 3s
+      retries: 3
+      start_period: 30s
   #version majeur précédente
   trefle-old:
     restart: unless-stopped
-    build:
-      context: .
-      dockerfile: dockerfile_trefle
-      args:
-          - TREFLE_VERSION=${OLD_VERSION}
-          - TREFLE_GIT=${TREFLE_GIT:-https://git.beta.pole-emploi.fr/open-source/trefle.git}
+    image: registry.beta.pole-emploi.fr/open-source/trefle:${OLD_VERSION}
     volumes:
       - ./log/trefle-old:/srv/log
     environment:
@@ -33,15 +31,15 @@ services:
         - CATALOG_URL=${CATALOG_URL}
         - GITLAB_TOKEN=${GITLAB_TOKEN}
         - COMMIT_AUTHORIZED=${COMMIT_AUTHORIZED}
-  backoffice:
+    healthcheck:
+      test: curl -sfS http://127.0.0.1:8000/naf?q=1000 || exit 1
+      interval: 5s
+      timeout: 3s
+      retries: 3
+      start_period: 30s
+  web:
     restart: unless-stopped
-    build:
-      context: .
-      dockerfile: dockerfile_backoffice
-      args:
-          - TREFLE_GIT=${TREFLE_GIT:-https://git.beta.pole-emploi.fr/open-source/trefle.git}
-          - TREFLE_BACK_VERSION=${VERSION}
-          - TREFLE_OLD_VERSION=${OLD_VERSION}
+    image:  registry.beta.pole-emploi.fr/open-source/trefle:${BACK_VERSION}
     depends_on:
       - trefle
       - trefle-old

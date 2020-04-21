@@ -352,13 +352,14 @@ def check_remuneration(context, remuneration):
             del remuneration[key]
 
 
-def search_term(list_, term):
+def search_term(list_, terms):
     data = {}
-    for k in list_:
-        if k.startswith(term):
-            data[k] = list_[k]
-        elif isinstance(list_[k], dict):
-            for v in list_[k]:
-                if fold_name(term) in fold_name(list_[k][v]):
-                    data[k] = list_[k]
+    for term in terms.split('|'):
+        for k in list_:
+            if k.startswith(term):
+                data[k] = list_[k]
+            elif isinstance(list_[k], dict):
+                for v in list_[k]:
+                    if fold_name(term) in fold_name(list_[k][v]):
+                        data[k] = list_[k]
     return data

@@ -5,6 +5,7 @@ from pathlib import Path
 import pytest
 from roll.extensions import traceback
 
+from trefle.config import AUTHORIZED
 from trefle.rules import LABELS, SCHEMA
 
 
@@ -33,6 +34,19 @@ def patch_schema():
     SCHEMA.update(before_schema)
     LABELS.clear()
     LABELS.update(before_labels)
+
+
+@pytest.fixture
+def patch_authorisations():
+    before = AUTHORIZED.copy()
+
+    def patch(new):
+        AUTHORIZED.clear()
+        AUTHORIZED.extend(new)
+
+    yield patch
+    AUTHORIZED.clear()
+    AUTHORIZED.extend(before)
 
 
 @pytest.fixture

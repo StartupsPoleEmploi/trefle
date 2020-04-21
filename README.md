@@ -38,11 +38,14 @@
     Exemple:
     trefle simulate --context='{"beneficiaire":{"inscrit_pe":true,"age":40},"formation":{ "codes_financeur":[2],"region":27,"heures":4000}}' --trace
 
-## Run the dev server
+## Run the backoffice in dev mode
 
-    trefle serve
-    
-    and go to url : http://127.0.0.1:3579/explorer/index.html
+    cd backoffice
+
+    npm install
+    npm run serve
+
+    and go to url : http://127.0.0.1:8080/explorer
 
 ## Run unittests
 
@@ -59,24 +62,37 @@ Get a detailed coverage report:
 Get a more detailed coverage report:
 
     behave -D coverage-format=long
+
 ## Build project in PROD mode
 
-Go to docker file
+1. Go to docker folder
 
-Add this env var:
+2. Add this env var:
 
-    VERSION api-vX.X.X
-    OLD_VERSION api-vX.X.X
-    BACK_VERSION backoffice-vX.X.X
-    LBF_CHARMAP "sA,4B,RC,cD,oE,gF,yG,wH,mI,HJ,7K,EL,aM,YN,XO,8P,GQ,BR,kS,iT,IU,AV,TW,DX,pY,JZ,2a,Lb,Mc, d,de,Cf,Qg,fh,ri,Pj,Nk,Vl,vm,0n,Ko,ep,jq,Zr,9s,ht,Fu,tv,-w,Ux,1y,xz,30,u1,52,q3,W4,S5,66,n7,b8,O9,_+,l/,z "
-    CATALOG_USER {ASK-YOUR-LBF-CATALOG-API-USER}
-    CATALOG_KEY {ASK-YOUR-LBF-CATALOG-API-KEY}
-    CATALOG_URL https://labonneformation.pole-emploi.fr/api/v1/detail
-    TREFLE_GIT https://git.beta.pole-emploi.fr/open-source/trefle.git
+    ```
+    VERSION=api-vX.X.X
+    OLD_VERSION=api-vX.X.X
+    BACK_VERSION=backoffice-vX.X.X
+    LBF_CHARMAP="sA,4B,RC,cD,oE,gF,yG,wH,mI,HJ,7K,EL,aM,YN,XO,8P,GQ,BR,kS,iT,IU,AV,TW,DX,pY,JZ,2a,Lb,Mc, d,de,Cf,Qg,fh,ri,Pj,Nk,Vl,vm,0n,Ko,ep,jq,Zr,9s,ht,Fu,tv,-w,Ux,1y,xz,30,u1,52,q3,W4,S5,66,n7,b8,O9,_+,l/,z "
+    CATALOG_USER={ASK-YOUR-LBF-CATALOG-API-USER}
+    CATALOG_KEY={ASK-YOUR-LBF-CATALOG-API-KEY}
+    CATALOG_URL=https://labonneformation.pole-emploi.fr/api/v1/detail
+    TREFLE_GIT=https://git.beta.pole-emploi.fr/open-source/trefle.git
+    GITLAB_TOKEN={ASK-GITLAB-TOKEN}
+    ```
+
 
 where X.X.X is a tag of the TREFLE_GIT
 OLD_VERSION and BACK_VERSION must be compatible
 
-    docker-compose up --build -d
+3. Add email, password, and rule file authorized to be modified in docker/authorisations.csv
+    i.e: `myname@email.com, mypassord, Occitanie.rules`
 
+4. `docker-compose up --build -d` to use image from the gitlab registry or `docker-compose -f docker-compose.yml -f docker-compose.override-build.yml up -d --build` to build the image from scratch
+
+
+## Update acces
+
+1. Update file authorisations.csv in docker/authorisations.csv
+2. in docker folder do `sh update_access`
 logs are in docker/logs
