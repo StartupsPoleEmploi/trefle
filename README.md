@@ -70,14 +70,15 @@ Get a more detailed coverage report:
 2. Add this env var:
 
     ```
-    VERSION api-vX.X.X
-    OLD_VERSION api-vX.X.X
-    BACK_VERSION backoffice-vX.X.X
-    LBF_CHARMAP "sA,4B,RC,cD,oE,gF,yG,wH,mI,HJ,7K,EL,aM,YN,XO,8P,GQ,BR,kS,iT,IU,AV,TW,DX,pY,JZ,2a,Lb,Mc, d,de,Cf,Qg,fh,ri,Pj,Nk,Vl,vm,0n,Ko,ep,jq,Zr,9s,ht,Fu,tv,-w,Ux,1y,xz,30,u1,52,q3,W4,S5,66,n7,b8,O9,_+,l/,z "
-    CATALOG_USER {ASK-YOUR-LBF-CATALOG-API-USER}
-    CATALOG_KEY {ASK-YOUR-LBF-CATALOG-API-KEY}
-    CATALOG_URL https://labonneformation.pole-emploi.fr/api/v1/detail
-    TREFLE_GIT https://git.beta.pole-emploi.fr/open-source/trefle.git
+    VERSION=api-vX.X.X
+    OLD_VERSION=api-vX.X.X
+    BACK_VERSION=backoffice-vX.X.X
+    LBF_CHARMAP="sA,4B,RC,cD,oE,gF,yG,wH,mI,HJ,7K,EL,aM,YN,XO,8P,GQ,BR,kS,iT,IU,AV,TW,DX,pY,JZ,2a,Lb,Mc, d,de,Cf,Qg,fh,ri,Pj,Nk,Vl,vm,0n,Ko,ep,jq,Zr,9s,ht,Fu,tv,-w,Ux,1y,xz,30,u1,52,q3,W4,S5,66,n7,b8,O9,_+,l/,z "
+    CATALOG_USER={ASK-YOUR-LBF-CATALOG-API-USER}
+    CATALOG_KEY={ASK-YOUR-LBF-CATALOG-API-KEY}
+    CATALOG_URL=https://labonneformation.pole-emploi.fr/api/v1/detail
+    TREFLE_GIT=https://git.beta.pole-emploi.fr/open-source/trefle.git
+    GITLAB_TOKEN={ASK-GITLAB-TOKEN}
     ```
 
 
@@ -87,7 +88,7 @@ OLD_VERSION and BACK_VERSION must be compatible
 3. Add email, password, and rule file authorized to be modified in docker/authorisations.csv
     i.e: `myname@email.com, mypassord, Occitanie.rules`
 
-4. docker-compose up --build -d
+4. `docker-compose up --build -d` to use image from the gitlab registry or `docker-compose -f docker-compose.yml -f docker-compose.override-build.yml up -d --build` to build the image from scratch
 
 
 ## Update acces

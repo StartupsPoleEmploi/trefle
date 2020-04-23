@@ -1,4 +1,4 @@
-/srv/log/* {
+/srv/log/*.log {
     weekly
     rotate 52
     missingok
