@@ -1,6 +1,6 @@
 #TODO test docker image with https://github.com/aelsabbahy/goss
 variables:
-  TREFLE_OLD_VERSION: "api-v0.6.1"
+  TREFLE_OLD_VERSION: "api-v0.7.14"
 
 test:
   image: python:3.6
