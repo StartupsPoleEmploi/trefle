@@ -15,15 +15,16 @@ def set_percent(context, key: Label, rate: float, value: Pointer):
     context[key] = round(value.get(context) * rate / 100, 2)
 
 
+@action(r"c'est une? (?P<key>.+)")
+@action(r"(l'|les? |la )(?P<key>.+?) est éligible$")
+def set_true(context, key: Label):
+    context[key] = True
+
+
 @action(r"(l'|les? |la )(?P<key>.+?) (vaut|est) (l'|les? |la )?(?P<value>.+)$")
 @action(r"(l'|les? |la )(?P<key>.+?) est égale? (à la |à l'|à |aux? )?(?P<value>.+)$")
 def set_value(context, key: Label, value: Pointer):
     context[key] = value.get(context)
-
-
-@action(r"c'est une? (?P<key>.+)")
-def set_true(context, key: Label):
-    context[key] = True
 
 
 @action(r"appliquer les règles (de )?(l'|le |la )?(?P<rule>.+)")

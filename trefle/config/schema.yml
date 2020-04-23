@@ -285,6 +285,11 @@ beneficiaire:
     type: boolean
     public: true
     label: femme divorcée, veuve ou séparée judiciairement depuis moins de trois ans
+  seule_et_enceinte:
+    description: vous êtes une femme isolée et enceinte
+    type: boolean
+    public: true
+    label: femme seule et enceinte
   creation_entreprise:
     description: le bénéficiaire est en situation de création d'entreprise
     alias:
@@ -1043,6 +1048,53 @@ formation:
   individuels:
     type: boolean
     label: formation ouverte aux bénéficiaires individuels
+aide: &aide
+  droit_aide_complementaire:
+    description: le bénéficiaire a droit a une aide complémentaire
+    type: boolean
+    public: true
+    label: aide complémentaire
+  montant_aide_complementaire:
+    description: le montant de l'aide complémentaire
+    type: number
+    format: float
+    public: true
+    label: montant de l'aide complémentaire
+  description_aide_complementaire:
+    description: texte de description de l'aide complémentaire
+    type: string
+    public: true
+    label: texte de l'aide complémentaire
+  droit_aide_transport:
+    description: le bénéficiaire a droit à une aide au transport
+    type: boolean
+    public: true
+    label: aide au transport
+  montant_aide_transport:
+    description: le montant de l'aide au transport
+    type: string
+    public: true
+    label: montant de l'aide au transport
+  description_aide_transport:
+    description: texte de description de l'aide au transport
+    type: string
+    public: true
+    label: texte de l'aide au transport
+  droit_aide_hebergement:
+    description: le bénéficiaire a droit a une aide à l'hébergement
+    type: boolean
+    public: true
+    label: aide à l'hébergement
+  montant_aide_hebergement:
+    description: le montant de l'aide à l'hébergement
+    type: string
+    public: true
+    label: montant de l'aide à l'hébergement
+  description_aide_hebergement:
+    description: texte de description de l'aide au transport
+    type: string
+    public: true
+    label: texte de l'aide à l'hébergement
 remuneration: &remuneration
   intitule_remuneration: # add _remuneration to not overlap financement.intitule
     description: le nom de la règle de rémuneration
@@ -1118,6 +1170,7 @@ remuneration: &remuneration
     nullable: true
     public: true
     label: date de fin de la rémunération applicable
+  <<: *aide
 financement:
   intitule:
     description: le nom du financement

@@ -10,7 +10,13 @@ from roll.extensions import cors
 
 import ujson as json
 
-from . import VERSION, get_financements, get_remunerations, simulate
+from . import (
+    VERSION,
+    get_financements,
+    get_remunerations,
+    simulate,
+    simulate_remuneration,
+)
 from . import routine
 from .config import AUTHORIZED, FINANCEMENTS, COMMIT_AUTHORIZED, GLOSSARY, IDCC, NAF, CERTIFINFO, RAW_RULES, SCHEMA, GITLAB_TOKEN
 from .context import Context
@@ -81,8 +87,8 @@ async def simulate_(request, response):
     body = {"financements": financements}
     if request.query.bool("context", False):
         body["context"] = {
-            k: v for k, v in context.items()
-            if k in SCHEMA and "label" in SCHEMA[k]}
+            k: v for k, v in context.items() if k in SCHEMA and "label" in SCHEMA[k]
+        }
     if request.query.bool("scenario", False):
         body["scenario"] = make_scenario(context, financements)
     response.json = body
@@ -93,24 +99,10 @@ async def simulate_(request, response):
 # TODO : add pointer error for bad region number + test
 @app.route("/remuneration", methods=["POST"])
 async def remuneration_(request, response):
-    data = request.json
+    context = request.json
     remunerations = get_remunerations(tags=request.query.list("tags", []))
     try:
-        flatten(data)
-        context = Context(data.copy())
-        routine.extrapolate_context(context)
-        routine.preprocess(context)
-        for remuneration in remunerations:
-            copy = context.copy()
-            routine.check_remuneration(context, remuneration)
-            data.update(copy.cleaned_data)
-
-        # FIXME (limits of the single-store-all context object)
-        # Clean keys not meant to be exposed
-        for key in list(data.keys()):
-            if key.startswith("remuneration"):
-                del data[key]
-
+        await simulate_remuneration(context, remunerations)
     except DataError as err:
         error = {err.key: err.error}
         log_simulate(context, errors=error)
