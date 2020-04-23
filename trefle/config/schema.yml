@@ -1185,6 +1185,10 @@ financement:
     type: integer
     public: true
     label: priorité LBF d'un financement (legacy)
+  identifiant:
+    type: string
+    public: true
+    label: identifiant du financement
   financee_pe:
     description: la formation est financée par Pôle emploi
     type: boolean

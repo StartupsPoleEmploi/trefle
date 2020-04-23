@@ -1,30 +1,46 @@
 Si les codes financeur de la formation contiennent «Conseil régional»
+    Alors l'intitulé de la régle de rémunération vaut «Aides et rémunération mobilisable par les règles nationales»
 
-    Si l'allocation du bénéficiaire est définie
-        Alors la rémunération applicable est égale au montant de l'allocation du bénéficiaire
+Si l'intitulé du financement n'est pas «VAE Bourgogne Franche Comté»
+Et l'intitulé du financement n'est pas «Répondre rapidement aux besoins en recrutement des entreprises : Le FRAP (Fonds d’Appui Régional à la professionnalisation)»
+Et l'intitulé du financement n'est pas «Formation sanitaire et social niveau Bac et plus»
+Et l'identifiant du financement n'est pas «dispositif 12»
+Et l'identifiant du financement n'est pas «dispositif 10»
+Et l'identifiant du financement n'est pas «dispositif 7»
+    Alors l'intitulé de la régle de rémunération vaut «Aides et rémunération mobilisable par la région Bourgogne Franche Comté»
+
+    #######################
+    # Aide complémentaire #
+    #######################
+    Si l'intitulé du financement n'est pas «Création reprise entreprise PROFOREA / START AGRI»
+    Et l'intitulé du financement n'est pas «Formation secrétaires de mairie en région BFC»
+        Alors l'aide complémentaire est éligible
+        Et le montant de l'aide complémentaire vaut 200
+
 
     #####################
     # Aide au transport #
     #####################
-    Si c'est un travailleur handicapé
-        Alors l'aide au transport est éligible
-        Et le texte de l'aide au transport vaut «L'indemnité de transport est limitée à un aller/retour sur la durée de la formation.»
-    Si ce n'est pas un travailleur handicapé
-        Alors l'aide au transport est éligible
-        Et le montant de l'aide au transport vaut «98,79€ par mois (sous condition)»
-        Et le texte de l'aide au transport vaut «Si la distance vers le lieu de votre formation est supérieure ou égale à 16km. Alors vous pouvez bénéficier d'une aide au transport.»
-    # Ligne 45 46
-    Si c'est un bénéficiaire non salarié qui a travaillé pendant douze mois dont au moins six mois consécutifs dans les trois ans qui précèdent l'entrée en formation
-    Et ce n'est pas un parent isolé
-    Et ce n'est pas une mère de famille ayant au moins trois enfants
-    Et ce n'est pas une femme divorcée, veuve ou séparée judiciairement depuis moins de trois ans
-    Et ce n'est pas une femme seule et enceinte
-        Alors l'aide au transport est éligible
-        Et le texte de l'aide au transport vaut «L'indemnité de transport est limitée à un aller/retour sur la durée de la formation.»
+    Si l'intitulé du financement n'est pas «DFL / SPRF Dispositif formation linguistique»
+        Si c'est un travailleur handicapé
+            Alors l'aide au transport est éligible
+            Et le texte de l'aide au transport vaut «L'indemnité de transport est limitée à un aller/retour sur la durée de la formation.»
+        Si ce n'est pas un travailleur handicapé
+            Alors l'aide au transport est éligible
+            Et le montant de l'aide au transport vaut «98,79€ par mois (sous condition)»
+            Et le texte de l'aide au transport vaut «Si la distance vers le lieu de votre formation est supérieure ou égale à 16km. Alors vous pouvez bénéficier d'une aide au transport.»
+        # Ligne 45 46
+        Si c'est un bénéficiaire non salarié qui a travaillé pendant douze mois dont au moins six mois consécutifs dans les trois ans qui précèdent l'entrée en formation
+        Et ce n'est pas un parent isolé
+        Et ce n'est pas une mère de famille ayant au moins trois enfants
+        Et ce n'est pas une femme divorcée, veuve ou séparée judiciairement depuis moins de trois ans
+        Et ce n'est pas une femme seule et enceinte
+            Alors l'aide au transport est éligible
+            Et le texte de l'aide au transport vaut «L'indemnité de transport est limitée à un aller/retour sur la durée de la formation.»
 
-    ####################
+    ########################
     # Aide à l'hébergement #
-    ####################
+    ########################
     Si c'est un bénéficiaire qui a déjà travaillé six mois sur une période de douze mois
     Ou c'est un bénéficiaire qui a déjà travaillé douze mois sur une période de vingt-quatre mois
     Ou c'est un parent isolé
@@ -48,51 +64,52 @@ Si les codes financeur de la formation contiennent «Conseil régional»
     ################
     # Rémunération #
     ################
-    Si ce n'est pas un bénéficiaire qui a déjà travaillé six mois sur une période de douze mois
-    Et ce n'est pas un bénéficiaire qui a déjà travaillé douze mois sur une période de vingt-quatre mois
-    Et ce n'est pas un bénéficiaire non salarié qui a travaillé pendant douze mois dont au moins six mois consécutifs dans les trois ans qui précèdent l'entrée en formation
+    Si l'intitulé du financement n'est pas «DFL / SPRF Dispositif formation linguistique»
 
-        Si l'âge du bénéficiaire est inférieur à 18
-        Et la rémunération applicable est inférieure à 455.01
-                Alors la rémunération applicable vaut 455.01
+        #Si l'allocation du bénéficiaire est définie
+        Si le montant de l'allocation du bénéficiaire est définie
+            Alors la rémunération applicable est égale au montant de l'allocation du bénéficiaire
 
-        Si l'âge du bénéficiaire est supérieur ou égal à 18
-        Et la rémunération applicable est inférieure à 652.18
-            Alors la rémunération applicable vaut 652.18
+        Si ce n'est pas un bénéficiaire qui a déjà travaillé six mois sur une période de douze mois
+        Et ce n'est pas un bénéficiaire qui a déjà travaillé douze mois sur une période de vingt-quatre mois
+        Et ce n'est pas un bénéficiaire non salarié qui a travaillé pendant douze mois dont au moins six mois consécutifs dans les trois ans qui précèdent l'entrée en formation
 
+            Si l'âge du bénéficiaire est inférieur à 18
+            Et la rémunération applicable est inférieure à 455.01
+                    Alors la rémunération applicable vaut 455.01
+
+            Si l'âge du bénéficiaire est supérieur ou égal à 18
+            Et la rémunération applicable est inférieure à 652.18
+                Alors la rémunération applicable vaut 652.18
+
+            Si c'est un travailleur handicapé
+            Et la rémunération applicable est inférieure à 1001.02
+                Alors la rémunération applicable vaut 1001.02
+
+        # Tableau de regles: ligne 4 et 7
         Si c'est un travailleur handicapé
-        Et la rémunération applicable est inférieure à 1001.02
-            Alors la rémunération applicable vaut 1001.02
+        Et la rémunération applicable est inférieure à 910.02
 
-    # Tableau de regles: ligne 4 et 7
-    Si c'est un travailleur handicapé
-    Et la rémunération applicable est inférieure à 910.02
+            Si c'est un bénéficiaire qui a déjà travaillé six mois sur une période de douze mois
+            Ou c'est un bénéficiaire qui a déjà travaillé douze mois sur une période de vingt-quatre mois
+            Ou c'est un bénéficiaire non salarié qui a travaillé pendant douze mois dont au moins six mois consécutifs dans les trois ans qui précèdent l'entrée en formation
+            Alors la rémunération applicable vaut 910.02
+            Et le texte de la rémunération vaut «C'est une rémunération minimum en fonction de votre expérience»
 
+        # Tableau de regles: ligne 4 et 8 à 13
         Si c'est un bénéficiaire qui a déjà travaillé six mois sur une période de douze mois
         Ou c'est un bénéficiaire qui a déjà travaillé douze mois sur une période de vingt-quatre mois
-        Ou c'est un bénéficiaire non salarié qui a travaillé pendant douze mois dont au moins six mois consécutifs dans les trois ans qui précèdent l'entrée en formation
-        Alors la rémunération applicable vaut 910.02
-        Et le texte de la rémunération vaut «C'est une rémunération minimum en fonction de votre expérience»
+            Si la rémunération applicable est inférieure à 863.0
+                Alors la rémunération applicable vaut 863.00
 
-    # Tableau de regles: ligne 4 et 8 à 13
-    Si c'est un bénéficiaire qui a déjà travaillé six mois sur une période de douze mois
-    Ou c'est un bénéficiaire qui a déjà travaillé douze mois sur une période de vingt-quatre mois
-        Si la rémunération applicable est inférieure à 863.0
-            Alors la rémunération applicable vaut 863.00
+        # Tableau de regles: ligne 38 à 44
+        Si c'est un bénéficiaire non salarié qui a travaillé pendant douze mois dont au moins six mois consécutifs dans les trois ans qui précèdent l'entrée en formation
+        Et la rémunération applicable est inférieure à 708.59
+            Alors la rémunération applicable vaut 708.59
 
-    # Tableau de regles: ligne 38 à 44
-    Si c'est un bénéficiaire non salarié qui a travaillé pendant douze mois dont au moins six mois consécutifs dans les trois ans qui précèdent l'entrée en formation
-    Et la rémunération applicable est inférieure à 708.59
-        Alors la rémunération applicable vaut 708.59
-
-    Si c'est un parent isolé
-    Ou c'est une mère de famille ayant au moins trois enfants
-    Ou c'est une femme divorcée, veuve ou séparée judiciairement depuis moins de trois ans
-    Ou c'est une femme seule et enceinte
-        Si la rémunération applicable est inférieure à 863.00
-            Alors la rémunération applicable vaut 863.00
-
-
-    # TODO ajouter cas détenu
-    # Si c'est un détenu
-    #     Alors la rémunération applicable vaut 3.3 € x durée de la formation en h
+        Si c'est un parent isolé
+        Ou c'est une mère de famille ayant au moins trois enfants
+        Ou c'est une femme divorcée, veuve ou séparée judiciairement depuis moins de trois ans
+        Ou c'est une femme seule et enceinte
+            Si la rémunération applicable est inférieure à 863.00
+                Alors la rémunération applicable vaut 863.00

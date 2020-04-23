@@ -302,6 +302,16 @@ VAE Normandie:
   racine: Normandie.rules
   ressources:
     - https://avril.pole-emploi.fr/
+VAE Bourgogne Franche Comté:
+  type_lbf: actioncollectiveregion
+  priorite_lbf: 1
+  tags: [DE, région, VAE, Bourgogne-Franche-Comté, collectif]
+  cpf_mobilisable: True
+  financee_pe: False
+  cumulable: False
+  racine: Bourgogne-Franche-Comté.rules
+  ressources:
+    - https://avril.pole-emploi.fr/
 Programme régional de formation Nouvelle-Aquitaine:
   intitule: Programme régional de formation
   sigle: PRF
@@ -449,8 +459,17 @@ Action collective financée par la Région Bourgogne:
   financee_pe: False
   cumulable: False
   racine: Bourgogne-Franche-Comté.rules
-Formation sanitaire et social Bourgogne:
-  intitule: Formation sanitaire et social
+Formation sanitaire et social niveau infra Bac:
+  intitule: Formation sanitaire et social niveau infra Bac
+  type_lbf: actioncollectiveregion
+  priorite_lbf: 1
+  tags: [DE, Bourgogne-Franche-Comté, région, domaine]
+  cpf_mobilisable: True
+  financee_pe: False
+  cumulable: False
+  racine: Bourgogne-Franche-Comté.rules
+Formation sanitaire et social niveau Bac et plus:
+  intitule: Formation sanitaire et social niveau Bac et plus
   type_lbf: actioncollectiveregion
   priorite_lbf: 1
   tags: [DE, Bourgogne-Franche-Comté, région, domaine]
@@ -460,6 +479,38 @@ Formation sanitaire et social Bourgogne:
   racine: Bourgogne-Franche-Comté.rules
 Dispositif accès à la qualification:
   sigle: DAQ
+  type_lbf: actioncollectiveregion
+  priorite_lbf: 1
+  tags: [DE, région, Bourgogne-Franche-Comté, collectif]
+  cpf_mobilisable: True
+  financee_pe: False
+  cumulable: False
+  racine: Bourgogne-Franche-Comté.rules
+"DFL / SPRF Dispositif formation linguistique":
+  type_lbf: actioncollectiveregion
+  priorite_lbf: 1
+  tags: [DE, région, Bourgogne-Franche-Comté, collectif]
+  cpf_mobilisable: True
+  financee_pe: False
+  cumulable: False
+  racine: Bourgogne-Franche-Comté.rules
+Création reprise entreprise:
+  type_lbf: actioncollectiveregion
+  priorite_lbf: 1
+  tags: [DE, région, Bourgogne-Franche-Comté, collectif]
+  cpf_mobilisable: True
+  financee_pe: False
+  cumulable: False
+  racine: Bourgogne-Franche-Comté.rules
+"Création reprise entreprise PROFOREA / START AGRI":
+  type_lbf: actioncollectiveregion
+  priorite_lbf: 1
+  tags: [DE, région, Bourgogne-Franche-Comté, collectif]
+  cpf_mobilisable: True
+  financee_pe: False
+  cumulable: False
+  racine: Bourgogne-Franche-Comté.rules
+"Une formation pour moi c'est possible":
   type_lbf: actioncollectiveregion
   priorite_lbf: 1
   tags: [DE, région, Bourgogne-Franche-Comté, collectif]

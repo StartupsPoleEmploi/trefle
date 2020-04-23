@@ -73,3 +73,17 @@ Scénario: Rému pour une pesonnes handicapée n'ayant pas travaillée
     Alors la rémunération applicable vaut 1001.02
     Et aucune aide à l'hébergement n'est éligible
     Et une aide au transport est éligible
+
+
+Scénario: Pas de rému région pour formation sanitaire et social niveau Bac et plus
+    Soit un bénéficiaire et une formation
+    Et c'est un demandeur d'emploi
+    Et l'âge du bénéficiaire vaut 30
+    Et les codes financeur de la formation valent [«Conseil régional»]
+    Et la région de la formation vaut «Bourgogne-Franche-Comté»
+    Et l'intitulé du financement vaut «Formation sanitaire et social niveau Bac et plus»
+    Quand je demande un calcul de rémunération
+    Alors la rémunération applicable vaut 401.09
+    Et l'intitulé de la régle de rémunération vaut «Aides et rémunération mobilisable par les règles nationales»
+    Et aucune aide à l'hébergement n'est éligible
+    Et aucune aide au transport n'est éligible

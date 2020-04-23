@@ -1,8 +1,20 @@
-Si le financement est de type «E2C»
-    Alors appliquer les règles «E2C»
-
 Si l'intitulé du financement est «Accès des demandeurs d’emploi aux métiers agricoles»
     Alors appliquer les règles «ADEMA»
+
+Si le financement est de type «FAJ»
+    Alors appliquer les règles «FAJ»
+
+Si le financement est de type «POEI»
+    Alors appliquer les règles «POEI»
+
+Si l'intitulé du financement est «Financement individuel Agefiph»
+    Alors appliquer les règles «Agefiph»
+
+Si l'intitulé du financement est «Formation en alternance : contrat de professionnalisation»
+    Alors appliquer les règles «contrat de professionnalisation»
+
+Si l'intitulé du financement est «Formation en alternance : contrat d'apprentissage»
+    Alors appliquer les règles «contrat d'apprentissage»
 
 Si le financement est de type «AFC»
     Si l'intitulé du financement n'est pas «Action de formation collective financée par Pôle emploi»
@@ -21,43 +33,17 @@ Si le financement est de type «AFC»
             Et le texte pour en savoir plus vaut «Contactez votre conseiller Pôle emploi pour connaître les conditions d'accès à la formation.»
             Et le texte de la prise en charge vaut «Formation totalement financée.»
 
-Si le financement est de type «FAJ»
-    Alors appliquer les règles «FAJ»
-
-Si le financement est de type «POEI»
-    Alors appliquer les règles «POEI»
-
-Si l'intitulé du financement est «Financement individuel Agefiph»
-    Alors appliquer les règles «Agefiph»
-
-Si l'intitulé du financement est «Formation en alternance : contrat de professionnalisation»
-    Alors appliquer les règles «contrat de professionnalisation»
-
-Si l'intitulé du financement est «Formation en alternance : contrat d'apprentissage»
-    Alors appliquer les règles «contrat d'apprentissage»
 
 Si l'intitulé du financement est «Aide individuelle à la formation»
 
-    # TODO libellé contient "permis"
     Si la liste des codes FORMACODE de la formation ne contient aucun code parmi [43448,43436,43441,43454,44004,44028,44054]
     Et la région du bénéficiaire vaut «Bourgogne-Franche-Comté»
     Et le code CERTIFINFO de la formation ne fait pas partie de [54912,54913,54917,87185,87187,25467]
+    Et l'intitulé normé de la formation ne contient pas «PERMIS»
     Et ce n'est pas un permis B
         Alors appliquer les règles «AIF»
         Et le texte de la prise en charge vaut «Formation totalement prise en charge, sous réserve d'acceptation par Pôle emploi»
 
-Si l'intitulé du financement est «Action collective financée par la Région»
-
-    Si les codes financeur de la formation contiennent «Conseil régional»
-    Et le code CERTIFINFO de la formation ne fait pas partie de [54912,54913,54917,87185,87187]
-    Et ce n'est pas un bénéficiaire de droit privé
-    Et la région de la formation vaut «Bourgogne-Franche-Comté»
-        Alors le financement est éligible
-        Et appliquer les règles «rémunérations applicables»
-        Et le texte des démarches vaut «Contactez votre conseiller référent emploi (Pôle emploi, mission locale ou Cap emploi).»
-        Et le texte de description vaut «Il s'agit d'une formation collective qualifiante, diplômante ou certifiante pour accéder à l’emploi : diplôme, CQP, titres homologués/certifiés inscrits au Répertoire national des certifications professionnelles (RNCP), délivrée en centre de formation avec une période de stage en entreprise.»
-        Et le texte pour en savoir plus vaut «L’entrée en formation sur une action collective est ouverte aux demandeurs d’emploi dont le projet professionnel a fait l’objet d’une validation par un conseiller Pôle emploi, Cap emploi ou mission locale.»
-        Et le texte de la prise en charge vaut «Formation totalement financée.»
 
 Si le financement est de type «POEC»
 
@@ -72,20 +58,43 @@ Si le financement est de type «POEC»
         Et le texte de la prise en charge vaut «Formation totalement financée.»
 
 
-Si l'intitulé du financement est «Formation sanitaire et social»
+Si l'intitulé du financement est «DFL / SPRF Dispositif formation linguistique»
+    Alors l'identifiant du financement vaut «dispositif 1»
 
     Si la région de la formation vaut «Bourgogne-Franche-Comté»
+    Et les codes financeur de la formation contiennent «Conseil régional»
     Et ce n'est pas un bénéficiaire de droit privé
-        Si le code CERTIFINFO de la formation vaut 54913, et le SIRET de l'organisme de formation fait partie de [26890005700061,26710079000059,26890025500012,26890023000072,26390003700080,26210007600286,26580008600018,20001120300037,26710033700034,26710076600117,26580007800015,20004782700056,26710028700130,26390004500109,26250462400012,13001406100019,26250176000082,26900129300118,26900129300167,26890015600103,77567227210495,77567227233851,19580050300037]
-        Ou le code CERTIFINFO de la formation vaut 54917, et le SIRET de l'organisme de formation fait partie de [26250462400012,26250176000082,77567227233851,19250030400022]
-        Ou le code CERTIFINFO de la formation vaut 54912, et le SIRET de l'organisme de formation fait partie de [26250176000082,26210007600310,26890015600103]
-            Alors le financement est éligible
-            Et appliquer les règles «rémunérations applicables»
-            Et le texte des démarches vaut « 1) Renseignez vous auprès de l'organisme de formation pour vérifier les conditions d'admission après concours et les conditions d'éligibilité⏎2) Retirer un dossier auprès de l'organisme concerné pour s'inscrire au concours.⏎3) Le projet doit être validé par le conseiller référent emploi.⏎Un délai de carence de 2 ans entre deux qualifications professionnelles obtenues est exigé.»
-            Et le texte de description vaut «Formation débouchant sur un diplôme d'État, prise en charge et rémunérée pour les demandeurs d'emploi par la Région et par Pôle emploi.»
-            Et le texte de la prise en charge vaut «Formation totalement prise en charge en dehors de frais d'inscription.»
+    Et l'intitulé normé de la formation contient «DFL», ou l'intitulé normé de la formation contient «DISPOSITIFDEFORMATIONLINGUISTIQUE»
+        Alors le financement est éligible
+        Et appliquer les règles «rémunérations applicables»
+        Et le texte des démarches vaut «Contactez votre conseiller référent: pôle emploi , mission locale, CAP emploi, SIAE, travailleurs sociaux, PLIE, PJJ, SPIP… ou se présenter spontanément auprès des prestataires retenus par la Région.»
+        Et le texte de description vaut «Favoriser l’insertion professionnelle des personnes rencontrant des difficultés de maîtrise de la langue française (Illettrisme, FLE, analphabétisme francophone) à travers un parcours comprenant un positionnement et une formation personnalisée et adaptée afin de développer leur maîtrise du français.»
+        Et le texte pour en savoir plus vaut «L’entrée sur le dispositif est ouverte à toute personne, en recherche d’emploi, inscrite ou non à Pole emploi, sortie du système scolaire visant une insertion professionnelle ainsi qu’aux salariés hors temps de travail.»
+
+
+Si l'intitulé du financement est «Une formation pour moi c'est possible»
+    Alors l'identifiant du financement vaut «dispositif 2»
+
+    Si la région de la formation vaut «Bourgogne-Franche-Comté»
+    Et les codes financeur de la formation contiennent «Conseil régional»
+    Et la liste des codes FORMACODE de la formation contient 15084
+    Et c'est un demandeur d'emploi
+    # TODO revoir la formulation (iV original à transposer en nouveau code)
+    Et le niveau scolaire du bénéficiaire est inférieur à «IV»
+        Alors le financement est éligible
+        Et appliquer les règles «rémunérations applicables»
+        Et le texte des démarches vaut «Contactez votre conseiller référent : pôle emploi , mission locale, CAP emploi, SIAE, travailleurs sociaux, PLIE, PJJ, SPIP…»
+        Et le texte de description vaut «Donner la possibilité à toute personne n’ayant pas de projet professionnel ou ne connaissant pas la formation professionnelle d’identifier les étapes nécessaires à la réalisation d’un projet de formation professionnelle en permettant l’identification des compétences détenues, la levée d’éventuels freins à l’entrée dans un parcours de formation et d’envisager un parcours de formation afin de compléter ses compétences.»
+        Et le texte pour en savoir plus vaut «L’entrée sur le dispositif est ouverte à toute personne, en recherche d’emploi, inscrite ou non à Pole emploi, sortie du système scolaire visant une insertion professionnelle.»
+
+
+Si le financement est de type «E2C»
+    Alors appliquer les règles «E2C»
+    Et l'identifiant du financement vaut «dispositif 3»
+
 
 Si l'intitulé du financement est «Dispositif accès à la qualification»
+    Alors l'identifiant du financement vaut «dispositif 4»
 
     Si la région de la formation vaut «Bourgogne-Franche-Comté»
     Et les codes financeur de la formation contiennent «Conseil régional»
@@ -95,5 +104,158 @@ Si l'intitulé du financement est «Dispositif accès à la qualification»
         Et appliquer les règles «rémunérations applicables»
         Et le texte des démarches vaut «Contactez votre conseiller référent emploi (Pôle emploi, mission locale ou Cap emploi).»
         Et le texte de description vaut «Parcours de 650h maximum permettant à une personne peu ou pas qualifiée d'accéder à des formations qualifiantes en validant des certifcations comme le Certificat de formation générale, le Diplôme d’études en langue française option professionnelle), ou le diplôme de compétence en langue, le brevet informatique et internet adultes ou le passeport de compétences informatique européen), l'attestation de sécurité routière…»
-        Et le texte pour en savoir plus vaut «L’entrée en formation sur cette action collective est ouverte aux demandeurs d’emploi inscrits à Pôle emploi dont le projet a fait l’objet d’une validation par un conseiller Pôle emploi, Mission Locale ou Cap emploi.»
+        Et le texte pour en savoir plus vaut «L’entrée en formation sur cette action collective est ouverte aux demandeurs d’emploi inscrits ou non à Pôle emploi.»
         Et le texte de la prise en charge vaut «Formation totalement financée.»
+
+
+Si l'intitulé du financement est «Action collective financée par la Région»
+    Alors l'identifiant du financement vaut «dispositif 5»
+
+    Si les codes financeur de la formation contiennent «Conseil régional»
+    Et le code CERTIFINFO de la formation ne fait pas partie de [54912,54913,54917,87185,87187]
+    Et ce n'est pas un bénéficiaire de droit privé
+    Et la région de la formation vaut «Bourgogne-Franche-Comté»
+        Alors le financement est éligible
+        Et appliquer les règles «rémunérations applicables»
+        Et le texte des démarches vaut «Contactez votre conseiller référent emploi (Pôle emploi, mission locale ou Cap emploi).»
+        Et le texte de description vaut «Il s'agit d'une formation collective qualifiante, diplômante ou certifiante pour accéder à l’emploi : diplôme, CQP, titres homologués/certifiés inscrits au Répertoire national des certifications professionnelles (RNCP), délivrée en centre de formation avec une période de stage en entreprise.»
+        Et le texte pour en savoir plus vaut «L’entrée en formation sur une action collective est ouverte aux demandeurs d’emploi dont le projet professionnel a fait l’objet d’une validation par un conseiller Pôle emploi, Cap emploi ou mission locale.»
+        Et le texte de la prise en charge vaut «Formation totalement financée.»
+
+
+Si l'intitulé du financement est «Formation sanitaire et social niveau infra Bac»
+    Alors l'identifiant du financement vaut «dispositif 6»
+
+    Si la région de la formation vaut «Bourgogne-Franche-Comté»
+    Et les codes financeur de la formation contiennent «Conseil régional»
+    Et ce n'est pas un bénéficiaire de droit privé
+
+        Si le code CERTIFINFO de la formation vaut 54913
+        Ou le code CERTIFINFO de la formation vaut 54917
+        Ou le code CERTIFINFO de la formation vaut 54912
+            Alors le financement est éligible
+            Et appliquer les règles «rémunérations applicables»
+            Et le texte des démarches vaut « 1) Renseignez vous auprès de l'organisme de formation pour vérifier les conditions d'admission ⏎2) Retirer un dossier auprès de l'organisme concerné pour s'inscrire au concours.⏎3) Le projet doit être validé par le conseiller référent emploi.⏎Un délai de carence de 2 ans entre deux qualifications professionnelles obtenues est exigé.»
+            Et le texte de description vaut «Formation débouchant sur un diplôme d'État, prise en charge est rémunérée pour les demandeurs d'emploi par la Région et par Pôle emploi.»
+            Et le texte de la prise en charge vaut «Formation totalement prise en charge en dehors de frais d'inscription.»
+
+
+Si l'intitulé du financement est «Formation sanitaire et social niveau Bac et plus»
+    Alors l'identifiant du financement vaut «dispositif 7»
+
+    Si la région de la formation vaut «Bourgogne-Franche-Comté»
+    Et les codes financeur de la formation contiennent «Conseil régional»
+    Et ce n'est pas un bénéficiaire de droit privé
+
+        Si le code CERTIFINFO de la formation fait partie de [64144, 18734, 20103, 23715, 20120, 53277, 53865, 21097, 31062, 31056]
+        Ou le code CERTIFINFO de la formation vaut 73378
+        Et la commune de la formation vaut «Besançon»
+            Alors le financement est éligible
+            Et appliquer les règles «rémunérations applicables»
+            Et le texte des démarches vaut « 1) Renseignez vous auprès de l'organisme de formation pour vérifier les conditions d'admission ⏎2) Retirer un dossier auprès de l'organisme concerné pour s'inscrire au concours.⏎3) Le projet doit être validé par le conseiller référent emploi.⏎Un délai de carence de 2 ans entre deux qualifications professionnelles obtenues est exigé.»
+            Et le texte de description vaut «Formation débouchant sur un diplôme d'État, prise en charge est rémunérée pour les demandeurs d'emploi par la Région et par Pôle emploi.»
+            Et le texte de la prise en charge vaut «Formation totalement prise en charge en dehors de frais d'inscription.»
+
+
+Si l'intitulé du financement est «Création reprise entreprise»
+    Alors l'identifiant du financement vaut «dispositif 8»
+
+    Si la région de la formation vaut «Bourgogne-Franche-Comté»
+    Et les codes financeur de la formation contiennent «Conseil régional»
+    Et le code CERTIFINFO de la formation vaut 93561
+    Et l'intitulé normé de la formation ne contient pas «PROFOREA»
+    Et l'intitulé normé de la formation ne contient pas «STARTAGRI»
+    Et ce n'est pas un bénéficiaire de droit privé
+        Alors le financement est éligible
+        Et appliquer les règles «rémunérations applicables»
+        Et le texte des démarches vaut «Contactez l’organisme en charge de la formation qui met en place un jury de sélection chargé de vérifier l’adéquation entre le candidat et son projet, la faisabilité économique du projet, le lieu d’implantation du projet sur le territoire régional.»
+        Et le texte de description vaut «Permettre au porteur/porteuse d’un projet de création ou de reprise d’entreprise en Bourgogne-Franche-Comté de construire concrètement leurs projets tant dans la forme que dans le contenu grâce à l’acquisition de connaissances directement applicables à leurs projets, d’utiliser les outils nécessaires à la création ou à la reprise d’une entreprise, d’acquérir les compétences nécessaires à la bonne gestion et à la pérennité de la future entreprise.»
+        Et le texte pour en savoir plus vaut «L’entrée sur le dispositif est ouverte à toute personne âgée de plus de 16 ans, quel que soit son statut et son niveau de formation, porteuse d’un projet de création ou de reprise d’entreprise en Bourgogne-Franche-Comté.»
+
+
+Si l'intitulé du financement est «Création reprise entreprise PROFOREA / START AGRI»
+    Alors l'identifiant du financement vaut «dispositif 9»
+
+    Si la région de la formation vaut «Bourgogne-Franche-Comté»
+    Et les codes financeur de la formation contiennent «Conseil régional»
+    Et le code CERTIFINFO de la formation vaut 93561
+    Et l'intitulé normé de la formation contient «PROFOREA», ou l'intitulé normé de la formation contient «STARTAGRI»
+    Et ce n'est pas un bénéficiaire de droit privé
+        Alors le financement est éligible
+        Et appliquer les règles «rémunérations applicables»
+        Et le texte des démarches vaut «Contacter l’organisme en charge de la formation la chambre régionale des métiers et de l’artisanat pour le programme proforeart et la chambre régionale d’agriculture pour le programme start agri»
+        Et le texte de description vaut «Accompagner et sécuriser la création et la reprise d’installations agricoles ou d’entreprises artisanales hors cadre familial en permettant au créateur/repreneur de tester son projet en situation réelle tout en bénéficiant d’un accompagnement individuel et collectif.»
+        Et le texte pour en savoir plus vaut «Les publics visés sont les porteurs de projet de reprise d’une entreprise artisanale ou d’une exploitation agricole hors cadre familial. Pour les entreprises agricoles, le public visé est celui des candidats hors cadre familial de moins de 50 ans avec une priorité pour les publics âgés de moins de 40 ans.»
+
+
+Si l'intitulé du financement est «Le FRAP (Fonds d’Appui Régional à la professionnalisation)»
+    Alors l'identifiant du financement vaut «dispositif 10»
+
+    Si la région de la formation vaut «Bourgogne-Franche-Comté»
+    Et les codes financeur de la formation contiennent «Conseil régional»
+    Et ce n'est pas un bénéficiaire de droit privé
+    Et la commune de la formation vaut «Besançon»
+        Alors le financement est éligible
+        Et appliquer les règles «rémunérations applicables»
+        Et le texte des démarches vaut «Contactez votre conseiller référent emploi (Pôle emploi, mission locale ou Cap emploi)Le dispositif s’articule avec les modalités d’intervention de Pôle Emploi, des opérateurs de compétences de la formation des salariés (OPCO) et des entreprises, pour construire, de façon adaptée, des parcours de formation préalable aux recrutements.»
+        Et le texte de description vaut «Accompagner les entreprises ayant des difficultés à recruter sur des métiers en tension.»
+        Et le texte de la prise en charge vaut «Le coût de la formation est pris en charge en totalité par l’OPCO, Pôle emploi et la Région.»
+
+
+Si l'intitulé du financement est «Formation secrétaires de mairie en région BFC»
+    Alors l'identifiant du financement vaut «dispositif 11»
+
+    Si les codes financeur de la formation contiennent «Conseil régional»
+    Et le code CERTIFINFO de la formation vaut 42946
+    Et ce n'est pas un bénéficiaire de droit privé
+    Et la région de la formation vaut «Bourgogne-Franche-Comté»
+        Alors le financement est éligible
+        Et appliquer les règles «rémunérations applicables»
+        Et le texte des démarches vaut «Contactez votre conseiller référent emploi (Pôle emploi, mission locale ou Cap emploi).»
+        Et le texte de description vaut «Acquérir les compétences pour devenir secrétaire de mairie en milieu rural. Les secrétaires de mairie sont des acteurs essentiels du service public local.»
+        Et le texte pour en savoir plus vaut «L’entrée en formation sur cette action est ouverte aux demandeurs d’emploi dont le projet professionnel a fait l’objet d’une validation par un conseiller Pôle emploi, Cap emploi ou mission locale.»
+
+
+Si l'intitulé du financement est «VAE Bourgogne Franche Comté»
+    Alors l'identifiant du financement vaut «dispositif 12»
+
+    Si la région de la formation vaut «Bourgogne-Franche-Comté»
+    Et les codes financeur de la formation contiennent «Conseil régional»
+    Et le code CERTIFINFO de la formation vaut 83899
+    Et c'est un demandeur d'emploi
+        Alors le financement est éligible
+        Et appliquer les règles «rémunérations applicables»
+        Et le texte des démarches vaut «Contactez votre conseiller référent emploi (Pôle emploi, mission locale ou Cap emploi)»
+        Et le texte de description vaut «Faciliter le retour à l’emploi et accompagner au mieux les transitions professionnelles . La VAE constitue une voie d’accès à la certification à partir de l’expérience. C’est l’opportunité de valoriser ses acquis et d’obtenir en partie ou en totalité une certification de valeur nationale (diplôme, titre ou certification).»
+        Et le texte pour en savoir plus vaut «L’entrée en formation sur cette action est ouverte aux demandeurs d’emploi dont le projet professionnel a fait l’objet d’une validation par un conseiller Pôle emploi, Cap emploi ou mission locale.»
+
+
+---
+Notes:
+
+    ##################################
+    # Codes et dispositifs associés #
+    ################################
+
+    1: Approfondir ma maîtrise de la langue Française (écrite et orale): DFL Dispositif de formation linguistique
+    2: Me remobiliser et définir mon projet de formation: « Une Formation pour Moi ? C’est Possible ! »
+    3: Construire mon projet d’insertion sociale et professionnelle – jeunes adultes jusqu’à 30 ans : Les écoles de la 2ème chance (E2C)
+    4: Me préparer pour accéder à une formation ou un emploi: Le Dispositif amont de la qualification (DAQ)
+    5: Me former à un métier : Le programme qualifiant
+    6: Me former aux métiers du sanitaire et social: formations niveau infra BAC
+    7: Me former aux métiers du sanitaire et social: formations niveau BAC et plus
+    8: Me former pour développer un projet de création / reprise d’entreprise
+    9: Me former pour développer un projet de création / reprise d’entreprise: PROFOREA / START AGRI
+    10: Répondre rapidement aux besoins en recrutement des entreprises : Le FRAP (Fonds d’Appui Régional à la professionnalisation)
+    11: Formation secrétaires de mairie en région BFC
+    12: VAE
+
+
+* 1 DFL / SPRF Dispositif formation linguistique 2019
+Est-ce que le rend accessible aux salariés ?
+
+*12 VAE
+J'ai ajouté le code financeur conseil régional dans la règle
+ATTENTION : renommage du dispositif en VAE Bourgogne Franche Conté
+
+
