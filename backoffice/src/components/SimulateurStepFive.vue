@@ -54,7 +54,7 @@
           <label for="situation_vaepartiellemoins5ans" class="label-after">Vous souhaitez terminer cette formation pour laquelle vous avez obtenu, il y a moins de 5 ans, une certification partielle par un jury VAE</label>
         </div>
       </div>
-    </div>        
+    </div>
     <div v-if="$parent.situation_inscrit == 2">
       <div class="row">
         <div class="col-md-12">
@@ -82,12 +82,12 @@
           <button class="btn main-button mr-5" v-on:click="searchIDCC()">Chercher</button>
           <span v-if="idccNotExists===false">Convention collective trouvée : <strong>{{ intitule_idcc }}</strong></span>
           <span v-if="idccNotExists===true" style="color:red">Aucune convention collective trouvée avec l'identifiant {{ id_idcc }} </span><br>
-          
+
         </div>
       </div>
       <div class="row">
         <div class="col-md-12 autocomplete">
-          <label for="commune_entreprise">Commune de votre entreprise</label>&nbsp;          
+          <label for="commune_entreprise">Commune de votre entreprise</label>&nbsp;
           <b-form-input v-model="$parent.commune_entreprise_autocomplete" list="commune-entreprise-list" placeholder="Rentrez le code postal de votre entreprise"></b-form-input>
           <datalist id="commune-entreprise-list">
             <option v-for="commune in this.commune_entreprise_list" :key="commune.codeCommune">
@@ -101,7 +101,7 @@
 </template>
 <script>
   export default {
-		name: 'SimulateurStepFive',		
+		name: 'SimulateurStepFive',
     props:[],
     data: function () {
       return {
@@ -145,7 +145,7 @@
             return false;
         }
         return true;
-      },    
+      },
     }
   }
 </script>

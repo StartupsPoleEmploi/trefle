@@ -42,20 +42,19 @@
           <input type="button" class="btn main-button" value="Simuler" v-on:click="simulate()"/>
         </div>
       </div>
+    </div>
       <!------------------- RESULTATS --------------->
-      <div v-else id="simulate-results">
-        <div v-if="!isLoading" class="mt-5">
-          <SimulateurResultats :schema="schema" :financements="financements" :financements_eligibles="financements_eligibles" :scenario="scenario" :context="context"></SimulateurResultats>
-        </div>
-        <div v-else class="text-center loading-gif">
-          <img src="./../assets/images/loading.gif" alt="loading...">
-        </div>
+    <div v-if="resultats" id="simulate-results">
+      <div v-if="!isLoading" class="mt-5">
+        <SimulateurResultats :schema="schema" :financements="financements" :financements_eligibles="financements_eligibles" :scenario="scenario" :context="context"></SimulateurResultats>
+      </div>
+      <div v-else class="text-center loading-gif">
+        <img src="./../assets/images/loading.gif" alt="loading...">
       </div>
     </div>
   </div>
 </template>
 <script>
-
   import SimulateurStepFormation from './SimulateurStepFormation.vue';
   import SimulateurStepOne from './SimulateurStepOne.vue';
   import SimulateurStepTwo from './SimulateurStepTwo.vue';
@@ -155,9 +154,6 @@
         schema: {},
 			}
     },
-    mounted: function () {
-      this.loadSchema();
-    },
     computed: {
       formation_step_completed: function () {
         return this.formation.numero != null;
@@ -199,7 +195,13 @@
       },
       step_four_completed: function () {
         if (this.step_three_completed) {
-          if (this.situation_inscrit == '1') return true;
+          if (this.situation_inscrit == '1') {
+            if(this.situation_contratapprentissage) {
+              if (this.situation_contratapprentissagetype == false || this.situation_contratapprentissagetype == "-") return false;
+            }
+            if(this.situation_contrataide) return (this.situation_personneencourscontrataide === "oui" || this.situation_personneencourscontrataide === "non");
+            return true;
+          }
           else if (this.situation_inscrit == '2') {
             if (this.contrat == 'cdd') {
               if (this.moistravailleencdd != '' && this.experience != '') return true;
@@ -289,7 +291,9 @@
           formation : this.formation
         }
       }
-
+    },
+    mounted: function () {
+      this.loadSchema();
     },
 		methods: {
       loadSchema: function () {
