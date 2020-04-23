@@ -1,7 +1,13 @@
 Si les codes financeur de la formation contiennent «Conseil régional»
-Et l'intitulé du financement n'est pas «VAE»
+    Alors l'intitulé de la régle de rémunération vaut «Aides et rémunération mobilisable par les règles nationales»
+
+Si l'intitulé du financement n'est pas «VAE Bourgogne Franche Comté»
 Et l'intitulé du financement n'est pas «Répondre rapidement aux besoins en recrutement des entreprises : Le FRAP (Fonds d’Appui Régional à la professionnalisation)»
-Et l'intitulé du financement n'est pas «Formation sanitaire et social niveau BAC et plus»
+Et l'intitulé du financement n'est pas «Formation sanitaire et social niveau Bac et plus»
+Et l'identifiant du financement n'est pas «dispositif 12»
+Et l'identifiant du financement n'est pas «dispositif 10»
+Et l'identifiant du financement n'est pas «dispositif 7»
+    Alors l'intitulé de la régle de rémunération vaut «Aides et rémunération mobilisable par la région Bourgogne Franche Comté»
 
     #######################
     # Aide complémentaire #
@@ -107,8 +113,3 @@ Et l'intitulé du financement n'est pas «Formation sanitaire et social niveau B
         Ou c'est une femme seule et enceinte
             Si la rémunération applicable est inférieure à 863.00
                 Alors la rémunération applicable vaut 863.00
-
-
-    # TODO ajouter cas détenu
-    # Si c'est un détenu
-    #     Alors la rémunération applicable vaut 3.3 € x durée de la formation en h

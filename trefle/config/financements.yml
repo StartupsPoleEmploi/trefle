@@ -302,6 +302,16 @@ VAE Normandie:
   racine: Normandie.rules
   ressources:
     - https://avril.pole-emploi.fr/
+VAE Bourgogne Franche Comté:
+  type_lbf: actioncollectiveregion
+  priorite_lbf: 1
+  tags: [DE, région, VAE, Bourgogne-Franche-Comté, collectif]
+  cpf_mobilisable: True
+  financee_pe: False
+  cumulable: False
+  racine: Bourgogne-Franche-Comté.rules
+  ressources:
+    - https://avril.pole-emploi.fr/
 Programme régional de formation Nouvelle-Aquitaine:
   intitule: Programme régional de formation
   sigle: PRF

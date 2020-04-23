@@ -477,4 +477,76 @@ Scénario: Cas nominal - DFL / SPRF Dispositif formation linguistique
     Et la région de la formation vaut «Bourgogne-Franche-Comté»
     Quand je demande un calcul de financement
     Quand je sélectionne le financement «DFL / SPRF Dispositif formation linguistique»
-    Alors la rémunération applicable vaut 0
+    Alors la rémunération applicable vaut 401.09
+
+Scénario: Cas nominal - VAE (pas de rémunération ou aides régionales)
+    Soit un bénéficiaire et une formation
+    Et c'est un demandeur d'emploi
+    Et l'âge du bénéficiaire vaut 38
+    Et les codes financeur de la formation valent [«Conseil régional»]
+    Et la durée en heures de la formation vaut 36
+    Et le code CERTIFINFO de la formation vaut 83899
+    Et la région du bénéficiaire vaut «Bourgogne-Franche-Comté»
+    Et la région de la formation vaut «Bourgogne-Franche-Comté»
+    Quand je demande un calcul de financement
+    Quand je sélectionne le financement «VAE Bourgogne Franche Comté»
+    Alors la rémunération applicable vaut 401.09
+    Et l'intitulé de la régle de rémunération vaut «Aides et rémunération mobilisable par les règles nationales»
+
+Scénario: Cas nominal - VAE (pas de rémunération ou aides régionales)
+    Soit un bénéficiaire et une formation
+    Et c'est un demandeur d'emploi
+    Et l'âge du bénéficiaire vaut 38
+    Et les codes financeur de la formation valent [«Conseil régional»]
+    Et la durée en heures de la formation vaut 36
+    Et le code CERTIFINFO de la formation vaut 83899
+    Et la région du bénéficiaire vaut «Bourgogne-Franche-Comté»
+    Et la région de la formation vaut «Bourgogne-Franche-Comté»
+    Quand je demande un calcul de financement
+    Quand je sélectionne le financement «VAE Bourgogne Franche Comté»
+    Alors la rémunération applicable vaut 401.09
+    Et l'intitulé de la régle de rémunération vaut «Aides et rémunération mobilisable par les règles nationales»
+
+Scénario: Cas nominal - Création reprise entreprise
+    Soit un bénéficiaire et une formation
+    Et c'est un demandeur d'emploi
+    Et l'âge du bénéficiaire vaut 38
+    Et les codes financeur de la formation valent [«Conseil régional»]
+    Et la durée en heures de la formation vaut 36
+    Et le code CERTIFINFO de la formation vaut 93561
+    Et la région du bénéficiaire vaut «Bourgogne-Franche-Comté»
+    Et la région de la formation vaut «Bourgogne-Franche-Comté»
+    Quand je demande un calcul de financement
+    Quand je sélectionne le financement «Création reprise entreprise»
+    Alors la rémunération applicable vaut 652.18
+    Et l'intitulé de la régle de rémunération vaut «Aides et rémunération mobilisable par la région Bourgogne Franche Comté»
+    Et une aide complémentaire est éligible
+
+Scénario: Création reprise entreprise avec formation START AGRI
+    Soit un bénéficiaire et une formation
+    Et c'est un demandeur d'emploi
+    Et l'âge du bénéficiaire vaut 38
+    Et les codes financeur de la formation valent [«Conseil régional»]
+    Et la durée en heures de la formation vaut 36
+    Et le code CERTIFINFO de la formation vaut 93561
+    Et l'intitulé de la formation vaut «START'AGRI - STAge accompagné pour la Reprise et la Transmission en AGRIculture»
+    Et la région du bénéficiaire vaut «Bourgogne-Franche-Comté»
+    Et la région de la formation vaut «Bourgogne-Franche-Comté»
+    Quand je demande un calcul de financement
+    Alors le financement «Création reprise entreprise» n'est pas proposé
+
+Scénario: Création reprise entreprise avec formation START AGRI
+    Soit un bénéficiaire et une formation
+    Et c'est un demandeur d'emploi
+    Et l'âge du bénéficiaire vaut 38
+    Et les codes financeur de la formation valent [«Conseil régional»]
+    Et la durée en heures de la formation vaut 36
+    Et le code CERTIFINFO de la formation vaut 93561
+    Et l'intitulé de la formation vaut «START'AGRI - STAge accompagné pour la Reprise et la Transmission en AGRIculture»
+    Et la région du bénéficiaire vaut «Bourgogne-Franche-Comté»
+    Et la région de la formation vaut «Bourgogne-Franche-Comté»
+    Quand je demande un calcul de financement
+    Quand je sélectionne le financement «Création reprise entreprise PROFOREA / START AGRI»
+    Alors la rémunération applicable vaut 652.18
+    Et l'intitulé de la régle de rémunération vaut «Aides et rémunération mobilisable par la région Bourgogne Franche Comté»
+    Et aucune aide complémentaire n'est éligible
