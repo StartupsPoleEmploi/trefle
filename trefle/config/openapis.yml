@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   title: Api moteur de financement formation professionnelle
   description: Obtenir la liste des financements possibles (coûts et rémunération) en fonction du profil du bénéficiaire et des caractéristiques de la formation.
-  version: 1.0.0
+  version: 1.1.0
   contact:
     email: david.foucher@pole-emploi.fr
 servers:
@@ -44,7 +44,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/collection'
+                $ref: '#/components/schemas/financement-collection'
               examples:
                 compute-success:
                   $ref: '#/components/examples/compute-financement-success'
@@ -69,7 +69,7 @@ paths:
         content:
           'application/json':
             schema:
-              $ref: '#/components/schemas/request'
+              $ref: '#/components/schemas/request-remuneration'
             examples:
               compute-request:
                 $ref: '#/components/examples/compute-remuneration-request'
@@ -79,7 +79,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/remuneration'
+                $ref: '#/components/schemas/remuneration-collection'
               examples:
                 compute-success:
                   $ref: '#/components/examples/compute-remuneration-success'
@@ -104,7 +104,15 @@ components:
           $ref: '#/components/schemas/beneficiaire'
         formation:
           $ref: '#/components/schemas/formation'
-    collection:
+    request-remuneration:
+      properties:
+        beneficiaire:
+          $ref: '#/components/schemas/beneficiaire'
+        formation:
+          $ref: '#/components/schemas/formation'
+        financement:
+          $ref: '#/components/schemas/financement'
+    financement-collection:
       required:
         - financements
       properties:
@@ -114,7 +122,13 @@ components:
       type: array
       items:
         $ref: "#/components/schemas/financement"
-    remuneration:
+    remuneration-collection:
+      required:
+        - remunerations
+      properties:
+        remunerations:
+          $ref: '#/components/schemas/remunerations'
+    remunerations:
       type: array
       items:
         $ref: "#/components/schemas/remuneration"
@@ -193,16 +207,28 @@ components:
             "formation": {
                            "codes_financeur": [2],
                            "region": 27,
-                        }
+                        },
+            "financement": {
+              "identifiant": "dispositif 6"
+            }
           }
     compute-remuneration-success:
       summary: Rémunération et aides éligibles
       value:
         {
-          "remuneration":910.02,
-          "fin_remuneration":null,
-          "indemnite_conges_payes":0,
-          "intitule_remuneration":"Rémunérations applicables",
-          "remuneration_texte":"C'est une rémunération minimum en fonction de votre expérience"
+          "remunerations": [
+            {
+              "remuneration": 910.02,
+              "fin_remuneration": null,
+              "indemnite_conges_payes": 0,
+              "intitule_remuneration": "Aides et rémunération mobilisable par la région Bourgogne Franche Comté",
+              "droit_aide_complementaire": true,
+              "montant_aide_complementaire": 200.0,
+              "droit_aide_transport": true,
+              "description_aide_transport": "L'indemnité de transport est limitée à un aller/retour sur la durée de la formation.",
+              "droit_aide_hebergement": true,
+              "montant_aide_hebergement": "101,84€ par mois (sous condition)",
+              "description_aide_hebergement": "Si la distance vers le lieu de votre formation est supérieure à 250km. Alors vous pouvez bénéficier d'une aide à l'hébergement. Cette aide est non cumulable avec l'aide au transport."
+            }
+          ]
         }
-
