@@ -96,3 +96,7 @@ OLD_VERSION and BACK_VERSION must be compatible
 1. Update file authorisations.csv in docker/authorisations.csv
 2. in docker folder do `sh update_access`
 logs are in docker/logs
+
+Format for authorisations.csv :
+  `email,password,files`
+Note: multiple files must be separated with a "|"
