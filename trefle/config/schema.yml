@@ -1186,6 +1186,7 @@ financement:
     public: true
     label: priorité LBF d'un financement (legacy)
   identifiant:
+    description: Identifiant du financement
     type: string
     public: true
     label: identifiant du financement
