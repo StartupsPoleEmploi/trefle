@@ -27,6 +27,7 @@ import Referentiel from './components/Referentiel.vue';
 import Financements from './components/Financements.vue';
 import Simulateur from './components/Simulateur.vue';
 import Scenarios from './components/Scenarios.vue';
+import Schema from './components/Schema.vue';
 import Outils from './components/Outils.vue';
 
 const routes = [
@@ -34,7 +35,8 @@ const routes = [
     { path: '/referentiel', name: 'referentiel', component: Referentiel },
     { path: '/financements', name: 'financements', component: Financements },
     { path: '/simulateur', name: 'simulateur', component: Simulateur },
-    { path: '/scenarios/:filters?', name: 'scenarios', component: Scenarios },
+    { path: '/scenarios', name: 'scenarios', component: Scenarios },
+    { path: '/schema', name: 'schema', component: Schema },
     { path: '/outils', name: 'outils', component: Outils},
     { path: '*', redirect: '/'}
 ];

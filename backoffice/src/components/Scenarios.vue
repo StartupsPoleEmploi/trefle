@@ -1,33 +1,54 @@
 <template>
   <div id="Scenarios">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-6">
-          <ul>
-            <li v-for="filter in filterList" :key="filter.id">
-              <a href="#" :class="{selected: filters[filter].selected}" :title="filter" @click="selectToggle(filters[filter])">
-                {{ filter }}
-              </a>
-            </li>
-          </ul>
-          <div v-if="nbSelected">
-            <ul>
-              <li v-for="scenario in activeScenario" :key="scenario.id">
-                <h4>
-                  {{ scenario.name }}
-                  <a :href="'https://framagit.org/ybon/trefle/tree/master/'+scenario.filename+'#L'+scenario.line" target=_blank>
-                    <i class=icon>edit</i>
-                  </a>
-                </h4>
-              </li>
-            </ul>
+    <div id="scenarios-main-div">
+      <div v-if="!this.isLoading">
+        <div class="container ml-5 mr-2">
+          <div class="row">
+            <div :class="classCollapsedMenu">
+              <div class="mb-3 pull-right">
+                <button @click="collapsed = !collapsed" type="button" class="btn main-button mb-5">
+                  <span v-show="collapsed"><span class="chevron-toggle">&#8594;</span>  Ouvrir le panneau</span>
+                  <span v-show="!collapsed"><span class="chevron-toggle">&#8592;</span>  Fermer le panneau</span>
+                </button>
+              </div>
+              <div v-show="!collapsed">
+                <h2 class="mb-5">Scénarios</h2>
+                <ul>
+                  <li v-for="(filter, id) in filterList" :key="id">
+                    <a href="#" :class="{selected: filters[filter].selected}" @click="setFilter(filters[filter]);">
+                      {{ filter.charAt(0).toUpperCase() + filter.slice(1) }}
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div v-show="!collapsed" :class="classCollapsedSeparator">
+              <hr class="referentiel-vertical-separator">
+            </div>
+            <div :class="classCollapsedContent">
+              <div v-if="this.show">
+                <ul>
+                  <li v-for="(scenario, id) in this.activeScenarios" :key="id">
+                    <h4>
+                      {{ scenario.name.toUpperCase() }}
+                      <!--<a :href="'https://framagit.org/ybon/trefle/tree/master/'+scenario.filename+'#L'+scenario.line" target=_blank>
+                        <i class=icon>edit</i>
+                      </a>-->
+                    </h4>
+                    <pre v-html="transform(scenario.raw)"/>
+                    <br><br>
+                  </li>
+                </ul>
+              </div>
+              <div v-else>
+                <h2>Sélectionnez une catégorie dans le menu.</h2>
+              </div>
+            </div>
           </div>
         </div>
-        <div class="col-md-6">
-          <div v-if="!nbSelected">
-              <p>Sélectionner au moins une catégorie dans le menu.</p>
-          </div>
-        </div>
+      </div>
+      <div v-else class="text-center loading-gif">
+        <img src="./../assets/images/loading.gif" alt="loading...">
       </div>
     </div>
   </div>
@@ -42,23 +63,29 @@
         selected_filters: [],
         filters: [],
         toggled: "",
+        collapsed: false,
+        isLoading: true,
       }
     },
     computed: {
-      activeScenario: function(){
-        var activeScenario = []
+      show: function () {
+        return (this.nbSelected !== '')
+      },
+      activeScenarios: function(){
+        var activeScenarios = []
         var scenarios = this.scenarios
-        this.filterList.forEach(function(tag){
+        for (var i=0; i< this.selected_filters.length; i++) {
+          var tag = this.selected_filters[i].tag
           scenarios.forEach(function(scenario){
-            var idx = scenario.tags.indexOf(tag)
-            if(idx > -1 && !(idx in activeScenario)) activeScenario[idx]=scenario
+            if (scenario.tags.find(scenario_tag => scenario_tag == tag) != undefined)
+            activeScenarios.push(scenario);
           })
-        })
-        return activeScenario
+        }
+        return activeScenarios
       },
       filterList: function(){
         var filterList = []
-        var scenarios = this.scenarios
+        var scenarios = this.activeScenarios
         Object.values(this.filters).forEach(function(filter){
           if(filter.selected){
             scenarios.forEach(function(scenario){
@@ -84,10 +111,19 @@
       },
       nbSelected: function(){
         return Object.values(this.selectedItem).reduce(function(cnt, item){ if(item.selected) cnt=cnt+1; return cnt},0);
-      }
-     //active: function(){
-     //   return Object.values(this.filters).reduce(function(cnt, item){ if(item.selected) cnt=cnt+1; return cnt},0);
-     //}
+      },
+      classCollapsedContent: function () {
+        if(this.collapsed) return "col-md-12 col-sm-12 col-xs-12";
+        return "col-md-8 col-sm-12 col-xs-12";
+      },
+      classCollapsedMenu: function () {
+        if(this.collapsed) return "col-md-0 col-sm-0 col-xs-0";
+        return "col-md-3 col-sm-12 col-xs-12";
+      },
+      classCollapsedSeparator: function () {
+        if(this.collapsed) return "col-md-0 col-sm-0 col-xs-0";
+        return "col-md-1 col-sm-0 col-xs-0";
+      },
     },
     created: function () {
       this.load();
@@ -95,32 +131,62 @@
     methods: {
       load: function () {
         this.$http.get('/explore/scenarios').then(response => {
-            this.scenarios = response.body
-            this.selected_filters = decodeURIComponent(this.$route.params.filters).split(',')
-            if(this.filters) {
-              this.active = []
-            }
-            for (var i = 0, scenario; i < this.scenarios.length; i++) {
-              scenario = this.scenarios[i]
-              if (scenario.tags.length>0) {
-                for (var k = 0; k < scenario.tags.length; k++) {
-                  if (this.filters.indexOf(scenario.tags[k]) === -1)
-                  {
-                    var isSelected=(this.selected_filters.indexOf(scenario.tags[k]) > -1)
-                    this.filters.push({tag:scenario.tags[k], selected:isSelected})
-                  }
+          this.scenarios = response.body
+          this.isLoading = false;
+          if(this.filters) {
+            this.active = []
+          }
+
+          for (var i = 0, scenario; i < this.scenarios.length; i++) {
+            scenario = this.scenarios[i]
+            if (scenario.tags.length>0) {
+              for (var k = 0; k < scenario.tags.length; k++) {
+                if (this.filters.indexOf(scenario.tags[k]) === -1)
+                {
+                  var isSelected=(this.selected_filters.indexOf(scenario.tags[k]) > -1)
+                  this.filters.push({tag:scenario.tags[k], selected:isSelected})
                 }
               }
-              this.active.push(scenario)
             }
-            this.filters.sort((a, b) => a.tag.localeCompare(b.tag))
-            this.filters = this.filters.reduce(function(filters, item){ filters[item.tag]=item; return filters }, {})
+            this.active.push(scenario)
+          }
+          this.filters.sort((a, b) => a.tag.localeCompare(b.tag))
+          this.filters = this.filters.reduce(function(filters, item){ filters[item.tag]=item; return filters }, {})
         }).created;
       },
-      selectToggle: function(item){
-          item.selected = !item.selected
-          this.$router.append('test')
-      }
+      setFilter: function (filter) {
+
+        var index = this.selected_filters.indexOf(filter)
+        if (index > -1) this.selected_filters.splice(index, 1)
+        else this.selected_filters.push(filter)
+
+        filter.selected = !filter.selected
+      },
+      transform: function(data) {
+        return data
+          .replace(/Si /g, '<span class="bold text-dark">Si </span>')
+          .replace(/Soit /g, '<span class="bold text-dark">Soit </span>')
+          .replace(/Quand /g, '<span class="bold text-dark">Quand </span>')
+          .replace(/Scénario: /g, '<span class="bold text-dark">Scénario: </span>')
+          .replace(/Ou /g, '<span class="bold text-dark">Ou </span>')
+          .replace(/, ou /g, '<span class="bold text-dark">, ou </span>')
+          .replace(/Et /g, '<span class="bold text-dark">Et </span>')
+          .replace(/, et /g, '<span class="bold text-dark">, et </span>')
+          .replace(/Alors /g, '<span class="bold text-dark">Alors </span>')
+          .replace(/(#.+)/g, "<em class=\"comment\">$1</em>")
+          .replace(/appliquer les règles «([^»]+?)(.rules)?»/g, 'appliquer les règles « <a href="'+this.rulePath+'#$1.rules" class="btn main-button" title="Ouvrir les règles" style="display:inline-block">$1</a> »')
+          .replace(/(«.+»)/g, "<span class=\"string\">$1</span>")
+          .replace(/,([^ ])/g, ", $1");
+      },
     },
   }
 </script>
+
+<style scoped>
+  #scenarios-main-div {
+    padding-top: 3rem;
+  }
+  .selected {
+    font-weight: bold;
+  }
+</style>

@@ -7,6 +7,7 @@
       <router-view name="financements"/>
       <router-view name="simulateur"/>
       <router-view name="scenarios"/>
+      <router-view name="schema"/>
       <router-view name="outils"/>
     </div>
   </div>
