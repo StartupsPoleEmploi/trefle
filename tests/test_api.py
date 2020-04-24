@@ -528,7 +528,6 @@ async def test_authentification(patch_authorisations, client, mock_get):
         "file": "/règles nationales/CPF.rules"
     }
     patch_authorisations([body])
-    mock_get(status_code=200)
     date = datetime.datetime.today().strftime('%y%m%d')
     token = hash(f"{body['email']}.{body['password']}.{date}")
     resp = await client.post("/authentification", body=body)
@@ -547,7 +546,6 @@ async def test_authentification_with_no_authorisation(patch_authorisations, clie
     }
     auth = []
     patch_authorisations(auth)
-    mock_get(status_code=500)
     resp = await client.post("/authentification", body=body)
 
     assert resp.status == HTTPStatus.INTERNAL_SERVER_ERROR
@@ -564,7 +562,25 @@ async def test_authentification_with_2_records(patch_authorisations, client, moc
              "file": "/règles nationales/CPF.rules"}]
     auth.append(body.copy())
     patch_authorisations(auth)
-    mock_get(status_code=200)
+    date = datetime.datetime.today().strftime('%y%m%d')
+    token = hash(f"{body['email']}.{body['password']}.{date}")
+    resp = await client.post("/authentification", body=body)
+
+    assert resp.status == HTTPStatus.OK
+    assert json.loads(resp.body) == {
+        "token": token
+    }
+
+
+async def test_authentification_with_2_files(patch_authorisations, client, mock_get):
+    body = {
+        "email": "test@test.fr",
+        "password": "test",
+        "file": "/règles nationales/CPF.rules"
+    }
+    auth = body
+    auth["file"] = "/rémunération/AREF.rulse|/règles nationales/CPF.rules"
+    patch_authorisations([auth])
     date = datetime.datetime.today().strftime('%y%m%d')
     token = hash(f"{body['email']}.{body['password']}.{date}")
     resp = await client.post("/authentification", body=body)
@@ -584,7 +600,6 @@ async def test_authentification_with_bad_matching_pattern(patch_authorisations, 
     auth = body.copy()
     auth['file'] = "*"
     patch_authorisations([auth])
-    mock_get(status_code=200)
     resp = await client.post("/authentification", body=body)
 
     assert resp.status == HTTPStatus.UNPROCESSABLE_ENTITY
@@ -599,7 +614,6 @@ async def test_authentification_with_bad_email(patch_authorisations, client, moc
     auth = body.copy()
     auth['email'] = 'test@test.fr'
     patch_authorisations([auth])
-    mock_get(status_code=401)
     resp = await client.post("/authentification", body=body)
 
     assert resp.status == HTTPStatus.UNAUTHORIZED
@@ -617,7 +631,6 @@ async def test_authentification_with_token(patch_authorisations, client, mock_ge
         "token": token
     }
     patch_authorisations([auth])
-    mock_get(status_code=200)
     resp = await client.post("/authentification", body=body)
 
     assert resp.status == HTTPStatus.OK

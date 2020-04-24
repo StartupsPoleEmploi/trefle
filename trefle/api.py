@@ -199,7 +199,7 @@ async def authent(request, response):
         atoken = hash(f"{aemail}.{apassword}.{date}")
         if data.get('email') == aemail and data.get('password') == apassword:
             try:
-                if re.match(afile, data.get('file')):
+                if any(bool(re.match(afile, f)) for f in  data.get('file').split("|")):
                     authsuccess = True
                     logger.debug(f"authentification succeed for {data.get('file')} modification")
                     break
