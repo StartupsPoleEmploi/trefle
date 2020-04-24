@@ -5,7 +5,9 @@ Trèfle est déployé avec `docker-compose`.
 La stack est composé de 3 dockers:
 * le docker *trefle* conteneur de l'API
 * le docker *trefle-old* conteneur de l'API en version n-1
-* ledocker *web* conteneur pour le serveur web nginx
+* le docker *web* conteneur pour le serveur web nginx
+
+Le serveur web expose une interface pas version d'API, chaque interface doit-être compatible avec la version API déployé. Ce sont les variables d'env `TREFLE_VERSION` et `TREFLE_OLD_VERSION` qui indiquent les numéros de version depuis lesquels déployer les interfaces. Ces variables sont renseognées dans le fichier `.gitlab-ci` et dans le fichier `docker-compose.override.yml`.
 
 ## pré-requis
 
@@ -27,7 +29,10 @@ La stack est composé de 3 dockers:
     GITLAB_TOKEN={HERE-YOUR-GITLAB-TOKEN}
 
 3. Builder les conteneurs :
-    GITLAB_TOKEN={GITLAB TOKEN}
     `docker-compose build`
 4. Déployer les conteneurs :
-    `docker-compose up -d`
+    - Avec les images registry (attention dans le gitlab-ci TREFLE_OLD_VERSION sera la version du backoffice de la version n-1) :
+        `docker-compose up -d`
+    - Build complétement :
+        `docker-compose -f docker-compose.yml -f docker-compose.override.yml up -d`
+
