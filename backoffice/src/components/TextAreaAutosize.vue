@@ -87,11 +87,10 @@ export default {
   },
   created () {
     this.val = this.value
-    this.$el.focus();
+    //this.$el.focus();
   },
   methods: {
     resize () {
-      console.log("resized");
       const important = this.isHeightImportant ? 'important' : ''
       //this.height = `auto${important ? ' !important' : ''}`
       this.$nextTick(() => {
