@@ -169,9 +169,6 @@
         inserted: function (el) {
           el.focus();
         },
-        componentUpdated: function (el) {
-          el.focus();
-        },
       }
     },
     created: function() {
