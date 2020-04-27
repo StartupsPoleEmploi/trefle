@@ -11,7 +11,6 @@ services:
         - CATALOG_KEY=${CATALOG_KEY}
         - CATALOG_URL=${CATALOG_URL}
         - GITLAB_TOKEN=${GITLAB_TOKEN}
-        - COMMIT_AUTHORIZED=${COMMIT_AUTHORIZED}
     healthcheck:
       test: curl -sfS http://127.0.0.1:8000/healthcheck || exit 1
       interval: 5s
@@ -30,7 +29,6 @@ services:
         - CATALOG_KEY=${CATALOG_KEY}
         - CATALOG_URL=${CATALOG_URL}
         - GITLAB_TOKEN=${GITLAB_TOKEN}
-        - COMMIT_AUTHORIZED=${COMMIT_AUTHORIZED}
     healthcheck:
       test: curl -sfS http://127.0.0.1:8000/naf?q=1000 || exit 1
       interval: 5s

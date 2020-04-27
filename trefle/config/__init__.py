@@ -32,11 +32,7 @@ CATALOG_URL = os.environ.get(
 GITLAB_URL = os.environ.get("GITLAB_URL", "https://git.beta.pole-emploi.fr")
 GITLAB_PROJECT = os.environ.get("GITLAB_PROJECT", "open-source/trefle")
 GITLAB_TOKEN = os.environ.get("GITLAB_TOKEN", "need-private-access-token")
-# TODO remove COMMIT_AUTHORIZED env var hence AUTHORIZED replaced it
-COMMIT_AUTHORIZED = set(os.environ.get(
-                                       "COMMIT_AUTHORIZED",
-                                       "contributeur@trefle.beta.pole-emploi.fr"
-                                       ).split(', '))
+COMMIT_AUTHORIZED = []
 AUTHORIZED = []
 
 
@@ -208,7 +204,7 @@ def init():
         f.seek(0)
         AUTHORIZED.extend(load_authorisations(f.read()))
     for auth in AUTHORIZED:
-        COMMIT_AUTHORIZED.add(auth.get('email', ''))
+        COMMIT_AUTHORIZED.append(auth.get('email', ''))
 
     load_features()
     print("Done initializing config")
