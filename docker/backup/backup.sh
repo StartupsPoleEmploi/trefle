@@ -8,4 +8,4 @@ then
         DIR="$1"
 fi
 
-tar --exclude=data/* --exclude=log/* --exclude=*.tar.gz -czvf $DIR/$TREFLE_DATA /home/docker/*
+tar --exclude=data/* --exclude=log/* --exclude=*.tar.gz -czvf $DIR/$TREFLE_DATA /home/docker
