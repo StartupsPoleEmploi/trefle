@@ -1,0 +1,10 @@
+.env
+.envrc
+.git
+.gitignore
+./data
+./log
+./backup/srv/backups/*
+update.sh
+update_access.sh
+update.log
