@@ -90,6 +90,17 @@ OLD_VERSION and BACK_VERSION must be compatible
 
 4. `docker-compose up --build -d` to use image from the gitlab registry or `docker-compose -f docker-compose.yml -f docker-compose.override-build.yml up -d --build` to build the image from scratch
 
+## Update trefle
+
+### Update API
+1. Update `VERSION` in `.env` file
+2. Update API, in `docker` folder process : `update_api.sh trefle`
+
+### Update WEB
+1. Update `BACK_VERSION` in `.env` file
+2. Update API, in `docker` folder process : `docker-compose up -d --no-deps`
+3. Reload authorisations.csv : `sh update_access.sh`
+
 
 ## Update acces
 
