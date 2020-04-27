@@ -49,7 +49,7 @@
             </div>
             <div class="row mb-3">
               <label for="content"><u>Contenu de la règle</u></label>
-              <TextAreaAutosize id="content" :value="content" class="rule-modification-text" :class="{editErrorClass: error_flags.notModified }" v-focus/>
+              <TextAreaAutosize id="content" v-model="content" class="rule-modification-text" :class="{editErrorClass: error_flags.notModified }" v-focus/>
               <span v-if="error_flags.notModified" class="text-danger font-weight-light">Aucune modification n'a été renseignée</span>
             </div>
             <div class="row mb-3">
@@ -167,9 +167,6 @@
     directives: {
       focus: {
         inserted: function (el) {
-          el.focus();
-        },
-        componentUpdated: function (el) {
           el.focus();
         },
       }
