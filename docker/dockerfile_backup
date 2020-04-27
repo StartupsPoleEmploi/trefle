@@ -1,0 +1,16 @@
+FROM ubuntu:bionic
+
+ENV LANG=fr_FR.UTF-8
+
+RUN export DEBIAN_FRONTEND=noninteractive && \
+    apt-get update && \
+    apt-get -y install cron && \
+    apt-get -y install bzip2 tar language-pack-fr vim
+
+RUN echo "LANG=\"fr_FR.UTF-8\"\nLANGUAGE=\"fr_FR:fr\"\nLC_NUMERIC=\"fr_FR.UTF-8\"\nLC_TIME=\"fr_FR.UTF-8\"\nLC_MONETARY=\"fr_FR.UTF-8\"\nLC_PAPER=\"fr_FR.UTF-8\"\nLC_IDENTIFICATION=\"fr_FR.UTF-8\"\nLC_NAME=\"fr_FR.UTF-8\"\nLC_ADDRESS=\"fr_FR.UTF-8\"\nLC_TELEPHONE=\"fr_FR.UTF-8\"\nLC_MEASUREMENT=\"fr_FR.UTF-8\"" >>/etc/default/locale
+COPY backup/backup.sh /srv/backup.sh
+
+RUN echo "0 2 * * * root /bin/sh /srv/backup.sh /srv/backups >/dev/null 2>&1" >>/etc/cron.d/backups
+
+CMD chown -R root: /srv/backups && \
+    cron -f

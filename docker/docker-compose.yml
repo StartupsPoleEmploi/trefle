@@ -55,3 +55,14 @@ services:
       - HOST=trefle
       - OLD_VERSION=${OLD_VERSION}
       - OLD_HOST=trefle-old
+  backup:
+    restart: unless-stopped
+    build:
+      context: .
+      dockerfile: dockerfile_backup
+    hostname: backups
+    volumes:
+      - ./backup/srv/backups:/srv/backups
+      - .:/home/docker
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
