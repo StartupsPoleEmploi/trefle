@@ -538,6 +538,20 @@ async def test_authentification(patch_authorisations, client, mock_get):
     }
 
 
+async def test_authentification_with_different_case_email(patch_authorisations, client, mock_get):
+    body = {
+        "email": "test@test.com",
+        "password": "test",
+        "file": "/règles nationales/CPF.rules"
+    }
+    auth = body.copy()
+    auth['email'] = 'Test@test.com'
+    patch_authorisations([auth])
+    resp = await client.post("/authentification", body=body)
+
+    assert resp.status == HTTPStatus.OK
+
+
 async def test_authentification_with_no_authorisation(patch_authorisations, client, mock_get):
     body = {
         "email": "test@test.fr",
