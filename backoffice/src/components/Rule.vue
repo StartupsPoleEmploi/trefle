@@ -383,7 +383,10 @@
         this.isEditMode = false;
       },
       displayList: function () {
-        this.closeEdit();
+        if(this.isEditMode == true)
+        {
+          this.closeEdit();
+        }
       }
     },
   }
