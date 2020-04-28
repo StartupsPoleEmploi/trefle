@@ -193,11 +193,11 @@ async def authent(request, response):
     date = datetime.datetime.today().strftime('%y%m%d')
     authsuccess = False
     for authorized in AUTHORIZED:
-        aemail = authorized['email']
+        aemail = authorized['email'].lower()
         apassword = authorized['password']
         afile = authorized['file']
         atoken = hash(f"{aemail}.{apassword}.{date}")
-        if data.get('email') == aemail and data.get('password') == apassword:
+        if str(data.get('email')).lower() == aemail and data.get('password') == apassword:
             try:
                 if any(bool(re.match(afile, f)) for f in  data.get('file').split("|")):
                     authsuccess = True
