@@ -14,9 +14,16 @@
 - LBF Url to simulation on the web interface explorer
 - LBF Catalog API key to retrieve training courses data
 
-## Install
+### Python3 dependencies for dev mode
 
-- Create a venv : `python3 -m venv trefle`
+- python3-venv
+- python3-dev
+- python3-wheel
+
+## Install in dev mode
+
+- Create a venv : `python3 -m venv .venv`
+- Activate the virtualenv : `source .venv/bin/activate`
 - Then: `make develop`
 
 ## Run a simulation
@@ -40,8 +47,12 @@
 
 ## Run the backoffice in dev mode
 
-    cd backoffice
+In backoffice/vue.config.js:
 
+change `proxy: 'https://trefle.beta.pole-emploi.fr/0.7/'` for `proxy: 'http://127.0.0.1:3579/`
+then
+
+    cd backoffice
     npm install
     npm run serve
 
