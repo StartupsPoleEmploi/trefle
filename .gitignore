@@ -14,3 +14,8 @@ backoffice/dist/
 .DS_Store
 authorisations.csv
 *.gz
+.venv/
+.vscode/
+curl/
+.env
+trefle/pyvenv.cfg
