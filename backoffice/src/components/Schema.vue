@@ -73,6 +73,7 @@
           beneficiaire: 'Propriétés du bénéficiaire',
           formation: 'Propriétés de la formation',
           financement: 'Propriétés du financement',
+          remuneration: 'Propriétés de rémunération',
         },
         collapsed: false,
       }
