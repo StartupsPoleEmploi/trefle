@@ -133,7 +133,7 @@
     },
     created: function () {
       this.load();
-      this.selected_filters = decodeURI(window.location.hash).split('#')[1].split(',');
+      if(decodeURI(window.location.hash) != "") this.selected_filters = decodeURI(window.location.hash).split('#')[1].split(',');
     },
     methods: {
       load: function () {
