@@ -15,7 +15,7 @@
                 <h2 class="mb-5">Scénarios</h2>
                 <ul>
                   <li v-for="(filter, id) in filterList" :key="id">
-                    <a href="#" :class="{selected: filters[filter].selected}" @click="setFilter(filters[filter]);">
+                    <a :href="'#'+selected_filters.join(',')" :class="{selected: filters[filter].selected}" @click="setFilter(filter);">
                       {{ filter.charAt(0).toUpperCase() + filter.slice(1) }}
                     </a>
                   </li>
@@ -27,18 +27,23 @@
             </div>
             <div :class="classCollapsedContent">
               <div v-if="this.show">
-                <ul>
-                  <li v-for="(scenario, id) in this.activeScenarios" :key="id">
-                    <h4>
-                      {{ scenario.name.toUpperCase() }}
-                      <!--<a :href="'https://framagit.org/ybon/trefle/tree/master/'+scenario.filename+'#L'+scenario.line" target=_blank>
-                        <i class=icon>edit</i>
-                      </a>-->
-                    </h4>
-                    <pre v-html="transform(scenario.raw)"/>
-                    <br><br>
-                  </li>
-                </ul>
+                <div v-if="this.activeScenarios.length > 0">
+                  <ul>
+                    <li v-for="(scenario, id) in this.activeScenarios" :key="id">
+                      <h4>
+                        {{ scenario.name.toUpperCase() }}
+                        <!--<a :href="'https://framagit.org/ybon/trefle/tree/master/'+scenario.filename+'#L'+scenario.line" target=_blank>
+                          <i class=icon>edit</i>
+                        </a>-->
+                      </h4>
+                      <pre v-html="transform(scenario.raw)"/>
+                      <br><br>
+                    </li>
+                  </ul>
+                </div>
+                <div v-else>
+                  <h4 class="mt-5">Veuillez sélectionner au moins une catégorie</h4>
+                </div>
               </div>
               <div v-else>
                 <h2>Sélectionnez une catégorie dans le menu.</h2>
@@ -71,17 +76,18 @@
       show: function () {
         return (this.nbSelected !== '')
       },
-      activeScenarios: function(){
-        var activeScenarios = []
-        var scenarios = this.scenarios
-        for (var i=0; i< this.selected_filters.length; i++) {
-          var tag = this.selected_filters[i].tag
-          scenarios.forEach(function(scenario){
-            if (scenario.tags.find(scenario_tag => scenario_tag == tag) != undefined)
-            activeScenarios.push(scenario);
-          })
+      activeScenarios: function () {
+        var activeScenarios = [];
+        var scenarios = this.scenarios;
+        if(this.selected_filters.length > 0) {
+          for (var i=0; i < scenarios.length; i++) {
+            var scenario = scenarios[i];
+            if(this.selected_filters.every(function(current_filter) {
+              return (scenario.tags.find(scenario_tag => scenario_tag == current_filter) != undefined)
+            })) activeScenarios.push(scenario);
+          }
         }
-        return activeScenarios
+        return activeScenarios;
       },
       filterList: function(){
         var filterList = []
@@ -127,6 +133,7 @@
     },
     created: function () {
       this.load();
+      if(decodeURI(window.location.hash) != "") this.selected_filters = decodeURI(window.location.hash).split('#')[1].split(',');
     },
     methods: {
       load: function () {
@@ -155,12 +162,11 @@
         }).created;
       },
       setFilter: function (filter) {
-
         var index = this.selected_filters.indexOf(filter)
         if (index > -1) this.selected_filters.splice(index, 1)
         else this.selected_filters.push(filter)
 
-        filter.selected = !filter.selected
+        this.filters[filter].selected = !this.filters[filter].selected
       },
       transform: function(data) {
         return data

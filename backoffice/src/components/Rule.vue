@@ -266,7 +266,7 @@
           password: '',
           file: this.path
         },
-        this.isEditMode=!this.isEditMode;
+        this.isEditMode=false;
         if(this.modification_count!=0) this.viewModification = true;
         this.error_flags = {
           badUser: false,
