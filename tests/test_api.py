@@ -67,7 +67,7 @@ async def test_remuneration_endpoint(client):
     spec = create_spec(json.loads(resp.body))
 
     resp = await client.post(
-        "/remuneration",
+        "/remuneration-aide",
         body={
             "beneficiaire.age": 20,
             "formation.region": 27,
