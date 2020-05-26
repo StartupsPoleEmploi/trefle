@@ -1,6 +1,14 @@
 <template>
   <div id="SimulateurContext">
     <br>
+    <label for="filterContext">
+      <strong>
+        Filtrer les entrées du tableau :
+      </strong>
+    </label>
+    <br>
+    <input class="form-control" type="text" id="filterContext" name="filterContext" v-model="filterContext" placeholder="Filtre..."/>
+    <br>
     <table class="table-responsive table table-striped table-hover">
       <caption> Contexte de simulation </caption>
       <thead>
@@ -10,7 +18,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="(value, key) in this.context" :key="key">
+        <tr v-for="(value, key) in this.filteredContext" :key="key">
           <td> {{ renderLabel(key) }} </td>
           <td> {{ renderValue(key,value,schema[key]) }} </td>
         </tr>
@@ -20,11 +28,11 @@
 </template>
 <script>
   export default {
-		name: 'SimulateurContext',		
+		name: 'SimulateurContext',
     props: ['schema', 'context',],
     data: function () {
       return {
-        test: [],
+        filterContext: "",
       }
     },
     methods: {
@@ -38,9 +46,21 @@
       },
       renderLabel: function (key) {
         return this.schema[key]['label'].charAt(0).toUpperCase() + this.schema[key]['label'].slice(1)
+      },
+    },
+    computed: {
+      filteredContext : function () {
+        if (this.filterContext == "") return this.context;
+        else {
+          return Object.keys(this.context)
+            .filter(key => this.renderLabel(key).toLowerCase().includes(this.filterContext.toLowerCase()))
+            .reduce((obj, key) => {
+              obj[key] = this.context[key];
+              return obj;
+            }, {});
+        }
       }
     }
-
   }
 </script>
 

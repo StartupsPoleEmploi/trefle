@@ -104,7 +104,6 @@
       },
       showFinancement: function (financement) {
         if (this.selectedTags != this.tags) {
-          console.log("hello");
           for(var i = 0; i< financement.tags.length; i++) {
             if (this.selectedTags.includes(financement.tags[i])) return false;
           }
