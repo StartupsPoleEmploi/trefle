@@ -94,18 +94,21 @@
     <div id="explainCollapseGroup">
       <div class="row" id="explainButtonsGroup">
         <div class="col-md-4">
-          <span class="ml-5" data-toggle="collapse" data-target="#scenario" aria-expanded="false" aria-controls="scenario" style="cursor:pointer;">
-            <button class="btn main-button-primary">Voir le scénario de simulation</button>
+          <span class="ml-5" data-toggle="collapse" data-target="#scenario" aria-expanded="false" aria-controls="scenario" style="cursor:pointer;" v-on:click="scenarioToggled=!scenarioToggled">
+            <button v-if="!scenarioToggled" class="btn main-button-primary">Voir le scénario de simulation</button>
+            <button v-else class="btn main-button-primary">Masquer le scénario de simulation</button>
           </span>
         </div>
         <div class="col-md-4">
-          <span class="ml-5" data-toggle="collapse" data-target="#context" aria-expanded="false" aria-controls="context" style="cursor:pointer;">
-            <button class="btn main-button-primary">Voir le contexte de simulation</button>
+          <span class="ml-5" data-toggle="collapse" data-target="#context" aria-expanded="false" aria-controls="context" style="cursor:pointer;" v-on:click="contextToggled=!contextToggled">
+            <button v-if="!contextToggled" class="btn main-button-primary">Voir le contexte de simulation</button>
+            <button v-else class="btn main-button-primary">Masquer le contexte de simulation</button>
           </span>
         </div>
         <div class="col-md-4">
-          <span class="ml-5" data-toggle="collapse" data-target="#explain" aria-expanded="false" aria-controls="explain" style="cursor:pointer;">
-            <button class="btn main-button-primary">Voir l'explication de simulation</button>
+          <span class="ml-5" data-toggle="collapse" data-target="#explain" aria-expanded="false" aria-controls="explain" style="cursor:pointer;" v-on:click="explainToggled=!explainToggled">
+            <button v-if="!explainToggled" class="btn main-button-primary">Voir l'explication de simulation</button>
+            <button v-else class="btn main-button-primary">Masquer l'explication de simulation</button>
           </span>
         </div>
       </div>
@@ -149,6 +152,13 @@
       SimulateurContext
     },
     props: ['schema','financements', 'financements_eligibles', 'scenario', 'context', 'isLoading'],
+    data : function () {
+      return {
+        scenarioToggled:false,
+        contextToggled:false,
+        explainToggled:false,
+      }
+    },
     methods: {
       newSimulation : function () {
         location.reload();
