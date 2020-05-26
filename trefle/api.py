@@ -97,7 +97,7 @@ async def simulate_(request, response):
 
 
 # TODO : add pointer error for bad region number + test
-@app.route("/remuneration", methods=["POST"])
+@app.route("/remuneration-aide", methods=["POST"])
 async def remuneration_(request, response):
     context = request.json
     remunerations = get_remunerations(tags=request.query.list("tags", []))
