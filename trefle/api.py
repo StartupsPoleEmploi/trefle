@@ -68,7 +68,7 @@ async def simulate_(request, response):
         await simulate(context, financements)
     except DataError as err:
         error = {err.key: err.error}
-        log_simulate(context, errors=error)
+        log_simulate(request, response, context, errors=error)
         raise HttpError(HTTPStatus.BAD_REQUEST, error)
 
     eligible = request.query.bool("eligible", None)
@@ -93,7 +93,7 @@ async def simulate_(request, response):
         body["scenario"] = make_scenario(context, financements)
     response.json = body
 
-    log_simulate(context, financements=financements)
+    log_simulate(request, response, context, financements=financements)
 
 
 # TODO : add pointer error for bad region number + test
@@ -105,8 +105,8 @@ async def remuneration_(request, response):
         await simulate_remuneration(context, remunerations)
     except DataError as err:
         error = {err.key: err.error}
-        log_simulate(context, errors=error)
-        raise HttpError(HTTPStatus.BAD_REQUEST, error)
+        log_simulate(request, response, context, errors=error)
+        raise HttpError(HTTPStatus.BAR_REQUEST, error)
 
     # TODO: explain only for financement see routine.py check_remuneration
     # explain = request.query.bool("explain", False)
