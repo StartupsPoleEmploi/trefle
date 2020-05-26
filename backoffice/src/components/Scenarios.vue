@@ -42,7 +42,7 @@
                   </ul>
                 </div>
                 <div v-else>
-                  <h4 class="mt-5">Veuillez sélectionner au moins une catégorie</h4>
+                  <h4 class="mt-5">Sélectionnez au moins une catégorie dans le menu.</h4>
                 </div>
               </div>
               <div v-else>

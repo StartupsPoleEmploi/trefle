@@ -47,7 +47,7 @@
                 </dl>
               </div>
               <div v-else>
-                <h2>Sélectionnez une catégorie dans le menu.</h2>
+                <h4 class="mt-5">Sélectionnez une catégorie dans le menu.</h4>
               </div>
             </div>
           </div>
