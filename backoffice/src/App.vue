@@ -228,4 +228,8 @@
       margin-left: -1em;
   }
 
+  a:hover {
+    color:#384EAA;
+  }
+
 </style>
