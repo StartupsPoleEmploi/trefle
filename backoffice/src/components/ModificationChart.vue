@@ -6,11 +6,6 @@
   export default {
     extends: Pie,
     props: ["values", 'labels'],
-    data : function ()  {
-      return {
-        test:0,
-      }
-    },
     watch: {
       values: {
         handler(){
@@ -25,6 +20,7 @@
           datasets: this.values
         },{
           responsive: true,
+          maintainAspectRatio:false,
           onClick:this.handle,
           plugins: {
             colorschemes: {
@@ -36,11 +32,13 @@
           },
           title: {
             text: "Répartition des modifications par fichiers"
+          },
+          legend: {
+            position: 'right',
           }
         })
       },
       handle (point, event) {
-        this.test = (this.test+4)*2;
         const item = event[0]
         this.$emit('on-receive', {
           value: this.labels[item._index].split('.')[0]
