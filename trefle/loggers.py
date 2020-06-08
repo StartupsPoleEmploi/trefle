@@ -1,6 +1,7 @@
 from datetime import datetime
 import logging
 import os
+import uuid
 
 import ujson as json
 
@@ -32,6 +33,7 @@ request_esd_logger.addHandler(
     )
 )
 
+
 def log_simulate(request, response, context, financements=None, errors=None):
     financements = financements or []
     errors = errors or []
@@ -46,13 +48,13 @@ def log_simulate(request, response, context, financements=None, errors=None):
 
     message_esd = {
         "startup": "trefle",
-        "requestId": datetime.utcnow().isoformat(),
+        "requestId":  str(uuid.uuid4()),
         "date": datetime.utcnow().isoformat(),
-        "remoteIP": request.headers.get("X-REAL-IP"),
-        "httpReferer": request.headers.get("REFERER"),
-        "httpUserAgent": request.headers.get("USER-AGENT"),
+        "remoteIP": request.headers.get("x-real-ip"),
+        "httpReferer": request.headers.get("referer"),
+        "httpUserAgent": request.headers.get("user-agent"),
         "status": response.status,
         "apiVersion": VERSION,
-        "application": request.headers.get("APPLI"),
+        "application": request.headers.get('origin-user'),
     }
     request_esd_logger.info(json.dumps(message_esd, sort_keys=True))
