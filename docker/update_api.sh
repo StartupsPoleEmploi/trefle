@@ -1,6 +1,6 @@
 #!/bin/bash
 
-SERVICE_NAME=${1?"Usage: docker_update <SERVICE_NAME>"}
+SERVICE_NAME=${1?"Usage: docker_update [trefle|trefle-old]"}
 
 date >> update.log
 echo $* >> update.log
