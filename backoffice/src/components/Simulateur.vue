@@ -43,7 +43,7 @@
         </div>
       </div>
     </div>
-      <!------------------- RESULTATS --------------->
+      <!------------------- RESULTATS -------------->
     <div v-if="resultats" id="simulate-results">
       <div v-if="!isLoading" class="mt-5">
         <SimulateurResultats :schema="schema" :financements="financements" :financements_eligibles="financements_eligibles" :scenario="scenario" :context="context"></SimulateurResultats>
@@ -63,7 +63,7 @@
   import SimulateurStepFive from './SimulateurStepFive';
   import SimulateurResultats from './SimulateurResultats.vue';
 
-	export default {
+  export default {
     name: 'Simulateur',
     components: {
       SimulateurResultats,
@@ -74,8 +74,8 @@
       SimulateurStepFour,
       SimulateurStepFive,
     },
-		data: function () {
-			return {
+    data: function () {
+      return {
         // champs de formulaire
         // step formation
         id_formation : null,
@@ -152,7 +152,8 @@
         isLoading: true,
         test: [],
         schema: {},
-			}
+        context: {},
+      }
     },
     computed: {
       formation_step_completed: function () {
@@ -294,8 +295,9 @@
     },
     mounted: function () {
       this.loadSchema();
+      this.simulateFromUrl();
     },
-		methods: {
+    methods: {
       loadSchema: function () {
         fetch('/explore/schema')
         .then((response) => response.json())
@@ -303,8 +305,21 @@
           this.schema = data
         })
       },
-      simulate: function () {
-        this.isLoading = true;
+      simulateFromUrl: function() {
+        if(window.location.hash.substr(1).match(/^simulate/))
+          var simulate_link = window.location.hash.substr(9)
+          if(simulate_link.includes('labonneformation'))
+            this.$http.get('/explore/decode-lbf-url?url='+simulate_link)
+            .then(response => {
+              this.context = response.body
+              this.$http.get('/explore/catalog?id='+this.context['formation.numero']).then(response => {
+                  if(response.status == 200) {
+                    this.simulate()
+                  }
+                })
+            })
+      },
+      prepareRequest: function() {
         if (this.situation_inscrit == 1) {
           if (this.allocation_type == 'non') {
             this.allocation_type = null;
@@ -346,8 +361,19 @@
         }
         if (this.situation_cpfconnu != 'cpfconnu') this.situation_creditheurescpf = null;
 
+      },
+      simulate: function () {
+        this.isLoading = true;
 
-        this.$http.post('/financement?context=1&explain=true&scenario=1', this.request).then(response => {
+        var context = null;
+        if(this.context) {
+          context=this.context
+        } else {
+          this.prepareRequest()
+          context=this.request
+        }
+
+        this.$http.post('/financement?context=1&explain=true&scenario=1', context).then(response => {
           if(this.objectIsEmpty(response.body) == false) {
             for(var i=0; i<response.body.financements.length-1; i++) {
               if(this.situation_cpfconnu=='cpfempty') {
@@ -374,8 +400,8 @@
         }
         return true;
       },
-		}
-	}
+    }
+  }
 </script>
 
 <style>
