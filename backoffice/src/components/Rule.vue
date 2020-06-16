@@ -246,7 +246,7 @@
               this.error_flags.noUser = false;
               this.error_flags.noResume = false;
             }
-            else if (error.status == 422) {
+            else if (error.status == 400) {
               if (error.body.args == "`user` est vide") {
                 this.error_flags.noUser = true;
                 this.error_flags.badUser = false;
@@ -320,7 +320,7 @@
                 this.error_flags.notModified = false;
                 this.error_flags.noResume = false;
               }
-              else if (error.status == 422) {
+              else if (error.status == 400) {
                 if (error.body.args == "`author_email` est vide") {
                   this.error_flags.noUser = true;
                   this.error_flags.badUser = false;

@@ -48,14 +48,8 @@ paths:
               examples:
                 compute-success:
                   $ref: '#/components/examples/compute-financement-success'
-        422:
-          description: Les informations sont invalides
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/errors'
         400:
-          description: Le format de la requête est invalide
+          description: Le format de la requête ou l'information est invalide
           content:
             application/json:
               schema:
@@ -83,14 +77,8 @@ paths:
               examples:
                 compute-success:
                   $ref: '#/components/examples/compute-remuneration-success'
-        422:
-          description: Les informations sont invalides
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/errors'
         400:
-          description: Le format de la requête est invalide
+          description: Le format de la requête, ou l'information  est invalide
           content:
             application/json:
               schema:
