@@ -285,7 +285,7 @@ async def test_simulate_error_triggers_log(client):
     log_path = Path(os.environ["TREFLE_LOG_DIR"]) / "trefle-simulate.log"
     log_path.write_text("")
     resp = await client.post("/financement", body=body)
-    assert resp.status == 422
+    assert resp.status == 400
     lines = log_path.read_text().splitlines()
     assert len(lines) == 1
     log_data = json.loads(lines[0])
@@ -323,7 +323,7 @@ async def test_simulate_endpoint_with_empty_idcc(client):
             "beneficiaire.entreprise.idcc": None,
         },
     )
-    assert resp.status == HTTPStatus.UNPROCESSABLE_ENTITY
+    assert resp.status == HTTPStatus.BAD_REQUEST
     assert json.loads(resp.body) == {
         "beneficiaire.entreprise.idcc": "Ce champ est obligatoire"
     }
@@ -345,7 +345,7 @@ async def test_simulate_endpoint_with_invalid_idcc_format(client):
             "beneficiaire.entreprise.idcc": "foobar",
         },
     )
-    assert resp.status == HTTPStatus.UNPROCESSABLE_ENTITY
+    assert resp.status == HTTPStatus.BAD_REQUEST
     assert json.loads(resp.body) == {
         "beneficiaire.entreprise.idcc": "Valeur d'IDCC inconnue: `foobar`"
     }
@@ -367,7 +367,7 @@ async def test_simulate_endpoint_with_unknown_idcc(client):
             "beneficiaire.entreprise.idcc": 1234567,
         },
     )
-    assert resp.status == HTTPStatus.UNPROCESSABLE_ENTITY
+    assert resp.status == HTTPStatus.BAD_REQUEST
     assert json.loads(resp.body) == {
         "beneficiaire.entreprise.idcc": "Valeur d'IDCC inconnue: `1234567`"
     }
@@ -391,7 +391,7 @@ async def test_simulate_endpoint_with_invalid_naf(client, naf):
             "beneficiaire.entreprise.idcc": "1486",
         },
     )
-    assert resp.status == HTTPStatus.UNPROCESSABLE_ENTITY
+    assert resp.status == HTTPStatus.BAD_REQUEST
     assert json.loads(resp.body) == {
         "beneficiaire.entreprise.naf": (
             f"`{naf}` n'est pas au format " "^\\d{2}\\.?\\d{2}[a-zA-Z]$"
@@ -416,7 +416,7 @@ async def test_simulate_endpoint_with_invalid_insee(client, insee):
             "beneficiaire.entreprise.idcc": 2706,
         },
     )
-    assert resp.status == HTTPStatus.UNPROCESSABLE_ENTITY
+    assert resp.status == HTTPStatus.BAD_REQUEST
     assert json.loads(resp.body) == {
         "beneficiaire.entreprise.commune": (
             f"`{insee}` n'est pas au format " "^(2[AB]|[0-9]{2})[0-9]{3}$"
@@ -440,7 +440,7 @@ async def test_simulate_endpoint_with_unknown_departement(client):
             "beneficiaire.entreprise.idcc": 2706,
         },
     )
-    assert resp.status == HTTPStatus.UNPROCESSABLE_ENTITY
+    assert resp.status == HTTPStatus.BAD_REQUEST
     assert json.loads(resp.body) == {
         "beneficiaire.entreprise.commune": "Valeur invalide: `99001`"
     }
@@ -458,7 +458,7 @@ async def test_simulate_endpoint_with_invalid_data(client):
             "beneficiaire.entreprise.idcc": 2706,
         },
     )
-    assert resp.status == HTTPStatus.UNPROCESSABLE_ENTITY
+    assert resp.status == HTTPStatus.BAD_REQUEST
     assert "application/json" in resp.headers["Content-Type"]
 
     validator = ResponseValidator(spec)
@@ -498,7 +498,7 @@ async def test_simulate_endpoint_with_invalid_formation_id(client, mock_get):
     mock_get(status_code=404)
     resp = await client.post("/financement", body=body)
 
-    assert resp.status == HTTPStatus.UNPROCESSABLE_ENTITY
+    assert resp.status == HTTPStatus.BAD_REQUEST
     assert json.loads(resp.body) == {
         "error": "Error with id `1234`: `No formation found`"
     }
@@ -616,7 +616,7 @@ async def test_authentification_with_bad_matching_pattern(patch_authorisations, 
     patch_authorisations([auth])
     resp = await client.post("/authentification", body=body)
 
-    assert resp.status == HTTPStatus.UNPROCESSABLE_ENTITY
+    assert resp.status == HTTPStatus.BAD_REQUEST
 
 
 async def test_authentification_with_bad_email(patch_authorisations, client, mock_get):

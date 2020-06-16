@@ -69,7 +69,7 @@ async def simulate_(request, response):
     except DataError as err:
         error = {err.key: err.error}
         log_simulate(context, errors=error)
-        raise HttpError(HTTPStatus.UNPROCESSABLE_ENTITY, error)
+        raise HttpError(HTTPStatus.BAD_REQUEST, error)
 
     eligible = request.query.bool("eligible", None)
     if eligible is not None:
@@ -106,7 +106,7 @@ async def remuneration_(request, response):
     except DataError as err:
         error = {err.key: err.error}
         log_simulate(context, errors=error)
-        raise HttpError(HTTPStatus.UNPROCESSABLE_ENTITY, error)
+        raise HttpError(HTTPStatus.BAD_REQUEST, error)
 
     # TODO: explain only for financement see routine.py check_remuneration
     # explain = request.query.bool("explain", False)
@@ -188,7 +188,7 @@ async def authent(request, response):
     try:
         data = request.json
     except ValueError as err:
-        raise HttpError(HTTPStatus.UNPROCESSABLE_ENTITY, message=err)
+        raise HttpError(HTTPStatus.BAD_REQUEST, message=err)
 
     date = datetime.datetime.today().strftime('%y%m%d')
     authsuccess = False
@@ -209,7 +209,7 @@ async def authent(request, response):
                                     + 'non authorisé à modifier le fichier \''
                                     + data.get('file') + '\'.')
             except re.error:
-                raise HttpError(HTTPStatus.UNPROCESSABLE_ENTITY,
+                raise HttpError(HTTPStatus.BAD_REQUEST,
                                 'Le motif de fichier autorisé est invalide.')
         else:
             continue
@@ -277,4 +277,4 @@ async def source_save(request, response):
     except NotModifiedError:
         raise HttpError(HTTPStatus.NOT_MODIFIED, message="Aucune modification apportée")
     except ValueError as err:
-        raise HttpError(HTTPStatus.UNPROCESSABLE_ENTITY, message=err)
+        raise HttpError(HTTPStatus.BAD_REQUEST, message=err)
