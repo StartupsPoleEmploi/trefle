@@ -54,7 +54,7 @@
         </div>
       </div>
       <div v-else class="text-center loading-gif">
-        <img src="./../assets/images/loading.gif" alt="loading...">
+        <img src="@/assets/images/loading.gif" alt="loading...">
       </div>
     </div>
   </div>

@@ -11,14 +11,9 @@
   </div>
 </template>
 <script>
-  import Eligibilite from './Eligibilite.vue';
-
   export default {
 		name: 'Eligibilite',
     props: ['conditions', 'schema'],
-    components: {
-      Eligibilite,
-    },
     methods: {
       transformData: function (data) {
         return data

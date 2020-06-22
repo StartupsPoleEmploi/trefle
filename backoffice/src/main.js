@@ -22,13 +22,13 @@ window.Vue = Vue;
 
 // Import components
 import App from './App.vue';
-import Accueil from './components/Accueil.vue'
-import Referentiel from './components/Referentiel.vue';
-import Financements from './components/Financements.vue';
-import Simulateur from './components/Simulateur.vue';
-import Scenarios from './components/Scenarios.vue';
-import Schema from './components/Schema.vue';
-import Outils from './components/Outils.vue';
+import Accueil from './components/Accueil/Accueil.vue';
+import Referentiel from './components/Referentiel/Referentiel.vue';
+import Financements from './components/Financements/Financements.vue';
+import Simulateur from './components/Simulateur/Simulateur.vue';
+import Scenarios from './components/Scenarios/Scenarios.vue';
+import Schema from './components/Schema/Schema.vue';
+import Outils from './components/Outils/Outils.vue';
 
 const routes = [
     { path: '/', name: 'accueil', component: Accueil},

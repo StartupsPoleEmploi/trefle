@@ -33,7 +33,7 @@
         </div>
       </div>
       <div v-else class="text-center loading-gif">
-        <img src="./../assets/images/loading.gif" alt="loading...">
+        <img src="@/assets/images/loading.gif" alt="loading...">
       </div>
       <div class="row">
         <div class="col-md-12 mt-5">
@@ -64,7 +64,7 @@
             </div>
           </div>
           <div v-else class="text-center loading-gif" style="padding-top:0;">
-            <img src="./../assets/images/loading.gif" alt="loading...">
+            <img src="@/assets/images/loading.gif" alt="loading...">
           </div>
         </div>
       </div>
