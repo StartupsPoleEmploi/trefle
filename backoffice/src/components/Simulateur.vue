@@ -10,7 +10,7 @@
         <hr class="simulateur-horizontal-separator">
         <!---------------- STEP FORMATION ---------------->
         <div class="formation-step step" :class="{step_completed_class: formation_step_completed}">
-          <SimulateurStepFormation/>
+          <SimulateurStepFormation :id_formation="formation.numero"/>
         </div>
         <hr v-if="formation_step_completed" class="simulateur-horizontal-separator">
         <!---------------- STEP ONE ---------------->
@@ -46,7 +46,7 @@
       <!------------------- RESULTATS -------------->
     <div v-if="resultats" id="simulate-results">
       <div v-if="!isLoading" class="mt-5">
-        <SimulateurResultats :schema="schema" :financements="financements" :financements_eligibles="financements_eligibles" :scenario="scenario" :context="context"></SimulateurResultats>
+        <SimulateurResultats :schema="schema" :financements="financements" :financements_eligibles="financements_eligibles" :scenario="scenario" :context="context" :id_formation="formation.numero"></SimulateurResultats>
       </div>
       <div v-else class="text-center loading-gif">
         <img src="./../assets/images/loading.gif" alt="loading...">
@@ -256,8 +256,8 @@
             inscrit_pe: this.situation_inscrit == 2 ? false : true,
             solde_cpf: this.situation_creditheurescpf == '' ? 0 : this.situation_creditheurescpf,
             remuneration: this.salaire == '' ? 0 : this.salaire,
-            allocation: this.allocation_cost == ''? 0 : this.allocation_cost,
-            type_allocation: this.allocation_type,
+            allocation: this.allocation_cost == '' ? 0 : this.allocation_cost,
+            type_allocation: this.allocation_type == 'non' ? null : this.allocation_type,
             fin_allocation: this.allocation_dateend,
             naissance: this.birthdate,
             age: this.age_beneficiaire,
@@ -365,15 +365,11 @@
       simulate: function () {
         this.isLoading = true;
 
-        var context = null;
-        if(this.context) {
-          context=this.context
-        } else {
+        if(!this.objectIsEmpty(this.context)) {
           this.prepareRequest()
-          context=this.request
         }
 
-        this.$http.post('/financement?context=1&explain=true&scenario=1', context).then(response => {
+        this.$http.post('/financement?context=1&explain=true&scenario=1', this.request).then(response => {
           if(this.objectIsEmpty(response.body) == false) {
             for(var i=0; i<response.body.financements.length-1; i++) {
               if(this.situation_cpfconnu=='cpfempty') {

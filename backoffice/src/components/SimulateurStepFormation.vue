@@ -18,11 +18,10 @@
 </template>
 <script>
   export default {
-		name: 'SimulateurStepFormation',		
-    props:[],
+		name: 'SimulateurStepFormation',
+    props:["id_formation"],
     data: function () {
       return {
-        id_formation : null,
         formationNotExists: null,
         intitule_formation : null,
       }
@@ -46,7 +45,7 @@
         }, (response) => {
           this.formationNotExists = response.status != 200;
         }).created;
-      }, 
+      },
     }
   }
 </script>

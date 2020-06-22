@@ -5,7 +5,10 @@
         <div class="col-md-12">
           <h2>
             Résultats de simulation de financement
-            <button v-on:click="newSimulation();" class="btn main-button-primary pull-right"><span class="mr-1">Nouvelle simulation</span><i class="ml-1 fas fa-redo"></i></button>
+            <div class="pull-right inline">
+              <button v-on:click="editSimulation();" class="btn main-button-primary mr-3"><span class="mr-1">Editer la simulation</span><i class="ml-1 fas fa-edit"></i></button>
+              <button v-on:click="newSimulation();" class="btn main-button-primary"><span class="mr-1">Nouvelle simulation</span><i class="ml-1 fas fa-redo"></i></button>
+            </div>
           </h2>
         </div>
       </div>
@@ -151,7 +154,7 @@
       SimulateurExplain,
       SimulateurContext
     },
-    props: ['schema','financements', 'financements_eligibles', 'scenario', 'context', 'isLoading'],
+    props: ['schema','financements', 'financements_eligibles', 'scenario', 'context', 'isLoading', 'id_formation'],
     data : function () {
       return {
         scenarioToggled:false,
@@ -162,6 +165,11 @@
     methods: {
       newSimulation : function () {
         location.reload();
+      },
+      editSimulation: function () {
+        this.$parent.resultats = false;
+        this.$parent.financements_eligibles = [];
+        this.$parent.formation.numero = this.id_formation;
       }
     }
 
