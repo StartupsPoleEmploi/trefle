@@ -38,7 +38,7 @@
       <div class="row">
         <div class="col-md-12 mt-5">
           <div id="chart-container" class="text-center">
-            <ModificationChart width="1200" height="200" @on-receive="update" :values="modification_chart_datas.datasets" :labels="modification_chart_datas.labels"></ModificationChart>
+            <ModificationChart :width="1200" :height="200" @on-receive="update" :values="modification_chart_datas.datasets" :labels="modification_chart_datas.labels"></ModificationChart>
           </div>
         </div>
         <div class="col-md-12">
