@@ -40,7 +40,7 @@
         <div v-if="modificationInProgress" class="mt-5">
           <h2>Modification en cours...</h2>
         </div>
-        <img src="./../assets/images/loading.gif" alt="loading...">
+        <img src="@/assets/images/loading.gif" alt="loading...">
       </div>
     </div>
   </div>

@@ -63,7 +63,7 @@
           </div>
         </div>
         <div v-else class="text-center loading-gif">
-          <img src="./../assets/images/loading.gif" alt="loading...">
+          <img src="@/assets/images/loading.gif" alt="loading...">
         </div>
         <b-modal id="auth-modal" title="Authentifiez-vous pour soumettre une modification">
           <label for="contributor_email" class="pb-2"><u>Votre email</u> *</label><br>
@@ -92,7 +92,7 @@
       </div>
     </div>
     <div v-else class="text-center loading-gif">
-      <img src="./../assets/images/loading.gif" alt="loading...">
+      <img src="@/assets/images/loading.gif" alt="loading...">
     </div>
   </div>
 </template>
