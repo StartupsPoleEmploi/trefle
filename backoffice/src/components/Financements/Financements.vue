@@ -67,9 +67,14 @@
             <ul id="ul-financement-results-list">
               <li v-for="financement in this.filteredFinancements" :key="financement.id" class="mt-4 row">
               <span class="col-md-3 col-sm-12">
-                <a :href="'/0.8/explorer/referentiel#'+financement.racine">
-                  <strong class="financement-fields">{{ financement.intitule }}</strong>
-                </a>
+                <span v-if="financement.racine!='région du bénéficiaire'">
+                  <a :href="'/0.8/explorer/referentiel#'+financement.racine">
+                    <strong class="financement-fields">{{ financement.intitule }}</strong>
+                  </a>
+                </span>
+                <span v-else>
+                    <strong class="financement-fields">{{ financement.intitule }}</strong>
+                </span>
               </span>
               <span class="col-md-8 col-sm-11">
                 <span v-for="tag in financement.tags" v-on:click="setSearchTag(tag)" :key="tag.id" class="financement-results-tags" >
