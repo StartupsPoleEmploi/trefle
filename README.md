@@ -125,13 +125,11 @@ OLD_VERSION and BACK_VERSION must be compatible
 
 ### Update API
 1. Update `VERSION` in `.env` file
-2. Update API, in `docker` folder process : `update_api.sh trefle`
+2. Update API, in `docker` folder process : `./update_api.sh trefle`
 
 ### Update WEB
 1. Update `BACK_VERSION` in `.env` file
-2. Update API, in `docker` folder process : `docker-compose up -d --no-deps`
-3. Reload authorisations.csv : `sh update_access.sh`
-
+2. Update the website, in `docker` folder process : `./update_web.sh`
 
 ## Update acces
 
@@ -142,3 +140,9 @@ logs are in docker/logs
 Format for authorisations.csv :
   `email,password,files`
 Note: multiple files must be separated with a "|"
+
+## Troubleshooting
+
+Try to restart the stack with `./restart_stack.sh`
+
+
