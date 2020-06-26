@@ -178,6 +178,7 @@ Scénario: AIF avec ARE finissant avant la fin de la formation
     Et c'est un travailleur handicapé
     Et l'allocation du bénéficiaire vaut «allocation d'aide au retour à l'emploi»
     Et le montant de l'allocation du bénéficiaire vaut 758
+    Et la date de début de la formation vaut «01/01/2018»
     Et la date de fin de la formation vaut «04/05/2018»
     Et la date de fin de l'allocation du bénéficiaire vaut «04/04/2018»
     Et la liste des codes ROME de la formation vaut [«A1101»]
