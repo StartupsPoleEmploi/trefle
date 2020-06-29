@@ -33,4 +33,6 @@ else
     echo "[DONE] All container restarted" | tee -a update.log
 fi
 
+./update_access.sh
+
 exit 0;
