@@ -32,7 +32,19 @@
         </ul>
       </div>
       <div v-show="!isEditMode && !viewModification">
-        <ul>
+        <div v-show="ruleComment != ''">
+
+          <span data-toggle="collapse" data-target="#rule-comment" aria-expanded="false" aria-controls="explain" style="cursor:pointer;" v-on:click="ruleCommentToggled=!ruleCommentToggled">
+            <button v-if="!ruleCommentToggled" class="btn main-button">Voir les notes de règle</button>
+            <button v-else class="btn main-button">Masquer les notes</button>
+          </span>
+          <div id="rule-comment" class="mt-3 card collapse">
+            <div class="card-body">
+              {{ this.ruleComment }}
+            </div>
+          </div>
+        </div>
+        <ul class="mt-5">
           <TreeItem class="item" :item="this.ruleTree" :rootElement="true" :rulePath="this.rulePath"></TreeItem>
         </ul>
       </div>
@@ -80,8 +92,8 @@
         </b-modal>
 
         <b-modal id="mail-modal" title="Soumettre votre modification">
-          <label for="comment" class="mb-2"><u>Résumé de la modification</u> * </label>
-          <textarea id="comment" v-model="comment" :class="{editErrorClass: error_flags.noResume}" rows="3"></textarea>
+          <label for="modificationComment" class="mb-2"><u>Résumé de la modification</u> * </label>
+          <textarea id="modificationComment" v-model="modificationComment" :class="{editErrorClass: error_flags.noResume}" rows="3"></textarea>
           <span v-if="error_flags.noResume" class="text-danger font-weight-light">Ce champ est obligatoire</span>
           <span v-if="!error_flags.noUser && !error_flags.noResume" class="font-weight-light">* Champ obligatoire</span>
           <template v-slot:modal-footer>
@@ -114,17 +126,18 @@
       Modification,
       TextAreaAutosize
     },
-    props: ['name', 'data', 'path', 'printRulePath', 'rulePath'],
+    props: ['name', 'data', 'path', 'printRulePath', 'rulePath', 'ruleComment'],
     data: function(){
       return {
         windowLocationHash: '',
         modifiedHashFlag: decodeURI(window.location.hash).split('#').pop() == "modified",
         isLoading: true,
+        ruleCommentToggled: false,
         ruleData: this.data,
         modification_list: {},
         commit_id: '',
         content: null,
-        comment: '',
+        modificationComment: '',
         filename: 'trefle/config/rules/' + this.path,
         isEditMode: '',
         viewModification: false,
@@ -260,7 +273,7 @@
       },
       closeEdit: function () {
         this.content = this.ruleToEdit;
-        this.comment = "";
+        this.modificationComment = "";
         this.auth = {
           email: '',
           password: '',
@@ -280,7 +293,7 @@
         this.$parent.isLoading = true;
         this.$parent.modificationInProgress = true;
         this.ruleData = this.content
-        if (this.comment == '') {
+        if (this.modificationComment == '') {
           this.error_flags.noResume = true;
           return false;
         }
@@ -289,7 +302,7 @@
           author_email:this.auth.email,
           author_name:this.auth.email.split("@")[0],
           title: this.displayedName,
-          comment: this.comment,
+          modificationComment: this.modificationComment,
           content: this.content,
           filename: this.filename
         }
@@ -324,7 +337,7 @@
                 if (error.body.args == "`author_email` est vide") {
                   this.error_flags.noUser = true;
                   this.error_flags.badUser = false;
-                } else if (error.body.args == "`comment` est vide") {
+                } else if (error.body.args == "`modificationComment` est vide") {
                   this.error_flags.noResume = true;
                   this.error_flags.noUser = false;
                 }
@@ -420,4 +433,5 @@ textarea {
   overflow-y: scroll;
   scroll-behavior: smooth;
 }
+
 </style>
