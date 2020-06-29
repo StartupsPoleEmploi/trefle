@@ -26,7 +26,7 @@
               </div>
               <div :class="classCollapsedContent">
                 <div v-if="this.show">
-                  <Rule :data="this.currentRuleContent" :name="this.currentRuleName" :path="this.currentRuleFilePath" :printRulePath="this.printRulePath" :rulePath="this.rulePath" :key="this.rerenderKey"></Rule>
+                  <Rule :data="this.currentRuleContent" :name="this.currentRuleName" :path="this.currentRuleFilePath" :printRulePath="this.printRulePath" :rulePath="this.rulePath" :key="this.rerenderKey" :ruleComment="this.currentRuleComment"></Rule>
                 </div>
                 <div v-else>
                   <h2>Sélectionnez une règle.</h2>
@@ -80,6 +80,10 @@
       },
       currentRuleFilePath: function () {
         if(this.currentRuleName !== '') return this.rules[this.currentRuleName]['path'];
+        else return null;
+      },
+      currentRuleComment: function() {
+        if(this.currentRuleName !== '') return this.rules[this.currentRuleName]['comment'];
         else return null;
       },
       printRulePath: function () {
