@@ -30,11 +30,11 @@ async def simulate_legacy(request, response):
         await simulate(context, financements)
     except DataError as err:
         error = {err.key: err.error}
-        log_simulate(context, errors=error)
+        log_simulate(request, response, context, errors=error)
         raise HttpError(HTTPStatus.BAD_REQUEST, error)
 
     financements = [f for f in financements if f["eligible"]]
-    log_simulate(context, financements=financements)
+    log_simulate(request, response, context, financements=financements)
     mapped = []
     for financement in financements:
         for tag, label in FAMILLE_MAPPING.items():
