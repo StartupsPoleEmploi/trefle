@@ -14,6 +14,8 @@ Et l'identifiant du financement n'est pas «dispositif 7»
     #######################
     Si l'intitulé du financement n'est pas «Création reprise entreprise PROFOREA / START AGRI»
     Et l'intitulé du financement n'est pas «Formation secrétaires de mairie en région BFC»
+    Et l'identifiant du financement n'est pas «dispositif 9»
+    Et l'identifiant du financement n'est pas «dispositif 11»
         Alors l'aide complémentaire est éligible
         Et le montant de l'aide complémentaire vaut 200
 
@@ -22,6 +24,7 @@ Et l'identifiant du financement n'est pas «dispositif 7»
     # Aide au transport #
     #####################
     Si l'intitulé du financement n'est pas «DFL / SPRF Dispositif formation linguistique»
+    Et l'identifiant du financement n'est pas «dispositif 1»
         Si c'est un travailleur handicapé
             Alors l'aide au transport est éligible
             Et le texte de l'aide au transport vaut «L'indemnité de transport est limitée à un aller/retour sur la durée de la formation.»
@@ -65,6 +68,7 @@ Et l'identifiant du financement n'est pas «dispositif 7»
     # Rémunération #
     ################
     Si l'intitulé du financement n'est pas «DFL / SPRF Dispositif formation linguistique»
+    Et l'identifiant du financement n'est pas «dispositif 1»
 
         #Si l'allocation du bénéficiaire est définie
         Si le montant de l'allocation du bénéficiaire est définie
