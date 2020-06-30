@@ -45,16 +45,19 @@ def log_simulate(request, response, context, financements=None, errors=None):
         "version": VERSION,
     }
     request_logger.info(json.dumps(message, sort_keys=True))
+    application = request.headers.get('ORIGIN-USER')
+    if not application and request.headers.get('AUTHORIZATION'):
+        application = 'esd'
 
     message_esd = {
         "startup": "trefle",
         "requestId":  str(uuid.uuid4()),
         "date": datetime.utcnow().isoformat(),
-        "remoteIP": request.headers.get("x-real-ip"),
-        "httpReferer": request.headers.get("referer"),
-        "httpUserAgent": request.headers.get("user-agent"),
+        "remoteIP": request.headers.get("X-REAL-IP"),
+        "httpReferer": request.headers.get("REFERER"),
+        "httpUserAgent": request.headers.get("USER-AGENT"),
         "status": response.status,
         "apiVersion": VERSION,
-        "application": request.headers.get('origin-user'),
+        "application": application,
     }
     request_esd_logger.info(json.dumps(message_esd, sort_keys=True))
