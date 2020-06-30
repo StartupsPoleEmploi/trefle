@@ -237,18 +237,18 @@ Notes:
     # Codes et dispositifs associés #
     ################################
 
-    1: Approfondir ma maîtrise de la langue Française (écrite et orale): DFL Dispositif de formation linguistique
-    2: Me remobiliser et définir mon projet de formation: « Une Formation pour Moi ? C’est Possible ! »
-    3: Construire mon projet d’insertion sociale et professionnelle – jeunes adultes jusqu’à 30 ans : Les écoles de la 2ème chance (E2C)
-    4: Me préparer pour accéder à une formation ou un emploi: Le Dispositif amont de la qualification (DAQ)
-    5: Me former à un métier : Le programme qualifiant
-    6: Me former aux métiers du sanitaire et social: formations niveau infra BAC
-    7: Me former aux métiers du sanitaire et social: formations niveau BAC et plus
-    8: Me former pour développer un projet de création / reprise d’entreprise
-    9: Me former pour développer un projet de création / reprise d’entreprise: PROFOREA / START AGRI
-    10: Répondre rapidement aux besoins en recrutement des entreprises : Le FRAP (Fonds d’Appui Régional à la professionnalisation)
-    11: Formation secrétaires de mairie en région BFC
-    12: VAE
+    dispositif 1: Approfondir ma maîtrise de la langue Française (écrite et orale): DFL Dispositif de formation linguistique
+    dispositif 2: Me remobiliser et définir mon projet de formation: « Une Formation pour Moi ? C’est Possible ! »
+    dispositif 3: Construire mon projet d’insertion sociale et professionnelle – jeunes adultes jusqu’à 30 ans : Les écoles de la 2ème chance (E2C)
+    dispositif 4: Me préparer pour accéder à une formation ou un emploi: Le Dispositif amont de la qualification (DAQ)
+    dispositif 5: Me former à un métier : Le programme qualifiant
+    dispositif 6: Me former aux métiers du sanitaire et social: formations niveau infra BAC
+    dispositif 7: Me former aux métiers du sanitaire et social: formations niveau BAC et plus
+    dispositif 8: Me former pour développer un projet de création / reprise d’entreprise
+    dispositif 9: Me former pour développer un projet de création / reprise d’entreprise: PROFOREA / START AGRI
+    dispositif 10: Répondre rapidement aux besoins en recrutement des entreprises : Le FRAP (Fonds d’Appui Régional à la professionnalisation)
+    dispositif 11: Formation secrétaires de mairie en région BFC
+    dispositif 12: VAE
 
 
 * 1 DFL / SPRF Dispositif formation linguistique 2019
