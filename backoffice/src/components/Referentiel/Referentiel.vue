@@ -3,17 +3,18 @@
     <div id="referentiel-main-div">
       <div v-if="!this.isLoading">
         <div id="referentiel-main-row">
-          <div class="container ml-5 mr-2">
+          <div class="container-fluid pl-5 pr-5">
             <div class="row">
               <div v-if="!isEditMode" :class="classCollapsedMenu">
-                <div class="mb-3 pull-right">
+                <div class="pb-3 pull-right">
                   <button @click="collapsed = !collapsed" type="button" class="btn main-button mb-5">
                     <span v-show="collapsed"><span class="chevron-toggle">&#8594;</span>  Ouvrir le panneau</span>
                     <span v-show="!collapsed"><span class="chevron-toggle">&#8592;</span>  Fermer le panneau</span>
                   </button>
                 </div>
+                <br>
                 <div v-show="!collapsed">
-                  <h2 class="mb-5">Dispositifs de financement</h2>
+                  <h2 class="pt-5 mb-5">Dispositifs de financement</h2>
                   <RulesMenu title="Régionaux" namespace="région" class="rules-menu" @click="this.forceRerender()"></RulesMenu>
                   <RulesMenu title="Nationaux" namespace="règles nationales" class="rules-menu"></RulesMenu>
                   <RulesMenu title="Organismes paritaires" namespace="organisme paritaire" class="rules-menu"></RulesMenu>

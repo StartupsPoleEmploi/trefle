@@ -1,15 +1,15 @@
 <template>
-  <li>
-    <div :class="{bold: isFolder}"  @dblclick="makeFolder">
+  <li style="">
+    <div :class="{bold: isFolder}" class=""  @dblclick="makeFolder"  style="margin-left:2.5%">
       <div v-if="isFolder" @click="toggle">
-        <div v-if="!rootElement">
-          <span>{{ item.name }}</span>
-          <span class="main-button btn pull-right" style="width:5%"><strong>{{ isOpen ? '-' : '+' }}</strong></span>
+        <div v-if="!rootElement" class="form-inline rules-line">
+          <div v-html="transform(item.name)" style="width:95%"/>
+          <div class="main-button btn pull-right" style="width:5%"><strong>{{ isOpen ? '-' : '+' }}</strong></div>
         </div>
       </div>
-      <span v-else v-html="transform(item.name)" class="text-muted"></span>
+      <div v-else v-html="transform(item.name)" :class="{alors: isAlorsLine}" class="text-muted rules-line"/>
     </div>
-    <hr v-show="!rootElement">
+    <hr v-show="!rootElement" style="padding:0px; margin:0px;">
     <ul v-show="isOpen || rootElement" v-if="isFolder">
       <TreeItem
         class="item"
@@ -39,6 +39,9 @@
       isFolder: function() {
         return this.item.children &&
           this.item.children.length
+      },
+      isAlorsLine: function () {
+        return this.item.name.match(/Alors+ .*/gi);
       }
     },
     methods: {
@@ -63,11 +66,11 @@
           .replace(/, ou /g, '<span class="bold text-dark">, ou </span>')
           .replace(/Et /g, '<span class="bold text-dark">Et </span>')
           .replace(/, et /g, '<span class="bold text-dark">, et </span>')
-          .replace(/Alors /g, '<span class="bold text-dark">Alors </span>')
+          .replace(/Alors+ .*/gi, "<div class='text-dark'>$&</div>")
           .replace(/(#.+)/g, "<em class=\"comment\">$1</em>")
-          .replace(/appliquer les règles «([^»]+?)(.rules)?»/g, 'appliquer les règles « <a href="'+this.rulePath+'#$1.rules" class="btn main-button" title="Ouvrir les règles" style="display:inline-block">$1</a> »')
+          .replace(/appliquer les règles «([^»]+?)(.rules)?»/g, '<span class="rules-line"> appliquer les règles « <a href="'+this.rulePath+'#$1.rules" class="btn main-button" title="Ouvrir les règles" style="display:inline-block">$1</a> »</span>')
           .replace(/(«.+»)/g, "<span class=\"string\">$1</span>")
-          .replace(/,([^ ])/g, ", $1");
+          .replace(/,([^ ])/g, "<span class=\"string\">, $1</span>");
       },
     },
   }
@@ -87,5 +90,15 @@
   }
   .rule-separator {
     width: 100vh;
+  }
+  .alors {
+    background-color: rgba(153, 255, 102, 0.2);
+    transition: padding 0.2s 0s linear;
+    height:100%;
+    border-radius:5px;
+  }
+  .rules-line {
+    padding-top:1vh;
+    padding-bottom:1vh;
   }
 </style>
