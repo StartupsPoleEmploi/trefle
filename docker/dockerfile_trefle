@@ -29,10 +29,11 @@ COPY trefle/srv/authorisations.csv ./authorisations.csv
 COPY trefle/start.sh .
 
 
-# setup virtualenv
+# setup virtualenv + permission
 RUN pip install pip -U && \
     pip install gunicorn && \
-    pip install git+${TREFLE_GIT}@${TREFLE_VERSION}
+    pip install git+${TREFLE_GIT}@${TREFLE_VERSION} && \
+    chmod 600 /etc/logrotate.d/gunicorn
 
 #start
 ENTRYPOINT ./start.sh

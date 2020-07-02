@@ -11,7 +11,7 @@ RUN git clone -b ${TREFLE_BACK_VERSION} ${TREFLE_GIT} /srv/trefle && \
     npm run build
 
 
-FROM ubuntu:xenial
+FROM ubuntu:bionic
 
 LABEL maintainer="labonneformation@pole-emploi.fr"
 
@@ -26,6 +26,7 @@ RUN apt-get update && apt-get -y install \
                                  vim \
                                  bzip2 \
                                  cron \
+                                 rsyslog \
                                  logrotate \
                                  iptables \
                                  git \
