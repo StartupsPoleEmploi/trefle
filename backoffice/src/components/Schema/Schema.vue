@@ -29,8 +29,8 @@
               <div v-if="this.show">
                 <h2 class="mb-5">{{ this.categories[category] }} </h2>
                 <dl v-for="(schema_row,id) in this.filteredSchema" :key="id">
-                  <dt v-if="schema_row.label"> {{schema_row.label.charAt(0).toUpperCase() + schema_row.label.slice(1)}} <a :href="'#schema/'+id" class=anchor>#</a></dt>
-                  <dt v-else> {{ schema_row.description }} <a :href="'#schema/'+id" class=anchor>#</a></dt>
+                  <dt v-if="schema_row.label"> {{schema_row.label.charAt(0).toUpperCase() + schema_row.label.slice(1)}}</dt>
+                  <dt v-else> {{ schema_row.description }}</dt>
                   <dd v-if="schema_row.value"><strong>Valeur constante :</strong> {{ formatValue(schema_row.value) }}</dd>
                   <dd v-if="schema_row.description"><strong>Description :</strong> {{schema_row.description}}</dd>
                   <dd v-if="schema_row.source"><strong>Source :</strong> {{schema_row.source}}</dd>
@@ -95,11 +95,11 @@
         return "col-md-1 col-sm-0 col-xs-0";
       },
       filteredSchema: function () {
-        var filteredSchema = [];
+        var filteredSchema = {};
         if (this.show) {
           for(var i=0; i< Object.keys(this.schema).length; i++) {
             var schema_value = Object.keys(this.schema)[i];
-            if (schema_value.split('.')[0]==this.category) filteredSchema.push(this.schema[schema_value]);
+            if (schema_value.split('.')[0]==this.category) filteredSchema[schema_value] = this.schema[schema_value];
           }
         }
         return filteredSchema
