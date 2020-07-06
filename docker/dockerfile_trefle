@@ -26,7 +26,7 @@ COPY trefle/etc/logrotate.d/gunicorn.logrotate /etc/logrotate.d/gunicorn
 #deploy
 COPY trefle/srv/gunicorn.conf.py ./gunicorn.conf.py
 COPY trefle/srv/authorisations.csv ./authorisations.csv
-COPY trefle/start.sh .
+COPY trefle/srv/start.sh .
 
 
 # setup virtualenv + permission
