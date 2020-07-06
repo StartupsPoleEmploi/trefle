@@ -28,6 +28,7 @@ RUN apt-get update && apt-get -y install \
                                  cron \
                                  rsyslog \
                                  logrotate \
+                                 fail2ban \
                                  iptables \
                                  git \
                                  dnsutils
@@ -43,5 +44,6 @@ RUN git clone -b ${TREFLE_OLD_VERSION} ${TREFLE_GIT} /srv/trefle-old && \
     chown -R www-data: /srv/trefle-old && \
     chmod -R u+rwx /srv/trefle-old
 
-CMD service nginx start; \
+CMD service fail2ban start; \
+    service nginx start; \
     cron -f
