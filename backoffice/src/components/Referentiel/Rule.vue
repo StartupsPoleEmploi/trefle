@@ -303,7 +303,7 @@
           author_email:this.auth.email,
           author_name:this.auth.email.split("@")[0],
           title: this.displayedName,
-          modificationComment: this.modificationComment,
+          comment: this.modificationComment,
           content: this.content,
           filename: this.filename
         }
