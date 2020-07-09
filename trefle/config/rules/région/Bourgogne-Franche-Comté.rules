@@ -165,7 +165,6 @@ Si l'intitulé du financement est «Création reprise entreprise»
     Et le code CERTIFINFO de la formation vaut 93561
     Et l'intitulé normé de la formation ne contient pas «PROFOREA»
     Et l'intitulé normé de la formation ne contient pas «STARTAGRI»
-    Et ce n'est pas un bénéficiaire de droit privé
         Alors le financement est éligible
         Et appliquer les règles «rémunérations applicables»
         Et le texte des démarches vaut «Contactez l’organisme en charge de la formation qui met en place un jury de sélection chargé de vérifier l’adéquation entre le candidat et son projet, la faisabilité économique du projet, le lieu d’implantation du projet sur le territoire régional.»
@@ -180,7 +179,6 @@ Si l'intitulé du financement est «Création reprise entreprise PROFOREA / STAR
     Et les codes financeur de la formation contiennent «Conseil régional»
     Et le code CERTIFINFO de la formation vaut 93561
     Et l'intitulé normé de la formation contient «PROFOREA», ou l'intitulé normé de la formation contient «STARTAGRI»
-    Et ce n'est pas un bénéficiaire de droit privé
         Alors le financement est éligible
         Et appliquer les règles «rémunérations applicables»
         Et le texte des démarches vaut «Contacter l’organisme en charge de la formation la chambre régionale des métiers et de l’artisanat pour le programme proforeart et la chambre régionale d’agriculture pour le programme start agri»
@@ -228,34 +226,5 @@ Si l'intitulé du financement est «VAE Bourgogne Franche Comté»
         Et le texte des démarches vaut «Contactez votre conseiller référent emploi (Pôle emploi, mission locale ou Cap emploi)»
         Et le texte de description vaut «Faciliter le retour à l’emploi et accompagner au mieux les transitions professionnelles . La VAE constitue une voie d’accès à la certification à partir de l’expérience. C’est l’opportunité de valoriser ses acquis et d’obtenir en partie ou en totalité une certification de valeur nationale (diplôme, titre ou certification).»
         Et le texte pour en savoir plus vaut «L’entrée en formation sur cette action est ouverte aux demandeurs d’emploi dont le projet professionnel a fait l’objet d’une validation par un conseiller Pôle emploi, Cap emploi ou mission locale.»
-
-
----
-Notes:
-
-    ##################################
-    # Codes et dispositifs associés #
-    ################################
-
-    dispositif 1: Approfondir ma maîtrise de la langue Française (écrite et orale): DFL Dispositif de formation linguistique
-    dispositif 2: Me remobiliser et définir mon projet de formation: « Une Formation pour Moi ? C’est Possible ! »
-    dispositif 3: Construire mon projet d’insertion sociale et professionnelle – jeunes adultes jusqu’à 30 ans : Les écoles de la 2ème chance (E2C)
-    dispositif 4: Me préparer pour accéder à une formation ou un emploi: Le Dispositif amont de la qualification (DAQ)
-    dispositif 5: Me former à un métier : Le programme qualifiant
-    dispositif 6: Me former aux métiers du sanitaire et social: formations niveau infra BAC
-    dispositif 7: Me former aux métiers du sanitaire et social: formations niveau BAC et plus
-    dispositif 8: Me former pour développer un projet de création / reprise d’entreprise
-    dispositif 9: Me former pour développer un projet de création / reprise d’entreprise: PROFOREA / START AGRI
-    dispositif 10: Répondre rapidement aux besoins en recrutement des entreprises : Le FRAP (Fonds d’Appui Régional à la professionnalisation)
-    dispositif 11: Formation secrétaires de mairie en région BFC
-    dispositif 12: VAE
-
-
-* 1 DFL / SPRF Dispositif formation linguistique 2019
-Est-ce que le rend accessible aux salariés ?
-
-*12 VAE
-J'ai ajouté le code financeur conseil régional dans la règle
-ATTENTION : renommage du dispositif en VAE Bourgogne Franche Conté
 
 
