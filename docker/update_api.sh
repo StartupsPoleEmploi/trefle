@@ -23,4 +23,8 @@ echo "[DONE] Remove older container" | tee -a update.log
 echo "[INIT] Scaling $SERVICE_NAME down"
 docker-compose up -d --scale $SERVICE_NAME=1 --no-recreate $SERVICE_NAME
 echo "[DONE] Scaling down" | tee -a update.log \
+
+echo "[INIT] Update access"
+sh ./update_access.sh
+echo "[DONE] update access" | tee -a update.log \
     && exit 0
