@@ -18,6 +18,12 @@
             <h4 v-if="isEditMode" class="pull-right"><em>Modification de la règle</em></h4>
             <input v-else-if="this.modifiedHashFlag | this.newModification" v-b-modal.auth-modal type="button" class="main-button-primary btn pull-right" value="Soumettre une modification"/>
             <!-- TODO: show gitlab link of modification if exists -->
+            <div v-else v-show="ruleComment != ''">
+              <span class="float-right" data-toggle="collapse" data-target="#rule-comment" aria-expanded="false" aria-controls="explain" style="cursor:pointer;" v-on:click="ruleCommentToggled=!ruleCommentToggled">
+                <button v-if="!ruleCommentToggled" class="btn main-button">Consulter la note de bas de page</button>
+                <button v-else class="btn main-button">Masquer la note</button>
+              </span>
+            </div>
           </div>
         </div>
         <div v-show="!isEditMode" class="row">
@@ -33,11 +39,6 @@
       </div>
       <div v-show="!isEditMode && !viewModification">
         <div v-show="ruleComment != ''">
-
-          <span data-toggle="collapse" data-target="#rule-comment" aria-expanded="false" aria-controls="explain" style="cursor:pointer;" v-on:click="ruleCommentToggled=!ruleCommentToggled">
-            <button v-if="!ruleCommentToggled" class="btn main-button">Voir les notes de règle</button>
-            <button v-else class="btn main-button">Masquer les notes</button>
-          </span>
           <div id="rule-comment" class="mt-3 card collapse">
             <div class="card-body">
               {{ this.ruleComment }}
