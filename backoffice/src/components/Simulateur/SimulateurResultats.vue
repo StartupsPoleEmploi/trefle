@@ -94,47 +94,45 @@
         <hr class="simulateur-horizontal-separator">
       </div>
     </div>
-    <div id="explainCollapseGroup">
+    <div id="explainCollapseGroup" class="container">
       <div class="row" id="explainButtonsGroup">
         <div class="col-md-4">
-          <span class="ml-5" data-toggle="collapse" data-target="#scenario" aria-expanded="false" aria-controls="scenario" style="cursor:pointer;" v-on:click="scenarioToggled=!scenarioToggled">
+          <span class="ml-5" data-toggle="collapse" data-target="#scenario" aria-expanded="false" aria-controls="scenario" style="cursor:pointer;" v-on:click="toggle('scenario');">
             <button v-if="!scenarioToggled" class="btn main-button-primary">Voir le scénario de simulation</button>
-            <button v-else class="btn main-button-primary">Masquer le scénario de simulation</button>
+            <button v-else class="btn main-button">Masquer le scénario de simulation</button>
           </span>
         </div>
         <div class="col-md-4">
-          <span class="ml-5" data-toggle="collapse" data-target="#context" aria-expanded="false" aria-controls="context" style="cursor:pointer;" v-on:click="contextToggled=!contextToggled">
+          <span class="ml-5" data-toggle="collapse" data-target="#context" aria-expanded="false" aria-controls="context" style="cursor:pointer;" v-on:click="toggle('context');">
             <button v-if="!contextToggled" class="btn main-button-primary">Voir le contexte de simulation</button>
-            <button v-else class="btn main-button-primary">Masquer le contexte de simulation</button>
+            <button v-else class="btn main-button">Masquer le contexte de simulation</button>
           </span>
         </div>
         <div class="col-md-4">
-          <span class="ml-5" data-toggle="collapse" data-target="#explain" aria-expanded="false" aria-controls="explain" style="cursor:pointer;" v-on:click="explainToggled=!explainToggled">
+          <span class="ml-5" data-toggle="collapse" data-target="#explain" aria-expanded="false" aria-controls="explain" style="cursor:pointer;" v-on:click="toggle('explain');">
             <button v-if="!explainToggled" class="btn main-button-primary">Voir l'explication de simulation</button>
-            <button v-else class="btn main-button-primary">Masquer l'explication de simulation</button>
+            <button v-else class="btn main-button">Masquer l'explication de simulation</button>
           </span>
         </div>
       </div>
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
-            <div id="scenario" data-parent="#explainCollapseGroup" class="collapse">
-              <SimulateurScenario :scenario="scenario"></SimulateurScenario>
-            </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div id="scenario" data-parent="#explainCollapseGroup" class="collapse">
+            <SimulateurScenario :scenario="scenario"></SimulateurScenario>
           </div>
         </div>
-        <div class="row">
-          <div class="col-md-12">
-            <div id="context" data-parent="#explainCollapseGroup" class="collapse">
-              <SimulateurContext :schema="schema" :context="context"></SimulateurContext>
-            </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div id="context" data-parent="#explainCollapseGroup" class="collapse">
+            <SimulateurContext :schema="schema" :context="context"></SimulateurContext>
           </div>
         </div>
-        <div class="row">
-          <div class="col-md-12">
-            <div id="explain" data-parent="#explainCollapseGroup" class="collapse">
-              <SimulateurExplain :schema="schema" :financements="financements"></SimulateurExplain>
-            </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div id="explain" data-parent="#explainCollapseGroup" class="collapse">
+            <SimulateurExplain :schema="schema" :financements="financements"></SimulateurExplain>
           </div>
         </div>
       </div>
@@ -170,6 +168,24 @@
         this.$parent.resultats = false;
         this.$parent.financements_eligibles = [];
         this.$parent.formation.numero = this.id_formation;
+        if(this.$parent.allocation_type == "") this.$parent.allocation_type="non";
+      },
+      toggle: function (toggle_source) {
+        console.log(toggle_source);
+        if (toggle_source == "scenario") {
+          this.scenarioToggled = !this.scenarioToggled;
+          this.contextToggled = false;
+          this.explainToggled = false;
+        } else if (toggle_source == "context") {
+          this.scenarioToggled = false;
+          this.contextToggled = !this.contextToggled;
+          this.explainToggled = false;
+
+        } else if (toggle_source == "explain") {
+          this.scenarioToggled = false;
+          this.contextToggled = false;
+          this.explainToggled = !this.explainToggled;
+        }
       }
     }
 

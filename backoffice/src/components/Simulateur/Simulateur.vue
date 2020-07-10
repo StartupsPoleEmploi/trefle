@@ -1,6 +1,6 @@
 <template>
   <div id="Simulateur">
-    <div class="container form-group pt-5">
+    <div class="container form-group pt-5 pb-3">
       <div v-if="!resultats">
         <div class="row">
           <div class="col-md-12">
@@ -10,7 +10,7 @@
         <hr class="simulateur-horizontal-separator">
         <!---------------- STEP FORMATION ---------------->
         <div class="formation-step step" :class="{step_completed_class: formation_step_completed}">
-          <SimulateurStepFormation :id_formation="formation.numero"/>
+          <SimulateurStepFormation :id_formation_parent="formation.numero"/>
         </div>
         <hr v-if="formation_step_completed" class="simulateur-horizontal-separator">
         <!---------------- STEP ONE ---------------->
@@ -35,7 +35,7 @@
         <hr v-if="step_four_completed" class="simulateur-horizontal-separator">
         <!---------------- STEP FIVE ---------------->
         <div v-if="step_four_completed" class="form-step step-five" :class="{step_completed_class: step_five_completed}">
-          <SimulateurStepFive id="SimulateurStepFive"/>
+          <SimulateurStepFive id="SimulateurStepFive" :id_naf_parent="naf" :id_idcc_parent="idcc"/>
         </div>
         <!---------------- STEP FIVE ---------------->
         <div v-if="step_five_completed" class="form-step">
@@ -282,7 +282,7 @@
             a_travaille_six_mois: this.situation_6moissur12,
             a_travaille_douze_mois: this.situation_6moissur12,
             entreprise : {
-              naf: this.naf.match(/^\d{2}\.?\d{2}[a-zA-Z]$/gi) == null ? null : this.naf.match(/^\d{2}\.?\d{2}[a-zA-Z]$/gi),
+              naf: this.naf.match(/^\d{2}\.?\d{2}[a-zA-Z]$/gi) == null ? null : this.naf.match(/^\d{2}\.?\d{2}[a-zA-Z]$/gi).pop(),
               idcc: this.idcc,
               commune: this.commune_entreprise,
               opco: null,
@@ -306,24 +306,28 @@
         })
       },
       simulateFromUrl: function() {
-        if(window.location.hash.substr(1).match(/^simulate/))
-          var simulate_link = window.location.hash.substr(9)
-          if(simulate_link.includes('labonneformation'))
-            this.$http.get('/explore/decode-lbf-url?url='+simulate_link)
-            .then(response => {
-              this.context = response.body
-              this.$http.get('/explore/catalog?id='+this.context['formation.numero']).then(response => {
-                  if(response.status == 200) {
-                    this.simulate()
-                  }
-                })
-            })
+        if(window.location.hash.substr(1).match(/^simulate/)) {
+          var simulate_link = window.location.hash.substr(9);
+          if(simulate_link != undefined && simulate_link != null) {
+            if(simulate_link.includes('labonneformation')) {
+              this.$http.get('/explore/decode-lbf-url?url='+simulate_link)
+                .then(response => {
+                  this.context = response.body
+                  this.$http.get('/explore/catalog?id='+this.context['formation.numero']).then(response_catalog => {
+                      if(response_catalog.status == 200) {
+                        this.simulate()
+                      }
+                    })
+                });
+            }
+          }
+        }
       },
       prepareRequest: function() {
         if (this.situation_inscrit == 1) {
           if (this.allocation_type == 'non') {
-            this.allocation_type = null;
-            this.allocation_dateend = null;
+            this.allocation_type = "";
+            this.allocation_dateend = "";
           }
           this.salaire = null;
           this.moistravailleencdd = null;
@@ -335,8 +339,8 @@
           this.commune_entreprise_autocomplete = '';
 
         } else if (this.situation_inscrit == 2) {
-          this.allocation_type = null;
-          this.allocation_dateend = null;
+          this.allocation_type = "";
+          this.allocation_dateend = "";
           this.situation_inscritcumuldureeinscriptionsur12mois = null;
           this.allocation_cost = null;
           this.commune_beneficiaire_autocomplete = '';
@@ -386,7 +390,7 @@
           this.scenario = response.body.scenario;
           this.context = response.body.context;
           this.isLoading = false;
-        }).created
+        });
         this.resultats = true;
       },
       objectIsEmpty: function (obj) {

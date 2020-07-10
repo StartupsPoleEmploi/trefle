@@ -8,7 +8,7 @@
     <div class="row">
       <div class="col-md-12">
         <label for="id_formation">Identifiant de formation intercarif</label>
-        <input v-model="id_formation" v-on:keydown="formationNotExists=null; $parent.formation.numero=null" id="id_formation" type="text" value="" placeholder="identifiant intercarif" class="form-control" /><br>
+        <input v-model="numero_formation" v-on:keydown="formationNotExists=null; $parent.formation.numero=null" id="id_formation" type="text" value="" placeholder="identifiant intercarif" class="form-control" /><br>
         <button class="btn main-button mr-5" v-on:click="searchCatalogue()">Chercher</button>
         <strong v-if="formationNotExists===false">{{ intitule_formation }}</strong>
         <span v-if="formationNotExists===true" style="color:red">Aucune formation trouvée pour l'identifiant renseigné</span><br>
@@ -19,16 +19,17 @@
 <script>
   export default {
 		name: 'SimulateurStepFormation',
-    props:["id_formation"],
+    props:["id_formation_parent"],
     data: function () {
       return {
         formationNotExists: null,
         intitule_formation : null,
+        numero_formation: this.id_formation_parent,
       }
     },
     methods : {
 			searchCatalogue: function () {
-        this.$http.get('/explore/catalog?id='+this.id_formation).then(response => {
+        this.$http.get('/explore/catalog?id='+this.numero_formation).then(response => {
           this.$parent.formation.numero = response.body.uid;
           this.intitule_formation  = response.status != 200 ? null:response.body.intitule;
           if(response.status != 200) {
@@ -44,7 +45,7 @@
           this.formationNotExists = response.status != 200;
         }, (response) => {
           this.formationNotExists = response.status != 200;
-        }).created;
+        });
       },
     }
   }

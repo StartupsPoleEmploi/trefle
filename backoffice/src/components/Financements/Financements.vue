@@ -13,18 +13,10 @@
               <div id="financement-create-financement" class="col-md-6 col-sm-12 col-xs-12 my-auto">
                 <div class="form-inline pull-right">
                   <div class="form-group mx-sm-3 mb-2">
-                    <!--<input type="button" href="#" class="btn main-button form-control" value="Créer un financement"  disabled />-->
                   </div>
                 </div>
               </div>
             </div>
-            <!--
-            <div class="row">
-              <div id="financement-last-update" class="col-md-12">
-                Dernière mise à jour le __ à __
-              </div>
-            </div>
-            -->
           </div>
         </div>
         <hr class="financement-horizontal-separator">
@@ -83,13 +75,6 @@
                   </span>
                 </span>
               </span>
-              <!--
-              <span class="col-md-1 col-sm-1 pull-right">
-                <button href="https://git.beta.pole-emploi.fr/open-source/trefle/edit/master/trefle/config/financements.yml" target="_blank" class="text-dark btn btn-outline-light" disabled>
-                  <i class="icon" style="vertical-align: baseline;">edit</i>
-                </button>
-              </span>
-              -->
               </li>
             </ul>
           </div>
@@ -143,8 +128,7 @@
             this.financements = response.body;
             this.filteredFinancements = response.body;
             this.isLoading = false;
-          })
-          .created;
+          });
       },
       setSearchTag: function (tag) {
         this.search = tag;
@@ -160,7 +144,7 @@
             isCaseSensitive ? searchRegExp = new RegExp(searchWithoutAccents,"g") : searchRegExp = new RegExp(searchWithoutAccents,'ig')
             return searchType != "input" ? this.filterable("", financement.tags).match(searchRegExp) : this.filterable(financement.intitule, financement.tags).match(searchRegExp)
           }
-          return true
+          return true;
         })
       },
       filterable: function (intitule,tags) {
