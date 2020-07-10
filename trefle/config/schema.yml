@@ -359,6 +359,12 @@ beneficiaire:
       interim: intérimaire
     label: type de contrat du bénéficiaire
     gender: masculine
+  contrat_heures:
+    description: nombre d'heures travaillées par semaine
+    type: integer
+    format: int32
+    public: true
+    label: nombre d'heures travaillées par semaine
   mois_entreprise:
     description: ancienneté en mois dans l'entreprise actuelle
     alias: beneficiaire.anciennete_entreprise_actuelle
@@ -1100,7 +1106,7 @@ remuneration: &remuneration
     description: le nom de la règle de rémuneration
     type: string
     public: true
-    label: intitulé de la régle de rémunération
+    label: intitulé de la règle de rémunération
   remuneration:
     description: rémunération applicable
     type: number
