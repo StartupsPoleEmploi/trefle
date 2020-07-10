@@ -56,7 +56,7 @@ paths:
                 $ref: '#/components/schemas/errors'
   /api-moteur/0.7/financement: *baseendpoint
   /api-moteur/0.8/financement: *baseendpoint
-  /remuneration: &baseremuendpoint
+  /remuneration-aide: &baseremuendpoint
     post:
       summary: Lancer un calcul de remuneration
       requestBody:

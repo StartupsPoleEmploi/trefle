@@ -1,3 +1,9 @@
-Rémunérations applicables:
-  tags: [remunuration]
-  racine: rémunérations applicables.rules
+Rémunération AREF:
+  tags: [remunuration, aref]
+  racine: AREF.rules
+Rémunération RFPE RPS:
+  tags: [remunuration, rfpe, rps]
+  racine: RFPE-RPS.rules
+Rémunération Bourgogne-Franche-Comté:
+  tags: [remunuration, region]
+  racine: rémunération Bourgogne-Franche-Comté.rules

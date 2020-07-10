@@ -77,13 +77,13 @@ async def test_remuneration_endpoint(client):
     assert resp.status == HTTPStatus.OK
     assert "remunerations" in json.loads(resp.body)
     remunerations = json.loads(resp.body)["remunerations"]
-    assert remunerations
     print(remunerations[0])
-    assert "remuneration" in remunerations[0]
+    assert remunerations
+    assert remunerations[0].get("eligible")
     assert "Version" in resp.headers
 
     validator = ResponseValidator(spec)
-    request = MockRequest("http://trefle.pole-emploi.fr", "post", "/remuneration")
+    request = MockRequest("http://trefle.pole-emploi.fr", "post", "/remuneration-aide")
     response = MockResponse(resp.body, resp.status.value)
     result = validator.validate(request, response)
     result.raise_for_errors()

@@ -333,6 +333,10 @@ def check_remuneration(context, remuneration):
         # TODO: status only available for conditions before action ??
         statuses.extend(Rule.process(rule, context))
     remuneration.explain = statuses
+    remuneration.eligible = False
+    if (context.get("financement.droit_aide_complementaire") or
+            context.get("financement.remuneration")):
+        remuneration.eligible = True
 
     # get value from financement context
     for key in SCHEMA:
@@ -342,12 +346,18 @@ def check_remuneration(context, remuneration):
         if key.startswith("aide"):
             if(context.get("financement." + key[5:])):
                 context[key] = context.get("financement." + key[5:])
+    #context["intitule"] = remuneration.intitule
+    #context["explain"] = context.get("financement.explain")
+    #context["eligible"] = remuneration.eligible
 
-    compute_remuneration(context, remuneration, facility_name="remuneration")
-    # load_organisme_contact_details(context, remuneration)
+    if(remuneration.eligible):
+        compute_remuneration(context, remuneration, facility_name="remuneration")
     # remuneration.format()
+    # load_organisme_contact_details(context, remuneration)
     for key in list(remuneration.keys()):
         name = f"remuneration.{key}"
+        if key == "explain" or "eligible":
+            continue
         if name not in SCHEMA or not SCHEMA[name].get("public"):
             del remuneration[key]
 

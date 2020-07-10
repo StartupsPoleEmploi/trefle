@@ -2,16 +2,17 @@ from behave import given, when, then, use_step_matcher
 from behave.api.async_step import async_run_until_complete
 
 from trefle import simulate, simulate_remuneration, get_financements, get_remunerations
-from trefle.config import FINANCEMENTS
+from trefle.config import FINANCEMENTS, REMUNERATIONS
 from trefle.helpers import revert_dict, remove_namespace
 from trefle.rules import LABELS, SCHEMA, Pointer
 
 INTITULES_FINANCEMENTS = set(f["intitule"] for f in FINANCEMENTS)
+INTITULES_REMUNERATIONS = set(f["intitule"] for f in REMUNERATIONS)
 
 use_step_matcher('re')
 
 
-@given('un bénéficiaire et une formation')
+@given(r"un bénéficiaire(?: et une formation|, une formation et un financement)")
 def setup(context):
     context.data = {}
 
@@ -54,13 +55,7 @@ async def when_simulate(context):
 async def when_remunerate(context):
     remunerations = get_remunerations()
     await simulate_remuneration(context.data, remunerations)
-    context.passed = [r for r in remunerations if r['remuneration']]
-    for result in context.passed:
-        if result['remuneration']:
-            context.result = result
-            break
-    else:
-        raise AssertionError(f'No result found')
+    context.passed = [r for r in remunerations if r['eligible']]
 
 
 @then(r"il y a (?P<expected>\d+) financements? proposés?")
@@ -78,6 +73,15 @@ def then_check_missing(context, intitule):
             raise AssertionError(f'{intitule} was found')
 
 
+@then(r"la rémunération «(?P<intitule>.+)» n'est pas proposée")
+def then_check_missing(context, intitule):
+    if intitule not in INTITULES_REMUNERATIONS:
+        raise ValueError(f'{intitule} is not a valid remuneration')
+    for remuneration in context.passed:
+        if remuneration['intitule'] == intitule:
+            raise AssertionError(f'{intitule} was found')
+
+
 @when(r'je sélectionne le financement «(?P<intitule>.+)»')
 def when_select_one(context, intitule):
     assert context.passed, "No result found"
@@ -86,6 +90,19 @@ def when_select_one(context, intitule):
             context.result = result
             # some rules change the intitule of financement so let's keep track of it for futur check
             INTITULES_FINANCEMENTS.add(result["intitule"])
+            break
+    else:
+        raise AssertionError(f'No result found with name {intitule}')
+
+
+@when(r'je sélectionne la rémunération «(?P<intitule>.+)»')
+def when_select_one(context, intitule):
+    assert context.passed, "No result found"
+    for result in context.passed:
+        if result['intitule'] == intitule:
+            context.result = result
+            # some rules change the intitule of financement so let's keep track of it for futur check
+            INTITULES_REMUNERATIONS.add(result["intitule"])
             break
     else:
         raise AssertionError(f'No result found with name {intitule}')
@@ -139,4 +156,9 @@ def then_check_false_eligibility(context, label):
 
 @then("aucun financement n'est proposé")
 def then_no_results(context):
+    assert not context.passed, f"Results found: {context.passed}"
+
+
+@then("aucune rémunération n'est proposée")
+def then_no_remu_results(context):
     assert not context.passed, f"Results found: {context.passed}"

@@ -9,7 +9,7 @@ import ujson as json
 from minicli import cli, run
 from roll.extensions import simple_server, static, traceback
 
-from trefle import simulate, get_financements
+from trefle import simulate, simulate_remuneration, get_financements, get_remunerations
 from trefle.api import app
 from trefle.debugging import data_from_lbf_url, green, make_scenario, red
 from trefle.exceptions import DataError
@@ -64,6 +64,7 @@ async def cli_simulate(
     trace=False,
     output_scenario=False,
     show_context=False,
+    type=None,
     tags=[],
     show_non_eligible=False,
 ):
@@ -75,6 +76,7 @@ async def cli_simulate(
     :trace: Display a trace of all checked conditions.
     :output_scenario: Render a Gherkin scenario with given context.
     :show_context: Render a table with used context.
+    :type: Choose simulatio type, 'financement' (default) or 'remuneration'
     :tags: Only return financements matching tags.
     """
     if "context" in context:
@@ -84,10 +86,14 @@ async def cli_simulate(
         context = data_from_lbf_url(url)
     if args:
         context.update(parse_args(args))
-    financements = get_financements(tags=tags)
     try:
         start = time.perf_counter()
-        await simulate(context, financements)
+        if type == 'financement':
+            facilities = get_financements(tags=tags)
+            await simulate(context, facilities)
+        elif type == 'remuneration':
+            facilities = get_remunerations(tags=tags)
+            await simulate_remuneration(context, facilities)
         duration = time.perf_counter() - start
     except DataError as err:
         sys.exit(f"Error in data: {err}")
@@ -100,19 +106,20 @@ async def cli_simulate(
             print(tpl.format("key", "value"))
             print("| {0}| {0}|".format("-" * 50))
             for key, value in context.items():
-                if key.startswith(("constante", "financements")):
+                if key.startswith(("constante", type + "s")):
                     continue
                 print(tpl.format(key, str(value)))
             print("-" * 105)
     print("*" * 105)
-    eligibles = [f for f in financements if f.eligible]
+    eligibles = [f for f in facilities if f.eligible]
     if eligibles:
-        print("Financements éligibles\n")
+        print(type + "s éligibles\n")
     else:
-        print("Aucun financement éligible")
-    for financement in eligibles:
-        print(financement.intitule)
-        for key, value in financement.items():
+        print(f"Aucun {type} éligible")
+
+    for facility in eligibles:
+        print(facility.intitule)
+        for key, value in facility.items():
             if not value or key in (
                 "intitule",
                 "organisme",
@@ -120,25 +127,26 @@ async def cli_simulate(
                 "tags",
                 "eligible",
                 "ressources",
+                "racine",
             ):
                 continue
-            schema = SCHEMA["financement." + key]
+            schema = SCHEMA[f"{type}." + key]
             if isinstance(value, str) and len(value) > 100:
                 value = f"{value[:100]}…"
             print(f'  {schema["label"]}: {value}')
-        if financement.organisme:
-            print("  organisme:", financement.organisme.nom)
+        if facility.organisme:
+            print("  organisme:", facility.organisme.nom)
         if trace:
-            for status in financement.explain:
+            for status in facility.explain:
                 render_statuses(status)
         print("-" * 80)
-    non_eligibles = [f for f in financements if not f.eligible]
+    non_eligibles = [f for f in facilities if not f.eligible]
     if non_eligibles and (show_non_eligible or trace):
-        print("\nFinancements non éligibles\n")
-        for financement in non_eligibles:
-            print("-", financement.intitule)
+        print(f"\n{type}s non éligibles\n")
+        for facility in non_eligibles:
+            print("-", facility.intitule)
             if trace:
-                for status in financement.explain:
+                for status in facility.explain:
                     render_statuses(status)
     if output_scenario:
         if url:

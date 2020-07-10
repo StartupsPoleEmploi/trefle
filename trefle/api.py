@@ -108,18 +108,24 @@ async def remuneration_(request, response):
         log_simulate(request, response, context, errors=error)
         raise HttpError(HTTPStatus.BAR_REQUEST, error)
 
-    # TODO: explain only for financement see routine.py check_remuneration
-    # explain = request.query.bool("explain", False)
-    # for remuneration in remunerations:
-    #     remuneration["explain"] = (
-    #         [s.json for s in remunerations["explain"]] if explain else None
-    #     )
+    eligible = request.query.bool("eligible", None)
+    if eligible is not None:
+        remunerations = [r for r in remunerations if r["eligible"] == eligible]
+    else:
+        remunerations = sorted(
+            remunerations, key=lambda value: value["eligible"], reverse=True
+        )
+    explain = request.query.bool("explain", False)
+    for remuneration in remunerations:
+        remuneration["explain"] = (
+            [s.json for s in remunerations["explain"]] if explain else None
+        )
 
     body = {"remunerations": remunerations}
-    # if request.query.bool("context", False):
-    #     body["context"] = {
-    #         k: v for k, v in context.items()
-    #         if k in SCHEMA and "label" in SCHEMA[k]}
+    if request.query.bool("context", False):
+        body["context"] = {
+            k: v for k, v in context.items()
+            if k in SCHEMA and "label" in SCHEMA[k]}
     response.json = body
 
 
