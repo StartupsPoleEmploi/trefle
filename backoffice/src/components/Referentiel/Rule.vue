@@ -41,7 +41,7 @@
         <div v-show="ruleComment != ''">
           <div id="rule-comment" class="mt-3 card collapse">
             <div class="card-body">
-              {{ this.ruleComment }}
+              <pre id="rule_comment_pre" v-html="this.ruleComment"></pre>
             </div>
           </div>
         </div>
@@ -433,6 +433,11 @@ textarea {
 #content {
   overflow-y: scroll;
   scroll-behavior: smooth;
+}
+
+#rule_comment_pre {
+  border:none;
+  background-color: transparent;
 }
 
 </style>
