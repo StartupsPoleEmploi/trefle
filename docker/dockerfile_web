@@ -17,8 +17,10 @@ LABEL maintainer="labonneformation@pole-emploi.fr"
 
 ENV LANG C.UTF-8
 ENV DEBIAN_FRONTEND noninteractive
+ENV TZ=Europe/Paris
 
-RUN apt-get update && apt-get -y install \
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone && \
+    apt-get update && apt-get -y install \
                                  apt-utils\
                                  software-properties-common\
                                  unzip \
