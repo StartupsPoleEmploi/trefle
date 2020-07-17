@@ -360,11 +360,11 @@ beneficiaire:
     label: type de contrat du bénéficiaire
     gender: masculine
   contrat_heures:
-    description: nombre d'heures travaillées par semaine
+    description: nombre d'heures travaillées par mois
     type: integer
     format: int32
     public: true
-    label: nombre d'heures travaillées par semaine
+    label: nombre d'heures travaillées par mois
   mois_entreprise:
     description: ancienneté en mois dans l'entreprise actuelle
     alias: beneficiaire.anciennete_entreprise_actuelle

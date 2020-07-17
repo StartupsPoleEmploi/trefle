@@ -63,7 +63,6 @@ Si l'intitulé du financement est «DFL / SPRF Dispositif formation linguistique
 
     Si la région de la formation vaut «Bourgogne-Franche-Comté»
     Et les codes financeur de la formation contiennent «Conseil régional»
-    Et ce n'est pas un bénéficiaire de droit privé
     Et l'intitulé normé de la formation contient «DFL», ou l'intitulé normé de la formation contient «DISPOSITIFDEFORMATIONLINGUISTIQUE»
         Alors le financement est éligible
         Et appliquer les règles «rémunérations applicables»
@@ -78,7 +77,7 @@ Si l'intitulé du financement est «Une formation pour moi c'est possible»
     Si la région de la formation vaut «Bourgogne-Franche-Comté»
     Et les codes financeur de la formation contiennent «Conseil régional»
     Et la liste des codes FORMACODE de la formation contient 15084
-    Et c'est un demandeur d'emploi
+    Et c'est un demandeur d'emploi, ou le nombre d'heures travaillées par mois est inférieure ou égale à 150
     # TODO revoir la formulation (iV original à transposer en nouveau code)
     Et le niveau scolaire du bénéficiaire est inférieur à «IV»
         Alors le financement est éligible
@@ -89,8 +88,9 @@ Si l'intitulé du financement est «Une formation pour moi c'est possible»
 
 
 Si le financement est de type «E2C»
-    Alors appliquer les règles «E2C»
-    Et l'identifiant du financement vaut «dispositif 3»
+    Alors l'identifiant du financement vaut «dispositif 3»
+    Si c'est un demandeur d'emploi, ou le nombre d'heures travaillées par mois est inférieure ou égale à 150
+        Alors appliquer les règles «E2C»
 
 
 Si l'intitulé du financement est «Dispositif accès à la qualification»
@@ -99,7 +99,7 @@ Si l'intitulé du financement est «Dispositif accès à la qualification»
     Si la région de la formation vaut «Bourgogne-Franche-Comté»
     Et les codes financeur de la formation contiennent «Conseil régional»
     Et l'intitulé normé de la formation contient «DAQ», ou l'intitulé normé de la formation contient «DISPOSITIFACCESALAQUALIFICATION»
-    Et ce n'est pas un bénéficiaire de droit privé
+    Et c'est un demandeur d'emploi, ou le nombre d'heures travaillées par mois est inférieure ou égale à 150
         Alors le financement est éligible
         Et appliquer les règles «rémunérations applicables»
         Et le texte des démarches vaut «Contactez votre conseiller référent emploi (Pôle emploi, mission locale ou Cap emploi).»
@@ -113,7 +113,7 @@ Si l'intitulé du financement est «Action collective financée par la Région»
 
     Si les codes financeur de la formation contiennent «Conseil régional»
     Et le code CERTIFINFO de la formation ne fait pas partie de [54912,54913,54917,87185,87187]
-    Et ce n'est pas un bénéficiaire de droit privé
+    Et c'est un demandeur d'emploi, ou le nombre d'heures travaillées par mois est inférieure ou égale à 150
     Et la région de la formation vaut «Bourgogne-Franche-Comté»
         Alors le financement est éligible
         Et appliquer les règles «rémunérations applicables»
@@ -128,7 +128,7 @@ Si l'intitulé du financement est «Formation sanitaire et social niveau infra B
 
     Si la région de la formation vaut «Bourgogne-Franche-Comté»
     Et les codes financeur de la formation contiennent «Conseil régional»
-    Et ce n'est pas un bénéficiaire de droit privé
+    Et c'est un demandeur d'emploi, ou le nombre d'heures travaillées par mois est inférieure ou égale à 150
 
         Si le code CERTIFINFO de la formation vaut 54913
         Ou le code CERTIFINFO de la formation vaut 54917
@@ -165,6 +165,7 @@ Si l'intitulé du financement est «Création reprise entreprise»
     Et le code CERTIFINFO de la formation vaut 93561
     Et l'intitulé normé de la formation ne contient pas «PROFOREA»
     Et l'intitulé normé de la formation ne contient pas «STARTAGRI»
+
         Alors le financement est éligible
         Et appliquer les règles «rémunérations applicables»
         Et le texte des démarches vaut «Contactez l’organisme en charge de la formation qui met en place un jury de sélection chargé de vérifier l’adéquation entre le candidat et son projet, la faisabilité économique du projet, le lieu d’implantation du projet sur le territoire régional.»

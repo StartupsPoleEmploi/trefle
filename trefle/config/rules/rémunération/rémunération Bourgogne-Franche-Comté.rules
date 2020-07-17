@@ -8,15 +8,22 @@ Et l'identifiant du financement n'est pas «dispositif 12»
 Et l'identifiant du financement n'est pas «dispositif 10»
 Et l'identifiant du financement n'est pas «dispositif 7»
 Et l'identifiant du financement est défini
-    Alors l'intitulé de la règle de rémunération vaut «Aides et rémunération mobilisable par la région Bourgogne Franche Comté»
+    Alors l'intitulé de la règle de rémunération vaut «Aide complémentaire mobilisable par la région Bourgogne Franche Comté, rémunération mobilisable par les règles nationales»
 
     #######################
     # Aide complémentaire #
     #######################
-    Si l'intitulé du financement n'est pas «Création reprise entreprise PROFOREA / START AGRI»
+    Si l'intitulé du financement n'est pas «Création reprise entreprise»
+    Et l'intitulé du financement n'est pas «Création reprise entreprise PROFOREA / START AGRI»
     Et l'intitulé du financement n'est pas «Formation secrétaires de mairie en région BFC»
+    Et l'identifiant du financement n'est pas «dispositif 8»
     Et l'identifiant du financement n'est pas «dispositif 9»
     Et l'identifiant du financement n'est pas «dispositif 11»
+    Ou l'identifiant du financement est «dispositif 8»
+    Et le nombre d'heures travaillées par mois est inférieur ou égale à 150
+    Ou l'intitulé du financement est «Création reprise entreprise»
+    Et le nombre d'heures travaillées par mois est inférieur ou égale à 150
+    # TODO pas d'aide complémentaire si salarié temps plein si dispositif 8
         Alors l'aide complémentaire est éligible
         Et le montant de l'aide complémentaire vaut 200
 
@@ -26,6 +33,9 @@ Et l'identifiant du financement est défini
     ################
     Si l'intitulé du financement n'est pas «DFL / SPRF Dispositif formation linguistique»
     Et l'identifiant du financement n'est pas «dispositif 1»
+    Et le nombre d'heures travaillées par mois est inférieur ou égale à 40
+    Et l'allocation du bénéficiaire n'est pas «allocation d'aide au retour à l'emploi»
+        Alors l'intitulé de la règle de rémunération vaut «Aides et rémunération mobilisable par la région Bourgogne Franche Comté»
 
         #Si l'allocation du bénéficiaire est définie
         Si le montant de l'allocation du bénéficiaire est définie
@@ -78,27 +88,28 @@ Et l'identifiant du financement est défini
 
     # Il faut avoir droit à une rémunération pour avoir droit aux aides qui suivent
     Si la rémunération applicable est supérieur à 0
+    Et l'intitulé du financement n'est pas «DFL / SPRF Dispositif formation linguistique»
+    Et l'identifiant du financement n'est pas «dispositif 1»
+    Et l'allocation du bénéficiaire n'est pas «allocation d'aide au retour à l'emploi»
 
         #####################
         # Aide au transport #
         #####################
-        Si l'intitulé du financement n'est pas «DFL / SPRF Dispositif formation linguistique»
-        Et l'identifiant du financement n'est pas «dispositif 1»
-            Si c'est un travailleur handicapé
-                Alors l'aide au transport est éligible
-                Et le texte de l'aide au transport vaut «L'indemnité de transport est limitée à un aller/retour sur la durée de la formation.»
-            Si ce n'est pas un travailleur handicapé
-                Alors l'aide au transport est éligible
-                Et le montant de l'aide au transport vaut «98,79€ par mois (sous condition)»
-                Et le texte de l'aide au transport vaut «Si la distance vers le lieu de votre formation est supérieure ou égale à 16km. Alors vous pouvez bénéficier d'une aide au transport.»
-            # Ligne 45 46
-            Si c'est un bénéficiaire non salarié qui a travaillé pendant douze mois dont au moins six mois consécutifs dans les trois ans qui précèdent l'entrée en formation
-            Et ce n'est pas un parent isolé
-            Et ce n'est pas une mère de famille ayant au moins trois enfants
-            Et ce n'est pas une femme divorcée, veuve ou séparée judiciairement depuis moins de trois ans
-            Et ce n'est pas une femme seule et enceinte
-                Alors l'aide au transport est éligible
-                Et le texte de l'aide au transport vaut «L'indemnité de transport est limitée à un aller/retour sur la durée de la formation.»
+        Si c'est un travailleur handicapé
+            Alors l'aide au transport est éligible
+            Et le texte de l'aide au transport vaut «L'indemnité de transport est limitée à un aller/retour sur la durée de la formation.»
+        Si ce n'est pas un travailleur handicapé
+            Alors l'aide au transport est éligible
+            Et le montant de l'aide au transport vaut «98,79€ par mois (sous condition)»
+            Et le texte de l'aide au transport vaut «Si la distance vers le lieu de votre formation est supérieure ou égale à 16km. Alors vous pouvez bénéficier d'une aide au transport.»
+        # Ligne 45 46
+        Si c'est un bénéficiaire non salarié qui a travaillé pendant douze mois dont au moins six mois consécutifs dans les trois ans qui précèdent l'entrée en formation
+        Et ce n'est pas un parent isolé
+        Et ce n'est pas une mère de famille ayant au moins trois enfants
+        Et ce n'est pas une femme divorcée, veuve ou séparée judiciairement depuis moins de trois ans
+        Et ce n'est pas une femme seule et enceinte
+            Alors l'aide au transport est éligible
+            Et le texte de l'aide au transport vaut «L'indemnité de transport est limitée à un aller/retour sur la durée de la formation.»
 
         ########################
         # Aide à l'hébergement #
