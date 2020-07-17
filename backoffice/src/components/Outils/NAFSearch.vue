@@ -43,8 +43,7 @@
           .then(response => {
             this.results = response.body;
             this.resultsIsEmpty = this.isEmpty(this.results);
-          })
-          .created;
+          });
 			},
       isEmpty: function (obj) {
         for(var key in obj) {

@@ -133,8 +133,7 @@
           .then(response => {
             this.rules = response.body;
             this.isLoading = false;
-          })
-          .created;
+          });
       },
       forceRerender: function () {
         this.rerenderKey +=1;

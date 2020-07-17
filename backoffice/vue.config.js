@@ -4,4 +4,4 @@ module.exports = {
     devServer: {
         proxy: 'https://trefle.beta.pole-emploi.fr/0.8/'
     }
-}
+};

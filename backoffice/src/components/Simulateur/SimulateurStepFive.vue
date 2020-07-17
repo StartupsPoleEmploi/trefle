@@ -102,13 +102,13 @@
 <script>
   export default {
 		name: 'SimulateurStepFive',
-    props:[],
+    props:["id_naf_parent", "id_idcc_parent"],
     data: function () {
       return {
-        id_naf: null,
+        id_naf: this.id_naf_parent,
         nafNotExists: null,
         intitule_naf: null,
-        id_idcc: null,
+        id_idcc: this.id_idcc_parent,
         idccNotExists: null,
         intitule_idcc: null,
       }
@@ -128,7 +128,7 @@
           this.nafNotExists = this.objectIsEmpty(response.body);
         }, (response) => {
           this.nafNotExists = this.objectIsEmpty(response.body);
-        }).created;
+        });
       },
 			searchIDCC: function () {
         this.$http.get('/idcc?q='+this.id_idcc).then(response => {
@@ -137,7 +137,7 @@
           this.idccNotExists = this.objectIsEmpty(response.body);
         }, (response) => {
           this.idccNotExists = this.objectIsEmpty(response.body);
-        }).created;
+        });
       },
       objectIsEmpty: function (obj) {
         for(var key in obj) {

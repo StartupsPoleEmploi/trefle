@@ -16,30 +16,31 @@
     <ul>
       <li v-for="(financement, financement_id) in this.financements" :key="financement_id" class="result" :class="{hide:showFinancement(financement)}">
         <br>
-        <h5 :class="{passed: financement.eligible, failed: !financement.eligible}" data-toggle="collapse" :data-target="'#details_'+financement_id" aria-expanded="false" aria-controls="explain" style="cursor:pointer;" >{{ financement.intitule }}
+        <h5 :class="{passed: financement.eligible, failed: !financement.eligible}" data-toggle="collapse" :data-target="'#details_'+financement_id" aria-expanded="false" aria-controls="explain" style="cursor:pointer;" >
+          {{ financement.intitule }}
           <div class="pull-right">
             <label v-for="(tag, tag_id) in financement.tags" :key="tag_id" class="label">{{ tag }}</label>
           </div>
         </h5>
         <div :id="'details_'+financement_id" class="collapse">
-          <p><strong>Description</strong> {{ financement.description }}</p>
-          <p><strong>Démarches</strong> {{ financement.demarches }}</p>
+          <p v-if="financement.description"><strong>Description :</strong> {{ financement.description }}</p>
+          <p v-if="financement.demarches"><strong>Démarches :</strong> {{ financement.demarches }}</p>
           <div v-if="financement.eligible">
-            <p><strong>Prise en charge</strong> {{ financement.prise_en_charge }}</p>
-            <p v-if="financement.prise_en_charge_texte"><strong>Prise en charge</strong> {{ financement.prise_en_charge_texte }}</p>
-            <p><strong>Plafond de prise en charge</strong> {{ financement.plafond_prise_en_charge }}</p>
-            <p><strong>Plafond de prix horaire</strong> {{ financement.plafond_prix_horaire }}</p>
-            <p><strong>Nombre d'heures prises en charge</strong> {{ financement.heures }}</p>
-            <p><strong>Rémunération</strong> {{ financement.remuneration }}</p>
-            <p v-if="financement.remuneration_texte"><strong>Rémunération</strong> {{ financement.remuneration_texte }}</p>
-            <p v-if="financement.fin_remuneration"><strong>Fin de la rémunération</strong> {{ renderValue('financement.fin_remuneration', financement.fin_remuneration,schema) }}</p>
-            <p v-if="financement.rff"><strong>RFF</strong> {{ financement.rff }}</p>
-            <p v-if="financement.debut_rff"><strong>Début de la RFF</strong> {{ renderValue('financement.debut_rff', financement.debut_rff,schema) }}</p>
-            <p v-if="financement.fin_rff"><strong>Fin de la RFF</strong> {{ renderValue('financement.fin_rff', financement.fin_rff,schema) }}</p>
-            <p v-if="financement.organisme"><strong>Organisme</strong> {{ financement.organisme.nom }}</p>
+            <p v-if="financement.prise_en_charge"><strong>Prise en charge :</strong> {{ financement.prise_en_charge }}</p>
+            <p v-if="financement.prise_en_charge_texte"><strong>Prise en charge :</strong> {{ financement.prise_en_charge_texte }}</p>
+            <p v-if="financement.plafond_prise_en_charge"><strong>Plafond de prise en charge :</strong> {{ financement.plafond_prise_en_charge }}</p>
+            <p v-if="financement.plafond_prix_horaire"><strong>Plafond de prix horaire :</strong> {{ financement.plafond_prix_horaire }}</p>
+            <p v-if="financement.heures"><strong>Nombre d'heures prises en charge :</strong> {{ financement.heures }}</p>
+            <p v-if="financement.remuneration"><strong>Rémunération :</strong> {{ financement.remuneration }}</p>
+            <p v-if="financement.remuneration_texte"><strong>Rémunération :</strong> {{ financement.remuneration_texte }}</p>
+            <p v-if="financement.fin_remuneration"><strong>Fin de la rémunération :</strong> {{ renderValue('financement.fin_remuneration', financement.fin_remuneration,schema) }}</p>
+            <p v-if="financement.rff"><strong>RFF :</strong> {{ financement.rff }}</p>
+            <p v-if="financement.debut_rff"><strong>Début de la RFF :</strong> {{ renderValue('financement.debut_rff', financement.debut_rff,schema) }}</p>
+            <p v-if="financement.fin_rff"><strong>Fin de la RFF :</strong> {{ renderValue('financement.fin_rff', financement.fin_rff,schema) }}</p>
+            <p v-if="financement.organisme"><strong>Organisme :</strong> {{ financement.organisme.nom }}</p>
           </div>
           <p>
-            <strong>Règles de gestion</strong><br><br>
+            <strong>Règles de gestion :</strong><br><br>
             <eligibilite :conditions="financement.explain" :schema="schema"/>
           </p>
         </div>
@@ -116,8 +117,8 @@
         schema_tmp = schema_tmp || this.schema[key]
         if (schema_tmp['type'] === 'array') return value.map(v => this.renderValue(key, v, schema_tmp['items'])).join(', ')
         if (schema_tmp['type'] === "boolean") return value ? 'oui' : 'non'
-        if (schema_tmp['format'] === 'date') return (new Date(value * 1000)).toLocaleDateString()
-        if (schema_tmp['enum']) return schema_tmp === undefined ? schema_tmp['enum'][value]+' ('+value+')' : ''
+        if (schema_tmp['format'] === 'date' && value != null && value != "") return (new Date(value * 1000)).toLocaleDateString("fr")
+        if (schema_tmp['enum']) return schema_tmp == undefined ? schema_tmp['enum'][value]+' ('+value+')' : ''
         return value
       },
       renderLabel: function (key) {
