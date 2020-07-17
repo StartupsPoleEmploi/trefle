@@ -68,6 +68,7 @@ async def test_legacy_context(client):
         "formation.codes_modalite_pedagogique": [],
         "beneficiaire.allocation": 0,
         "beneficiaire.remuneration": 0,
+        "beneficiaire.contrat_heures": 0,
         "beneficiaire.solde_cpf": 100,
         "beneficiaire.departement": "35",
         "beneficiaire.region": "53",

@@ -142,32 +142,6 @@ Scénario: Formation totalement financée par l'AIF
     Et le texte de la prise en charge vaut «Formation totalement prise en charge, sous réserve d'acceptation par Pôle emploi»
 
 
-Scénario: Action collective région
-    Soit un bénéficiaire et une formation
-    Et c'est un demandeur d'emploi
-    Et l'âge du bénéficiaire vaut 24
-    Et la durée en heures de la formation vaut 250
-    Et la région du bénéficiaire vaut «Bourgogne-Franche-Comté»
-    Et la région de la formation vaut «Bourgogne-Franche-Comté»
-    Et les codes financeur de la formation valent [«Conseil régional»]
-    Quand je demande un calcul de financement
-    Quand je sélectionne le financement «Action collective financée par la Région»
-    Alors la rémunération applicable vaut 652.18
-
-
-Scénario: Mauvais CERTIFINFO pour Action collective région
-    Soit un bénéficiaire et une formation
-    Et c'est un demandeur d'emploi
-    Et l'âge du bénéficiaire vaut 24
-    Et la durée en heures de la formation vaut 250
-    Et la région du bénéficiaire vaut «Bourgogne-Franche-Comté»
-    Et la région de la formation vaut «Bourgogne-Franche-Comté»
-    Et les codes financeur de la formation valent [«Conseil régional»]
-    Et le code CERTIFINFO de la formation vaut 54912
-    Quand je demande un calcul de financement
-    Alors le financement «Action collective financée par la Région» n'est pas proposé
-
-
 Scénario: POEC Bourgogne
     Soit un bénéficiaire et une formation
     Et c'est un demandeur d'emploi
@@ -228,176 +202,6 @@ Scénario: Mauvais CERTIFINFO pour Action collective PE Bourgogne
     Alors le financement «Action de formation collective financée par Pôle emploi» n'est pas proposé
 
 
-Scénario: Formation sanitaire et social niveau infra Bac
-    Soit un bénéficiaire et une formation
-    Et c'est un demandeur d'emploi
-    Et l'âge du bénéficiaire vaut 38
-    Et la durée en heures de la formation vaut 120
-    Et l'allocation du bénéficiaire vaut «allocation d'aide au retour à l'emploi»
-    Et le montant de l'allocation du bénéficiaire vaut 800.0
-    Et la région du bénéficiaire vaut «Bourgogne-Franche-Comté»
-    Et la région de la formation vaut «Bourgogne-Franche-Comté»
-    Et les codes financeur de la formation valent [«Conseil régional»]
-    Et le code CERTIFINFO de la formation vaut 54913
-    Et le SIRET de l'organisme de formation vaut 26890005700061
-    Et c'est une formation ouverte aux bénéficiaires individuels
-    Quand je demande un calcul de financement
-    Quand je sélectionne le financement «Formation sanitaire et social niveau infra Bac»
-    Alors la rémunération applicable vaut 800.0
-    Et une aide complémentaire est éligible
-    Et le montant de l'aide complémentaire vaut 200
-    Et une aide au transport est éligible
-
-
-Scénario: Formation sanitaire et social niveau infra Bac  sans ARE
-    Soit un bénéficiaire et une formation
-    Et c'est un demandeur d'emploi
-    Et l'âge du bénéficiaire vaut 38
-    Et la durée en heures de la formation vaut 120
-    Et la région du bénéficiaire vaut «Bourgogne-Franche-Comté»
-    Et la région de la formation vaut «Bourgogne-Franche-Comté»
-    Et les codes financeur de la formation valent [«Conseil régional»]
-    Et le code CERTIFINFO de la formation vaut 54913
-    Et le SIRET de l'organisme de formation vaut 26890005700061
-    Et c'est une formation ouverte aux bénéficiaires individuels
-    Quand je demande un calcul de financement
-    Quand je sélectionne le financement «Formation sanitaire et social niveau infra Bac»
-    Alors la rémunération applicable vaut 652.18
-
-
-Scénario: Formation sanitaire et social niveau Bac et plus
-    Soit un bénéficiaire et une formation
-    Et c'est un demandeur d'emploi
-    Et l'âge du bénéficiaire vaut 38
-    Et la durée en heures de la formation vaut 120
-    Et l'allocation du bénéficiaire vaut «allocation d'aide au retour à l'emploi»
-    Et le montant de l'allocation du bénéficiaire vaut 800.0
-    Et la région du bénéficiaire vaut «Bourgogne-Franche-Comté»
-    Et la région de la formation vaut «Bourgogne-Franche-Comté»
-    Et les codes financeur de la formation valent [«Conseil régional»]
-    Et le code CERTIFINFO de la formation vaut 64144
-    Et le SIRET de l'organisme de formation vaut 26890005700061
-    Et c'est une formation ouverte aux bénéficiaires individuels
-    Quand je demande un calcul de financement
-    Quand je sélectionne le financement «Formation sanitaire et social niveau Bac et plus»
-    Alors la rémunération applicable vaut 800.0
-    Et aucune aide complémentaire n'est éligible
-
-
-Scénario: Mauvais SIRET pour formation sanitaire niveau infra Bac et social
-    Soit un bénéficiaire et une formation
-    Et c'est un demandeur d'emploi
-    Et l'âge du bénéficiaire vaut 38
-    Et la durée en heures de la formation vaut 120
-    Et l'allocation du bénéficiaire vaut «allocation d'aide au retour à l'emploi»
-    Et le montant de l'allocation du bénéficiaire vaut 800.0
-    Et la région du bénéficiaire vaut «Bourgogne-Franche-Comté»
-    Et la région de la formation vaut «Bourgogne-Franche-Comté»
-    Et le code CERTIFINFO de la formation vaut 54913
-    Et le SIRET de l'organisme de formation vaut 26890005700063
-    Et c'est une formation ouverte aux bénéficiaires individuels
-    Quand je demande un calcul de financement
-    Alors le financement «Formation sanitaire et social niveau infra Bac» n'est pas proposé
-
-Scénario: Cas nominal DAQ
-    Soit un bénéficiaire et une formation
-    Et c'est un demandeur d'emploi
-    Et l'âge du bénéficiaire vaut 38
-    Et la durée en heures de la formation vaut 120
-    Et l'allocation du bénéficiaire vaut «allocation d'aide au retour à l'emploi»
-    Et le montant de l'allocation du bénéficiaire vaut 800.0
-    Et la région du bénéficiaire vaut «Bourgogne-Franche-Comté»
-    Et la région de la formation vaut «Bourgogne-Franche-Comté»
-    Et les codes financeur de la formation valent [«Conseil régional»]
-    Et l'intitulé de la formation vaut «Dispositif accès à la qualification»
-    Quand je demande un calcul de financement
-    Quand je sélectionne le financement «Dispositif accès à la qualification»
-    Alors la rémunération applicable vaut 800.0
-
-Scénario: Cas parent isolé
-    Soit un bénéficiaire et une formation
-    Et c'est un demandeur d'emploi
-    Et l'âge du bénéficiaire vaut 38
-    Et les codes financeur de la formation valent [«Conseil régional»]
-    Et la durée en heures de la formation vaut 420
-    Et la région du bénéficiaire vaut «Bourgogne-Franche-Comté»
-    Et la région de la formation vaut «Bourgogne-Franche-Comté»
-    Et c'est un parent isolé
-    Quand je demande un calcul de financement
-    Quand je sélectionne le financement «Action collective financée par la Région»
-    Alors la rémunération applicable vaut 863.0
-    Et le montant de l'aide au transport vaut «98,79€ par mois (sous condition)»
-    Et le montant de l'aide à l'hébergement vaut «101,84€ par mois (sous condition)»
-
-
-Scénario: Cas non salarié ayant travaillé
-    Soit un bénéficiaire et une formation
-    Et c'est un demandeur d'emploi
-    Et l'âge du bénéficiaire vaut 38
-    Et les codes financeur de la formation valent [«Conseil régional»]
-    Et la durée en heures de la formation vaut 420
-    Et la région du bénéficiaire vaut «Bourgogne-Franche-Comté»
-    Et la région de la formation vaut «Bourgogne-Franche-Comté»
-    Et c'est une bénéficiaire non salarié qui a travaillé pendant douze mois dont au moins six mois consécutifs dans les trois ans qui précèdent l'entrée en formation
-    Quand je demande un calcul de financement
-    Quand je sélectionne le financement «Action collective financée par la Région»
-    Alors la rémunération applicable vaut 708.59
-
-Scénario: Cas bénéficiaire ayant travaillé six mois sur 12 mois
-    Soit un bénéficiaire et une formation
-    Et c'est un demandeur d'emploi
-    Et l'âge du bénéficiaire vaut 38
-    Et les codes financeur de la formation valent [«Conseil régional»]
-    Et la durée en heures de la formation vaut 420
-    Et la région du bénéficiaire vaut «Bourgogne-Franche-Comté»
-    Et la région de la formation vaut «Bourgogne-Franche-Comté»
-    Et c'est une bénéficiaire qui a déjà travaillé six mois sur une période de douze mois
-    Quand je demande un calcul de financement
-    Quand je sélectionne le financement «Action collective financée par la Région»
-    Alors la rémunération applicable vaut 863
-
-Scénario: Cas travailleur handicapé
-    Soit un bénéficiaire et une formation
-    Et c'est un demandeur d'emploi
-    Et l'âge du bénéficiaire vaut 38
-    Et les codes financeur de la formation valent [«Conseil régional»]
-    Et la durée en heures de la formation vaut 420
-    Et la région du bénéficiaire vaut «Bourgogne-Franche-Comté»
-    Et la région de la formation vaut «Bourgogne-Franche-Comté»
-    Et c'est un travailleur handicapé
-    Quand je demande un calcul de financement
-    Quand je sélectionne le financement «Action collective financée par la Région»
-    Alors la rémunération applicable vaut 1001.02
-
-Scénario: Cas travailleur handicapé rémunération > 910
-    Soit un bénéficiaire et une formation
-    Et c'est un demandeur d'emploi
-    Et l'âge du bénéficiaire vaut 38
-    Et l'allocation du bénéficiaire est «allocation d'aide au retour à l'emploi»
-    Et les codes financeur de la formation valent [«Conseil régional»]
-    Et le montant de l'allocation du bénéficiaire vaut 4000
-    Et la durée en heures de la formation vaut 420
-    Et la région du bénéficiaire vaut «Bourgogne-Franche-Comté»
-    Et la région de la formation vaut «Bourgogne-Franche-Comté»
-    Et c'est un travailleur handicapé
-    Quand je demande un calcul de financement
-    Quand je sélectionne le financement «Action collective financée par la Région»
-    Alors la rémunération applicable vaut 4000
-
-Scénario: Cas travailleur handicapé rémunération
-    Soit un bénéficiaire et une formation
-    Et c'est un demandeur d'emploi
-    Et l'âge du bénéficiaire vaut 38
-    Et l'allocation du bénéficiaire est «allocation de solidarité spécifique»
-    Et les codes financeur de la formation valent [«Conseil régional»]
-    Et la durée en heures de la formation vaut 420
-    Et la région du bénéficiaire vaut «Bourgogne-Franche-Comté»
-    Et la région de la formation vaut «Bourgogne-Franche-Comté»
-    Et c'est un travailleur handicapé
-    Quand je demande un calcul de financement
-    Quand je sélectionne le financement «Action collective financée par la Région»
-    Alors la rémunération applicable vaut 1001.02
-
 Scénario: Cas ESSFIMO
     Soit un bénéficiaire et une formation
     Et c'est un bénéficiaire de droit privé
@@ -435,36 +239,8 @@ Scénario: Cas ESSFIMO
     Et le plafond de prise en charge vaut 2300
     Et l'organisme à contacter est «ESSFIMO»
 
-Scénario: Cas nominal - une formation pour moi c est possible
-    Soit un bénéficiaire et une formation
-    Et c'est un demandeur d'emploi
-    Et l'âge du bénéficiaire vaut 38
-    Et le montant de l'allocation du bénéficiaire vaut 4000
-    Et le niveau scolaire du bénéficiaire vaut «VI»
-    Et les codes financeur de la formation valent [«Conseil régional»]
-    Et la durée en heures de la formation vaut 36
-    Et la liste des codes FORMACODE de la formation vaut [15084]
-    Et la région du bénéficiaire vaut «Bourgogne-Franche-Comté»
-    Et la région de la formation vaut «Bourgogne-Franche-Comté»
-    Quand je demande un calcul de financement
-    Quand je sélectionne le financement «Une formation pour moi c'est possible»
-    Alors la rémunération applicable vaut 4000
 
-Scénario: Cas sans montant d'allocation - une formation pour moi c est possible
-    Soit un bénéficiaire et une formation
-    Et c'est un demandeur d'emploi
-    Et l'âge du bénéficiaire vaut 38
-    Et le niveau scolaire du bénéficiaire vaut «VI»
-    Et les codes financeur de la formation valent [«Conseil régional»]
-    Et la durée en heures de la formation vaut 36
-    Et la liste des codes FORMACODE de la formation vaut [15084]
-    Et la région du bénéficiaire vaut «Bourgogne-Franche-Comté»
-    Et la région de la formation vaut «Bourgogne-Franche-Comté»
-    Quand je demande un calcul de financement
-    Quand je sélectionne le financement «Une formation pour moi c'est possible»
-    Alors la rémunération applicable vaut 652.18
-
-Scénario: Cas nominal - DFL / SPRF Dispositif formation linguistique
+Scénario: Cas nominal - DFL / SPRF Dispositif formation linguistique (dispositif 1)
     Soit un bénéficiaire et une formation
     Et c'est un demandeur d'emploi
     Et l'âge du bénéficiaire vaut 38
@@ -478,36 +254,349 @@ Scénario: Cas nominal - DFL / SPRF Dispositif formation linguistique
     Quand je demande un calcul de financement
     Quand je sélectionne le financement «DFL / SPRF Dispositif formation linguistique»
     Alors la rémunération applicable vaut 401.09
+    Et aucune aide au transport n'est éligible
+    Et aucune aide à l'hébergement n'est éligible
 
-Scénario: Cas nominal - VAE (pas de rémunération ou aides régionales)
+
+Scénario: Cas salarié temps plein - DFL / SPRF Dispositif formation linguistique (dispositif 1)
+    Soit un bénéficiaire et une formation
+    Et c'est un bénéficiaire de droit privé
+    Et le nombre d'heures travaillées par mois vaut 151
+    Et l'âge du bénéficiaire vaut 38
+    Et le niveau scolaire du bénéficiaire vaut «VI»
+    Et l'intitulé de la formation vaut «Dispositif de Formation Linguistique (DFL)»
+    Et les codes financeur de la formation valent [«Conseil régional»]
+    Et la durée en heures de la formation vaut 36
+    Et la liste des codes FORMACODE de la formation vaut [15084]
+    Et la région du bénéficiaire vaut «Bourgogne-Franche-Comté»
+    Et la région de la formation vaut «Bourgogne-Franche-Comté»
+    Quand je demande un calcul de financement
+    Quand je sélectionne le financement «DFL / SPRF Dispositif formation linguistique»
+    Alors la rémunération applicable vaut 0
+    Et une aide complémentaire est éligible
+    Et aucune aide au transport n'est éligible
+    Et aucune aide à l'hébergement n'est éligible
+
+
+Scénario: Cas nominal - une formation pour moi c est possible (dispositif 2)
+    Soit un bénéficiaire et une formation
+    Et c'est un demandeur d'emploi
+    Et l'âge du bénéficiaire vaut 38
+    Et l'allocation du bénéficiaire vaut «allocation d'aide au retour à l'emploi»
+    Et le montant de l'allocation du bénéficiaire vaut 4000
+    Et le niveau scolaire du bénéficiaire vaut «VI»
+    Et les codes financeur de la formation valent [«Conseil régional»]
+    Et la durée en heures de la formation vaut 36
+    Et la liste des codes FORMACODE de la formation vaut [15084]
+    Et la région du bénéficiaire vaut «Bourgogne-Franche-Comté»
+    Et la région de la formation vaut «Bourgogne-Franche-Comté»
+    Quand je demande un calcul de financement
+    Quand je sélectionne le financement «Une formation pour moi c'est possible»
+    Alors la rémunération applicable vaut 4000
+    Et une aide complémentaire est éligible
+    Et aucune aide au transport n'est éligible
+    Et aucune aide à l'hébergement n'est éligible
+
+
+Scénario: Cas sans montant d'allocation - une formation pour moi c est possible (dispositif 2)
+    Soit un bénéficiaire et une formation
+    Et c'est un demandeur d'emploi
+    Et l'âge du bénéficiaire vaut 38
+    Et le niveau scolaire du bénéficiaire vaut «VI»
+    Et les codes financeur de la formation valent [«Conseil régional»]
+    Et la durée en heures de la formation vaut 36
+    Et la liste des codes FORMACODE de la formation vaut [15084]
+    Et la région du bénéficiaire vaut «Bourgogne-Franche-Comté»
+    Et la région de la formation vaut «Bourgogne-Franche-Comté»
+    Quand je demande un calcul de financement
+    Quand je sélectionne le financement «Une formation pour moi c'est possible»
+    Alors la rémunération applicable vaut 652.18
+
+
+Scénario: Cas salarié temps partiel plus de 40h - une formation pour moi c est possible (dispositif 2)
+    Soit un bénéficiaire et une formation
+    Et c'est un bénéficiaire de droit privé
+    Et le nombre d'heures travaillées par mois vaut 50
+    Et l'âge du bénéficiaire vaut 38
+    Et le niveau scolaire du bénéficiaire vaut «VI»
+    Et les codes financeur de la formation valent [«Conseil régional»]
+    Et la durée en heures de la formation vaut 36
+    Et la liste des codes FORMACODE de la formation vaut [15084]
+    Et la région du bénéficiaire vaut «Bourgogne-Franche-Comté»
+    Et la région de la formation vaut «Bourgogne-Franche-Comté»
+    Quand je demande un calcul de financement
+    Quand je sélectionne le financement «Une formation pour moi c'est possible»
+    Alors la rémunération applicable vaut 0
+    Et une aide complémentaire est éligible
+    Et aucune aide au transport n'est éligible
+    Et aucune aide à l'hébergement n'est éligible
+
+
+Scénario: Cas nominal - école de la deuxième chance (dispositif 3)
+    Soit un bénéficiaire et une formation
+    Et c'est un bénéficiaire de droit privé
+    Et le nombre d'heures travaillées par mois vaut 50
+    Et l'âge du bénéficiaire vaut 38
+    Et le niveau scolaire du bénéficiaire vaut «VI»
+    Et les codes financeur de la formation valent [«Conseil régional»]
+    Et la durée en heures de la formation vaut 36
+    Et la liste des codes FORMACODE de la formation vaut [15084]
+    Et la région du bénéficiaire vaut «Bourgogne-Franche-Comté»
+    Et la région de la formation vaut «Bourgogne-Franche-Comté»
+    Quand je demande un calcul de financement
+    Quand je sélectionne le financement «Une formation pour moi c'est possible»
+    Alors la rémunération applicable vaut 0
+    Et une aide complémentaire est éligible
+    Et aucune aide au transport n'est éligible
+    Et aucune aide à l'hébergement n'est éligible
+
+
+Scénario: Cas bénéficiaire 17 ans travaillant moins de 40h par mois - école de la deuxième chance (dispositif 3)
+    Soit un bénéficiaire et une formation
+    Et c'est un bénéficiaire de droit privé
+    Et le nombre d'heures travaillées par mois vaut 20
+    Et l'âge du bénéficiaire vaut 17
+    Et le niveau scolaire du bénéficiaire vaut «VI»
+    Et les codes financeur de la formation valent [«Conseil régional»]
+    Et la durée en heures de la formation vaut 36
+    Et la liste des codes FORMACODE de la formation vaut [15041]
+    Et c'est une formation E2C
+    Et la région du bénéficiaire vaut «Bourgogne-Franche-Comté»
+    Et la région de la formation vaut «Bourgogne-Franche-Comté»
+    Quand je demande un calcul de financement
+    Quand je sélectionne le financement «École de la deuxième chance»
+    Alors la rémunération applicable vaut 455.01
+    Et une aide complémentaire est éligible
+    Et une aide au transport est éligible
+    Et une aide à l'hébergement est éligible
+
+
+Scénario: Cas nominal DAQ (dispositif 4)
+    Soit un bénéficiaire et une formation
+    Et c'est un demandeur d'emploi
+    Et l'âge du bénéficiaire vaut 38
+    Et la durée en heures de la formation vaut 120
+    Et l'allocation du bénéficiaire vaut «allocation d'aide au retour à l'emploi»
+    Et le montant de l'allocation du bénéficiaire vaut 800.0
+    Et la région du bénéficiaire vaut «Bourgogne-Franche-Comté»
+    Et la région de la formation vaut «Bourgogne-Franche-Comté»
+    Et les codes financeur de la formation valent [«Conseil régional»]
+    Et l'intitulé de la formation vaut «Dispositif accès à la qualification»
+    Quand je demande un calcul de financement
+    Quand je sélectionne le financement «Dispositif accès à la qualification»
+    Alors la rémunération applicable vaut 800.0
+    Et l'intitulé de la règle de rémunération vaut «Aide complémentaire mobilisable par la région Bourgogne Franche Comté, rémunération mobilisable par les règles nationales»
+    Et une aide complémentaire est éligible
+    Et aucune aide au transport n'est éligible
+    Et aucune aide à l'hébergement n'est éligible
+
+
+Scénario: Action collective région (dispositif 5)
+    Soit un bénéficiaire et une formation
+    Et c'est un demandeur d'emploi
+    Et l'âge du bénéficiaire vaut 24
+    Et la durée en heures de la formation vaut 250
+    Et la région du bénéficiaire vaut «Bourgogne-Franche-Comté»
+    Et la région de la formation vaut «Bourgogne-Franche-Comté»
+    Et les codes financeur de la formation valent [«Conseil régional»]
+    Quand je demande un calcul de financement
+    Quand je sélectionne le financement «Action collective financée par la Région»
+    Alors la rémunération applicable vaut 652.18
+    Et une aide complémentaire est éligible
+    Et une aide au transport est éligible
+    Et aucune aide à l'hébergement n'est éligible
+
+
+Scénario: Mauvais CERTIFINFO pour Action collective région (dispositif 5)
+    Soit un bénéficiaire et une formation
+    Et c'est un demandeur d'emploi
+    Et l'âge du bénéficiaire vaut 24
+    Et la durée en heures de la formation vaut 250
+    Et la région du bénéficiaire vaut «Bourgogne-Franche-Comté»
+    Et la région de la formation vaut «Bourgogne-Franche-Comté»
+    Et les codes financeur de la formation valent [«Conseil régional»]
+    Et le code CERTIFINFO de la formation vaut 54912
+    Quand je demande un calcul de financement
+    Alors le financement «Action collective financée par la Région» n'est pas proposé
+
+
+Scénario: Cas parent isolé (dispositif 5)
     Soit un bénéficiaire et une formation
     Et c'est un demandeur d'emploi
     Et l'âge du bénéficiaire vaut 38
     Et les codes financeur de la formation valent [«Conseil régional»]
-    Et la durée en heures de la formation vaut 36
-    Et le code CERTIFINFO de la formation vaut 83899
+    Et la durée en heures de la formation vaut 420
     Et la région du bénéficiaire vaut «Bourgogne-Franche-Comté»
     Et la région de la formation vaut «Bourgogne-Franche-Comté»
+    Et c'est un parent isolé
     Quand je demande un calcul de financement
-    Quand je sélectionne le financement «VAE Bourgogne Franche Comté»
-    Alors la rémunération applicable vaut 401.09
-    Et l'intitulé de la régle de rémunération vaut «Aides et rémunération mobilisable par les règles nationales»
+    Quand je sélectionne le financement «Action collective financée par la Région»
+    Alors la rémunération applicable vaut 863.0
+    Et le montant de l'aide au transport vaut «98,79€ par mois (sous condition)»
+    Et le montant de l'aide à l'hébergement vaut «101,84€ par mois (sous condition)»
 
-Scénario: Cas nominal - VAE (pas de rémunération ou aides régionales)
+
+Scénario: Cas non salarié ayant travaillé (dispositif 5)
     Soit un bénéficiaire et une formation
     Et c'est un demandeur d'emploi
     Et l'âge du bénéficiaire vaut 38
     Et les codes financeur de la formation valent [«Conseil régional»]
-    Et la durée en heures de la formation vaut 36
-    Et le code CERTIFINFO de la formation vaut 83899
+    Et la durée en heures de la formation vaut 420
     Et la région du bénéficiaire vaut «Bourgogne-Franche-Comté»
     Et la région de la formation vaut «Bourgogne-Franche-Comté»
+    Et c'est une bénéficiaire non salarié qui a travaillé pendant douze mois dont au moins six mois consécutifs dans les trois ans qui précèdent l'entrée en formation
     Quand je demande un calcul de financement
-    Quand je sélectionne le financement «VAE Bourgogne Franche Comté»
-    Alors la rémunération applicable vaut 401.09
-    Et l'intitulé de la régle de rémunération vaut «Aides et rémunération mobilisable par les règles nationales»
+    Quand je sélectionne le financement «Action collective financée par la Région»
+    Alors la rémunération applicable vaut 708.59
+    Et une aide complémentaire est éligible
+    Et une aide au transport est éligible
+    Et aucune aide à l'hébergement n'est éligible
 
-Scénario: Cas nominal - Création reprise entreprise
+
+Scénario: Cas bénéficiaire ayant travaillé six mois sur 12 mois (dispositif 5)
+    Soit un bénéficiaire et une formation
+    Et c'est un demandeur d'emploi
+    Et l'âge du bénéficiaire vaut 38
+    Et les codes financeur de la formation valent [«Conseil régional»]
+    Et la durée en heures de la formation vaut 420
+    Et la région du bénéficiaire vaut «Bourgogne-Franche-Comté»
+    Et la région de la formation vaut «Bourgogne-Franche-Comté»
+    Et c'est une bénéficiaire qui a déjà travaillé six mois sur une période de douze mois
+    Quand je demande un calcul de financement
+    Quand je sélectionne le financement «Action collective financée par la Région»
+    Alors la rémunération applicable vaut 863
+    Et une aide complémentaire est éligible
+    Et une aide au transport est éligible
+    Et une aide à l'hébergement est éligible
+
+
+Scénario: Cas travailleur handicapé (dispositif 5)
+    Soit un bénéficiaire et une formation
+    Et c'est un demandeur d'emploi
+    Et l'âge du bénéficiaire vaut 38
+    Et les codes financeur de la formation valent [«Conseil régional»]
+    Et la durée en heures de la formation vaut 420
+    Et la région du bénéficiaire vaut «Bourgogne-Franche-Comté»
+    Et la région de la formation vaut «Bourgogne-Franche-Comté»
+    Et c'est un travailleur handicapé
+    Quand je demande un calcul de financement
+    Quand je sélectionne le financement «Action collective financée par la Région»
+    Alors la rémunération applicable vaut 1001.02
+    Et une aide complémentaire est éligible
+    Et une aide au transport est éligible
+    Et aucune aide à l'hébergement n'est éligible
+
+
+Scénario: Cas travailleur handicapé rémunération > 910 (dispositif 5)
+    Soit un bénéficiaire et une formation
+    Et c'est un demandeur d'emploi
+    Et l'âge du bénéficiaire vaut 38
+    Et l'allocation du bénéficiaire est «allocation d'aide au retour à l'emploi»
+    Et les codes financeur de la formation valent [«Conseil régional»]
+    Et le montant de l'allocation du bénéficiaire vaut 2200
+    Et la durée en heures de la formation vaut 420
+    Et la région du bénéficiaire vaut «Bourgogne-Franche-Comté»
+    Et la région de la formation vaut «Bourgogne-Franche-Comté»
+    Et c'est un travailleur handicapé
+    Quand je demande un calcul de financement
+    Quand je sélectionne le financement «Action collective financée par la Région»
+    Alors la rémunération applicable vaut 2200
+    Et une aide complémentaire est éligible
+    Et aucune aide au transport n'est éligible
+    Et aucune aide à l'hébergement n'est éligible
+
+
+Scénario: Cas travailleur handicapé rémunération (dispositif 5)
+    Soit un bénéficiaire et une formation
+    Et c'est un demandeur d'emploi
+    Et l'âge du bénéficiaire vaut 38
+    Et l'allocation du bénéficiaire est «allocation de solidarité spécifique»
+    Et les codes financeur de la formation valent [«Conseil régional»]
+    Et la durée en heures de la formation vaut 420
+    Et la région du bénéficiaire vaut «Bourgogne-Franche-Comté»
+    Et la région de la formation vaut «Bourgogne-Franche-Comté»
+    Et c'est un travailleur handicapé
+    Quand je demande un calcul de financement
+    Quand je sélectionne le financement «Action collective financée par la Région»
+    Alors la rémunération applicable vaut 1001.02
+    Et une aide complémentaire est éligible
+    Et une aide au transport est éligible
+    Et aucune aide à l'hébergement n'est éligible
+
+
+Scénario: Formation sanitaire et social niveau infra Bac (dispositif 6)
+    Soit un bénéficiaire et une formation
+    Et c'est un demandeur d'emploi
+    Et l'âge du bénéficiaire vaut 38
+    Et la durée en heures de la formation vaut 120
+    Et l'allocation du bénéficiaire vaut «allocation de transition professionnelle»
+    Et le montant de l'allocation du bénéficiaire vaut 800.0
+    Et la région du bénéficiaire vaut «Bourgogne-Franche-Comté»
+    Et la région de la formation vaut «Bourgogne-Franche-Comté»
+    Et les codes financeur de la formation valent [«Conseil régional»]
+    Et le code CERTIFINFO de la formation vaut 54913
+    Et le SIRET de l'organisme de formation vaut 26890005700061
+    Et c'est une formation ouverte aux bénéficiaires individuels
+    Quand je demande un calcul de financement
+    Quand je sélectionne le financement «Formation sanitaire et social niveau infra Bac»
+    Alors la rémunération applicable vaut 800.0
+    Et une aide complémentaire est éligible
+    Et le montant de l'aide complémentaire vaut 200
+    Et une aide au transport est éligible
+
+
+Scénario: Formation sanitaire et social niveau infra Bac sans ARE (dispositif 6)
+    Soit un bénéficiaire et une formation
+    Et c'est un demandeur d'emploi
+    Et l'âge du bénéficiaire vaut 38
+    Et la durée en heures de la formation vaut 120
+    Et la région du bénéficiaire vaut «Bourgogne-Franche-Comté»
+    Et la région de la formation vaut «Bourgogne-Franche-Comté»
+    Et les codes financeur de la formation valent [«Conseil régional»]
+    Et le code CERTIFINFO de la formation vaut 54913
+    Et le SIRET de l'organisme de formation vaut 26890005700061
+    Et c'est une formation ouverte aux bénéficiaires individuels
+    Quand je demande un calcul de financement
+    Quand je sélectionne le financement «Formation sanitaire et social niveau infra Bac»
+    Alors la rémunération applicable vaut 652.18
+
+
+Scénario: Mauvais SIRET pour formation sanitaire niveau infra Bac et social (dispositif 6)
+    Soit un bénéficiaire et une formation
+    Et c'est un demandeur d'emploi
+    Et l'âge du bénéficiaire vaut 38
+    Et la durée en heures de la formation vaut 120
+    Et l'allocation du bénéficiaire vaut «allocation d'aide au retour à l'emploi»
+    Et le montant de l'allocation du bénéficiaire vaut 800.0
+    Et la région du bénéficiaire vaut «Bourgogne-Franche-Comté»
+    Et la région de la formation vaut «Bourgogne-Franche-Comté»
+    Et le code CERTIFINFO de la formation vaut 54913
+    Et le SIRET de l'organisme de formation vaut 26890005700063
+    Et c'est une formation ouverte aux bénéficiaires individuels
+    Quand je demande un calcul de financement
+    Alors le financement «Formation sanitaire et social niveau infra Bac» n'est pas proposé
+
+
+Scénario: Formation sanitaire et social niveau Bac et plus (dispositif 7)
+    Soit un bénéficiaire et une formation
+    Et c'est un demandeur d'emploi
+    Et l'âge du bénéficiaire vaut 38
+    Et la durée en heures de la formation vaut 120
+    Et l'allocation du bénéficiaire vaut «allocation d'aide au retour à l'emploi»
+    Et le montant de l'allocation du bénéficiaire vaut 800.0
+    Et la région du bénéficiaire vaut «Bourgogne-Franche-Comté»
+    Et la région de la formation vaut «Bourgogne-Franche-Comté»
+    Et les codes financeur de la formation valent [«Conseil régional»]
+    Et le code CERTIFINFO de la formation vaut 64144
+    Et le SIRET de l'organisme de formation vaut 26890005700061
+    Et c'est une formation ouverte aux bénéficiaires individuels
+    Quand je demande un calcul de financement
+    Quand je sélectionne le financement «Formation sanitaire et social niveau Bac et plus»
+    Alors la rémunération applicable vaut 800.0
+    Et aucune aide complémentaire n'est éligible
+
+
+Scénario: Cas nominal - Création reprise entreprise (dispositif 8)
     Soit un bénéficiaire et une formation
     Et c'est un demandeur d'emploi
     Et l'âge du bénéficiaire vaut 38
@@ -519,10 +608,63 @@ Scénario: Cas nominal - Création reprise entreprise
     Quand je demande un calcul de financement
     Quand je sélectionne le financement «Création reprise entreprise»
     Alors la rémunération applicable vaut 652.18
-    Et l'intitulé de la régle de rémunération vaut «Aides et rémunération mobilisable par la région Bourgogne Franche Comté»
+    Et l'intitulé de la règle de rémunération vaut «Aides et rémunération mobilisable par la région Bourgogne Franche Comté»
     Et une aide complémentaire est éligible
 
-Scénario: Création reprise entreprise avec formation START AGRI
+
+Scénario: Cas salarié - Création reprise entreprise (dispositif 8)
+    Soit un bénéficiaire et une formation
+    Et c'est un bénéficiaire de droit privé
+    Et le nombre d'heures travaillées par mois vaut 100
+    Et l'âge du bénéficiaire vaut 38
+    Et les codes financeur de la formation valent [«Conseil régional»]
+    Et la durée en heures de la formation vaut 36
+    Et le code CERTIFINFO de la formation vaut 93561
+    Et la région du bénéficiaire vaut «Bourgogne-Franche-Comté»
+    Et la région de la formation vaut «Bourgogne-Franche-Comté»
+    Quand je demande un calcul de financement
+    Quand je sélectionne le financement «Création reprise entreprise»
+    Alors la rémunération applicable vaut 0
+    Et l'intitulé de la règle de rémunération vaut «Aide complémentaire mobilisable par la région Bourgogne Franche Comté, rémunération mobilisable par les règles nationales»
+    Et une aide complémentaire est éligible
+    Et aucune aide au transport n'est éligible
+    Et aucune aide à l'hébergement n'est éligible
+
+
+Scénario: Cas nominal - Création reprise entreprise (dispositif 8)
+    Soit un bénéficiaire et une formation
+    Et c'est un bénéficiaire de droit privé
+    Et le nombre d'heures travaillées par mois vaut 100
+    Et l'âge du bénéficiaire vaut 38
+    Et les codes financeur de la formation valent [«Conseil régional»]
+    Et la durée en heures de la formation vaut 36
+    Et le code CERTIFINFO de la formation vaut 93561
+    Et la région du bénéficiaire vaut «Bourgogne-Franche-Comté»
+    Et la région de la formation vaut «Bourgogne-Franche-Comté»
+    Quand je demande un calcul de financement
+    Quand je sélectionne le financement «Création reprise entreprise»
+    Alors la rémunération applicable vaut 0
+    Et l'intitulé de la règle de rémunération vaut «Aide complémentaire mobilisable par la région Bourgogne Franche Comté, rémunération mobilisable par les règles nationales»
+    Et une aide complémentaire est éligible
+
+
+Scénario: Cas salarié temps plein - Création reprise entreprise (dispositif 8)
+    Soit un bénéficiaire et une formation
+    Et c'est un bénéficiaire de droit privé
+    Et l'âge du bénéficiaire vaut 38
+    Et les codes financeur de la formation valent [«Conseil régional»]
+    Et la durée en heures de la formation vaut 36
+    Et le code CERTIFINFO de la formation vaut 93561
+    Et la région du bénéficiaire vaut «Bourgogne-Franche-Comté»
+    Et la région de la formation vaut «Bourgogne-Franche-Comté»
+    Quand je demande un calcul de financement
+    Quand je sélectionne le financement «Création reprise entreprise»
+    Alors la rémunération applicable vaut 0
+    Et l'intitulé de la règle de rémunération vaut «Aide complémentaire mobilisable par la région Bourgogne Franche Comté, rémunération mobilisable par les règles nationales»
+    Et aucune aide complémentaire n'est éligible
+
+
+Scénario: Création reprise entreprise avec formation START AGRI (dispositif 9)
     Soit un bénéficiaire et une formation
     Et c'est un demandeur d'emploi
     Et l'âge du bénéficiaire vaut 38
@@ -535,7 +677,7 @@ Scénario: Création reprise entreprise avec formation START AGRI
     Quand je demande un calcul de financement
     Alors le financement «Création reprise entreprise» n'est pas proposé
 
-Scénario: Création reprise entreprise avec formation START AGRI
+Scénario: Création reprise entreprise avec formation START AGRI (dispositif 9)
     Soit un bénéficiaire et une formation
     Et c'est un demandeur d'emploi
     Et l'âge du bénéficiaire vaut 38
@@ -548,5 +690,34 @@ Scénario: Création reprise entreprise avec formation START AGRI
     Quand je demande un calcul de financement
     Quand je sélectionne le financement «Création reprise entreprise PROFOREA / START AGRI»
     Alors la rémunération applicable vaut 652.18
-    Et l'intitulé de la régle de rémunération vaut «Aides et rémunération mobilisable par la région Bourgogne Franche Comté»
+    Et l'intitulé de la règle de rémunération vaut «Aides et rémunération mobilisable par la région Bourgogne Franche Comté»
     Et aucune aide complémentaire n'est éligible
+
+
+Scénario: Cas nominal - VAE (pas de rémunération ou aides régionales)
+    Soit un bénéficiaire et une formation
+    Et c'est un demandeur d'emploi
+    Et l'âge du bénéficiaire vaut 38
+    Et les codes financeur de la formation valent [«Conseil régional»]
+    Et la durée en heures de la formation vaut 36
+    Et le code CERTIFINFO de la formation vaut 83899
+    Et la région du bénéficiaire vaut «Bourgogne-Franche-Comté»
+    Et la région de la formation vaut «Bourgogne-Franche-Comté»
+    Quand je demande un calcul de financement
+    Quand je sélectionne le financement «VAE Bourgogne Franche Comté»
+    Alors la rémunération applicable vaut 401.09
+    Et l'intitulé de la règle de rémunération vaut «Aides et rémunération mobilisable par les règles nationales»
+
+Scénario: Cas nominal - VAE (pas de rémunération ou aides régionales)
+    Soit un bénéficiaire et une formation
+    Et c'est un demandeur d'emploi
+    Et l'âge du bénéficiaire vaut 38
+    Et les codes financeur de la formation valent [«Conseil régional»]
+    Et la durée en heures de la formation vaut 36
+    Et le code CERTIFINFO de la formation vaut 83899
+    Et la région du bénéficiaire vaut «Bourgogne-Franche-Comté»
+    Et la région de la formation vaut «Bourgogne-Franche-Comté»
+    Quand je demande un calcul de financement
+    Quand je sélectionne le financement «VAE Bourgogne Franche Comté»
+    Alors la rémunération applicable vaut 401.09
+    Et l'intitulé de la règle de rémunération vaut «Aides et rémunération mobilisable par les règles nationales»

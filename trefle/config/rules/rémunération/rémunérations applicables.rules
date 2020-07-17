@@ -2,6 +2,7 @@ Si l'allocation du bénéficiaire est «allocation d'aide au retour à l'emploi�
     Alors appliquer les règles «AREF»
 
 Si l'allocation du bénéficiaire n'est pas «allocation d'aide au retour à l'emploi»
+Et ce n'est pas un bénéficiaire de droit privé
     Alors appliquer les règles «RFPE-RPS»
 
 Si la région de la formation vaut «Normandie»
