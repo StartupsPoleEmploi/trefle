@@ -41,7 +41,7 @@
         <div v-show="ruleComment != ''">
           <div id="rule-comment" class="mt-3 card collapse">
             <div class="card-body">
-              <pre id="rule_comment_pre" v-html="this.ruleComment"></pre>
+              <pre id="rule_comment_pre" v-html="ruleComment"></pre>
             </div>
           </div>
         </div>
@@ -221,21 +221,19 @@
           })
       },
       getContentRule: function(){
-        if(this.commit_id) {
-          let data_param = {
-            'file': this.filename,
-            'commit_id': this.commit_id,
-          }
-          this.$http
-            .get('/source/file', {params: data_param})
-            .then(response => {
-              this.content = response.body;
-              return true;
-            }, response => {
-              if(response.status == 500) this.content = '';
-              return false;
-            })
-         } else this.content = this.ruleData;
+        let data_param = {
+          'file': this.filename,
+          'commit_id': this.commit_id?this.commit_id : 'HEAD',
+        }
+        this.$http
+          .get('/source/file', {params: data_param})
+          .then(response => {
+            this.content = response.body;
+            return true;
+          }, response => {
+            if(response.status == 500) this.content = '';
+            return false;
+          })
       },
       auth_to_edit: function () {
         this.error_flags.noUser = false;
