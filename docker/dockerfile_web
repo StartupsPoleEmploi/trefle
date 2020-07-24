@@ -42,6 +42,7 @@ COPY --from=back_app_node /srv/trefle/trefle/explorer /srv/trefle/legacy-backoff
 ARG TREFLE_GIT
 ARG TREFLE_OLD_VERSION
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone && \
+    sed -i 's#\(\s\+\)invoke-rc.d.*#\1kill -USR1 $(cat /var/run/nginx.pid)#' /etc/logrotate.d/nginx && \
     git clone -b ${TREFLE_OLD_VERSION} ${TREFLE_GIT} /srv/trefle-old && \
     chown -R www-data: /srv/trefle-old && \
     chmod -R u+rwx /srv/trefle-old
