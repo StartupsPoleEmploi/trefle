@@ -23,7 +23,6 @@ Et l'identifiant du financement est défini
     Et le nombre d'heures travaillées par mois est inférieur ou égale à 150
     Ou l'intitulé du financement est «Création reprise entreprise»
     Et le nombre d'heures travaillées par mois est inférieur ou égale à 150
-    # TODO pas d'aide complémentaire si salarié temps plein si dispositif 8
         Alors l'aide complémentaire est éligible
         Et le montant de l'aide complémentaire vaut 200
 
@@ -34,7 +33,8 @@ Et l'identifiant du financement est défini
     Si l'intitulé du financement n'est pas «DFL / SPRF Dispositif formation linguistique»
     Et l'identifiant du financement n'est pas «dispositif 1»
     Et le nombre d'heures travaillées par mois est inférieur ou égale à 40
-    Et l'allocation du bénéficiaire n'est pas «allocation d'aide au retour à l'emploi»
+    #Et l'allocation du bénéficiaire n'est pas «allocation d'aide au retour à l'emploi»
+    Et l'allocation du bénéficiaire n'est pas «allocation d'aide au retour à l'emploi», ou c'est un travailleur handicapé
         Alors l'intitulé de la règle de rémunération vaut «Aides et rémunération mobilisable par la région Bourgogne Franche Comté»
 
         #Si l'allocation du bénéficiaire est définie
@@ -59,13 +59,14 @@ Et l'identifiant du financement est défini
 
         # Tableau de regles: ligne 4 et 7
         Si c'est un travailleur handicapé
-        Et la rémunération applicable est inférieure à 910.02
+        Et la rémunération applicable est inférieure à 1932.52
 
             Si c'est un bénéficiaire qui a déjà travaillé six mois sur une période de douze mois
             Ou c'est un bénéficiaire qui a déjà travaillé douze mois sur une période de vingt-quatre mois
             Ou c'est un bénéficiaire non salarié qui a travaillé pendant douze mois dont au moins six mois consécutifs dans les trois ans qui précèdent l'entrée en formation
-            Alors la rémunération applicable vaut 910.02
-            Et le texte de la rémunération vaut «C'est une rémunération minimum en fonction de votre expérience»
+                Alors le texte de la rémunération vaut «Le stagiaire peut choisir entre ARE ou rémunération Région. La rémunération Région calculée sera comprise entre 910.02 et 1932.52 en fonction des salaires antérieurs perçus»
+                Si la rémunération applicable est inférieure à 910.02
+                    Alors la rémunération applicable vaut 910.02
 
         # Tableau de regles: ligne 4 et 8 à 13
         Si c'est un bénéficiaire qui a déjà travaillé six mois sur une période de douze mois
@@ -90,7 +91,7 @@ Et l'identifiant du financement est défini
     Si la rémunération applicable est supérieur à 0
     Et l'intitulé du financement n'est pas «DFL / SPRF Dispositif formation linguistique»
     Et l'identifiant du financement n'est pas «dispositif 1»
-    Et l'allocation du bénéficiaire n'est pas «allocation d'aide au retour à l'emploi»
+    Et l'allocation du bénéficiaire n'est pas «allocation d'aide au retour à l'emploi», ou c'est un travailleur handicapé
 
         #####################
         # Aide au transport #
@@ -108,7 +109,10 @@ Et l'identifiant du financement est défini
         Et ce n'est pas une mère de famille ayant au moins trois enfants
         Et ce n'est pas une femme divorcée, veuve ou séparée judiciairement depuis moins de trois ans
         Et ce n'est pas une femme seule et enceinte
+        Et ce n'est pas un bénéficiaire qui a déjà travaillé six mois sur une période de douze mois
+        Et ce n'est pas un bénéficiaire qui a déjà travaillé douze mois sur une période de vingt-quatre mois
             Alors l'aide au transport est éligible
+            Et le montant de l'aide au transport vaut «Montant à calculer»
             Et le texte de l'aide au transport vaut «L'indemnité de transport est limitée à un aller/retour sur la durée de la formation.»
 
         ########################
