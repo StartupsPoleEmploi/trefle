@@ -60,13 +60,13 @@ async def when_remunerate(context):
             context.result = result
             break
     else:
-        raise AssertionError(f'No result found')
+        raise AssertionError('No result found')
 
 
 @then(r"il y a (?P<expected>\d+) financements? proposés?")
 def then_check_count(context, expected):
-    assert found == int(expected), f'Found {found}'
     found = len(context.passed)
+    assert found == int(expected), f'Found {found}'
 
 
 @then(r"le financement «(?P<intitule>.+)» n'est pas proposé")
