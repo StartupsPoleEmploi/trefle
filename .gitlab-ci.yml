@@ -35,7 +35,7 @@ sonarqube-check:
       - .sonar/cache
   stage: test
   script:
-    - sonar-scanner -Dsonar.qualitygate.wait=true
+    - sonar-scanner -Dsonar.qualitygate.wait=true -Dsonar.projectKey=trefle
   allow_failure: true
   only:
     - master
