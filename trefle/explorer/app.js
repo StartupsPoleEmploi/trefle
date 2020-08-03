@@ -15,7 +15,7 @@ function renderLabel (key, value) {
   return SCHEMA[key]['label']
 }
 
-REQUESTS = 0
+let REQUESTS = 0
 
 function request(uri, settings) {
   return new Promise( (res, rej) => {
