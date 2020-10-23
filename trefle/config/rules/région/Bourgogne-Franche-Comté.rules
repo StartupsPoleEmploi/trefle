@@ -78,7 +78,7 @@ Si l'allocation du bénéficiaire ne fait pas partie de [«allocation spécifiqu
         Si la région de la formation vaut «Bourgogne-Franche-Comté»
         Et les codes financeur de la formation contiennent «Conseil régional»
         Et la liste des codes FORMACODE de la formation contient 15084
-        Et c'est un demandeur d'emploi, ou le nombre d'heures travaillées par mois est inférieure ou égale à 150
+        Et c'est un demandeur d'emploi, et le nombre d'heures travaillées par mois est inférieure ou égale à 150
         # TODO revoir la formulation (iV original à transposer en nouveau code)
         Et le niveau scolaire du bénéficiaire est inférieur à «IV»
             Alors le financement est éligible
@@ -90,7 +90,7 @@ Si l'allocation du bénéficiaire ne fait pas partie de [«allocation spécifiqu
 
     Si le financement est de type «E2C»
         Alors l'identifiant du financement vaut «dispositif 3»
-        Si c'est un demandeur d'emploi, ou le nombre d'heures travaillées par mois est inférieure ou égale à 150
+        Si c'est un demandeur d'emploi, et le nombre d'heures travaillées par mois est inférieure ou égale à 150
             Alors appliquer les règles «E2C»
 
 
@@ -100,7 +100,7 @@ Si l'allocation du bénéficiaire ne fait pas partie de [«allocation spécifiqu
         Si la région de la formation vaut «Bourgogne-Franche-Comté»
         Et les codes financeur de la formation contiennent «Conseil régional»
         Et l'intitulé normé de la formation contient «DAQ», ou l'intitulé normé de la formation contient «DISPOSITIFACCESALAQUALIFICATION»
-        Et c'est un demandeur d'emploi, ou le nombre d'heures travaillées par mois est inférieure ou égale à 150
+        Et c'est un demandeur d'emploi, et le nombre d'heures travaillées par mois est inférieure ou égale à 150
             Alors le financement est éligible
             Et appliquer les règles «rémunérations applicables»
             Et le texte des démarches vaut «Contactez votre conseiller référent emploi (Pôle emploi, mission locale ou Cap emploi).»
@@ -114,7 +114,7 @@ Si l'allocation du bénéficiaire ne fait pas partie de [«allocation spécifiqu
 
         Si les codes financeur de la formation contiennent «Conseil régional»
         Et le code CERTIFINFO de la formation ne fait pas partie de [54912,54913,54917,87185,87187]
-        Et c'est un demandeur d'emploi, ou le nombre d'heures travaillées par mois est inférieure ou égale à 150
+        Et c'est un demandeur d'emploi, et le nombre d'heures travaillées par mois est inférieure ou égale à 150
         Et la région de la formation vaut «Bourgogne-Franche-Comté»
             Alors le financement est éligible
             Et appliquer les règles «rémunérations applicables»
@@ -129,7 +129,7 @@ Si l'allocation du bénéficiaire ne fait pas partie de [«allocation spécifiqu
 
         Si la région de la formation vaut «Bourgogne-Franche-Comté»
         Et les codes financeur de la formation contiennent «Conseil régional»
-        Et c'est un demandeur d'emploi, ou le nombre d'heures travaillées par mois est inférieure ou égale à 150
+        Et c'est un demandeur d'emploi, et le nombre d'heures travaillées par mois est inférieure ou égale à 150
 
             Si le code CERTIFINFO de la formation vaut 54913
             Ou le code CERTIFINFO de la formation vaut 54917
