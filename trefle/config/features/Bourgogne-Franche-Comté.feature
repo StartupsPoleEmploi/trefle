@@ -529,7 +529,7 @@ Scénario: Cas travailleur handicapé et ayant travaillé six mois sur une préi
     Et le texte de la rémunération vaut «Le stagiaire peut choisir entre ARE ou rémunération Région. La rémunération Région calculée sera comprise entre 910.02 et 1932.52 en fonction des salaires antérieurs perçus»
     Et une aide complémentaire est éligible
     Et une aide au transport est éligible
-    Et une aide à l'hébergement est éligible
+    Et aucune aide à l'hébergement n'est éligible
 
 
 Scénario: Cas travailleur handicapé rémunération < 1001.02 (dispositif 5)
