@@ -90,7 +90,7 @@ Scénario: Rému pour une pesonnes handicapée ayant déjà travaillé
     Soit un bénéficiaire et une formation
     Et c'est un demandeur d'emploi
     Et c'est un travailleur handicapé
-    Et c'est un bénéficiaire non salarié qui a travaillé pendant douze mois dont au moins six mois consécutifs dans les trois ans qui précèdent l'entrée en formation
+    Et c'est un bénéficiaire qui a déjà travaillé six mois sur une période de douze mois
     Et les codes financeur de la formation valent [«Conseil régional»]
     Et la région de la formation vaut «Bourgogne-Franche-Comté»
     Et l'identifiant du financement vaut «dispositif 5»
