@@ -10,7 +10,7 @@
   "dependencies": {
     "bootstrap": "^4.4.1",
     "bootstrap-vue": "^2.4.2",
-    "chart.js": "^2.9.3",
+    "chart.js": "^2.9.4",
     "chartjs": "^0.3.24",
     "chartjs-plugin-colorschemes": "^0.4.0",
     "chartjs-plugin-datalabels": "^0.7.0",
